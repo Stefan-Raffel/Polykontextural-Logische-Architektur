@@ -1,0 +1,9 @@
+# Lean 4 / Lake — Build-Artefakte und Abhaengigkeiten (7,5 GB, nicht versionieren)
+/.lake/
+*.olean
+*.ilean
+*.trace
+*.hash
+
+# macOS
+.DS_Store

@@ -1,0 +1,738 @@
+import Reformulation.Proemial.AlphaGamma
+import Reformulation.Proemial.AlphaGammaSubstantial
+import Reformulation.Proemial.AlphaGammaSubstantialRefined
+import Reformulation.Proemial.AlphaGammaBeckChevalley
+import Reformulation.Proemial.AlphaGammaRelPullback
+import Reformulation.Proemial.AlphaGammaWitnesses
+import Reformulation.Proemial.AlphaGammaTransport
+import Reformulation.Proemial.AlphaGammaStratification
+import Reformulation.Proemial.AlphaGammaRounding
+import Reformulation.Proemial.DiscontexturalStratification
+import Reformulation.Proemial.ContexturalTransjunction
+import Reformulation.Proemial.RealizedTransjunction
+import Reformulation.Proemial.SubstantialTransjunction
+import Reformulation.Proemial.TransjunctionCloneBound
+import Reformulation.Proemial.NonUniformCloneBound
+import Reformulation.Proemial.InteractiveTransjunction
+import Reformulation.Proemial.IntransitivityDifferential
+import Reformulation.Proemial.DirectionChoice
+import Reformulation.Proemial.IrreversibleAscent
+import Reformulation.Proemial.NoUniformSwap
+import Reformulation.Proemial.ExtensionalCollapse
+import Reformulation.Proemial.ExhaustionTransition
+import Reformulation.Proemial.RecurringGround
+import Reformulation.Proemial.IntervalBackbone
+import Reformulation.Proemial.ReversibleExchange
+import Reformulation.Proemial.IrreversibleAdvance
+import Reformulation.Proemial.ComplementaryMediation
+import Reformulation.Proemial.ContentReflexivity
+import Reformulation.Proemial.MediationProcess
+import Reformulation.Proemial.SelfDetermination
+import Reformulation.Proemial.BranchingCoalgebra
+import Reformulation.Proemial.FlowIteration
+import Reformulation.Proemial.CoalgebraMorphism
+import Reformulation.Proemial.ContexturalFibration
+
+/-!
+# Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
+
+Aggregat-Datei für das Proemial-Modul.
+
+Enthält:
+- `Proemial.AlphaGamma`: α+γ-Form der Proemialrelation in der PKL-Doppelfaserung.
+  Zwei primitive Funktoren L ⊣ R (α-Komponente) plus 2-Morphismus γ mit
+  Beck-Chevalley-Verschränkung (γ-Komponente, Lesart B). F-1-Niederlegung (invariante
+  Schicht).
+- `Proemial.AlphaGammaSubstantial`: substantielle Tiefe der α+γ-Form. F-3-Niederlegung
+  mit Aufhebung der drei F-1-Schwächen (γ-V/F-S-Differenzierung, BC-Spezialisierung,
+  B-3-Tautologie). Zwei verschiedene Kategorien S ≠ K; α-N via Functor.IsEquivalence.
+- `Proemial.AlphaGammaSubstantialRefined`: F-3.4/5-Folge-Iterationen. Additiv zu F-3.
+  F-3.4: `naturality_K_from_S` als Theorem (aus `naturality_S` + Dreieck-Identität).
+  F-3.5: `TritoStellungsVielfaltExists_substantial` mit `¬ IsIso σ.rel`-Substanz.
+- `Proemial.AlphaGammaBeckChevalley`: F-3.6 BC-Architektur-Niederlegung plus drei
+  Anschluss-Aufgaben (F-3.4.a/b, F-3.5.a). Eigenstängige BC-Konstruktion mit Pullback-
+  Daten; `ProemialGammaMorphismTrulyMinimal` ohne Phantom-BC; γ-V ohne Sorry bewiesen.
+- `Proemial.AlphaGammaRelPullback`: F-3.6.a Pullback-getragene rel-Substanz (Pfad D,
+  modifizierte Sub-Substanz H). Diagonal-Form mit `h_rel_not_iso` wesentlich verwendet
+  und `BC.pullback_K` operativ; dritte PKL-Konstruktion; 0 Sorries.
+- `Proemial.AlphaGammaWitnesses`: F-3.6.a.1 + F-3.6.b Zeugen-Einheit. Äquivalenz
+  `tritoStellungsVielfalt_iff_substantial` (ersetzt die falsche Nicht-Implikations-
+  Aussage; Spec-Stopp-Befund, Sub-Substanz I); Bewohntheits-Zeuge mit Anwendungs-
+  Korollar durch das Diagonal-Theorem; 𝟙-Kontrast-Zeuge; punktweiser
+  Unabhängigkeits-Zeuge via Types.tensorProductAdjunction; 0 Sorries.
+- `Proemial.AlphaGammaTransport`: F-3.6.a.2 + F-3.6.a.3 Transport- und
+  Deprecation-Einheit. Treue-Brücke; Haupt-Theorem `rel_diagonal_transport`
+  (Diagonal-Bruch auf der S-Seite, `BC.pullback_S` erstmals Statement-tragend);
+  Verschränkungs-Gleichung `diagonal_transport_eq` mit iso-dichter Verschärfung
+  (Anker-5-Einlösung); Stufe-5-Kandidat `bcIso_diagonal_transport` eingelöst;
+  positives Faktorisierungs-Lemma plus formale Negations-Anker zu den zwei
+  Option-B-deprecierten F-3.6-Aussagen (Memorial-Block in
+  AlphaGammaBeckChevalley.lean); 0 Sorries.
+- `Proemial.AlphaGammaStratification`: F-3.6.a.5 Schicht-Formalisierungs-Einheit.
+  Zentrum-Lemma `unit_isIso_of_natIso` (Konditionalitäts-Auflösung der
+  Weichen-Entscheidung Lesart A′); Vorbehalts-Korollar; Schicht-Selektions-Theorem
+  `bcData_nonempty_iff_unit_isIso` (BC-Daten bewohnt genau bei iso Einheit);
+  Negativ-Lemma `prodHomWitness_not_bcData` (prodHomWitness als Kontrast-Zeuge:
+  Trito-geltend, nicht emanativ-reversibel); 0 Sorries.
+- `Proemial.AlphaGammaRounding`: F-3.6.a.6 Abrundungs-Paket (erster reiner
+  Abrundungs-Zyklus; Anfügung von Wahrheit statt Änderung). End-Lemma
+  `end_id_comm` (Zentrum End(𝟭 S) kommutativ); unkonditionale Charakterisierung
+  `bcData_nonempty_iff_unconditional`; Rück-Richtungs-Korollar `identityWitnessBC'`
+  mit compat-Vergleich und voller Struktur-Gleichheit zum handgebauten Zeugen;
+  Konsistenz-Korollar `prodHomWitness_not_unconditional`; Taktik-Konventions-Block
+  und Erzähl-Präzisierungs-Block als Modul-Doc; 0 Sorries.
+
+- `Proemial.DiscontexturalStratification`: Diskontexturalitäts-Setzung (Form β,
+  neunte Schicht). Die emanativ/evolutiv-Trennung als GESETZTES Strukturmerkmal
+  auf der Kontextur-Achse 𝒞 (analog B5/Beck-Chevalley, nicht bewiesen).
+  Struktur `DiscontexturalStratification` mit konstitutivem `discontextural : True`-
+  Feld (B5-`prop_field`-Muster); Bewohntheit `discontexturalStratification_nonempty`
+  (Wohlgeformtheit, nicht Nicht-Existenz-Wahrheit); Anschluss `ofBewohnteSchicht`
+  plus `transition_isIso_ofBewohnteSchicht` (Hebung der emanativ/evolutiv-Trennung
+  von 𝒪 auf 𝒞; auf der BC-bewohnten Schicht ist der gehobene Übergang reversibel).
+  Setzung nicht Beweis: kein `¬∃`-Statement. 0 Sorries.
+
+- `Proemial.ContexturalTransjunction`: gehobene S/K-Struktur mit Transjunktion
+  (zehnte Schicht; hebt die schwache Form der neunten auf die starke). Gemischter
+  Charakter: beweisbarer Kern + gesetzter Rand. Teil 1 `ContexturalLift` (starke
+  Hebung über zwei getrennte Kategorien S, K mit Übergangs-Funktor — Korrektur des
+  schwachen Spec-Defekts) + `Contextural := Bool ⊕ Bool` (konkrete ⊕-Realisierung).
+  Teil 2 `exTransjunction`/`liftS` mit `exTransjunction_not_S_internal` (VORZEIGBARER
+  Kern, BEWIESEN, konkrete Operation nicht Form α) und `exTransjunction_switches`
+  (Lesart b, Kontexturwechsel inr aus inl, nicht Łukasiewicz). Teil 3
+  `CharacterizedPosit` (Kern-Felder `op`/`not_S_internal` BEWIESEN, Rand-Feld
+  `contexturePartitionGenuine : True` GESETZT analog B5/Beck-Chevalley) +
+  `exCharacterizedPosit`; Komplementarität zu Beck-Chevalley als Doc-string.
+  Kern/Rand-Grenze durchgehalten. 0 Sorries.
+
+- `Proemial.RealizedTransjunction`: die Realisierungs-Naht (elfte Schicht). Webt
+  die zwei Inseln der zehnten Schicht (operationslose Hebung `ContexturalLift` /
+  hebungsloser Kern `exTransjunction`) auf EINEM parametrischen Trägerpaar `S, K`
+  zusammen. Teil 1 `LiftedTransjunctiveC` (Naht-Struktur: `transition : S ⥤ K`
+  Hebung-Funktor + `transject : S → S → (S ⊕ K)` Operation als SEPARATES Feld +
+  `rejects`-Zeuge — beide Daten in EINEM Term, die Einwebung; `toContexturalLift`
+  rekonstruiert die erste Insel, `switchOfTransition` subsumiert `switch` via
+  `.obj`). Teil 2 `no_generic_switch` (axiom-frei, Zeuge `Bool/Empty` — der
+  gehaltvolle Ersatz des `True`-Rand-Felds der zehnten Schicht). Teil 3
+  `exLifted : LiftedTransjunctiveC (Discrete Bool) (Discrete Unit)` (NICHT-
+  degenerierter Zeuge: zwei verschiedene Träger, konstanter Übergang kein 𝟙 —
+  Behebung 1 gegen II.5; `exLifted_transition_collapses`/`exLifted_domain_distinct`
+  bezeugen die echte Getrenntheit) + `exTransject_not_internal` (VORZEIGBARER
+  Kern, BEWIESEN, konkret auf `Bool/Unit`, kein Form α) relativ zur benannten
+  `internalS`-Definitions-Wahl (Behebung 2 gegen II.4). Der ehrliche Preis
+  (`transition` Funktor / `transject` Operation bleiben zwei Felder, 2-stellig vs
+  1-stellig — strukturelle Tatsache, kein Defekt) markiert. 0 Sorries.
+
+- `Proemial.SubstantialTransjunction`: die bindende Transjunktion (Pfad A, zwölfte
+  Schicht). Füllt die Naht der elften Schicht mit einem SUBSTANTIELLEN `K` statt
+  binde-leerem `K = Unit`. Stelligkeits-Pointe: der Binde-Ort ist die Stelligkeit
+  der ÜBERSCHREITUNG (des `inr`-Ziels), nicht die Substanz von `K`; unäre
+  Überschreitung (`g a`, funktoriell) bindet nicht, binär-interaktive (`g a b`)
+  bindet — Funktorialität ist Unarität, Binde-Kraft Binarität. Teil 1
+  `InExtendedUnary` (Stelligkeits-Kriterium) + `unit_captures_all` (bei `K = Unit`
+  total — Janus' Befund formal: Unit bindet nicht). Teil 2 `exTransjectA` über
+  `S = ℕ` / `K = ℕ → Bool` (Rejektion zur charakteristischen Funktion von `{b}` —
+  Ziel kodiert das ZWEITE Argument, binär-interaktiv) + `exTransjectA_outside`
+  (VORZEIGBARER Kern, instanzgebunden über `(0,1)`/`(0,2)`, kein Form α) +
+  `rejection_targets_injective` (trägt ii, unendliches S). Teil 3
+  `exTransjectB_inside` (unäre Überschreitung bindet nicht — der Funktor-Befund) +
+  `binary_captures_all` (binäre trivialisiert — Grenz-Markierung, die Unär-Schranke
+  ist nicht willkürlich, NICHT Teil der bindenden Substanz). Teil 4 `exLiftedA :
+  LiftedTransjunctiveC (Discrete ℕ) (Discrete (ℕ → Bool))` (die Naht über
+  substantiellem `K`; `transject`-Feld IST die gehobene `exTransjectA` via
+  `liftToDiscrete`/`exLiftedA_transject_eq`; `exLiftedA_transition_nontrivial`
+  Nicht-Degeneration). Bindend ist die binär-TRANS-KONTEXTURALE Form, nicht
+  Binarität als solche (die Multiplikation ist binär-intra-kontextural). Die eine
+  offene Naht (≤unäre Lesart von „kanonisch", Janus' Achse) ist als Grenze geführt,
+  nicht geschlossen (dritte Sonde). 0 Sorries.
+
+- `Proemial.TransjunctionCloneBound`: die Transjunktion als bewiesene Klon- bzw.
+  Definierbarkeits-Schranke (D, Verschaltung auf Mathlibs `ModelTheory.Substructures`).
+  Trägt die negative Seite der Akkretion (Horistês: Transzendenz — die Operation gehört
+  dem intra-kontexturalen System nicht an) deutungsdicht, ohne `True`-Feld. Tragender Satz
+  `T_not_in_clone`: die Transjunktion `T a b = if (a,b)=(0,2) then 1 else max a b` auf
+  `Fin 3` liegt nicht im von `{∧,∨,¬}` erzeugten Klon — bewiesen durch Konsum von
+  `Term.realize_mem` (das Erhaltungs-Lemma per Term-Induktion, der harte Teil frei) plus
+  `T 0 2 = 1 ∉ {0,2}`. Drei Deutungs-Tests am Term tragen die Transzendenz-Deutung: Test 1
+  (`test1_*`, Iso `{0,2} ≃ Bool` mit Operations-Verträglichkeit, Kontextur-Treue), Test 2a
+  (`term_preserves_contextur` + `T_leaves_contextur`, die Schranke ist das Verlassen, keine
+  Schranke innerhalb), Test 2b (`const_not_closedUnder` + `no_substructure_with_const`, die
+  Schranke verschwindet bei Hinzunahme der `1`-Konstante — zugleich K-D.2: keine Konstante
+  in der Basis). Die positive Neuheits-Seite (K-D.5) erscheint NICHT im Korpus (kein
+  `axiom`/`True`/getarntes Theorem), nur als nicht-formalisierte hermeneutische Aussage im
+  Doc-String benannt. Kern-Sätze axiom-sauber (`propext, Quot.sound`, kein `sorryAx`).
+  0 Sorries.
+
+- `Proemial.NonUniformCloneBound`: der zweite Zeuge der Klon-Schranke (Kairos, Sonde 15 —
+  Nicht-Internalität ohne Transzendenz). Der Zeuge `W` (Muster min/max/min) erhält alle
+  drei Elementarkontexturen (`W_contexture_faithful`), wirkt auf jeder klassisch
+  (`W_min_01`/`W_max_12`/`W_min_02`) — und liegt trotzdem nicht im Klon
+  (`W_not_in_clone`; Existenz-Fassung `nonuniform_witness_exists`). Grund ist nicht
+  Transzendenz, sondern die UNEINHEITLICHKEIT der lokalen Wahl (`W_uneven`): das
+  Strukturprinzip (Konjunktion/Disjunktion) wechselt beim Kontexturwechsel, ohne dass
+  eine Grenze verletzt wird. Beweismittel ist die Begleit-Relation
+  `ρ(x,y) ⟺ y Extrem ∧ x in der gemischten Kontextur von y` (`rho_companion`), Basis-
+  erhalten und darum Term-invariant (`rho_is_invariant`, dieselbe `Term.realize_mem`-
+  Verschaltung wie `tolerance_is_invariant`); `W` bricht `ρ` genau an der
+  Uneinheitlichkeits-Stelle (`rho_breaks_at_uneven_site`). Gegenrichtung als Schärfung:
+  vier Wahlmuster sind mit expliziten Termen erzeugbar (`pattern_*_in_clone`, darunter
+  zwei echte Kompositionen mit `¬`). E1-Nachzug (nach Sonde 16): die volle
+  KLASSIFIKATION — drei weitere Zeugen `W2`/`W3`/`W4` (W2 direkt über `ρ`, W3/W4 per
+  `conj`-Transport: der Klon ist unter der `neg`-Konjugation abgeschlossen,
+  `clone_closed_under_conj` via Term-Konstruktion `¬ t[¬x,¬y]`; die 4/4-Teilung damit
+  als symmetrisch belegt), Struktursatz `locally_classical_iff` + `ofChoices_injective`
+  (lokal klassisch ⟺ Wahlvektor, die Zählung 2^3=8 im Korpus) und Hauptsatz
+  `four_of_eight_generatable`: von den acht Wahlmustern sind GENAU VIER erzeugbar und
+  GENAU VIER nicht (`locally_classical_dichotomy` als Ops-Fassung). Die übrigen Zahlen
+  der Sonden 15/16 (Klon-Größe 82, Befunde für m ≥ 4: dort nur `min`/`max` erzeugbar)
+  bleiben außerhalb des Korpus; ob kontextur-relative Operationswahl Günthers
+  Vermittlung IST, bleibt unentschieden (Marke 3). 0 Sorries.
+
+- `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
+  Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte
+  Schicht bleibt unangetastet). Teil 1 gespiegelte Familie `InExtendedUnarySnd` +
+  Buchung `exTransjectA_inside_snd`: `exTransjectA` ist der ASYMMETRISCHE Zeuge (Ziel
+  `φ_b` am zweiten Argument allein), gefangen von der Zweit-Argument-Familie — kein
+  interaktiver. Teil 2 der echte Interaktions-Zeuge `exTransjectI` (Rejektions-Ziel
+  `φ_{a+b}`, an BEIDEN Argumenten): `exTransjectI_outside_fst`/`_snd`/`_either` — außer-
+  halb beider unärer Familien; instanzgebunden `(0,1)/(0,2)` bzw. `(1,0)/(2,0)`, kein
+  Form α. Teil 3 (Kür) `InExtendedUnaryMixed` + `exTransjectI_outside_mixed`: auch außer-
+  halb der punktweise gemischten Familie (Taubenschlag über `1,2 × 5,6,7`) — Ausschluss
+  im unären Regime unbedingt. Teil 4 (Kür) `exLiftedI` Naht über substantiellem `K` mit
+  dem interaktiven `transject`-Feld. Reichweite unverändert konditional: `binary_captures_all`
+  bleibt wahr, die Unär-Lesart bleibt gesetzte Prämisse — Symmetrisierung, nicht Zwang;
+  „Interaktion = Akkretion" bleibt Deutung. 0 Sorries.
+
+- `Proemial.IntransitivityDifferential`: das Intransitivitäts-Differential
+  (vierzehnte Schicht) — das erste *vollständige* Differential der Architektur:
+  beide Richtungen als Theoreme, in EINER Sprache (Ordnungssprache), von Null.
+  Reiche Seite: der minimale relationale Zeuge `cyc3` auf `Fin 3` (orientierter
+  3-Zyklus `b = a+1`) mit den Ehrlichkeits-Sätzen `cyc3_holds`/`cyc3_irrefl`/
+  `cyc3_not_transitive` — er existiert, ist irreflexiv und verlässt die arme
+  Klasse EXAKT an der Transitivität. Arme Klasse (`IsTrans`+`Std.Irrefl` =
+  `IsIrrefl`, instanz-quantifiziert): `no_cycle_in_strict_order` (nackte Fassung, Günthers
+  Reduktion 1937 gespiegelt — Verkettung/Gegenprinzip/Kollaps; Druck-Zählung:
+  (2)+(1) gegen (3)) und
+  `cyc3_not_representable` (Darstellbarkeits-Fassung: kein relations-erhaltendes
+  `f` in irgendeine strikte Ordnung). Kür `no_return` (keine Rückkehr in
+  beliebig vielen Schritten via `Relation.transGen_eq_self`). KEINE Aussage über
+  die modale Triade (deren Asymmetrie bleibt Design-Datum, A3; Swap-Satz = AP7).
+  Konditional ist hier nichts. 0 Sorries; axiom-frei bis auf die Kern-Axiome
+  von `decide`/`propext`.
+
+- `Proemial.DirectionChoice`: die Drehrichtungs-Wahl (fünfzehnte Schicht) — die
+  dritte Wille-Funktion als GESETZTE Funktion mit echtem Stellungs-Argument
+  (Rev3-Signatur eingelöst; Konkordanz Stellung ≙ `CompositionSite`,
+  KompositionsRichtung ≙ `Turn`, choose ≙ `directionChoice`). Kern-Lemma
+  `factorsThroughUnit_iff_constant` (typunabhängige volle Äquivalenz: durch `Unit`
+  faktorisieren ↔ konstant sein) charakterisiert das arme Modell exakt; das
+  Differential mit textuell verankerter negativer Richtung — die gesetzte Wahl ist
+  nicht-konstant (`directionChoice_not_constant`) und faktorisiert darum NICHT durch
+  `Unit` (`directionChoice_no_unit_factorization`, Günther 1971 als Beweis-Spiegel:
+  „ein Wille, der nichts als sich selbst will, hätte nichts Konkretes"). Kür
+  `card_unit_choices = 2` vs. `card_site_choices = 8` (die Verarmung als
+  Kardinalität). Richtungs-Marke: Richtung 1 (kein Wollen ohne Vorstellung)
+  eingelöst, Richtung 2 offen (V2). Kein PathC-Import, kein Satz über τ/δ/ω —
+  die Stellen-Namen sind semantische Verweise; Swap-Satz = AP7. 0 Sorries.
+
+- `Proemial.IrreversibleAscent`: der irreversible Aufstieg (sechzehnte Schicht) —
+  das zweite Zeit-Differential in Zeugen-Fassung, dual zur vierzehnten
+  (`IntransitivityDifferential`): dort kein Zyklus in strikter Ordnung, hier kein
+  strikter Aufstieg in Periodik. Eine Sprache (Iteration/Gleichheit), selbsttragend
+  (kein Kenogramm-, F3- oder PathC-Import). Arme Klasse `PointwisePeriodic` = Günthers
+  Maßstab-Grenzfall (Vorwort Beiträge III, S. XI — Zusammenlesung); ihre Symmetrie
+  ist Satz (`reach_returns`), nicht Definitions-Zutat, ebenso die
+  Nicht-Darstellbarkeit des injektiven Aufstiegs (`no_injective_trajectory`). Zeuge
+  `Nat.succ` (rückkehrfrei: `succ_no_return`/`succ_not_pointwise_periodic`). Das
+  Rang-Lemma `no_return_of_strict_rank` (samt Korollar) reduziert die
+  Fixpunkt-Freiheits-Setzung der Architektur auf eine prüfbare Term-Eigenschaft
+  (strikt wachsender ℕ-Rang). Marke: der Zeuge trägt die Stufen-Zahl, nicht die
+  Kontextur-Substanz; die Vorwort-Stelle bleibt behauptete negative Richtung. Kür
+  `orbit_pred_exists` (Orbit-Vorgänger). 0 Sorries; Axiome `propext` (+ `Quot.sound`
+  in den ℕ-tragenden Sätzen), kein Classical, kein decide.
+
+- `Proemial.NoUniformSwap`: der Swap-Satz (siebzehnte Schicht) — das älteste
+  „benannt, nicht gebaut" der Architektur (NE3, kein kanonischer Swap) erhält seinen
+  Satz in Paar-Fassung. Kategorien-Sprache, Zeuge auf `Discrete (Fin 2)` (F = const ⟨0⟩,
+  G = swap; `comp_obj_ne`). **Bewiesen:** punktuelle Existenz (`swap_exists_self`, Kür
+  `swap_exists_of_comm`: Kommutation ⟹ Swap via `eqToIso`); **bewiesen:** keine uniforme
+  Swap-Zuordnung über alle Endofunktor-Paare (`no_swap_witness` Instanz, `no_uniform_swap`
+  mit `Category.{0}`-Pin, via `Discrete.eq_of_hom`). **Benannt, nicht behauptet:** die
+  Triaden-Fassung — Paar-Uniformität ist stärker, ihre Widerlegung impliziert die
+  Triaden-Widerlegung NICHT; der einzige heute baubare `ModalTwoCategory`-Bewohner ist
+  degeneriert und kommutiert → Folge-Posten 17b (der nicht-degenerierte Bewohner).
+  Naht-Prüfstelle: nicht als Wahl-Echtheit noch als Triaden-Asymmetrie erzählt. Die Sonde
+  `Diagnostics/SwapSatzProbe.lean` bleibt unangetastet (historischer Beleg). Axiom-Ist:
+  `propext`, `Classical.choice`, `Quot.sound` (Herkunft CategoryTheory- und Iso-Maschinerie,
+  kein `sorryAx`, kein `decide`-Axiom). **Abweichung vom Spec-Wortlaut (am Term):** `Classical.choice`
+  tritt NICHT erstmals mit dieser Schicht ins Aggregat-Profil — es ist bereits präsent (via PathC
+  `ModalEndofunctor.tauOmega` und via Proemial `AlphaGamma.form_inhalt_vertauschungs_operativitaet`).
+  0 Sorries.
+
+- `Proemial.ExtensionalCollapse`: der extensionale Kollaps (achtzehnte Schicht) — das
+  Schicht-I-Differential (Klassifizieren ≠ Klassifiziertes) in Zeugen-Fassung, gehoben aus
+  den Vor-Sonden `ReflexionsrestProbe`/`LawvereVorSonde` (beide byte-unverändert als
+  historische Belege). Zeugen-Paar `s = ∨(x₀,x₀)` (Komposition, `func`) gegen `t = x₀`
+  (Projektion, `var`) mit dem Scharnier `witness_equiv` (identische Denotation `v ↦ v 0`).
+  Kollaps-Satz `no_extensional_separation` instanz-quantifiziert über die arme Klasse
+  `DenotationInvariant` (jede denotations-invariante Klassifikation identifiziert das Paar —
+  der dünnste Satz der Phase, eine Zeile über dem Scharnier). Der Überschuss als benannte
+  Funktion `isComposite` samt Preis: `discriminator_separates` (trennt das Paar),
+  `witness_ne` (positive Hälfte via `congrArg`), `discriminator_not_invariant` (der
+  Diskriminator verlässt die arme Klasse). Schere beidseitig: `extension_without_intension`
+  (Konsum von `T_not_in_clone` — Extension ohne Intension). Kür `evalAt_separates_semantic`
+  (die arme Klasse trennt bis zur semantischen Differenz `var 0` gegen `var 1`, endet am
+  Zeugen-Paar). E&W-Marke: bewiesen ist die *formale* Term-Intensionalität (Konstruktor-
+  Verschiedenheit — von `propext` nicht einebnbar; der `witness_ne`-Beweis selbst zieht
+  `propext`, minimal); die *intensionale* E&W-Stufe wird NICHT eingelöst (V2). Kollaps
+  struktur-relativ (`Fin 3`).
+  2b (γ-Anbindung) vertagt (Typ-Spalt-Befund `LawvereVorSonde`). Erste Schicht unter der
+  `#guard_msgs`-Wache (Plan Rev4 §1): Axiom-Ist `propext` (`witness_ne`) bzw.
+  `propext, Quot.sound` (übrige Kern-Sätze), kein `Classical`, je Kern-Satz Ist-gebunden
+  verwacht. 0 Sorries.
+
+- `Proemial.ExhaustionTransition`: der Erschöpfungs-Übergang (neunzehnte Schicht) —
+  die achte Stelle der achtfachen Form in Zeugen-Fassung („Die Subjektivität geht, wie
+  Hegel sagen würde, in ihren Grund, d.h. in das Sein zurück", Lille Z. 1018–1032, —
+  S. 160 (druck-verifiziert; Doppel-Abgleich 13. Juli); der Tod als Rückgabe der Reflexivität, 1957). Erste Schicht-zu-Schicht-Abhängigkeit unter den
+  Niederlegungs-Schichten: die arme Klasse `PointwisePeriodic` wird aus der
+  sechzehnten (`IrreversibleAscent`) **term-identisch** importiert, nicht dupliziert
+  — Aufstieg und Erschöpfung messen am selben Maßstab-Grenzfall. Merkmal `Exhausts`
+  vierteilig (irreversibles Verlassen, absorbierender Bestand, Nicht-Wiederkehr,
+  Bestand ≠ Anfang als Folge). Die strukturelle Nicht-Identität Bestand ≠ Anfang als
+  Lemma (`exhausts_ne`; die Grund-Formel ist Projekt-Deutung, kein Zitat — Autopsie
+  13.7.). Negative Hälfte `no_exhaustion_in_periodic` (keine Erschöpfung im
+  Maßstab-Grenzfall — der dünnste Satz des Pakets, hier axiom-frei). Zeuge `collapse`
+  auf `Fin 2` (`collapse_exhausts`: 0 verlassen, 1 absorbierender Bestand). Der
+  Phasenwechsel als Wohlfundiertheits-Theorem `fixpoint_reached_of_strict_descent`
+  (strikt fallender ℕ-Rang außerhalb der Fixpunkte ⟹ jede Trajektorie erreicht einen
+  Fixpunkt) — das Spiegel-Stück zu `no_return_of_strict_rank` (16.): steigender Rang →
+  nie Bestand, fallender Rang → Bestand erreicht. Kür `exhausted_stays` (der Bestand
+  bleibt). Marken: die Stellen-Zuordnung ist strukturanalytisch, die 1957-Stelle
+  bleibt behauptete negative Richtung (behauptet ≠ bewiesen), **Designation ≠
+  Denotation** (Vier-Begriffe-Wache gegen die achtzehnte Schicht). Axiom-Ist je
+  Kern-Satz `#guard_msgs`-verwacht; Abweichung: das Descent-Lemma zieht
+  `Classical.choice` (`by_cases` über beliebigem Träger ohne `DecidableEq`,
+  gewöhnliche Notiz), die drei anderen bleiben im Bereich `propext`/`Quot.sound`
+  (`no_exhaustion_in_periodic` sogar axiom-frei). 0 Sorries.
+
+- `Proemial.RecurringGround`: der wiederkehrende Grund (zwanzigste Schicht) — die
+  **erste Stelle** der achtfachen Thematik in Zeugen-Fassung. Grund als Fixpunkt
+  (`Ground f a := f a = a`); der Anker-Satz als Wiederkehr-Lemma `ground_recurs`
+  („das reflexionslose Sein … das in allen folgenden Reflexionsstufen immer
+  wiederkehrt", **druck-verifiziert**, Beiträge III S. 160 — erster druck-
+  verifizierter Anker; via `Function.iterate_fixed`-Konsum, Teil 0 (1)). Arme
+  Klasse `FixpointFree` mit negativer Hälfte `no_ground_in_fixpointfree` (keine
+  Gründe in der fixpunktfreien Welt — definitorisch dünn). Geteilte Zeugen am
+  `collapse` (19., term-identisch): `collapse_ground` (1 ist Grund) /
+  `collapse_not_ground_zero` (0 nicht) — dieselbe Funktion bedient beide
+  Rand-Stellen. **Bogen-Satz** `exhausts_ground` (was die Erschöpfung erreicht,
+  trägt die St.1-Invarianz — eine Projektion `h.1`, Dünnheit ausgesprochen) samt
+  `exhausts_ground_recurs`. Kür `swap`-Zeuge (`swap_fixpointfree`,
+  `swap_pointwise_periodic`, `swap_no_ground`, `swap_no_exhaustion`: weder Grund
+  noch Erschöpfung an einer Instanz) und `classes_differ` (die zwei armen Klassen
+  der Rand-Stellen sind verschieden). Bauform-Deutung: die **Rand-Klammer** der
+  1+3+3+1 — zwei Rollen desselben Fixpunkts, in einer Sprache; **Kette 16→19→20**.
+  Marken: Stellen-Zuordnung strukturanalytisch, Fixpunkt↔reflexionslos Deutung,
+  Einwertigkeits-Lesart benannter Folge-Posten St.1b (nicht versprochen);
+  Designation ≠ Denotation gilt fort. Axiom-Ist je Kern-Satz `#guard_msgs`-verwacht:
+  das Ist **unterschreitet** den erwarteten Bereich `propext`/`Quot.sound` (kein
+  `Quot.sound`, **kein `Classical`** — dritter Datenpunkt der Spiegel-Asymmetrie
+  auf der Rechen-Seite): `ground_recurs`/`no_ground_in_fixpointfree`/
+  `exhausts_ground`/`exhausts_ground_recurs` axiom-frei (Verschärfung; `ground_recurs`
+  via `Function.iterate_fixed`-Konsum), `collapse_ground`/`swap_no_exhaustion`/
+  `classes_differ` `[propext]`. 0 Sorries.
+
+- `Proemial.IntervalBackbone`: das Intervall-Rückgrat (einundzwanzigste Schicht) —
+  das **arithmetische Substrat des Stellen-Trakts**. Die Anfangs-Wertzahlen der
+  acht Intervalle der achtfachen Thematik sind die Dreieckszahlen: `intervalStart n
+  := n * (n + 1) / 2`, `intervalEnd n := intervalStart n + n` (Lille Z. 530,
+  544–547). Die Gauss-Brücke `two_mul_intervalStart` zähmt die ℕ-Division ein für
+  alle Mal (danach ist jede Rückgrat-Aussage linear); darauf die drei Struktur-
+  Gesetze: `intervalStart_succ` (Stufung — jedes Intervall beginnt um seine eigene
+  Themen-Zahl höher), `intervalEnd_succ_start` (**Naht** — die Intervalle schließen
+  lückenlos und überlappungsfrei aneinander: das Werte-Kontinuum der achtfachen
+  Thematik als Theorem), `intervalEnd_sub_start` (Themen-Gesetz — Intervall-Nummer
+  = Themen-Zahl = Abschnitts-Länge, die Selbstbezüglichkeit der Formel). Dazu
+  `tafel_IV` (die acht Intervalle I–VIII, Lille Z. 407 ff.; BCL-Report 3.0, 1965 —
+  Titel-Falle in Fn. 2/5 notiert) und die zwei Zitat-Anker `nature_closes_at_14`
+  („ein 14-wertiges System formaler Logik", Z. 517–519) sowie `eighth_starts_at_36`
+  („nicht weniger als 36 Werte und 8 ontologische Themen", **druck-verifiziert**,
+  Beiträge III S. 160 — zweiter druck-gesiegelter Anker). Kür
+  `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **SUBSTRAT, KEIN
+  DIFFERENTIAL:** keine arme Klasse, keine Unmöglichkeits-Hälfte, keine
+  Zeugen-Fassung — das Rückgrat zählt die Orte, es deutet sie nicht; die
+  Stellen-Schichten importieren es (geteilte-Klassen-Ökonomie eine Stufe tiefer).
+  **Hegel-Relativitäts-Marke:** Günthers „ernsthafte Zweifel" (Z. 921–922) und
+  „nur relativ" (Z. 936–938) treffen die inhaltliche Zuordnung der Triaden zu den
+  Intervallen, **nicht** diese Formel-Arithmetik; die Zuordnungen (Mechanik = II
+  usw.) kommen in den Stellen-Schichten, jede mit dieser Marke. „Wertzahl/Thema/
+  Intervall" sind Namen — term-fest ist die ℕ-Arithmetik; keine Werte-Semantik,
+  keine Ophiten-Namen, keine Ablösungs- oder Wiederkehr-Figur (benannte Posten);
+  Designation ≠ Denotation gilt fort. **Projekt-import-frei** (einziger
+  Mathlib-Import: `Order.Monotone.Basic` für die Kür). Axiom-Ist je Kern-Satz
+  `#guard_msgs`-verwacht, taktik-scharf zweigeteilt: die drei `decide`-Sätze (`tafel_IV`,
+  `nature_closes_at_14`, `eighth_starts_at_36`) **axiom-frei**, die fünf
+  `omega`-Sätze `[propext, Quot.sound]` — nachgemessen als **Hüllen-Profil** der
+  `omega`-Taktik (`n + 0 = n` trägt dasselbe), nicht als Substanz.
+  **Abweichung/Verschärfung:** Gauss-Brücke per Induktion statt per
+  `Nat.two_mul_div_two_of_even` — die Mathlib-Route trüge `Classical.choice`
+  herein und hätte es an alle vier Gesetze weitergereicht. 0 Sorries.
+
+- `Proemial.ReversibleExchange`: der reversible Umtausch (zweiundzwanzigste
+  Schicht) — die **erste Mittelstelle**: „Im zweiten Intervall tritt die Zeit
+  ausschließlich in ihrer reversiblen Form auf" (Lille Z. 486–487,
+  Volltext-verifiziert) wird als Involution gefasst (`Reversible f := ∀ x,
+  f (f x) = x`). Die **Brücke** `reversible_pointwise_periodic` (reversibel →
+  punktweise periodisch, Periode 2) legt Stelle 2 beweisbar in die arme Klasse,
+  gegen die Aufstieg (16.) und Erschöpfung (19.) unmöglich sind — sie ist der
+  **einzige Satz der Schicht mit eigenem Beweis-Gehalt (Konsum-Ehrlichkeit)**.
+  Die „ausschließlich"-Sätze sind benannter Konsum über die Brücke:
+  `reversible_returns` (`reach_returns`, 16. — jeder erreichte Zustand kehrt
+  zurück) und `reversible_no_exhaustion` (`no_exhaustion_in_periodic`, 19. — die
+  achte Stelle liegt nicht im zweiten Intervall). Dazu die geteilten Zeugen
+  `swap_reversible` (20.) und `collapse_not_reversible` (19.) — die Trennung
+  St.2 ↔ St.8 in beiden Richtungen — sowie der Rückgrat-Ort `interval_II_start`
+  (= 3) / `interval_II_end` (= 5) als erster Stellen-Konsum des Substrats (21.,
+  Z. 517–519); Kür `reversible_bijective` (der Umtausch verliert nichts).
+  **Erste Schicht auf beiden Strängen** (belegt am Import-Graph dieser
+  Lieferung: Substrat `IntervalBackbone` + Kette `RecurringGround`); die Kette
+  wird 16→19→20→22, alles term-identisch konsumiert, nichts dupliziert.
+  **Bauform-These der Mittelstellen:** Merkmal + Ort + Anschlüsse, **kein neuer
+  Apparat** — die Stelle *liegt in* einer bestehenden armen Klasse, das ist ihr
+  Befund, kein Differential-Ersatz. **Hegel-Relativitäts-Marke:** „Mechanik =
+  Intervall II" ist Lesart der Hegel-Stufe, nicht Satz — Günthers „ernsthafte
+  Zweifel" (Z. 921–922), „nur relativ" (Z. 936–938); gesichert nur „je drei
+  Intervalle". Involution ↔ „Umtausch" ist Deutung, Fin-2-Träger Modellwahl,
+  „zweiwertig" Themen-Rede (keine Werte-Semantik); Designation ≠ Denotation gilt
+  fort; kein St.3/St.4-Vorgriff. Axiom-Ist je Satz `#guard_msgs`-verwacht:
+  Brücke, `reversible_no_exhaustion`, beide Orts-Sätze und die Kür **axiom-frei**,
+  `reversible_returns` `[propext]` (von `reach_returns` geerbt), die zwei
+  `decide`-Zeugen `[propext]` (Hüllen-Profil der Taktik). **Abweichung in beide
+  Richtungen (Verschärfung):** die Spec-Erwartung (Brücke/Konsum propext,
+  decide axiom-frei) trifft nicht — Brücke und Konsum-Satz unterschreiten sie,
+  die decide-Sätze überschreiten sie um das Hüllen-`propext`. Kein neues
+  `Classical`. **Kür-Messung:** `Function.Involutive.bijective`-Konsum und
+  Eigenbeweis beide axiom-frei — Gleichstand, geliefert wird der Konsum
+  (Ökonomie). 0 Sorries.
+
+- `Proemial.IrreversibleAdvance`: der irreversible Fortgang (dreiundzwanzigste
+  Schicht) — die **zweite Mittelstelle**: das dritte Intervall, die irreversible
+  Zeit („müssen wir mindestens zum dritten Intervall übergehen … zum ersten Mal
+  eine dreiwertige Thematik", Lille Z. 493–496, Volltext-verifiziert), gefasst
+  als **Rückkehrfreiheit** (`NoReturn f := ∀ x n, 0 < n → f^[n] x ≠ x` — echt
+  stärker als `FixpointFree`, dessen n=1-Fall sie ist). Die
+  **Natur-Nachbar-Trennung** steht in beiden Fassungen: `noreturn_not_periodic`
+  (St.3 liegt außerhalb der armen Klasse, in der St.2 zuhause ist) und
+  `noreturn_not_reversible` (direkt, über die Brücke der 22.) — die
+  Nonempty-Bedingung ist Voraussetzungs-Ehrlichkeit (leerer Träger: beide
+  Prädikate leer wahr), keine Setzung. Die **„kommt nirgends an"-Sätze**
+  `noreturn_no_ground` und `noreturn_no_exhaustion` zeigen: die rein irreversible
+  Welt kennt weder Grund (20.) noch Erschöpfungs-Ziel (19.). Das Rang-Lemma
+  erscheint als **Stellen-Fassung per Konsum** (`noreturn_of_strict_rank`) —
+  **kein Duplikat: das Aufstiegs-Differential bleibt Eigentum der 16.** Zeugen:
+  `succ_noreturn` (die Stufung selbst; **erster ℕ-Zeuge einer Stelle** — Ist-
+  geprüft an 19./20./21./22., wo alle Zeugen `Fin 2` tragen bzw. die 21. als
+  Substrat gar keine führt; ausdrücklich **kein** erster ℕ-Zeuge überhaupt, die
+  16. führt `Nat.succ` bereits für ihr Differential) sowie die geteilten
+  Gegen-Zeugen `swap_not_noreturn` (Periode 2) und `collapse_not_noreturn`
+  (Grund bei 1). Orts-Sätze `interval_III_start` (= 6) / `interval_III_end`
+  (= 9), Substrat-Abruf aus der 21. (Z. 517–519). Kette 16→19→20→22→23, ein
+  Import, alles term-identisch konsumiert, kein Mathlib-Import über die
+  transitive Hülle hinaus. **Hegel-Relativitäts-Marke:** „Physik = Intervall
+  III" ist Lesart der Hegel-Stufe, nicht Satz („ernsthafte Zweifel" Z. 921–922,
+  „nur relativ" Z. 936–938). **Symmetrie-Bruch-Marke:** Günthers Bruch betrifft
+  wörtlich Position/Negation der **Werte-Struktur** — Werte-Semantik, außerhalb
+  dieses Baus; die Verbindung zur term-gebauten St.2/St.3-Trennung ist Deutung.
+  `NoReturn` ↔ irreversibel ist Deutung, „dreiwertig" Themen-Rede, „kommt
+  nirgends an" markierte Struktur-Aussage (kein Zitat), die Träger `Fin 2` und
+  `ℕ` Modellwahl; Designation ≠ Denotation gilt fort; kein St.4-Vorgriff.
+  Axiom-Ist je Satz `#guard_msgs`-verwacht (zwölf Wachen): die fünf Sätze der
+  Trennung und des „kommt nirgends an" sowie beide Orts-Sätze **axiom-frei**, die zwei
+  `decide`-Zeugen `[propext]`, `noreturn_of_strict_rank`/`succ_noreturn`/Kür
+  `[propext, Quot.sound]` (`omega`-Hülle). **Kein `Classical`** — auch die
+  Nonempty-Sätze nicht (`obtain ⟨x⟩ := ‹Nonempty α›` auf Prop-Ziel bleibt
+  axiom-frei; verwacht statt behauptet). **Abweichung:** die Erwartung „Konsum
+  frei bis `propext`" trifft für `noreturn_of_strict_rank` nicht — die
+  `omega`-Hülle des konsumierten `no_return_of_strict_rank` (16.) reist mit dem
+  Konsum mit; Konsum erbt das Profil des Konsumierten und unterbietet es nicht.
+  **Zwei-Routen-Messung (K1):** `succ_noreturn` (direkt, `succ_iterate'` +
+  `omega`) und `succ_noreturn_via_rank` (Konsum, Rang = `id`) tragen **dasselbe
+  Profil** — an einer ℕ-Iterations-Aussage kauft der Konsum kein schärferes
+  Profil; ein Befund über die Hülle, nicht über die Routen. 0 Sorries.
+
+- `Proemial.ComplementaryMediation`: die komplementäre Vermittlung
+  (vierundzwanzigste Schicht) — die **Schluss-Stelle der Natur**: das vierte
+  Intervall, die Komplementarität als „Vermittlung" („Strukturen …, die
+  Zweiwertigkeit und Dreiwertigkeit miteinander vermitteln", Lille Z. 506–508,
+  Volltext-verifiziert), gefasst als **Koexistenz** (`Mediates f` — ein Träger
+  mit einem wiederkehrenden UND einem nie zurückkehrenden Punkt). Die
+  **Schnitt-Leere** `reversible_noreturn_empty` verschärft die Trennung der 23.
+  zur Disjunktheit; die **Dritt-Klassen-Sätze** `mediates_not_reversible` und
+  `mediates_not_noreturn` legen St.4 beweisbar außerhalb **beider** Nachbarn —
+  damit sind die drei Natur-Klassen **paarweise getrennt**. Der Zeuge ist
+  wörtlich die **Summe der Nachbar-Zeugen**: `mediator := Sum.map swap Nat.succ`
+  (links kreist die 20., rechts steigt die 23.); `mediator_mediates` läuft über
+  zwei eigene punktweise Iterations-Helfer (Mathlib führt kein
+  `Sum.map`-Iterations-Lemma) und konsumiert im Übrigen `swap_reversible` (22.,
+  da `f^[2] x` defeq zu `f (f x)`) und `succ_noreturn` (23.). Orts-Sätze
+  `interval_IV_start` (= 10) und `interval_IV_end` (= 14) — letzterer **Konsum
+  des Zitat-Ankers** `nature_closes_at_14` (21.): die Natur schließt 14-wertig.
+  Kür `swap_not_mediates` und `succ_not_mediates`: jede der drei Natur-Klassen
+  hat einen Zeugen in genau ihrer Klasse. Kette 16→19→20→22→23→24, ein Import,
+  kein Mathlib-Import über die transitive Hülle hinaus. **Hegel-Relativitäts-
+  Marke:** „Organik = Intervall IV" ist Lesart der Hegel-Stufe, nicht Satz
+  („ernsthafte Zweifel" Z. 921–922, „nur relativ" Z. 936–938).
+  **Vermittlungs-Marke:** Günthers „vermitteln" betrifft wörtlich die
+  **Werte-Struktur** (Zweiwertigkeit und Dreiwertigkeit) — Werte-Semantik,
+  außerhalb dieses Baus; die Koexistenz-Lesart ist Deutung; **der Quanten-Sinn
+  der Komplementarität (Weizsäcker, Scheibe; Lille Fn. 9 und Fn. 10) wird nicht
+  formalisiert und nicht beansprucht**. Summen-Träger `Fin 2 ⊕ ℕ` Modellwahl;
+  Designation ≠ Denotation gilt fort; kein Hebdomas-Vorgriff. **Bauform-These,
+  dritte Einlösung:** eigener Gehalt in Schnitt-Leere, Dritt-Klassen-Sätzen und
+  Helfern, Zeugen-Bau und Orts-Ende sind Konsum. Axiom-Ist je Satz
+  `#guard_msgs`-verwacht (acht Wachen): Schnitt-Leere, beide Dritt-Klassen-Sätze
+  und beide Orts-Sätze **axiom-frei**, `swap_not_mediates` `[propext]`,
+  `mediator_mediates` und `succ_not_mediates` `[propext, Quot.sound]`
+  (`omega`-Hülle). **Kein `Classical`** — auch der Nonempty-Satz nicht.
+  **Profil-Rechnung vorab, sechs von acht getroffen:** der Vererbungs-Satz sagt
+  `interval_IV_end` axiom-frei (Anker axiom-frei) und die succ-Konsumenten auf
+  `omega`-Niveau korrekt voraus; die Dritt-Klassen-Sätze **unterbieten** die
+  Erwartung `[propext]` (axiom-frei), weil nur `reversible_pointwise_periodic`
+  einläuft, nicht die `decide`-Zeugen der 22. — Lehre: die Rechnung wird am
+  Quell-**Satz** angesetzt, nicht an der Quell-Schicht. 0 Sorries.
+
+- `Proemial.ContentReflexivity`: die Reflexivität der Inhalte (fünfundzwanzigste
+  Schicht) — die **erste Geist-Stelle**: das fünfte Intervall, die „Reflexivität
+  der Bewusstseinsinhalte" (Lille Z. 605–607, bestätigt Z. 804,
+  Volltext-verifiziert), gefasst als **Hebung** (`reflect f := Set.image f` —
+  derselbe Prozess auf seinen Inhalten; Mengen von Zuständen werden selbst
+  Zustände). Das **Iterations-Gesetz** `reflect_iterate` (die gehobene Iteration
+  ist die Iteration der Bilder) und der **Erbe-Satz** `reflect_reversible` (die
+  Inhalte eines reversiblen Prozesses sind reversibel — der Umtausch der 22.
+  hebt sich mit) tragen eigenen Beweis-Gehalt. Der **Kern-Satz**
+  `reflect_ground_empty` („der leere Inhalt steht still" — ∅ ist Fixpunkt jeder
+  Reflexion) trägt den **Bruch der Irreversibilität an den Inhalten**
+  `reflect_not_noreturn` (Konsum von `noreturn_no_ground`, 23. — keine
+  reflektierte Welt ist rückkehrfrei) und, als reine Delegation, den Zeugen-Satz
+  `reflect_succ_not_noreturn` (die Stufung selbst wird an ihren Inhalten
+  rückkehr-fähig). Orts-Sätze `interval_V_start` (= 15) / `interval_V_end`
+  (= 20), Substrat-Abruf aus der 21.; Kür `reflect_monotone` (die Reflexion
+  achtet die Inhalts-Ordnung). Kette 16→19→20→22→23→24→25, ein Import, kein
+  Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3,
+  erstmals im Vollzug):** lokale Hegel-Relativitäts-Fassung (die Stufen-Zuordnung
+  ist „eine vorläufige", Z. 811–816), Substrat-Erbe (das Rückgrat zählt, diese
+  Schicht deutet), Monas-Struktur-Marke (ein positiver Wert, alle anderen seine
+  Reflexionen, Z. 1015–1017 — Günthers Wort, jede Werte-Formalisierung außerhalb
+  dieses Baus). **Verzichts-Marke:** der Hegel-Hintergrund (Enzyklopädie,
+  Paragraph 387 folgend) ist benannt, nicht beigezogen. **Grenze:** Bewusstsein
+  wird nicht formalisiert; Reflexivität als Hebung ist Deutung, „der leere Inhalt
+  steht still" markierte Struktur-Aussage (kein Zitat); Set-Träger Modellwahl;
+  Designation ist nicht Denotation. **Konstruktions-Merkmal (R1-Ist-geprüft):**
+  `reflect : Set α → Set α` ist eine Konstruktion, keine Eigenschaft — die erste
+  unter den fünf gebauten Stellen-Schichten [19./20./22./23./24.] mit
+  Konstruktions- statt Eigenschafts-Merkmal (dort alle `: Prop`); die
+  Bereichs-Qualifikation ist unverlierbar. Axiom-Ist je Satz
+  `#guard_msgs`-verwacht (acht Wachen): `interval_V_start`, `interval_V_end` und
+  die Kür `reflect_monotone` **axiom-frei**, die fünf Mengen-Sätze
+  `[propext, Quot.sound]`. **Routen-Befund (Teil 0), zweifach classical-frei
+  aufgelöst:** `Set.image_empty` und `Set.image_mono` tragen in diesem Mathlib
+  `Classical.choice`; `reflect_ground_empty` geht darum über
+  `Set.eq_empty_iff_forall_notMem`, die Kür über den Eigenbeweis statt
+  `Set.image_mono` — **kein `Classical`** an keiner der acht Stellen. 0 Sorries.
+
+- `Proemial.MediationProcess`: der Vermittlungsprozess (sechsundzwanzigste
+  Schicht) — die **zweite Geist-Stelle**: das sechste Intervall, „der
+  Subjektivität als Vermittlungsprozess gewidmet" (Lille Z. 805–806,
+  Volltext-verifiziert). **Bauform-Entscheid: kein eigenes Merkmal** — die Stufe
+  verortet `Mediates` (24.) auf dem `reflect`-Träger (25.); das Merkmal ist ganz
+  Anschluss (die Bauform-These an ihrer reinsten Stelle, kein Definitions-Defizit;
+  R1-Ist-geprüft: erste unter den sechs gebauten Stellen-Schichten
+  [19./20./22./23./24./25.] ohne eigene Merkmals-Konstante). Das **Bahn-Gesetz**
+  `reflect_singleton` (`(reflect f)^[n] {x} = {f^[n] x}`, Konsum von
+  `reflect_iterate`) und der **Kern-Satz** `reflect_mediates_of_noreturn` („die
+  Vermittlung entsteht in der Reflexion" — jeder rückkehrfreie Prozess vermittelt
+  an seinen Inhalten: der leere Inhalt kehrt wieder, der Einer-Inhalt flieht)
+  tragen eigenen Beweis-Gehalt; was die Natur-Stufe 4 als vorgefundene Koexistenz
+  kennt, erzeugt die Geist-Stufe 6 aus der Reflexion. **Echter Dritter**
+  `reflect_noreturn_not_reversible` (an beiden Sätzen keiner der Nachbarn; erste
+  Hälfte ist `reflect_not_noreturn` der 25.). **Duett mit der 24.**
+  `reflect_succ_mediates`: dieselbe Stufung, die unten nicht vermittelt
+  (`succ_not_mediates`), vermittelt an ihren Inhalten (Anwendung des Kern-Satzes
+  auf `succ_noreturn`). Orts-Sätze `interval_VI_start` (= 21) / `interval_VI_end`
+  (= 27), Substrat-Abruf. Kür `reflect_reversible_not_mediates` (Kontrast: die
+  Reflexion des Reversiblen vermittelt NICHT — die Vermittlung entsteht in der
+  Reflexion genau des Irreversiblen). Kette 16→19→20→22→23→24→25→26, ein Import,
+  kein Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3):**
+  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Z. 811–816),
+  Substrat-Erbe, Monas-Struktur-Marke (Z. 1015–1017, Günthers Wort;
+  Werte-Formalisierung außerhalb). **Verzichts-Marke:** Hegel-Hintergrund benannt,
+  nicht beigezogen. **Grenze:** Subjektivität wird nicht formalisiert;
+  Vermittlungsprozess als gehobene Koexistenz ist Deutung, „die Vermittlung
+  entsteht in der Reflexion" markierte Struktur-Aussage (kein Zitat); Set-Träger
+  Modellwahl; Designation ist nicht Denotation. Axiom-Ist je Satz
+  `#guard_msgs`-verwacht (sieben Wachen): `interval_VI_start`/`interval_VI_end`
+  **axiom-frei**, die fünf Prozess-Sätze `[propext, Quot.sound]`. **Routen-Befund
+  (Teil 0):** `Set.image_singleton` trägt in diesem Mathlib `Classical.choice`;
+  `reflect_singleton` geht darum den Eigenbeweis (`Set.ext` +
+  `Set.mem_singleton_iff`), die Singleton-Extraktion nutzt das reine
+  `Set.singleton_injective` — **kein `Classical`** an keiner der sieben Stellen.
+  Sieben von sieben Profilen der R2-Rechnung getroffen. 0 Sorries.
+
+- `Proemial.SelfDetermination`: das Subjekt für sich (siebenundzwanzigste
+  Schicht) — die **letzte Stelle** der achtfachen Thematik: das siebte Intervall,
+  „der sich in sich bestimmende Geist … das Subjekt für sich, das sich ganz in
+  seine private Einsamkeit zurückgezogen hat" (Lille Z. 807–810,
+  Volltext-verifiziert). **Bauform-Entscheid: kein eigenes Merkmal** — die Stufe
+  wendet die Hebung `reflect` (25.) auf sich selbst an, `reflect (reflect f)` auf
+  `Set (Set α)` (zweiter Merkmals-freier Fall nach der 26.; R1-Ist-geprüft am
+  Bestand). **Selbst-Anwendungs-Gesetz** `reflect_reflect_iterate` und **Ankommen
+  der zweiten Hebung** `reflect_reflect_not_noreturn` sind reine Instanziierungen
+  der 25. (der Sach-Befund der Stufe: „sich in sich" als ein Beweis-Term).
+  Eigenen Beweis-Gehalt tragen der **Einsamkeits-Satz** `solitude_ground` („die
+  Einsamkeit steht still" — `{∅}` ist Fixpunkt der zweiten Stufe: das Subjekt,
+  ganz zurückgezogen, bei sich) und der **Fortsetzungs-Satz**
+  `reflect_reflect_mediates_of_noreturn` („die Vermittlung setzt sich fort" —
+  jeder rückkehrfreie Prozess vermittelt auch an den Inhalts-Inhalten: `{∅}` kehrt
+  wieder, `{{x}}` flieht, `singleton_injective` zweifach; der Kern-Satz der 26.
+  ist hier NICHT instanziierbar, denn `reflect f` ist gerade nicht rückkehrfrei).
+  **Dritte Duett-Etage** `reflect_reflect_succ_mediates`: unten nicht vermittelnd
+  (24.), an den Inhalten vermittelnd (26.), an den Inhalts-Inhalten vermittelnd
+  (27.) — Anwendung auf `succ_noreturn`. Orts-Sätze `interval_VII_start` (= 28) /
+  `interval_VII_end` (= 35), Substrat-Abruf. Kür `reflect_reflect_reversible`:
+  der Umtausch erbt sich durch beide Hebungen (Doppel-Konsum von
+  `reflect_reversible`). Kette 16→19→20→22→23→24→25→26→27, ein Import, kein
+  Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3):**
+  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Z. 811–816),
+  Substrat-Erbe, Monas-Struktur-Marke (Z. 1015–1017, Günthers Wort;
+  Werte-Formalisierung außerhalb). **Verzichts-Marke:** Hegel-Hintergrund benannt,
+  nicht beigezogen. **Grenze:** Geist und Subjekt werden nicht formalisiert; „für
+  sich" als zweite Stufe ist Deutung, „die Einsamkeit steht still" markierte
+  Struktur-Aussage (kein Zitat); `Set (Set α)`-Träger Modellwahl; die **28 als
+  vollkommene Zahl** von-Foerster-Beobachtung, benannter Posten, nicht gebaut;
+  Designation ist nicht Denotation. Axiom-Ist je Satz `#guard_msgs`-verwacht (acht
+  Wachen): `interval_VII_start`/`interval_VII_end` **axiom-frei**, die sechs
+  Mengen- und Prozess-Sätze `[propext, Quot.sound]` — **kein `Classical`** (alles
+  Konsum aus 25./26. plus dem rein gemessenen `Set.singleton_injective`); acht von
+  acht Profilen der R2-Rechnung getroffen. 0 Sorries. **Der Reihen-Satz
+  (R1-konform, Ist-geprüft über die acht Stellen): alle acht Stellen der
+  achtfachen Thematik sind gebaut.**
+
+- `Proemial.BranchingCoalgebra`: die Verzweigungs-Koalgebra (achtundzwanzigste
+  Schicht) — **AP6-Fundament, kein Stellen-Bau** (kein Intervall-Anspruch, keine
+  Orts-Sätze, keine Marken-Trias): neben der geschlossenen Stellen-Reihe tritt die
+  Verzweigung als Set-Koalgebra `Branching α := α → Set α`, jedem Zustand seine
+  Möglichkeiten. Der **Fluss** `flow` ist die auf Inhalte gehobene Koalgebra
+  (setOf-Form `fun S => {b | ∃ a ∈ S, b ∈ c a}` per Teil-0-Routen-Entscheid: die
+  `⋃`-Form läge außerhalb der Import-Hülle, die setOf-Form ist classical-frei,
+  hüllen-treu und macht die Kür axiom-frei). Der **Anschluss-Satz** `flow_det`
+  sagt wörtlich, dass die Geist-Reihe der gabellose Spezialfall war:
+  `flow (det f) = reflect f` (`reflect` der 25. war die deterministische
+  Verzweigung). Die **Miniatur** `fork_not_lifted` (ehrlich als solche, kein Rang
+  neben den großen Differentialen): die Gabel `fork := fun _ => {0, 1}` ist von
+  keiner Funktions-Hebung erzeugt — die Verzweigung übersteigt die Reflexion (am
+  Einer-Inhalt liefert die Hebung Einer, die Gabel Zweier; `0 ≠ 1` per `decide`).
+  Leichte Hälfte `deterministic_flow_lifted` (der Funktions-Zeuge wird
+  durchgereicht). **Kollaps-Figur** `Collapses b a := b ∈ c a` mit
+  `det_collapse_unique` (ohne Gabel genau ein Ausgang) und
+  `fork_collapse_not_unique` (an der Gabel fällt die Eindeutigkeit); die
+  Irreversibilität des Kollapses bleibt Deutungs-Anschluss, kein Satz. Kür
+  `flow_monotone` (der Möglichkeits-Fluss achtet die Inhalts-Ordnung, axiom-frei).
+  Kette 16→19→20→22→23→24→25→26→27→28, ein Import, kein Mathlib-Import über die
+  transitive Hülle hinaus. **Quellen-Härten-Trennung:** die Chaos-Negation
+  quellen-fest (A2-Bestand), ihre Anwendung Lesart; Möglichkeit → Kollaps →
+  Aktualität Projekt-Rede (Gestalt §5); „eingefrorene Zufälle" extern, nur benannt
+  (Cramer-Umfeld, nicht autopsiert). **Deutungs-Marken:** Set-Werte als
+  Möglichkeiten Deutung; „über den Kontexturen" A5-Anbindung; kein Physik-Anspruch
+  (Determinismus und Indeterminismus als Struktur-Begriffe); Designation ist nicht
+  Denotation. Konstruktions-Entscheid: `Deterministic` in Funktions-Fassung
+  (punktweise wäre choice-pflichtig). Axiom-Ist je Satz `#guard_msgs`-verwacht
+  (sechs Wachen): `det_collapse_unique` und die Kür `flow_monotone` **axiom-frei**,
+  `fork_collapse_not_unique` `[propext]`, die drei Set-ext-Sätze
+  `[propext, Quot.sound]` — **kein `Classical`**; Vormessung beider Fluss-Formen
+  classical-frei, die setOf-Wahl ist Hüllen-Treue (R1: kein Rang erhoben). 0
+  Sorries.
+
+- `Proemial.FlowIteration`: der Iterations-Fluss (neunundzwanzigste Schicht) —
+  **AP6-Zug-2, reiner Term-Zug** (kein Stellen-Bau): auf dem Fundament der 28.
+  macht die Erreichbarkeits-Menge `reachSet c n a := (flow c)^[n] {a}` das
+  Langzeit-Verhalten der Verzweigung messbar. **Iterierter Anschluss**
+  `flow_iterate_det` (`(flow (det f))^[n] S = f^[n] '' S`, Umschreibung via
+  `flow_det` plus Iterations-Gesetz der 25.). **Bahn gegen Sättigung** als
+  iterierte Miniatur der 28.: `det_reach` (ohne Gabel bleibt die Möglichkeit Einer
+  für alle Zeit, `reachSet (det f) n a = {f^[n] a}`) gegen `fork_reach` (die Gabel
+  sättigt in einem Schritt und die Sättigung bleibt, `reachSet fork n a = {0, 1}`
+  für `0 < n`), getragen vom Sättigungs-Lemma `fork_flow_full` (auf bewohntem
+  Inhalt füllt die Gabel den Raum). Kür `flow_iterate_monotone` (der iterierte
+  Fluss achtet die Inhalts-Ordnung, Induktion über die 28.-Kür). **NAMENS-MARKE:**
+  `reachSet` ist die Erreichbarkeits-Menge der Koalgebra, ohne Beziehung zur
+  Reichweiten-Disziplin des Hauses (Struktur- gegen Methoden-Begriff). „Bahn" und
+  „Sättigung" markierte Struktur-Aussagen; kein neuer Differential-Anspruch, kein
+  Physik-Anspruch; Designation ist nicht Denotation. Kette 16→…→28→29, ein Import,
+  kein Mathlib-Import über die transitive Hülle hinaus. Der **Ketten-Satz** ist
+  benannt, nicht gebaut (Kandidat Zug 3). Mit diesem Zug ist der **Sammelposten
+  der 28. geheilt** (doc-only: `flow_singleton` ist öffentlicher, vom
+  Iterations-Fluss konsumierter Helfer). Axiom-Ist je Satz `#guard_msgs`-verwacht
+  (fünf Wachen): alle fünf `[propext, Quot.sound]` — **kein `Classical`**;
+  Vormessung `Function.iterate_succ_apply'` ergab `[propext, Quot.sound]` (nicht
+  axiom-frei), darum die Kür im propext-Bereich statt axiom-frei (ehrliche
+  Abweichung, keine Verschärfung). 0 Sorries.
+
+- `Proemial.CoalgebraMorphism`: die Koalgebra-Morphismen (dreißigste Schicht) —
+  **AP6-Zug-3, reiner Term-Zug** (kein Stellen-Bau): der Morphismus zwischen
+  Verzweigungen als **Bild-Vertauschung** `IsMorphism h c d := ∀ a, h '' c a =
+  d (h a)` (strikte Fassung; die laxe `⊆`-Variante benannt, nicht gebaut).
+  Identität `morphism_id` und Komposition `morphism_comp` (Konsum der
+  classical-freien Bild-Lemmata `Set.image_id`/`Set.image_comp`, per Vormessung).
+  **Haupt-Satz** `morphism_flow` („der Fluss ist morphismus-treu":
+  `h '' flow c S = flow d (h '' S)` — die punktweise Bedingung hebt sich auf die
+  Inhalte, das Hebungs-Motiv der Geist-Reihe zwischen zwei Koalgebren, Eigenbeweis
+  auf den setOf-Routen der 28.). **Zeuge** `det_selfmorphism` (Selbst-Äquivarianz:
+  jede Funktion ist Morphismus ihrer eigenen deterministischen Verzweigung — reine
+  Konsum-Zeile am Defeq, `reflect_singleton` der 26. am Punkt). Kür `morphism_reach`
+  („die Bahnen-Verpflanzung": `h '' reachSet c n a = reachSet d n (h a)`, Induktion
+  über den Haupt-Satz; Basis heterogenes Einer-Bild per privatem Helfer
+  `image_singleton_het`, Eigenbeweis statt des `Classical`-tragenden
+  `Set.image_singleton`). **Abgrenzungs-Marke:** elementare kategoriale Rede, kein
+  Apparat — **kein Kategorien-Framework, kein Konsum des F1-Coalgebraic-Massivs**;
+  keine Kategorie als Objekt. `reflect`-Verwandtschaft benannt (endo gegen
+  allgemein: für heterogenes `h` tritt `Set.image h` direkt an). Kette 16→…→29→30,
+  ein Import, kein Mathlib-Import über die transitive Hülle hinaus. Der
+  **Ketten-Satz** bleibt benannt, nicht gebaut (nach den Morphismen schöner: Ketten
+  unter Morphismen-Bildern erhalten); die **Kontextur-Faserung ist Zug 4, der
+  AP6-Schluss**. Axiom-Ist je Satz `#guard_msgs`-verwacht (fünf Wachen): alle fünf
+  `[propext, Quot.sound]` — **kein `Classical`** (die Bild-Lemmata `image_id` und
+  `image_comp` sind gemessen classical-frei). 0 Sorries.
+
+- `Proemial.ContexturalFibration`: die Kontextur-Faserung (einunddreißigste
+  Schicht) — **AP6-Zug-4, der Schluss** (reiner Term-Zug, kein Stellen-Bau): der
+  gefaserte Träger `ι × α` (jeder Zustand trägt seinen Kontextur-Index) und die
+  **Faser-Treue** `FiberPreserving c := ∀ i a, ∀ p ∈ c (i, a), p.1 = i` als
+  strukturelle **Schwester der Diskontexturalität** (Deutung, markiert; die
+  Setzung des F-Strangs wird nicht konsumiert, nicht behauptet). **Haupt-Satz**
+  `fiber_emb_morphism` (bei Faser-Treue ist die Einbettung `emb i := (i, ·)` ein
+  Koalgebra-Morphismus — Konsum der 30. `IsMorphism`). „Kein Kollaps kreuzt"
+  `fiber_preserving_no_crossing` (Faser-Treue in der Kollaps-Sprache der 28.
+  `Collapses`, reine Anwendung, axiom-frei). Der **Springer** `hopper := fun _ =>
+  {(1, 0)}` mit `crossing_not_fiber_preserving` (die Bedingung ist echt, keine
+  Tautologie). Der det-Anschluss `detFam_fiber_preserving` (axiom-frei) und der
+  **Familien-Bogen** `fiber_detFam` (`fiber (detFam F) i = det (F i)`, Schluss zur
+  28.). Kür `reach_stays_in_fiber` („die Bahn verlässt die Kontextur nie": jede
+  erreichbare Möglichkeit liegt in der Start-Kontextur — Konsum der 29. `reachSet`).
+  **Der Schluss konsumiert die drei Vorgänger-Begriffe in je einem eigenen Satz
+  (Begriffs-, kein Satz-Konsum; am 28.-Begriff nominell — der substanzielle
+  Rückgriff ist der Familien-Bogen)** (28.
+  `Collapses`, 29. `reachSet`, 30. `IsMorphism`). Kette 16→…→30→31, ein Import,
+  kein Mathlib-Import über die transitive Hülle hinaus. **Reichweiten-Marke:**
+  Kontextur-Benennung Deutung (A5-Anbindung mit Term); Diskontexturalität als
+  Faser-Treue markiert (Setzung nicht konsumiert); Transjunktions-Anschluss
+  benannt, kein Satz; Produkt-Träger Modellwahl (abhängige Faserung benannter
+  Folge-Posten); kein Physik-Anspruch; Designation ist nicht Denotation. Axiom-Ist
+  je Satz `#guard_msgs`-verwacht (sechs Wachen): `fiber_preserving_no_crossing` und
+  `detFam_fiber_preserving` **axiom-frei**, `crossing_not_fiber_preserving`
+  `[propext]`, die drei Set-ext-Sätze `[propext, Quot.sound]` — **kein `Classical`**;
+  Prod-Vormessung: eta-Defeq trägt (`p = (p.1, p.2)` ist `rfl`, axiom-frei), kein
+  Prod-Lemma nötig. 0 Sorries. **Mit dieser Schicht ist AP6 geschlossen.**
+
+Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
+-/

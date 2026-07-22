@@ -1,0 +1,26 @@
+name = "reformulation"
+version = "0.2.0"
+defaultTargets = ["Reformulation", "AxiomGate"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+[[lean_lib]]
+name = "Reformulation"
+
+# Aggregat-Axiom-Gate (Engineering-Gates Phase 3a) — eigenes Target, da der
+# Reformulation-Glob (Default Glob.one) ein nicht-importiertes AxiomGate.lean
+# nicht fasst. Läuft über defaultTargets bei jedem `lake build`; sein
+# Top-Level-run_cmd rötet via throwError den Build bei neuen sorryAx-Lücken.
+[[lean_lib]]
+name = "AxiomGate"
+roots = ["Reformulation.AxiomGate"]
+
+# Foreign/PeresMermin — Kalibrierungs-Modul AUSSERHALB des Aggregats. Eigenes
+# Target, NICHT in defaultTargets, NICHT von Reformulation importiert und vom
+# AxiomGate (Prefix `Reformulation`) nicht gefasst. Baut nur über explizites
+# `lake build ForeignPeresMermin`.
+[[lean_lib]]
+name = "ForeignPeresMermin"
+roots = ["Foreign.PeresMermin"]
