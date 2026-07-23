@@ -14,6 +14,7 @@ import Reformulation.Proemial.SubstantialTransjunction
 import Reformulation.Proemial.TransjunctionCloneBound
 import Reformulation.Proemial.NonUniformCloneBound
 import Reformulation.Proemial.QuaternaryCloneBound
+import Reformulation.Proemial.GeneralCloneBound
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -211,6 +212,29 @@ Enthält:
   außerhalb des Korpus; die uniforme Formel `R_m` für alle m ist Gegenstand von E3,
   nicht dieser Datei; Marke 3 unverändert. Kein Satz zieht `Classical.choice` oder
   `sorryAx`; `r4_neighbor`/`r4_diag` axiom-frei. 0 Sorries.
+
+- `Proemial.GeneralCloneBound`: die Charakterisierung für ALLE m ≥ 4 (Kairos, E3 —
+  nach Sonde 18 korrigiert und Sonde 19). Zielsatz `locally_classical_in_clone_iff`:
+  für jedes m ≥ 4 liegt eine lokal-klassische Operation auf `Fin m` GENAU DANN im
+  Klon von `{min, max, neg}`, wenn sie `min` oder `max` ist — kein `decide`, keine
+  Fallunterscheidung nach m (Rang-Einordnung „erster Satz ohne feste Wertzahl" der
+  E3-Spezifikation zugeschrieben, Dateikopf). Die Schranke m ≥ 4 ist WESENTLICH:
+  bei m = 3 ist die Aussage falsch (E1). Beweismittel: die uniforme Invariante `R m`
+  (Nachbarschaft, an beiden Enden randgebrochen, in DISJUNKTIONSFORM — die negierte
+  Konjunktion als Hypothese zöge `Classical.choice` über `omega`) plus das
+  Sonde-19-Kantengerüst: sechs Familien-Lemmata (`break_F1/F2/D/D'/Xb/Xt`) mit
+  geschlossenen Bruchstellen; `Xb`/`Xt` brechen über die AUSSCHLUSSPUNKTE `(0,1)`
+  und `(m−1,m−2)` selbst — die herausgenommenen Randpaare tragen den Abstieg, ihre
+  Kollision mit dem Gerüst bei m = 3 IST der Sonderfall. Bauform: Propagation statt
+  Weg-Datenstruktur (`step_min`/`step_max`, `Nat.le_induction`-Ketten,
+  `min_propagates`/`max_propagates` → `preserving_is_min_or_max`). Klon-Ebene wie
+  E1/E2 (`R_is_invariant` über `Term.realize_mem`); `min`/`max` für allgemeines m
+  DEFINITIONAL erzeugbar (`rfl` statt `decide`). Robustheit `constant_clone_min_or_max`:
+  `R m` reflexiv (`R_diag`, m ≥ 2 scharf), die Schranke überlebt alle m Konstanten
+  (`Lc m`). Neuer gemessener Fallstrick: `omega` mit Disjunktion im ZIEL zieht
+  `Classical.choice`; Heilung `ne_or_ne_of_imp` (dite über `Nat.decEq`, axiom-frei).
+  Kanten- und Belegungszahlen (14/31/57, 62/1022/32766) bleiben in Sonde 18/19;
+  Marke 3 unverändert. Kein Satz zieht `Classical.choice` oder `sorryAx`. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte
