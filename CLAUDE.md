@@ -136,6 +136,18 @@ Widerspruch reduzieren; die Auswertung geschieht dann in der Definitional-Pruefu
 **6 - `rw [ht ![x, u], ...]` scheitert am Token `]]`.** Die Klammerform `ht (![x, u])`
 funktioniert. (E1 und E2, beide Male.)
 
+**7 - `omega` und Klassik: negierte Konjunktion als Hypothese UND Disjunktion im Ziel
+ziehen `Classical.choice`.** Beide Seiten gemessen: `¬(x = 0 ∧ y = 1)` als *Hypothese*
+zwingt `omega` auf `[propext, Classical.choice, Quot.sound]` (E3-Spezifikation §4);
+`x ≠ 0 ∨ y ≠ 1` als *Ziel* ebenso (E3-Bau, Wegwerf-Probe). Harmlos sind Disjunktions-
+*Hypothesen* und negierte Konjunktionen im *Ziel*. Heilung: Invarianten in
+Disjunktionsform definieren (Hypothesen-Seite) und Disjunktions-Ziele vor `omega`
+choice-frei zerlegen — `dite` über `Nat.decEq` nach dem Muster `ne_or_ne_of_imp` in
+`Proemial/GeneralCloneBound.lean`; `omega` bekommt nur atomare Ziele. Ferner: `omega`
+sieht `Fin`-`min`/`max` nicht — erst mit `simp only [Fin.coe_min, Fin.coe_max]` auf
+`ℕ` bringen, dann versteht `omega` `min`/`max` nativ und die Fallarbeit über
+`Nat.le_total` entfällt. (E3-Bau.)
+
 ---
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
