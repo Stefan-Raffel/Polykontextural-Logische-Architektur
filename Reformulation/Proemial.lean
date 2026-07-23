@@ -13,6 +13,7 @@ import Reformulation.Proemial.RealizedTransjunction
 import Reformulation.Proemial.SubstantialTransjunction
 import Reformulation.Proemial.TransjunctionCloneBound
 import Reformulation.Proemial.NonUniformCloneBound
+import Reformulation.Proemial.QuaternaryCloneBound
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -187,6 +188,29 @@ Enthält:
   der Sonden 15/16 (Klon-Größe 82, Befunde für m ≥ 4: dort nur `min`/`max` erzeugbar)
   bleiben außerhalb des Korpus; ob kontextur-relative Operationswahl Günthers
   Vermittlung IST, bleibt unentschieden (Marke 3). 0 Sorries.
+
+- `Proemial.QuaternaryCloneBound`: die Charakterisierung bei m = 4 (Kairos, E2 — nach
+  Sonde 17 samt Gegenrechnung). Zielsatz `locally_classical_in_clone_iff4`: eine
+  lokal-klassische Operation auf `Fin 4` liegt GENAU DANN im Klon von `{min, max, neg}`,
+  wenn sie `min` oder `max` ist — die Verschärfung von E1 (dort vier von acht
+  Wahlmustern erzeugbar) zur Charakterisierung (nur die Basiselemente selbst).
+  Beweismittel ist die EINE Invariante `R₄` (Nachbarschaft der linearen Ordnung, an
+  beiden Enden randgebrochen, `r4_neighbor`; explizite Tafel über `.val` — die
+  `Fin`-Subtraktion wäre modular): basis-erhalten (`min_pres`/`max_pres`/`neg_pres`),
+  darum Term-invariant (`r4_is_invariant`, dieselbe `Term.realize_mem`-Verschaltung
+  wie E1), und JEDE gemischte Wahl bricht sie (`mixed_breaks`, EIN `decide` statt 62
+  Einzelbeweise, `[propext]` dank Sechs-Argument-Bauform des Wahlvektors `ofC` — die
+  `Fin 6 → Bool`-Form zöge `Classical.choice` über die Fintype-Instanz).
+  Struktursatz `locally_classical_iff4` + `ofC_injective` (lokal klassisch ⟺
+  Wahlvektor; die Zählung 2^6 im Korpus in Bijektions-Form), Wahlvektor-Fassung
+  `two_of_sixtyfour_generatable` (erzeugbar ⟺ Null- oder Eins-Vektor).
+  Robustheitssatz `mixed_not_in_constant_clone`: `R₄` ist reflexiv (`r4_diag`), die
+  Schranke überlebt darum die um ALLE VIER Konstanten erweiterte Signatur `Lc` —
+  Kontrast zu Test 2b in D, wo die `{0,2}`-Schranke an der `1`-Konstante fiel. Die
+  übrigen Zahlen der Sonde 17 (62 Zeugen, 35 basis-erhaltene Relationen) bleiben
+  außerhalb des Korpus; die uniforme Formel `R_m` für alle m ist Gegenstand von E3,
+  nicht dieser Datei; Marke 3 unverändert. Kein Satz zieht `Classical.choice` oder
+  `sorryAx`; `r4_neighbor`/`r4_diag` axiom-frei. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte
