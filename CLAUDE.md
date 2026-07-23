@@ -98,7 +98,57 @@ erhebt, und nicht als Korpus-Aussage gefuehrt.
 ## 7 - Umgebung
 
 - Lean `4.30.0-rc2`; `.lake/` ist 7,5 GB und per `.gitignore` ausgeschlossen.
-- Der Quellbestand sind ~155 Dateien unter 1 MB. Wer mehr committet, hat die Ignore-Regel
-  verletzt.
+- Der Quellbestand ist wenige hundert Dateien, zusammen unter 1 MB. Wer wesentlich mehr
+  committet, hat die Ignore-Regel verletzt.
 - `lake build` repliziert; ein vollstaendiger Neubau ist nicht noetig, um Profile zu pruefen -
   `lake env lean` auf einer generierten `#print axioms`-Datei genuegt.
+
+---
+
+## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
+
+Alle sechs sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
+sie nicht ein zweites Mal gefunden werden muessen.
+
+**1 - `Fin n`-Subtraktion ist modular.** `|a - b| <= 1` ueber `Fin 4` ist **nicht** die
+Nachbarschaftsrelation, sondern etwas anderes. Relationen dieser Art werden als explizite Tafel
+ueber `.val` geschrieben oder ueber `Nat`-Ungleichungen an `.val`. (Aus der E2-Spezifikation.)
+
+**2 - `abbrev` statt `def` fuer alles, was `decide` sehen soll.** Bei `def P ... : Prop := ...`
+findet die Instanzensuche die `Decidable`-Instanz nicht und `decide` schlaegt fehl
+(*failed to synthesize Decidable*). `abbrev` ist reducible und loest es. (Vorab-Probe zu E2.)
+
+**3 - Quantifizierung ueber Funktionsraeume zieht `Classical.choice`.** Gemessen am selben Satz:
+`forall c : Fin 6 -> Bool, ...` ergab `[propext, Classical.choice, Quot.sound]`, sechs explizite
+`Bool`-Argumente ergaben `[propext]`. **Wo ein endlicher Funktionsraum quantifiziert wird, sind
+explizite Argumente vorzuziehen** - der Unterschied ist nicht kosmetisch, er steht im Profil.
+
+**4 - `decide` verweigert freie Variablen im Ziel** (*Expected type must not contain free
+variables*). Die angebotene Option `+revert` **kaskadiert**: sie zieht ueber Hypothesen auch
+Groessen ins Ziel, die es unentscheidbar machen. Heilung: die Abhaengigen vorher mit `clear`
+entfernen, wenn das Ziel sie ohnehin nicht mehr braucht. (E2-Bau.)
+
+**5 - `decide +revert` ueber grosse Fallzahlen laeuft in den `whnf`-Timeout.** Bei ~4096
+Kombinationen gemessen (200 000 Heartbeats). **Die Heartbeat-Grenze nicht heraufsetzen** -
+stattdessen pro Koordinate Fallzug und die Mischfaelle per `show`-defeq auf einen konkreten
+Widerspruch reduzieren; die Auswertung geschieht dann in der Definitional-Pruefung. (E2-Bau.)
+
+**6 - `rw [ht ![x, u], ...]` scheitert am Token `]]`.** Die Klammerform `ht (![x, u])`
+funktioniert. (E1 und E2, beide Male.)
+
+---
+
+## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
+
+Eine Nicht-Erzeugbarkeits-Schranke haengt an ihrer Invariante. Wird die Signatur um Konstanten
+erweitert, faellt die Schranke genau dann nicht, wenn die Invariante jedes `(c,c)` enthaelt -
+also **reflexiv** ist.
+
+| Zeuge | Invariante | ueberlebt Konstanten |
+|---|---|---|
+| `TransjunctionCloneBound` | Elementarkontextur `{0,2}` | **nein** (`1` liegt nicht darin) |
+| `QuaternaryCloneBound` | `R_4`, reflexiv | **ja** |
+
+**Vor dem Bau einer neuen Schranke ist zu pruefen, ob ihre Invariante reflexiv ist**, und das
+Ergebnis gehoert in den Doc-String. Eine Schranke, die an einer hinzugefuegten Konstante faellt,
+behauptet weniger, als sie zu behaupten scheint - das ist kein Fehler, aber es muss dastehen.
