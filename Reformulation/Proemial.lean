@@ -34,6 +34,7 @@ import Reformulation.Proemial.BranchingCoalgebra
 import Reformulation.Proemial.FlowIteration
 import Reformulation.Proemial.CoalgebraMorphism
 import Reformulation.Proemial.ContexturalFibration
+import Reformulation.Proemial.StageAggregation
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -781,6 +782,33 @@ Enthält:
   `[propext]`, die drei Set-ext-Sätze `[propext, Quot.sound]` — **kein `Classical`**;
   Prod-Vormessung: eta-Defeq trägt (`p = (p.1, p.2)` ist `rfl`, axiom-frei), kein
   Prod-Lemma nötig. 0 Sorries. **Mit dieser Schicht ist AP6 geschlossen.**
+
+- `Proemial.StageAggregation`: die Anwendungsbrücke (E4) — **BENENNUNG, kein
+  Ertrag**: der Anwendungssatz `agg_nicht_erzeugbar` ist eine INSTANZ von E3
+  (`locally_classical_in_clone_iff` bei m = 4); neu sind allein die Daten (der
+  Zeuge `agg`, zwei Widerlegungspunkte), nicht der Satz. Lesart: `Fin 4` als vier
+  linear geordnete Autorisierungsstufen, `agg` als Aggregationspolitik
+  (konservativ = `min`, außer zwischen den beiden höchsten Stufen, dort permissiv
+  = `max`), ein Term über `L` als Verschaltung lokaler, kontextur-blinder Prüfer
+  (intra-kontexturell, `Definitionen.md` §9) — eine in verschiedenen
+  Stufenbereichen verschieden aggregierende Politik ist aus solchen Prüfern nicht
+  zusammensetzbar. Robustheit nach CLAUDE.md §9: `agg_nicht_erzeugbar_konstanten`
+  über `constant_clone_min_or_max` — auch mit BELIEBIGEN KONSTANTEN Prüfern als
+  Bausteinen bleibt `agg` unkomponierbar (`R 4` reflexiv). **Anwendungsschwelle
+  vier Stufen:** bei m = 3 wäre der Satz falsch (E1, vier der acht Wahlmuster
+  erzeugbar) — vier ist die erste Wertzahl, ab der JEDE echt gemischte
+  lokal-klassische Politik unkomponierbar ist. **Grenze im Begriff, nicht im
+  Beweis:** `{x,y}` ist unter `min`/`max` genau dann abgeschlossen, wenn `x,y`
+  vergleichbar sind — nur dann ist die Zweiermenge eine Elementarkontextur
+  (`Definitionen.md` §2); auf nicht-linearen Verbänden fällt die Charakterisierung
+  (bereits am kleinsten flachen Verband `M3`, Sonden-Befund der E4-Begutachtung,
+  außerhalb des Korpus gerechnet). Ein Übergangsgraph benannter Rollen ohne
+  Stufenordnung wird von dieser Schranke NICHT getragen. Wortlaut-Grenzen: keine
+  Behauptung über AI-Systeme (Anwendungsannahme, keine Folgerung), keine
+  Sicherheitsgarantie; Marke 3 unverändert (`StageAggregation`, nicht
+  `Mediation`). Drei Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht
+  (drei Wachen): `agg_lokal` `[propext]`, die beiden Schranken-Sätze
+  `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
