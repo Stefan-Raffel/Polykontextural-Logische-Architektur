@@ -31,8 +31,9 @@ Zustand ist nicht nachpruefbar; ein Hash ist es.
 - `lake build` laeuft durch, AxiomGate gruen.
 - Fuer **jeden** neuen Satz `#print axioms` ausfuehren, das gemessene Profil verbatim in eine
   `#guard_msgs`-Wache einfrieren. Profile werden gemessen, nicht geschaetzt.
-- **Keine** neuen Whitelist-Eintraege im AxiomGate, solange die Luecke nicht als Klasse D
-  begruendet und dokumentiert ist. Die vier bestehenden sind der Stand.
+- **Keine** Whitelist-Eintraege im AxiomGate. Die Whitelist ist seit der
+  Whitelist-Aufloesung (24. Juli 2026, Commit-Hash siehe git log) leer; jede
+  `sorryAx`-Konstante im Aggregat ist ein Verstoss, kein Whitelist-Kandidat.
 - `Classical.choice` ist kein Fehler, aber ein Befund: wo er auftritt, gehoert er in die
   Rueckgabe. Wo er vermeidbar war, gehoert der Weg dokumentiert (Fintype-Maschinerie ueber
   Funktionsraeumen zieht ihn regelmaessig; punktweise Brueckenlemmata vermeiden ihn).

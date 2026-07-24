@@ -39,8 +39,9 @@ bezeichnet Invertierbarkeit als natürlichen Isomorphismus).
 ## Sorry-Bilanz
 
 - Phase 1: 0 Sorries.
-- Phase 2: 1 Sorry (`belegung_specialization_cognitive`, F-3-Folge-Aufgabe).
-- Gesamt: 1 Sorry, methodologisch transparent markiert.
+- Phase 2: 0 Sorries (`belegung_specialization_cognitive` gestrichen,
+  Whitelist-Auflösung 24. Juli 2026; Memorial-Block am Dateiende).
+- Gesamt: 0 Sorries.
 -/
 
 namespace Reformulation.Proemial
@@ -239,23 +240,27 @@ theorem form_inhalt_vertauschungs_operativitaet
     IsIso PBV.γ :=
   PBV.isIso
 
-/-- F-3-Folge-Aufgabe: Spezialisierung der Belegung ι auf den L-Funktor.
+/-! ## F-3-Folge-Aufgabe — gestrichen (Whitelist-Auflösung, 24. Juli 2026)
 
-In einer konkreten Belegungs-Konfiguration (Lesart C aus der Belegungs-Wahl-
-Sitzung) ist die bestehende Belegung ι lesbar als Spezialisierung von L
-(in der kognitiven Konfiguration). Die α+γ-Form ist belegungs-neutral; ι
-ist kontextabhängiger Spezialfall, nicht direkte Identifikation mit L.
+Gestrichen: `belegung_specialization_cognitive` behauptete für **jede** Belegung
+`ι : S ⥤ K` eine natürliche Transformation `ι ⟶ PA.L`. Die Signatur quantifiziert
+über **alle** ι, die Absicht betraf aber eine **bestimmte** Belegungs-Konfiguration
+(Lesart C der Belegungs-Wahl): dort ist ι lesbar als Spezialisierung von L. In der
+allgemeinen Form kann `Hom(ι, PA.L)` leer sein — die Aussage ist in dieser Signatur
+nicht haltbar. Ohne die ausstehende Belegungs-Wahl gibt es nichts zu bauen; mit ihr
+wäre es eine andere Signatur. Kein Konsument im Aggregat; die Streichung bricht nichts.
 
-Diese Funktion trägt den strukturalen Ort, an dem F-3 realisiert wird:
-eine NatTrans ι ⟶ PA.L in der Funktor-Kategorie S ⥤ K.
+**Entfernte Deklaration** (stand hier mit `sorry`; eingerückt zitiert, damit
+`^def`-Zählrouten das Memorial-Zitat nicht mitzählen):
 
-Folge-Aufgabe F-3: konkrete Belegungs-Wahl (Lesart C) ausstehend. -/
-def belegung_specialization_cognitive
-    {S K : Type*} [Category S] [Category K]
-    (PA : ProemialAdjunction S K)
-    (ι : S ⥤ K) :
-    ι ⟶ PA.L :=
-  -- Folge-Aufgabe F-3 Sorry: Lesart C, konkrete Belegungs-Wahl pending.
-  sorry
+```
+  def belegung_specialization_cognitive
+      {S K : Type*} [Category S] [Category K]
+      (PA : ProemialAdjunction S K)
+      (ι : S ⥤ K) :
+      ι ⟶ PA.L :=
+    sorry
+```
+-/
 
 end Reformulation.Proemial

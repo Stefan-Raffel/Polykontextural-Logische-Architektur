@@ -9,8 +9,8 @@ Companion theorems to `beckChevalleyFromData`:
 
 * `beckChevalley_exists`: a BC natural isomorphism satisfying
   `BeckChevalleyAxioms` exists in any `ModalTwoCategoryWithPullbacks`.
-* `beckChevalley_unique`: any BC satisfying the axioms equals the canonical
-  construction (Klasse-D: `sorry`).
+* (`beckChevalley_unique` — gestrichen, Whitelist-Auflösung 24. Juli 2026;
+  Memorial-Block unten. In dieser Form falsch gegen die `True`-Axiome.)
 * `beckChevalley_modalCompat`: BC is compatible with all modal operators
   (prop_field-True).
 * `beckChevalley_b5_anchored`: the structure carries K1 as initial config.
@@ -37,24 +37,27 @@ theorem beckChevalley_exists (M : ModalTwoCategoryWithPullbacks 𝒯) :
   refine ⟨beckChevalleyFromData M, ?_⟩
   exact ⟨trivial, trivial, trivial⟩
 
-/-! ## Uniqueness -/
+/-! ## Uniqueness — gestrichen (Whitelist-Auflösung, 24. Juli 2026)
 
-/-- Uniqueness: any BC satisfying `BeckChevalleyAxioms` equals the canonical
-`beckChevalleyFromData M`.
+Gestrichen: `beckChevalley_unique` behauptete `Nonempty (BC = beckChevalleyFromData M)`
+für **jedes** `BC`, das `BeckChevalleyAxioms` erfüllt. Da `BeckChevalleyAxioms` drei
+`True`-Felder trägt, erfüllt **jeder** natürliche Isomorphismus die Axiome; die
+Eindeutigkeits-Aussage ist damit nicht bloß unbewiesen, sondern **in dieser Form
+falsch**, sobald der Iso-Typ mehr als ein Element hat. Leere Axiome diskriminieren
+nicht. Eine tragfähige Fassung braucht Axiome mit Inhalt — dann wäre es ein anderer
+Satz. Kein Konsument im Aggregat; die Streichung bricht nichts.
 
-**Klasse-D-Anpassung:** Uses `sorry`. The equality cannot be established at
-the invariant layer because `BeckChevalleyAxioms` carries only `True` fields
-(no discriminating information) and `beckChevalleyFromData` itself defers to
-F1-data. F1-assignments that concretize both will make this provable.
+**Entfernte Aussage** (stand hier mit `sorry`; Signatur eingerückt zitiert, damit
+die Satz-Zählroute `^theorem` das Memorial-Zitat nicht als Satz mitzählt):
 
-`Nonempty (BC = beckChevalleyFromData M)` uses propositional equality
-(rather than `BC ≅ beckChevalleyFromData M` which would require a category
-structure on the type of natural isomorphisms). -/
-theorem beckChevalley_unique (M : ModalTwoCategoryWithPullbacks 𝒯)
-    (BC : M.pullBackC ⋙ M.pullBackO ≅ M.pullBackO ⋙ M.pullBackC)
-    (h : BeckChevalleyAxioms M BC) :
-    Nonempty (BC = beckChevalleyFromData M) :=
-  ⟨sorry⟩ -- Klasse-D: requires concrete BC-components from F1-assignment
+```
+  theorem beckChevalley_unique (M : ModalTwoCategoryWithPullbacks 𝒯)
+      (BC : M.pullBackC ⋙ M.pullBackO ≅ M.pullBackO ⋙ M.pullBackC)
+      (h : BeckChevalleyAxioms M BC) :
+      Nonempty (BC = beckChevalleyFromData M) :=
+    ⟨sorry⟩
+```
+-/
 
 /-! ## Modal compatibility -/
 
@@ -78,5 +81,10 @@ singularity (B5 in PKL architecture). -/
 theorem beckChevalley_b5_anchored (M : ModalTwoCategoryWithPullbacks 𝒯) :
     M.initialConfig = .k1 :=
   M.initialConfig_isK1
+
+-- Axiom-Wache (Whitelist-Auflösung, 24. Juli 2026): sorry-frei, erbt die
+-- Schließung von `beckChevalleyFromData`; Profil Ist-gebunden verwacht.
+/-- info: 'Reformulation.F3e.beckChevalley_exists' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms beckChevalley_exists
 
 end Reformulation.F3e

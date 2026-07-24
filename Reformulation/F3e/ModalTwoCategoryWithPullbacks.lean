@@ -19,9 +19,10 @@ class of F3.e. It extends `ModalTwoCategoryWithNegations` (F3.d) with:
 * B5-anchoring via F3.b's `K` enumeration: `initialConfig` constrained to
   `.k1` (Class i, initial singularity, material-blind).
 
-The compatibility data are the constructive input from which
-`BeckChevalleyConstruction.beckChevalleyFromData` constructs the 2-categorical
-Beck-Chevalley natural isomorphism, per the Cluster-II-argumentation (T9 II).
+The Beck-Chevalley natural isomorphism ψ*∘φ* ≅ φ*∘ψ* is carried as the structural
+datum `pullBackCommute` — not derivable from the compatibility fields (two functors
+each commuting with a third need not commute mutually);
+`BeckChevalleyConstruction.beckChevalleyFromData` reads it off. Cluster-II (T9 II).
 
 Note: `NatIso` is a namespace in Mathlib, not a type; natural isomorphisms
 between functors are written `F ≅ G` (i.e. `CategoryTheory.Iso F G` in the
@@ -39,7 +40,7 @@ open CategoryTheory
 
 Extends `ModalTwoCategoryWithNegations 𝒯` (F3.d) — which itself carries
 τ, δ, ω, ¬_τ, ¬_δ, ¬_ω, the compatibility triples, and Beck-Chevalley
-(prop-field) — by sixteen new fields:
+(prop-field) — by seventeen new fields:
 
 **Pull-back functors on 𝒯 (double fibration 𝒯 → 𝒞 × 𝒪):**
 - `pullBackC` (ψ*): undertopos-change functor (𝒞-axis).
@@ -52,6 +53,11 @@ Cluster-II-argumentation (T9 II / Cluster-II Rev4).
 
 **Pull-back compatibility of negation operators (¬_τ, ¬_δ, ¬_ω):**
 Six further `F ≅ G` fields for the negation layer (K2.3-decision).
+
+**Beck-Chevalley pullback commutation (structural datum):**
+- `pullBackCommute` (ψ*∘φ* ≅ φ*∘ψ*): the Beck-Chevalley 2-iso of the two pullback
+  functors — a structural datum, **not** derivable from the twelve compatibility
+  fields (T9 II / Cluster-II Rev4). An instance must supply it.
 
 **B5-anchoring:**
 - `initialConfig : Reformulation.F3b.K` — the initial configuration.
@@ -93,6 +99,14 @@ structure ModalTwoCategoryWithPullbacks (𝒯 : Type*) [Category 𝒯]
   negCompatDeltaC : negDelta ⋙ pullBackC ≅ pullBackC ⋙ negDelta
   /-- ¬_ω∘ψ* ≅ ψ*∘¬_ω: ¬_ω commutes with ψ* up to 2-iso. -/
   negCompatOmegaC : negOmega ⋙ pullBackC ≅ pullBackC ⋙ negOmega
+  -- ——— Beck-Chevalley pullback commutation (Strukturdatum) ———
+  /-- ψ*∘φ* ≅ φ*∘ψ*: die Beck-Chevalley-2-Iso der beiden Pull-back-Funktoren, als
+  **Strukturdatum, nicht Folgerung**. Aus den zwölf Kompatibilitätsfeldern nicht
+  ableitbar: zwei Funktoren, die je mit einem dritten (einem Modaloperator)
+  kommutieren, kommutieren nicht miteinander. Eine Instanz liefert dieses Datum;
+  die belegungsspezifische (F1) Form spezifiziert es über konkrete Pull-back-
+  Quadrate (`NatIso.ofComponents`). -/
+  pullBackCommute : pullBackC ⋙ pullBackO ≅ pullBackO ⋙ pullBackC
   -- ——— B5-anchoring ———
   /-- The initial configuration as a value of `Reformulation.F3b.K`. -/
   initialConfig : Reformulation.F3b.K

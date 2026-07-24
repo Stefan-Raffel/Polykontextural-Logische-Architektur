@@ -30,32 +30,30 @@ Phase-1-Probe `Diagnostics.AxiomProbe`.) -/
 def isReformulationModule (m : Name) : Bool :=
   m == `Reformulation || (`Reformulation).isPrefixOf m
 
-/-- **Die Whitelist — die vier bekannten, niedergelegten Klasse-D-Lücken.**
+/-- **Die Whitelist — leer.**
 
-Diese Liste ist die versionierte, Diff-sichtbare Form der Aggregat-Aussage
-„das Aggregat zieht `sorryAx` über genau diese vier Konstanten und keine andere".
-Jede weitere `sorryAx`-Konstante ist ein Verstoß, kein Whitelist-Kandidat.
+Das Aggregat zieht **kein** `sorryAx`. Die vier vormaligen Klasse-D-Lücken sind
+seit der Whitelist-Auflösung (24. Juli 2026) geschlossen bzw. gestrichen:
 
-Zwei literale Sorry-Wurzeln an der Belegungs-Naht (F3e-BC ↔ F-3-Architektur, S↔K):
-* `F3e.beckChevalleyFromData` — Klasse-D, BC-Konstruktion invariante Schicht,
-  F1-belegungsspezifisch.
-* `Proemial.belegung_specialization_cognitive` — F-3-Folge-Aufgabe (Lesart C),
-  Belegungs-Wahl ausstehend.
+* `F3e.beckChevalleyFromData` — **geschlossen**: die BC-2-Iso ist jetzt das
+  Strukturdatum `ModalTwoCategoryWithPullbacks.pullBackCommute`, direkt gelesen.
+* `F3e.beckChevalley_exists` — erbt die Schließung (sorry-frei).
+* `F3e.beckChevalley_unique` — **gestrichen**: gegen die drei `True`-Felder von
+  `BeckChevalleyAxioms` uneindeutig, in dieser Form falsch. Memorial in
+  `F3e/Theorems.lean`.
+* `Proemial.belegung_specialization_cognitive` — **gestrichen**: über alle ι
+  quantifiziert, `Hom(ι, PA.L)` kann leer sein. Memorial in `Proemial/AlphaGamma.lean`.
 
-Zwei abgeleitete (erben `sorryAx` von `beckChevalleyFromData`):
-* `F3e.beckChevalley_exists`
-* `F3e.beckChevalley_unique`
+Jede `sorryAx`-Konstante im Aggregat ist ab hier ein Verstoß — es gibt keinen
+Whitelist-Kandidaten mehr. Die Diff-sichtbare Aggregat-Aussage lautet nun
+„das Aggregat zieht kein `sorryAx`".
 
-Gestrichen (Sorry-Konsolidierung γ-V):
+Gestrichen (Sorry-Konsolidierung γ-V, früher):
 `Proemial.Substantial.beck_chevalley_verschraenkung_substantial` — veraltete,
 mit dem F-3-Stub (ohne `compat`) unbeweisbare Parallelform; Substanz sorry-frei
 eingelöst in `…BeckChevalley.beck_chevalley_verschraenkung_truly_substantial`.
 Memorial-Block in `AlphaGammaSubstantial.lean`. -/
-def whitelist : Array Name := #[
-  ``Reformulation.F3e.beckChevalleyFromData,
-  ``Reformulation.Proemial.belegung_specialization_cognitive,
-  ``Reformulation.F3e.beckChevalley_exists,
-  ``Reformulation.F3e.beckChevalley_unique ]
+def whitelist : Array Name := #[]
 
 /-! **Das Gate.** Iteriert über alle `Reformulation.*`-Konstanten, sammelt die
 `sorryAx`-Träger, und gleicht gegen die Whitelist ab:
@@ -94,8 +92,12 @@ run_cmd do
       Reformulation.AxiomGate.whitelist ({stale.size}): {stale.qsort Name.lt}\n\
       Diese Konstanten ziehen kein sorryAx (mehr) oder existieren nicht. Lücke \
       geschlossen ⇒ Eintrag aus der Whitelist entfernen (Whitelist nicht verrotten lassen)."
-  logInfo m!"AXIOM-GATE GRÜN — Aggregat Reformulation ({considered} geprüfte \
-    Konstanten) zieht sorryAx nur über die {whitelist.size} gewhitelisteten, \
-    bekannten Klasse-D-Lücken:\n{sorryHolders.toArray.qsort Name.lt}"
+  if whitelist.isEmpty then
+    logInfo m!"AXIOM-GATE GRÜN — Aggregat Reformulation ({considered} geprüfte \
+      Konstanten) zieht **kein** sorryAx. Whitelist leer."
+  else
+    logInfo m!"AXIOM-GATE GRÜN — Aggregat Reformulation ({considered} geprüfte \
+      Konstanten) zieht sorryAx nur über die {whitelist.size} gewhitelisteten, \
+      bekannten Klasse-D-Lücken:\n{sorryHolders.toArray.qsort Name.lt}"
 
 end Reformulation.AxiomGate

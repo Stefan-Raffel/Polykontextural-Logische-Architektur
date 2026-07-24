@@ -14,12 +14,13 @@
 -- * `BeckChevalleyAxioms` (F3e.BeckChevalleyAxioms): prop_field-True
 --   predicate for the standard 2-categorical BC conditions.
 -- * `beckChevalleyFromData` (F3e.BeckChevalleyConstruction): the canonical
---   BC-NatIso constructed from the compatibility data (Klasse-D: sorry at
---   invariant layer; substantiated by F1-assignments).
--- * Three theorems (F3e.Theorems): existence, uniqueness, modal compatibility.
+--   BC-NatIso, read off the structure field `pullBackCommute` (sorry-frei;
+--   die belegungsspezifische Form bleibt F1-Material).
+-- * Theorems (F3e.Theorems): existence, modal compatibility, B5-anchoring.
+--   (`beckChevalley_unique` gestrichen — Whitelist-Auflösung 24. Juli 2026.)
 --
--- Klasse-D: `beckChevalleyFromData` and `beckChevalley_unique` use `sorry`.
--- Documented in F3e_Implementation_Final.md §Klasse-D.
+-- Whitelist-Auflösung (24. Juli 2026): das Aggregat zieht kein `sorryAx` mehr;
+-- die vier vormaligen Klasse-D-Einträge sind geschlossen bzw. gestrichen.
 --
 -- Build-Reihenfolge: F3.b → F3.c (with F3.d extension) → F3.d → F3.e → F1.D*
 
