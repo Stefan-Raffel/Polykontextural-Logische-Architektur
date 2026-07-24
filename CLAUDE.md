@@ -185,3 +185,30 @@ also **reflexiv** ist.
 **Vor dem Bau einer neuen Schranke ist zu pruefen, ob ihre Invariante reflexiv ist**, und das
 Ergebnis gehoert in den Doc-String. Eine Schranke, die an einer hinzugefuegten Konstante faellt,
 behauptet weniger, als sie zu behaupten scheint - das ist kein Fehler, aber es muss dastehen.
+
+---
+
+## 10 - Aggregat heisst setzungsfrei
+
+Eine Datei kommt in das zertifizierte Aggregat (den Import-Baum, den das AxiomGate prueft),
+wenn sie **keine Setzung traegt**: kein `: True`-Feld, das eine Deutung vertritt, und keine
+Abhaengigkeit von einer Sonde, die eines traegt.
+
+**Der Grund ist nicht der Aufwand, sondern das epistemische Signal.** Was im Aggregat steht,
+liest sich als zertifizierter Bestand; eine markierte Setzung darin wird als Anspruch gelesen
+statt als Markierung.
+
+- **setzungsfrei bedeutet Aggregat.** Beispiele: `ContextureOverlap`, `RegimeThreshold` -
+  sie konsumieren nur Aggregat-Inhalt und arbeiten auf dem etablierten Kontexturbegriff.
+- **setzungstragend bedeutet standalone**, mit Vermerk im Dateikopf und ausdruecklicher
+  Anschlussbedingung. Beispiel: die Turm-Linie (`TowerAsymmetryProbe`,
+  `AsymmetricDiscontexturalTransition`) mit `contextureCrossing : True`.
+
+Der legitime Ausloeser fuer einen spaeteren Anschluss ist genau einer: ein Aggregat-Satz, der
+die standalone Datei **konsumiert** - oder die Aufloesung der Setzung durch einen Satz.
+Bis dahin ist die Standalone-Lage nicht ein Zwischenzustand vor der eigentlichen Aufnahme,
+sondern die dem Status angemessene Verortung.
+
+*Praezisierung:* Das Aggregat traegt bereits eine markierte Setzung
+(`DiscontexturalStratification`). Das Problem ist nie das Feld an sich, sondern der
+Anspruchstitel darueber.
