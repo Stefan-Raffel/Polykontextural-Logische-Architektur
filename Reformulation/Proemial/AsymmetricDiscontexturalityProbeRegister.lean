@@ -1,6 +1,8 @@
 import Reformulation.Proemial.AsymmetricDiscontexturality
 import Reformulation.Proemial.ProemialInversionProbe
 import Reformulation.Proemial.K4DiscontexturalityProbe
+import Reformulation.Proemial.TowerAsymmetryProbe
+import Reformulation.Proemial.AsymmetricDiscontexturalTransition
 
 /-!
 # Proemial.AsymmetricDiscontexturalityProbeRegister — Sonden-Anschluss des Zeugenregisters
@@ -26,6 +28,23 @@ Die Statements werden über lokale `abbrev`s wörtlich re-zitiert (kein
 STATEMENT-PIN-Marker — konsumierende Theoreme, keine `example`-Pins; Entscheid
 im Dateikopf von `AsymmetricDiscontexturality`).
 
+## Der gebundene Zeuge (Verbindungssatz-Eintrag, kein neuer Wrapper-Typ)
+
+Über die beiden ungebundenen Faser-Zeugen hinaus führt diese Datei einen
+**Verweis-Eintrag** auf den Verbindungssatz `TowerAsymmetryProbe.tower_asymmetric`
+und seine gebündelte Form `AsymmetricTransition.towerTransition`. Der
+Verbindungssatz bindet Beweisart 4 (Faser-Asymmetrie) und Beweisart 5
+(Irreversibilität) samt Substruktur-Erhaltung an **einem** Träger — der erste
+Zeuge im Korpus, der die drei Merkmale der asymmetrischen Diskontexturalität
+zugleich trägt.
+
+**Ausdrücklich kein siebter Wrapper-Typ:** die Bindung ist keine neue
+Beweisart, sondern die Verschaltung zweier vorhandener. Der Eintrag ist darum
+ein reiner Re-Export (`tower_asymmetric_bound`), kein neuer `…Witness`-Typ. Die
+verbleibende Grenze — der gebundene Zeuge entscheidet KA nur **modulo** der
+markierten Identifikation „Stufenwechsel = Kontexturwechsel" — ist im Dateikopf
+von `AsymmetricDiscontexturalTransition` benannt.
+
 **Wachenlos mit Vermerk:** die Sonden selbst tragen nach Bestand keine Wachen;
 diese Standalone-Datei folgt der Sonden-Praxis. Bei einem späteren
 Aggregatanschluss sind Wachen nachzurüsten und die Eichwerte neu zu messen
@@ -45,6 +64,7 @@ open Reformulation.Proemial.A3CoarseningProbe (deutero)
 open Reformulation.Proemial.ProemialInversionProbe (extend split_epi_not_iso)
 open Reformulation.Proemial.K4DiscontexturalityProbe (descent_not_factoring)
 open Reformulation.Proemial.AsymmetricDiscontexturality (FiberAsymmetryWitness)
+open Reformulation.Proemial.TowerAsymmetryProbe (tower_asymmetric)
 
 /-- Das Statement von `ProemialInversionProbe.split_epi_not_iso`, wörtlich
     re-zitiert: Retraktion für alle Stufen, Nicht-Injektivität auf `RGS 3`. -/
@@ -72,5 +92,12 @@ theorem split_epi_not_iso_witness :
 theorem descent_not_factoring_witness :
     FiberAsymmetryWitness DescentNotFactoringStatement :=
   ⟨descent_not_factoring⟩
+
+/-- **Verbindungssatz-Eintrag (Re-Export, kein Wrapper-Typ).** Der gebundene
+    Zeuge: Richtung, Substruktur-Erhaltung und Determinationsverlust an einem
+    Träger. Reiner `alias` auf `TowerAsymmetryProbe.tower_asymmetric` — die
+    Bindung von Beweisart 4 und 5, keine neue Beweisart. Das Profil ist im Turm
+    gewacht (`[propext, Quot.sound]`); der Re-Export erbt es. -/
+alias tower_asymmetric_bound := tower_asymmetric
 
 end Reformulation.Proemial.AsymmetricDiscontexturalityProbeRegister

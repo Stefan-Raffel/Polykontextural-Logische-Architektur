@@ -33,6 +33,21 @@ besetzt ist: zwei von sechs Beweisarten, und die Instanzen der Art 4 liegen
 sämtlich im standalone Sonden-Register. Wer aus der Zahl der Einträge auf den
 Stand der asymmetrischen Seite schlösse, läse das Register falsch.
 
+**Nachtrag (der gebundene Zeuge).** Die asymmetrische Seite ist inzwischen
+nicht mehr nur durch die zwei ungebundenen Beweisarten 4 und 5 besetzt, sondern
+durch **einen gebundenen** Zeugen: `TowerAsymmetryProbe.tower_asymmetric` bindet
+Richtung (Irreversibilität, Art 5), Substruktur-Erhaltung und
+Determinationsverlust (Faser-Asymmetrie, Art 4) an **einem** Träger — der erste
+Zeuge im Korpus, der die drei Merkmale von Günthers asymmetrischer
+Diskontexturalität zugleich trägt. `AsymmetricDiscontexturalTransition`
+(Namespace `AsymmetricTransition`) bündelt ihn zur Struktur mit drei
+Beweisfeldern und einem markierten Kontextur-Setzungsfeld. **Kein siebter
+Wrapper-Typ**: die Bindung ist keine neue Beweisart, sondern die Verschaltung
+zweier vorhandener. Beide Dateien sind standalone (sie konsumieren Sonden); der
+Anschluss bleibt darum im standalone Sonden-Register, nicht hier. Die
+verbleibende Grenze ist dort benannt: der gebundene Zeuge entscheidet KA nur
+**modulo** der markierten Identifikation „Stufenwechsel = Kontexturwechsel".
+
 ## Die Leitentscheidung
 
 Es gibt hier **kein** globales `AsymmetricDiscontexturality : Prop`. Eine solche
