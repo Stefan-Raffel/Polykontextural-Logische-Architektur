@@ -13,13 +13,13 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 2697 Konstanten |
-| Axiom-Wachen | 221 ueber 25 Dateien |
-| Saetze gesamt | 621 |
-| Build-Jobs | 1262 |
-| ausgewiesene Luecken | 4 (gewhitelistet) |
+| geprueft (AxiomGate) | 2984 Konstanten |
+| Axiom-Wachen | 299 ueber 35 Dateien |
+| Saetze gesamt | 698 |
+| Build-Jobs | 1267 |
+| ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `4c46257`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `c576b57`.
 
 ---
 
@@ -27,13 +27,13 @@ Kennzahlen gezaehlt am gruenen Build, Stand Commit `4c46257`.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 45 | 328 | Proemialrelation, Transjunktion, Klon-Schranken |
+| `Proemial/` | 54 | 406 | Proemialrelation, Transjunktion, Klon-Schranken |
 | `PathC/` | 18 | 94 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 4 | 88 | Kenogrammatik: RGS, Normalform, Operationssemantik |
 | `F1/` | 20 | 22 | Belegungen, Faserungen, Cross-Chain-Anschluss |
-| `F3a`-`F3g/` | 32 | 72 | Stufen, Modaloperatoren, Uebergangsklassen |
+| `F3a`-`F3g/` | 38 | 71 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
-| `Foreign/` | 1 | - | fremd gestellter Fall (Peres-Mermin) |
+| `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 Zwei Module tragen die schaerfsten Aussagen des Korpus:
 
@@ -51,16 +51,18 @@ Zwei Module tragen die schaerfsten Aussagen des Korpus:
 ## AxiomGate
 
 `Reformulation/AxiomGate.lean` prueft beim Bau das gesamte Aggregat auf `sorryAx` und
-bricht bei jeder nicht gewhitelisteten Luecke. Die vier bekannten Klasse-D-Luecken sind:
+bricht bei jeder Luecke. Seit der Whitelist-Aufloesung (Commit `c576b57`) ist die
+**Whitelist leer**: das Aggregat zieht **kein** `sorryAx`, jede `sorryAx`-Konstante
+ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
 
-```
-F3e.beckChevalleyFromData
-F3e.beckChevalley_exists
-F3e.beckChevalley_unique
-Proemial.belegung_specialization_cognitive
-```
+* geschlossen -- `F3e.beckChevalleyFromData` (und das erbende `beckChevalley_exists`):
+  die Beck-Chevalley-2-Iso ist jetzt das Strukturdatum
+  `ModalTwoCategoryWithPullbacks.pullBackCommute`, direkt gelesen;
+* gestrichen -- `F3e.beckChevalley_unique` (uneindeutig gegen die `True`-Axiome) und
+  `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
+  Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 221 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 299 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
