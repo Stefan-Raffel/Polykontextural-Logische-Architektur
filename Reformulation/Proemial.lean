@@ -35,6 +35,8 @@ import Reformulation.Proemial.FlowIteration
 import Reformulation.Proemial.CoalgebraMorphism
 import Reformulation.Proemial.ContexturalFibration
 import Reformulation.Proemial.StageAggregation
+import Reformulation.Proemial.ContextureOverlap
+import Reformulation.Proemial.RegimeThreshold
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -809,6 +811,23 @@ Enthält:
   `Mediation`). Drei Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht
   (drei Wachen): `agg_lokal` `[propext]`, die beiden Schranken-Sätze
   `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
+
+- `Proemial.ContextureOverlap`: die Überlappungsrelation des Kontexturengitters
+  **satzförmig** (ERTRAG, klein). `elem_contexture_overlap_le_one` — je zwei
+  verschiedene Elementarkontexturen (Zweiermengen über `Fin m`) überlappen in
+  höchstens einem Wert; `three_contextures_overlap` — die drei `Fin 3`-Kontexturen
+  paarweise in genau dem geteilten Wert, prädikativ (`a = x ∨ a = y` wie
+  `LocallyClassical`) und darum `Classical`-frei. Schließt die Kontexturgrenze auf
+  dem wertbasierten Kontextur-Begriff der D/E-Reihe, **ohne** Setzung. Zwei Wachen
+  (`[propext, Quot.sound]` / `[propext]`), 0 Sorries.
+- `Proemial.RegimeThreshold`: der Schwellensatz (ERTRAG).
+  `regime_threshold_at_four` bindet Wert-Aufstieg und Nicht-Erzeugbarkeit an dem
+  einen Ort echter Verbindung — dem Schritt `m = 3 → 4`: eine gemischte
+  lokal-klassische Operation ist bei `m = 3` erzeugbar (E1,
+  `pattern_max_min_min_in_clone`), bei `m = 4` nicht (E3,
+  `locally_classical_in_clone_iff`). Qualitativer Regimewechsel, kein Zähler.
+  Konsumiert nur Aggregat-Inhalt. Grenze: fällt auf `M3`/Verbundgitter
+  (E4-Begutachtung). Eine Wache (`[propext, Quot.sound]`), 0 Sorries.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
