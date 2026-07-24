@@ -17,6 +17,22 @@ konsumiert; neu ist allein die Sortierung.
 Diese Datei klassifiziert vorhandene asymmetrische Bruchzeugen. Sie beweist
 nicht, dass diese Zeugen Günthers asymmetrische Diskontexturalität erschöpfen.
 
+## Gerichtet und ungerichtet — was der Titel nicht einlöst
+
+Von den sechs Beweisarten tragen nur zwei einen **Richtungssinn**: die
+Faser-Asymmetrie (4) und die Irreversibilität (5). Die Arten 1 bis 3 belegen
+Nicht-Internalität beziehungsweise Nicht-Erzeugbarkeit im Termklon. Das ist nach
+Günthers eigener Unterscheidung die **symmetrische** Seite: ein
+Umtauschverhältnis zwischen Kontexturen, ein ungeordnetes Paar. Die
+asymmetrische Diskontexturalität verlangt ein **geordnetes** Paar mit
+Richtungssinn — Stufengang, Rangverlust, das Neue.
+
+Die Arten 1 bis 3 stehen hier darum als **Kontrast**, nicht als Einlösung des
+Titels. Damit zeigt das Register zugleich, wie dünn die asymmetrische Seite
+besetzt ist: zwei von sechs Beweisarten, und die Instanzen der Art 4 liegen
+sämtlich im standalone Sonden-Register. Wer aus der Zahl der Einträge auf den
+Stand der asymmetrischen Seite schlösse, läse das Register falsch.
+
 ## Die Leitentscheidung
 
 Es gibt hier **kein** globales `AsymmetricDiscontexturality : Prop`. Eine solche
