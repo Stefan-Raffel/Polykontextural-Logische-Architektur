@@ -387,9 +387,13 @@ theorem T_crosses_exactly_one :
 rechts — jede Drift des *Statements* (nicht nur des Axiom-Profils) bricht damit den Build.
 Es sind `example`s ohne Namen und brauchen keine Axiom-Wache. -/
 
+-- STATEMENT-PIN
 example : Tol 0 1 ∧ ¬ Tol 0 2 := tol_proper
+-- STATEMENT-PIN
 example : ∀ a b c d : Fin 3, Tol a c → Tol b d → Tol (T a b) (T c d) := T_preserves_tol
+-- STATEMENT-PIN
 example : T 1 1 = 1 := T_preserves_one
+-- STATEMENT-PIN
 example :
     (T 0 2 ∉ ({0, 2} : Set (Fin 3)))
       ∧ (T 1 1 = 1)
@@ -534,10 +538,13 @@ theorem term_clone_localization :
 /-! **Statement-Pins (Teil 7).** Voller Wortlaut links, Satz rechts — wie in Teil 6; sichern
 gegen defeq-Drift des Statements (nicht Syntax-Drift). Namenlose `example`s, keine Wache. -/
 
+-- STATEMENT-PIN
 example (t : L.Term (Fin 2)) (v w : Fin 2 → Fin 3) (h : ∀ i, Tol (v i) (w i)) :
     Tol (t.realize v) (t.realize w) := tolerance_is_invariant t v w h
+-- STATEMENT-PIN
 example (t : L.Term (Fin 2)) (v : Fin 2 → Fin 3) (hv : ∀ i, v i = 1) :
     t.realize v = 1 := term_preserves_one t v hv
+-- STATEMENT-PIN
 example :
     (∀ (t : L.Term (Fin 2)) (v : Fin 2 → Fin 3), (∀ i, v i = 0 ∨ v i = 2) →
         t.realize v = 0 ∨ t.realize v = 2)

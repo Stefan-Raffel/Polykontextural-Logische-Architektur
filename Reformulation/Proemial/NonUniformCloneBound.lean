@@ -352,15 +352,21 @@ theorem pattern_max_min_max_in_clone :
 /-! **Statement-Pins.** Voller Wortlaut links, Satz rechts — jede Drift des *Statements*
 bricht den Build. Namenlose `example`s, keine Axiom-Wache. -/
 
+-- STATEMENT-PIN
 example : ContextureFaithful W := W_contexture_faithful
+-- STATEMENT-PIN
 example :
     ActsAsMax W 1 2 ∧ ¬ ActsAsMin W 1 2 ∧ ActsAsMin W 0 2 ∧ ¬ ActsAsMax W 0 2 := W_uneven
+-- STATEMENT-PIN
 example : Rho 1 0 ∧ Rho 2 2 ∧ ¬ Rho (W 1 2) (W 0 2) := rho_breaks_at_uneven_site
+-- STATEMENT-PIN
 example (t : L.Term (Fin 2)) (v w : Fin 2 → Fin 3) (h : ∀ i, Rho (v i) (w i)) :
     Rho (t.realize v) (t.realize w) := rho_is_invariant t v w h
+-- STATEMENT-PIN
 example :
     ¬ ∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3, t.realize v = W (v 0) (v 1) :=
   W_not_in_clone
+-- STATEMENT-PIN
 example :
     ∃ f : Fin 3 → Fin 3 → Fin 3, ContextureFaithful f ∧ LocallyClassical f ∧
       ¬ ∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3, t.realize v = f (v 0) (v 1) :=
@@ -681,13 +687,16 @@ theorem locally_classical_dichotomy (f : Fin 3 → Fin 3 → Fin 3)
 
 /-! **Statement-Pins (E1).** Voller Wortlaut links, Satz rechts — wie oben. -/
 
+-- STATEMENT-PIN
 example (f : Fin 3 → Fin 3 → Fin 3)
     (h : ∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3, t.realize v = f (v 0) (v 1)) :
     ∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3, t.realize v = conj f (v 0) (v 1) :=
   clone_closed_under_conj f h
+-- STATEMENT-PIN
 example (f : Fin 3 → Fin 3 → Fin 3) :
     LocallyClassical f ↔ ∃ c01 c12 c02 : Bool, f = ofChoices c01 c12 c02 :=
   locally_classical_iff f
+-- STATEMENT-PIN
 example :
     ∀ c1 c2 c3 : Bool,
       (∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3,
@@ -695,6 +704,7 @@ example :
         ↔ ((c1, c2, c3) = (false, false, false) ∨ (c1, c2, c3) = (true, false, false)
             ∨ (c1, c2, c3) = (true, false, true) ∨ (c1, c2, c3) = (true, true, true)) :=
   four_of_eight_generatable
+-- STATEMENT-PIN
 example (f : Fin 3 → Fin 3 → Fin 3) (h : LocallyClassical f) :
     (∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 3, t.realize v = f (v 0) (v 1))
       ∨ (f = W ∨ f = W2 ∨ f = W3 ∨ f = W4) :=

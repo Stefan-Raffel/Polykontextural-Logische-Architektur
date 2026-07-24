@@ -51,6 +51,27 @@ Huell-Eigenschaften, ein konsumierender Satz faengt Aenderungen in seinen Voraus
 
 Wachen stehen in eigenen Bloecken am Dateiende, nicht vor den Deklarationen.
 
+### Statement-Pins: maschinenlesbar markieren
+
+Jeder Statement-Pin traegt unmittelbar davor die eigene Zeile
+
+```
+-- STATEMENT-PIN
+```
+
+**Zaehlroute:** `grep -rc '^-- STATEMENT-PIN' --include='*.lean' Reformulation/`.
+
+*Grund (24. Juli 2026, nach einem Befund der Implementations-Instanz):* Die frueheren Routen
+zaehlten `example`-Deklarationen in Dateien mit einer Pin-**Ueberschrift** in der Prosa. Das war
+zweifach bruechig. Erstens haengt es an der Schreibweise - `## Statement pins` (englisch, ohne
+Bindestrich) in `F1/D5/IBC/PullBack.lean` gegen `**Statement-Pins.**` in den uebrigen; je nach
+Suchmuster fehlten vier Pins und eine Datei. Zweitens erfasste die weitere Route ab dem
+E4-Doc-Eintrag `Proemial.lean` mit, weil dort der Begriff im Fliesstext vorkommt - eine Datei
+mit null Pins. **Eine Zaehlroute, die Prosa als Kriterium nimmt, ist eine Zeitbombe.**
+
+Zur Groessenordnung: korpusweit gibt es rund achtzig `example`-Deklarationen, die grosse Mehrheit
+davon Sonden-Beispiele ohne Pin-Charakter. `example` allein ist darum kein brauchbares Kriterium.
+
 ---
 
 ## 4 - Im Dateikopf: Ertrag oder Benennung

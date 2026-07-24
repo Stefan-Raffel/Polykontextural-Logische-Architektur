@@ -677,18 +677,22 @@ theorem mixed_not_in_constant_clone : ∀ c0 c1 c2 c3 c4 c5 : Bool,
 /-! **Statement-Pins.** Voller Wortlaut links, Satz rechts — jede Drift des
 *Statements* bricht den Build. Namenlose `example`s, keine Axiom-Wache. -/
 
+-- STATEMENT-PIN
 example (f : Fin 4 → Fin 4 → Fin 4) :
     LocallyClassical4 f ↔ ∃ c0 c1 c2 c3 c4 c5 : Bool, f = ofC c0 c1 c2 c3 c4 c5 :=
   locally_classical_iff4 f
 
+-- STATEMENT-PIN
 example (t : L.Term (Fin 2)) (v w : Fin 2 → Fin 4) (h : ∀ i, R4 (v i) (w i)) :
     R4 (t.realize v) (t.realize w) := r4_is_invariant t v w h
 
+-- STATEMENT-PIN
 example : ∀ c0 c1 c2 c3 c4 c5 : Bool,
     (c0 || c1 || c2 || c3 || c4 || c5) = true →
     (c0 && c1 && c2 && c3 && c4 && c5) = false →
     ¬ PreservesR4 (ofC c0 c1 c2 c3 c4 c5) := mixed_breaks
 
+-- STATEMENT-PIN
 example : ∀ c0 c1 c2 c3 c4 c5 : Bool,
     (∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 4,
         t.realize v = ofC c0 c1 c2 c3 c4 c5 (v 0) (v 1))
@@ -696,11 +700,13 @@ example : ∀ c0 c1 c2 c3 c4 c5 : Bool,
           ∨ (c0 || c1 || c2 || c3 || c4 || c5) = false) :=
   two_of_sixtyfour_generatable
 
+-- STATEMENT-PIN
 example (f : Fin 4 → Fin 4 → Fin 4) (h : LocallyClassical4 f) :
     (∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 4, t.realize v = f (v 0) (v 1))
       ↔ ((f = fun a b => min a b) ∨ (f = fun a b => max a b)) :=
   locally_classical_in_clone_iff4 f h
 
+-- STATEMENT-PIN
 example : ∀ c0 c1 c2 c3 c4 c5 : Bool,
     (c0 || c1 || c2 || c3 || c4 || c5) = true →
     (c0 && c1 && c2 && c3 && c4 && c5) = false →

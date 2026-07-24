@@ -134,15 +134,18 @@ theorem agg_nicht_erzeugbar_konstanten :
 Voller Wortlaut links, Satz rechts — jede Drift des *Statements* bricht den Build.
 Namenlose `example`s, keine Axiom-Wache. -/
 
+-- STATEMENT-PIN
 example : ∀ x y : Fin 4, x ≠ y →
     (∀ a b : Fin 4, (a = x ∨ a = y) → (b = x ∨ b = y) → agg a b = min a b) ∨
     (∀ a b : Fin 4, (a = x ∨ a = y) → (b = x ∨ b = y) → agg a b = max a b) :=
   agg_lokal
 
+-- STATEMENT-PIN
 example : ¬ ∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin 4,
     t.realize v = agg (v 0) (v 1) :=
   agg_nicht_erzeugbar
 
+-- STATEMENT-PIN
 example : ¬ ∃ t : (Lc 4).Term (Fin 2), ∀ v : Fin 2 → Fin 4,
     t.realize v = agg (v 0) (v 1) :=
   agg_nicht_erzeugbar_konstanten

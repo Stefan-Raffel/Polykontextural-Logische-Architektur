@@ -115,20 +115,24 @@ theorem naive_deliverable_not_stable :
 
 /-! ## Statement pins (the strength is in the statement, not the profile) -/
 
+-- STATEMENT-PIN
 example (s : LightClientState) (h₁ h₂ : Header) :
     (s.update h₁).update h₂ = (s.update h₂).update h₁ :=
   ibc_update_commutes s h₁ h₂
 
+-- STATEMENT-PIN
 example (s : LightClientState) (p : Packet) (n : ℕ) (h : Header) :
     deliverable s p n → deliverable (s.update h) p n :=
   ibc_deliverable_stable s p n h
 
+-- STATEMENT-PIN
 example :
     ∃ (s : LightClientState) (h₁ h₂ : Header),
       ((naiveUpdate (naiveUpdate s h₁) h₂).acceptedHeight
         ≠ (naiveUpdate (naiveUpdate s h₂) h₁).acceptedHeight) :=
   naive_update_not_commutative
 
+-- STATEMENT-PIN
 example :
     ∃ (s : LightClientState) (p : Packet) (n : ℕ) (h : Header),
       deliverable s p n ∧ ¬ deliverable (naiveUpdate s h) p n :=

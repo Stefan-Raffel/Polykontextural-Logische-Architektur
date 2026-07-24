@@ -775,30 +775,36 @@ theorem constant_clone_min_or_max (hm : 4 ≤ m) (f : Fin m → Fin m → Fin m)
 /-! **Statement-Pins.** Voller Wortlaut links, Satz rechts — jede Drift des
 *Statements* bricht den Build. Namenlose `example`s, keine Axiom-Wache. -/
 
+-- STATEMENT-PIN
 example (m : ℕ) (hm : 4 ≤ m) (f : Fin m → Fin m → Fin m) (h : LocallyClassical f) :
     (∃ t : L.Term (Fin 2), ∀ v : Fin 2 → Fin m, t.realize v = f (v 0) (v 1))
       ↔ ((f = fun a b => min a b) ∨ (f = fun a b => max a b)) :=
   locally_classical_in_clone_iff hm f h
 
+-- STATEMENT-PIN
 example (m : ℕ) (hm : 4 ≤ m) (f : Fin m → Fin m → Fin m) (hLC : LocallyClassical f)
     (hpres : PreservesR m f) :
     (f = fun a b => min a b) ∨ (f = fun a b => max a b) :=
   preserving_is_min_or_max hm hLC hpres
 
+-- STATEMENT-PIN
 example (m : ℕ) (t : L.Term (Fin 2)) (v w : Fin 2 → Fin m)
     (h : ∀ i, R m (v i) (w i)) : R m (t.realize v) (t.realize w) :=
   R_is_invariant t v w h
 
+-- STATEMENT-PIN
 example (m : ℕ) (f : Fin m → Fin m → Fin m) (hm : 4 ≤ m) (z o t : Fin m)
     (hz : z.val = 0) (ho : o.val = 1) (ht : t.val = 2)
     (hmin : ActsAsMin f z t) (hmax : ActsAsMax f z o) : ¬ PreservesR m f :=
   break_Xb f hm z o t hz ho ht hmin hmax
 
+-- STATEMENT-PIN
 example (m : ℕ) (f : Fin m → Fin m → Fin m) (hm : 4 ≤ m) (w p q : Fin m)
     (hw : w.val = m - 3) (hp : p.val = m - 2) (hq : q.val = m - 1)
     (hmin : ActsAsMin f p q) (hmax : ActsAsMax f w q) : ¬ PreservesR m f :=
   break_Xt f hm w p q hw hp hq hmin hmax
 
+-- STATEMENT-PIN
 example (m : ℕ) (hm : 4 ≤ m) (f : Fin m → Fin m → Fin m)
     (hLC : LocallyClassical f)
     (hf : ∃ t : (Lc m).Term (Fin 2), ∀ v : Fin 2 → Fin m,
