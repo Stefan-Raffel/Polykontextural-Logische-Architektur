@@ -56,6 +56,25 @@ das Erfüllungsstück des Ertrags-Kriteriums des Zeugenregisters (zwei getrennte
 Beweisarten — Faser-Asymmetrie und Irreversibilität — durch ein gemeinsames,
 nicht-triviales Lemma verbunden).
 
+## Die Härte der drei Merkmale ist verschieden
+
+Die Zeile besetzt drei Spalten, aber die Zellen sind unterschiedlich hart, und
+das gehört gelesen, bevor die Konjunktion für drei gleichwertige Befunde
+genommen wird:
+
+- **Merkmal 1 ist geerbt.** Rangfunktion `Sigma.fst`, Beweis `Nat.lt_succ_self`;
+  inhaltlich ist das `succ_noreturn` über einem anderen Träger. Die Asymmetrie
+  sitzt in der **Zählung** der Stufen, nicht in ihrer kenogrammatischen Struktur.
+- **Merkmal 2 ist definitional.** `List.prefix_append` gilt, weil `step` anhängt;
+  die Aussage betrifft die gewählte Schrittdefinition, nicht den Träger.
+- **Merkmal 3 trägt eigenen Gehalt.** `ascent_not_determined` ist der einzige der
+  drei, der ohne diese Sonde nicht dastünde.
+
+Die Konjunktion selbst ist trivial, sobald die Teile stehen; ihr Wert liegt
+darin, dass die drei Merkmale an **einem** Träger zusammenkommen. Das ist eine
+**Verortung, kein Beweisfortschritt.** Wer aus der besetzten Zeile auf drei
+gleich starke Befunde schlösse, läse den Satz falsch.
+
 ## Die verbleibende Grenze (ausdrücklich)
 
 Was hier **nicht** bewiesen wird: dass der Stufenwechsel `n → n+1` ein
