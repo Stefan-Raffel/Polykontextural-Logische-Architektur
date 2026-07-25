@@ -7,6 +7,9 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
+**Arbeitspapier zur Fassung PKL Rev1** (deutsch und englisch, mit Figuren und Zaehlrouten):
+<https://stefan-raffel.github.io/PKLrev1/> - Quelle unter `docs/`.
+
 ---
 
 ## Stand

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PKL Rev1 — Polykontexturale Logik in Lean 4 und Mathlib</title>
+<meta name="description" content="Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev1, deutsch und englisch.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="home">PKL Rev1</span>
+    <div class="langswitch">
+      <a href="de.html" hreflang="de">DE</a>
+      <span class="sep">·</span>
+      <a href="en.html" hreflang="en">EN</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/Stefan-Raffel/PKLrev1">Repository</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<header class="doctitle">
+  <h1>Die mathematische Gestalt der Architektur</h1>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev1</p>
+  <p class="dateline">24. Juli 2026 · Stand aller Kennzahlen: Commit <code>e89ab47</code> · Arbeitspapier, nicht zur Veröffentlichung</p>
+</header>
+
+<p class="lede">Das Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard
+Günthers in einer typentheoretischen Beweisumgebung. Es liegt in zwei Fassungen vor, deutsch
+und englisch; beide sind inhaltsgleich.</p>
+
+<ul class="cards">
+<li><a class="card" href="de.html" hreflang="de">
+  <span class="kicker">Deutsch</span>
+  <span class="cardtitle">Die mathematische Gestalt der Architektur</span>
+  <span class="cardsub">Neun Abschnitte, zehn Figuren, Anhang mit den Zählrouten.</span>
+</a></li>
+<li><a class="card" href="en.html" hreflang="en">
+  <span class="kicker">English</span>
+  <span class="cardtitle">The Mathematical Shape of the Architecture</span>
+  <span class="cardsub">Nine sections, ten figures, appendix with the counting routes.</span>
+</a></li>
+</ul>
+
+<p>Jede Behauptung trägt ihr Etikett dort, wo sie steht — <strong>bewiesen</strong> (maschinell
+verifiziertes Theorem), <strong>gemessen</strong> (maschinell gezählte Kenngröße),
+<strong>gerechnet</strong> (exakte Rechnung außerhalb des Korpus), <strong>gesetzt</strong>
+(explizite Prämisse), <strong>quellen-fest</strong> (wörtlich bei Günther),
+<strong>Deutung</strong>, <strong>Programm</strong>. <span lang="en"><em>Every claim carries its
+label where it stands — proved, measured, computed, posited, source-verified, interpretation,
+programme.</em></span></p>
+
+<h2 id="stand">Der Stand · The standing</h2>
+
+<div class="tablewrap stand">
+<table>
+<thead><tr><th>Kennzahl · figure</th><th class="num">vorige Fassung</th><th class="num">diese Fassung</th></tr></thead>
+<tbody>
+<tr><td>Axiom-Wachen · axiom guards</td><td class="num">174 / 23</td><td class="num"><strong>299 / 35</strong></td></tr>
+<tr><td>davon axiomfrei · of these axiom-free</td><td class="num">41</td><td class="num"><strong>47</strong></td></tr>
+<tr><td>Statement-Pins · statement pins</td><td class="num">7</td><td class="num"><strong>36 / 6</strong></td></tr>
+<tr><td>geprüfte Konstanten · constants checked</td><td class="num">2 581</td><td class="num"><strong>2 984</strong></td></tr>
+<tr><th>offene Lücken · open proof gaps</th><td class="num"><strong>4</strong></td><td class="num"><strong>0 — Whitelist leer</strong></td></tr>
+<tr><td>Sätze korpusweit · theorems corpus-wide</td><td class="num">—</td><td class="num">698</td></tr>
+<tr><td>Build-Jobs · build jobs</td><td class="num">—</td><td class="num">1 267</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Zählrouten für jede dieser Zahlen stehen im Anhang der beiden Fassungen
+(<a href="de.html#anhang">DE</a> · <a href="en.html#appendix">EN</a>). Ein Bau-Zug macht jede
+ausgestellte Zahl still veraltet, weshalb sie ihren Stand trägt.</p>
+
+<h2 id="quellcode">Der Quellcode · The source</h2>
+
+<p>Der Lean-Bestand liegt im Repository <a
+href="https://github.com/Stefan-Raffel/PKLrev1">Stefan-Raffel/PKLrev1</a>. Lean
+<code>4.30.0-rc2</code> mit Mathlib; Bau mit <code>lake build</code>, wobei das
+<code>AxiomGate</code> mitläuft und bei jeder Lücke bricht.</p>
+
+<p>Zwei Module tragen die schärfsten Aussagen des Korpus:
+<code>Proemial/TransjunctionCloneBound.lean</code> (Zeuge D — die Transjunktion verlässt die
+Elementarkontextur) und <code>Proemial/NonUniformCloneBound.lean</code> (Zeuge E1 — ein zweiter
+Grund, der keine Kontextur verlässt, samt vollständiger Klassifikation).</p>
+
+</main>
+
+<footer class="pagefoot">
+  <p>Fassung PKL Rev1 · Stand aller Kennzahlen: Commit <code>e89ab47</code> · Arbeitspapier,
+  nicht zur Veröffentlichung.</p>
+  <p><a href="de.html">Deutsche Fassung</a> · <a href="en.html">English version</a> ·
+  <a href="https://github.com/Stefan-Raffel/PKLrev1">Stefan-Raffel/PKLrev1</a></p>
+</footer>
+
+</body>
+</html>

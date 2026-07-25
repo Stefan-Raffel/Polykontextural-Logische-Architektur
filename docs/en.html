@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mathematical Shape of the Architecture — PKL Rev1</title>
+<meta name="description" content="Polycontextural logic in Lean 4 and Mathlib. Working paper for edition PKL Rev1: kenogrammatics, discontexturality as a theorem, the series of bounds D–E4, safeguards by axiom guards.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="./">PKL Rev1</a>
+    <div class="langswitch">
+      <a href="de.html" hreflang="de">DE</a>
+      <span class="sep">·</span>
+      <span aria-current="page">EN</span>
+      <span class="sep">·</span>
+      <a href="https://github.com/Stefan-Raffel/PKLrev1">Repository</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<header class="doctitle">
+  <h1>The Mathematical Shape of the Architecture</h1>
+  <p class="subtitle">Polycontextural Logic in Lean 4 and Mathlib — Edition PKL Rev1</p>
+  <p class="dateline">24 July 2026 · All figures as of commit <code>e89ab47</code> · Working paper, not for publication</p>
+</header>
+
+<nav class="toc" aria-label="Table of contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#preliminary">Preliminary note: what distinguishes this edition from the previous one</a></li>
+    <li><a href="#i">I · The ground: a combinatorics prior to logic</a></li>
+    <li><a href="#ii">II · Contextures: two discontexturalities, one of them proved</a></li>
+    <li><a href="#iii">III · The mode of proof: the differential</a></li>
+    <li><a href="#iv">IV · The witnesses: the series of bounds</a></li>
+    <li><a href="#v">V · The eightfold series</a></li>
+    <li><a href="#vi">VI · Movement and time</a></li>
+    <li><a href="#vii">VII · The safeguards: guards, profiles, measurements</a></li>
+    <li><a href="#viii">VIII · The instruments as a subject of their own</a></li>
+    <li><a href="#ix">IX · Reach and limit</a></li>
+    <li><a href="#appendix">Appendix · Counting routes</a></li>
+  </ol>
+</nav>
+
+<!-- ===================================================================== -->
+<h2 id="preliminary">Preliminary note: what distinguishes this edition from the previous one</h2>
+
+<p>This is not a contribution to definability theory. It is the account of a formalisation that
+labels its own claims, and of a reviewing practice meant to be transferable. Its subject is the
+reformulation of Gotthard Günther's polycontextural logic in a type-theoretic proof environment
+(Lean 4 with Mathlib).</p>
+
+<p>Every claim carries its label where it stands — <strong>proved</strong> (machine-verified
+theorem), <strong>measured</strong> (machine-counted figure), <strong>computed</strong> (exact
+calculation outside the corpus), <strong>posited</strong> (explicit premise),
+<strong>source-verified</strong> (verbatim in Günther), <strong>interpretation</strong>
+(assignment of formal to conceptual), <strong>programme</strong> (named, not built).</p>
+
+<h3>The retraction that makes this edition necessary</h3>
+
+<p>The previous edition opened with a sentence that did not hold:</p>
+
+<blockquote class="retraction">
+<p>The first posit is named first: discontexturality — that between two logics no translation of
+truth exists — is not derived but stated as a premise. … in Günther too it is a posit.</p>
+</blockquote>
+
+<p><strong>Both halves are refuted by the text.</strong> Günther's most elementary case of
+discontexturality is the opposition of Being and Nothing — and in his account these two are
+<strong>isomorphic</strong>; he cites Baer (1931) for it. A translation between them does exist,
+and they are discontextural nonetheless. That disposes of the first half. And since Günther
+argues from the text rather than positing, the second half falls with it.</p>
+
+<p>What takes its place is stronger, not weaker: in this edition discontexturality is <strong>no
+longer a premise but a theorem</strong> — proved in four stages, finally as a characterisation
+for every number of values from four upwards. The posit has not vanished; it has been
+<strong>displaced and named</strong>: what remains posited is the identification of a two-element
+value set with Günther's elementary contexture, not the separation itself.</p>
+
+<h3>What else has been added</h3>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th></th><th>previous edition (20 July)</th><th>this edition (24 July)</th></tr>
+</thead>
+<tbody>
+<tr><td>discontexturality</td><td>posited</td><td><strong>proved</strong>, limit of interpretation named</td></tr>
+<tr><td>clone bound</td><td>one witness</td><td><strong>four stages</strong>, finally for all <em>m</em> ≥ 4</td></tr>
+<tr><td>second discontexturality</td><td>not treated</td><td><strong>own section</strong> (symmetric / asymmetric)</td></tr>
+<tr><td>limit of application</td><td>undetermined</td><td><strong>conceptually grounded</strong> (M<sub>3</sub>)</td></tr>
+<tr><td>open proof gaps</td><td>four declared</td><td><strong>none — whitelist empty</strong></td></tr>
+<tr><td>axiom guards</td><td>174 across 23 files</td><td><strong>299 across 35 files</strong></td></tr>
+<tr><td>constants checked</td><td>2,581</td><td><strong>2,984</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="i">I · The ground: a combinatorics prior to logic</h2>
+
+<p>At the very bottom lies a structure that is not yet a logic: the kenogrammatic layer, a
+combinatorics of empty-place patterns. Finite sequences of places are classified solely by which
+places repeat which. No values, no negation, no truth; only distinguishability and repetition.
+Everything later arises as an assignment on these patterns: a logic is a choice of values on the
+ground.</p>
+
+<h3>Three granularities</h3>
+
+<p>Günther distinguishes three increasingly fine granularities. The <strong>proto</strong>-structure
+counts only how many distinct marks occur. The <strong>deutero</strong>-structure records the
+repetition profile — which block sizes occur with which multiplicity, irrespective of position.
+The <strong>trito</strong>-structure retains the position-exact pattern.</p>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>sequence</th><th></th><th>proto</th><th>deutero</th><th>trito</th></tr>
+</thead>
+<tbody>
+<tr><td><em>a b b a c</em></td><td>one assignment</td><td>3 marks</td><td>2, 2, 1</td><td>0, 1, 1, 0, 2</td></tr>
+<tr><td><em>x y y x z</em></td><td>another</td><td>3 marks</td><td>2, 2, 1</td><td>0, 1, 1, 0, 2</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Only the third is fine enough to serve as the ground of a logic; the two coarser ones are its
+quotients. The reason is structural, not aesthetic: an assignment must be able to say which
+places carry the same value. Whoever knows only the block sizes does not know the assignment. The
+coarser granularities are therefore readable invariants of the ground, not possible grounds.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 250" role="img" aria-label="Two assignments with the same pattern and the three granularities">
+  <defs><marker id="ah1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <text class="txs mut" x="112" y="30" text-anchor="end">sequence 1</text>
+  <text class="txs mut" x="112" y="70" text-anchor="end">sequence 2</text>
+  <text class="txs mut" x="112" y="110" text-anchor="end">normal form</text>
+
+  <g class="box" fill="var(--f03)">
+    <rect x="130" y="8"  width="42" height="32"/><rect x="180" y="8"  width="42" height="32"/>
+    <rect x="230" y="8"  width="42" height="32"/><rect x="280" y="8"  width="42" height="32"/>
+    <rect x="330" y="8"  width="42" height="32"/>
+    <rect x="130" y="48" width="42" height="32"/><rect x="180" y="48" width="42" height="32"/>
+    <rect x="230" y="48" width="42" height="32"/><rect x="280" y="48" width="42" height="32"/>
+    <rect x="330" y="48" width="42" height="32"/>
+  </g>
+  <g class="box" fill="var(--f12)">
+    <rect x="130" y="88" width="42" height="32"/><rect x="180" y="88" width="42" height="32"/>
+    <rect x="230" y="88" width="42" height="32"/><rect x="280" y="88" width="42" height="32"/>
+    <rect x="330" y="88" width="42" height="32"/>
+  </g>
+  <g class="t i" text-anchor="middle">
+    <text x="151" y="30">a</text><text x="201" y="30">b</text><text x="251" y="30">b</text>
+    <text x="301" y="30">a</text><text x="351" y="30">c</text>
+    <text x="151" y="70">x</text><text x="201" y="70">y</text><text x="251" y="70">y</text>
+    <text x="301" y="70">x</text><text x="351" y="70">z</text>
+  </g>
+  <g class="t" text-anchor="middle">
+    <text x="151" y="110">0</text><text x="201" y="110">1</text><text x="251" y="110">1</text>
+    <text x="301" y="110">0</text><text x="351" y="110">2</text>
+  </g>
+
+  <rect class="box" x="110" y="150" width="160" height="46" rx="5" fill="var(--f03)"/>
+  <rect class="box" x="285" y="150" width="160" height="46" rx="5" fill="var(--f08)"/>
+  <rect class="box" x="460" y="150" width="180" height="46" rx="5" fill="var(--f16)"/>
+  <g text-anchor="middle">
+    <text class="ts b" x="190" y="169">proto</text><text class="txs" x="190" y="185">3 marks</text>
+    <text class="ts b" x="365" y="169">deutero</text><text class="txs" x="365" y="185">2, 2, 1</text>
+    <text class="ts b" x="550" y="169">trito</text><text class="txs" x="550" y="185">0, 1, 1, 0, 2</text>
+  </g>
+  <line class="ln" x1="200" y1="222" x2="545" y2="222" marker-end="url(#ah1)"/>
+  <text class="txs mut" x="372" y="240" text-anchor="middle">coarser → finer</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 1</span> — Two assignments with the same pattern; the
+normal form makes them identical. Below, the three granularities as increasingly fine
+classifications of the same sequence.</figcaption>
+</figure>
+
+<h3>The normal form</h3>
+
+<p>Formally the trito-structure is represented by a normal form: a sequence of natural numbers
+beginning with 0 in which each new mark exceeds the previous maximum by exactly one — known in
+combinatorics as a <em>restricted growth string</em>. The predicate is decidable, and the
+canonisation of an arbitrary sequence is built as a procedure, not merely asserted
+(<strong>proved</strong>).</p>
+
+<h3>The built-in directional asymmetry</h3>
+
+<p>The maps between patterns are not symmetric. Extending a shorter sequence to a longer one is
+something other than retracting a longer one to a shorter.</p>
+
+<p><strong>The asymmetry can be counted.</strong> Take the pattern 0, 1, 1, 0 — four places, two
+marks. For the fifth place there are three possibilities: it repeats the first mark, it repeats
+the second, or it introduces a new one. In general a pattern whose largest mark is <em>k</em> has
+exactly <em>k</em> + 2 extensions. <strong>Retraction, by contrast, is unique</strong>: delete
+the last place and precisely one pattern remains.</p>
+
+<p>This is no notational nicety but the structure itself: <strong>ascent chooses, descent
+computes.</strong> Whoever lengthens a sequence makes a decision that does not follow from what
+is given; whoever shortens one performs an operation whose result is fixed. Between the two
+directions lies not a change of sign but a difference in the kind of determinacy.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 260" role="img" aria-label="Retraction is unique, extension branches">
+  <defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <g class="box" fill="var(--f03)">
+    <rect x="20" y="116" width="30" height="28"/><rect x="54" y="116" width="30" height="28"/>
+    <rect x="88" y="116" width="30" height="28"/>
+  </g>
+  <g class="ts" text-anchor="middle">
+    <text x="35" y="135">0</text><text x="69" y="135">1</text><text x="103" y="135">1</text>
+  </g>
+
+  <line class="ln" x1="270" y1="130" x2="135" y2="130" marker-end="url(#ah2)"/>
+  <text class="txs" x="203" y="121" text-anchor="middle">emanative</text>
+  <text class="txs i mut" x="203" y="146" text-anchor="middle">unique</text>
+
+  <text class="txs mut" x="278" y="103" text-anchor="start">pattern</text>
+  <g class="box" fill="var(--f12)">
+    <rect x="280" y="116" width="30" height="28"/><rect x="314" y="116" width="30" height="28"/>
+    <rect x="348" y="116" width="30" height="28"/><rect x="382" y="116" width="30" height="28"/>
+  </g>
+  <g class="ts" text-anchor="middle">
+    <text x="295" y="135">0</text><text x="329" y="135">1</text>
+    <text x="363" y="135">1</text><text x="397" y="135">0</text>
+  </g>
+
+  <path class="ln" d="M418,130 C470,130 470,40 520,40"   marker-end="url(#ah2)"/>
+  <path class="ln" d="M418,130 L520,130"                  marker-end="url(#ah2)"/>
+  <path class="ln" d="M418,130 C470,130 470,220 520,220"  marker-end="url(#ah2)"/>
+
+  <g class="box" fill="var(--f03)">
+    <rect x="533" y="26"  width="26" height="28"/><rect x="562" y="26"  width="26" height="28"/>
+    <rect x="591" y="26"  width="26" height="28"/><rect x="620" y="26"  width="26" height="28"/>
+    <rect x="533" y="116" width="26" height="28"/><rect x="562" y="116" width="26" height="28"/>
+    <rect x="591" y="116" width="26" height="28"/><rect x="620" y="116" width="26" height="28"/>
+    <rect x="533" y="206" width="26" height="28"/><rect x="562" y="206" width="26" height="28"/>
+    <rect x="591" y="206" width="26" height="28"/><rect x="620" y="206" width="26" height="28"/>
+  </g>
+  <g class="box" fill="var(--f20)">
+    <rect x="649" y="26"  width="26" height="28"/>
+    <rect x="649" y="116" width="26" height="28"/>
+    <rect x="649" y="206" width="26" height="28"/>
+  </g>
+  <g class="txs" text-anchor="middle">
+    <text x="546" y="45">0</text><text x="575" y="45">1</text><text x="604" y="45">1</text>
+    <text x="633" y="45">0</text><text x="662" y="45">0</text>
+    <text x="546" y="135">0</text><text x="575" y="135">1</text><text x="604" y="135">1</text>
+    <text x="633" y="135">0</text><text x="662" y="135">1</text>
+    <text x="546" y="225">0</text><text x="575" y="225">1</text><text x="604" y="225">1</text>
+    <text x="633" y="225">0</text><text x="662" y="225">2</text>
+  </g>
+
+  <text class="txs" x="466" y="14" text-anchor="middle">evolutive</text>
+  <text class="txs i mut" x="466" y="27" text-anchor="middle">branches</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 2</span> — The asymmetry in its sharpest form: retraction
+is <em>unique</em>, extension <em>chooses</em>. A pattern with largest mark <em>k</em> has
+<em>k</em> + 2 extensions — any existing mark or a new one — and exactly one retraction
+(<strong>computed</strong>).</figcaption>
+</figure>
+
+<p>Günther calls one direction <em>evolutive</em>, the other <em>emanative</em>
+(<strong>source-verified</strong>). This is the germ of what will later be called time — long
+before any value enters. And it is the same finding that recurs at the other end of the
+architecture: that ascent through the contextural stages is not determined stands there as a
+theorem (<a href="#ii-3">Section II.3</a>) — here it stands as a count.</p>
+
+<blockquote>
+<p>A caveat belongs here and stands in the corpus as well: the finer three-way division of
+relation types that the architecture employs is not Günther's terminology; he carries a two-way
+division. The refinement is named here and does not claim him as its authority
+(<strong>interpretation</strong>).</p>
+</blockquote>
+
+<!-- ===================================================================== -->
+<h2 id="ii">II · Contextures: two discontexturalities, one of them proved</h2>
+
+<p>A contexture is an assignment on the ground with the rank of a logic of its own: a logical
+locus with its own truth-value classifier — not a region within an encompassing logic, but a
+logic. The overall picture is therefore not a topos but a web of topoi over a shared pre-logical
+ground.</p>
+
+<p><strong>This section is entirely recast relative to the previous edition.</strong></p>
+
+<h3 id="ii-1">1 · What discontexturality is not</h3>
+
+<p>The previous edition held that between two contextures <em>no translation of truth</em>
+exists. This is false at Günther's own basic case. Being and Nothing are for him the most
+elementary discontexturality — and at the same time <strong>isomorphic</strong>; he appeals to
+Baer (1931). Between them there is a complete, structure-preserving map.</p>
+
+<blockquote>
+<p>The isomorphism <em>exists</em>. It simply is not an <strong>intra-contextural process</strong>:
+it is stated from outside, not executed from within. That is Günther's own distinction, and it is
+the one with which he handles the tertium non datur — valid for both sides, applicable only to
+one.</p>
+</blockquote>
+
+<p>From this follows the formalisation decision that carries this edition: discontexturality
+appears <strong>not</strong> as the non-existence of a map, but as <strong>non-generability in
+the term clone</strong> — as the impossibility of assembling a mediating operation from
+intra-contextural means. What is missing is not the map, but the path to it from within.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 300" role="img" aria-label="Two contextures over a shared kenogrammatic ground">
+  <defs><marker id="ah3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker>
+    <marker id="ah3s" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto">
+    <path d="M8,0 L0,4 L8,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="30" y="8" width="640" height="52" rx="5" fill="var(--f12)"/>
+  <text class="t b" x="350" y="30" text-anchor="middle">no assembly from intra-contextural means</text>
+  <text class="ts" x="350" y="49" text-anchor="middle">for all m ≥ 4: in the clone exactly min and max (proved)</text>
+
+  <rect class="box" x="30" y="108" width="215" height="56" rx="5" fill="var(--f05)"/>
+  <text class="t" x="137" y="132" text-anchor="middle">contexture K₁</text>
+  <text class="txs mut" x="137" y="150" text-anchor="middle">its own logic</text>
+
+  <rect class="box" x="455" y="108" width="215" height="56" rx="5" fill="var(--f05)"/>
+  <text class="t" x="562" y="132" text-anchor="middle">contexture K₂</text>
+  <text class="txs mut" x="562" y="150" text-anchor="middle">its own logic</text>
+
+  <line class="ln dash" x1="255" y1="136" x2="445" y2="136"
+        marker-end="url(#ah3)" marker-start="url(#ah3s)"/>
+  <text class="txs" x="350" y="115" text-anchor="middle">isomorphism</text>
+  <text class="txs i" x="350" y="128" text-anchor="middle">exists</text>
+  <text class="txs mut" x="350" y="156" text-anchor="middle">stated from outside</text>
+
+  <line class="ln" x1="137" y1="164" x2="137" y2="222" marker-end="url(#ah3)"/>
+  <line class="ln" x1="562" y1="164" x2="562" y2="222" marker-end="url(#ah3)"/>
+
+  <rect class="box" x="30" y="228" width="640" height="52" rx="5" fill="var(--f08)"/>
+  <text class="t" x="350" y="250" text-anchor="middle">kenogrammatic ground</text>
+  <text class="txs mut" x="350" y="268" text-anchor="middle">no values, no truth</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 3</span> — What is missing is not the map but the path to
+it from within. The isomorphism exists (Günther's basic case); what cannot be assembled is the
+mediating operation.</figcaption>
+</figure>
+
+<h3 id="ii-2">2 · The first relation: symmetric, and proved</h3>
+
+<p>Günther names two fundamental relations. The first is the <strong>exchange relation</strong>
+between elementary contextures: an unordered pair, symmetric, without directional sense
+(<strong>source-verified</strong>, Definitions §4).</p>
+
+<p>For it, this edition offers a theorem where a premise formerly stood:</p>
+
+<div class="theorem">
+<p><span class="label">Theorem (E3).</span> For every <em>m</em> ≥ 4, a contexture-preserving,
+locally classical operation on <em>m</em> values lies in the clone of the intra-contextural
+connectives if and only if it is the minimum or the maximum. (<strong>proved</strong>, without
+the axiom of choice, without a fixed number of values)</p>
+</div>
+
+<p>This is a <strong>characterisation</strong>, not an existence claim: the set of
+non-assemblable operations is not merely non-empty but completely determined. Any policy that
+decides differently on different elementary contextures is unreachable from the local means — in
+whatever wiring and to whatever depth.</p>
+
+<h3 id="ii-3">3 · The second relation: asymmetric, and open</h3>
+
+<p>The second relation holds between <strong>contexture and trans-contexturality</strong>.
+Günther calls it the one <em>which, by virtue of its asymmetry, gives us the possibility of the
+new</em> (<strong>source-verified</strong>). It is an ordered pair with directional sense,
+stepwise progression and loss of rank.</p>
+
+<p>Its standing in this edition is a result, but a divided one:</p>
+
+<ul>
+<li>The <strong>structural</strong> part is available as a theorem: direction, substructure
+preservation and loss of determination coincide on one carrier (<strong>proved</strong>).</li>
+<li>The <strong>conceptual</strong> part remains modelling — that a change of stage is a change
+of <em>contexture</em> is closed by no theorem. A contextural boundary never closes by theorem
+alone, but by definition plus theorem (<strong>posited</strong>, marked as such in the
+corpus).</li>
+</ul>
+
+<p>And the hardness of the three features is unequal: one is inherited from the place count, one
+holds by definition, and only the loss of determination carries content of its own. To infer
+three equally strong findings from the occupied row would be to misread the theorem.</p>
+
+<h3 id="ii-4">4 · Where the posit now sits</h3>
+
+<p>The posit has not disappeared; it has <strong>moved to a place where it can be
+examined</strong>. It no longer reads <em>there is no translation</em>, but:</p>
+
+<blockquote>
+<p>A two-element set of neighbouring values is an elementary contexture in Günther's sense.
+(<strong>posited</strong> — the load-bearing choice of the entire bound series)</p>
+</blockquote>
+
+<p>There is a conceptual reason for this choice, and it is not cut to fit after the fact: a
+two-element set {<em>x</em>, <em>y</em>} is closed under the local operations if and only if
+<em>x</em> and <em>y</em> are comparable. On incomparable pairs the minimum leaves the set — and
+then it is no longer a <em>self-contained</em> connection, hence no contexture in the sense of
+Definitions §1. <strong>The limit of the formalisation lies in the concept, not in the
+proof.</strong></p>
+
+<h3 id="ii-5">5 · Standing with respect to classical mathematics</h3>
+
+<p>Every proved theorem of this architecture is ordinary mathematics. What was built, inside a
+classical proof environment, is a family of theorems whose content is precisely the failure of a
+classical assembly; reading that failure as contexturality remains a posit.</p>
+
+<p>Whether set theory decides between the readings is not an open question but a misposed one:
+it is silent — not because independence had been proved, but because the question is not stated
+in its language. This blocks the convenient exit of adding a decisive axiom: there is no formula
+to add one to. Whoever rejects the contextural reading thereby occupies a position outside the
+formal language as well; <strong>neither of the two is the neutral default</strong>.</p>
+
+<!-- ===================================================================== -->
+<h2 id="iii">III · The mode of proof: the differential</h2>
+
+<p>How does one prove what is inalienable in a structure, without the self-contradiction of a
+system certifying its own limit from within? Not positively within one system, but
+<strong>differentially between two</strong>. For each structural feature a poor class is named
+and a pair is exhibited: over all instances of the poor class the feature is impossible — as a
+theorem, universally quantified — and a rich witness carries it.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>the hard half</th><th>the easy half</th></tr></thead>
+<tbody>
+<tr><td><em>X</em> is impossible — universally quantified</td><td><em>X</em> is exhibited — a construction</td></tr>
+<tr><td>all strict orders, the generated clone</td><td>one concrete structure, built internally</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The impossibility is the hard half; the construction alone would be the easy one, and passing
+it off for the whole would be the differential form of immunisation.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 170" role="img" aria-label="Poor class and rich witness">
+  <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <path d="M0,0 L9,4.5 L0,9 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="15" y="18" width="290" height="134" rx="6" fill="var(--f12)"/>
+  <text class="t b" x="160" y="45" text-anchor="middle">poor class</text>
+  <text class="ts mut" x="160" y="66" text-anchor="middle">all strict orders,</text>
+  <text class="ts mut" x="160" y="81" text-anchor="middle">the generated clone</text>
+  <text class="ts" x="160" y="112" text-anchor="middle"><tspan class="i">X</tspan> is impossible — universally</text>
+  <text class="ts b" x="160" y="132" text-anchor="middle">the hard half</text>
+
+  <line class="ln" x1="315" y1="85" x2="385" y2="85" stroke-width="1.8" marker-end="url(#ah4)"/>
+  <text class="t" x="350" y="74" text-anchor="middle">⊢</text>
+
+  <rect class="box" x="395" y="18" width="290" height="134" rx="6" fill="var(--f03)"/>
+  <text class="t b" x="540" y="45" text-anchor="middle">rich witness</text>
+  <text class="ts mut" x="540" y="66" text-anchor="middle">one concrete structure,</text>
+  <text class="ts mut" x="540" y="81" text-anchor="middle">built internally</text>
+  <text class="ts" x="540" y="112" text-anchor="middle"><tspan class="i">X</tspan> is exhibited — a construction</text>
+  <text class="ts mut" x="540" y="132" text-anchor="middle">the easy half</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 4</span> — The differential and its two unequally heavy
+halves. It is delivered only with the negative one.</figcaption>
+</figure>
+
+<p>Three marks discipline the mode. <strong>First</strong>: the poor model is built internally,
+not asserted in the metalanguage. <strong>Second</strong>: the result is conditional relative to
+the posited premises; it symmetrises the sceptic, it does not compel him.
+<strong>Third</strong>: what is proved is the form, never the naming — that a contexture-relative
+choice of operation is unreachable from local means is a theorem; that this choice is called
+<em>mediation</em> remains interpretation. The file in the corpus is therefore named
+<code>NonUniformCloneBound</code> and not <code>Mediation</code>.</p>
+
+<p>And the provenance of the poor classes is itself a rubric carried along — for here, not with
+the theorems, sits the burden of proof of the construction. <strong>Canonical</strong> is the
+procedure: the clone concept and generation are standard clone theory. <strong>Chosen</strong>
+is the basis: these operations, this embedding. The objection that these choices are cut to fit
+is admissible and is not answered but declared.</p>
+
+<!-- ===================================================================== -->
+<h2 id="iv">IV · The witnesses: the series of bounds</h2>
+
+<p>The argument of the architecture is a narrow series of impossibility theorems; the rest of the
+building is substrate, location and connection. <strong>Relative to the previous edition, one
+witness has become a complete series.</strong></p>
+
+<h3>The series at a glance</h3>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th></th><th>theorem</th><th>kind of non-internality</th><th>reach</th></tr></thead>
+<tbody>
+<tr><th>D</th><td>rejection does not lie in the clone</td><td><strong>transcendence</strong> — it leaves the contexture</td><td><em>m</em> = 3</td></tr>
+<tr><th>E1</th><td>complete classification</td><td><strong>non-uniformity</strong> — it stays and chooses differently</td><td><em>m</em> = 3</td></tr>
+<tr><th>E2</th><td>characterisation</td><td>exactly minimum and maximum</td><td><em>m</em> = 4</td></tr>
+<tr><th>E3</th><td>characterisation</td><td>exactly minimum and maximum</td><td><strong>all <em>m</em> ≥ 4</strong></td></tr>
+<tr><th>E4</th><td>stage aggregation</td><td>face of application</td><td><em>m</em> = 4</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 215" role="img" aria-label="The series of bounds D, E1, E2, E3">
+  <defs><marker id="ah5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="2"   y="12" width="148" height="112" rx="5" fill="var(--f05)"/>
+  <rect class="box" x="184" y="12" width="148" height="112" rx="5" fill="var(--f08)"/>
+  <rect class="box" x="366" y="12" width="148" height="112" rx="5" fill="var(--f12)"/>
+  <rect class="box" x="548" y="12" width="150" height="112" rx="5" fill="var(--f16)" stroke-width="1.7"/>
+
+  <g text-anchor="middle">
+    <text class="t b"  x="76"  y="36">D</text>
+    <text class="txs"  x="76"  y="52">m = 3</text>
+    <text class="ts"   x="76"  y="79">transcendence</text>
+    <text class="txs i mut" x="76" y="97">leaves the</text>
+    <text class="txs i mut" x="76" y="110">contexture</text>
+
+    <text class="t b"  x="258" y="36">E1</text>
+    <text class="txs"  x="258" y="52">m = 3</text>
+    <text class="ts"   x="258" y="79">non-uniformity</text>
+    <text class="txs i mut" x="258" y="97">stays and chooses</text>
+    <text class="txs i mut" x="258" y="110">differently</text>
+
+    <text class="t b"  x="440" y="36">E2</text>
+    <text class="txs"  x="440" y="52">m = 4</text>
+    <text class="ts"   x="440" y="79">characterisation</text>
+    <text class="txs mut" x="440" y="97">exactly min, max</text>
+
+    <text class="t b"  x="623" y="36">E3</text>
+    <text class="txs b" x="623" y="52">all m ≥ 4</text>
+    <text class="ts"   x="623" y="79">characterisation</text>
+    <text class="txs i mut" x="623" y="97">no fixed</text>
+    <text class="txs i mut" x="623" y="110">value count</text>
+  </g>
+
+  <line class="ln" x1="152" y1="68" x2="180" y2="68" marker-end="url(#ah5)"/>
+  <line class="ln" x1="334" y1="68" x2="362" y2="68" marker-end="url(#ah5)"/>
+  <line class="ln" x1="516" y1="68" x2="544" y2="68" marker-end="url(#ah5)"/>
+
+  <text class="txs" x="350" y="175" text-anchor="middle">robustness under extension by constants:
+    <tspan class="b">D falls</tspan> · <tspan class="b">E2, E3, E4 hold</tspan></text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 5</span> — The series of bounds: from two reasons for
+non-internality through classification to a characterisation without a fixed number of
+values.</figcaption>
+</figure>
+
+<h3 id="iv-1">1 · D — locating the first bound</h3>
+
+<p>The rejection operation refuses an offered pair of values as a whole and does not lie in the
+clone generated by the basis operations over three values (<strong>proved</strong>; the proof is
+arity-blind and runs via contexture preservation).</p>
+
+<p>Lying outside a clone is cheap in itself: in the binary fragment the clone comprises 82 of
+19,683 operations, less than half a percent (<strong>computed</strong>, outside the corpus). The
+claim does not rest there. The basis preserves three invariants, and every term over it preserves
+all three — not merely the generators (<strong>proved</strong>, by term induction). Rejection
+violates exactly one of them and preserves the other two. It therefore lies not somewhere
+outside, but <strong>at a determinate place</strong>.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 290" role="img" aria-label="The generated clone within all binary operations">
+  <rect class="box" x="120" y="8" width="460" height="188" rx="8" fill="var(--f05)"/>
+  <text class="ts" x="350" y="34" text-anchor="middle">all binary operations: 19,683</text>
+
+  <circle class="box" cx="300" cy="118" r="66" fill="var(--f16)"/>
+  <text class="ts" x="300" y="108" text-anchor="middle">generated</text>
+  <text class="ts" x="300" y="124" text-anchor="middle">clone</text>
+  <text class="ts b" x="300" y="142" text-anchor="middle">82</text>
+
+  <circle class="box" cx="470" cy="72" r="13" fill="var(--f35)"/>
+  <text class="ts" x="492" y="76" text-anchor="start">rejection</text>
+
+  <text class="txs" x="120" y="228" text-anchor="start">three invariants are preserved by <tspan class="i">every</tspan> term (<tspan class="b">proved</tspan>):</text>
+  <text class="txs" x="120" y="245" text-anchor="start">two-valued embedding · fixed point · tolerance relation</text>
+  <text class="txs" x="120" y="273" text-anchor="start">rejection violates <tspan class="b">exactly one</tspan> and preserves the other two</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 6</span> — The location: not somewhere outside, but
+beyond exactly one of three preserved invariants. Clone counts <strong>computed</strong>, outside
+the corpus.</figcaption>
+</figure>
+
+<h3 id="iv-2">2 · E1 — the second reason, and the complete division</h3>
+
+<p>Here lies the break with the previous edition. An operation can fail to be assemblable for
+<strong>two distinct reasons</strong>:</p>
+
+<ul>
+<li>by <strong>transcendence</strong>: it leaves the elementary contexture (this is D);</li>
+<li>by <strong>non-uniformity</strong>: it preserves every contexture, acts classically on each —
+and chooses different classical operations on different contextures.</li>
+</ul>
+
+<p>The second reason had no witness before. It has one now, and completely so: of the eight
+choice patterns over three values exactly four are assemblable and exactly four are not
+(<strong>proved</strong>). The division is closed under negation conjugation — a transport lemma
+that replaces three copies of a proof by one theorem.</p>
+
+<h3 id="iv-3">3 · E2 and E3 — from existence to characterisation</h3>
+
+<p>At four values the picture tips: only <strong>two</strong> of the 64 locally classical
+operations remain assemblable, namely minimum and maximum themselves (<strong>proved</strong>).
+At five values it is 2 of 1,024, at six 2 of 32,768 (<strong>computed</strong>).</p>
+
+<p class="formula"><span class="name">E3:</span>&nbsp;&nbsp; <em>m</em> ≥ 4 &nbsp;⟹&nbsp;
+(<em>f</em> in the clone &nbsp;⟺&nbsp; <em>f</em> = min or <em>f</em> = max)</p>
+
+<p>E3 is the first theorem <strong>of the series of bounds</strong> that hangs on no fixed number
+of values — D and E1 stand at three values, E2 at four. Its proof uses no <code>decide</code> and
+no case distinction on <em>m</em>; it runs over six families of edges with closed-form breaking
+points and an induction on path length.</p>
+
+<div class="callout">
+<p><strong>The threshold lies at four, and this is not an artefact.</strong> At three values the
+statement is <em>false</em> — there four of eight patterns are assemblable. At two values there
+is no witness at all, because there is only one contexture. This meets Günther's own threshold:
+<em>the classical two-valued system does not yet represent a compound contexture … the second
+value yields nothing new and stands unmediated over against the first</em>
+(<strong>source-verified</strong>). Mediation begins at three — here as a counted zero, not as a
+thesis.</p>
+</div>
+
+<h3 id="iv-4">4 · Robustness: how much each bound claims</h3>
+
+<p>A non-generability bound hangs on its invariant. If the basis is extended by constant
+operations, the bound survives precisely when the invariant is reflexive.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>witness</th><th>invariant</th><th>survives constants?</th></tr></thead>
+<tbody>
+<tr><th>D</th><td>one elementary contexture</td><td><strong>no</strong></td></tr>
+<tr><th>E2, E3, E4</th><td>neighbourhood with broken edges</td><td><strong>yes</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>This is no side issue: a bound that falls to an added constant claims less than it appears to.
+The distinction is written into the corpus as a duty of inspection before every new witness.</p>
+
+<h3 id="iv-5">5 · E4 — the face of application, and its limit</h3>
+
+<p>Four authorisation levels, an aggregation policy conservative everywhere except between the
+two highest: it is not assemblable from local, contexture-blind checkers — not even when
+arbitrary constant checkers are added (<strong>proved</strong>).</p>
+
+<p>The theorem is an instance of E3. Its yield class is therefore <strong>naming</strong>, not
+yield, and the file header says so. What is new is the reading, not a theorem.</p>
+
+<p><strong>The limit belongs in the same breath.</strong> The bound bites on linearly graded
+carriers. On a lattice of equal-ranking roles it falls: already on the smallest flat lattice
+M<sub>3</sub> there exists a locally classical operation that is neither minimum nor maximum
+(<strong>computed</strong>). A transition graph of named roles without a grading is
+<strong>not</strong> carried by this bound; what remains provable there is reachability, and that
+achieves nothing a type system does not achieve too.</p>
+
+<!-- ===================================================================== -->
+<h2 id="v">V · The eightfold series</h2>
+
+<p>Günther gives the ontological layer an eightfold inner structure of the form 1 + 3 + 3 + 1: a
+reflectionless ground, three reflections of nature, three subjective reflections, an exhaustion
+transition (<strong>source-verified</strong>). In the architecture all eight positions have their
+term-verified correlate; the assignment of position to correlate remains
+<strong>interpretation</strong>.</p>
+
+<p>The edges carry as differentials. The eighth position: exhaustion as a fourfold predicate, the
+transition as a well-foundedness theorem (<strong>proved</strong>). The first: the ground as a
+fixed point recurring under all iteration (<strong>proved, axiom-free</strong>). And the arc
+closing both: the self-exhausting gradation provably returns into its ground — the series does
+not end beside its beginning (<strong>proved</strong>).</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 210" role="img" aria-label="The eightfold series 1+3+3+1">
+  <defs><marker id="ah7" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <g class="box">
+    <rect x="18"  y="52" width="76" height="54" rx="4" fill="var(--f20)"/>
+    <rect x="102" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="186" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="270" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="354" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="438" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="522" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="606" y="52" width="76" height="54" rx="4" fill="var(--f20)"/>
+  </g>
+  <g text-anchor="middle">
+    <text class="ts b" x="56"  y="76">1</text><text class="txs" x="56"  y="94">ground</text>
+    <text class="ts b" x="140" y="76">2</text><text class="txs" x="140" y="94">nature</text>
+    <text class="ts b" x="224" y="76">3</text><text class="txs" x="224" y="94">nature</text>
+    <text class="ts b" x="308" y="76">4</text><text class="txs" x="308" y="94">nature</text>
+    <text class="ts b" x="392" y="76">5</text><text class="txs" x="392" y="94">spirit</text>
+    <text class="ts b" x="476" y="76">6</text><text class="txs" x="476" y="94">spirit</text>
+    <text class="ts b" x="560" y="76">7</text><text class="txs" x="560" y="94">spirit</text>
+    <text class="ts b" x="644" y="76">8</text><text class="txs" x="644" y="94">transition</text>
+  </g>
+
+  <path class="ln-thin" d="M18,44 v-6 h76 v6"/>
+  <path class="ln-thin" d="M102,44 v-6 h496 v6"/>
+  <path class="ln-thin" d="M606,44 v-6 h76 v6"/>
+  <g class="txs mut" text-anchor="middle">
+    <text x="56"  y="28">differential</text>
+    <text x="350" y="28">locations on two carriers</text>
+    <text x="644" y="28">differential</text>
+  </g>
+
+  <path class="ln" d="M644,106 C644,170 500,178 350,178 C200,178 56,170 56,106" marker-end="url(#ah7)"/>
+  <text class="txs" x="350" y="200" text-anchor="middle">exhaustion <tspan class="b">provably</tspan> returns into the ground</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 7</span> — The eightfold series 1 + 3 + 3 + 1: the edges
+as differentials, the middle as locations; the arc closes the series into its ground.</figcaption>
+</figure>
+
+<p>The six middle positions are locations on two carriers. The three classes of nature —
+exchange, return-freedom, mediation — are pairwise separated and each purely witnessed
+(<strong>proved</strong>). The positions of spirit run as liftings: the same process, repeated on
+its own contents, inherits exchange and breaks irreversibility.</p>
+
+<blockquote>
+<p>The difference between the two carriers is the mathematical core of this section. On the first
+the three properties are <strong>found</strong> and lie side by side; on the second they
+<strong>arise</strong> and are inherited or broken by provable rules. What on the first level is
+the coexistence of three independent features is on the second a relation of derivation.</p>
+</blockquote>
+
+<p>The backbone of the location is the triangular numbers as interval openings — the same
+sequence Günther carries for compound contextures and for the hierarchy of ontologies.</p>
+
+<div class="callout">
+<p><strong>A caveat that lies in the matter itself.</strong> The Definitions text gives for
+compound contextures the formula <em>n</em>(<em>n</em>+1)/2 and the sequence 1, 3, 6, 10, …, and
+states at the same time that a compound contexture requires <em>at least three values</em>. The
+two do not agree: the first compound contexture is the three-valued one; the 1 belongs to the
+ontology sequence. Three formulas are in circulation — <em>n</em>(<em>n</em>+1)/2,
+<em>m</em>(<em>m</em>−1)/2, <em>m</em>(<em>m</em>+1)/2 — and generate the same sequence at
+shifted index. The architecture counts the elementary contextures of an <em>m</em>-valued
+compound contexture as <em>m</em>(<em>m</em>−1)/2; this is compatible with Günther's series, but
+it is a <strong>stipulation</strong>, not a derivation.</p>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="vi">VI · Movement and time</h2>
+
+<p>Over the web lies a modal triad as a stock of movement — three ways in which something can
+change, without its yet being said <em>what</em> changes:</p>
+
+<ul>
+<li><em>τ</em>, <strong>displacement</strong> — the same structure at another place;</li>
+<li><em>δ</em>, <strong>reorganisation</strong> — the same parts in another order;</li>
+<li><em>ω</em>, <strong>irreversible positing</strong> — the step that is not taken back.</li>
+</ul>
+
+<p>Their compositions are smooth in exactly one direction; there is no canonical interchange of
+directions — this is not imagery but theorem (<strong>proved</strong>, five theorems, all five
+with the axiom of choice, and across the whole series confined to two files).</p>
+
+<h3>The cycle that fits into no order</h3>
+
+<p>Before the architecture speaks of time, it is worth looking at the place where Günther first
+came upon it. In 1937 he sets three propositions about potency side by side — each of them
+immediately plausible on its own:</p>
+
+<ol>
+<li><strong>Time is more powerful than will.</strong> Every decision falls <em>within</em> time;
+no one can will that it had fallen earlier.</li>
+<li><strong>Thought is more powerful than time.</strong> Memory runs counter to time and reaches
+back to the beginning — it is not bound to the direction of the flow.</li>
+<li><strong>Will is more powerful than thought.</strong> With Fichte: that I think rests on the
+fact that I <em>will</em> to think.</li>
+</ol>
+
+<p>Take the first two together and it follows that thought is more powerful than will.
+<strong>The third says the opposite.</strong> The three principles cannot be brought into a
+ranking — they close into a circle. Günther draws from this no contradiction but a finding: from
+them <em>never three groups of statements of transitive character</em> can be formed, and
+therefore <em>the course of time in concrete consciousness remains always ambiguous</em>
+(<strong>source-verified</strong>, <em>Wahrheit, Wirklichkeit und Zeit</em>, Paris 1937).</p>
+
+<p><strong>What the architecture makes of this is a differential and not a thesis.</strong> What
+is proved is the poor side: in every transitive, irreflexive relation — on every carrier, without
+exception — a three-cycle is impossible, and there is likewise no relation-preserving image of
+such a cycle into any strict order (<strong>proved</strong>; the core requires none of the
+classical axioms). Whatever is intransitive has no place in the poor class.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 370" role="img" aria-label="Günther's three principles of potency as an intransitive cycle">
+  <defs><marker id="ah8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <circle class="box" cx="350" cy="62"  r="42" fill="var(--f05)"/>
+  <circle class="box" cx="212" cy="222" r="42" fill="var(--f05)"/>
+  <circle class="box" cx="488" cy="222" r="42" fill="var(--f05)"/>
+  <g class="ts" text-anchor="middle">
+    <text x="350" y="67">thought</text><text x="212" y="227">time</text><text x="488" y="227">will</text>
+  </g>
+
+  <line class="ln" x1="323" y1="95"  x2="239" y2="189" marker-end="url(#ah8)"/>
+  <line class="ln" x1="255" y1="222" x2="443" y2="222" marker-end="url(#ah8)"/>
+  <line class="ln" x1="461" y1="189" x2="377" y2="95"  marker-end="url(#ah8)"/>
+
+  <g class="txs mut" text-anchor="end">
+    <text x="248" y="128">memory reaches back</text>
+    <text x="248" y="142">to the beginning</text>
+  </g>
+  <g class="txs mut" text-anchor="middle">
+    <text x="349" y="246">decisions fall</text>
+    <text x="349" y="260"><tspan class="i">within</tspan> time</text>
+  </g>
+  <g class="txs mut" text-anchor="start">
+    <text x="452" y="128">“that I think” rests on</text>
+    <text x="452" y="142">“that I <tspan class="i">will</tspan> to think”</text>
+  </g>
+
+  <text class="txs" x="350" y="172" text-anchor="middle">≻ means</text>
+  <text class="txs i" x="350" y="186" text-anchor="middle">more powerful than</text>
+
+  <rect class="box" x="110" y="298" width="480" height="52" rx="5" fill="var(--f08)"/>
+  <text class="txs" x="350" y="320" text-anchor="middle">Chain the first two and <tspan class="b">thought ≻ will</tspan> follows —</text>
+  <text class="txs" x="350" y="337" text-anchor="middle">the third says the opposite. <tspan class="b">The cycle closes.</tspan></text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 8</span> — Günther's three principles of potency of 1937
+and their intransitive cycle. That <em>no</em> such cycle fits into a strict order is
+<strong>proved</strong>; that <em>this</em> cycle is called thought, will and time remains
+source-supported <strong>interpretation</strong>.</figcaption>
+</figure>
+
+<blockquote>
+<p>It is not claimed that thought, will and time behave this way. What is claimed is:
+<strong>if</strong> they do, then no linear order is their measure — and not because none has
+been found so far, but because none can exist. The assignment of the three names to the three
+corners remains <strong>interpretation</strong>; the impossibility is theorem.</p>
+</blockquote>
+
+<h3>The two differentials of time</h3>
+
+<p>Time falls into two differentials, separated by a single hard invariant: the contexture
+count.</p>
+
+<ul>
+<li><strong>Intra</strong> — within one contexture — the dominance cycle stands against every
+linear order.</li>
+<li><strong>Inter</strong> — between contextures — the cumulative lifting does not close over the
+stages: under posited fixed-point freedom there is no circle, and the ascent admits no injective
+return witness (<strong>proved</strong>); with a fixed point the non-closure would collapse — the
+premise is declared, not hidden.</li>
+</ul>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 250" role="img" aria-label="The modal triad and the two differentials of time">
+  <defs><marker id="ah9" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <circle class="box" cx="150" cy="52"  r="30" fill="var(--f05)"/>
+  <circle class="box" cx="88"  cy="158" r="30" fill="var(--f05)"/>
+  <circle class="box" cx="212" cy="158" r="30" fill="var(--f05)"/>
+  <g class="t i" text-anchor="middle">
+    <text x="150" y="57">τ</text><text x="88" y="163">δ</text><text x="212" y="163">ω</text>
+  </g>
+  <line class="ln" x1="135" y1="79"  x2="103" y2="132" marker-end="url(#ah9)"/>
+  <line class="ln" x1="118" y1="158" x2="177" y2="158" marker-end="url(#ah9)"/>
+  <line class="ln" x1="227" y1="132" x2="195" y2="79"  marker-end="url(#ah9)"/>
+  <text class="txs mut" x="150" y="216" text-anchor="middle">displacement · reorganisation · irreversible positing</text>
+
+  <rect class="box" x="310" y="18" width="380" height="70" rx="5" fill="var(--f05)"/>
+  <text class="ts b" x="326" y="42">intra — one contexture</text>
+  <text class="txs" x="326" y="64">the dominance cycle lies in no strict</text>
+  <text class="txs" x="326" y="78">order</text>
+
+  <rect class="box" x="310" y="140" width="380" height="70" rx="5" fill="var(--f12)"/>
+  <text class="ts b" x="326" y="164">inter — two contextures</text>
+  <text class="txs" x="326" y="186">the cumulative lifting does not</text>
+  <text class="txs" x="326" y="200">close</text>
+
+  <line class="ln-thin dash" x1="310" y1="114" x2="690" y2="114"/>
+  <rect x="404" y="106" width="192" height="16" fill="var(--bg)"/>
+  <text class="txs i mut" x="500" y="118" text-anchor="middle">separated by the contexture count</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 9</span> — The modal triad and the two differentials of
+time; the separation is the contexture count.</figcaption>
+</figure>
+
+<!-- ===================================================================== -->
+<h2 id="vii">VII · The safeguards: guards, profiles, measurements</h2>
+
+<p>An architecture that asserts impossibilities must be able to say what its proofs rest on — and
+must prevent that from changing silently.</p>
+
+<h3>The standing</h3>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>figure</th><th class="num">previous edition</th><th class="num">this edition</th></tr></thead>
+<tbody>
+<tr><td>axiom guards</td><td class="num">174 across 23 files</td><td class="num"><strong>299 across 35 files</strong></td></tr>
+<tr><td>of these, axiom-free profiles</td><td class="num">41</td><td class="num"><strong>47</strong></td></tr>
+<tr><td>statement pins</td><td class="num">7 (pilot)</td><td class="num"><strong>36 across 6 files</strong></td></tr>
+<tr><td>constants checked (gate)</td><td class="num">2,581</td><td class="num"><strong>2,984</strong></td></tr>
+<tr><th>open proof gaps</th><td class="num"><strong>4 declared</strong></td><td class="num"><strong>0 — whitelist empty</strong></td></tr>
+<tr><td>theorems corpus-wide</td><td class="num">—</td><td class="num">698</td></tr>
+<tr><td>build jobs</td><td class="num">—</td><td class="num">1,267</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 240" role="img" aria-label="The safeguards in figures">
+  <g class="txs" text-anchor="end">
+    <text x="200" y="26">axiom guards</text>
+    <text x="200" y="66">of these axiom-free</text>
+    <text x="200" y="106">statement pins</text>
+    <text x="200" y="146">constants checked (hundreds)</text>
+  </g>
+  <g class="box" fill="var(--f12)">
+    <rect x="212" y="10"  width="299" height="22"/>
+    <rect x="212" y="50"  width="47"  height="22"/>
+    <rect x="212" y="90"  width="36"  height="22"/>
+    <rect x="212" y="130" width="298" height="22"/>
+  </g>
+  <g class="txs">
+    <text x="521" y="26">174 → <tspan class="b">299</tspan></text>
+    <text x="269" y="66">41 → <tspan class="b">47</tspan></text>
+    <text x="258" y="106">7 → <tspan class="b">36</tspan></text>
+    <text x="520" y="146">25.8 → <tspan class="b">29.8</tspan></text>
+  </g>
+  <rect class="box" x="170" y="180" width="380" height="48" rx="5" fill="var(--f16)"/>
+  <text class="txs b" x="360" y="202" text-anchor="middle">open proof gaps: 4 declared → 0</text>
+  <text class="txs" x="360" y="219" text-anchor="middle">the gate checks a statement without a footnote</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figure 10</span> — The safeguards in figures: previous edition →
+this edition (as of commit <code>e89ab47</code>; counting routes in the
+<a href="#appendix">appendix</a>).</figcaption>
+</figure>
+
+<h3>The four mechanisms</h3>
+
+<p><strong>First, the axiom guards.</strong> For every theorem of the load-bearing series its
+axiom profile is measured and frozen as an expectation; if the proof basis shifts silently, the
+build breaks. The guard secures the basis, not the wording — a weakened theorem with the same
+profile passes it.</p>
+
+<p><strong>Second, the statement pins.</strong> Precisely that finding forced a second type of
+guard: pins nail down the full wording and break the build on definitional drift. What was a
+pilot of seven has become the rule.</p>
+
+<p><strong>Third, the global gate.</strong> In this edition it reports a state it never reported
+before:</p>
+
+<pre><code>AXIOM GATE GREEN — aggregate Reformulation (2984 constants checked)
+draws no sorryAx. Whitelist empty.</code></pre>
+
+<p>The four formerly declared gaps have been dissolved. The finding was not <em>four missing
+proofs</em> but <strong>data appearing as theorems</strong>: two were not derivable from the
+given data and became structure fields; two were simply false as stated — a uniqueness claim
+against empty axioms, and an existence claim over a possibly empty hom-set — and were struck,
+with a note in place.</p>
+
+<div class="callout">
+<p><strong>What this is and what it is not.</strong> Four declarations have disappeared, not four
+proofs appeared. The Beck–Chevalley condition is as unproved as before; it is now visible as a
+datum of the structure instead of being presupposed as a consequence. The gain is that the gate
+checks a statement without a footnote.</p>
+</div>
+
+<p><strong>Fourth, the consumption measurement.</strong> For every asserted dependency between
+layers it is measured at the proof term whether a theorem of the predecessor enters or whether a
+concept carries the statement. <em>Consumed</em> in this architecture normally means: the concept
+carries the statement — stated here so that no reader has to measure it first.</p>
+
+<h3>Calibrating the measurement routes</h3>
+
+<p>Every measurement route is calibrated before use against cases with a known target — one that
+must match and one that must not. The reason is experience, not caution: the most dangerous
+failure mode of a counted architecture is <strong>the plausible, clean, too-small number</strong>,
+because it looks like a good result.</p>
+
+<p>This edition has its own instance. Two counting routes for the same figure gave different
+values — each correct for its route. The cause was that the category hung on a <strong>heading in
+the running text</strong>, written in English in one file and in German in the others. Since then
+every site carries a machine-readable marker, and the rule reads: <strong>a counting route that
+takes prose as its criterion is a time bomb.</strong></p>
+
+<!-- ===================================================================== -->
+<h2 id="viii">VIII · The instruments as a subject of their own</h2>
+
+<p>Alongside the theorems something has arisen that knows nothing of Günther and could travel
+further: a reviewing practice for the formalisation of philosophical texts. Whoever formalises a
+thinker has a problem foreign to pure mathematics — <strong>the interpretation outruns the
+term</strong>. A theorem is built, its name is chosen, and the name claims more than the theorem.
+Against this gradient no resolutions help, only mechanisms.</p>
+
+<h3>Seven rules, each from a misstep</h3>
+
+<ol class="rules">
+<li><strong>Look for the theorem first, then build only as much carrier as the theorem
+demands.</strong> A base layer that no theorem requests is a renaming of the library.</li>
+<li><strong>A trial build before every specification — in the target environment.</strong> A
+trial in a simplified environment measures the wrong system and produces warnings that create
+work instead of saving it.</li>
+<li><strong>The specification names goal, constraints and pitfalls — not the wiring.</strong>
+Where it prescribes the proof path, it obstructs better ones.</li>
+<li><strong>Specifications are reviewed too, not only builds.</strong> Review before the build
+found a gap in the requirements, sharpened a demarcation and settled a question passed on as
+open.</li>
+<li><strong>Counting routes must not hang on prose.</strong></li>
+<li><strong>Aggregate means free of posits.</strong> A file enters the certified body if it
+carries no posit — not if the effort is small. It is a question of the epistemic signal, not of
+the work.</li>
+<li><strong>The title outruns the theorem.</strong> Where building precedes clarification, the
+description claims more than the build. Three times in succession a claim in a title had to be
+healed — each time pure documentation, never a line of proof.</li>
+</ol>
+
+<h3>The mechanisms</h3>
+
+<p>Frozen axiom profiles make the proof basis a checkable quantity: on one occasion a failing
+expectation guard exposed the hidden classical content of a projected proof route <strong>before
+it was built</strong> — the guard was an instrument of discovery, not bookkeeping.</p>
+
+<p>New in this edition is a <strong>corpus linter</strong> that checks rule 7 mechanically. It
+searches for claims of rank — <em>first</em>, <em>only</em>, <em>the first to</em> — across
+Markdown and Lean sources. Its first run confirmed three of four manual healings and named one
+remaining site, whose assessment it expressly left open. Hence the distinction it cannot make
+itself: a claim of rank is admissible if its reference set is <strong>named in the same paragraph
+and finite</strong>; it needs healing if that set is the corpus, the field or the literature.</p>
+
+<p>The common denominator is a <strong>reversal of the burden of proof in one's own house</strong>:
+it is not for the critic to show that a formulation overreaches, but for the text to show that it
+does not — and mechanically, wherever possible.</p>
+
+<div class="callout">
+<p><strong>The evidence that the review layers bite is this phase's list of errors.</strong> A
+retracted tenet; a false justifying sentence in two probes; an inference from ¬∀ to ∀¬; an
+outdated calibration line in the very commit that repaired a counting route; an effort estimate
+off by a factor of 35; three overreaching titles. <strong>None of these errors was found by the
+instance that made it.</strong></p>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="ix">IX · Reach and limit</h2>
+
+<p>What the architecture claims is conditional and is carried as such. It does not promise to
+compel the sceptic to acknowledge an irreducibility; it promises to <strong>symmetrise</strong>
+him — from the comfortable position <em>this reduces to the known</em> to the explicit position
+<em>I posit the one encompassing logic</em>, which is itself a posit and as such no longer has
+precedence.</p>
+
+<h3>The three limits</h3>
+
+<p><strong>First, mathematical: M<sub>3</sub>.</strong> The characterisation lives on linearly
+graded carriers and falls on lattices of equal-ranking elements. This is not a proof gap but a
+counterexample — and the breaking point is exactly the lattice shape an architecture of
+equal-ranking roles would have. A generalisation leads precisely where it fails.</p>
+
+<p><strong>Second, hermeneutic: the identification.</strong> That the two-element value set
+<em>is</em> Günther's elementary contexture is settled by no theorem. This posit stands on
+grounded soil — closure under the local operations is a substantive reason, not a retrofit — but
+it remains a choice.</p>
+
+<p><strong>Third, in principle: the spontaneity of enactment.</strong> Not the will as a
+function, but solely the <em>that</em> of enactment is no structural feature; there is no poorer
+model in which it is missing as a position, because it is not a position. Here the procedure
+declares its reach, as a statement about itself.</p>
+
+<h3>What is not built</h3>
+
+<p>A conclusion that concealed this would be none. <strong>The proemial relation itself</strong>
+— the core of Günther's theory — is not formalised. <strong>The compound contexture</strong> is
+present in the corpus as a number sequence but not built as a concept. And the
+<strong>asymmetric side</strong> has been approached twice, each of the two lines leaving one
+column open: one binds all features to a single carrier and pays with a posit, the other trades
+the posit for the established concept and loses substructure preservation.</p>
+
+<h3>The picture</h3>
+
+<p>That is the shape: a ground that counts repetition and whose normalisation is built as a
+procedure; logics whose separation is <strong>no longer posited but proved</strong> — in a form
+that withstands Günther's basic case; a mode of proof that knows and carries its hard half; a
+series of witnesses that has grown from an existence claim to a characterisation without a fixed
+number of values; an eightfold series that provably returns into its ground; a gate with no
+<code>sorryAx</code> left to administer; and three limits, none of which is a defeat but each an
+indication of place.</p>
+
+<p><strong>What is posited stands at the beginning; what is proved is counted; what is
+interpretation is called so.</strong></p>
+
+<!-- ===================================================================== -->
+<h2 id="appendix">Appendix · Counting routes</h2>
+
+<p>So that the figures are recomputable and not merely credible, each carries a route. The
+statements hold as of commit <code>e89ab47</code>; any build move renders every exhibited number
+silently out of date, which is why they carry their standing here.</p>
+
+<div class="tablewrap">
+<table class="routes">
+<thead><tr><th>quantity</th><th>route</th></tr></thead>
+<tbody>
+<tr><td>axiom guards (299)</td><td><code>grep -rc '#guard_msgs in #print axioms'</code></td></tr>
+<tr><td>files with guards (35)</td><td><code>grep -rl</code> of the same string</td></tr>
+<tr><td>axiom-free profiles (47)</td><td><code>grep -rc 'does not depend on any axioms'</code></td></tr>
+<tr><td>theorems corpus-wide (698)</td><td><code>grep -rhcE '^(theorem|lemma) '</code></td></tr>
+<tr><td>statement pins (36 in 6)</td><td><code>grep -rc '^-- STATEMENT-PIN'</code></td></tr>
+<tr><td>constants checked (2,984)</td><td>build output of the gate</td></tr>
+<tr><td>build jobs (1,267)</td><td>build output</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Two rules on counting.</strong> First: counting is done with <code>grep</code> over
+the shell, not with a library function that skips blank lines — one measurement error of this
+phase traced back to that. Second: <strong>aggregate and corpus figures are kept apart.</strong>
+The aggregate is the certified import tree; the corpus additionally comprises the probes that
+carry a marked posit and therefore stand outside. Conflating them was the cause of a false
+calibration line.</p>
+
+<p class="sources">Sources of the passages cited: Günther, G. (1970), Die historische Kategorie
+des Neuen, Hegel-Jahrbuch 34–61; Günther, G. (1937), Wahrheit, Wirklichkeit und Zeit, Paris;
+Günther, G. (1968), Many-Valued Designations and a Hierarchy of First Order Ontologies. The
+conceptual determinations follow the project's Definitions register.</p>
+
+</main>
+
+<footer class="pagefoot">
+  <p>Edition PKL Rev1 · All figures as of commit <code>e89ab47</code> · Working paper, not for
+  publication.</p>
+  <p><a href="./">Overview</a> · <a href="de.html">Deutsche Fassung</a> ·
+  <a href="https://github.com/Stefan-Raffel/PKLrev1">Stefan-Raffel/PKLrev1</a></p>
+</footer>
+
+</body>
+</html>

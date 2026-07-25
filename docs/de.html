@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Die mathematische Gestalt der Architektur — PKL Rev1</title>
+<meta name="description" content="Polykontexturale Logik in Lean 4 und Mathlib. Arbeitspapier zur Fassung PKL Rev1: Kenogrammatik, Diskontexturalität als Theorem, die Schranken-Reihe D–E4, Absicherung durch Axiom-Wachen.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="./">PKL Rev1</a>
+    <div class="langswitch">
+      <span aria-current="page">DE</span>
+      <span class="sep">·</span>
+      <a href="en.html" hreflang="en">EN</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/Stefan-Raffel/PKLrev1">Repository</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<header class="doctitle">
+  <h1>Die mathematische Gestalt der Architektur</h1>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev1</p>
+  <p class="dateline">24. Juli 2026 · Stand aller Kennzahlen: Commit <code>e89ab47</code> · Arbeitspapier, nicht zur Veröffentlichung</p>
+</header>
+
+<nav class="toc" aria-label="Inhaltsverzeichnis">
+  <h2>Inhalt</h2>
+  <ol>
+    <li><a href="#vorbemerkung">Vorbemerkung: was diese Fassung von der vorigen unterscheidet</a></li>
+    <li><a href="#i">I · Der Boden: eine Kombinatorik vor der Logik</a></li>
+    <li><a href="#ii">II · Kontexturen: zwei Diskontexturalitäten, eine davon bewiesen</a></li>
+    <li><a href="#iii">III · Der Beweis-Modus: das Differential</a></li>
+    <li><a href="#iv">IV · Die Zeugen: die Schranken-Reihe</a></li>
+    <li><a href="#v">V · Die achtfache Reihe</a></li>
+    <li><a href="#vi">VI · Bewegung und Zeit</a></li>
+    <li><a href="#vii">VII · Die Absicherung: Wachen, Profile, Messungen</a></li>
+    <li><a href="#viii">VIII · Die Instrumente als eigener Gegenstand</a></li>
+    <li><a href="#ix">IX · Reichweite und Grenze</a></li>
+    <li><a href="#anhang">Anhang · Zählrouten</a></li>
+  </ol>
+</nav>
+
+<!-- ===================================================================== -->
+<h2 id="vorbemerkung">Vorbemerkung: was diese Fassung von der vorigen unterscheidet</h2>
+
+<p>Dies ist kein Fachbeitrag zur Definierbarkeitstheorie. Es ist die Darstellung einer
+Formalisierung, die ihre Ansprüche etikettiert, und einer Prüf-Praxis, die übertragbar sein
+soll. Gegenstand ist die Reformulierung der polykontexturalen Logik Gotthard Günthers in einer
+typentheoretischen Beweisumgebung (Lean 4 mit Mathlib).</p>
+
+<p>Jede Behauptung trägt ihr Etikett dort, wo sie steht — <strong>bewiesen</strong> (maschinell
+verifiziertes Theorem), <strong>gemessen</strong> (maschinell gezählte Kenngröße),
+<strong>gerechnet</strong> (exakte Rechnung außerhalb des Korpus), <strong>gesetzt</strong>
+(explizite Prämisse), <strong>quellen-fest</strong> (wörtlich bei Günther),
+<strong>Deutung</strong> (Zuordnung von Formalem zu Begrifflichem), <strong>Programm</strong>
+(benannt, nicht gebaut).</p>
+
+<h3>Der Widerruf, der diese Fassung nötig macht</h3>
+
+<p>Die vorige Fassung stellte einen Satz an den Anfang, der nicht haltbar war:</p>
+
+<blockquote class="retraction">
+<p>Die erste Setzung wird zuerst genannt: die Diskontexturalität — dass zwischen zwei Logiken
+keine Übersetzung der Wahrheit existiert — wird nicht abgeleitet, sondern als Prämisse
+ausgesprochen. … auch bei Günther ist sie Setzung.</p>
+</blockquote>
+
+<p><strong>Beide Hälften sind am Text widerlegt.</strong> Günthers elementarster Fall von
+Diskontexturalität ist der Gegensatz von Sein und Nichts — und diese beiden sind bei ihm
+<strong>isomorph</strong>; er zitiert dafür Baer (1931). Zwischen ihnen existiert also sehr wohl
+eine Übersetzung, und sie sind trotzdem diskontextural. Damit fällt die erste Hälfte. Und weil
+Günther am Text argumentiert statt zu setzen, fällt auch die zweite.</p>
+
+<p>Was an die Stelle tritt, ist stärker, nicht schwächer: die Diskontexturalität ist in dieser
+Fassung <strong>nicht mehr Prämisse, sondern Theorem</strong> — in vier Stufen bewiesen, zuletzt
+als Charakterisierung für jede Wertzahl ab vier. Die Setzung ist nicht verschwunden; sie ist
+<strong>verschoben und benannt</strong>: was gesetzt bleibt, ist die Identifikation der
+Wert-Zweiermenge mit Günthers Elementarkontextur, nicht die Trennung selbst.</p>
+
+<h3>Was sonst hinzugekommen ist</h3>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th></th><th>vorige Fassung (20. Juli)</th><th>diese Fassung (24. Juli)</th></tr>
+</thead>
+<tbody>
+<tr><td>Diskontexturalität</td><td>gesetzt</td><td><strong>bewiesen</strong>, Deutungsgrenze benannt</td></tr>
+<tr><td>Klon-Schranke</td><td>ein Zeuge</td><td><strong>vier Stufen</strong>, zuletzt für alle <em>m</em> ≥ 4</td></tr>
+<tr><td>zweite Diskontexturalität</td><td>nicht behandelt</td><td><strong>eigener Abschnitt</strong> (symmetrisch / asymmetrisch)</td></tr>
+<tr><td>Anwendungsgrenze</td><td>nicht bestimmt</td><td><strong>begrifflich begründet</strong> (M<sub>3</sub>)</td></tr>
+<tr><td>offene Beweislücken</td><td>vier ausgewiesen</td><td><strong>null — Whitelist leer</strong></td></tr>
+<tr><td>Axiom-Wachen</td><td>174 über 23 Dateien</td><td><strong>299 über 35 Dateien</strong></td></tr>
+<tr><td>geprüfte Konstanten</td><td>2 581</td><td><strong>2 984</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="i">I · Der Boden: eine Kombinatorik vor der Logik</h2>
+
+<p>Zuunterst liegt eine Struktur, die noch keine Logik ist: die kenogrammatische Schicht, eine
+Kombinatorik von Leerstellen-Mustern. Endliche Folgen von Plätzen werden allein danach
+klassifiziert, welche Plätze einander wiederholen. Keine Werte, keine Negation, keine Wahrheit;
+nur Unterscheidbarkeit und Wiederholung. Alles Spätere entsteht als Belegung dieser Muster:
+eine Logik ist eine Wert-Wahl auf dem Boden.</p>
+
+<h3>Drei Körnungen</h3>
+
+<p>Günther unterscheidet drei zunehmend feine Körnungen. Die <strong>Proto</strong>-Struktur
+zählt nur, wie viele verschiedene Marken vorkommen. Die <strong>Deutero</strong>-Struktur zählt
+das Wiederholungs-Profil — welche Blockgrößen in welcher Vielfachheit auftreten, ohne Rücksicht
+auf die Stellen. Die <strong>Trito</strong>-Struktur hält das positionsgenaue Muster fest.</p>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>Folge</th><th>Muster</th><th>Proto</th><th>Deutero</th><th>Trito</th></tr>
+</thead>
+<tbody>
+<tr><td><em>a b b a c</em></td><td>eine Belegung</td><td>3 Marken</td><td>2, 2, 1</td><td>0, 1, 1, 0, 2</td></tr>
+<tr><td><em>x y y x z</em></td><td>eine andere</td><td>3 Marken</td><td>2, 2, 1</td><td>0, 1, 1, 0, 2</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Nur die dritte ist fein genug, um als Boden einer Logik zu dienen; die beiden gröberen sind
+ihre Quotienten. Der Grund ist strukturell und nicht ästhetisch: eine Belegung muss sagen
+können, welche Stellen denselben Wert tragen. Wer nur die Blockgrößen kennt, kennt die Belegung
+nicht. Die beiden gröberen Körnungen sind darum lesbare Invarianten des Bodens, nicht mögliche
+Böden.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 250" role="img" aria-label="Zwei Belegungen mit demselben Muster und die drei Körnungen">
+  <defs><marker id="ah1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <text class="txs mut" x="112" y="30" text-anchor="end">Folge 1</text>
+  <text class="txs mut" x="112" y="70" text-anchor="end">Folge 2</text>
+  <text class="txs mut" x="112" y="110" text-anchor="end">Normalform</text>
+
+  <g class="box" fill="var(--f03)">
+    <rect x="130" y="8"  width="42" height="32"/><rect x="180" y="8"  width="42" height="32"/>
+    <rect x="230" y="8"  width="42" height="32"/><rect x="280" y="8"  width="42" height="32"/>
+    <rect x="330" y="8"  width="42" height="32"/>
+    <rect x="130" y="48" width="42" height="32"/><rect x="180" y="48" width="42" height="32"/>
+    <rect x="230" y="48" width="42" height="32"/><rect x="280" y="48" width="42" height="32"/>
+    <rect x="330" y="48" width="42" height="32"/>
+  </g>
+  <g class="box" fill="var(--f12)">
+    <rect x="130" y="88" width="42" height="32"/><rect x="180" y="88" width="42" height="32"/>
+    <rect x="230" y="88" width="42" height="32"/><rect x="280" y="88" width="42" height="32"/>
+    <rect x="330" y="88" width="42" height="32"/>
+  </g>
+  <g class="t i" text-anchor="middle">
+    <text x="151" y="30">a</text><text x="201" y="30">b</text><text x="251" y="30">b</text>
+    <text x="301" y="30">a</text><text x="351" y="30">c</text>
+    <text x="151" y="70">x</text><text x="201" y="70">y</text><text x="251" y="70">y</text>
+    <text x="301" y="70">x</text><text x="351" y="70">z</text>
+  </g>
+  <g class="t" text-anchor="middle">
+    <text x="151" y="110">0</text><text x="201" y="110">1</text><text x="251" y="110">1</text>
+    <text x="301" y="110">0</text><text x="351" y="110">2</text>
+  </g>
+
+  <rect class="box" x="110" y="150" width="160" height="46" rx="5" fill="var(--f03)"/>
+  <rect class="box" x="285" y="150" width="160" height="46" rx="5" fill="var(--f08)"/>
+  <rect class="box" x="460" y="150" width="180" height="46" rx="5" fill="var(--f16)"/>
+  <g text-anchor="middle">
+    <text class="ts b" x="190" y="169">Proto</text><text class="txs" x="190" y="185">3 Marken</text>
+    <text class="ts b" x="365" y="169">Deutero</text><text class="txs" x="365" y="185">2, 2, 1</text>
+    <text class="ts b" x="550" y="169">Trito</text><text class="txs" x="550" y="185">0, 1, 1, 0, 2</text>
+  </g>
+  <line class="ln" x1="200" y1="222" x2="545" y2="222" marker-end="url(#ah1)"/>
+  <text class="txs mut" x="372" y="240" text-anchor="middle">gröber → feiner</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 1</span> — Zwei Belegungen mit demselben Muster; die
+Normalform macht sie identisch. Darunter die drei Körnungen als zunehmend feine Klassifikationen
+derselben Folge.</figcaption>
+</figure>
+
+<h3>Die Normalform</h3>
+
+<p>Formal wird die Trito-Struktur durch eine Normalform dargestellt: eine Folge natürlicher
+Zahlen, die mit 0 beginnt und in der jede neue Marke genau um eins über das bisherige Maximum
+hinausgeht — in der Kombinatorik als <em>restricted growth string</em> bekannt. Das Prädikat
+ist entscheidbar, und die Kanonisierung einer beliebigen Folge ist als Verfahren gebaut, nicht
+bloß behauptet (<strong>bewiesen</strong>).</p>
+
+<h3>Die eingebaute Richtungs-Asymmetrie</h3>
+
+<p>Die Abbildungen zwischen den Mustern sind nicht symmetrisch. Eine kürzere Folge auf eine
+längere fortzusetzen ist etwas anderes, als eine längere auf eine kürzere zurückzunehmen.
+<strong>Man kann die Asymmetrie ausrechnen.</strong> Nimmt man das Muster 0, 1, 1, 0 — vier
+Stellen, zwei Marken —, so gibt es für die fünfte Stelle drei Möglichkeiten: sie wiederholt die
+erste Marke, sie wiederholt die zweite, oder sie führt eine neue ein. Allgemein hat ein Muster
+mit größter Marke <em>k</em> genau <em>k</em> + 2 Fortsetzungen. <strong>Die Rücknahme dagegen
+ist eindeutig</strong>: streicht man die letzte Stelle, bleibt genau ein Muster übrig.</p>
+
+<p>Das ist keine Feinheit der Notation, sondern die Struktur selbst: <strong>der Aufstieg wählt,
+der Abstieg rechnet.</strong> Wer eine Folge verlängert, trifft eine Entscheidung, die aus dem
+Vorhandenen nicht folgt; wer sie kürzt, vollzieht eine Operation, deren Ergebnis feststeht.
+Zwischen den beiden Richtungen liegt kein Vorzeichenwechsel, sondern ein Unterschied in der Art
+der Bestimmtheit.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 260" role="img" aria-label="Rücknahme eindeutig, Fortsetzung verzweigt">
+  <defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <!-- zurückgenommenes Muster -->
+  <g class="box" fill="var(--f03)">
+    <rect x="20" y="116" width="30" height="28"/><rect x="54" y="116" width="30" height="28"/>
+    <rect x="88" y="116" width="30" height="28"/>
+  </g>
+  <g class="ts" text-anchor="middle">
+    <text x="35" y="135">0</text><text x="69" y="135">1</text><text x="103" y="135">1</text>
+  </g>
+
+  <!-- Pfeil emanativ -->
+  <line class="ln" x1="270" y1="130" x2="135" y2="130" marker-end="url(#ah2)"/>
+  <text class="txs" x="203" y="121" text-anchor="middle">emanativ</text>
+  <text class="txs i mut" x="203" y="146" text-anchor="middle">eindeutig</text>
+
+  <!-- Ausgangsmuster -->
+  <text class="txs mut" x="278" y="103" text-anchor="start">Muster</text>
+  <g class="box" fill="var(--f12)">
+    <rect x="280" y="116" width="30" height="28"/><rect x="314" y="116" width="30" height="28"/>
+    <rect x="348" y="116" width="30" height="28"/><rect x="382" y="116" width="30" height="28"/>
+  </g>
+  <g class="ts" text-anchor="middle">
+    <text x="295" y="135">0</text><text x="329" y="135">1</text>
+    <text x="363" y="135">1</text><text x="397" y="135">0</text>
+  </g>
+
+  <!-- Verzweigungen -->
+  <path class="ln" d="M418,130 C470,130 470,40 520,40"   marker-end="url(#ah2)"/>
+  <path class="ln" d="M418,130 L520,130"                  marker-end="url(#ah2)"/>
+  <path class="ln" d="M418,130 C470,130 470,220 520,220"  marker-end="url(#ah2)"/>
+
+  <g class="box" fill="var(--f03)">
+    <rect x="533" y="26"  width="26" height="28"/><rect x="562" y="26"  width="26" height="28"/>
+    <rect x="591" y="26"  width="26" height="28"/><rect x="620" y="26"  width="26" height="28"/>
+    <rect x="533" y="116" width="26" height="28"/><rect x="562" y="116" width="26" height="28"/>
+    <rect x="591" y="116" width="26" height="28"/><rect x="620" y="116" width="26" height="28"/>
+    <rect x="533" y="206" width="26" height="28"/><rect x="562" y="206" width="26" height="28"/>
+    <rect x="591" y="206" width="26" height="28"/><rect x="620" y="206" width="26" height="28"/>
+  </g>
+  <g class="box" fill="var(--f20)">
+    <rect x="649" y="26"  width="26" height="28"/>
+    <rect x="649" y="116" width="26" height="28"/>
+    <rect x="649" y="206" width="26" height="28"/>
+  </g>
+  <g class="txs" text-anchor="middle">
+    <text x="546" y="45">0</text><text x="575" y="45">1</text><text x="604" y="45">1</text>
+    <text x="633" y="45">0</text><text x="662" y="45">0</text>
+    <text x="546" y="135">0</text><text x="575" y="135">1</text><text x="604" y="135">1</text>
+    <text x="633" y="135">0</text><text x="662" y="135">1</text>
+    <text x="546" y="225">0</text><text x="575" y="225">1</text><text x="604" y="225">1</text>
+    <text x="633" y="225">0</text><text x="662" y="225">2</text>
+  </g>
+
+  <text class="txs" x="466" y="14" text-anchor="middle">evolutiv</text>
+  <text class="txs i mut" x="466" y="27" text-anchor="middle">verzweigt</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 2</span> — Die Asymmetrie in ihrer schärfsten Form: die
+Rücknahme ist <em>eindeutig</em>, die Fortsetzung <em>wählt</em>. Ein Muster mit größter Marke
+<em>k</em> hat <em>k</em> + 2 Fortsetzungen — jede vorhandene Marke oder eine neue — und genau
+eine Rücknahme (<strong>gerechnet</strong>).</figcaption>
+</figure>
+
+<p>Günther nennt die eine Richtung <em>evolutiv</em>, die andere <em>emanativ</em>
+(<strong>quellen-fest</strong>). Das ist der Keim dessen, was später Zeit heißen wird — lange
+bevor ein Wert ins Spiel kommt. Und es ist derselbe Befund, der am anderen Ende der Architektur
+wiederkehrt: dass der Aufstieg über die Kontextur-Stufen nicht determiniert ist, steht dort als
+Theorem (<a href="#ii-3">Abschnitt II.3</a>) — hier steht es als Abzählung.</p>
+
+<blockquote>
+<p>Eine Warnung gehört hierher und steht auch im Korpus: die feinere Drei-Teilung der
+Beziehungsarten, die die Architektur führt, ist nicht Günthers Terminologie; er trägt eine
+Zweiteilung. Die Verfeinerung wird hier benannt und nimmt ihn nicht als Autorität für sie in
+Anspruch (<strong>Deutung</strong>).</p>
+</blockquote>
+
+<!-- ===================================================================== -->
+<h2 id="ii">II · Kontexturen: zwei Diskontexturalitäten, eine davon bewiesen</h2>
+
+<p>Eine Kontextur ist eine Belegung des Bodens mit dem Rang einer eigenen Logik: ein logischer
+Ort mit eigenem Wahrheitswerte-Klassifikator — nicht eine Region in einer umfassenden Logik,
+sondern eine Logik. Das Gesamtbild ist kein Topos, sondern ein Geflecht von Topoi über einem
+gemeinsamen prälogischen Grund.</p>
+
+<p><strong>Dieser Abschnitt ist gegenüber der vorigen Fassung vollständig neu gefasst.</strong></p>
+
+<h3 id="ii-1">1 · Was Diskontexturalität nicht ist</h3>
+
+<p>Die vorige Fassung sagte: zwischen zwei Kontexturen existiere <em>keine Übersetzung der
+Wahrheit</em>. Das ist an Günthers eigenem Grundfall falsch. Sein und Nichts sind bei ihm die
+elementarste Diskontexturalität — und zugleich <strong>isomorph</strong>; er beruft sich auf
+Baer (1931). Zwischen ihnen gibt es eine vollständige, strukturerhaltende Abbildung.</p>
+
+<blockquote>
+<p>Der Isomorphismus <em>existiert</em>. Er ist nur kein <strong>intra-kontexturaler
+Prozess</strong>: er wird von außen konstatiert, nicht von innen ausgeführt. Das ist Günthers
+eigene Unterscheidung, und sie ist dieselbe, mit der er das Tertium non datur behandelt —
+gültig für beide Seiten, anwendbar nur auf eine.</p>
+</blockquote>
+
+<p>Daraus folgt die Formalisierungs-Entscheidung, die diese Fassung trägt: Diskontexturalität
+erscheint <strong>nicht</strong> als Nichtexistenz einer Abbildung, sondern als
+<strong>Nicht-Erzeugbarkeit im Termklon</strong> — als die Unmöglichkeit, eine vermittelnde
+Operation aus den intra-kontexturalen Mitteln zusammenzusetzen. Was fehlt, ist nicht die
+Abbildung, sondern der Weg zu ihr von innen.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 300" role="img" aria-label="Zwei Kontexturen über gemeinsamem kenogrammatischem Boden">
+  <defs><marker id="ah3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker>
+    <marker id="ah3s" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto">
+    <path d="M8,0 L0,4 L8,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="30" y="8" width="640" height="52" rx="5" fill="var(--f12)"/>
+  <text class="t b" x="350" y="30" text-anchor="middle">keine Zusammensetzung aus intra-kontexturalen Mitteln</text>
+  <text class="ts" x="350" y="49" text-anchor="middle">für alle m ≥ 4: im Klon genau min und max (bewiesen)</text>
+
+  <rect class="box" x="30" y="108" width="215" height="56" rx="5" fill="var(--f05)"/>
+  <text class="t" x="137" y="132" text-anchor="middle">Kontextur K₁</text>
+  <text class="txs mut" x="137" y="150" text-anchor="middle">eigene Logik</text>
+
+  <rect class="box" x="455" y="108" width="215" height="56" rx="5" fill="var(--f05)"/>
+  <text class="t" x="562" y="132" text-anchor="middle">Kontextur K₂</text>
+  <text class="txs mut" x="562" y="150" text-anchor="middle">eigene Logik</text>
+
+  <line class="ln dash" x1="255" y1="136" x2="445" y2="136"
+        marker-end="url(#ah3)" marker-start="url(#ah3s)"/>
+  <text class="txs" x="350" y="115" text-anchor="middle">Isomorphismus</text>
+  <text class="txs i" x="350" y="128" text-anchor="middle">existiert</text>
+  <text class="txs mut" x="350" y="156" text-anchor="middle">von außen konstatiert</text>
+
+  <line class="ln" x1="137" y1="164" x2="137" y2="222" marker-end="url(#ah3)"/>
+  <line class="ln" x1="562" y1="164" x2="562" y2="222" marker-end="url(#ah3)"/>
+
+  <rect class="box" x="30" y="228" width="640" height="52" rx="5" fill="var(--f08)"/>
+  <text class="t" x="350" y="250" text-anchor="middle">kenogrammatischer Boden</text>
+  <text class="txs mut" x="350" y="268" text-anchor="middle">keine Werte, keine Wahrheit</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 3</span> — Was fehlt, ist nicht die Abbildung, sondern
+der Weg zu ihr von innen. Der Isomorphismus existiert (Günthers Grundfall); nicht
+zusammensetzbar ist die vermittelnde Operation.</figcaption>
+</figure>
+
+<h3 id="ii-2">2 · Die erste Relation: symmetrisch, und bewiesen</h3>
+
+<p>Günther nennt zwei fundamentale Relationen. Die erste ist das
+<strong>Umtauschverhältnis</strong> zwischen Elementarkontexturen: ein ungeordnetes Paar,
+symmetrisch, ohne Richtungssinn (<strong>quellen-fest</strong>, Definitionen §4).</p>
+
+<p>Für sie gilt in dieser Fassung ein Satz, wo vorher eine Prämisse stand:</p>
+
+<div class="theorem">
+<p><span class="label">Satz (E3).</span> Für jedes <em>m</em> ≥ 4 liegt eine kontexturtreue,
+lokal-klassische Operation auf <em>m</em> Werten genau dann im Klon der intra-kontexturalen
+Junktoren, wenn sie das Minimum oder das Maximum ist. (<strong>bewiesen</strong>, ohne
+Wahlaxiom, ohne feste Wertzahl)</p>
+</div>
+
+<p>Das ist eine <strong>Charakterisierung</strong>, keine Existenzaussage: die Menge der nicht
+zusammensetzbaren Operationen ist nicht bloß nichtleer, sondern vollständig bestimmt. Jede
+Politik, die auf verschiedenen Elementarkontexturen verschieden entscheidet, ist aus den
+lokalen Mitteln nicht erreichbar — gleich in welcher Verschaltung und gleich wie tief.</p>
+
+<h3 id="ii-3">3 · Die zweite Relation: asymmetrisch, und offen</h3>
+
+<p>Die zweite Relation besteht zwischen <strong>Kontextur und Trans-kontexturalität</strong>.
+Günther nennt sie diejenige, <em>die uns infolge ihrer Asymmetrie die Möglichkeit des Neuen
+gibt</em> (<strong>quellen-fest</strong>). Sie ist ein geordnetes Paar mit Richtungssinn,
+Stufengang und Rangverlust.</p>
+
+<p>Ihr Stand in dieser Fassung ist ein Ergebnis, aber ein geteiltes:</p>
+
+<ul>
+<li>Der <strong>strukturelle</strong> Teil liegt als Satz vor: Richtung, Substruktur-Erhaltung
+und Determinationsverlust kommen an einem Träger zusammen (<strong>bewiesen</strong>).</li>
+<li>Der <strong>begriffliche</strong> Teil bleibt Modellierung — dass ein Stufenwechsel ein
+<em>Kontextur</em>wechsel ist, schließt kein Satz. Die Kontexturgrenze schließt nie durch ein
+Theorem allein, sondern durch Definition plus Theorem (<strong>gesetzt</strong>, im Korpus als
+solches markiert).</li>
+</ul>
+
+<p>Und die Härte der drei Merkmale ist ungleich: eines ist aus der Stellenzahl geerbt, eines
+gilt definitional, und nur der Determinationsverlust trägt eigenen Gehalt. Wer aus der besetzten
+Zeile auf drei gleich starke Befunde schlösse, läse den Satz falsch.</p>
+
+<h3 id="ii-4">4 · Wo die Setzung jetzt sitzt</h3>
+
+<p>Die Setzung ist nicht verschwunden, sondern <strong>an eine Stelle gerückt, an der man sie
+prüfen kann</strong>. Sie lautet nicht mehr <em>es gibt keine Übersetzung</em>, sondern:</p>
+
+<blockquote>
+<p>Eine Zweiermenge benachbarter Werte ist eine Elementarkontextur im Sinne Günthers.
+(<strong>gesetzt</strong> — die tragende Wahl der gesamten Schranken-Reihe)</p>
+</blockquote>
+
+<p>Für diese Wahl spricht ein begrifflicher Grund, der nicht nachträglich zugeschnitten ist:
+eine Zweiermenge {<em>x</em>, <em>y</em>} ist unter den lokalen Operationen genau dann
+abgeschlossen, wenn <em>x</em> und <em>y</em> vergleichbar sind. Auf unvergleichbaren Paaren
+verlässt das Minimum die Menge — und dann ist sie kein <em>in sich geschlossener</em>
+Zusammenhang mehr, also keine Kontextur nach Definitionen §1. <strong>Die Grenze der
+Formalisierung liegt im Begriff, nicht im Beweis.</strong></p>
+
+<h3 id="ii-5">5 · Die Stellung gegenüber der klassischen Mathematik</h3>
+
+<p>Jeder bewiesene Satz dieser Architektur ist gewöhnliche Mathematik. Gebaut wurde, innerhalb
+der klassischen Beweisumgebung, eine Familie von Sätzen, deren Inhalt genau das Versagen einer
+klassischen Zusammensetzung ist; die Deutung dieses Versagens als Kontexturalität bleibt
+Setzung.</p>
+
+<p>Ob die Mengenlehre zwischen den Lesarten entscheidet, ist keine offene Frage, sondern eine
+falsch gestellte: sie ist stumm — nicht weil eine Unabhängigkeit bewiesen wäre, sondern weil
+die Frage nicht in ihrer Sprache steht. Das sperrt den bequemen Ausweg, ein entscheidendes
+Axiom hinzuzufügen: es gibt keine Formel, der man eines hinzufügen könnte. Wer die kontexturale
+Lesart verwirft, bezieht damit selbst eine Position außerhalb der Formelsprache; <strong>keine
+der beiden ist die neutrale Voreinstellung</strong>.</p>
+
+<!-- ===================================================================== -->
+<h2 id="iii">III · Der Beweis-Modus: das Differential</h2>
+
+<p>Wie beweist man das Unveräußerliche einer Struktur, ohne den Selbstwiderspruch, dass ein
+System die eigene Grenze von innen zertifiziert? Nicht positiv in einem System, sondern
+<strong>differentiell zwischen zweien</strong>. Für jedes Strukturmerkmal wird eine arme Klasse
+benannt und ein Paar gezeigt: über allen Instanzen der armen Klasse ist das Merkmal unmöglich —
+als Theorem, allquantifiziert —, und ein reicher Zeuge trägt es.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>die harte Hälfte</th><th>die leichte Hälfte</th></tr></thead>
+<tbody>
+<tr><td><em>X</em> ist unmöglich — allquantifiziert</td><td><em>X</em> ist dargestellt — eine Konstruktion</td></tr>
+<tr><td>alle strikten Ordnungen, der erzeugte Klon</td><td>eine konkrete Struktur, intern gebaut</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Die Unmöglichkeit ist die harte Hälfte; die Konstruktion allein wäre die leichte, und sie für
+das Ganze auszugeben wäre die differentielle Form der Immunisierung.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 170" role="img" aria-label="Arme Klasse und reicher Zeuge">
+  <defs><marker id="ah4" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <path d="M0,0 L9,4.5 L0,9 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="15" y="18" width="290" height="134" rx="6" fill="var(--f12)"/>
+  <text class="t b" x="160" y="45" text-anchor="middle">arme Klasse</text>
+  <text class="ts mut" x="160" y="66" text-anchor="middle">alle strikten Ordnungen,</text>
+  <text class="ts mut" x="160" y="81" text-anchor="middle">der erzeugte Klon</text>
+  <text class="ts" x="160" y="112" text-anchor="middle"><tspan class="i">X</tspan> ist unmöglich — allquantifiziert</text>
+  <text class="ts b" x="160" y="132" text-anchor="middle">die harte Hälfte</text>
+
+  <line class="ln" x1="315" y1="85" x2="385" y2="85" stroke-width="1.8" marker-end="url(#ah4)"/>
+  <text class="t" x="350" y="74" text-anchor="middle">⊢</text>
+
+  <rect class="box" x="395" y="18" width="290" height="134" rx="6" fill="var(--f03)"/>
+  <text class="t b" x="540" y="45" text-anchor="middle">reicher Zeuge</text>
+  <text class="ts mut" x="540" y="66" text-anchor="middle">eine konkrete Struktur,</text>
+  <text class="ts mut" x="540" y="81" text-anchor="middle">intern gebaut</text>
+  <text class="ts" x="540" y="112" text-anchor="middle"><tspan class="i">X</tspan> ist dargestellt — Konstruktion</text>
+  <text class="ts mut" x="540" y="132" text-anchor="middle">die leichte Hälfte</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 4</span> — Das Differential und seine zwei ungleich
+schweren Hälften. Erbracht ist es erst mit der negativen.</figcaption>
+</figure>
+
+<p>Drei Marken disziplinieren den Modus. <strong>Erstens</strong>: das arme Modell wird intern
+gebaut, nicht metasprachlich behauptet. <strong>Zweitens</strong>: das Ergebnis ist konditional
+relativ zu den gesetzten Prämissen; es symmetrisiert den Skeptiker, es zwingt ihn nicht.
+<strong>Drittens</strong>: bewiesen wird die Form, nie die Benennung — dass eine
+kontextur-relative Operationswahl aus lokalen Mitteln unerreichbar ist, ist ein Theorem; dass
+diese Wahl <em>Vermittlung</em> heißt, bleibt Deutung. Der Dateiname im Korpus sagt darum
+<code>NonUniformCloneBound</code> und nicht <code>Mediation</code>.</p>
+
+<p>Und die Herkunft der armen Klassen ist selbst eine Rubrik, die mitgeführt wird — denn hier,
+nicht bei den Sätzen, sitzt die Beweislast der Bauform. <strong>Kanonisch</strong> ist das
+Verfahren: der Klon-Begriff und die Erzeugung sind Standard der Klontheorie.
+<strong>Gewählt</strong> ist die Basis: diese Operationen, diese Einbettung. Der Einwand, diese
+Wahlen seien zugeschnitten, ist zulässig und wird nicht beantwortet, sondern ausgewiesen.</p>
+
+<!-- ===================================================================== -->
+<h2 id="iv">IV · Die Zeugen: die Schranken-Reihe</h2>
+
+<p>Das Argument der Architektur ist eine schmale Reihe von Unmöglichkeits-Sätzen; der übrige Bau
+ist Substrat, Verortung und Anschluss. <strong>Gegenüber der vorigen Fassung ist aus einem
+Zeugen eine vollständige Reihe geworden.</strong></p>
+
+<h3>Die Reihe im Überblick</h3>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th></th><th>Satz</th><th>Art der Nicht-Internalität</th><th>Reichweite</th></tr></thead>
+<tbody>
+<tr><th>D</th><td>die Verwerfung liegt nicht im Klon</td><td><strong>Transzendenz</strong> — sie verlässt die Kontextur</td><td><em>m</em> = 3</td></tr>
+<tr><th>E1</th><td>vollständige Klassifikation</td><td><strong>Uneinheitlichkeit</strong> — sie bleibt und wählt verschieden</td><td><em>m</em> = 3</td></tr>
+<tr><th>E2</th><td>Charakterisierung</td><td>genau Minimum und Maximum</td><td><em>m</em> = 4</td></tr>
+<tr><th>E3</th><td>Charakterisierung</td><td>genau Minimum und Maximum</td><td><strong>alle <em>m</em> ≥ 4</strong></td></tr>
+<tr><th>E4</th><td>Stufenaggregation</td><td>Anwendungsgesicht</td><td><em>m</em> = 4</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 215" role="img" aria-label="Die Schranken-Reihe D, E1, E2, E3">
+  <defs><marker id="ah5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <rect class="box" x="2"   y="12" width="148" height="112" rx="5" fill="var(--f05)"/>
+  <rect class="box" x="184" y="12" width="148" height="112" rx="5" fill="var(--f08)"/>
+  <rect class="box" x="366" y="12" width="148" height="112" rx="5" fill="var(--f12)"/>
+  <rect class="box" x="548" y="12" width="150" height="112" rx="5" fill="var(--f16)" stroke-width="1.7"/>
+
+  <g text-anchor="middle">
+    <text class="t b"  x="76"  y="36">D</text>
+    <text class="txs"  x="76"  y="52">m = 3</text>
+    <text class="ts"   x="76"  y="79">Transzendenz</text>
+    <text class="txs i mut" x="76" y="97">verlässt die</text>
+    <text class="txs i mut" x="76" y="110">Kontextur</text>
+
+    <text class="t b"  x="258" y="36">E1</text>
+    <text class="txs"  x="258" y="52">m = 3</text>
+    <text class="ts"   x="258" y="79">Uneinheitlichkeit</text>
+    <text class="txs i mut" x="258" y="97">bleibt und wählt</text>
+    <text class="txs i mut" x="258" y="110">verschieden</text>
+
+    <text class="t b"  x="440" y="36">E2</text>
+    <text class="txs"  x="440" y="52">m = 4</text>
+    <text class="ts"   x="440" y="79">Charakterisierung</text>
+    <text class="txs mut" x="440" y="97">genau min, max</text>
+
+    <text class="t b"  x="623" y="36">E3</text>
+    <text class="txs b" x="623" y="52">alle m ≥ 4</text>
+    <text class="ts"   x="623" y="79">Charakterisierung</text>
+    <text class="txs i mut" x="623" y="97">ohne feste</text>
+    <text class="txs i mut" x="623" y="110">Wertzahl</text>
+  </g>
+
+  <line class="ln" x1="152" y1="68" x2="180" y2="68" marker-end="url(#ah5)"/>
+  <line class="ln" x1="334" y1="68" x2="362" y2="68" marker-end="url(#ah5)"/>
+  <line class="ln" x1="516" y1="68" x2="544" y2="68" marker-end="url(#ah5)"/>
+
+  <text class="txs" x="350" y="175" text-anchor="middle">Robustheit gegen Konstanten-Erweiterung:
+    <tspan class="b">D fällt</tspan> · <tspan class="b">E2, E3, E4 halten</tspan></text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 5</span> — Die Schranken-Reihe: von zwei Gründen der
+Nicht-Internalität über die Klassifikation zur Charakterisierung ohne feste Wertzahl.</figcaption>
+</figure>
+
+<h3 id="iv-1">1 · D — die Ortung der ersten Schranke</h3>
+
+<p>Die Verwerfungs-Operation weist ein angebotenes Wert-Paar als ganzes zurück und liegt nicht in
+dem Klon, der von den Basis-Operationen über drei Werten erzeugt wird (<strong>bewiesen</strong>;
+der Beweis ist aritätsblind und läuft über die Kontextur-Erhaltung).</p>
+
+<p>Außerhalb eines Klons zu liegen ist für sich genommen billig: im binären Fragment umfasst der
+Klon 82 von 19 683 Operationen, keine halbe Prozent (<strong>gerechnet</strong>, außerhalb des
+Korpus). Die Aussage bleibt nicht dabei. Die Basis erhält drei Invarianten, und jeder Term über
+ihr erhält alle drei — nicht nur die Erzeuger (<strong>bewiesen</strong>, per Term-Induktion).
+Die Verwerfung verletzt genau eine davon und erhält die beiden anderen. Sie liegt also nicht
+irgendwo außerhalb, sondern <strong>an einer bestimmten Stelle</strong>.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 290" role="img" aria-label="Der erzeugte Klon innerhalb aller binären Operationen">
+  <rect class="box" x="120" y="8" width="460" height="188" rx="8" fill="var(--f05)"/>
+  <text class="ts" x="350" y="34" text-anchor="middle">alle binären Operationen: 19 683</text>
+
+  <circle class="box" cx="300" cy="118" r="66" fill="var(--f16)"/>
+  <text class="ts" x="300" y="108" text-anchor="middle">erzeugter</text>
+  <text class="ts" x="300" y="124" text-anchor="middle">Klon</text>
+  <text class="ts b" x="300" y="142" text-anchor="middle">82</text>
+
+  <circle class="box" cx="470" cy="72" r="13" fill="var(--f35)"/>
+  <text class="ts" x="492" y="76" text-anchor="start">Verwerfung</text>
+
+  <text class="txs" x="120" y="228" text-anchor="start">drei Invarianten erhält <tspan class="i">jeder</tspan> Term (<tspan class="b">bewiesen</tspan>):</text>
+  <text class="txs" x="120" y="245" text-anchor="start">zweiwertige Einbettung · Fixpunkt · Toleranz-Relation</text>
+  <text class="txs" x="120" y="273" text-anchor="start">die Verwerfung verletzt <tspan class="b">genau eine</tspan> und erhält die beiden anderen</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 6</span> — Die Ortung: nicht irgendwo außerhalb, sondern
+jenseits genau einer von drei erhaltenen Invarianten. Klonzahlen <strong>gerechnet</strong>,
+außerhalb des Korpus.</figcaption>
+</figure>
+
+<h3 id="iv-2">2 · E1 — der zweite Grund, und die vollständige Teilung</h3>
+
+<p>Der Bruch mit der vorigen Fassung liegt hier. Eine Operation kann aus <strong>zwei
+verschiedenen Gründen</strong> nicht zusammensetzbar sein:</p>
+
+<ul>
+<li>durch <strong>Transzendenz</strong>: sie verlässt die Elementarkontextur (das ist D);</li>
+<li>durch <strong>Uneinheitlichkeit</strong>: sie erhält jede Kontextur, wirkt auf jeder
+klassisch — und wählt auf verschiedenen Kontexturen verschiedene klassische Operationen.</li>
+</ul>
+
+<p>Der zweite Grund war vorher nicht bezeugt. Er ist es jetzt, und zwar vollständig: von den acht
+Wahlmustern über drei Werten sind genau vier zusammensetzbar und genau vier nicht
+(<strong>bewiesen</strong>). Die Teilung ist unter der Negations-Konjugation abgeschlossen — ein
+Transport-Lemma, das drei Beweiskopien durch einen Satz ersetzt.</p>
+
+<h3 id="iv-3">3 · E2 und E3 — von der Existenz zur Charakterisierung</h3>
+
+<p>Bei vier Werten kippt das Bild: nur noch <strong>zwei</strong> der 64 lokal-klassischen
+Operationen sind zusammensetzbar, nämlich Minimum und Maximum selbst
+(<strong>bewiesen</strong>). Bei fünf Werten sind es 2 von 1 024, bei sechs 2 von 32 768
+(<strong>gerechnet</strong>).</p>
+
+<p class="formula"><span class="name">E3:</span>&nbsp;&nbsp; <em>m</em> ≥ 4 &nbsp;⟹&nbsp;
+(<em>f</em> im Klon &nbsp;⟺&nbsp; <em>f</em> = min oder <em>f</em> = max)</p>
+
+<p>E3 ist der erste Satz <strong>der Schranken-Reihe</strong>, der an keiner festen Wertzahl
+hängt — D und E1 stehen bei drei Werten, E2 bei vier. Sein Beweis nutzt kein <code>decide</code>
+und keine Fallunterscheidung nach <em>m</em>; er läuft über sechs Kantenfamilien mit geschlossen
+angebbaren Bruchstellen und eine Induktion über die Weglänge.</p>
+
+<div class="callout">
+<p><strong>Die Schwelle liegt bei vier, und das ist kein Artefakt.</strong> Bei drei Werten ist
+die Aussage <em>falsch</em> — dort sind vier von acht Mustern zusammensetzbar. Bei zwei Werten
+gibt es überhaupt keinen Zeugen, weil es nur eine Kontextur gibt. Das trifft Günthers eigene
+Schwelle: <em>Das klassische zweiwertige System repräsentiert noch keine Verbundkontextur …
+der zweite Wert liefert nichts Neues und steht dem ersten unvermittelt gegenüber</em>
+(<strong>quellen-fest</strong>). Vermittlung beginnt bei drei — hier als gezählte Null, nicht
+als These.</p>
+</div>
+
+<h3 id="iv-4">4 · Robustheit: welche Schranke wieviel behauptet</h3>
+
+<p>Eine Nicht-Erzeugbarkeits-Schranke hängt an ihrer Invariante. Erweitert man die Basis um
+konstante Operationen, fällt die Schranke genau dann nicht, wenn die Invariante reflexiv ist.</p>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>Zeuge</th><th>Invariante</th><th>überlebt Konstanten?</th></tr></thead>
+<tbody>
+<tr><th>D</th><td>eine Elementarkontextur</td><td><strong>nein</strong></td></tr>
+<tr><th>E2, E3, E4</th><td>Nachbarschaft mit gebrochenen Rändern</td><td><strong>ja</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Das ist kein Nebenaspekt: eine Schranke, die an einer hinzugefügten Konstante fällt, behauptet
+weniger, als sie zu behaupten scheint. Der Unterschied ist im Korpus als Prüfpflicht vor jedem
+neuen Zeugen festgeschrieben.</p>
+
+<h3 id="iv-5">5 · E4 — das Anwendungsgesicht, und seine Grenze</h3>
+
+<p>Vier Autorisierungsstufen, eine Aggregationspolitik, die überall konservativ ist außer
+zwischen den beiden höchsten: sie ist aus lokalen, kontexturblinden Prüfern nicht
+zusammensetzbar — auch dann nicht, wenn man beliebige konstante Prüfer hinzunimmt
+(<strong>bewiesen</strong>).</p>
+
+<p>Der Satz ist eine Instanz von E3. Seine Ertragsklasse ist darum <strong>Benennung</strong>,
+nicht Ertrag, und der Dateikopf sagt das. Neu ist die Lesart, kein Satz.</p>
+
+<p><strong>Die Grenze gehört in denselben Atemzug.</strong> Die Schranke greift auf linear
+gestuften Trägern. Auf einem Verband gleichrangiger Rollen fällt sie: bereits auf dem kleinsten
+flachen Verband M<sub>3</sub> existiert eine lokal-klassische Operation, die weder Minimum noch
+Maximum ist (<strong>gerechnet</strong>). Ein Übergangsgraph benannter Rollen ohne Stufenordnung
+wird von dieser Schranke <strong>nicht</strong> getragen; was dort beweisbar bleibt, ist
+Erreichbarkeit und leistet nichts, was ein Typsystem nicht auch leistet.</p>
+
+<!-- ===================================================================== -->
+<h2 id="v">V · Die achtfache Reihe</h2>
+
+<p>Günther legt der ontologischen Schicht eine achtfache Innenstruktur an, in der Aufbau-Form
+1 + 3 + 3 + 1: ein reflexionsloser Grund, drei Naturreflexionen, drei subjektive Reflexionen,
+ein Erschöpfungs-Übergang (<strong>quellen-fest</strong>). In der Architektur haben alle acht
+Stellen ihr termfestes Korrelat; die Zuordnung von Stelle zu Korrelat bleibt
+<strong>Deutung</strong>.</p>
+
+<p>Die Ränder tragen als Differentiale. Die achte Stelle: die Erschöpfung als vierteiliges
+Prädikat, der Übergang als Wohlfundiertheits-Theorem (<strong>bewiesen</strong>). Die erste: der
+Grund als Fixpunkt, der unter aller Iteration wiederkehrt (<strong>bewiesen, axiomfrei</strong>).
+Und der Bogen, der beide schließt: die sich erschöpfende Stufung kehrt beweisbar in ihren Grund
+zurück — die Reihe endet nicht neben ihrem Anfang (<strong>bewiesen</strong>).</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 210" role="img" aria-label="Die achtfache Reihe 1+3+3+1">
+  <defs><marker id="ah7" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <g class="box">
+    <rect x="18"  y="52" width="76" height="54" rx="4" fill="var(--f20)"/>
+    <rect x="102" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="186" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="270" y="52" width="76" height="54" rx="4" fill="var(--f05)"/>
+    <rect x="354" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="438" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="522" y="52" width="76" height="54" rx="4" fill="var(--f08)"/>
+    <rect x="606" y="52" width="76" height="54" rx="4" fill="var(--f20)"/>
+  </g>
+  <g text-anchor="middle">
+    <text class="ts b" x="56"  y="76">1</text><text class="txs" x="56"  y="94">Grund</text>
+    <text class="ts b" x="140" y="76">2</text><text class="txs" x="140" y="94">Natur</text>
+    <text class="ts b" x="224" y="76">3</text><text class="txs" x="224" y="94">Natur</text>
+    <text class="ts b" x="308" y="76">4</text><text class="txs" x="308" y="94">Natur</text>
+    <text class="ts b" x="392" y="76">5</text><text class="txs" x="392" y="94">Geist</text>
+    <text class="ts b" x="476" y="76">6</text><text class="txs" x="476" y="94">Geist</text>
+    <text class="ts b" x="560" y="76">7</text><text class="txs" x="560" y="94">Geist</text>
+    <text class="ts b" x="644" y="76">8</text><text class="txs" x="644" y="94">Übergang</text>
+  </g>
+
+  <path class="ln-thin" d="M18,44 v-6 h76 v6"/>
+  <path class="ln-thin" d="M102,44 v-6 h496 v6"/>
+  <path class="ln-thin" d="M606,44 v-6 h76 v6"/>
+  <g class="txs mut" text-anchor="middle">
+    <text x="56"  y="28">Differential</text>
+    <text x="350" y="28">Verortungen auf zwei Trägern</text>
+    <text x="644" y="28">Differential</text>
+  </g>
+
+  <path class="ln" d="M644,106 C644,170 500,178 350,178 C200,178 56,170 56,106" marker-end="url(#ah7)"/>
+  <text class="txs" x="350" y="200" text-anchor="middle">die Erschöpfung kehrt <tspan class="b">beweisbar</tspan> in den Grund zurück</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 7</span> — Die achtfache Reihe 1 + 3 + 3 + 1: die Ränder
+als Differentiale, die Mitte als Verortungen; der Bogen schließt die Reihe in ihren
+Grund.</figcaption>
+</figure>
+
+<p>Die sechs mittleren Stellen sind Verortungen auf zwei Trägern. Die drei Natur-Klassen —
+Umtausch, Rückkehrfreiheit, Vermittlung — sind paarweise getrennt und je rein bezeugt
+(<strong>bewiesen</strong>). Die Geist-Stellen laufen als Hebungen: derselbe Prozess, auf seinen
+Inhalten wiederholt, erbt den Umtausch und bricht die Irreversibilität.</p>
+
+<blockquote>
+<p>Der Unterschied der beiden Träger ist der mathematische Kern dieses Abschnitts. Auf dem ersten
+sind die drei Eigenschaften <strong>vorgefunden</strong> und liegen nebeneinander; auf dem
+zweiten <strong>entstehen</strong> sie und erben oder brechen sich nach beweisbaren Regeln. Was
+auf der ersten Stufe Koexistenz dreier unabhängiger Merkmale ist, ist auf der zweiten ein
+Ableitungs-Zusammenhang.</p>
+</blockquote>
+
+<p>Das Rückgrat der Verortung sind die Dreieckszahlen als Intervall-Anfänge — dieselbe Folge,
+die Günther für die Verbundkontexturen und die Ontologien-Hierarchie führt.</p>
+
+<div class="callout">
+<p><strong>Ein Vorbehalt, der in der Sache liegt.</strong> Der Definitionen-Text nennt für die
+Verbundkontexturen die Formel <em>n</em>(<em>n</em>+1)/2 und die Folge 1, 3, 6, 10, … und sagt
+zugleich, eine Verbundkontextur erfordere <em>mindestens drei Werte</em>. Beides zusammen geht
+nicht: die erste Verbundkontextur ist die dreiwertige; die 1 gehört zur Ontologien-Folge. Drei
+Formeln stehen im Umlauf — <em>n</em>(<em>n</em>+1)/2, <em>m</em>(<em>m</em>−1)/2,
+<em>m</em>(<em>m</em>+1)/2 — und erzeugen dieselbe Folge bei verschobenem Index. Die Architektur
+zählt die Elementarkontexturen einer <em>m</em>-wertigen Verbundkontextur als
+<em>m</em>(<em>m</em>−1)/2; das ist mit Günthers Reihe verträglich, aber es ist eine
+<strong>Festlegung</strong>, keine Ableitung.</p>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="vi">VI · Bewegung und Zeit</h2>
+
+<p>Über dem Geflecht liegt eine modale Triade als Bewegungs-Vorrat — drei Weisen, in denen sich
+etwas ändern kann, ohne dass schon gesagt wäre, <em>was</em> sich ändert:</p>
+
+<ul>
+<li><em>τ</em>, die <strong>Verschiebung</strong> — dieselbe Struktur an anderer Stelle;</li>
+<li><em>δ</em>, die <strong>Reorganisation</strong> — dieselben Teile in anderer Ordnung;</li>
+<li><em>ω</em>, die <strong>irreversible Setzung</strong> — der Schritt, der nicht
+zurückgenommen wird.</li>
+</ul>
+
+<p>Ihre Kompositionen sind in genau einer Richtung glatt; einen kanonischen Austausch der
+Richtungen gibt es nicht — das ist nicht Bild, sondern Satz (<strong>bewiesen</strong>, fünf
+Theoreme, alle fünf mit dem Wahlaxiom, und über die ganze Reihe auf zwei Dateien beschränkt).</p>
+
+<h3>Der Zyklus, der in keine Ordnung passt</h3>
+
+<p>Bevor die Architektur von Zeit spricht, lohnt der Blick auf die Stelle, an der Günther selbst
+zuerst darauf stieß. 1937 stellt er drei Sätze über <strong>Mächtigkeit</strong> nebeneinander —
+jeder für sich unmittelbar einleuchtend:</p>
+
+<ol>
+<li><strong>Die Zeit ist mächtiger als der Wille.</strong> Jede Entscheidung fällt <em>in</em>
+der Zeit; niemand kann wollen, dass sie vorher gefallen sei.</li>
+<li><strong>Das Denken ist mächtiger als die Zeit.</strong> Die Erinnerung läuft der Zeit
+entgegen und reicht zurück bis zum Anfang — sie ist an die Richtung des Verlaufs nicht
+gebunden.</li>
+<li><strong>Der Wille ist mächtiger als das Denken.</strong> Mit Fichte: dass ich denke, ruht
+darauf, dass ich denken <em>will</em>.</li>
+</ol>
+
+<p>Nimmt man die ersten beiden zusammen, folgt: das Denken ist mächtiger als der Wille.
+<strong>Die dritte sagt das Gegenteil.</strong> Die drei Prinzipien lassen sich nicht in eine
+Rangfolge bringen — sie schließen sich zum Kreis. Günther zieht daraus keinen Widerspruch,
+sondern einen Befund: aus ihnen seien <em>niemals drei Aussagegruppen von transitivem
+Charakter</em> zu bilden, und darum bleibe <em>der Zeitverlauf im konkreten Bewusstsein stets
+doppelsinnig</em> (<strong>quellen-fest</strong>, <em>Wahrheit, Wirklichkeit und Zeit</em>,
+Paris 1937).</p>
+
+<p><strong>Was die Architektur daraus macht, ist ein Differential und keine These.</strong>
+Bewiesen wird die arme Seite: in jeder transitiven, irreflexiven Relation — auf jedem Träger,
+ohne Ausnahme — ist ein Drei-Zyklus unmöglich, und es gibt auch kein relationserhaltendes Bild
+eines solchen Zyklus in irgendeine strikte Ordnung (<strong>bewiesen</strong>; der Kern kommt
+ohne die klassischen Axiome aus). Was intransitiv ist, hat in der armen Klasse keinen Ort.</p>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 370" role="img" aria-label="Günthers drei Mächtigkeits-Prinzipien als intransitiver Zyklus">
+  <defs><marker id="ah8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <circle class="box" cx="350" cy="62"  r="42" fill="var(--f05)"/>
+  <circle class="box" cx="212" cy="222" r="42" fill="var(--f05)"/>
+  <circle class="box" cx="488" cy="222" r="42" fill="var(--f05)"/>
+  <g class="ts" text-anchor="middle">
+    <text x="350" y="67">Denken</text><text x="212" y="227">Zeit</text><text x="488" y="227">Wille</text>
+  </g>
+
+  <line class="ln" x1="323" y1="95"  x2="239" y2="189" marker-end="url(#ah8)"/>
+  <line class="ln" x1="255" y1="222" x2="443" y2="222" marker-end="url(#ah8)"/>
+  <line class="ln" x1="461" y1="189" x2="377" y2="95"  marker-end="url(#ah8)"/>
+
+  <g class="txs mut" text-anchor="end">
+    <text x="248" y="128">die Erinnerung geht</text>
+    <text x="248" y="142">zurück bis zum Anfang</text>
+  </g>
+  <g class="txs mut" text-anchor="middle">
+    <text x="349" y="246">Entscheidungen fallen</text>
+    <text x="349" y="260"><tspan class="i">in</tspan> der Zeit</text>
+  </g>
+  <g class="txs mut" text-anchor="start">
+    <text x="452" y="128">„dass ich denke“ ruht auf</text>
+    <text x="452" y="142">„dass ich denken <tspan class="i">will</tspan>“</text>
+  </g>
+
+  <text class="txs" x="350" y="172" text-anchor="middle">≻ heißt</text>
+  <text class="txs i" x="350" y="186" text-anchor="middle">mächtiger als</text>
+
+  <rect class="box" x="110" y="298" width="480" height="52" rx="5" fill="var(--f08)"/>
+  <text class="txs" x="350" y="320" text-anchor="middle">Verkettet man die ersten beiden, folgt <tspan class="b">Denken ≻ Wille</tspan> —</text>
+  <text class="txs" x="350" y="337" text-anchor="middle">die dritte sagt das Gegenteil. <tspan class="b">Der Zyklus schließt sich.</tspan></text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 8</span> — Günthers drei Mächtigkeits-Prinzipien von 1937
+und ihr intransitiver Zyklus. Dass <em>kein</em> solcher Zyklus in einer strikten Ordnung Platz
+hat, ist <strong>bewiesen</strong>; dass <em>dieser</em> Zyklus Denken, Wollen und Zeit heißt,
+bleibt quellengestützte <strong>Deutung</strong>.</figcaption>
+</figure>
+
+<blockquote>
+<p>Damit ist nicht behauptet, dass Denken, Wollen und Zeit sich so verhalten. Behauptet ist:
+<strong>wenn</strong> sie es tun, dann ist keine lineare Ordnung ihr Maß — und zwar nicht, weil
+man bisher keine gefunden hätte, sondern weil es keine geben kann. Die Zuordnung der drei Namen
+zu den drei Ecken bleibt <strong>Deutung</strong>; die Unmöglichkeit ist Satz.</p>
+</blockquote>
+
+<h3>Die zwei Differentiale der Zeit</h3>
+
+<p>Die Zeit zerfällt in zwei Differentiale, getrennt über eine einzige harte Invariante: die
+Kontextur-Zahl.</p>
+
+<ul>
+<li><strong>Intra</strong> — in einer Kontextur — steht der Dominanz-Zyklus gegen jede lineare
+Ordnung.</li>
+<li><strong>Inter</strong> — zwischen Kontexturen — schließt sich die kumulative Hebung über die
+Stufen nicht: unter gesetzter Fixpunkt-Freiheit gibt es keinen Kreis, und der Aufstieg duldet
+keinen injektiven Rückkehr-Zeugen (<strong>bewiesen</strong>); mit Fixpunkt kollabierte die
+Nicht-Schließung — die Prämisse ist ausgewiesen, nicht versteckt.</li>
+</ul>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 250" role="img" aria-label="Modale Triade und die zwei Zeit-Differentiale">
+  <defs><marker id="ah9" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--stroke)"/></marker></defs>
+
+  <circle class="box" cx="150" cy="52"  r="30" fill="var(--f05)"/>
+  <circle class="box" cx="88"  cy="158" r="30" fill="var(--f05)"/>
+  <circle class="box" cx="212" cy="158" r="30" fill="var(--f05)"/>
+  <g class="t i" text-anchor="middle">
+    <text x="150" y="57">τ</text><text x="88" y="163">δ</text><text x="212" y="163">ω</text>
+  </g>
+  <line class="ln" x1="135" y1="79"  x2="103" y2="132" marker-end="url(#ah9)"/>
+  <line class="ln" x1="118" y1="158" x2="177" y2="158" marker-end="url(#ah9)"/>
+  <line class="ln" x1="227" y1="132" x2="195" y2="79"  marker-end="url(#ah9)"/>
+  <text class="txs mut" x="150" y="216" text-anchor="middle">Verschiebung · Reorganisation · irreversible Setzung</text>
+
+  <rect class="box" x="310" y="18" width="380" height="70" rx="5" fill="var(--f05)"/>
+  <text class="ts b" x="326" y="42">intra — eine Kontextur</text>
+  <text class="txs" x="326" y="64">der Dominanz-Zyklus liegt in keiner</text>
+  <text class="txs" x="326" y="78">strikten Ordnung</text>
+
+  <rect class="box" x="310" y="140" width="380" height="70" rx="5" fill="var(--f12)"/>
+  <text class="ts b" x="326" y="164">inter — zwei Kontexturen</text>
+  <text class="txs" x="326" y="186">die kumulative Hebung schließt sich</text>
+  <text class="txs" x="326" y="200">nicht</text>
+
+  <line class="ln-thin dash" x1="310" y1="114" x2="690" y2="114"/>
+  <rect x="404" y="106" width="192" height="16" fill="var(--bg)"/>
+  <text class="txs i mut" x="500" y="118" text-anchor="middle">getrennt durch die Kontextur-Zahl</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 9</span> — Die modale Triade und die zwei
+Zeit-Differentiale; die Trennung ist die Kontextur-Zahl.</figcaption>
+</figure>
+
+<!-- ===================================================================== -->
+<h2 id="vii">VII · Die Absicherung: Wachen, Profile, Messungen</h2>
+
+<p>Eine Architektur, die Unmöglichkeiten behauptet, muss sagen können, worauf ihre Beweise
+beruhen — und verhindern, dass sich das stillschweigend ändert.</p>
+
+<h3>Der Stand</h3>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>Kennzahl</th><th class="num">vorige Fassung</th><th class="num">diese Fassung</th></tr></thead>
+<tbody>
+<tr><td>Axiom-Wachen</td><td class="num">174 über 23 Dateien</td><td class="num"><strong>299 über 35 Dateien</strong></td></tr>
+<tr><td>davon axiomfreie Profile</td><td class="num">41</td><td class="num"><strong>47</strong></td></tr>
+<tr><td>Statement-Pins</td><td class="num">7 (Pilot)</td><td class="num"><strong>36 in 6 Dateien</strong></td></tr>
+<tr><td>geprüfte Konstanten (Gate)</td><td class="num">2 581</td><td class="num"><strong>2 984</strong></td></tr>
+<tr><th>offene Beweislücken</th><td class="num"><strong>4 ausgewiesen</strong></td><td class="num"><strong>0 — Whitelist leer</strong></td></tr>
+<tr><td>Sätze korpusweit</td><td class="num">—</td><td class="num">698</td></tr>
+<tr><td>Build-Jobs</td><td class="num">—</td><td class="num">1 267</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure class="fig wide">
+<div class="fig-scroll">
+<svg viewBox="0 0 700 240" role="img" aria-label="Die Absicherung in Zahlen">
+  <g class="txs" text-anchor="end">
+    <text x="200" y="26">Axiom-Wachen</text>
+    <text x="200" y="66">davon axiomfrei</text>
+    <text x="200" y="106">Statement-Pins</text>
+    <text x="200" y="146">geprüfte Konstanten (in Hundert)</text>
+  </g>
+  <g class="box" fill="var(--f12)">
+    <rect x="212" y="10"  width="299" height="22"/>
+    <rect x="212" y="50"  width="47"  height="22"/>
+    <rect x="212" y="90"  width="36"  height="22"/>
+    <rect x="212" y="130" width="298" height="22"/>
+  </g>
+  <g class="txs">
+    <text x="521" y="26">174 → <tspan class="b">299</tspan></text>
+    <text x="269" y="66">41 → <tspan class="b">47</tspan></text>
+    <text x="258" y="106">7 → <tspan class="b">36</tspan></text>
+    <text x="520" y="146">25.8 → <tspan class="b">29.8</tspan></text>
+  </g>
+  <rect class="box" x="170" y="180" width="380" height="48" rx="5" fill="var(--f16)"/>
+  <text class="txs b" x="360" y="202" text-anchor="middle">offene Beweislücken: 4 ausgewiesen → 0</text>
+  <text class="txs" x="360" y="219" text-anchor="middle">das Gate prüft eine Aussage ohne Fußnote</text>
+</svg>
+</div>
+<figcaption><span class="fignum">Figur 10</span> — Die Absicherung in Zahlen: vorige Fassung →
+diese Fassung (Stand Commit <code>e89ab47</code>; Zählrouten im <a href="#anhang">Anhang</a>).</figcaption>
+</figure>
+
+<h3>Die vier Mechanismen</h3>
+
+<p><strong>Erstens die Axiom-Wachen.</strong> Für jeden Satz der tragenden Reihe ist sein
+Axiom-Profil gemessen und als Erwartung eingefroren; verschiebt sich die Beweis-Grundlage still,
+bricht der Build. Die Wache sichert die Grundlage, nicht den Wortlaut — ein abgeschwächter Satz
+mit gleichem Profil passiert sie.</p>
+
+<p><strong>Zweitens die Statement-Pins.</strong> Genau dieser Befund hat einen zweiten
+Wachen-Typ erzwungen: Pins nageln den vollen Wortlaut fest und brechen den Build bei
+definitorischer Drift. Aus dem Piloten von sieben ist der Regelfall geworden.</p>
+
+<p><strong>Drittens das globale Gate.</strong> Es meldet in dieser Fassung einen Zustand, den es
+vorher nicht gab:</p>
+
+<pre><code>AXIOM-GATE GRÜN — Aggregat Reformulation (2984 geprüfte Konstanten)
+zieht kein sorryAx. Whitelist leer.</code></pre>
+
+<p>Die vier vormals ausgewiesenen Lücken sind aufgelöst. Der Befund war nicht <em>vier fehlende
+Beweise</em>, sondern <strong>Daten, die als Sätze auftraten</strong>: zwei waren aus den
+vorhandenen Daten nicht ableitbar und wurden zu Strukturfeldern; zwei waren in ihrer Signatur
+schlicht falsch — eine Eindeutigkeitsaussage gegen leere Axiome, und eine Existenzaussage über
+einen möglicherweise leeren Hom-Raum — und wurden gestrichen, mit Vermerk an Ort und Stelle.</p>
+
+<div class="callout">
+<p><strong>Was das ist und was nicht.</strong> Vier Deklarationen sind verschwunden, nicht vier
+Beweise entstanden. Die Beck-Chevalley-Bedingung ist unbewiesen wie zuvor; sie ist jetzt als
+Strukturdatum sichtbar, statt als Folgerung unterstellt zu werden. Der Gewinn liegt darin, dass
+das Gate eine Aussage ohne Fußnote prüft.</p>
+</div>
+
+<p><strong>Viertens die Konsum-Messung.</strong> Für jede behauptete Abhängigkeit zwischen
+Schichten ist am Beweis-Term gemessen, ob ein Satz des Vorgängers einläuft oder ob ein Begriff
+die Aussage trägt. <em>Konsumiert</em> heißt in dieser Architektur im Regelfall: der Begriff
+trägt die Aussage — das steht hier, damit es kein Leser erst messen muss.</p>
+
+<h3>Die Eichung der Messwege</h3>
+
+<p>Jede Mess-Route wird vor Gebrauch an Fällen mit bekanntem Soll geeicht — einem, der treffen
+muss, und einem, der nicht treffen darf. Der Grund ist eine Erfahrung, keine Vorsicht: das
+gefährlichste Fehlerbild einer gezählten Architektur ist <strong>die plausible, saubere, zu
+kleine Zahl</strong>, denn sie sieht aus wie ein gutes Ergebnis.</p>
+
+<p>Diese Fassung hat dafür einen eigenen Beleg. Zwei Zählrouten für dieselbe Kenngröße gaben
+verschiedene Werte — beide korrekt für ihre Route. Die Ursache war, dass die Kategorie an einer
+<strong>Überschrift im Fließtext</strong> hing, die in einer Datei englisch und in den übrigen
+deutsch geschrieben war. Seither trägt jede Stelle einen maschinenlesbaren Marker, und die Regel
+lautet: <strong>eine Zählroute, die Prosa als Kriterium nimmt, ist eine Zeitbombe.</strong></p>
+
+<!-- ===================================================================== -->
+<h2 id="viii">VIII · Die Instrumente als eigener Gegenstand</h2>
+
+<p>Neben den Sätzen ist etwas entstanden, das von Günther nichts weiß und weiter reisen könnte:
+eine Prüf-Praxis für das Formalisieren philosophischer Texte. Wer einen Denker formalisiert, hat
+ein Problem, das der reinen Mathematik fremd ist — <strong>die Deutung läuft dem Term
+davon</strong>. Ein Satz wird gebaut, sein Name wird gewählt, und der Name behauptet mehr als der
+Satz. Gegen dieses Gefälle helfen keine Vorsätze, sondern Mechanismen.</p>
+
+<h3>Sieben Regeln, jede aus einem Fehlgriff</h3>
+
+<ol class="rules">
+<li><strong>Erst den Satz suchen, dann so viel Träger bauen, wie der Satz verlangt.</strong> Eine
+Basisschicht, die kein Theorem anfordert, ist eine Umbenennung der Bibliothek.</li>
+<li><strong>Vorab-Bauprobe vor jeder Spezifikation — in der Zielumgebung.</strong> Eine Probe in
+vereinfachter Umgebung misst das falsche System und erzeugt Warnungen, die Arbeit machen statt
+sie zu sparen.</li>
+<li><strong>Die Spezifikation nennt Ziel, Zwänge und Fallstricke — nicht die
+Verschaltung.</strong> Wo sie den Beweisweg vorschreibt, verbaut sie bessere Wege.</li>
+<li><strong>Auch Spezifikationen werden begutachtet, nicht nur Bauten.</strong> Die Begutachtung
+vor dem Bau fand eine Auflagen-Lücke, verschärfte eine Grenzziehung und entschied eine offen
+weitergegebene Frage.</li>
+<li><strong>Kennzahlen-Routen dürfen nicht an Prosa hängen.</strong></li>
+<li><strong>Aggregat heißt setzungsfrei.</strong> Eine Datei kommt in den zertifizierten Bestand,
+wenn sie keine Setzung trägt — nicht wenn der Aufwand gering ist. Es ist eine Frage des
+epistemischen Signals, nicht der Arbeit.</li>
+<li><strong>Der Titel eilt dem Satz voraus.</strong> Wo gebaut wird, bevor geklärt ist, behauptet
+die Beschreibung mehr als der Bau. Dreimal in Folge musste ein Anspruchstitel geheilt werden —
+jedes Mal reiner Doc-String, nie eine Beweiszeile.</li>
+</ol>
+
+<h3>Die Mechanismen</h3>
+
+<p>Eingefrorene Axiom-Profile machen die Beweis-Grundlage zur prüfbaren Größe: einmal hat eine
+fehlschlagende Erwartungs-Wache den verborgenen klassischen Gehalt einer vorgezeichneten
+Beweis-Route offengelegt, <strong>bevor sie gebaut war</strong> — die Wache war
+Entdeckungs-Instrument, nicht Buchhaltung.</p>
+
+<p>Neu in dieser Fassung ist ein <strong>Korpus-Linter</strong>, der Regel 7 maschinell prüft. Er
+sucht Rang-Ansprüche — <em>erstmals</em>, <em>einzige</em>, <em>als erste</em> — über Markdown
+und Lean-Quellen. Sein erster Lauf bestätigte drei von vier Handheilungen und benannte eine
+Reststelle, deren Beurteilung er ausdrücklich offenließ. Daraus die Unterscheidung, die er nicht
+selbst treffen kann: ein Rang-Anspruch ist zulässig, wenn seine Bezugsmenge <strong>im selben
+Absatz benannt und endlich</strong> ist; er ist heilungsbedürftig, wenn sie der Bestand, das
+Feld oder die Literatur ist.</p>
+
+<p>Der gemeinsame Nenner ist eine <strong>Umkehr der Beweislast im eigenen Haus</strong>: nicht
+der Kritiker muss zeigen, dass eine Formulierung zu weit greift, sondern der Text muss zeigen,
+dass sie es nicht tut — und zwar maschinell, wo es geht.</p>
+
+<div class="callout">
+<p><strong>Der Beleg, dass die Prüfschichten greifen, ist die Fehlerliste dieser Phase.</strong>
+Ein widerrufener Lehrsatz; ein falscher Begründungssatz in zwei Sonden; ein Schluss von ¬∀ auf
+∀¬; eine veraltete Eichwert-Zeile in ausgerechnet dem Commit, der eine Zählroute reparierte;
+eine Aufwandsschätzung um den Faktor 35 daneben; drei überzogene Titel. <strong>Keiner dieser
+Fehler wurde von der Instanz gefunden, die ihn gemacht hat.</strong></p>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="ix">IX · Reichweite und Grenze</h2>
+
+<p>Was die Architektur beansprucht, ist konditional und wird so geführt. Sie verspricht nicht,
+den Skeptiker zur Anerkennung einer Nicht-Reduzierbarkeit zu zwingen; sie verspricht, ihn zu
+<strong>symmetrisieren</strong> — von der bequemen Position <em>das reduziert sich auf
+Bekanntes</em> auf die explizite Position <em>ich setze die eine, umfassende Logik</em>, die
+ihrerseits eine Setzung ist und als solche keinen Vorrang mehr hat.</p>
+
+<h3>Die drei Grenzen</h3>
+
+<p><strong>Erstens, mathematisch: M<sub>3</sub>.</strong> Die Charakterisierung lebt auf linear
+gestuften Trägern und fällt auf Verbänden gleichrangiger Elemente. Das ist keine Beweislücke,
+sondern ein Gegenbeispiel — und der Bruchpunkt ist genau die Verbandsgestalt, die eine
+Architektur gleichrangiger Rollen hätte. Eine Verallgemeinerung führt dorthin, wo sie
+scheitert.</p>
+
+<p><strong>Zweitens, hermeneutisch: die Identifikation.</strong> Dass die Wert-Zweiermenge
+Günthers Elementarkontextur <em>ist</em>, entscheidet kein Theorem. Diese Setzung steht auf
+begründetem Boden — die Abgeschlossenheit unter den lokalen Operationen ist ein sachlicher
+Grund, kein nachträglicher Zuschnitt —, aber sie bleibt eine Wahl.</p>
+
+<p><strong>Drittens, prinzipiell: die Spontaneität des Vollzugs.</strong> Nicht der Wille als
+Funktion, sondern allein das <em>Dass</em> des Vollzugs ist kein Strukturmerkmal; es gibt kein
+ärmeres Modell, in dem sie als Stelle fehlt, weil sie keine Stelle ist. Das Verfahren weist hier
+seine Reichweite aus, als Aussage über sich selbst.</p>
+
+<h3>Was nicht gebaut ist</h3>
+
+<p>Ein Abschluss, der das verschweigt, wäre keiner. <strong>Die Proemialrelation selbst</strong>
+— der Kern von Günthers Theorie — ist nicht formalisiert. <strong>Die Verbundkontextur</strong>
+ist als Zahlenfolge im Korpus präsent, aber nicht als Begriff gebaut. Und die
+<strong>asymmetrische Seite</strong> ist zweifach angearbeitet, wobei jede der beiden Linien eine
+Spalte offenlässt: die eine bindet alle Merkmale an einen Träger und zahlt mit einer Setzung, die
+andere tauscht die Setzung gegen den etablierten Begriff und verliert die
+Substruktur-Erhaltung.</p>
+
+<h3>Das Bild</h3>
+
+<p>Das ist die Gestalt: ein Boden, der Wiederholung zählt und dessen Normalisierung als Verfahren
+gebaut ist; Logiken, deren Trennung <strong>nicht mehr gesetzt, sondern bewiesen</strong> ist —
+in einer Form, die Günthers Grundfall standhält; ein Beweis-Modus, der seine harte Hälfte kennt
+und führt; eine Reihe von Zeugen, die von einer Existenzaussage zu einer Charakterisierung ohne
+feste Wertzahl gewachsen ist; eine achtfache Reihe, die beweisbar in ihren Grund zurückkehrt; ein
+Gate, das kein <code>sorryAx</code> mehr zu verwalten hat; und drei Grenzen, von denen keine eine
+Niederlage ist, sondern eine Ortsangabe.</p>
+
+<p><strong>Was gesetzt ist, steht am Anfang; was bewiesen ist, ist gezählt; was Deutung ist,
+heißt so.</strong></p>
+
+<!-- ===================================================================== -->
+<h2 id="anhang">Anhang · Zählrouten</h2>
+
+<p>Damit die Kennzahlen nachrechenbar sind und nicht bloß glaubwürdig, gehört zu jeder eine
+Route. Die Angaben gelten zum Commit <code>e89ab47</code>; ein Bau-Zug macht jede ausgestellte
+Zahl still veraltet, weshalb sie hier ihren Stand trägt.</p>
+
+<div class="tablewrap">
+<table class="routes">
+<thead><tr><th>Kenngröße</th><th>Route</th></tr></thead>
+<tbody>
+<tr><td>Axiom-Wachen (299)</td><td><code>grep -rc '#guard_msgs in #print axioms'</code></td></tr>
+<tr><td>Dateien mit Wachen (35)</td><td><code>grep -rl</code> derselben Zeichenkette</td></tr>
+<tr><td>axiomfreie Profile (47)</td><td><code>grep -rc 'does not depend on any axioms'</code></td></tr>
+<tr><td>Sätze korpusweit (698)</td><td><code>grep -rhcE '^(theorem|lemma) '</code></td></tr>
+<tr><td>Statement-Pins (36 in 6)</td><td><code>grep -rc '^-- STATEMENT-PIN'</code></td></tr>
+<tr><td>geprüfte Konstanten (2 984)</td><td>Build-Ausgabe des Gates</td></tr>
+<tr><td>Build-Jobs (1 267)</td><td>Build-Ausgabe</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Zwei Regeln zur Zählung.</strong> Erstens: gezählt wird mit <code>grep</code> über die
+Shell, nicht mit einer Bibliotheksfunktion, die Leerzeilen überspringt — ein Messweg-Fehler
+dieser Phase ging darauf zurück. Zweitens: <strong>Aggregat- und Korpuszahlen werden getrennt
+geführt.</strong> Das Aggregat ist der zertifizierte Import-Baum; der Korpus umfasst zusätzlich
+die Sonden, die eine markierte Setzung tragen und darum außerhalb stehen. Ihre Vermengung war
+die Ursache einer falschen Eichwert-Zeile.</p>
+
+<p class="sources">Quellen der zitierten Stellen: Günther, G. (1970), Die historische Kategorie
+des Neuen, Hegel-Jahrbuch 34–61; Günther, G. (1971), Die Theorie der „mehrwertigen“ Logik;
+Günther, G. (1968), Many-Valued Designations and a Hierarchy of First Order Ontologies. Die
+Begriffsbestimmungen folgen dem Definitionen-Verzeichnis des Projekts.</p>
+
+</main>
+
+<footer class="pagefoot">
+  <p>Fassung PKL Rev1 · Stand aller Kennzahlen: Commit <code>e89ab47</code> · Arbeitspapier,
+  nicht zur Veröffentlichung.</p>
+  <p><a href="./">Übersicht</a> · <a href="en.html">English version</a> ·
+  <a href="https://github.com/Stefan-Raffel/PKLrev1">Stefan-Raffel/PKLrev1</a></p>
+</footer>
+
+</body>
+</html>
