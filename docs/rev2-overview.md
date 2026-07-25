@@ -123,14 +123,20 @@ Medizingarantien. Bewiesen wird Nicht-Komponierbarkeit, sonst nichts.
 ### 5.4 Kenogramm-Morphogramm-Bruecke - `Reformulation/Kenogram/Morphogram.lean`
 
 Mustersemantik normalformbasiert, ueber `relabel` und RGS, konsumierend aus `Basic` und
-`Bridge`. **Kein Quotientstyp als erster Schritt** - er kommt erst nach stabilen Normalform-
-und Muster-Theoremen, wenn ueberhaupt.
+`Bridge`. **Kein Quotientstyp zu Beginn** - er kommt erst nach stabilen Normalform- und
+Muster-Theoremen, wenn ueberhaupt.
 
 ### 5.5 Doku- und CI-Ordnung
 
 `lake build` bleibt der harte Aggregatcheck, `lake build ForeignPeresMermin` der separate
 Kalibrierungscheck. Standalone-Dateien werden gelistet, aber nicht mit dem Aggregatstatus
 vermischt. README-Kennzahlen werden nachgefuehrt, sobald ein Modul ins Aggregat kommt.
+
+`doc_lint.sh` liegt in der Repo-Wurzel und prueft die Prosa auf zwei Wortgruppen:
+Rang-Ansprueche ohne Ist-Pruefung (Gruppe A) und ZFC-Rueckfaelle (Gruppe B). Ohne Argument
+laeuft er ueber das Repo, mit Pfadargument ueber Aussentexte. Er **meldet und bricht
+nicht** - ein brechender Lint wird umgangen, ein meldender wird gelesen. Die Beurteilung
+eines Treffers bleibt ausserhalb: das Skript nennt das Muster, nicht das Urteil.
 
 ---
 
@@ -140,7 +146,7 @@ vermischt. README-Kennzahlen werden nachgefuehrt, sobald ein Modul ins Aggregat 
   (Substruktur, Zweierbereich, Stufentraeger, Indexobjekt, Setzungsrand);
 - keine Diskontexturalitaet als `Disjoint` und keine als `¬ ∃ f`, gemaess `CLAUDE.md` §5;
 - keine zweite Negation als blosse Permutation;
-- kein Quotientstyp fuer Morphogramme als erster Schritt;
+- kein Quotientstyp fuer Morphogramme zu Beginn;
 - keine Sicherheits-, Rechts- oder Medizingarantie aus Nicht-Erzeugbarkeit;
 - kein neues `True`-Feld im Aggregat ohne Status und Exit-Kriterium.
 
