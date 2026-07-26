@@ -52,17 +52,22 @@ Huell-Eigenschaften, ein konsumierender Satz faengt Aenderungen in seinen Voraus
 
 Wachen stehen in eigenen Bloecken am Dateiende, nicht vor den Deklarationen.
 
-**Zaehlroute Wachen:** `grep -rE '#guard_msgs.*in #print axioms' --include='*.lean' Reformulation/`.
+Geschriebene gegen erzwungene Wachen. Nicht jede geschriebene Wache laeuft mit. Eine Wache
+in einem Modul, das von keinem Default-Target erfasst wird, erzeugt kein Bau-Ereignis; sie
+sichert nichts und sieht in jeder Kennzahl wie Sicherung aus. Beide Zahlen sind darum
+getrennt zu fuehren.
 
-*Grund (26. Juli 2026, B1-Befund):* Die naive Route `grep -r '#guard_msgs'` zaehlt **342 statt
-299**, weil die Doc-Strings in `Reformulation/Proemial.lean` den Begriff in der Prosa fuehren
-(43 Treffer). `in #print axioms` muss mitlaufen. Dieselbe Fehlerklasse wie bei den Pins unten:
-**eine Zaehlroute, die Prosa als Kriterium nimmt, ist eine Zeitbombe.**
+Route geschrieben: grep -rE '#guard_msgs.*in #print axioms' ueber Reformulation/ und
+Foreign/. Die naive Route ohne den zweiten Teil zaehlt Doc-Prosa mit und liefert einen zu
+hohen Wert.
 
-**Geschriebene gegen erzwungene Wachen.** Die Route zaehlt, was *dasteht*. Wachen in Modulen,
-die von keinem Build-Target erfasst werden, laufen nicht mit und sichern nichts. Wo die Zahl
-als Zusicherung auftritt, ist die erzwungene Teilmenge zu nennen (Stand 26. Juli 2026:
-365 geschrieben, 352 erzwungen; die 13 uebrigen liegen in drei nicht gebauten Sonden-Modulen).
+Route erzwungen: dieselbe Route, eingeschraenkt auf die Import-Huelle der Default-Targets.
+Die Anwesenheit einer .olean ist KEIN Nachweis, dass ein Modul vom Bau erfasst wird —
+Waisen tragen .olean-Dateien aus frueheren Einzelbauten. Die Import-Huelle ist die tragende
+Route.
+
+Die aktuellen Werte stehen im README, nicht hier. Eine Kennzahl gehoert in diese Datei nur
+als Beleg fuer eine Regel, an einen Commit gebunden; nie als laufender Stand.
 
 ### Deklarationszahlen: Quell-Deklarationen zaehlen
 
