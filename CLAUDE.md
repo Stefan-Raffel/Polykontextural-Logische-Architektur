@@ -52,6 +52,33 @@ Huell-Eigenschaften, ein konsumierender Satz faengt Aenderungen in seinen Voraus
 
 Wachen stehen in eigenen Bloecken am Dateiende, nicht vor den Deklarationen.
 
+**Zaehlroute Wachen:** `grep -rE '#guard_msgs.*in #print axioms' --include='*.lean' Reformulation/`.
+
+*Grund (26. Juli 2026, B1-Befund):* Die naive Route `grep -r '#guard_msgs'` zaehlt **342 statt
+299**, weil die Doc-Strings in `Reformulation/Proemial.lean` den Begriff in der Prosa fuehren
+(43 Treffer). `in #print axioms` muss mitlaufen. Dieselbe Fehlerklasse wie bei den Pins unten:
+**eine Zaehlroute, die Prosa als Kriterium nimmt, ist eine Zeitbombe.**
+
+**Geschriebene gegen erzwungene Wachen.** Die Route zaehlt, was *dasteht*. Wachen in Modulen,
+die von keinem Build-Target erfasst werden, laufen nicht mit und sichern nichts. Wo die Zahl
+als Zusicherung auftritt, ist die erzwungene Teilmenge zu nennen (Stand 26. Juli 2026:
+365 geschrieben, 352 erzwungen; die 13 uebrigen liegen in drei nicht gebauten Sonden-Modulen).
+
+### Deklarationszahlen: Quell-Deklarationen zaehlen
+
+Drei Routen liefern drei Zahlen — fuer den Kenogram-Zweig etwa 238, 132 und 128. Verbindlich
+fuer README, Ledger und Befunde ist die dritte:
+
+- **Umgebungskonstanten** — alles im `.olean`, inklusive `_proof_*`, `.match_*`, `._simp_*`.
+- **user-facing** — davon ohne `Lean.Name.isInternalDetail`.
+- **Quell-Deklarationen** (**verbindlich**) — user-facing minus die automatisch erzeugten
+  Begleiter: `.eq_def`, `.congr_simp`, `.rec`, `.recOn`, `.casesOn`, `.noConfusion*`, `.mk*`,
+  `.ctorIdx`, `._sizeOf_*`.
+
+Gemessen wird per Umgebungsabfrage (`env.constants` plus `findDeclarationRanges?`), nicht per
+`grep`. Die Satzzahl bleibt davon unberuehrt: sie laeuft weiter ueber
+`grep -rcE '^(theorem|lemma) '`.
+
 ### Statement-Pins: maschinenlesbar markieren
 
 Jeder Statement-Pin traegt unmittelbar davor die eigene Zeile

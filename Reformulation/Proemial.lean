@@ -90,7 +90,7 @@ Enthält:
 - `Proemial.DiscontexturalStratification`: Diskontexturalitäts-Setzung (Form β,
   neunte Schicht). Die emanativ/evolutiv-Trennung als GESETZTES Strukturmerkmal
   auf der Kontextur-Achse 𝒞 (analog B5/Beck-Chevalley, nicht bewiesen).
-  Struktur `DiscontexturalStratification` mit konstitutivem `discontextural : True`-
+  Struktur `DiscontexturalStratification` mit konstitutivem `discontextural_posited : True`-
   Feld (B5-`prop_field`-Muster); Bewohntheit `discontexturalStratification_nonempty`
   (Wohlgeformtheit, nicht Nicht-Existenz-Wahrheit); Anschluss `ofBewohnteSchicht`
   plus `transition_isIso_ofBewohnteSchicht` (Hebung der emanativ/evolutiv-Trennung

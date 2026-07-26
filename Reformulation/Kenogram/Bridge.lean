@@ -209,4 +209,32 @@ Erosion gewünscht ist; hier bewusst vermieden.)
 `relabel_getElem?_eq_iff`, `label_eq_iff` — und auf nichts, was die Doc-strings
 nicht benennen. Keine dritte A→B-Drift angefügt. -/
 
+/-! ## Axiom-Wachen (B2)
+
+Die gemessenen Profile der vier tragenden Saetze dieser Datei, eingefroren:
+der Bruecken-Hauptsatz in Buendel- und punktweiser Form, die Praefix-Lokalitaet
+`label_prefix_local` und das Adaequatheits-Korollar `label_relabel_agree`
+(beide ueber Nachtrag N2 aufgenommen — im Kopf-Doc nur im Fliesstext genannt und
+darum vom Backtick-Kriterium nicht gefasst). -/
+
+/-- info: 'Reformulation.Kenogram.Bridge.label_prefix_local' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms label_prefix_local
+
+/--
+info: 'Reformulation.Kenogram.Bridge.relabelStream_take_eq_canonicalize' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms relabelStream_take_eq_canonicalize
+
+/--
+info: 'Reformulation.Kenogram.Bridge.relabelStream_restrict_canonicalize' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms relabelStream_restrict_canonicalize
+
+/-- info: 'Reformulation.Kenogram.Bridge.label_relabel_agree' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms label_relabel_agree
+
 end Reformulation.Kenogram.Bridge

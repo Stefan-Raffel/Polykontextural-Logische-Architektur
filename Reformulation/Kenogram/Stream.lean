@@ -449,4 +449,47 @@ substantielle Frage strom-abhängig (offen, kein Kollaps-Beleg). -/
 example : block (fun n => n) 3 = {3} := by
   ext k; simp [block]
 
+/-! ## Axiom-Wachen (B2)
+
+Die gemessenen Profile der 12 tragenden Deklarationen dieser Datei, eingefroren.
+`firstOcc` und seine drei Spezifikations-Lemmata sind axiomfrei; ab `numDistinct`
+zieht der Strom-Zweig `Classical.choice` ueber `Finset.image`/`Finset.range` — eine
+konsumierte Mathlib-Quelle, keine Taktik dieser Datei (B1 §4.2). -/
+
+/-- info: 'Reformulation.Kenogram.Stream.IsRGSStream' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms IsRGSStream
+
+/-- info: 'Reformulation.Kenogram.Stream.RGSStream' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms RGSStream
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc' does not depend on any axioms -/
+#guard_msgs in #print axioms firstOcc
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_spec' does not depend on any axioms -/
+#guard_msgs in #print axioms firstOcc_spec
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_le_of_eq' does not depend on any axioms -/
+#guard_msgs in #print axioms firstOcc_le_of_eq
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_le' does not depend on any axioms -/
+#guard_msgs in #print axioms firstOcc_le
+
+/-- info: 'Reformulation.Kenogram.Stream.numDistinct' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms numDistinct
+
+/-- info: 'Reformulation.Kenogram.Stream.label' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms label
+
+/-- info: 'Reformulation.Kenogram.Stream.relabelStream' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabelStream
+
+/-- info: 'Reformulation.Kenogram.Stream.label_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms label_eq_iff
+
+/-- info: 'Reformulation.Kenogram.Stream.relabelStream_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabelStream_eq_iff
+
+/-- info: 'Reformulation.Kenogram.Stream.kenogram_no_reduction_basis' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms kenogram_no_reduction_basis
+
 end Reformulation.Kenogram.Stream

@@ -17,12 +17,12 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | Kennzahl | Wert |
 |---|---:|
 | geprueft (AxiomGate) | 2984 Konstanten |
-| Axiom-Wachen | 299 ueber 35 Dateien |
+| Axiom-Wachen | 365 ueber 40 Dateien |
 | Saetze gesamt | 698 |
 | Build-Jobs | 1267 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `c576b57`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `HASHPLATZHALTER`.
 
 ---
 
@@ -65,9 +65,16 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 299 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 365 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
+
+Zu lesen mit einer Einschraenkung: von den 365 Wachen erzwingt `lake build` **352**
+(in 37 Dateien). Die uebrigen 13 stehen in drei Modulen, die von keinem Build-Target
+erfasst werden (`Proemial/AsymmetricDiscontexturality.lean`,
+`Proemial/TowerAsymmetryProbe.lean`,
+`Proemial/AsymmetricDiscontexturalTransition.lean`) und laufen daher nicht mit.
+365 ist die Zahl der geschriebenen, 352 die der erzwungenen Wachen.
 
 ---
 

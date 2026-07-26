@@ -151,7 +151,13 @@ theorem badAt_of_lt {l : List ℕ} {i : ℕ} (h : i < l.length) :
     badAt l i ↔ (l[i] > (l.take i).foldr max 0 + 1) ∨ (i = 0 ∧ l[i] ≠ 0) := by
   unfold badAt; rw [getElem!_pos l i h]
 
-/-- Keine Verletzung an irgendeiner Position ⟺ RGS. Brücke zu `isRGS_iff`. -/
+/-- Keine Verletzung an irgendeiner Position ⟺ RGS. Brücke zu `isRGS_iff`.
+
+**Classical-Vermeidung (B2).** Die drei früheren `push Not`-Schritte zogen
+`Classical.not_not` und damit `Classical.choice` in die ganze Naht (`badAt` ist
+über `instDecidableBadAt` entscheidbar, die Negationen brauchen also keine
+klassische Logik). Ersetzt durch `not_or` (intuitionistisch), `Nat.not_lt` und
+`Decidable.not_not` — alle drei axiomfrei. -/
 theorem no_badAt_iff_isRGS (l : List ℕ) :
     (∀ i, i < l.length → ¬ badAt l i) ↔ IsRGS l := by
   rw [isRGS_iff]
@@ -160,29 +166,26 @@ theorem no_badAt_iff_isRGS (l : List ℕ) :
     refine ⟨fun h0 => ?_, fun i hi => ?_⟩
     · have := H 0 h0
       rw [badAt_of_lt h0] at this
-      push Not at this
       simp only [List.get_eq_getElem]
-      exact this.2 rfl
+      exact Decidable.not_not.mp (fun hne => this (Or.inr ⟨rfl, hne⟩))
     · have hlt : i + 1 < l.length := hi
       have := H (i + 1) hlt
       rw [badAt_of_lt hlt] at this
-      push Not at this
       simp only [List.get_eq_getElem]
-      exact this.1
+      exact Nat.not_lt.mp (fun hgt => this (Or.inl hgt))
   · rintro ⟨h0, hrest⟩ i hi
-    rw [badAt_of_lt hi]
-    push Not
+    rw [badAt_of_lt hi, not_or]
     constructor
-    · cases i with
+    · refine Nat.not_lt.mpr ?_
+      cases i with
       | zero =>
         have : l[0] = 0 := by simpa [List.get_eq_getElem] using h0 hi
         simp [this]
       | succ k =>
         have := hrest k hi
         simpa [List.get_eq_getElem] using this
-    · intro hi0
-      subst hi0
-      simpa [List.get_eq_getElem] using h0 hi
+    · rintro ⟨rfl, hne⟩
+      exact hne (by simpa [List.get_eq_getElem] using h0 hi)
 
 /-- `firstBad l = none` ⟺ keine Verletzung ⟺ RGS. -/
 theorem firstBad_none_iff (l : List ℕ) : firstBad l = none ↔ IsRGS l := by
@@ -221,7 +224,10 @@ theorem step_exists_iff (l : List ℕ) : (∃ l', Step l l') ↔ ¬ IsRGS l := b
 theorem isNormalForm_iff_isRGS (l : List ℕ) : isNormalForm l ↔ IsRGS l := by
   unfold isNormalForm
   rw [step_exists_iff]
-  exact not_not
+  -- `Decidable.not_not` statt `not_not` (B2): `IsRGS` ist über
+  -- `instDecidablePredListNatIsRGS` entscheidbar, die Doppelnegation braucht
+  -- keine klassische Logik.
+  exact Decidable.not_not
 
 /-! ## Teil 3a — Muster-Erhaltung, `relabel`-Invarianz, Konfluenz -/
 
@@ -571,19 +577,89 @@ theorem step_two_step_witness :
   · exact ⟨⟨2, by decide, by decide⟩, by rw [← stepFn'_eq_stepFn]; decide⟩
   · decide
 
--- Axiom-Sauberkeit der Kern-Sätze (kein `sorryAx`).
-#print axioms isNormalForm_iff_isRGS
-#print axioms soundness
-#print axioms nf_unique
-#print axioms step_wf
-#print axioms relabel_is_normalForm
-#print axioms normalForm_iff_eq_relabel
--- Teil 7 (Beleg-Nähte): `firstBad'`/`stepFn'` Classical-frei (nur `propext`); die
--- Koinzidenz- und Zeugen-Sätze erben `Classical.choice` vom noncomputable `firstBad`.
-#print axioms firstBad'
-#print axioms stepFn'
-#print axioms firstBad'_eq_firstBad
-#print axioms stepFn'_eq_stepFn
-#print axioms step_two_step_witness
+/-! ## Axiom-Wachen (B2)
+
+Die gemessenen Profile der 23 tragenden Deklarationen dieser Datei, eingefroren.
+Sie ersetzen die elf frueheren nackten `#print axioms`-Aufrufe, die Profile
+erzeugten, aber nichts sicherten.
+
+**Classical-Vermeidung.** `no_badAt_iff_isRGS` und `isNormalForm_iff_isRGS` zogen
+`Classical.choice` ueber `push Not` bzw. `not_not`. Beide Praedikate sind
+entscheidbar (`instDecidableBadAt`, `instDecidablePredListNatIsRGS`); ersetzt durch
+`not_or`, `Nat.not_lt` und `Decidable.not_not` (alle drei axiomfrei). Vier Saetze
+sind dadurch klassikfrei geworden: die beiden geheilten sowie `firstBad_none_iff`
+und `step_exists_iff`, die ihren Choice ausschliesslich geerbt hatten.
+`soundness`, `relabel_is_normalForm` und `normalForm_iff_eq_relabel` bleiben
+klassisch — sie haben zusaetzlich externe Traeger (`Classical.choose` ueber
+`Nat.find`-Umgebung, `List.findIdx?_eq_some_iff_getElem`, `lt_or_eq_of_le`). -/
+
+/-- info: 'Reformulation.Kenogram.swapVals' does not depend on any axioms -/
+#guard_msgs in #print axioms swapVals
+
+/-- info: 'Reformulation.Kenogram.Step' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Step
+
+/-- info: 'Reformulation.Kenogram.no_badAt_iff_isRGS' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms no_badAt_iff_isRGS
+
+/-- info: 'Reformulation.Kenogram.firstBad_none_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms firstBad_none_iff
+
+/-- info: 'Reformulation.Kenogram.step_exists_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms step_exists_iff
+
+/-- info: 'Reformulation.Kenogram.isNormalForm_iff_isRGS' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isNormalForm_iff_isRGS
+
+/-- info: 'Reformulation.Kenogram.step_length' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms step_length
+
+/-- info: 'Reformulation.Kenogram.step_preserves_pattern' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms step_preserves_pattern
+
+/-- info: 'Reformulation.Kenogram.relabel_swapVals' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_swapVals
+
+/-- info: 'Reformulation.Kenogram.nf_unique' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms nf_unique
+
+/-- info: 'Reformulation.Kenogram.le_foldr_max' depends on axioms: [propext] -/
+#guard_msgs in #print axioms le_foldr_max
+
+/-- info: 'Reformulation.Kenogram.swapVals_take_eq' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms swapVals_take_eq
+
+/-- info: 'Reformulation.Kenogram.step_no_bad_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms step_no_bad_le
+
+/-- info: 'Reformulation.Kenogram.step_mu_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms step_mu_lt
+
+/-- info: 'Reformulation.Kenogram.step_wf' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms step_wf
+
+/-- info: 'Reformulation.Kenogram.soundness' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms soundness
+
+/-- info: 'Reformulation.Kenogram.relabel_is_normalForm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_is_normalForm
+
+/-- info: 'Reformulation.Kenogram.normalForm_iff_eq_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms normalForm_iff_eq_relabel
+
+/-- info: 'Reformulation.Kenogram.firstBad'' depends on axioms: [propext] -/
+#guard_msgs in #print axioms firstBad'
+
+/-- info: 'Reformulation.Kenogram.firstBad'_eq_firstBad' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms firstBad'_eq_firstBad
+
+/-- info: 'Reformulation.Kenogram.stepFn'' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stepFn'
+
+/-- info: 'Reformulation.Kenogram.stepFn'_eq_stepFn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms stepFn'_eq_stepFn
+
+/-- info: 'Reformulation.Kenogram.step_two_step_witness' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms step_two_step_witness
 
 end Reformulation.Kenogram

@@ -835,4 +835,79 @@ example : IsRGS [0, 0] ∧ IsRGS [0, 1] := by decide
 /-- K-7 positiv: es gibt genau zwei Länge-2-Morphogramme (= B(2)). -/
 example : Fintype.card (RGS 2) = 2 := by decide
 
+/-! ## Axiom-Wachen (B2)
+
+Die gemessenen Profile der 22 tragenden Deklarationen dieser Datei, eingefroren.
+Traegerauswahl nach den Kriterien der B1-Abnahme: konsumiert ausserhalb der eigenen
+Datei (korpusweit, inklusive der Standalone-Sonden), im Kopf-Doc als Ertrag
+ausgewiesen, oder Nachtrag N2. `Classical.choice` steht hier, wo `Finset`- und
+`Finpartition`-Maschinerie konsumiert wird; die Choice-Analyse (B1 §4) hat das als
+extern und nicht vermeidbar ausgewiesen. -/
+
+/-- info: 'Reformulation.Kenogram.isRGSAux' does not depend on any axioms -/
+#guard_msgs in #print axioms isRGSAux
+
+/-- info: 'Reformulation.Kenogram.IsRGS' does not depend on any axioms -/
+#guard_msgs in #print axioms IsRGS
+
+/-- info: 'Reformulation.Kenogram.instDecidablePredListNatIsRGS' does not depend on any axioms -/
+#guard_msgs in #print axioms instDecidablePredListNatIsRGS
+
+/-- info: 'Reformulation.Kenogram.isRGS_cons_concat' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isRGS_cons_concat
+
+/-- info: 'Reformulation.Kenogram.rgsList' does not depend on any axioms -/
+#guard_msgs in #print axioms rgsList
+
+/-- info: 'Reformulation.Kenogram.mem_rgsList_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms mem_rgsList_iff
+
+/-- info: 'Reformulation.Kenogram.RGS' does not depend on any axioms -/
+#guard_msgs in #print axioms RGS
+
+/-- info: 'Reformulation.Kenogram.instDecidableEqRGS' does not depend on any axioms -/
+#guard_msgs in #print axioms instDecidableEqRGS
+
+/-- info: 'Reformulation.Kenogram.instFintypeRGS' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms instFintypeRGS
+
+/-- info: 'Reformulation.Kenogram.isRGS_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isRGS_iff
+
+/-- info: 'Reformulation.Kenogram.relabel' does not depend on any axioms -/
+#guard_msgs in #print axioms relabel
+
+/-- info: 'Reformulation.Kenogram.relabel_length' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms relabel_length
+
+/-- info: 'Reformulation.Kenogram.foldr_max_append_singleton' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms foldr_max_append_singleton
+
+/-- info: 'Reformulation.Kenogram.isRGS_concat' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isRGS_concat
+
+/-- info: 'Reformulation.Kenogram.relabel_isRGS' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_isRGS
+
+/-- info: 'Reformulation.Kenogram.relabel_getElem?_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_getElem?_eq_iff
+
+/-- info: 'Reformulation.Kenogram.rgs_unique_of_pattern' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms rgs_unique_of_pattern
+
+/-- info: 'Reformulation.Kenogram.relabel_eq_self_of_isRGS' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_eq_self_of_isRGS
+
+/-- info: 'Reformulation.Kenogram.canonicalize' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms canonicalize
+
+/-- info: 'Reformulation.Kenogram.partitionToRGS' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms partitionToRGS
+
+/-- info: 'Reformulation.Kenogram.canonicalize_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms canonicalize_eq_iff
+
+/-- info: 'Reformulation.Kenogram.rgs_equiv_partition' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms rgs_equiv_partition
+
 end Reformulation.Kenogram

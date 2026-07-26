@@ -221,7 +221,7 @@ theorem succ_noreturn_witness :
 
 /-- **Zeuge zu Beweisart 6.** Die gesetzte Diskontexturalitäts-Struktur ist
     bewohnt (`Discontextural.discontexturalStratification_nonempty`). NICHT
-    mehr: das `discontextural`-Feld ist ein `True`-Setzungs-Feld nach dem
+    mehr: das `discontextural_posited`-Feld ist ein `True`-Setzungs-Feld nach dem
     B5-Muster; seine Bewohntheit beweist keine Nicht-Internalität. Genau
     darum trägt dieser Zeuge `PositedWitness` und keinen der Beweisart-Typen
     1–5. -/

@@ -15,7 +15,7 @@ Drei Teile:
 
 1. **Setzungs-Struktur** `DiscontexturalStratification`: die emanativ/evolutiv-
    Trennung als gesetztes Strukturmerkmal auf der Kontextur-Achse 𝒞. Das
-   Feld `discontextural` ist ein KONSTITUTIVES Setzungs-Feld nach dem
+   Feld `discontextural_posited` ist ein KONSTITUTIVES Setzungs-Feld nach dem
    B5-`prop_field`-Muster (`Reformulation.F3d.ModalTwoCategoryWithNegations.
    negTau_trivial_at_K1 : True`), kein Beweis-Soll.
 2. **Bewohntheit** `discontexturalStratification_nonempty`: die Setzung ist
@@ -34,7 +34,7 @@ Drei Teile:
 Die größte Gefahr der Niederlegung wäre, versehentlich ein BEWEISBARES
 Nicht-Existenz-Statement zu bauen (`¬ ∃ o-path, …` — „es gibt keine
 𝒪-Faktorisierung"). Das wäre Form (α), gegen die Spec, intra-kontextural
-nicht baubar und ein Selbstwiderspruch. Das `discontextural`-Feld ist
+nicht baubar und ein Selbstwiderspruch. Das `discontextural_posited`-Feld ist
 stattdessen KONSTITUTIV: die Instanz *hat* es (wie B5), es folgt nicht aus
 der Instanz. Kein `¬∃`-Faktorisierungs-Statement tritt in dieser Datei auf.
 
@@ -43,7 +43,7 @@ der Instanz. Kein `¬∃`-Faktorisierungs-Statement tritt in dieser Datei auf.
 **B-1 (positiv) — B5-`prop_field`-Muster trägt direkt:** B5 wird in der
 Drei-Negationen-Form (`F3d/Negations.lean`) als `negTau_trivial_at_K1 : True`
 geführt — ein konstitutives `True`-Setzungs-Feld, kein Beweis-Soll. Die
-Wahl `discontextural : True` (statt eines freien `discontextural : Prop`-
+Wahl `discontextural_posited : True` (statt eines freien `discontextural_posited : Prop`-
 Daten-Felds) trifft dieses Muster exakt: die Instanz trägt es trivial
 (`trivial`), es ist gesetzt, nicht beweisbedürftig.
 
@@ -61,13 +61,13 @@ private und nicht über den Namespace sichtbar.
 
 ## Sorry-Bilanz
 
-- Teil 1 (Setzungs-Struktur): 0 Sorries — das `discontextural`-Feld ist
+- Teil 1 (Setzungs-Struktur): 0 Sorries — das `discontextural_posited`-Feld ist
   konstitutiv (`True`), kein Beweis-Soll.
 - Teil 2 (Bewohntheit): 0 Sorries.
 - Teil 3 (Anschluss): 0 Sorries.
 - Gesamt: 0 Sorries.
 
-Ein Sorry im `discontextural`-Feld selbst wäre ein Befund GEGEN die Form
+Ein Sorry im `discontextural_posited`-Feld selbst wäre ein Befund GEGEN die Form
 (ein versehentliches Form-α-Kippen) — es tritt nicht auf.
 
 ## Konditionalitäts-Markierung (Baubarkeit jetzt, Beglaubigung nachgelagert)
@@ -113,7 +113,7 @@ private abbrev BCData := Reformulation.Proemial.Substantial.BeckChevalley.Substa
     Nicht-Intra-Kontexturalität wäre ein Selbstwiderspruch), sondern
     Grundverfassung (Günther, *Life as Polycontexturality*).
 
-    Das Feld `discontextural` ist die Setzungs-Markierung: ein konstitutives
+    Das Feld `discontextural_posited` ist die Setzungs-Markierung: ein konstitutives
     `True`-Datum nach dem B5-`prop_field`-Muster
     (`F3d.ModalTwoCategoryWithNegations.negTau_trivial_at_K1 : True`). Die
     Instanz *hat* es (trägt es trivial), es folgt NICHT aus der Instanz —
@@ -134,7 +134,7 @@ structure DiscontexturalStratification (𝒞 : Type*) [Category 𝒞] where
   `negTau_trivial_at_K1` (`prop_field`-Muster). Diskontexturalität ist
   intra-kontextural nicht beweisbar (Selbstwiderspruch); das Feld ist
   konstitutiv, kein Beweis-Soll, KEIN `¬∃`-Faktorisierungs-Statement. -/
-  discontextural : True
+  discontextural_posited : True
 
 -- ============================================================
 -- Teil 2 — Bewohntheit (die Setzung ist wohlgeformt)
@@ -145,7 +145,7 @@ structure DiscontexturalStratification (𝒞 : Type*) [Category 𝒞] where
     Kontexturen (hier `PUnit`) und einem Übergang (`𝟙 PUnit`).
 
     Bewohntheit zeigt die WOHLGEFORMTHEIT der Setzung, NICHT die Wahrheit
-    eines Nicht-Existenz-Satzes: das `discontextural`-Feld wird hier mit
+    eines Nicht-Existenz-Satzes: das `discontextural_posited`-Feld wird hier mit
     `trivial` getragen (wie B5s `True`-Feld), nicht aus einem `¬∃` erschlossen.
     Beglaubigung bleibt nachgelagert. -/
 theorem discontexturalStratification_nonempty :
@@ -153,7 +153,7 @@ theorem discontexturalStratification_nonempty :
   ⟨{ emanative := PUnit
      evolutive := PUnit
      transition := 𝟙 PUnit
-     discontextural := trivial }⟩
+     discontextural_posited := trivial }⟩
 
 -- ============================================================
 -- Teil 3 — Anschluss an das Schicht-Selektions-Theorem
@@ -184,7 +184,7 @@ theorem discontexturalStratification_nonempty :
     (zwei Objekte + Übergang in einer Kategorie).
 
     Die Setzung HEBT (sie ersetzt das Schicht-Selektions-Theorem nicht); das
-    `discontextural`-Feld bleibt konstitutiv (`trivial`, GESETZT analog B5). -/
+    `discontextural_posited`-Feld bleibt konstitutiv (`trivial`, GESETZT analog B5). -/
 noncomputable def ofBewohnteSchicht
     {S K : Type*} [Category S] [Category K]
     (PAS : ProemialAdjunctionSubstantial S K)
@@ -193,7 +193,7 @@ noncomputable def ofBewohnteSchicht
   emanative := s
   evolutive := (PAS.L ⋙ PAS.R).obj s
   transition := PAS.adj.unit.app s
-  discontextural := trivial
+  discontextural_posited := trivial
 
 /-- Die emanativ-reversible Eigenschaft der Hebung: bei vorliegender
     BC-Instanz ist der gehobene Übergang `transition` REVERSIBEL (iso) — die
@@ -206,7 +206,7 @@ noncomputable def ofBewohnteSchicht
     er macht emanative und evolutive Objekt zugleich ISOMORPH und sagt nichts
     über die evolutiv-IRREVERSIBLE Seite (den eigentlichen diskontexturalen
     Bruch). Das Theorem hebt die Reversibilitäts-Substanz, nicht die
-    Irreversibilitäts-Substanz. Das `discontextural`-Feld wird NICHT verwendet
+    Irreversibilitäts-Substanz. Das `discontextural_posited`-Feld wird NICHT verwendet
     (es ist gesetzt, nicht beweis-tragend). -/
 theorem transition_isIso_ofBewohnteSchicht
     {S K : Type*} [Category S] [Category K]
@@ -214,5 +214,32 @@ theorem transition_isIso_ofBewohnteSchicht
     (BC : BCData S K PAS) (s : S) :
     IsIso (ofBewohnteSchicht PAS s).transition :=
   unit_isIso_of_bcData BC s
+
+/-! ## Axiom-Wachen (B2)
+
+Die gemessenen Profile der fuenf Deklarationen dieser Datei, eingefroren. Die
+Setzungs-Struktur, ihr Setzungs-Feld und die Bewohntheit sind axiomfrei; der
+Anschluss erbt `Classical.choice` aus dem F-3.6-Unterbau. Eine Wache ist
+Driftschutz und keine Ertragsmarke: dass `discontextural_posited` gesetzt und
+nicht bewiesen ist, sagt der Doc-String, nicht die Wache. -/
+
+/-- info: 'Reformulation.Proemial.Discontextural.DiscontexturalStratification' does not depend on any axioms -/
+#guard_msgs in #print axioms DiscontexturalStratification
+
+/-- info: 'Reformulation.Proemial.Discontextural.DiscontexturalStratification.discontextural_posited' does not depend on any axioms -/
+#guard_msgs in #print axioms DiscontexturalStratification.discontextural_posited
+
+/-- info: 'Reformulation.Proemial.Discontextural.discontexturalStratification_nonempty' does not depend on any axioms -/
+#guard_msgs in #print axioms discontexturalStratification_nonempty
+
+/-- info: 'Reformulation.Proemial.Discontextural.ofBewohnteSchicht' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms ofBewohnteSchicht
+
+/--
+info: 'Reformulation.Proemial.Discontextural.transition_isIso_ofBewohnteSchicht' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms transition_isIso_ofBewohnteSchicht
 
 end Reformulation.Proemial.Discontextural
