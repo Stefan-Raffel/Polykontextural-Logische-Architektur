@@ -216,15 +216,42 @@ behauptet weniger, als sie zu behaupten scheint - das ist kein Fehler, aber es m
 
 ---
 
-## 10 - Aggregat heisst setzungsfrei
+## 10 - Kein Satz des Aggregats haengt an einer Setzung
 
-Eine Datei kommt in das zertifizierte Aggregat (den Import-Baum, den das AxiomGate prueft),
-wenn sie **keine Setzung traegt**: kein `: True`-Feld, das eine Deutung vertritt, und keine
-Abhaengigkeit von einer Sonde, die eines traegt.
+Kein Satz des Aggregats haengt an einer Setzung.
 
-**Der Grund ist nicht der Aufwand, sondern das epistemische Signal.** Was im Aggregat steht,
-liest sich als zertifizierter Bestand; eine markierte Setzung darin wird als Anspruch gelesen
-statt als Markierung.
+Das ist die tragende Regel, nicht "das Aggregat enthaelt keine Setzung". Der Unterschied
+ist gemessen: das Aggregat traegt 32 Strukturfelder vom Typ True, und genau zwei
+Aggregatkonstanten referenzieren eine solche Feld-Projektion — beide mit der Aussage True.
+Ein Feld vom Typ True kann in keinen Beweis eingehen; es verletzt das Schutzziel nicht.
+
+Pruefbar ist die Regel am Axiomabschluss, also dort, wo das AxiomGate ohnehin misst.
+
+Setzungen zerfallen in zwei Klassen, die nicht dasselbe sagen:
+
+- Platzhalter: eine verschobene Beweisschuld. Der Doc-String sagt "placeholder" oder
+  Gleichwertiges. Ein Platzhalter braucht ein Exit-Kriterium: was muesste vorliegen, damit
+  er faellt. 30 der 32 Felder sind Platzhalter.
+- Konstitutive Setzung: kein Beweis-Soll. Der Doc-String sagt es ausdruecklich. Eine
+  konstitutive Setzung braucht keine Exit-Bedingung, wohl aber eine Begruendung, warum sie
+  keine hat. Zwei der 32 Felder sind konstitutiv:
+  Proemial.DiscontexturalStratification.discontextural_posited und
+  Proemial.ContexturalTransjunction.CharacterizedPosit.contexturePartitionGenuine.
+
+Wer ein neues Setzungsfeld anlegt, benennt seine Klasse im Feld-Doc. Ein Feld ohne
+Klassenangabe ist ein Mangel, kein Sonderfall.
+
+*Zaehlroute und Stand:* die 32 sind der Aggregat-Importbaum am Commit `284995b`, gemessen
+per Umgebungsabfrage ueber `getStructureFields` und `env.getProjectionFnInfo?` mit
+`forallBoundedTelescope` auf die Projektions-Stelligkeit — nicht per `grep`, und nicht
+ueber `forallTelescopeReducing`, das `Set X = X → Prop` faelschlich als `Prop`-Feld zaehlt.
+Am selben Stand: null Felder, deren Typ erst per `whnf` zu `True` reduziert, und null
+Felder vom Typ `Prop`.
+
+### Ablage: wo eine Datei hingehoert
+
+Davon zu unterscheiden ist die **Ablagekonvention**. Sie regelt nicht, was gelten darf,
+sondern wo eine Datei liegt:
 
 - **setzungsfrei bedeutet Aggregat.** Beispiele: `ContextureOverlap`, `RegimeThreshold` -
   sie konsumieren nur Aggregat-Inhalt und arbeiten auf dem etablierten Kontexturbegriff.
@@ -237,6 +264,6 @@ die standalone Datei **konsumiert** - oder die Aufloesung der Setzung durch eine
 Bis dahin ist die Standalone-Lage nicht ein Zwischenzustand vor der eigentlichen Aufnahme,
 sondern die dem Status angemessene Verortung.
 
-*Praezisierung:* Das Aggregat traegt bereits eine markierte Setzung
-(`DiscontexturalStratification`). Das Problem ist nie das Feld an sich, sondern der
-Anspruchstitel darueber.
+Die Konvention ist eine Ordnungsregel, keine Geltungsregel: dass das Aggregat an 32 Stellen
+Setzungen traegt, verletzt sie nicht rueckwirkend. Neu angelegte setzungstragende Dateien
+gehen standalone, solange kein Aggregat-Satz sie konsumiert.
