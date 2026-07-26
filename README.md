@@ -24,6 +24,20 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `b778031`.
 
+Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
+dabei:
+
+| Kennzahl | Bereich, ueber den sie laeuft |
+|---|---|
+| geprueft (AxiomGate) | Konstanten aus dem Importbaum von `Reformulation`, namensgefiltert auf `Reformulation.*` — nicht der Dateibaum |
+| Axiom-Wachen | `Reformulation/` **und** `Foreign/` |
+| Saetze gesamt | `Reformulation/` **allein** |
+| Build-Jobs | die Default-Targets (`Reformulation`, `AxiomGate`, `DefinitionLedger`); `ForeignPeresMermin` laeuft nur auf eigenen Ruf |
+| Quellbestand (Dateien) | `Reformulation/` und `Foreign/` |
+
+Die Bereiche werden **benannt, nicht vereinheitlicht**: sie unterscheiden sich, weil die
+Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
+
 ---
 
 ## Struktur
@@ -37,6 +51,11 @@ Kennzahlen gezaehlt am gruenen Build, Stand Commit `b778031`.
 | `F3a`-`F3g/` | 38 | 71 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
+
+**Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
+Widerspruch, sondern der Bereich: die 706 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
+des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
 
 Zwei Module tragen die schaerfsten Aussagen des Korpus:
 

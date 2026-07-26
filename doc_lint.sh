@@ -21,9 +21,16 @@
 #   - ohne Argument      → Default = das Repo (Verzeichnis dieses Skripts).
 #   - mit Argument       → doc_lint.sh <pfad>  läuft über <pfad> (Außentexte).
 #
-# Exit-Code  [Nachtrag (2c)]:
-#   - IMMER 0. Der Lint MELDET, er BRICHT nicht. (Ein brechender Lint wird
-#     umgangen; ein meldender wird gelesen.)
+# Exit-Code  [Nachtrag (2c); geändert mit dem Kennzahl-Konsistenz-Zug]:
+#   - Gruppen (A) und (B) MELDEN und beeinflussen den Exit-Code nicht. Ein
+#     Rang-Anspruch ist Ermessenssache und will gelesen, nicht erzwungen werden;
+#     ein brechender Lint wird umgangen, ein meldender wird gelesen.
+#   - Gruppe (C) BRICHT: mindestens ein Verstoß gegen R3 bis R8 setzt Exit 1.
+#     Dort ist nichts zu ermessen — ein Widerspruch zwischen der Ledger-Tabelle
+#     und der Referenzdatei, eine fehlende Referenz, eine doppelte Zeilen-ID
+#     sind objektiv falsch, und wer sie stehen lässt, veröffentlicht eine
+#     ungeprüfte Tabelle.
+#   - Der Report sagt am Ende, welcher Code aus welchem Grund gesetzt wird.
 #
 # Hinweis zur Herkunft: es lag keine Basis-`doc_lint.sh` vor; Gruppe (A) ist
 # aus der dokumentierten Hausregel rekonstruiert und bewusst konservativ
@@ -187,6 +194,7 @@ ledger_report() {
       if (r3 + r4 + r5 + r6 == 0) print "  (keine Verstöße in R3–R6)"
       printf "  ── %d Zeilen geprüft; R3 %d, R4 %d, R5 %d, R6 %d; Paragraphen %d von 19\n", \
              n + 0, r3 + 0, r4 + 0, r5 + 0, r6 + 0, k
+      if (r3 + r4 + r5 + r6 > 0) exit 1
     }
   ' "${LEDGER}"
 }
@@ -232,8 +240,7 @@ ledger7_report() {
     # ---- Datei 2: die Referenzdatei ------------------------------------------
     /^#ledger_(theorem|def|setzung) / {
       id = $2; gsub(/"/, "", id)
-      if (id in leanCmd) { printf "  %s  [R7] Referenz doppelt in der Referenzdatei\n", id; v++ }
-      else { leanOrd[++leanN] = id }
+      if (!(id in leanCmd)) { leanOrd[++leanN] = id }   # Doppelte meldet R8
       leanCmd[id] = $1; leanName[id] = $3
     }
     END {
@@ -269,9 +276,56 @@ ledger7_report() {
       if (v + 0 == 0) print "  (keine Verstöße in R7)"
       printf "  ── R7 %d Verstöße; %d abgeglichene Paare (Tabelle %d, Referenzdatei %d)\n", \
              v + 0, paare + 0, mdN + 0, leanN + 0
+      if (v + 0 > 0) exit 1
     }
   ' "${LEDGER}" "${LEDGER_LEAN}"
 }
+
+# --- (C) Regel R8: Eindeutigkeit der Zeilen-IDs -----------------------------
+# Eine doppelte ID entsteht beim Einfügen einer Zeile leicht, und sie ist
+# tückisch: R7 hält je ID einen Eintrag, die zweite überschreibt die erste, und
+# eine Zeile bliebe still ungeprüft. R8 zählt darum jede ID in beiden Dateien
+# und nennt bei einer Doppelung beide Fundstellen.
+ledger8_report() {
+  if [ ! -f "${LEDGER}" ] || [ ! -f "${LEDGER_LEAN}" ]; then
+    echo "  (Tabelle oder Referenzdatei liegt nicht in diesem Bereich — R8 nicht geprüft)"
+    return 0
+  fi
+  awk '
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    NR == FNR {
+      if ($0 ~ /^\| L[0-9][0-9]-[0-9] \|/) {
+        split($0, c, "|"); id = trim(c[2])
+        if (id in mdLine) {
+          printf "  %s  [R8] Zeilen-ID doppelt in der Tabelle — Zeile %d und Zeile %d\n", \
+                 id, mdLine[id], FNR
+          v++
+        } else { mdLine[id] = FNR; mdN++ }
+      }
+      next
+    }
+    /^#ledger_(theorem|def|setzung) / {
+      id = $2; gsub(/"/, "", id)
+      if (id in lnLine) {
+        printf "  %s  [R8] Referenz doppelt in der Referenzdatei — Zeile %d und Zeile %d\n", \
+               id, lnLine[id], FNR
+        v++
+      } else { lnLine[id] = FNR; lnN++ }
+    }
+    END {
+      if (v + 0 == 0) print "  (keine Verstöße in R8)"
+      printf "  ── R8 %d Verstöße; %d eindeutige IDs in der Tabelle, %d in der Referenzdatei\n", \
+             v + 0, mdN + 0, lnN + 0
+      if (v + 0 > 0) exit 1
+    }
+  ' "${LEDGER}" "${LEDGER_LEAN}"
+}
+
+# Gruppe (C) vorab fahren: ihre Rückgabecodes bestimmen den Exit-Code des Laufs.
+C_RC=0
+BLOCK_C1="$(ledger_report)"  || C_RC=1
+BLOCK_C2="$(ledger7_report)" || C_RC=1
+BLOCK_C3="$(ledger8_report)" || C_RC=1
 
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
@@ -293,9 +347,18 @@ echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten · R6 Trägerstatus
 echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"
 echo "     R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in"
 echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."
-ledger_report
-ledger7_report
+echo "     R8 jede Zeilen-ID kommt in beiden Dateien genau einmal vor."
+printf '%s\n' "$BLOCK_C1"
+printf '%s\n' "$BLOCK_C2"
+printf '%s\n' "$BLOCK_C3"
 echo
-echo "── Ende Report.  Exit 0 (Report, kein Bruch). ────────────────────────────────"
+
+if [ "${C_RC}" -ne 0 ]; then
+  echo "── Ende Report.  Exit 1: Gruppe (C) meldet mindestens einen Verstoß. ─────────"
+  echo "   (A) und (B) beeinflussen den Exit-Code nicht — sie melden."
+  exit 1
+fi
+echo "── Ende Report.  Exit 0: Gruppe (C) ohne Verstoß. ───────────────────────────"
+echo "   (A) und (B) melden nur; ihre Treffer setzen keinen Exit-Code."
 
 exit 0

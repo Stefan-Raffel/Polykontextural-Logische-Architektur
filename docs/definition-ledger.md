@@ -14,15 +14,21 @@ Datei.
 
 ## Bauzustand, auf den sich diese Tabelle bezieht
 
-| Kennzahl | Wert |
-|---|---:|
-| geprüfte Konstanten (AxiomGate) | 3006 |
-| Axiom-Wachen, geschrieben | 372 über 41 Dateien |
-| Axiom-Wachen, vom Bau erzwungen | 359 über 38 Dateien |
-| Sätze gesamt | 706 |
-| Statement-Pins | 36 |
-| Build-Jobs | 1273 |
-| ausgewiesene Lücken | 0, Whitelist leer |
+Nur die Kennzahlen, die eine Spalte dieser Tabelle stützen. Was hier nicht steht — Sätze,
+Statement-Pins, Build-Jobs —, stützt keine Spalte und steht im `README.md`.
+
+| Kennzahl | Wert | Route |
+|---|---:|---|
+| geprüfte Konstanten (AxiomGate) | 3006 | Aggregat-Importbaum von `Reformulation`, gemessen vom `AxiomGate` beim Bau |
+| Axiom-Wachen, geschrieben | 372 über 41 Dateien | `grep -rE '#guard_msgs.*in #print axioms'` über **`Reformulation/` allein** — die Route, die zum Stand `e69fb16` galt |
+| Axiom-Wachen, vom Bau erzwungen | 359 über 38 Dateien | dieselbe Route, eingeschränkt auf die Import-Hülle der Default-Targets |
+| ausgewiesene Lücken | 0, Whitelist leer | `AxiomGate`-Zeile des grünen Baus |
+
+**Die Zahlen dieser Tafel hängen an Commit *und* Route und werden nicht nachgezogen: sie
+sind ein historischer Messpunkt, kein laufender Stand.** Der laufende Stand steht im
+`README.md`, möglicherweise über andere Bereiche — die Wachenzahl läuft dort seit `b778031`
+über `Reformulation/` **und** `Foreign/` und ist darum größer, ohne dass eine Wache
+hinzugekommen wäre.
 
 Alle Träger dieser Tabelle liegen im Aggregat und sind erzwungen. Die dreizehn schlafenden
 Wachen stehen sämtlich in Waisen und betreffen keine Ledger-Zeile.
