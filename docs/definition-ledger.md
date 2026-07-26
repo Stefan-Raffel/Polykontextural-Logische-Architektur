@@ -49,7 +49,9 @@ Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 - **Trägerstatus (TS)** — was ist das Lean-Objekt?
   - `Theorem` — `thmInfo`, Schluss nicht `True`.
-  - `Definition` — `defnInfo`; umfasst `def`, `abbrev`, `instance`.
+  - `Definition` — `defnInfo`; umfasst `def`, `abbrev`, `instance`. Eine `structure` ist
+    `inductInfo` und wird nicht akzeptiert; tritt eine als Träger auf, bricht der Bau, und
+    der Fall wird ausdrücklich entschieden.
   - `Setzung` — eine Deklaration, deren Typ nach Auflösung aller Binder auf `True`
     schließt. An der Deklarationsart von `Theorem` nicht zu unterscheiden, am Schluss des
     Typs schon. Dies ist dasselbe Kriterium, an dem `CLAUDE.md` §10 hängt.

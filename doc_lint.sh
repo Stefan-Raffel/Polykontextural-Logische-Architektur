@@ -184,11 +184,93 @@ ledger_report() {
         p = sprintf("L%02d", i)
         if (p in par) { k++ } else { printf "  §%d  [R5] Paragraph nicht vertreten\n", i; r5++ }
       }
-      if (r3 + r4 + r5 + r6 == 0) print "  (keine Verstöße)"
+      if (r3 + r4 + r5 + r6 == 0) print "  (keine Verstöße in R3–R6)"
       printf "  ── %d Zeilen geprüft; R3 %d, R4 %d, R5 %d, R6 %d; Paragraphen %d von 19\n", \
              n + 0, r3 + 0, r4 + 0, r5 + 0, r6 + 0, k
     }
   ' "${LEDGER}"
+}
+
+# --- (C) Regel R7: Tabelle gegen Referenzdatei ------------------------------
+# Die Naht, die der Bau nicht schließt: er prüft die Lean-Datei gegen die
+# Umgebung, nicht die Tabelle gegen die Lean-Datei. R7 gleicht beide ab —
+# Zeilen-ID, voll expandierter Trägername und Kommando gegen Trägerstatus, in
+# beiden Richtungen. Eine verwaiste Referenz ist ebenso ein Verstoß wie eine
+# fehlende. Löst ein Kürzel nicht auf, ist das ein eigener Verstoß.
+LEDGER_LEAN="${ROOT}/Reformulation/Proemial/DefinitionLedger.lean"
+ledger7_report() {
+  if [ ! -f "${LEDGER}" ] || [ ! -f "${LEDGER_LEAN}" ]; then
+    echo "  (Tabelle oder Referenzdatei liegt nicht in diesem Bereich — R7 nicht geprüft)"
+    return 0
+  fi
+  awk '
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    function bare(s) { gsub(/`/, "", s); return trim(s) }
+    # ---- Datei 1: die Tabelle ------------------------------------------------
+    NR == FNR {
+      if ($0 ~ /^\| `[A-Za-z]+\.` \|/) {          # Kürzeltafel
+        split($0, k, "|")
+        kz[bare(k[2])] = bare(k[3])
+      }
+      if ($0 ~ /^\| L[0-9][0-9]-[0-9] \|/) {      # Tabellenzeile
+        split($0, c, "|")
+        id = bare(c[2]); traeger = bare(c[4]); ts = bare(c[5])
+        if (ts != "Offen") {
+          mdOrd[++mdN] = id; mdTS[id] = ts
+          p = index(traeger, ".")
+          pre = (p > 0) ? substr(traeger, 1, p) : ""
+          if (pre == "" || !(pre in kz)) {
+            printf "  %s  [R7] Kürzel \"%s\" steht nicht in der Kürzeltafel\n", id, pre
+            v++; mdName[id] = "?"
+          } else {
+            mdName[id] = kz[pre] substr(traeger, p + 1)
+          }
+        }
+      }
+      next
+    }
+    # ---- Datei 2: die Referenzdatei ------------------------------------------
+    /^#ledger_(theorem|def|setzung) / {
+      id = $2; gsub(/"/, "", id)
+      if (id in leanCmd) { printf "  %s  [R7] Referenz doppelt in der Referenzdatei\n", id; v++ }
+      else { leanOrd[++leanN] = id }
+      leanCmd[id] = $1; leanName[id] = $3
+    }
+    END {
+      erw["Theorem"] = "#ledger_theorem"
+      erw["Definition"] = "#ledger_def"
+      erw["Setzung"] = "#ledger_setzung"
+      for (i = 1; i <= mdN; i++) {
+        id = mdOrd[i]
+        if (!(id in leanCmd)) {
+          printf "  %s  [R7] Tabellenzeile mit Träger, aber keine Referenz in der Referenzdatei\n", id
+          v++; continue
+        }
+        ok = 1
+        if (mdName[id] != "?" && leanName[id] != mdName[id]) {
+          printf "  %s  [R7] Trägername verschieden — Tabelle: %s, Referenzdatei: %s\n", \
+                 id, mdName[id], leanName[id]
+          v++; ok = 0
+        }
+        if (leanCmd[id] != erw[mdTS[id]]) {
+          printf "  %s  [R7] Trägerstatus \"%s\" erwartet %s, in der Referenzdatei steht %s\n", \
+                 id, mdTS[id], erw[mdTS[id]], leanCmd[id]
+          v++; ok = 0
+        }
+        if (ok && mdName[id] != "?") paare++
+      }
+      for (i = 1; i <= leanN; i++) {
+        id = leanOrd[i]
+        if (!(id in mdTS)) {
+          printf "  %s  [R7] Referenz ohne Tabellenzeile mit Träger (verwaist)\n", id
+          v++
+        }
+      }
+      if (v + 0 == 0) print "  (keine Verstöße in R7)"
+      printf "  ── R7 %d Verstöße; %d abgeglichene Paare (Tabelle %d, Referenzdatei %d)\n", \
+             v + 0, paare + 0, mdN + 0, leanN + 0
+    }
+  ' "${LEDGER}" "${LEDGER_LEAN}"
 }
 
 echo "=============================================================================="
@@ -209,7 +291,10 @@ echo "── Gruppe (C) LEDGER-REGELN R3–R6 — docs/definition-ledger.md ─�
 echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
 echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten · R6 Trägerstatus \"Theorem\""
 echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"
+echo "     R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in"
+echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."
 ledger_report
+ledger7_report
 echo
 echo "── Ende Report.  Exit 0 (Report, kein Bruch). ────────────────────────────────"
 
