@@ -241,6 +241,13 @@ Setzungen zerfallen in zwei Klassen, die nicht dasselbe sagen:
 Wer ein neues Setzungsfeld anlegt, benennt seine Klasse im Feld-Doc. Ein Feld ohne
 Klassenangabe ist ein Mangel, kein Sonderfall.
 
+Warum Setzungen im Aggregat markiert und benannt sein muessen: nicht weil sie die Geltung
+gefaehrden — ein Feld vom Typ True kann in keinen Beweis eingehen —, sondern wegen des
+epistemischen Signals. Was im Aggregat steht, liest sich als zertifizierter Bestand; eine
+Setzung darin wird als Anspruch gelesen statt als Markierung. Darum traegt der Feldname
+seinen Status (discontextural_posited, nicht discontextural), und darum ist die
+Klassenangabe im Feld-Doc Pflicht.
+
 *Zaehlroute und Stand:* die 32 sind der Aggregat-Importbaum am Commit `284995b`, gemessen
 per Umgebungsabfrage ueber `getStructureFields` und `env.getProjectionFnInfo?` mit
 `forallBoundedTelescope` auf die Projektions-Stelligkeit — nicht per `grep`, und nicht
