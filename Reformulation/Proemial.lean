@@ -37,6 +37,7 @@ import Reformulation.Proemial.ContexturalFibration
 import Reformulation.Proemial.StageAggregation
 import Reformulation.Proemial.ContextureOverlap
 import Reformulation.Proemial.RegimeThreshold
+import Reformulation.Proemial.ElementaryCycle
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -828,6 +829,20 @@ Enthält:
   `locally_classical_in_clone_iff`). Qualitativer Regimewechsel, kein Zähler.
   Konsumiert nur Aggregat-Inhalt. Grenze: fällt auf `M3`/Verbundgitter
   (E4-Begutachtung). Eine Wache (`[propext, Quot.sound]`), 0 Sorries.
+- `Proemial.ElementaryCycle`: die Elementarkontextur als **Zweierbahn einer
+  Involution** (ERTRAG). `card_orb_le_two` — jede Bahn einer Involution hat
+  höchstens zwei Elemente (in dieser Darstellung Spezialisierung von Mathlibs
+  `isPeriodicPt_iff_minimalPeriod_dvd`, wie `minimalPeriod_dvd_two`);
+  `isElemContexture_orb_iff` — die Bahn durch `x` ist genau dann eine
+  Elementarkontextur, wenn `x` kein Fixpunkt ist; `exists_involutive_orb_eq` —
+  der tragende Teil: **jede** Elementarkontextur ist als Bahn realisiert, an der
+  Transposition. Damit ist der Zyklusbegriff (`Definitionen.md` §2/§14) an den
+  wertbasierten Kontexturbegriff der D/E-Reihe gebunden, ohne freistehende
+  Zyklentheorie und ohne Setzung. Der Selbstzyklus trägt keinen eigenen Satz: er
+  ist der Zweig, der die Dichotomie erschöpfend macht. Sieben Wachen, Profil
+  durchgängig `[propext, Classical.choice, Quot.sound]` — externer Träger über
+  `Function.minimalPeriod`; die Involutionsaussage `isPeriodicPt_two` davor zieht
+  nur `[Quot.sound]`. 0 Sorries.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
