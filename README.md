@@ -19,10 +19,10 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | geprueft (AxiomGate) | 3006 Konstanten |
 | Axiom-Wachen | 372 ueber 41 Dateien |
 | Saetze gesamt | 706 |
-| Build-Jobs | 1273 |
+| Build-Jobs | 1275 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `e69fb16`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `c61ca78`.
 
 ---
 
@@ -30,7 +30,7 @@ Kennzahlen gezaehlt am gruenen Build, Stand Commit `e69fb16`.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 55 | 414 | Proemialrelation, Transjunktion, Klon-Schranken |
+| `Proemial/` | 56 | 414 | Proemialrelation, Transjunktion, Klon-Schranken |
 | `PathC/` | 18 | 94 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 4 | 88 | Kenogrammatik: RGS, Normalform, Operationssemantik |
 | `F1/` | 20 | 22 | Belegungen, Faserungen, Cross-Chain-Anschluss |
@@ -108,7 +108,7 @@ echo '#print axioms Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone' 
 lake env lean /tmp/a.lean
 ```
 
-`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~156 Dateien
+`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~157 Dateien
 unter 1 MB.
 
 Bau-Konventionen fuer beitragende Instanzen: siehe `CLAUDE.md`.
