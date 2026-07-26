@@ -17,12 +17,12 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | Kennzahl | Wert |
 |---|---:|
 | geprueft (AxiomGate) | 3006 Konstanten |
-| Axiom-Wachen | 372 ueber 41 Dateien |
+| Axiom-Wachen | 382 ueber 42 Dateien |
 | Saetze gesamt | 706 |
 | Build-Jobs | 1275 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `c61ca78`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `b778031`.
 
 ---
 
@@ -65,16 +65,25 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 372 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 382 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 372 Wachen erzwingt `lake build` **359**
-(in 38 Dateien). Die uebrigen 13 stehen in drei Modulen, die von keinem Build-Target
-erfasst werden (`Proemial/AsymmetricDiscontexturality.lean`,
-`Proemial/TowerAsymmetryProbe.lean`,
-`Proemial/AsymmetricDiscontexturalTransition.lean`) und laufen daher nicht mit.
-372 ist die Zahl der geschriebenen, 359 die der erzwungenen Wachen.
+Zu lesen mit einer Einschraenkung: von den 382 geschriebenen Wachen erzwingt `lake build`
+**359** (in 38 Dateien). Die uebrigen 23 stehen in vier Modulen, und die sind nicht von
+derselben Art:
+
+* **Drei Waisen**, die von keinem Target erfasst werden und darum ueberhaupt nicht laufen:
+  `Proemial/AsymmetricDiscontexturality.lean` (7), `Proemial/TowerAsymmetryProbe.lean` (4),
+  `Proemial/AsymmetricDiscontexturalTransition.lean` (2).
+* **Ein eigenes Target**: `Foreign/PeresMermin.lean` (10) laeuft ueber
+  `lake build ForeignPeresMermin`, aber nicht ueber den Default-Bau. Der fremd gestellte Fall
+  liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar, nur nicht vom
+  Default-Bau erzwungen.
+
+382 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 359 die der erzwungenen: dieselbe Route,
+eingeschraenkt auf die Import-Huelle der Default-Targets.
 
 ---
 
