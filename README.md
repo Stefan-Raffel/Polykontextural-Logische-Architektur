@@ -22,7 +22,7 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | Build-Jobs | 1267 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `HASHPLATZHALTER`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `284995b`.
 
 ---
 
