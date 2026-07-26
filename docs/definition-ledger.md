@@ -1,0 +1,233 @@
+# Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
+
+Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 5.
+
+**Alle Kennzahlen dieser Datei beziehen sich auf den Commit `e69fb16`.** Ein Bau-Zug macht
+jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
+
+**Die Trägerspalte wird beim Bau geprüft.** `Reformulation/Proemial/DefinitionLedger.lean`
+hält jeden Namen dieser Tabelle gegen die Aggregatumgebung (R1) und den Trägerstatus gegen
+die Deklarationsart (R2); ein falscher Name oder ein falscher Status bricht `lake build` und
+nennt die Zeilen-ID. R3 bis R6 sind Textprüfungen in `doc_lint.sh`, angesetzt auf diese
+Datei.
+
+## Bauzustand, auf den sich diese Tabelle bezieht
+
+| Kennzahl | Wert |
+|---|---:|
+| geprüfte Konstanten (AxiomGate) | 3006 |
+| Axiom-Wachen, geschrieben | 372 über 41 Dateien |
+| Axiom-Wachen, vom Bau erzwungen | 359 über 38 Dateien |
+| Sätze gesamt | 706 |
+| Statement-Pins | 36 |
+| Build-Jobs | 1273 |
+| ausgewiesene Lücken | 0, Whitelist leer |
+
+Alle Träger dieser Tabelle liegen im Aggregat und sind erzwungen. Die dreizehn schlafenden
+Wachen stehen sämtlich in Waisen und betreffen keine Ledger-Zeile.
+
+## Selbstauskunft der Tabelle, mit Route
+
+Route: `grep -cE '^\| (L[0-9]{2}-[0-9]) \|' docs/definition-ledger.md`
+
+| | Wert |
+|---|---:|
+| Zeilen gesamt | 67 |
+| Zeilen mit Träger | 52 |
+| verschiedene Trägernamen | 44 |
+| TS `Theorem` | 37 |
+| TS `Definition` | 14 |
+| TS `Setzung` | 1 |
+| TS `Offen` | 15 |
+| Paragraphen von `Definitionen.md` | 19 von 19 |
+
+Acht Träger erscheinen in mehr als einer Zeile — daher 52 Zeilen bei 44 Namen. Das ist
+Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
+
+## Schema
+
+- **Trägerstatus (TS)** — was ist das Lean-Objekt?
+  - `Theorem` — `thmInfo`, Schluss nicht `True`.
+  - `Definition` — `defnInfo`; umfasst `def`, `abbrev`, `instance`.
+  - `Setzung` — eine Deklaration, deren Typ nach Auflösung aller Binder auf `True`
+    schließt. An der Deklarationsart von `Theorem` nicht zu unterscheiden, am Schluss des
+    Typs schon. Dies ist dasselbe Kriterium, an dem `CLAUDE.md` §10 hängt.
+  - `Offen` — kein Träger.
+- **Zuordnungsstatus (ZS)** — wofür steht der Träger? `Operationalisierung`, `Benennung`,
+  `Deutung`, `Setzung`, `Offen`. Redaktionell, nie prüfbar.
+- **Wache** — `ja` mit Profil verbatim, oder `keine` mit Grund.
+
+**Prüfregeln:** R1 Träger löst gegen die Aggregatumgebung auf · R2 TS stimmt mit der
+Deklarationsart überein · R3 kein ZS `Theorem` · R4 TS `Offen` erzwingt leere Trägerspalte ·
+R5 alle 19 Paragraphen vertreten · R6 TS `Theorem` erzwingt ausgefüllte Wachenspalte.
+
+R1 und R2 werden von `Reformulation/Proemial/DefinitionLedger.lean` beim Bau geprüft; R3 bis
+R6 sind Textprüfungen in `doc_lint.sh`.
+
+**Zur Lesart der Profile.** `[propext, Quot.sound]` ist bei omega-getragenen Beweisen
+Eigenschaft der Taktikhülle. `[propext, Classical.choice, Quot.sound]` ist bei den
+Bahnaussagen Eigenschaft des Bahnbegriffs, nicht des Satzes — gemessen an
+`EC.isPeriodicPt_two`, das dieselbe Involutionsaussage ohne Bahnbegriff trägt und nur
+`[Quot.sound]` zieht. Eine Wache ist Driftschutz, keine Ertragsmarke.
+
+## Namensraum-Kürzel
+
+Die Spalte „Art" nennt, woraus das Präfix besteht. Ihr Fehlen in Rev. 4 war die Ursache
+beider Fehlexpansionen.
+
+| Kürzel | Expansion | Art |
+|---|---|---|
+| `TCB.` | `Reformulation.Proemial.TransjunctionCloneBound.` | Namensraum |
+| `NUCB.` | `Reformulation.Proemial.NonUniformCloneBound.` | Namensraum |
+| `GCB.` | `Reformulation.Proemial.GeneralCloneBound.` | Namensraum |
+| `QCB.` | `Reformulation.Proemial.QuaternaryCloneBound.` | Namensraum |
+| `SA.` | `Reformulation.Proemial.StageAggregation.` | Namensraum |
+| `CO.` | `Reformulation.Proemial.ContextureOverlap.` | Namensraum |
+| `DS.` | `Reformulation.Proemial.Discontextural.DiscontexturalStratification.` | Namensraum **plus Struktur** |
+| `CF.` | `Reformulation.Proemial.ContexturalFibration.` | Namensraum |
+| `RT.` | `Reformulation.Proemial.RegimeThreshold.` | Namensraum |
+| `IB.` | `Reformulation.Proemial.IntervalBackbone.` | Namensraum |
+| `EC.` | `Reformulation.Proemial.ElementaryCycle.` | Namensraum |
+| `K.` | `Reformulation.Kenogram.` | Namensraum |
+
+## Die Tabelle
+
+| ID | Begriff (§) | Träger | TS | ZS | Wache | Grenze |
+|---|---|---|---|---|---|---|
+| L01-1 | Kontextur (§1) | `TCB.S` | Definition | Operationalisierung | keine (def) | Substruktur `{0,2}`, signaturrelativ; kein Totalzusammenhang |
+| L01-2 | Kontextur (§1) | `NUCB.PreservesPair` | Definition | Operationalisierung | keine (def) | Erhaltung eines Zweierbereichs, nicht Geschlossenheit im Quellsinn |
+| L01-3 | Kontextur (§1) | `NUCB.ContextureFaithful` | Definition | Operationalisierung | keine (def) | Treue gegenüber allen drei Zweierbereichen auf `Fin 3` |
+| L01-4 | Kontextur (§1) | `CF.fiber_emb_morphism` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Faserung als Kontexturindex ist laut Modul-Doc selbst Deutung |
+| L01-5 | Kontextur (§1) | — | Offen | Offen | — | `ContextureIndex` existiert nicht; Programm nach Plan §7 Ansatz D |
+| L01-6 | Kontextur (§1) | — | Offen | Offen | — | `ContextureSite` existiert nicht; Programm nach Plan §7 Ansatz D |
+| L01-7 | Kontextur (§1) | — | Offen | Offen | — | `ContextureComponent` existiert nicht; Programm nach Plan §7 Ansatz D |
+| L02-1 | Elementarkontextur (§2) | `CO.IsElemContexture` | Definition | Operationalisierung | keine (abbrev) | Zweiermenge als `Finset`, Kardinalität 2 |
+| L02-2 | Elementarkontextur (§2) | `CO.three_contextures_overlap` | Theorem | Operationalisierung | ja, `[propext]` | prädikativ, `Fin 3`; Überlappung in genau einem Wert |
+| L02-3 | Elementarkontextur (§2) | `CO.elem_contexture_overlap_le_one` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | allgemein über `Fin m`, nur obere Schranke |
+| L02-4 | Elementarkontextur (§2) | `GCB.ActsAsMin` | Definition | Operationalisierung | keine (def) | generisch in `m`; `NUCB.ActsAsMin` ist eine andere Deklaration |
+| L02-5 | Elementarkontextur (§2) | `GCB.ActsAsMax` | Definition | Operationalisierung | keine (def) | dito |
+| L02-6 | Elementarkontextur (§2) | `EC.card_orb_le_two` | Theorem | **Benennung** | ja, `[propext, Classical.choice, Quot.sound]` | Bahn einer Involution hat höchstens zwei Elemente; Spezialisierung von Mathlibs `isPeriodicPt_iff_minimalPeriod_dvd` |
+| L02-7 | Elementarkontextur (§2) | `EC.isElemContexture_orb_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Bahn ist Elementarkontextur genau dann, wenn `x` kein Fixpunkt ist |
+| L02-8 | Elementarkontextur (§2) | `EC.exists_involutive_orb_eq` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | jede Elementarkontextur ist Zweierbahn einer Involution; Existenz, **nicht** Eindeutigkeit — siehe Grenznotiz C |
+| L03-1 | Verbundkontextur (§3) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | trägt Nicht-Erzeugbarkeit, nicht Vermittlung |
+| L03-2 | Verbundkontextur (§3) | — | Offen | Offen | — | Rev. 1 trug hier `IntervalBackbone`; zurückgenommen, das Modul trägt die Ontologien-Folge |
+| L03-3 | Verbundkontextur (§3) | — | Offen | Offen | — | zwei Zählfunktionen, siehe Grenznotiz A |
+| L04-1 | Diskontexturalität (§4) | `TCB.T_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Nicht-Erzeugbarkeit im Termklon, `m = 3` |
+| L04-2 | Diskontexturalität (§4) | `NUCB.W_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Bruch ohne Verlassen einer Kontextur |
+| L04-3 | Diskontexturalität (§4) | `GCB.locally_classical_in_clone_iff` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Charakterisierung für alle `m ≥ 4` |
+| L04-4 | Diskontexturalität (§4) | `DS.discontextural_posited` | Setzung | Setzung | ja, axiomfrei | Projektion eines `True`-Feldes, technisch `thmInfo`; konstitutive Setzung; **anderer Begriff als L04-1 bis L04-3**, siehe Grenznotiz B |
+| L04-5 | Diskontexturalität (§4) | `QCB.locally_classical_in_clone_iff4` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Charakterisierung bei `m = 4`, Vorstufe von L04-3 |
+| L04-6 | Diskontexturalität (§4) | `QCB.mixed_not_in_constant_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Schranke überlebt konstante Prüfer; Invariante `R_4` reflexiv |
+| L05-1 | Transkontexturalität (§5) | `TCB.T_leaves_contextur` | Theorem | Operationalisierung | ja, `[propext]` | Verlassen der Kontextur an einem Punkt |
+| L05-2 | Transkontexturalität (§5) | `NUCB.W_contexture_faithful` | Theorem | Operationalisierung | ja, `[propext]` | Grenzüberschreitung ohne Verlassen |
+| L05-3 | Transkontexturalität (§5) | `SA.agg_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Stufenaggregation, `Fin 4` |
+| L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
+| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | Definition 6 nicht implementiert; Forschungsstrang Plan §7 |
+| L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
+| L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
+| L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
+| L06-5 | Poly-Kontexturalität f.-o. (§6) | `SA.agg_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
+| L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
+| L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
+| L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
+| L07-4 | Zweite Negation (§7) | — | Offen | Offen | — | keine Definition `SecondNegation`; nicht als Permutation zu bauen |
+| L08-1 | Transjunktion (§8) | `TCB.T` | Definition | Operationalisierung | keine (def) | `if a = 0 ∧ b = 2 then 1 else max a b` |
+| L08-2 | Transjunktion (§8) | `TCB.T_rejective` | Theorem | Operationalisierung | ja, `[propext]` | rejektiver Kern `T 0 2 = 1` |
+| L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten |
+| L08-4 | Transjunktion (§8) | — | Offen | Offen | — | Produktion des ontologisch Neuen nicht formalisiert |
+| L09-1 | Intra-kontexturell (§9) | `TCB.L` | Definition | Operationalisierung | keine (def) | Signatur `{¬, ∧, ∨}`, keine Konstante |
+| L09-2 | Intra-kontexturell (§9) | `TCB.term_preserves_contextur` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | konsumiert Mathlibs `Term.realize_mem` |
+| L09-3 | Trans-kontexturell (§9) | `TCB.term_clone_localization` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Verortung auf Klon-Ebene, kein freies Prädikat |
+| L10-1 | Isomorphie (§10) | `TCB.phi` | Definition | Operationalisierung | keine (def) | `{0,2} → Bool` |
+| L10-2 | Isomorphie (§10) | `TCB.test1_injective` | Theorem | Operationalisierung | ja, `[propext]` | mit `TCB.test1_surjective` der Bijektionsbeleg |
+| L10-3 | Isomorphie (§10) | `TCB.test1_min_max` | Theorem | Operationalisierung | ja, `[propext]` | Operationsverträglichkeit auf der Kontextur |
+| L10-4 | Anisomorphie (§10) | `NUCB.conj` | Definition | Deutung | keine (def) | Negationskonjugation als Transport, keine Anisomorphie-These |
+| L10-5 | Anisomorphie (§10) | — | Offen | Offen | — | PathC: Waise, 25 `sorry` in 8 Dateien, 0 Wachen, ein Modul rot |
+| L11-1 | Vermittlung (§11) | `NUCB.W` | Definition | Deutung | keine (def) | Dateiname bewusst `NonUniformCloneBound`, nicht `Mediation` |
+| L11-2 | Vermittlung (§11) | `SA.agg_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
+| L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
+| L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
+| L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
+| L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
+| L12-4 | Stufengang (§12) | — | Offen | Offen | — | kein unendlicher Stufengang; gerichtetes System offen |
+| L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
+| L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
+| L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |
+| L15-1 | Kategorie des Neuen (§15) | — | Offen | Offen | — | nicht formalisiert; laut `TCB`-Doc-String so nicht formalisierbar |
+| L16-1 | Morphogramm (§16) | `K.relabel` | Definition | Operationalisierung | ja, axiomfrei | Normalform einer Folge als RGS; Morphogramm-Bildung, kein Quotientstyp |
+| L16-2 | Morphogramm (§16) | `K.rgs_unique_of_pattern` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | gleiches Muster erzwingt gleiche Normalform |
+| L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
+| L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
+| L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |
+| L19-1 | Logisches Intervall (§19) | `IB.tafel_IV` | Theorem | Operationalisierung | ja, axiomfrei | beweist `(1,2),(3,5),(6,9),(10,14),…` — die Tafel aus §19 wörtlich |
+| L19-2 | Logisches Intervall (§19) | `IB.intervalEnd_succ_start` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Intervalle schließen lückenlos und überlappungsfrei an |
+
+## Grenznotiz A — Verbundkontextur, zwei Zählfunktionen
+
+`Definitionen.md` §3 zählt Designationsthemen, also den Index n der Dreieckszahl; §17 und der
+Korpus zählen Wert-Zweiermengen, C(m,2). Sie stimmen an keiner Stelle der Folge überein; die
+Differenz wächst wie n⁴/8. Die Wertfolge der Verbundkontexturen ist n(n+1)/2 ab n = 2, also
+3, 6, 10, 15; die 1 gehört zur Ontologien-Folge §18, nach Günthers eigenen Bedingungen — §3
+verlangt mindestens drei Werte, §18 nennt das einwertige System notwendig eine Ontologie. Die
+Zuordnung „n gleich Themenzahl" ist Deutung: die Koinzidenz ist definitorisch, weil beide
+Größen der Index derselben Dreieckszahl sind.
+
+Daraus die Rücknahme in L03-2. `IB.intervalStart` ist die Ontologien-Wertzahl; die
+Verbundkontextur-Folge ist ihr Bild ab Index 2. Dieselbe Arithmetik trägt beide Folgen bei
+verschobenem Index — und darum darf sie nicht unter beiden Paragraphen stehen.
+
+**Zusatz (computed, außerhalb des Korpus).** Die beiden Zählungen berühren sich an genau
+einer Stelle: |s(m, m−1)| = C(m,2) für m = 2 bis 8 gerechnet, also bei den Permutationen mit
+genau einer Transposition. Günthers Stirling-Zählung aus §14 und die Korpuszählung fallen
+dort zusammen. Das ist ein gerechneter Vorbefund und **kein Satz des Korpus**; keine Zahl
+davon ist in eine Lean-Datei eingegangen.
+
+## Grenznotiz B — zwei Begriffe, und die Aggregatregel
+
+**Zwei Diskontexturalitätsbegriffe unter einem Paragraphen.** L04-1 bis L04-3 sowie L04-5 und
+L04-6 tragen die Klon-Lesart: Nicht-Erzeugbarkeit einer Operation aus einer angegebenen
+Signatur. L04-4 trägt die kategoriale Lesart: Nicht-Einholbarkeit eines Kontexturübergangs
+durch Morphismen der Schema-Achse — gesetzt, mit der Begründung, ein intra-kontexturaler
+Beweis der Nicht-Intra-Kontexturalität wäre ein Selbstwiderspruch. Wer beide unter einem
+Namen liest, erhält den Widerspruch, Diskontexturalität sei bewiesen und zugleich prinzipiell
+unbeweisbar. Die erste quantifiziert über Terme einer endlichen Signatur, die zweite über
+Morphismen einer Kategorie; ihre Identifikation ist Deutung.
+
+**Zur Aggregatregel.** `DS.discontextural_posited` ist eines von 32 `True`-Feldern im
+Aggregat (korpusweit 33). `CLAUDE.md` §10 lautet seit `f5d5244`/`3dc2649`: **kein Satz des
+Aggregats hängt an einer Setzung** — gemessen, weil genau zwei Aggregatkonstanten eine
+`True`-Feld-Projektion referenzieren und beide selbst die Aussage `True` haben. Die 32 Felder
+zerfallen in Platzhalter (30, verschobene Beweisschuld, Exit-Kriterium nötig) und
+konstitutive Setzungen (2, Begründung statt Exit nötig). Von den Bestandsfeldern erfüllen 19
+die Klassenpflicht noch nicht; sie gilt für neu angelegte Felder und ist Phase-2-Posten.
+
+## Grenznotiz C — Zyklus, Selbstzyklus, Umtauschverhältnis
+
+Der Zyklusbegriff ist seit `e69fb16` an **einer** Stelle angeschlossen: die Elementarkontextur
+ist als Zweierbahn einer Involution darstellbar (L02-6 bis L02-8). Eine allgemeine
+Zyklentheorie ist nicht gebaut und war nicht Auftrag.
+
+**Der Selbstzyklus bleibt offen, und zwar begründet.** Drei Fassungen wurden geprüft: als
+Minimalperiode 1 steht er wörtlich in Mathlib; als leerer Support verschwindet er; als
+Nicht-Kontextur sagt er `1 ≠ 2`. Wörtlich aus dem Befund:
+
+> Der Selbstzyklus trägt im Zielsatz mit — aber nur als der Fall, der keinen eigenen Satz
+> hat. Er ist der Zweig, der die Dichotomie erschöpfend macht.
+
+**Die Eindeutigkeit des Umtauschverhältnisses ist nicht getragen.** `Definitionen.md` §2(b)
+versteht die Elementarkontextur als *Umtauschverhältnis* zweier Werte, und dessen Pointe ist
+Eindeutigkeit. L02-8 liefert Existenz, nicht Eindeutigkeit — und an dieser Signatur wäre
+Eindeutigkeit nicht bloß unbewiesen, sondern falsch: der Satz quantifiziert über Involutionen
+des ganzen Typs, und über `Fin 4` haben `swap 0 1` sowie `swap 0 1 ∘ swap 2 3` beide die Bahn
+`{0,1}` durch `0` (in Lean gegengerechnet, außerhalb des Korpus). Die gemeinte Eindeutigkeit
+betrifft die Einschränkung auf die Zweiermenge und bräuchte einen Begriff „Involution auf
+`K`", den der Bestand nicht führt. Nicht gebaut: kein Satz des Korpus verlangt ihn.
+
+## Vom Korpus gemessene Choice-Grenze
+
+`EC.isPeriodicPt_two` trägt die Involutionsaussage `f^[2] x = x` vor jedem Bahnbegriff und
+zieht nur `[Quot.sound]`. Erst `Function.minimalPeriod` — `noncomputable` — bringt
+`Classical.choice` herein. Damit ist die Stelle des Übergangs nicht behauptet, sondern am
+Term abgelesen, und die Profile der Zeilen L02-6 bis L02-8 sind Eigenschaft des
+Bahnbegriffs, nicht der Kontexturaussage.

@@ -150,6 +150,47 @@ fmt() {
   '
 }
 
+# --- (C) Ledger-Regeln R3 bis R6 --------------------------------------------
+# Textprüfungen auf der abgelegten Ledger-Tabelle. R1 (Träger löst auf) und R2
+# (Trägerstatus gleich Deklarationsart) prüft der Bau über
+# Reformulation/Proemial/DefinitionLedger.lean; eine Textprüfung kann die
+# Deklarationsart nicht kennen und versucht es hier auch nicht.
+# Spaltenordnung: | ID | Begriff | Träger | TS | ZS | Wache | Grenze |
+LEDGER="${ROOT}/docs/definition-ledger.md"
+ledger_report() {
+  if [ ! -f "${LEDGER}" ]; then
+    echo "  (docs/definition-ledger.md liegt nicht in diesem Bereich — nicht geprüft)"
+    return 0
+  fi
+  awk -F'|' '
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    /^\| L[0-9][0-9]-[0-9] \|/ {
+      id = trim($2); traeger = trim($4); ts = trim($5); zs = trim($6); wache = trim($7)
+      par[substr(id, 1, 3)] = 1
+      n++
+      if (zs == "Theorem") {
+        printf "  %s  [R3] Zuordnungsstatus \"Theorem\" ist nicht zulässig\n", id; r3++
+      }
+      if (ts == "Offen" && traeger != "—" && traeger != "") {
+        printf "  %s  [R4] Trägerstatus \"Offen\", aber Trägerspalte gefüllt: %s\n", id, traeger; r4++
+      }
+      if (ts == "Theorem" && (wache == "—" || wache == "")) {
+        printf "  %s  [R6] Trägerstatus \"Theorem\" ohne Wachenangabe\n", id; r6++
+      }
+    }
+    END {
+      k = 0
+      for (i = 1; i <= 19; i++) {
+        p = sprintf("L%02d", i)
+        if (p in par) { k++ } else { printf "  §%d  [R5] Paragraph nicht vertreten\n", i; r5++ }
+      }
+      if (r3 + r4 + r5 + r6 == 0) print "  (keine Verstöße)"
+      printf "  ── %d Zeilen geprüft; R3 %d, R4 %d, R5 %d, R6 %d; Paragraphen %d von 19\n", \
+             n + 0, r3 + 0, r4 + 0, r5 + 0, r6 + 0, k
+    }
+  ' "${LEDGER}"
+}
+
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
 echo "  Bereich: ${SCOPE_LABEL}"
@@ -163,6 +204,12 @@ echo "── Gruppe (B) ZFC-RÜCKFALL — Wort + ZFC-Trigger im Fenster ±1 ─�
 echo "     Wörter:   unabhängig | Unabhängigkeit | independent | independence"
 echo "     Trigger:  ZFC | Zermelo   (verengt — Nachschlag Teil 3)"
 printf '%s\n' "$BLOCK_B" | fmt
+echo
+echo "── Gruppe (C) LEDGER-REGELN R3–R6 — docs/definition-ledger.md ────────────────"
+echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
+echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten · R6 Trägerstatus \"Theorem\""
+echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"
+ledger_report
 echo
 echo "── Ende Report.  Exit 0 (Report, kein Bruch). ────────────────────────────────"
 

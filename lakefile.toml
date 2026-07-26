@@ -1,6 +1,6 @@
 name = "reformulation"
 version = "0.2.0"
-defaultTargets = ["Reformulation", "AxiomGate"]
+defaultTargets = ["Reformulation", "AxiomGate", "DefinitionLedger"]
 
 [[require]]
 name = "mathlib"
@@ -16,6 +16,14 @@ name = "Reformulation"
 [[lean_lib]]
 name = "AxiomGate"
 roots = ["Reformulation.AxiomGate"]
+
+# Definition-Ledger (AP2 Stufe 3) — eigenes Target, NICHT vom Aggregat importiert und vom
+# AxiomGate nicht gefasst. Die Datei traegt keinen Satz; sie haelt die Traegerspalte von
+# docs/definition-ledger.md gegen die Aggregatumgebung (R1) und prueft den Traegerstatus
+# gegen die Deklarationsart (R2). Laeuft ueber defaultTargets bei jedem `lake build`.
+[[lean_lib]]
+name = "DefinitionLedger"
+roots = ["Reformulation.Proemial.DefinitionLedger"]
 
 # Foreign/PeresMermin — Kalibrierungs-Modul AUSSERHALB des Aggregats. Eigenes
 # Target, NICHT in defaultTargets, NICHT von Reformulation importiert und vom
