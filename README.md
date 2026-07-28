@@ -19,7 +19,7 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | geprueft (AxiomGate) | 3006 Konstanten |
 | Axiom-Wachen | 382 ueber 42 Dateien |
 | Saetze gesamt | 706 |
-| Build-Jobs | 1275 |
+| Build-Jobs | 1298 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `b778031`.
@@ -32,7 +32,7 @@ dabei:
 | geprueft (AxiomGate) | Konstanten aus dem Importbaum von `Reformulation`, namensgefiltert auf `Reformulation.*` — nicht der Dateibaum |
 | Axiom-Wachen | `Reformulation/` **und** `Foreign/` |
 | Saetze gesamt | `Reformulation/` **allein** |
-| Build-Jobs | die Default-Targets (`Reformulation`, `AxiomGate`, `DefinitionLedger`); `ForeignPeresMermin` laeuft nur auf eigenen Ruf |
+| Build-Jobs | die Default-Targets (`Reformulation`, `AxiomGate`, `DefinitionLedger`, `Probes`, `F1Coalgebraic`); `Diagnostics`, `MathlibExtensions`, `PreC`, `PathC` und `ForeignPeresMermin` laufen nur auf eigenen Ruf — siehe `docs/build-targets.md` |
 | Quellbestand (Dateien) | `Reformulation/` und `Foreign/` |
 
 Die Bereiche werden **benannt, nicht vereinheitlicht**: sie unterscheiden sich, weil die
@@ -89,19 +89,19 @@ ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien 
 und dort ausgewiesen.
 
 Zu lesen mit einer Einschraenkung: von den 382 geschriebenen Wachen erzwingt `lake build`
-**359** (in 38 Dateien). Die uebrigen 23 stehen in vier Modulen, und die sind nicht von
-derselben Art:
+**372** (in 41 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+`lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
+gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
+nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
 
-* **Drei Waisen**, die von keinem Target erfasst werden und darum ueberhaupt nicht laufen:
-  `Proemial/AsymmetricDiscontexturality.lean` (7), `Proemial/TowerAsymmetryProbe.lean` (4),
-  `Proemial/AsymmetricDiscontexturalTransition.lean` (2).
-* **Ein eigenes Target**: `Foreign/PeresMermin.lean` (10) laeuft ueber
-  `lake build ForeignPeresMermin`, aber nicht ueber den Default-Bau. Der fremd gestellte Fall
-  liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar, nur nicht vom
-  Default-Bau erzwungen.
+Bis zum Buildabdeckungs-Zug C2 waren es 23 unerzwungene: dreizehn davon standen in drei
+Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
+(`Proemial/AsymmetricDiscontexturality.lean` 7, `Proemial/TowerAsymmetryProbe.lean` 4,
+`Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
+`Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
 382 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 359 die der erzwungenen: dieselbe Route,
+ueber `Reformulation/` und `Foreign/` -, 372 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets.
 
 ---
@@ -125,8 +125,15 @@ Was hier steht, ist schmaler als die Theorie, auf die es sich bezieht - absichtl
 ## Bauen und pruefen
 
 ```sh
-lake build                 # vollstaendig; AxiomGate laeuft mit
+lake build                 # Default-Targets; AxiomGate laeuft mit
 ```
+
+`lake build` baut das Aggregat, das AxiomGate, den Definition-Ledger sowie die Targets
+`Probes` und `F1Coalgebraic`. Vier weitere Targets (`Diagnostics`, `MathlibExtensions`,
+`PreC`, `PathC`) und `ForeignPeresMermin` laufen nur auf eigenen Ruf. **Was ein gruener
+Bau je Target zusichert - und was nicht -, steht in `docs/build-targets.md`.** Ein Modul
+(`PathC/Classifying/Universal.lean`) uebersetzt nicht und liegt darum in keinem Target;
+es wird dort mit Fehlermeldung und Messdatum gefuehrt.
 
 Axiom-Profile einzelner Saetze ohne Neubau:
 

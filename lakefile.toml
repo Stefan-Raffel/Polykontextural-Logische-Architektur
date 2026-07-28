@@ -1,6 +1,6 @@
 name = "reformulation"
 version = "0.2.0"
-defaultTargets = ["Reformulation", "AxiomGate", "DefinitionLedger"]
+defaultTargets = ["Reformulation", "AxiomGate", "DefinitionLedger", "Probes", "F1Coalgebraic"]
 
 [[require]]
 name = "mathlib"
@@ -32,3 +32,114 @@ roots = ["Reformulation.Proemial.DefinitionLedger"]
 [[lean_lib]]
 name = "ForeignPeresMermin"
 roots = ["Foreign.PeresMermin"]
+
+# ---------------------------------------------------------------------------
+# Buildabdeckung C2 — sechs Targets fuer die 52 Module ohne Targetzugehoerigkeit.
+# Zusicherung je Target im Wortlaut: docs/build-targets.md.
+# Bis C2 wurde keines dieser Module von `lake build` erfasst; ein Bruch dort fiel
+# bei keinem Bau auf. `Probes` und `F1Coalgebraic` stehen in defaultTargets, weil
+# sie die Aggregat-konsumierenden Module tragen — nur diese koennen durch eine
+# Aenderung *am Aggregat* brechen. Die uebrigen vier Targets bauen nur auf
+# ausdruecklichen Aufruf.
+# ---------------------------------------------------------------------------
+
+# Sonden und Zeugenregister. 15 Module unter Proemial/ plus Diagnostics/
+# HeteroreferenzProbe, das seinem Gegenstand nach eine Sonde ist und als einziges
+# Modul InteractiveTransjunction und SubstantialTransjunction konsumiert. In
+# defaultTargets: 13 der 16 konsumieren das Aggregat; hier liegen auch die
+# 13 Axiom-Wachen, die bis C2 nie ausgefuehrt wurden.
+[[lean_lib]]
+name = "Probes"
+roots = [
+  "Reformulation.Proemial.A1DescentProbe",
+  "Reformulation.Proemial.A3CoarseningProbe",
+  "Reformulation.Proemial.AsymmetricDiscontexturalTransition",
+  "Reformulation.Proemial.AsymmetricDiscontexturality",
+  "Reformulation.Proemial.AsymmetricDiscontexturalityProbeRegister",
+  "Reformulation.Proemial.CartesianProbe",
+  "Reformulation.Proemial.GegenlaeufigkeitProbe",
+  "Reformulation.Proemial.K3CouplingProbe",
+  "Reformulation.Proemial.K4DiscontexturalityProbe",
+  "Reformulation.Proemial.LawvereVorSonde",
+  "Reformulation.Proemial.NahtFormSondierung",
+  "Reformulation.Proemial.ProemialInversionProbe",
+  "Reformulation.Proemial.ReflexionsrestProbe",
+  "Reformulation.Proemial.SubstantiellesKSondierung",
+  "Reformulation.Proemial.TowerAsymmetryProbe",
+  "Reformulation.Diagnostics.HeteroreferenzProbe",
+]
+
+# Substanzstudien unter F1/D2/Rollups/Coalgebraic/. In defaultTargets: beide
+# konsumieren das Aggregat (F1/F3-Stand).
+[[lean_lib]]
+name = "F1Coalgebraic"
+roots = [
+  "Reformulation.F1.D2.Rollups.Coalgebraic.Substantial",
+  "Reformulation.F1.D2.Rollups.Coalgebraic.SubstantialRev2",
+]
+
+# Messwerkzeuge. NICHT in defaultTargets: keines der beiden konsumiert das
+# Aggregat, kann also durch eine Aggregataenderung nicht brechen; SwapSatzProbe
+# zieht ueber tausend Mathlib-Module nach, die im Aggregat nicht vorkommen.
+# Aufnahme kaufte Bauzeit fuer null Regressionsschutz.
+[[lean_lib]]
+name = "Diagnostics"
+roots = [
+  "Reformulation.Diagnostics.AxiomProbe",
+  "Reformulation.Diagnostics.SwapSatzProbe",
+]
+
+# Zusatzlemmata mit Bibliothekscharakter. NICHT in defaultTargets: kein
+# Aggregatbezug.
+[[lean_lib]]
+name = "MathlibExtensions"
+roots = [
+  "Reformulation.MathlibExtensions.Sites.SheafAdjunction",
+  "Reformulation.MathlibExtensions.Sites.YonedaUlift",
+  "Reformulation.MathlibExtensions.Topos.Regular",
+  "Reformulation.MathlibExtensions.Topos.Subobject.Bot",
+  "Reformulation.MathlibExtensions.Topos.Subobject.InitialMonoClass",
+  "Reformulation.MathlibExtensions.Topos.Subobject.Lattice",
+  "Reformulation.MathlibExtensions.Topos.Subobject.PullbackLemmas",
+  "Reformulation.MathlibExtensions.Topos.Subobject.WellPowered",
+]
+
+# Vorbereitungszweig, Stand vor Weg C, nicht fortgeschrieben. NICHT in
+# defaultTargets: kein Aggregatbezug.
+[[lean_lib]]
+name = "PreC"
+roots = [
+  "Reformulation.PreC",
+  "Reformulation.PreC.ClassifierAnschluss",
+  "Reformulation.PreC.GeometricMorphismMin",
+  "Reformulation.PreC.PKLFormWahlen",
+  "Reformulation.PreC.Reflexion",
+  "Reformulation.PreC.SiteAnschluss",
+]
+
+# Weg C. 17 der 18 Module; `PathC.Classifying.Universal` ist in KEINEM Target,
+# weil es nicht uebersetzt — naehme man es auf, waere `lake build PathC`
+# dauerhaft rot und als Regressionsprobe wertlos. Siehe docs/build-targets.md.
+# NICHT in defaultTargets: kein Aggregatbezug, und der Zweig traegt 25 `sorry`.
+# Gruen heisst hier ausschliesslich: es uebersetzt.
+[[lean_lib]]
+name = "PathC"
+roots = [
+  "Reformulation.PathC.Classifying.ClassifyingEquivalence",
+  "Reformulation.PathC.Classifying.ClassifyingTopos",
+  "Reformulation.PathC.Classifying.GeometricTopology",
+  "Reformulation.PathC.Classifying.Model",
+  "Reformulation.PathC.Classifying.ModelFunctor",
+  "Reformulation.PathC.Classifying.SequentCalculus",
+  "Reformulation.PathC.Classifying.Soundness",
+  "Reformulation.PathC.Classifying.SyntacticSite",
+  "Reformulation.PathC.Classifying.TermSemantics",
+  "Reformulation.PathC.ElementaryTopos",
+  "Reformulation.PathC.GeometricMorphism",
+  "Reformulation.PathC.GeometricMorphismLaws",
+  "Reformulation.PathC.GeometricTheory.Formula",
+  "Reformulation.PathC.GeometricTheory.Signature",
+  "Reformulation.PathC.GeometricTheory.Theory",
+  "Reformulation.PathC.ModalTwoCategory",
+  "Reformulation.PathC.ModalTwoCategoryNegation",
+]
