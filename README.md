@@ -22,7 +22,7 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 | Build-Jobs | 1298 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `b778031`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `cfa9058`.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
