@@ -35,7 +35,8 @@ C23-Vervollständigung: Model.toGeometricMorphism via Yoneda-Einbettung.
    - Klasse-D sideways (Mathlib-Vor-Phase) + forward (C22)
    - C22 TS-1: RepresentablyFlat (Model.toFunctor M) from M.satisfies
 
-4. `Model.toPresheafFunctor_jt_continuous` — J_T-continuity (placeholder).
+4. J_T-continuity — the statement that used to stand here was removed in the
+   Phase-2 sharpening; see the memorial block at the end of this module.
    - Klasse-D forward (C22: geometricCoverage.pullback)
 
 5. `Model.toSheafFunctor M : ClassifyingTopos T ⥤ E` — inverse image functor.
@@ -421,18 +422,6 @@ noncomputable instance Model.toPresheafFunctor_preservesFiniteLimits (M : Model 
   -- Nicht abhängig von cone_maps-sorry in 31.a (separate Sub-Substanz-Kette).
   sorry -- sideways-β.2: uliftYoneda-Universum-Anpassung für Lan-Konstruktion
 
-omit [EssentiallySmall.{max u v} (SyntacticContext T)] in
-/-- `toFunctor M` is J_T-continuous: sends the geometric topology to covers in E.
-
-    **Precise formulation deferred (Klasse-D forward C22)**:
-    Full statement via `Functor.IsContinuous` requires `geometricCoverage.pullback`
-    from C21-D-2 and `CoverPreserving` machinery. Placeholder `True` until C22. -/
-theorem Model.toPresheafFunctor_jt_continuous (_M : Model T E) : True := by
-  -- Klasse-D forward (C22): geometricCoverage.pullback (C21-D-2 resolution) required.
-  -- Full statement: `(Model.toFunctor M).IsContinuous (geometricTopology T) K`
-  -- for appropriate K on E, plus CoverPreserving proof via M.satisfies.
-  trivial
-
 /-- The inverse image functor `f* : ClassifyingTopos T ⥤ E`.
 
     Defined structurally as the composition:
@@ -481,7 +470,7 @@ end ModelToGeometricMorphism
     1. `toFunctor M : (C_T)ᵒᵖ ⥤ E` — model as presheaf of context-objects
     2. `toPresheafFunctor M` — Yoneda extension (Klasse-D sideways)
     3. flatness — `PreservesFiniteLimits` (C22 TS-1 / Klasse-D sideways/forward)
-    4. J_T-continuity — `toPresheafFunctor_jt_continuous` (Klasse-D forward)
+    4. J_T-continuity — statement removed (Phase-2 sharpening; memorial block below)
     5. `toSheafFunctor M = sheafToPresheaf ⋙ toPresheafFunctor M` — inverse image
     6. `toSheafFunctor_rightAdjoint M` — direct image (Klasse-D sideways)
 
@@ -491,7 +480,8 @@ end ModelToGeometricMorphism
     - **sideways** (Mathlib-Vor-Phase): toPresheafFunctor,
       toPresheafFunctor_preservesFiniteLimits (part), toSheafFunctor_rightAdjoint
     - **forward** (C22): toPresheafFunctor_preservesFiniteLimits (part C22 TS-1),
-      toPresheafFunctor_jt_continuous (full), toSheafFunctor_adjunction (C22 S-1),
+      J_T-continuity (statement removed, memorial block below),
+      toSheafFunctor_adjunction (C22 S-1),
       inverse_preservesFiniteLimits -/
 noncomputable def Model.toGeometricMorphism
     (T : Theory.{u, v, w})
@@ -588,5 +578,41 @@ theorem Model.toGeometricMorphism_ofGeometricMorphism
     (f : GeometricMorphism E (ClassifyingTopos T)) :
     Model.toGeometricMorphism T (Model.ofGeometricMorphism T f) = f := by
   sorry
+
+/-! ## Memorial block: declaration removed because its statement was `True`
+
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`,
+row `S49`), carried out together with the freezing of this branch — a branch that
+is being frozen is tidied before, not after. The name claimed continuity, the
+statement was `True`. A theorem whose statement is `True` is not a false theorem,
+but its name reads as a result; in a published tree that is a claim. No consumer
+anywhere in the corpus; the removal breaks nothing.
+
+Signature quoted indented by two spaces so that the counting route `^theorem`
+does not count the memorial quote as a declaration.
+
+**Removed — `Model.toPresheafFunctor_jt_continuous`.** Register row `S49`.
+
+```
+  omit [EssentiallySmall.{max u v} (SyntacticContext T)] in
+  theorem Model.toPresheafFunctor_jt_continuous (_M : Model T E) : True := by
+    trivial
+```
+
+*What was claimed:* that `toFunctor M` is J_T-continuous — that it sends the
+geometric topology to covers in `E`. This is step 4 of the six-step construction
+of `Model.toGeometricMorphism`, and the only one of the six that was carried by
+a statement rather than by a definition.
+*What a load-bearing statement would need:* the statement its own doc-string
+already names, `(Model.toFunctor M).IsContinuous (geometricTopology T) K`. That
+needs `geometricCoverage.pullback` from C21-D-2 and the `CoverPreserving`
+machinery, and then a proof from `M.satisfies`. It is a proof obligation, not a
+marker: continuity can fail, and for a model that does not satisfy the theory it
+would.
+
+This branch is frozen (see the header of this file). The removal is the last
+change to it; discharging the obligation above is not planned and would fall
+under the thaw conditions in `docs/build-targets.md`.
+-/
 
 end Reformulation.PathC.Classifying
