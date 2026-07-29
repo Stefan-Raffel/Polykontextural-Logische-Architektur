@@ -151,7 +151,7 @@ beider Fehlexpansionen.
 | L10-2 | Isomorphie (§10) | `TCB.test1_injective` | Theorem | Operationalisierung | ja, `[propext]` | mit `TCB.test1_surjective` der Bijektionsbeleg |
 | L10-3 | Isomorphie (§10) | `TCB.test1_min_max` | Theorem | Operationalisierung | ja, `[propext]` | Operationsverträglichkeit auf der Kontextur |
 | L10-4 | Anisomorphie (§10) | `NUCB.conj` | Definition | Deutung | keine (def) | Negationskonjugation als Transport, keine Anisomorphie-These |
-| L10-5 | Anisomorphie (§10) | — | Offen | Offen | — | PathC: Waise, 25 `sorry` in 8 Dateien, 0 Wachen, ein Modul rot |
+| L10-5 | Anisomorphie (§10) | — | Offen | Offen | — | PathC: **eingefroren** (29.07.2026); 27 betroffene Deklarationen mit `sorry` in 8 Dateien (Route: frische Elaboration je Modul, verschiedene Warnpositionen; `docs/build-targets.md`), 0 Wachen, ein Modul rot |
 | L11-1 | Vermittlung (§11) | `NUCB.W` | Definition | Deutung | keine (def) | Dateiname bewusst `NonUniformCloneBound`, nicht `Mediation` |
 | L11-2 | Vermittlung (§11) | `SA.agg_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |

@@ -96,6 +96,14 @@ zaehlt Zeilenanfaenge; ein uneingeruecktes Zitat wird als Deklaration gezaehlt u
 damit eine stille Falschzaehlung. Die Regel gilt fuer `theorem`, `lemma`, `def`, `abbrev`
 und `instance` gleichermassen.
 
+Fuer `def` gilt dieselbe Weitung:
+
+    grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?def '
+
+*Beleg (29. Juli 2026):* alte Route 309, geweitete 315; die Differenz sind sechs
+`private def`. Zitate in Memorial-Bloecken gibt es fuer `def` bisher keine; die
+Einrueckungsregel oben gilt trotzdem.
+
 ### Statement-Pins: maschinenlesbar markieren
 
 Jeder Statement-Pin traegt unmittelbar davor die eigene Zeile
@@ -291,3 +299,23 @@ sondern die dem Status angemessene Verortung.
 Die Konvention ist eine Ordnungsregel, keine Geltungsregel: dass das Aggregat an 32 Stellen
 Setzungen traegt, verletzt sie nicht rueckwirkend. Neu angelegte setzungstragende Dateien
 gehen standalone, solange kein Aggregat-Satz sie konsumiert.
+
+---
+
+## 11 - Ergebnisdokumente: Fund ja, Stand nein
+
+Jeder Auftrag endet in einem Ergebnisdokument. Es berichtet, was der Zug getan und gemessen
+hat - und nur das.
+
+**Kein fremder Stand.** Ein Befund schreibt den Stand eines Dokuments, das er nicht geaendert
+hat, nicht fort: nicht den Plan, nicht das README, nicht das Ledger, nicht das Register. Wer
+einen Stand mitliest, liest ihn irgendwann veraltet ab. Das ist zweimal vorgekommen, beide
+Male ohne Sachfolge und beide Male mit einer zweiten Quelle als Ergebnis.
+
+**Aber jeder Fund.** Ein Widerspruch, den der Zug an einem fremden Dokument misst, gehoert in
+den Befund, und zwar mit beiden Zahlen und beiden Routen: "dort steht 25, meine Route ergibt
+34". Das ist ein Messergebnis und kein Stand.
+
+Der Unterschied ist der ganze Punkt: berichtet wird, was gemessen wurde; nicht berichtet
+wird, was anderswo geschrieben steht. Wer einen Stand fortfuehrt, steht im jeweiligen
+Dokument selbst - fuer Plan und Erfolgskriterien ist es die Spezifikations-Instanz.

@@ -4,8 +4,8 @@ Fuehrt jede Setzung des Korpus mit Klasse, Reichweite und Exit-Kriterium
 beziehungsweise Begruendung, warum sie keines hat. Die Zweiklassigkeit steht in
 `CLAUDE.md` §10; dieses Register schreibt sie nur auf.
 
-Stand: Commit `a66514f`, Branch `rev2`, 29. Juli 2026. Jede Zahl haengt am
-Commit und an einer Route; die Routen stehen in §4.
+Stand: Commit `26a65a3`, Branch `rev2`, 29. Juli 2026. Jede Zahl haengt am
+Commit und an einer Route; die Routen stehen in §5.
 
 **Bau- und Targetstatus gehoeren nicht hierher.** Welches Modul in welchem
 Target liegt und was ein gruener Bau je Target zusichert, steht in
@@ -46,7 +46,7 @@ umklassiert. Sie stehen hier, damit die Streichung auffindbar bleibt.
 
 Die IDs `S01`–`S32` folgen der alphabetischen Ordnung der vollen Lean-Namen.
 Das ist keine Rangfolge, sondern eine reproduzierbare Vergaberegel: wer die
-Messroute aus §4 laufen laesst, bekommt dieselbe Reihenfolge.
+Messroute aus §5 laufen laesst, bekommt dieselbe Reihenfolge.
 
 ---
 
@@ -124,9 +124,10 @@ Zuordnung umdrehen will, aendert zuerst `CLAUDE.md` §10 — nicht diese Zeile.
 
 ## 4 — Gestrichene Deklarationen
 
-Streichung am 29. Juli 2026, Commit `4e5bbf7`, nach Entscheidung des
-Projektinhabers. Fuenfzehn Deklarationen, deren Name Gehalt behauptete und deren
-Aussage `True` war. Jede traegt am Ende ihres Moduls einen Memorial-Block mit
+Streichung am 29. Juli 2026, nach Entscheidung des Projektinhabers: fuenfzehn
+Deklarationen mit Commit `4e5bbf7`, die sechzehnte (`S49`, in `PathC`) mit
+Commit `997037f` beim Einfrieren des Zweiges. Ihr Name behauptete Gehalt, ihre
+Aussage war `True`. Jede traegt am Ende ihres Moduls einen Memorial-Block mit
 zitierter Signatur und Exit-Kriterium; die Spalte „Ort" nennt das Modul, in dem
 er steht.
 
@@ -190,14 +191,18 @@ zusammengezogen, in denen er in Varianten stand.
 
 ### 4.3 Gestrichener Satz in `PathC`
 
-| ID | Traeger | Ort | Stand |
+| ID | Traeger (gestrichen) | Ort des Memorial-Blocks | Was ein tragfaehiger Satz braeuchte |
 |---|---|---|---|
-| S49 | `PathC.Classifying.Model.toPresheafFunctor_jt_continuous` | `PathC/Classifying/ClassifyingEquivalence.lean:430` | **noch nicht gestrichen** — geht mit Vorgang 2 |
+| S49 | `PathC.Classifying.Model.toPresheafFunctor_jt_continuous` | `PathC/Classifying/ClassifyingEquivalence.lean` | Die Aussage, die der eigene Doc-String schon nannte: `(Model.toFunctor M).IsContinuous (geometricTopology T) K`, aus `geometricCoverage.pullback` und `CoverPreserving`, bewiesen aus `M.satisfies`. Stetigkeit kann scheitern — das ist der Unterschied zu `True`. |
 
-Begruendung der Ausnahme: `PathC` ist Gegenstand einer eigenen Entscheidung
-(Plan §12, Vorgang 3). Einen Zweig im selben Zug einzufrieren und zu bereinigen
-waere ein Widerspruch zum Einfrieren. Die Zeile steht hier, damit der Posten
-nicht verloren geht.
+**Gestrichen am 29. Juli 2026, Commit `997037f`**, im selben Zug, der `PathC`
+eingefroren hat. Die Zeile stand zuvor offen, weil `PathC` Gegenstand einer
+eigenen Entscheidung war (Plan §12, Vorgang 2). Sie ging mit dem Einfrieren,
+nicht danach: ein Zweig, den man einfriert, wird vorher aufgeraeumt.
+
+Der Zweig ist seit demselben Tag eingefroren; die Streichung ist die letzte
+Aenderung an ihm. Bedingungen fuer ein Auftauen: `docs/build-targets.md`,
+Abschnitt `PathC`.
 
 ---
 
