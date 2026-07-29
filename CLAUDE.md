@@ -81,8 +81,20 @@ fuer README, Ledger und Befunde ist die dritte:
   `.ctorIdx`, `._sizeOf_*`.
 
 Gemessen wird per Umgebungsabfrage (`env.constants` plus `findDeclarationRanges?`), nicht per
-`grep`. Die Satzzahl bleibt davon unberuehrt: sie laeuft weiter ueber
-`grep -rcE '^(theorem|lemma) '`.
+`grep`. Die Satzzahl bleibt eine `grep`-Route, aber seit dem Satzrouten-Zug in geweiteter
+Form:
+
+    grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '
+
+*Grund (29. Juli 2026):* die fruehere Route `^(theorem|lemma) ` war in beide Richtungen
+falsch. Sie verfehlte 13 `private`-Deklarationen und 6 Deklarationen mit Attribut auf der
+Deklarationszeile, und sie zaehlte 3 Zitate entfernter Aussagen in Memorial-Bloecken mit.
+Beleg am Commit dieses Zuges; die laufenden Werte stehen im README.
+
+**Zitate in Memorial-Bloecken werden um zwei Leerzeichen eingerueckt.** Die Satzroute
+zaehlt Zeilenanfaenge; ein uneingeruecktes Zitat wird als Deklaration gezaehlt und ist
+damit eine stille Falschzaehlung. Die Regel gilt fuer `theorem`, `lemma`, `def`, `abbrev`
+und `instance` gleichermassen.
 
 ### Statement-Pins: maschinenlesbar markieren
 

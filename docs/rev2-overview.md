@@ -42,6 +42,10 @@ Tag `rev1`, annotiert, auf Commit `59541bd`.
 | Build-Jobs | 1267 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
+*Nachtrag 29. Juli 2026:* die Satzzahl dieser Tabelle steht auf der frueheren Route
+`^(theorem|lemma) `. Seit dem Satzrouten-Zug fuehrt das README eine geweitete Route; die
+beiden Zahlen sind Messpunkte verschiedener Routen und nicht gegeneinander zu lesen.
+
 Die Zahlen der ersten und der letzten Zeile sind am gruenen Build auf `59541bd` gemessen,
 Wachen und Pins ueber die Zaehlrouten aus `CLAUDE.md` §3 nachgezaehlt. `59541bd` selbst
 aendert nur `docs/` und drei Zeilen `README.md`; der Lean-Bestand steht seit `c576b57`.
