@@ -3,7 +3,7 @@
 *Repo-Dokument, keine Seite. `docs/` traegt `.nojekyll`; ausgeliefert werden nur die
 HTML-Dateien der Projektseite. Diese Datei richtet sich an Mitarbeitende am Repo.*
 
-Stand: 29. Juli 2026, HEAD `4d554cf`. Grundlage ist der Implementierungsplan zu PKLrev2 in
+Stand: 29. Juli 2026, Lean-Bestand `a66514f`. Grundlage ist der Implementierungsplan zu PKLrev2 in
 seiner Fassung Rev. 2. Bei Widerspruch gilt der Plan, nicht diese Uebersicht: der Plan
 traegt das Vorhaben, diese Datei erklaert die Repo-Form.
 
@@ -95,7 +95,8 @@ nicht: die Kopfmarke sagt, was eine Datei ist, das Statusvokabular sagt es pro B
 ## 5 - Die Schichten
 
 Was jede Schicht ist, steht hier; **wie weit sie gediehen ist, steht in §8** und sonst
-nirgends. Gebaut ist die erste (Definition-Ledger); die uebrigen sind offen.
+nirgends. Gebaut sind die ersten beiden (Definition-Ledger, Setzungsregister); die uebrigen
+sind offen.
 
 ### 5.1 Definition-Ledger - `docs/definition-ledger.md`
 
@@ -186,8 +187,10 @@ leer. Das gilt heute und darf durch keinen Rev2-Zug fallen.
 | 26.07.2026 | Definition-Ledger, Tabelle und Referenzdatei (`c61ca78`, `e3675d7`) | erledigt |
 | 26.07.2026 | Kennzahl-Konsistenz, vier Posten (`f2aac24`) | erledigt |
 | 28.07.2026 | Buildabdeckung: sechs Targets, `docs/build-targets.md` (`cfa9058`) | erledigt |
-| 29.07.2026 | Dokumentationsabgleich README und diese Datei | dieser Zug |
-| | Setzungsregister | offen |
+| 29.07.2026 | Dokumentationsabgleich README und diese Datei (`96fb0b7`) | erledigt |
+| 29.07.2026 | Phase-2-Zuspitzung: 15 `True`-Deklarationen gestrichen (`4e5bbf7`) | erledigt |
+| 29.07.2026 | Klassenmarken an allen 33 `True`-Feldern (`a66514f`) | erledigt |
+| 29.07.2026 | Setzungsregister, `docs/status-register.md` | dieser Zug |
 | | PolicyCheck-Demonstrator | offen |
 | | RAGAuthority-Demonstrator | offen |
 | | Cybersecurity- und Normenhierarchie-Demos | offen |
