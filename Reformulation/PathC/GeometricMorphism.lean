@@ -1,3 +1,5 @@
+-- EINGEFROREN (29. Juli 2026): dieser Zweig wird nicht fortgeschrieben.
+-- Status, Zahlen und die Bedingungen fuer ein Auftauen: docs/build-targets.md, Abschnitt PathC.
 import Mathlib.CategoryTheory.Adjunction.Basic
 import Mathlib.CategoryTheory.Limits.Preserves.Finite
 import Mathlib.CategoryTheory.Whiskering

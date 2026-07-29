@@ -1,3 +1,6 @@
+-- EINGEFROREN (29. Juli 2026): dieser Zweig wird nicht fortgeschrieben.
+-- Status, Zahlen und die Bedingungen fuer ein Auftauen: docs/build-targets.md, Abschnitt PathC.
+-- Dieses Modul uebersetzt nicht und liegt in keinem Target. Siehe ebenda.
 import Reformulation.PathC.Classifying.ClassifyingEquivalence
 
 /-!
