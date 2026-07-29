@@ -8,7 +8,28 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
 **Arbeitspapier zur Fassung PKL Rev1** (deutsch und englisch, mit Figuren und Zaehlrouten):
-<https://stefan-raffel.github.io/PKLrev1/> - Quelle unter `docs/`.
+`docs/de.html` und `docs/en.html`. Die frueher hier genannte Pages-Adresse
+<https://stefan-raffel.github.io/PKLrev1/> loest nicht auf - gemessen am 29. Juli 2026 gibt
+sie ohne Anmeldung HTTP 404 zurueck, wie es bei privatem Repository zu erwarten ist.
+
+---
+
+## Was implementiert ist, und was nicht
+
+Dieses Repository implementiert **nicht** die volle weltbildhafte Poly-Kontexturalitaet aus
+Definition 6 der Definitionen-Fassung: das System sich unendlich erweiternder Kontexturen mit
+wachsendem strukturellem Reichtum. Implementiert ist eine **formal-operative
+Polykontexturalitaet** - lokale klassische Kontexturen zusammen mit maschinell geprueften
+Nicht-Erzeugbarkeitssaetzen, die globale Reduzierbarkeit auf einen einheitlichen
+intra-kontexturellen Termkalkuel ausschliessen.
+
+**Der Name PKL bezeichnet den formalisierten Architekturkern und seine
+Reduzierbarkeitsbrueche, nicht den abgeschlossenen Beweis der gesamten philosophischen
+Theorie.**
+
+Welcher Begriff welchen Lean-Traeger hat, welchen Status er traegt und wo seine Grenze
+liegt, fuehrt `docs/definition-ledger.md` fuer alle neunzehn Paragraphen der
+Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben.
 
 ---
 

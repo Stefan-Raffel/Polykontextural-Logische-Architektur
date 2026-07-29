@@ -3,7 +3,9 @@
 *Repo-Dokument, keine Seite. `docs/` traegt `.nojekyll`; ausgeliefert werden nur die
 HTML-Dateien der Projektseite. Diese Datei richtet sich an Mitarbeitende am Repo.*
 
-Stand: 25. Juli 2026. Grundlage ist der Implementierungsplan zu PKLrev2.
+Stand: 29. Juli 2026, HEAD `4d554cf`. Grundlage ist der Implementierungsplan zu PKLrev2 in
+seiner Fassung Rev. 2. Bei Widerspruch gilt der Plan, nicht diese Uebersicht: der Plan
+traegt das Vorhaben, diese Datei erklaert die Repo-Form.
 
 ---
 
@@ -56,13 +58,16 @@ Drei Namen, die absichtlich auseinanderfallen:
 |---|---|---|
 | Arbeitsverzeichnis | `PKL/Reformulation` | versionsfrei; die Version tragen die Tags |
 | Lake-Paket und Lean-Bibliothek | `reformulation` / `Reformulation` | war schon immer versionsfrei |
-| GitHub-Repo und Pages | `PKLrev1` | die publizierte Adresse bleibt gueltig |
+| GitHub-Repo | `PKLrev1` | der Remote-Name bleibt; eine Umbenennung kauft nichts |
 
-Das Arbeitspapier zur Fassung Rev1 ist unter <https://stefan-raffel.github.io/PKLrev1/>
-veroeffentlicht und zitiert diese Adresse. Eine Repo-Umbenennung wuerde die Erreichbarkeit
-an einen Redirect haengen; das ist einer publizierten Adresse nicht zuzumuten. Der lokale
-Verzeichnisname weicht darum vom Remote-Namen ab - fuer Git ohne Belang, hier vermerkt,
-damit es spaeter niemanden irritiert.
+Der Remote-Name bleibt, aber nicht aus dem Grund, der hier frueher stand. Die Annahme, die
+Adresse <https://stefan-raffel.github.io/PKLrev1/> sei publiziert und darum zu schonen, ist
+gemessen falsch: am 29. Juli 2026 liefert sie ohne Anmeldung HTTP 404, ebenso die
+Repo-Seite selbst. Das Repository ist privat, es gibt keine Leser ausser dem
+Projektinhaber. Damit ist der Grund, nicht umzubenennen, ein anderer und ein schwaecherer:
+eine Umbenennung kauft nichts und kostet einen Eingriff. Das Arbeitspapier liegt unter
+`docs/`. Der lokale Verzeichnisname weicht vom Remote-Namen ab - fuer Git ohne Belang, hier
+vermerkt, damit es spaeter niemanden irritiert.
 
 Das AxiomGate prueft ueber das Modulpraefix `Reformulation`, nicht ueber Verzeichnisnamen.
 Kein Rename beruehrt es.
@@ -89,7 +94,8 @@ nicht: die Kopfmarke sagt, was eine Datei ist, das Statusvokabular sagt es pro B
 
 ## 5 - Die Schichten
 
-Alle sechs sind **geplant, keine ist gebaut**. Der Stand wird hier nachgefuehrt.
+Was jede Schicht ist, steht hier; **wie weit sie gediehen ist, steht in §8** und sonst
+nirgends. Gebaut ist die erste (Definition-Ledger); die uebrigen sind offen.
 
 ### 5.1 Definition-Ledger - `docs/definition-ledger.md`
 
@@ -97,17 +103,16 @@ Verbindet `Definitionen.md` mit dem Lean-Bestand: je Begriff der Rev1-Ort, der S
 tragende Satz und die Grenze. Kein Eintrag darf mehr behaupten als der genannte Satz traegt.
 Der Off-by-one zur Verbundkontextur-Folge (`CLAUDE.md` §5.3) wird ausdruecklich markiert.
 
-### 5.2 Statusregister - `docs/status-register.md`
+### 5.2 Setzungsregister - `docs/status-register.md`
 
-Trennt Aggregat, standalone, Foreign und historisch/offen. Die Rohliste liegt vor: von
-155 `.lean`-Dateien sind 19 nicht importiert - das AxiomGate selbst, `Foreign/PeresMermin`,
-drei `Diagnostics/`, sieben Proemial-Sonden, zwei `PathC/Classifying/`, zwei
-`MathlibExtensions/Sites/`, `PathC/ModalTwoCategoryNegation` und
-`F1/D2/Rollups/Coalgebraic/SubstantialRev2`. Je Eintrag: Grund des Status, etwaige
-`True`-Felder, etwaige `sorry`-Stellen, Konsumenten, Exit-Kriterium.
+Fuehrt jede Setzung des Korpus mit Klasse, Reichweite und Exit-Kriterium beziehungsweise
+Begruendung, warum sie keines hat. Die Zweiklassigkeit - Platzhalter gegen konstitutive
+Setzung - steht in `CLAUDE.md` §10; das Register schreibt sie nur auf, samt der
+Ablagekonvention: setzungsfrei bedeutet Aggregat, setzungstragend bedeutet standalone.
 
-Die Trennung ist der Sache nach die aus `CLAUDE.md` §10: **setzungsfrei bedeutet Aggregat,
-setzungstragend bedeutet standalone.** Das Register schreibt sie nur auf.
+**Bau- und Targetstatus gehoeren nicht hierher.** Welches Modul in welchem Target liegt,
+welche Module gar keines hatten und was ein gruener Bau je Target zusichert, steht seit dem
+Buildabdeckungs-Zug in `docs/build-targets.md`.
 
 ### 5.3 Anwendungsdemonstratoren - `Reformulation/Proemial/Applications/`
 
@@ -126,7 +131,11 @@ Mustersemantik normalformbasiert, ueber `relabel` und RGS, konsumierend aus `Bas
 `Bridge`. **Kein Quotientstyp zu Beginn** - er kommt erst nach stabilen Normalform- und
 Muster-Theoremen, wenn ueberhaupt.
 
-### 5.5 Doku- und CI-Ordnung
+### 5.5 Doku-Ordnung und Lint
+
+Continuous Integration ist **Nicht-Ziel mit Ausloesebedingung**: sie kommt, sobald ein
+zweiter Beitragender committet oder zum ersten Mal ein Commit ohne gruenen Bau vorkommt.
+Der Grund steht im Plan §11 und wird hier nicht wiederholt.
 
 `lake build` bleibt der harte Aggregatcheck, `lake build ForeignPeresMermin` der separate
 Kalibrierungscheck. Standalone-Dateien werden gelistet, aber nicht mit dem Aggregatstatus
@@ -154,20 +163,13 @@ eines Treffers bleibt ausserhalb: das Skript nennt das Muster, nicht das Urteil.
 
 ## 7 - Erfolgskriterien
 
-Rev2 ist erreicht, wenn:
+Die Erfolgskriterien stehen im Implementierungsplan §13, mit Stand je Kriterium. Sie stehen
+dort und nicht hier: eine zweite Liste laeuft von der ersten weg, und im Verlauf dieses
+Projekts ist das zweimal geschehen.
 
-1. jeder Begriff aus `Definitionen.md` einen dokumentierten Rev1/Rev2-Status hat;
-2. mindestens zwei Anwendungsmodule `GeneralCloneBound` oder `StageAggregation`
-   konsumieren, statt Beweise zu kopieren;
-3. mindestens eine Anwendung eine Konstanten-Robustheits-Aussage besitzt - also eine
-   reflexive Invariante nach `CLAUDE.md` §9;
-4. das Aggregat `sorryAx`-frei und das AxiomGate gruen bleibt, Whitelist leer;
-5. jede Setzung registriert ist und ein Exit-Kriterium hat;
-6. morphogrammatische Muster normalformbasiert nutzbar sind;
-7. die Dokumentation ausdruecklich sagt, wo Lean endet und Deutung beginnt.
-
-Kriterium 4 ist keine Aufgabe, sondern eine Erhaltungsbedingung: es gilt heute und darf
-durch keinen Rev2-Zug fallen.
+Ein Kriterium sei dennoch hervorgehoben, weil es keine Aufgabe ist, sondern eine
+Erhaltungsbedingung: das Aggregat bleibt `sorryAx`-frei, das AxiomGate gruen, die Whitelist
+leer. Das gilt heute und darf durch keinen Rev2-Zug fallen.
 
 ---
 
@@ -178,10 +180,16 @@ durch keinen Rev2-Zug fallen.
 | 25.07.2026 | Verzeichnis `PKLrev1` -> `Reformulation` umbenannt | erledigt |
 | 25.07.2026 | Kontrollbau nach Rename: 1267 Jobs, AxiomGate gruen | erledigt |
 | 25.07.2026 | Tag `rev1` auf `59541bd`, Branch `rev2` angelegt | erledigt |
-| | Definition-Ledger | offen |
-| | Statusregister | offen |
+| 26.07.2026 | Wachenluecke: 66 Axiom-Wachen im Kenogram-Zweig (`284995b`) | erledigt |
+| 26.07.2026 | `CLAUDE.md` §10: Regel auf das Schutzziel (`f5d5244`, `3dc2649`) | erledigt |
+| 26.07.2026 | `ElementaryCycle`: Elementarkontextur als Zweierbahn (`e69fb16`) | erledigt |
+| 26.07.2026 | Definition-Ledger, Tabelle und Referenzdatei (`c61ca78`, `e3675d7`) | erledigt |
+| 26.07.2026 | Kennzahl-Konsistenz, vier Posten (`f2aac24`) | erledigt |
+| 28.07.2026 | Buildabdeckung: sechs Targets, `docs/build-targets.md` (`cfa9058`) | erledigt |
+| 29.07.2026 | Dokumentationsabgleich README und diese Datei | dieser Zug |
+| | Setzungsregister | offen |
 | | PolicyCheck-Demonstrator | offen |
 | | RAGAuthority-Demonstrator | offen |
 | | Cybersecurity- und Normenhierarchie-Demos | offen |
 | | Morphogramm-Bruecke | offen |
-| | CI-Ausbau | offen |
+| | Continuous Integration | Nicht-Ziel, Plan §11 |
