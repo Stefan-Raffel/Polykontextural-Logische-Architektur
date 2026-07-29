@@ -92,8 +92,12 @@ und bei Widerspruch gilt der Feld-Doc, weil der Bau ihn traegt.
 | S31 | `Proemial.Substantial.ProemialGammaMorphismSubstantial.bc_compat` | `Proemial/AlphaGammaSubstantial.lean` | Platzhalter | Aufloesung des B-2-Befunds: Architektur-Mismatch zwischen F3e-BC (Endofunktor) und F-3 (S ≠ K). Bis dahin ist die volle BC-Integration belegungsspezifisch. |
 | S32 | `Proemial.Transjunction.CharacterizedPosit.contexturePartitionGenuine` | `Proemial/ContexturalTransjunction.lean` | **konstitutiv** | Kein Exit. Begruendung: die Echtheit der Kontextur-Partition ist der gesetzte Rand (Grenze 4), Daten-Charakter analog Beck-Chevalley. Der Kern derselben Struktur ist bewiesen (`not_S_internal`); die Grenze zwischen beiden ist die Pointe und kein Mangel. In `CLAUDE.md` §10 namentlich gefuehrt. |
 
-30 Platzhalter, 2 konstitutiv. Die Zahl 2 ist keine Wahl dieses Registers,
-sondern die bindende Festlegung aus `CLAUDE.md` §10.
+30 Platzhalter, 2 konstitutiv. Die beiden konstitutiven sind `S28` und `S32`,
+und sie tragen ihre Klasse, weil sie kein Beweis-Soll haben — nicht, weil eine
+Zahl es vorschreibt. `CLAUDE.md` §10 nennt dieselben zwei; das ist ein Messwert
+am Commit `284995b` und stimmt mit dieser Einordnung ueberein. Eine Obergrenze
+ist er nicht: wer ein drittes Feld ohne Beweis-Soll findet, fuehrt es
+konstitutiv und misst §10 neu.
 
 ---
 
@@ -112,13 +116,16 @@ Stelle und hat sie nicht ueber mehrere Felder verteilt.
 
 `S27` (`F3f.Stage.noAlgebraExtension`) liest sich der Sache nach **konstitutiv**:
 das Verbot der Algebra-Lesart ist eine Architekturentscheidung (T1a V), kein
-verschobener Beweis. Es steht hier trotzdem als Platzhalter, weil `CLAUDE.md`
-§10 die Zahl der konstitutiven Aggregatfelder bindend auf zwei festlegt und
-beide namentlich nennt.
+verschobener Beweis. Es steht hier gleichwohl als **Platzhalter**, und zwar aus
+dem Grund, der eine Zeile tiefer steht: es gibt ein formulierbares und
+beweisbares Exit-Kriterium. Eine konstitutive Setzung ist eine ohne Beweis-Soll;
+wo ein Beweis-Soll benannt ist, liegt ein Platzhalter vor. Architektur und
+Beweis schliessen einander nicht aus - eine Architekturentscheidung darf einen
+Satz hinter sich haben.
 
 Das dabei entstehende Exit-Kriterium ist kein Notbehelf: der Nicht-Existenz-Satz
-ueber einen globalen Stapeloperator ist formulierbar und waere beweisbar. Wer die
-Zuordnung umdrehen will, aendert zuerst `CLAUDE.md` §10 — nicht diese Zeile.
+ueber einen globalen Stapeloperator ist formulierbar und waere beweisbar.
+Wer die Zuordnung umdrehen will, muss zeigen, dass das Exit-Kriterium nicht traegt.
 
 ---
 

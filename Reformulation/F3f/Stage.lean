@@ -108,8 +108,8 @@ structure Stage (n : ℕ) where
   **Placeholder** (register row `S27`): exit is a non-existence theorem — no
   global stacking operator extends the stage-local end-functors coherently
   across stages. That is statable and provable; the marker defers it. Read as
-  placeholder and not as constitutive because `CLAUDE.md` §10 fixes the count
-  of constitutive fields in the aggregate at two, and both are named there. -/
+  placeholder and not as constitutive precisely because that exit criterion
+  exists and is named: a constitutive positing carries no proof duty at all. -/
   noAlgebraExtension : True
 
 end Reformulation.F3f
