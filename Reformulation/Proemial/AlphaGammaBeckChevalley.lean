@@ -226,11 +226,11 @@ Bestände dieser Datei sind byte-identisch erhalten.
 **Entfernte Aussage 1** (F-3.5.a Teil 1, stand hier mit Sorry):
 
 ```
-theorem TritoStellungsVielfaltExists_does_not_imply_substantial
-    {S K : Type*} [Category S] [Category K] :
-    ∃ (PAS : ProemialAdjunctionSubstantial S K),
-      TritoStellungsVielfaltExists PAS ∧
-      ¬ TritoStellungsVielfaltExists_substantial PAS
+  theorem TritoStellungsVielfaltExists_does_not_imply_substantial
+      {S K : Type*} [Category S] [Category K] :
+      ∃ (PAS : ProemialAdjunctionSubstantial S K),
+        TritoStellungsVielfaltExists PAS ∧
+        ¬ TritoStellungsVielfaltExists_substantial PAS
 ```
 
 *Falschheits-Grund:* das bezeugende PAS existiert NIE. Zu jeder Stellung σ₀
@@ -246,14 +246,14 @@ F-3.4/5-Bewertung Sektion II.5; Spec-Stopp-Befund der Zeugen-Einheit).
 **Entfernte Aussage 2** (F-3.5.a Teil 2, stand hier mit Sorry):
 
 ```
-theorem rel_not_through_counit
-    {S K : Type*} [Category S] [Category K]
-    {PAS : ProemialAdjunctionSubstantial S K}
-    (BC : SubstantialBeckChevalleyData S K PAS)
-    (σ : Stellung PAS)
-    (h_rel_not_iso : ¬ IsIso σ.rel) :
-    ¬ ∃ (u : PAS.L.obj σ.s ⟶ PAS.L.obj (PAS.R.obj σ.k)),
-        σ.rel = u ≫ PAS.adj.counit.app σ.k
+  theorem rel_not_through_counit
+      {S K : Type*} [Category S] [Category K]
+      {PAS : ProemialAdjunctionSubstantial S K}
+      (BC : SubstantialBeckChevalleyData S K PAS)
+      (σ : Stellung PAS)
+      (h_rel_not_iso : ¬ IsIso σ.rel) :
+      ¬ ∃ (u : PAS.L.obj σ.s ⟶ PAS.L.obj (PAS.R.obj σ.k)),
+          σ.rel = u ≫ PAS.adj.counit.app σ.k
 ```
 
 *Falschheits-Grund:* die Faktorisierung existiert IMMER — mit dem Zeugen

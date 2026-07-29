@@ -275,13 +275,13 @@ der Stub `SubstantialBeckChevalleyData` und das sorry-freie F-S
 **Entfernte Aussage** (stand hier mit Sorry):
 
 ```
-theorem beck_chevalley_verschraenkung_substantial
-    {S K : Type*} [Category S] [Category K]
-    (PAS : ProemialAdjunctionSubstantial S K)
-    (BC : SubstantialBeckChevalleyData S K PAS)
-    (PGM : ProemialGammaMorphismSubstantial PAS BC) :
-    PGM.γ = BC.bcIso :=
-  sorry
+  theorem beck_chevalley_verschraenkung_substantial
+      {S K : Type*} [Category S] [Category K]
+      (PAS : ProemialAdjunctionSubstantial S K)
+      (BC : SubstantialBeckChevalleyData S K PAS)
+      (PGM : ProemialGammaMorphismSubstantial PAS BC) :
+      PGM.γ = BC.bcIso :=
+    sorry
 ```
 
 *Veraltetheits-Grund:* Diese Form operiert auf dem **F-3-Stub**
