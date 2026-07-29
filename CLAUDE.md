@@ -71,6 +71,9 @@ Die Anwesenheit einer .olean ist KEIN Nachweis, dass ein Modul vom Bau erfasst w
 Waisen tragen .olean-Dateien aus frueheren Einzelbauten. Die Import-Huelle ist die tragende
 Route.
 
+Zaehlt man ueber mehrere Targets, gilt dasselbe in der anderen Richtung: ihre Import-Huellen
+ueberlappen, und wer die Bauausgaben summiert, zaehlt Module doppelt. Siehe §12, Regel 4.
+
 Die aktuellen Werte stehen im README, nicht hier. Eine Kennzahl gehoert in diese Datei nur
 als Beleg fuer eine Regel, an einen Commit gebunden; nie als laufender Stand.
 
@@ -186,7 +189,7 @@ erhebt, und nicht als Korpus-Aussage gefuehrt.
 
 ## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
 
-Alle sechs sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
+Alle acht sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
 sie nicht ein zweites Mal gefunden werden muessen.
 
 **1 - `Fin n`-Subtraktion ist modular.** `|a - b| <= 1` ueber `Fin 4` ist **nicht** die
@@ -227,6 +230,21 @@ sieht `Fin`-`min`/`max` nicht — erst mit `simp only [Fin.coe_min, Fin.coe_max]
 `ℕ` bringen, dann versteht `omega` `min`/`max` nativ und die Fallarbeit über
 `Nat.le_total` entfällt. (E3-Bau.)
 
+
+**8 - `ConstantInfo.value?` sieht keinen Beweisterm.** Fuer `thmInfo` liefert das Feld
+`none`; eine Route, die Konsumenten ueber `value?` sucht, ist fuer Saetze blind und meldet
+zuverlaessig null. Gemessen an
+`F1.D2.Ethereum.gasper_inter_layer_compatible`: `value?.isSome = false`, obwohl der
+Quelltext den Beweis ausschreibt. Heilung: explizit mustern.
+
+    match ci with
+    | .thmInfo v => some v.value
+    | .defnInfo v => some v.value
+    | .opaqueInfo v => some v.value
+    | _ => none
+
+Der Fehler ist die gefaehrliche Sorte: er liefert kein falsches Ergebnis, sondern ein
+leeres, und ein leeres Ergebnis sieht aus wie eine gute Nachricht. (Phase-2-Zuspitzung.)
 ---
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
@@ -324,3 +342,34 @@ den Befund, und zwar mit beiden Zahlen und beiden Routen: "dort steht 25, meine 
 Der Unterschied ist der ganze Punkt: berichtet wird, was gemessen wurde; nicht berichtet
 wird, was anderswo geschrieben steht. Wer einen Stand fortfuehrt, steht im jeweiligen
 Dokument selbst - fuer Plan und Erfolgskriterien ist es die Spezifikations-Instanz.
+
+---
+
+## 12 - Messen: was eine Route zu leisten hat
+
+Vier Regeln, jede aus einem gemessenen Fehlgriff dieses Korpus. Sie gelten fuer jede Zahl,
+die ein Dokument verlaesst.
+
+**1 - Eine Route wird gegengerechnet, bevor ihr Ergebnis in ein Dokument geht.** Der
+Gegenfall ist einer, dessen Antwort aus dem Quelltext bekannt ist - einer, der treffen muss,
+und wo es geht einer, der nicht treffen darf. Eine Route ohne Gegenprobe ist eine Vermutung
+mit Nachkommastellen.
+
+**2 - Eine Messprobe prueft eine Gleichung, nicht eine Zahl.** Wo zwei Wege zur selben
+Groesse fuehren - Tafelsumme gegen Gesamtzahl, geschriebene gegen erzwungene Wachen, Tabelle
+gegen Referenzdatei -, wird die Gleichheit geprueft und nicht der Wert abgelesen. Eine
+falsche Route faellt dann auf; eine Probe, die nur zaehlt, liefert eine plausible Zahl und
+schweigt. Gemessen: eine Bereichsprobe fiel laut bei -80, weil sie eine Gleichung prueft.
+
+**3 - Wertgleichheit zweier Routen ist kein Beleg fuer Mengengleichheit.** Gemessen: zwei
+Routen lieferten beide 49 und hatten keine Zeile gemeinsam - 33 Feldzeilen, 3 Kopfzeilen,
+9 Fortsetzungszeilen und 4 Prosazeilen gegen 33 Projektionen, 6 def und 10 Saetze. Wer zwei
+Routen vergleicht, vergleicht ihre Mengen und nicht ihre Summen.
+
+**4 - Bauausgaben mehrerer Targets werden nicht summiert.** Targets ueberlappen in ihren
+Import-Huellen; ein Modul, das in zweien liegt, meldet zweimal. Gemessen: 27 betroffene
+Deklarationen wurden auf diesem Weg zu 34. Wer ueber mehrere Targets zaehlt, gleicht die
+Huellen ab oder misst je Modul mit `lake env lean`.
+
+Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
+der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.
