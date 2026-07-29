@@ -118,15 +118,69 @@ fortgeschrieben.
 
 ### `PathC` — 17 der 18 Module, ohne `Classifying/Universal`
 
+**EINGEFROREN seit dem 29. Juli 2026.** Der Zweig wird nicht fortgeschrieben: keine neue
+Deklaration, kein geschlossener Beweis, keine entfernte `sorry`-Stelle, keine neue Wache.
+Er bleibt im Baum, bleibt im Rufe-Target `PathC` und **muss weiter uebersetzen**. Jedes
+seiner 18 Module traegt den Vermerk in seiner ersten Zeile und zeigt hierher.
+
+Eingefroren heisst **nicht geloescht**, und der Grund ist sachlich: sechs Module ausserhalb
+des Zweiges importieren aus ihm, und eine Entfernung braeche das Target
+`MathlibExtensions`.
+
+| Modul ausserhalb | importiert aus `PathC` |
+|---|---|
+| `MathlibExtensions/Topos/Regular` | `ElementaryTopos` |
+| `MathlibExtensions/Topos/Subobject/WellPowered` | `ElementaryTopos` |
+| `MathlibExtensions/Topos/Subobject/InitialMonoClass` | `ElementaryTopos` |
+| `MathlibExtensions/Sites/YonedaUlift` | `ElementaryTopos`, `Classifying/SyntacticSite` |
+| `MathlibExtensions/Sites/SheafAdjunction` | `Classifying/GeometricTopology` |
+| `Diagnostics/SwapSatzProbe` | `ModalTwoCategory` |
+
+#### Auftauen — drei benannte Bedingungen, sonst nicht
+
+Nach dem Muster des CI-Nicht-Ziels im Plan §11. Der Zweig taut auf, wenn **eine** davon
+eintritt, und sonst nicht:
+
+1. Ein Satz des Aggregats konsumiert einen `PathC`-Satz. Heute konsumiert keiner.
+2. Der Def6-Strang (Phase 5) nimmt die Topos-Achse auf und braucht den Zweig als Substrat.
+3. Ein Toolchain- oder Mathlib-Wechsel macht `lake build PathC` oder
+   `lake build MathlibExtensions` rot. Dann ist zu entscheiden: reparieren oder den Zweig
+   samt seiner sechs Konsumenten aufloesen. **Nicht** stillschweigend rot lassen.
+
 ***Gruen heisst ausschliesslich: es uebersetzt.***
 
-Der Zweig traegt **25 `sorry` in 8 Dateien** und null Wachen; ein gruener Bau sagt darueber
-nichts. Diese Zeile ist die wichtigste der ganzen Datei, weil `PathC` der Zweig ist, bei
-dem die Verwechslung von „gruen" mit „bewiesen" schon einmal vorgekommen ist.
+Der Zweig traegt **27 betroffene Deklarationen mit `sorry`** in 8 Dateien und null Wachen;
+ein gruener Bau sagt darueber nichts. Diese Zeile ist die wichtigste der ganzen Datei, weil
+`PathC` der Zweig ist, bei dem die Verwechslung von „gruen" mit „bewiesen" schon einmal
+vorgekommen ist. Das Einfrieren macht sie nicht schwaecher, sondern staerker: was hier
+gruen baut, bleibt auf Dauer unbewiesen.
 
-Verteilung der 25: `ClassifyingEquivalence` 8, `TermSemantics` 5, `ModelFunctor` 3,
-`Soundness` 3, `Formula` 2, `ModalTwoCategoryNegation` 2, `ClassifyingTopos` 1,
-`GeometricTopology` 1.
+**Route (verbindlich):** je Modul `lake env lean <datei>`, gezaehlt werden die *verschiedenen
+Positionen* der Warnung `declaration uses \`sorry\``. Frische Elaboration statt Bauausgabe,
+weil ein Replay nur die Module meldet, die er tatsaechlich anfasst. Verschiedene Positionen
+statt roher Warnungen, weil eine Deklaration die Warnung mehrfach ausloesen kann.
+`Classifying/Universal.lean` ist ueber diese Route **nicht messbar** — es uebersetzt nicht;
+ueber die Textroute traegt es zwei `sorry`-Nennungen, beide in Prosa, keine in Code.
+
+Verteilung der 27: `TermSemantics` 9, `ClassifyingEquivalence` 8, `ModelFunctor` 3,
+`Formula` 2, `ModalTwoCategoryNegation` 2, `ClassifyingTopos` 1, `GeometricTopology` 1,
+`Soundness` 1.
+
+**Zur frueheren Zahl 25.** Sie stand hier ohne Route und ist beim Einfrieren nachgerechnet
+worden. Sie ist reproduzierbar, und zwar exakt samt Verteilung: sie zaehlt die *Vorkommen
+des Wortes* `sorry` im Code, Block- und Zeilenkommentare abgezogen, ueber
+`Reformulation/PathC/`. Sie ist damit keine falsche Zahl, sondern eine andere Frage —
+Wortvorkommen statt betroffener Deklarationen. Die beiden weichen in beide Richtungen ab:
+`Soundness` hat drei `sorry` in *einer* Deklaration (Wortroute 3, Deklarationsroute 1),
+`TermSemantics` fuenf Wortvorkommen in *neun* betroffenen Deklarationen. Verbindlich ist ab
+jetzt die Deklarationsroute, weil sie zaehlt, was zaehlt.
+
+Zwei weitere Zahlen, damit niemand sie gegeneinander liest: eine *rohe* Zaehlung aller
+Warnungen einer frischen Elaboration ergibt 31 (vier Deklarationen in `TermSemantics`
+melden doppelt); summiert man die Bauausgaben von `lake build PathC` und
+`lake build MathlibExtensions` ohne Abgleich, ergibt sich 34 — die drei zusaetzlichen sind
+`GeometricTopology` und `Formula`, die in beiden Targets liegen und darum zweimal gezaehlt
+werden. Beides sind Messartefakte, keine Eigenschaften des Zweiges.
 
 ### `ForeignPeresMermin` — 1 Modul
 
@@ -168,8 +222,11 @@ Drei Beobachtungen, keine davon eine Reparatur:
 * Von den 52 Modulen ohne Targetzugehoerigkeit uebersetzen 51; dieses nicht. Die
   Nachmessung in C2 hat gegenueber C1 kein zweites rotes Modul gefunden.
 
-Die Reparatur gehoert zu Phase 2 (PathC-Status), zusammen mit der Entscheidung ueber den
-Zweig als ganzen. Bis dahin wird das Modul hier gefuehrt, mit Fehlermeldung und Messdatum.
+Die Entscheidung ueber den Zweig ist am 29. Juli 2026 gefallen: **er ist eingefroren.**
+Damit bleibt dieses Modul ungebaut und dokumentiert. Eine Reparatur kommt nur unter den
+Auftau-Bedingungen oben in Betracht; sie am Tag des Einfrierens zu unternehmen waere ein
+Verstoss gegen das Einfrieren. Das Modul wird hier weiter gefuehrt, mit Fehlermeldung und
+Messdatum.
 
 ---
 
