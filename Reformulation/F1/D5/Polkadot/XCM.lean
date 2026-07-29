@@ -20,9 +20,11 @@ Structural content:
 * `XCMCompatibility` — cross-chain compatibility for XCM bridges. Hybrid
   form: `beckChevalleyHolds : True` as placeholder, plus `relayMediation`
   as a provable predicate making relay-mediation formally visible.
-* `XCMCompatibility.toBeckChevalley` — connection function to F3.a
-  `DesignativeRestriction.beckChevalley`. SECOND belegung of this
-  placeholder (after F1.D5.IBC's `CrossChainCompatibility.toBeckChevalley`).
+
+The connection function to the F3.a `DesignativeRestriction.beckChevalley`
+placeholder was removed in the Phase-2 sharpening; see the memorial block at the
+end of this module. What this module carries is `relayMediation`, a provable
+predicate, and that stays.
 
 See F1_D5_Polkadot_Spec.md §III (Sub-Schicht 2: XCM-spezifisch), T10 IV.
 -/
@@ -91,18 +93,35 @@ structure XCMCompatibility (xcm : XCMBridge) where
   parent relay-chain. Provable from `sameRelay.1` of the XCMMessage. -/
   relayMediation : xcm.message.relayChain = xcm.message.source.parentRelayChain
 
-/-- Connection function: XCM compatibility implies the abstract beckChevalley
-placeholder used in F3.a.DesignativeRestriction.
+/-! ## Memorial block: declaration removed because its statement was `True`
 
-SECOND belegung of the `beckChevalley` placeholder in the project:
-- First: `CrossChainCompatibility.toBeckChevalley` (F1.D5.IBC), Light-Client form.
-- Second: `XCMCompatibility.toBeckChevalley` (F1.D5.Polkadot.XCM), Relay-Chain form.
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The name claimed content, the statement was `True`. No consumer in the aggregate;
+the removal breaks nothing.
 
-Both belegungen fill the same F3.a placeholder with structurally distinct
-concrete forms — confirming the multi-belegbarkeit of the prop_field-True
-convention. -/
-def XCMCompatibility.toBeckChevalley
-    {xcm : XCMBridge} (_c : XCMCompatibility xcm) : True :=
-  trivial
+Signature quoted indented by two spaces so that the counting route `^def` does
+not count the memorial quote as a declaration.
+
+**Removed — `XCMCompatibility.toBeckChevalley`.** Register row `S45`.
+
+```
+  def XCMCompatibility.toBeckChevalley
+      {xcm : XCMBridge} (_c : XCMCompatibility xcm) : True :=
+    trivial
+```
+
+*What was claimed:* that XCM compatibility fills the F3.a
+`DesignativeRestriction.beckChevalley` placeholder — the second of three
+belegungen of that placeholder, in relay-chain form.
+*What a load-bearing statement would need:* the target field
+`F3a.DesignativeRestriction.beckChevalley` (register row `S14`) must carry an
+actual 2-isomorphism instead of `True`; a function into `True` establishes no
+connection, since every term of every type maps to `trivial`. The observation
+that the belegungen differ structurally — light-client verification here,
+relay-chain delegation there — is recorded once, in the memorial block of
+`F1/D2/Rollups/DoubleValuation.lean`, and is not repeated across the modules.
+The local material that could feed a real construction is `relayMediation`,
+which stays and is provable from `XCMMessage.sameRelay`.
+-/
 
 end Reformulation.F1.D5.Polkadot.XCM

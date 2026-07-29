@@ -20,16 +20,15 @@ Structural character: Inter-Reflexionsraum-Form with multiple parallel
 valuations (one per chain), rather than the intra-Reflexionsraum double
 valuation of F1.D2.
 
-Central F1.D5 theorem: `bridge_soundness_iff_lightClient` — a non-
-tautological theorem over BridgeType (unlike F1.D2's tautological
-`gasper_inter_layer_compatible`).
+Central F1.D5 theorem: `bridge_soundness_iff_lightClient` — non-tautological,
+stated over BridgeType. It is what this layer carries; the tautological
+`True`-form statements of the F1 layers were removed in the Phase-2 sharpening.
 
 F3.a placeholder connections from F1.D5:
-- `beckChevalley` (DesignativeRestriction): filled via
-  `CrossChainCompatibility.toBeckChevalley`.
 - `isUnique` (Skeleton): partial (per-chain skeleton uniqueness).
-- `compatibility`, `isFunctorial`, `markerCompat`: remain as
-  placeholders (Multi-Chain topology does not activate these).
+- `beckChevalley`, `compatibility`, `isFunctorial`, `markerCompat`: remain as
+  placeholders. The connection function into `beckChevalley` was removed in the
+  Phase-2 sharpening; see the memorial block in `F1/D5/IBC.lean`.
 
 Folge-Aufgaben outside this spec:
 - F1.D5.Polkadot (Relay-Chain asymmetry, XCM bridge classification)

@@ -22,9 +22,10 @@ Structural content:
 
 Connection to F3.a invariant layer: `softLayer_has_modalOps` fills the
 `beckChevalley` placeholder; `hardLayer_has_modalOps` fills `isFunctorial`
-and `isUnique`. The fourth placeholder (`compatibility`) is filled in
-F1.D2.Ethereum via `GasperCompatibility.toDoubleValuationCompat`.
-`markerCompat` in F3.a.SchemaMorphism remains as placeholder.
+and `isUnique`. `markerCompat` in F3.a.SchemaMorphism remains as placeholder.
+The connection to the fourth placeholder (`compatibility`) used to be made in
+F1.D2.Ethereum and was removed in the Phase-2 sharpening; see the memorial block
+at the end of that module.
 
 See F1_D2_Spec.md §II (Sub-Schicht 1: Konsens-allgemein).
 -/

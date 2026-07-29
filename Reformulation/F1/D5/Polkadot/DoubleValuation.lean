@@ -12,17 +12,14 @@ Structural content:
   plus parachain. The relay-chain carries hard T7 (GRANDPA finality); the
   parachain carries softer T7 (finalized by relay-chain inclusion).
   `inclusionCompat` is the provable compatibility condition.
-* `PolkadotDoubleValuation.toDoubleValuationCompat` — connection function
-  to F3.a `DoubleValuation.compatibility`. SECOND belegung of this
-  placeholder (after F1.D2.Ethereum's `GasperCompatibility.toDoubleValuationCompat`).
 * `polkadot_doubleValuation_asymmetric` — central theorem: the selected
   parachain's parent relay-chain equals the multi-chain's relay-chain.
   Formal form of "Relay-Chain trägt, Parachain hängt ab".
 
-F3.a multi-belegung: `compatibility` (DoubleValuation) is filled for the
-second time in the project:
-- First: F1.D2.Ethereum (GasperCompatibility, symmetric FFG-Lock form)
-- Second: F1.D5.Polkadot.DoubleValuation (asymmetric relay-chain form)
+The connection function to the F3.a `DoubleValuation.compatibility` placeholder
+was removed in the Phase-2 sharpening; see the memorial block at the end of this
+module. The central theorem is unaffected — it states an equation over
+`inclusionCompat`, not a placeholder.
 
 See F1_D5_Polkadot_Spec.md §IV (Sub-Schicht 3: Doppel-Belegung), T11 V.
 -/
@@ -50,22 +47,6 @@ structure PolkadotDoubleValuation where
   This is the structural form of the asymmetric double valuation. -/
   inclusionCompat   : selectedParachain.parentRelayChain = pm.relayChain
 
-/-- Connection function: Polkadot double valuation implies the abstract
-compatibility placeholder used in F3.a.DoubleValuation.
-
-SECOND belegung of the `compatibility` placeholder in the project:
-- First: F1.D2.Ethereum `GasperCompatibility.toDoubleValuationCompat`
-  (symmetric FFG-Lock form within a single consensus chain).
-- Second: `PolkadotDoubleValuation.toDoubleValuationCompat`
-  (asymmetric relay-chain inclusion form between two chain levels).
-
-Both belegungen fill the same F3.a placeholder with structurally
-distinct concrete forms — the first multi-belegung of a F3.a
-prop_field-True placeholder in the project. -/
-def PolkadotDoubleValuation.toDoubleValuationCompat
-    (_p : PolkadotDoubleValuation) : True :=
-  trivial
-
 /-- Central F1.D5.Polkadot theorem: Polkadot's double valuation is
 asymmetric. The selected parachain's parent relay-chain equals the
 multi-chain's relay-chain — formal expression of "Relay-Chain trägt,
@@ -74,5 +55,34 @@ Parachain hängt ab" (T11 V asymmetric form). Direct field access over
 theorem polkadot_doubleValuation_asymmetric (pdv : PolkadotDoubleValuation) :
     pdv.selectedParachain.parentRelayChain = pdv.pm.relayChain :=
   pdv.inclusionCompat
+
+/-! ## Memorial block: declaration removed because its statement was `True`
+
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The name claimed content, the statement was `True`. No consumer in the aggregate;
+the removal breaks nothing.
+
+Signature quoted indented by two spaces so that the counting route `^def` does
+not count the memorial quote as a declaration.
+
+**Removed — `PolkadotDoubleValuation.toDoubleValuationCompat`.** Register `S46`.
+
+```
+  def PolkadotDoubleValuation.toDoubleValuationCompat
+      (_p : PolkadotDoubleValuation) : True :=
+    trivial
+```
+
+*What was claimed:* that the Polkadot double valuation fills the F3.a
+`DoubleValuation.compatibility` placeholder — the second of three belegungen of
+that placeholder, in the spatially asymmetric relay-inclusion form.
+*What a load-bearing statement would need:* the target field
+`F3a.DoubleValuation.compatibility` (register row `S15`) must carry content;
+a function into `True` establishes no connection, since every term of every type
+maps to `trivial`. The asymmetry this module is about is already stated without
+any placeholder, by `polkadot_doubleValuation_asymmetric` directly above, which
+proves an equation over `inclusionCompat`. That theorem is what the module
+carries, and the removed function added nothing to it.
+-/
 
 end Reformulation.F1.D5.Polkadot.DoubleValuation

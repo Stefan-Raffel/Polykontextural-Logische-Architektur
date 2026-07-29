@@ -63,7 +63,10 @@ Six further `F ≅ G` fields for the negation layer (K2.3-decision).
 - `initialConfig : Reformulation.F3b.K` — the initial configuration.
 - `initialConfig_isK1 : initialConfig = .k1` — K1-constraint.
   Klasse-B-Anpassung: uses `K` (enumeration type) rather than `Configuration`
-  (triple structure), consistent with F3.d's `EnM2_negTau_trivial_at_K1`.
+  (triple structure), consistent with F3.d's field
+  `ModalTwoCategoryWithNegations.negTau_trivial_at_K1`. (The F3.d theorem of
+  that name was removed in the Phase-2 sharpening; the field is what carries
+  the B5-marker, and the convention followed here is the field's.)
 -/
 structure ModalTwoCategoryWithPullbacks (𝒯 : Type*) [Category 𝒯]
     extends Reformulation.F3d.ModalTwoCategoryWithNegations 𝒯 where

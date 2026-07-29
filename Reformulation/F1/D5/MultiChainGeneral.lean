@@ -30,12 +30,12 @@ Structural content:
   parallel-valuation form formally visible. Type-valued (not Prop),
   must be `def` per Arbeitsdisziplin c.
 
-Connection to F3.a: `CrossChainCompatibility.toBeckChevalley` in
-F1.D5.IBC fills the `beckChevalley` placeholder in
-`F3.a.DesignativeRestriction`. The `compatibility` placeholder in
-`F3.a.DoubleValuation` remains (Multi-Chain carries no double
-valuation). `isFunctorial` and `markerCompat` remain.
-`isUnique` is partial (per-chain skeleton uniqueness).
+Connection to F3.a: the `beckChevalley` placeholder in
+`F3.a.DesignativeRestriction` remains — the connection function in F1.D5.IBC was
+removed in the Phase-2 sharpening (memorial block in `F1/D5/IBC.lean`). The
+`compatibility` placeholder in `F3.a.DoubleValuation` remains as well
+(Multi-Chain carries no double valuation), as do `isFunctorial` and
+`markerCompat`. `isUnique` is partial (per-chain skeleton uniqueness).
 
 See F1_D5_Spec.md §II (Sub-Schicht 1: Multi-Chain-allgemein), T4 IX,
 T11 V.

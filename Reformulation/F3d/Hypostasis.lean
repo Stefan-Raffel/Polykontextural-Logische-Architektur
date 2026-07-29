@@ -19,8 +19,10 @@ from T9 V and K1 §VII (F3d_Spec §VIII):
 * `hegelianHypostasis`: the Hegelian hypostatization (absolutizes ¬_δ).
 * `schopenhauerSchelligianHypostasis`: the Schopenhauerian/Schellingian
   hypostatization (absolutizes ¬_ω).
-* `hypostatization_breaks_cyclic_verschraenkung`: diagnostic theorem
-  (vacuously `True`; substantive content in D7/D8/D9).
+
+The diagnostic theorem that used to stand here was removed in the Phase-2
+sharpening; see the memorial block at the end of this module. The diagnosis
+itself is carried by the `brokenVerschraenkung` field, not by a theorem.
 
 See T9 V, K1 §VII, F3d_Spec.md §VIII.
 -/
@@ -93,19 +95,38 @@ def schopenhauerSchelligianHypostasis {𝒯 : Type*} [Category 𝒯]
     Hypostatization 𝒯 M :=
   ⟨.omega, trivial⟩
 
-/-- Diagnostic theorem: every hypostatization is incompatible with the
-full cyclic entanglement.
+/-! ## Memorial block: declaration removed because its statement was `True`
 
-This is a `True` statement at the invariant layer — substantive content
-(showing *how* a concrete hypostatization breaks the entanglement) belongs
-in the domain studies D7/D8/D9 (F3d_Spec §VIII.3).
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The name claimed content, the statement was `True`. A theorem whose statement is
+`True` is not a false theorem, but its name reads as a result; in a published
+tree that is a claim. No consumer in the aggregate; the removal breaks nothing.
 
-The prop-field-True form is correct for the invariant layer: the form is
-laid down; the content is local-layer material. -/
-theorem hypostatization_breaks_cyclic_verschraenkung
-    {𝒯 : Type*} [Category 𝒯]
-    {M : ModalTwoCategoryWithNegations 𝒯}
-    (_H : Hypostatization 𝒯 M) : True :=
-  trivial
+Signature quoted indented by two spaces so that the counting route `^theorem`
+does not count the memorial quote as a declaration.
+
+**Removed — `hypostatization_breaks_cyclic_verschraenkung`.** Register row `S38`.
+
+```
+  theorem hypostatization_breaks_cyclic_verschraenkung
+      {𝒯 : Type*} [Category 𝒯]
+      {M : ModalTwoCategoryWithNegations 𝒯}
+      (_H : Hypostatization 𝒯 M) : True :=
+    trivial
+```
+
+*What was claimed:* that every hypostatization is incompatible with the full
+cyclic entanglement of the three context-negations — the diagnostic core of
+T9 V and K1 §VII.
+*What a load-bearing statement would need:* the entanglement must be a relation
+that can fail. At present `brokenVerschraenkung : True` (register row `S19`)
+records the breakage as an inert marker, so nothing discriminates a broken from
+an intact entanglement. A statement with content needs the cyclic entanglement
+of `negTau`, `negDelta`, `negOmega` written as a composition condition — the
+`IsSmooth`/`IsRough` vocabulary of `F3d/Theorems.lean` is the available
+material — and then says: if one negation is absolutized, that condition fails.
+That is a theorem about `ModalTwoCategoryWithNegations`, and it would have to be
+proved; the domain studies D7/D8/D9 supply the readings, not the proof.
+-/
 
 end Reformulation.F3d

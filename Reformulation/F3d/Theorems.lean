@@ -24,7 +24,10 @@ layer introduced in F3.d (F3d_Spec §V).
 **EnM / NEnM-series (mixed, crossing movement and negation):**
 * `EnM1_negOmega_omega_smooth`   — modal kinship in triple: ¬_ω∘ω smooth.
 * `NEnM1_{tau,delta,omega}`      — modal-alien pairs ¬_x∘y (x≠y) are rough.
-* `EnM2_negTau_trivial_at_K1`    — B5-special status of ¬_τ at K1.
+
+The EnM2 statement on the B5-special status of ¬_τ at K1 was removed in the
+Phase-2 sharpening; see the memorial block at the end of this module. The
+marker itself is the field `ModalTwoCategoryWithNegations.negTau_trivial_at_K1`.
 
 See F3d_Spec.md §V.1–V.3, §VI.
 -/
@@ -204,19 +207,36 @@ theorem NEnM1_negOmega_delta_rough :
   intro h
   cases h
 
-/-! ## EnM2 — B5-special status: ¬_τ trivial at K1 -/
+/-! ## Memorial block: declaration removed because its statement was `True`
 
-/-- EnM2 — B5-special status: for the K1-configuration (Class i,
-initial singularity, material-blind), ¬_τ carries only trivial
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The name claimed content, the statement was `True`. A theorem whose statement is
+`True` is not a false theorem, but its name reads as a result; in a published
+tree that is a claim. No consumer in the aggregate; the removal breaks nothing.
+
+Signature quoted indented by two spaces so that the counting route `^theorem`
+does not count the memorial quote as a declaration.
+
+**Removed — `EnM2_negTau_trivial_at_K1`.** Register row `S39`.
+
+```
+  theorem EnM2_negTau_trivial_at_K1
+      (k : Reformulation.F3b.K) (_h : k = .k1) :
+      True :=
+    trivial
+```
+
+*What was claimed:* the B5-special status of ¬_τ at the K1-configuration — that
+at the initial singularity the temporal context-negation carries only trivial
 naturality.
-
-At the invariant layer this is a `True`-field access, following the
-prop-field-True convention. The concrete `NatTrans` form is local-layer
-material (F1). Vacuously true for stages n>1 where K1 is absent
-(F3d_Spec §VI.2, §VI.3). -/
-theorem EnM2_negTau_trivial_at_K1
-    (k : Reformulation.F3b.K) (_h : k = .k1) :
-    True :=
-  trivial
+*What a load-bearing statement would need:* naturality has to be expressible, so
+¬_τ must be a `NatTrans` (or a 2-morphism with an identity to compare against)
+rather than the marker field `negTau_trivial_at_K1 : True` (register row `S23`).
+With that in place the statement reads: the component of ¬_τ at K1 equals the
+identity 2-morphism — an equation that can fail at other configurations and
+therefore says something at K1. Note that the hypothesis `k = .k1` was already
+unused in the removed version, which is the clearest sign that nothing was being
+decided by the configuration.
+-/
 
 end Reformulation.F3d

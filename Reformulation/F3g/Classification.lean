@@ -11,8 +11,10 @@ with an explicit B6-trace field `omega_initialises_next`, formalising that
 the next stage's stageObj arises via ω-translation from the predecessor
 stage's balance.
 
-Carries Theorem 4 (`b6_from_b2`: trivial replay of the field) and two
-characterisation theorems for ω-transitions in the extended structure.
+Carries Theorem 4 (`b6_from_b2`: trivial replay of the field) and one
+characterisation theorem for ω-transitions in the extended structure. A second
+characterisation statement was removed in the Phase-2 sharpening; see the
+memorial block at the end of this module.
 
 ## Klasse-B adaptation: `stageBalance` helper
 
@@ -89,11 +91,36 @@ theorem classifyOmegaTransition_initialising
   | zero  => omega
   | succ k => simp [classIVSubtype]
 
-/-- The continuing ω-transition does not live in a `StageTransitionWithB6Trace`
-but within a stage (in the total-space category).
+/-! ## Memorial block: declaration removed because its statement was `True`
 
-This theorem is intentionally trivial; its methodological content is in
-the doc-string. -/
-theorem continuing_not_in_stage_transition (_n : ℕ) : True := True.intro
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The name claimed content, the statement was `True`. A theorem whose statement is
+`True` is not a false theorem, but its name reads as a result; in a published
+tree that is a claim. No consumer in the aggregate; the removal breaks nothing.
+
+Signature quoted indented by two spaces so that the counting route `^theorem`
+does not count the memorial quote as a declaration.
+
+**Removed — `continuing_not_in_stage_transition`.** Register row `S41`.
+
+```
+  theorem continuing_not_in_stage_transition (_n : ℕ) : True := True.intro
+```
+
+*What was claimed:* that the continuing ω-transition does not live in a
+`StageTransitionWithB6Trace` but inside a stage, in the total-space category —
+a placement claim, and the distinction it draws is the point of the section.
+*What a load-bearing statement would need:* the removed version said so only in
+its doc-string, and its own doc-string admitted as much. What is missing is the
+link from the structure to the classification. `classIVSubtype (n+1)` returns
+`{initialising, continuing}` — both subtypes are available at every stage above
+1, so no membership statement can carry the claim; the neighbouring theorem
+`classifyOmegaTransition_initialising` states such a membership and does not
+use its `StageTransitionWithB6Trace` argument either. A load-bearing form needs
+a classifying function `StageTransitionWithB6Trace n → ClassIVSubtype`, read off
+the `omega_initialises_next` datum, and then says: that function never returns
+`continuing`. Only with the function in place does the placement claim become
+an equation that can fail.
+-/
 
 end Reformulation.F3g

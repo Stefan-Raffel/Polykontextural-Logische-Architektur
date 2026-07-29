@@ -17,11 +17,13 @@ Structural content:
 * `GasperCompatibility` — the central Gasper inter-layer compatibility
   structure with `noConflictingVotes` (real universal condition) and
   `pullBackCompatibility` (placeholder).
-* `GasperCompatibility.toDoubleValuationCompat` — connection function to
-  F3.a `DoubleValuation.compatibility` placeholder (fourth of the four
-  F3.a prop_field connections made explicit in F1.D2).
 * `RollupFamily` — stage-2 rollup marker as Folge-Aufgabe placeholder.
-* `gasper_inter_layer_compatible` — central F1.D2 theorem (True form).
+
+The connection function to the F3.a `DoubleValuation.compatibility` placeholder
+and the F1.D2 statement that consumed it were removed in the Phase-2 sharpening;
+see the memorial block at the end of this module. The Gasper content that is
+actually carried sits in `GasperCompatibility.noConflictingVotes`, a real
+universal condition, and that field stays.
 
 Class B adjustments applied:
 * `Block.parent` — spec uses recursive `Option Block`; replaced by
@@ -119,21 +121,6 @@ structure GasperCompatibility (H : HybridConsensus) where
   /-- Pull-back compatibility (T11 IV placeholder). -/
   pullBackCompatibility : True
 
-/-- Connection to F3.a `DoubleValuation.compatibility` placeholder.
-
-This is the fourth (and final) of the four F3.a prop_field connections
-made explicit in F1.D2 (Spec §X):
-- `softLayer_has_modalOps`      → `DesignativeRestriction.beckChevalley`
-- `hardLayer_has_modalOps`      → `OuterBalance.isFunctorial`, `Skeleton.isUnique`
-- `toDoubleValuationCompat`     → `DoubleValuation.compatibility`
-- `markerCompat` (SchemaMorphism) remains as placeholder.
-
-The function is trivial in the True-form but makes the schicht-transition
-from F1.D2 to F3.a structurally explicit. -/
-def GasperCompatibility.toDoubleValuationCompat
-    {H : HybridConsensus} (_g : GasperCompatibility H) : True :=
-  trivial
-
 /-- The four rollup families, identified in T12 V as the stage-2
 sub-stratum specialization for the Ethereum consensus belegung.
 
@@ -151,18 +138,58 @@ The concrete belegung per family is in F1.D2.Rollups (Folge-Aufgabe). -/
 def RollupFamily.stageIndex : RollupFamily → Stage :=
   fun _ => 1
 
-/-- Central F1.D2 theorem: every Gasper-style hybrid consensus (carrying
-`HybridConsensus` structure plus a `GasperCompatibility` witness) satisfies
-the inter-layer compatibility from T11 IV.
+/-! ## Memorial block: declarations removed because their statement was `True`
 
-The True-form is tautological; the architectural content is carried by the
-connection to `DoubleValuation.compatibility` via `toDoubleValuationCompat`.
-The non-tautological sharpening (full pull-back form) is Folge-Aufgabe.
+Removed in the Phase-2 sharpening (Setzungsregister, `docs/status-register.md`).
+The reason is the same in both cases: the name claimed content, the statement
+was `True`. A theorem whose statement is `True` is not a false theorem, but its
+name reads as a result; in a published tree that is a claim.
 
-Central F1.D2 statement: Ethereum-Gasper realises the F3.a `DoubleValuation`
-form with `GasperCompatibility` as the concrete compatibility belegung. -/
-theorem gasper_inter_layer_compatible
-    (H : HybridConsensus) (g : GasperCompatibility H) : True :=
-  GasperCompatibility.toDoubleValuationCompat g
+These two are the one measured consumer pair in the whole set: the theorem was
+the only aggregate constant referencing the connection function, and it is
+itself removed here. The pair goes together, and nothing else breaks.
+
+Signatures are quoted indented by two spaces so that the counting routes
+`^theorem` and `^def` do not count the memorial quote as a declaration.
+
+**Removed 1 — `GasperCompatibility.toDoubleValuationCompat`.** Register `S43`.
+
+```
+  def GasperCompatibility.toDoubleValuationCompat
+      {H : HybridConsensus} (_g : GasperCompatibility H) : True :=
+    trivial
+```
+
+*What was claimed:* that Gasper compatibility fills the F3.a
+`DoubleValuation.compatibility` placeholder — the fourth of the four F3.a
+prop_field connections made explicit in F1.D2 (Spec §X).
+*What a load-bearing statement would need:* the target field
+`F3a.DoubleValuation.compatibility` (register row `S15`) must carry content
+before anything can fill it; a function into `True` establishes no connection,
+because every term of every type maps to `trivial`. With a contentful
+`compatibility` field the connection becomes a real construction — from
+`noConflictingVotes` one would have to build the datum the field demands — and
+that construction can fail, which is what makes it worth writing down.
+
+**Removed 2 — `gasper_inter_layer_compatible`.** Register `S42`.
+
+```
+  theorem gasper_inter_layer_compatible
+      (H : HybridConsensus) (g : GasperCompatibility H) : True :=
+    GasperCompatibility.toDoubleValuationCompat g
+```
+
+*What was claimed:* the central F1.D2 statement — that every Gasper-style hybrid
+consensus satisfies the inter-layer compatibility of T11 IV.
+*What a load-bearing statement would need:* an inter-layer compatibility that
+can fail. The material is present and unused: `Vote.compatible` is a real
+predicate, and `GasperCompatibility.noConflictingVotes` is a genuine universal
+condition over it, not a placeholder. A statement with content would derive
+something from that condition — for instance that no two votes of one validator
+surround each other across an epoch boundary, which is the FFG-Lock property the
+field is named for. The field `pullBackCompatibility : True` (register row `S04`)
+is the part that remains a placeholder, and the T11 IV pull-back form remains
+Folge-Aufgabe.
+-/
 
 end Reformulation.F1.D2.Ethereum

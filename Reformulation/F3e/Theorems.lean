@@ -11,8 +11,8 @@ Companion theorems to `beckChevalleyFromData`:
   `BeckChevalleyAxioms` exists in any `ModalTwoCategoryWithPullbacks`.
 * (`beckChevalley_unique` — gestrichen, Whitelist-Auflösung 24. Juli 2026;
   Memorial-Block unten. In dieser Form falsch gegen die `True`-Axiome.)
-* `beckChevalley_modalCompat`: BC is compatible with all modal operators
-  (prop_field-True).
+* (`beckChevalley_modalCompat` — gestrichen, Phase-2-Zuspitzung 29. Juli 2026;
+  zweiter Memorial-Block unten. Aussage war `True`.)
 * `beckChevalley_b5_anchored`: the structure carries K1 as initial config.
 
 Architecture references: F3e_Spec §VI, F3e_Implementation_Prompt §IV.5.
@@ -59,17 +59,6 @@ die Satz-Zählroute `^theorem` das Memorial-Zitat nicht als Satz mitzählt):
 ```
 -/
 
-/-! ## Modal compatibility -/
-
-/-- Modal compatibility: the BC is compatible with all six modal operators
-(τ, δ, ω, ¬_τ, ¬_δ, ¬_ω). Prop-field-True form; substantial compatibility
-derives from the `modalCompat`/`negCompat` fields in F1-contexts.
-
-See F3e_Spec §VI.3. -/
-theorem beckChevalley_modalCompat (_ : ModalTwoCategoryWithPullbacks 𝒯) :
-    True :=
-  trivial
-
 /-! ## B5-anchoring -/
 
 /-- B5-anchoring: the initial configuration of any `ModalTwoCategoryWithPullbacks`
@@ -86,5 +75,39 @@ theorem beckChevalley_b5_anchored (M : ModalTwoCategoryWithPullbacks 𝒯) :
 -- Schließung von `beckChevalleyFromData`; Profil Ist-gebunden verwacht.
 /-- info: 'Reformulation.F3e.beckChevalley_exists' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms beckChevalley_exists
+
+/-! ## Memorial-Block: gestrichene Deklaration mit der Aussage `True`
+
+Streichung nach Phase-2-Zuspitzung (Setzungsregister, `docs/status-register.md`).
+Der Grund: der Name behauptete Gehalt, die Aussage war `True`. Ein Satz mit
+Aussage `True` ist kein falscher Satz, aber sein Name liest sich als Ergebnis;
+im veroeffentlichten Baum ist das eine Behauptung. Kein Konsument im Aggregat;
+die Streichung bricht nichts. Deutschsprachig gehalten wie der aeltere
+Memorial-Block dieser Datei (Uniqueness, oben) — die Doc-Strings der Datei sind
+englisch, ihre Memorial-Bloecke sind es nicht, und zwei Sprachen in derselben
+Rubrik waeren schlechter als eine.
+
+**Entfernte Deklaration** (Signatur eingerueckt zitiert, damit die Zaehlroute
+`^theorem` das Memorial-Zitat nicht mitzaehlt). Registerzeile `S40`.
+
+```
+  theorem beckChevalley_modalCompat (_ : ModalTwoCategoryWithPullbacks 𝒯) :
+      True :=
+    trivial
+```
+
+*Was dort behauptet war:* dass die Beck-Chevalley-2-Iso mit allen sechs
+Modaloperatoren (τ, δ, ω, ¬_τ, ¬_δ, ¬_ω) vertraeglich ist.
+*Was ein tragfaehiger Satz braeuchte:* eine Vertraeglichkeit, die scheitern
+kann. Der Satz nahm sein Argument nicht einmal entgegen (`_`), konnte also
+ueber die Struktur nichts aussagen. Tragfaehig waere: fuer jeden der sechs
+Operatoren `X` kommutiert das Quadrat aus `pullBackC`, `pullBackO` und `X` bis
+auf die BC-2-Iso — eine Gleichung natuerlicher Transformationen, die man
+hinschreiben und beweisen muss. Dazu muessen die Modaloperatoren als Funktoren
+auf demselben `𝒯` vorliegen und die BC-Iso mit ihnen komponierbar sein; das
+ist vorhanden, seit `beckChevalleyFromData` die Iso aus `pullBackCommute`
+liest. Die Felder `BeckChevalleyAxioms.modalCompatible`, `.pentagon` und
+`.triangle` (Registerzeilen `S24` bis `S26`) bleiben derweil Platzhalter.
+-/
 
 end Reformulation.F3e

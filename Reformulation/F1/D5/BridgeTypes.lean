@@ -20,9 +20,11 @@ Structural content:
   tautological): a bridge is structurally sound iff it is lightClient.
   Proof: case-split on the three constructors plus simp.
 
-Methodological point: unlike F1.D2's `gasper_inter_layer_compatible`
-(which was tautological in True-form), this theorem carries genuine
-provable content — the T10 IV structural diagnostic made formal.
+Methodological point: this theorem carries genuine provable content — the
+T10 IV structural diagnostic made formal. The contrast originally drawn here
+was with F1.D2's central statement, which was tautological in `True`-form; that
+statement was removed in the Phase-2 sharpening, and the memorial block in
+`F1/D2/Ethereum.lean` records what it would take to make it load-bearing.
 
 Sub-layer 3 note: this is a cross-cutting differentiation (Quer-
 Differenzierung), not a depth-specialization as in F1.D2 Sub-Schicht 3.
