@@ -37,13 +37,13 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3006 Konstanten |
+| geprueft (AxiomGate) | 2991 Konstanten |
 | Axiom-Wachen | 382 ueber 42 Dateien |
-| Saetze gesamt | 706 |
+| Saetze gesamt | 697 |
 | Build-Jobs | 1298 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `cfa9058`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `4e5bbf7`.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
@@ -68,13 +68,13 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 | `Proemial/` | 56 | 414 | Proemialrelation, Transjunktion, Klon-Schranken |
 | `PathC/` | 18 | 94 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 4 | 88 | Kenogrammatik: RGS, Normalform, Operationssemantik |
-| `F1/` | 20 | 22 | Belegungen, Faserungen, Cross-Chain-Anschluss |
-| `F3a`-`F3g/` | 38 | 71 | Stufen, Modaloperatoren, Uebergangsklassen |
+| `F1/` | 20 | 21 | Belegungen, Faserungen, Cross-Chain-Anschluss |
+| `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 706 laufen ueber `Reformulation/` allein, die Tafel
+Widerspruch, sondern der Bereich: die 697 laufen ueber `Reformulation/` allein, die Tafel
 weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
 des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
 
