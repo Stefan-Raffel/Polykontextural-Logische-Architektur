@@ -22,6 +22,11 @@ Neu: <Datei>, <k> Saetze, <w> Wachen, <s> Sorries.
 Damit haengt jede Kennzahl an einem Commit-Hash statt an einer Uhrzeit. Ein Stichtag ohne
 Zustand ist nicht nachpruefbar; ein Hash ist es.
 
+**Wer eine Kennzahl aendert, fuehrt das README nach** - im selben Zug, auch ohne Auflage.
+Eine Auflage sagt nur noch, was *nicht* nachzufuehren ist. Betroffen sind die
+Kennzahlentafel, die Bereichstafel und die Struktur-Tafel; welche Zahl ueber welche Route
+laeuft, steht in §3.
+
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
 ---
