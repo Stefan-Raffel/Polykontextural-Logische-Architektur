@@ -1,5 +1,22 @@
 # Reformulation - Polykontexturale Logik in Lean 4
 
+Dieses Repository arbeitet mit einer Projektdefinition, und sie steht vorneweg:
+
+> Eine Struktur ist **formal-operativ polykontextural**, wenn sie eine Familie lokaler
+> Kontexturen traegt, auf denen die relevanten Operationen jeweils klassisch oder lokal
+> klassisch wirken, und wenn zusaetzlich ein maschinell gepruefter Satz zeigt, dass das
+> globale Zusammenspiel dieser lokalen Operationen nicht durch einen einheitlichen
+> intra-kontexturellen Termkalkuel erzeugbar ist.
+
+Als Arbeitsformel:
+
+```text
+lokale Klassizitaet + Kontexturpluralitaet + beweisbarer globaler Reduzierbarkeitsbruch
+```
+
+Diese Definition ist enger als die philosophische Definition 6 und staerker als blosse
+Mehrwertigkeit oder Rollenpluralitaet. Alles Weitere in diesem README ist an ihr zu messen.
+
 Formale Begleitung des Projekts zur Reformulierung der polykontexturalen Logik
 Gotthard Guenthers. Der Code ist kein Beweis der Theorie, sondern ein Pruefwerkzeug:
 er trennt, was aus klassischen Mitteln erzeugbar ist, von dem, was es nicht ist -
@@ -18,10 +35,8 @@ sie ohne Anmeldung HTTP 404 zurueck, wie es bei privatem Repository zu erwarten 
 
 Dieses Repository implementiert **nicht** die volle weltbildhafte Poly-Kontexturalitaet aus
 Definition 6 der Definitionen-Fassung: das System sich unendlich erweiternder Kontexturen mit
-wachsendem strukturellem Reichtum. Implementiert ist eine **formal-operative
-Polykontexturalitaet** - lokale klassische Kontexturen zusammen mit maschinell geprueften
-Nicht-Erzeugbarkeitssaetzen, die globale Reduzierbarkeit auf einen einheitlichen
-intra-kontexturellen Termkalkuel ausschliessen.
+wachsendem strukturellem Reichtum. Implementiert ist die formal-operative Fassung, die oben
+steht - und nur sie.
 
 **Der Name PKL bezeichnet den formalisierten Architekturkern und seine
 Reduzierbarkeitsbrueche, nicht den abgeschlossenen Beweis der gesamten philosophischen
@@ -39,11 +54,11 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 |---|---:|
 | geprueft (AxiomGate) | 2991 Konstanten |
 | Axiom-Wachen | 382 ueber 42 Dateien |
-| Saetze gesamt | 713 |
+| Saetze gesamt | 712 |
 | Build-Jobs | 1298 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `0e0fbee`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `997037f`.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
@@ -66,7 +81,7 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
 | `Proemial/` | 56 | 418 | Proemialrelation, Transjunktion, Klon-Schranken |
-| `PathC/` | 18 | 103 | Weg C - iterative Doppelbeschreibung |
+| `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 4 | 91 | Kenogrammatik: RGS, Normalform, Operationssemantik |
 | `F1/` | 20 | 21 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
@@ -74,7 +89,7 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 713 laufen ueber `Reformulation/` allein, die Tafel
+Widerspruch, sondern der Bereich: die 712 laufen ueber `Reformulation/` allein, die Tafel
 weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
 des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
 
