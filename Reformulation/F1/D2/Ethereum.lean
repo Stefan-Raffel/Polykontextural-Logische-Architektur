@@ -69,6 +69,9 @@ in F1.D2 (Folge-Aufgabe). -/
 structure Checkpoint where
   block          : Block
   epoch          : Epoch
+  /-- Epoch-boundary marker. **Placeholder** (register row `S03`): the full
+  condition `block.slot % slotsPerEpoch = 0` needs a deployment-specific
+  `slotsPerEpoch`, which F1.D2 does not model. Exit: model `slotsPerEpoch`. -/
   isEpochBoundary : True
 
 /-- Manual `DecidableEq` instance for `Checkpoint`.

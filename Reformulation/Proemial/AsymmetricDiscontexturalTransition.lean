@@ -81,7 +81,10 @@ structure AsymmetricDiscontexturalTransition where
       Fasern. -/
   not_determined : ∃ y a b, a ≠ b ∧ descent a = y ∧ descent b = y
   /-- **Setzungsfeld (Rand, KEIN Beweis).** Die Identifikation „Stufenwechsel =
-      Kontexturwechsel" — B5-Disziplin, als Setzung markiert. -/
+      Kontexturwechsel" — B5-Disziplin, als Setzung markiert. **Konstitutiv**
+      (Registerzeile `S33`): kein Beweis-Soll. Die Identifikation ist
+      Definitionswahl; eine Begruendung, warum sie kein Exit-Kriterium hat,
+      steht im Register. -/
   contextureCrossing : True
 
 -- ============================================================

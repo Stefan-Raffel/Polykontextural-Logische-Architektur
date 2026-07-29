@@ -72,6 +72,9 @@ client-pair verification. `isRelaySound : True` marks the delegation
 of soundness to the relay-chain consensus. -/
 structure XCMBridge where
   message      : XCMMessage
+  /-- Relay-soundness marker. **Placeholder** (register row `S12`): soundness is
+  delegated to the relay-chain consensus, which F1.D5 does not model. Exit:
+  model relay-chain consensus and derive soundness from it. -/
   isRelaySound : True
 
 /-- XCM bridges are structurally sound through relay-chain delegation.

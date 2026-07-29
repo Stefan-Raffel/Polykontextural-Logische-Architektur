@@ -71,7 +71,9 @@ structure OuterBalance
     (tracesFamily : Type*) [Category tracesFamily] where
   /-- The balance-forming functor (encoding the colimit's output). -/
   outerBalance : designativePart ⥤ tracesFamily
-  /-- Functoriality witness. -/
+  /-- Functoriality witness. **Placeholder** (register row `S16`): exit is the
+  explicit colimit construction over the omission modulations, whose
+  functoriality is then a proof rather than a field. -/
   isFunctorial : True
 
 /-- The third operation: structural skeleton marking.
@@ -91,7 +93,9 @@ structure Skeleton
   /-- The skeleton-forming function from the traces family to the
   positions of the schema. -/
   skeletonFun : tracesFamily → schema.positions
-  /-- Uniqueness witness from the sub-stage structure (EA2). -/
+  /-- Uniqueness witness from the sub-stage structure (EA2). **Placeholder**
+  (register row `S17`): exit is a determination condition on `skeletonFun`
+  against which uniqueness can discriminate — see the memorial block below. -/
   isUnique : True
 
 /-- The full endofunctor F as composition of the three components.

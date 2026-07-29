@@ -104,7 +104,12 @@ structure Stage (n : ℕ) where
   /-- Algebra-extension prohibition (architectural marker, prop_field-True).
   The end-functor is stage-local; there is no global stacking operator.
   A global F would enable algebra extensions and reintroduce globality
-  (Verbot der Algebra-Lesart: T1a V, Reformulierung_Sitzungsergebnis IV). -/
+  (Verbot der Algebra-Lesart: T1a V, Reformulierung_Sitzungsergebnis IV).
+  **Placeholder** (register row `S27`): exit is a non-existence theorem — no
+  global stacking operator extends the stage-local end-functors coherently
+  across stages. That is statable and provable; the marker defers it. Read as
+  placeholder and not as constitutive because `CLAUDE.md` §10 fixes the count
+  of constitutive fields in the aggregate at two, and both are named there. -/
   noAlgebraExtension : True
 
 end Reformulation.F3f

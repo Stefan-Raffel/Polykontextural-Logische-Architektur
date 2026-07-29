@@ -38,8 +38,9 @@ structure BeckChevalleyCompatibility
     (tau : 𝒯 ⥤ 𝒯) (delta : 𝒯 ⥤ 𝒯) (omega : 𝒯 ⥤ 𝒯) : Prop where
   /-- Existence of the Beck-Chevalley compatibility for the modal
   operators with respect to the pullback structure of the base
-  category. The full constructive form is to be supplied by F1
-  or a domain study. -/
+  category. **Placeholder** (register row `S18`): exit is the constructive
+  form, i.e. the 2-isomorphism itself as a datum — the step that F3.e took
+  with `ModalTwoCategoryWithPullbacks.pullBackCommute`. -/
   exists_compatibility : True
 
 /-- The full modal 2-category structure: extends `ModalOperators` with

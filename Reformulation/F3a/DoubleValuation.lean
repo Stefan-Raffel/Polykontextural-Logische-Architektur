@@ -39,6 +39,10 @@ form a double valuation with hybrid trade-off compatibility. -/
 structure DoubleValuation (n : Stage) where
   valuation₁ : Valuation n
   valuation₂ : Valuation n
+  /-- Compatibility datum between the two valuations. **Placeholder** (register
+  row `S15`): the concrete Beck-Chevalley-related form (Klärung 1 §IV.1) is
+  local-layer material. Exit: give the field a 2-cell that can fail; until then
+  no filling of it can fail either. -/
   compatibility : True
 
 end Reformulation.F3a

@@ -60,6 +60,9 @@ F1.D5 level; it is local-stratum-2 material. -/
 structure Connection where
   chainA        : Chain
   chainB        : Chain
+  /-- Connection-lifecycle marker. **Placeholder** (register row `S09`): the
+  handshake states are Sub-Schicht-2 material. Exit: model the lifecycle and
+  replace this by the predicate that the connection reached the open state. -/
   isEstablished : True
 
 /-- Manual `DecidableEq` instance for `Connection`.
@@ -88,8 +91,9 @@ structure MultiChain where
   /-- Well-formedness: every connection refers to chains in `chains`. -/
   connectionsCompatible : ∀ c ∈ connections,
     c.chainA ∈ chains ∧ c.chainB ∈ chains
-  /-- The bicategorical structure as follow-on work
-  (prop_field : True per the schicht-trennungs-konvention). -/
+  /-- The bicategorical structure as follow-on work. **Placeholder**
+  (register row `S10`): exit is a `Bicategory` instance with chains as
+  objects and connections as 1-cells, against which this field is discharged. -/
   bicategoryStructure : True
 
 /-- Every connection in a MultiChain refers to chains that are in
