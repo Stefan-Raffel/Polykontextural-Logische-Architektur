@@ -71,14 +71,14 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 126 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
+eine andere Frage: 129 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
-Die erste Zahl zaehlt sich selbst mit: drei ihrer Treffer stehen in `docs/de.html`, weil
-das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand `e5ef3d7` waren es 123, am
-Stand mit der Fassung Rev2 sind es 126. Die zweite und die dritte Zahl sind davon
-unberuehrt.
+Die erste Zahl zaehlt sich selbst mit: je drei ihrer Treffer stehen in `docs/de.html` und
+`docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand
+`e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129. Die
+zweite und die dritte Zahl sind davon unberuehrt - der Zug fasst keine `.lean`-Datei an.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
