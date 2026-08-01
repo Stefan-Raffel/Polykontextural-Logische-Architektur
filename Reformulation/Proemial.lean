@@ -35,6 +35,7 @@ import Reformulation.Proemial.FlowIteration
 import Reformulation.Proemial.CoalgebraMorphism
 import Reformulation.Proemial.ContexturalFibration
 import Reformulation.Proemial.StageAggregation
+import Reformulation.Proemial.PolicyCheck
 import Reformulation.Proemial.ContextureOverlap
 import Reformulation.Proemial.RegimeThreshold
 import Reformulation.Proemial.ElementaryCycle
@@ -811,6 +812,37 @@ Enthält:
   Sicherheitsgarantie; Marke 3 unverändert (`StageAggregation`, nicht
   `Mediation`). Drei Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht
   (drei Wachen): `agg_lokal` `[propext]`, die beiden Schranken-Sätze
+  `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
+
+- `Proemial.PolicyCheck`: die zweite Anwendung (Werkzeug-Freigabepolitik) —
+  **BENENNUNG, kein Ertrag**: beide Schranken-Sätze sind INSTANZEN von E3
+  (`freigabe_nicht_erzeugbar` die `mp`-Richtung von
+  `locally_classical_in_clone_iff` bei m = 4, `freigabe_nicht_erzeugbar_konstanten`
+  die Konstanten-Fassung `constant_clone_min_or_max`); neu sind allein die Daten
+  (die Politik `freigabe`, zwei Widerlegungspunkte) und die Lesart. Lesart:
+  `Fin 4` als vier Freigabestufen `0 blocked < 1 needs_review < 2 approved <
+  3 privileged` (Namen sind Lesart, term-fest ist `Fin 4`), `freigabe` als
+  Freigabepolitik — permissiv (`max`) nur zwischen den beiden NIEDRIGSTEN Stufen,
+  sonst konservativ (`min`): was `blocked` und `needs_review` zusammenführt, fällt
+  nicht still auf `blocked`, sondern steigt zur Prüfung. **Andere Mischstelle als
+  `StageAggregation`: unten statt oben** — punktweise verschieden an genau vier
+  Stellen (`(0,1)`, `(1,0)`, `(2,3)`, `(3,2)`). Zweck ist der ZWEITE KONSUMENT
+  desselben generischen Satzes (der Beleg, dass die Schranke nicht an der
+  Mischstelle von `StageAggregation` hängt), ausdrücklich KEINE zweite Quelle: kein
+  Satz-Statement wiederholt eine Aussage des Bestands. Robustheit nach CLAUDE.md
+  §9: die Invariante des konsumierten Satzes ist `R 4`, reflexiv (`R_diag`), darum
+  überlebt die Schranke alle vier Konstanten — ein konstanter Prüfer („liefere
+  immer approved") ist der natürlichste Baustein einer Freigabepolitik.
+  Anwendungsschwelle vier Stufen (bei m = 3 wäre der Satz falsch, E1) als Verweis,
+  nicht als Wiederholung. Wortlaut-Grenzen:
+  **keine Sicherheits-, Rechts-, Wahrheits- oder Retrievalgarantie**;
+  keine Behauptung über AI-Systeme
+  (Anwendungsannahme, keine Folgerung); die Schranke trägt nur auf linear
+  gestuften Trägern (M3-Grenze, Doc-String von `StageAggregation`); Marke 3
+  unverändert — der Name nennt den Anwendungsgegenstand, nicht einen bewiesenen
+  Vermittlungs- oder Sicherheitsgehalt (Rückfallname `ToolAuthorization`). Drei
+  Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (drei Wachen):
+  `freigabe_lokal` `[propext]`, die beiden Schranken-Sätze
   `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
 
 - `Proemial.ContextureOverlap`: die Überlappungsrelation des Kontexturengitters

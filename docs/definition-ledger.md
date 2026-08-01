@@ -19,9 +19,9 @@ Statement-Pins, Build-Jobs —, stützt keine Spalte und steht im `README.md`.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
-| geprüfte Konstanten (AxiomGate) | 3006 | Aggregat-Importbaum von `Reformulation`, gemessen vom `AxiomGate` beim Bau |
-| Axiom-Wachen, geschrieben | 372 über 41 Dateien | `grep -rE '#guard_msgs.*in #print axioms'` über **`Reformulation/` allein** — die Route, die zum Stand `e69fb16` galt |
-| Axiom-Wachen, vom Bau erzwungen | 359 über 38 Dateien | dieselbe Route, eingeschränkt auf die Import-Hülle der Default-Targets |
+| geprüfte Konstanten (AxiomGate) | 2998 | Aggregat-Importbaum von `Reformulation`, gemessen vom `AxiomGate` beim Bau |
+| Axiom-Wachen, geschrieben | 375 über 42 Dateien | `grep -rE '#guard_msgs.*in #print axioms'` über **`Reformulation/` allein** |
+| Axiom-Wachen, vom Bau erzwungen | 375 über 42 Dateien | dieselbe Route, eingeschränkt auf die Import-Hülle der Default-Targets |
 | ausgewiesene Lücken | 0, Whitelist leer | `AxiomGate`-Zeile des grünen Baus |
 
 **Die Zahlen dieser Tafel hängen an Commit *und* Route und werden nicht nachgezogen: sie
@@ -30,8 +30,11 @@ sind ein historischer Messpunkt, kein laufender Stand.** Der laufende Stand steh
 über `Reformulation/` **und** `Foreign/` und ist darum größer, ohne dass eine Wache
 hinzugekommen wäre.
 
-Alle Träger dieser Tabelle liegen im Aggregat und sind erzwungen. Die dreizehn schlafenden
-Wachen stehen sämtlich in Waisen und betreffen keine Ledger-Zeile.
+Alle Träger dieser Tabelle liegen im Aggregat und sind erzwungen. Über `Reformulation/` fallen
+geschriebene und erzwungene Wachen an diesem Stand zusammen: die dreizehn vormals schlafenden
+Wachen laufen seit dem Buildabdeckungs-Zug C2 mit. Unerzwungen bleiben allein die zehn Wachen
+in `Foreign/PeresMermin.lean`, das außerhalb dieser Route liegt und keine Ledger-Zeile
+betrifft.
 
 ## Selbstauskunft der Tabelle, mit Route
 
@@ -39,16 +42,16 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 67 |
-| Zeilen mit Träger | 52 |
-| verschiedene Trägernamen | 44 |
-| TS `Theorem` | 37 |
-| TS `Definition` | 14 |
+| Zeilen gesamt | 71 |
+| Zeilen mit Träger | 56 |
+| verschiedene Trägernamen | 48 |
+| TS `Theorem` | 40 |
+| TS `Definition` | 15 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 15 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 52 Zeilen bei 44 Namen. Das ist
+Acht Träger erscheinen in mehr als einer Zeile — daher 56 Zeilen bei 48 Namen. Das ist
 Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 ## Schema
@@ -91,6 +94,7 @@ beider Fehlexpansionen.
 | `GCB.` | `Reformulation.Proemial.GeneralCloneBound.` | Namensraum |
 | `QCB.` | `Reformulation.Proemial.QuaternaryCloneBound.` | Namensraum |
 | `SA.` | `Reformulation.Proemial.StageAggregation.` | Namensraum |
+| `PC.` | `Reformulation.Proemial.PolicyCheck.` | Namensraum |
 | `CO.` | `Reformulation.Proemial.ContextureOverlap.` | Namensraum |
 | `DS.` | `Reformulation.Proemial.Discontextural.DiscontexturalStratification.` | Namensraum **plus Struktur** |
 | `CF.` | `Reformulation.Proemial.ContexturalFibration.` | Namensraum |
@@ -131,11 +135,13 @@ beider Fehlexpansionen.
 | L05-2 | Transkontexturalität (§5) | `NUCB.W_contexture_faithful` | Theorem | Operationalisierung | ja, `[propext]` | Grenzüberschreitung ohne Verlassen |
 | L05-3 | Transkontexturalität (§5) | `SA.agg_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Stufenaggregation, `Fin 4` |
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
+| L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | Definition 6 nicht implementiert; Forschungsstrang Plan §7 |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
 | L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
 | L06-5 | Poly-Kontexturalität f.-o. (§6) | `SA.agg_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
+| L06-6 | Poly-Kontexturalität f.-o. (§6) | `PC.freigabe_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
@@ -155,10 +161,12 @@ beider Fehlexpansionen.
 | L11-1 | Vermittlung (§11) | `NUCB.W` | Definition | Deutung | keine (def) | Dateiname bewusst `NonUniformCloneBound`, nicht `Mediation` |
 | L11-2 | Vermittlung (§11) | `SA.agg_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
+| L11-4 | Vermittlung (§11) | `PC.freigabe_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
 | L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
 | L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
 | L12-4 | Stufengang (§12) | — | Offen | Offen | — | kein unendlicher Stufengang; gerichtetes System offen |
+| L12-5 | Stufengang (§12) | `PC.freigabe` | Definition | Deutung | keine (def) | vier Freigabestufen; Mischstelle unten, Kontrast zu `SA.agg` |
 | L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
 | L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
 | L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |
