@@ -28,6 +28,10 @@ Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 `docs/de.html` und `docs/en.html`. Die frueher hier genannte Pages-Adresse
 <https://stefan-raffel.github.io/PKLrev1/> loest nicht auf - gemessen am 29. Juli 2026 gibt
 sie ohne Anmeldung HTTP 404 zurueck, wie es bei privatem Repository zu erwarten ist.
+Seither ist das Repositorium umbenannt; die Adresse, die nach der Umstellung auf oeffentlich
+in Frage kommt, lautet <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/>.
+Ob sie aufloest, ist nicht gemessen - bei privatem Repositorium gibt auch sie 404, und das
+sagt ueber die Einrichtung von Pages nichts.
 
 ---
 
@@ -211,4 +215,6 @@ Der Spezifikations- und Befundkorpus, auf den Doc-Strings und Dokumente an viele
 verweisen, liegt ausserhalb dieses Repositoriums und ist nicht veroeffentlicht.
 
 Dieses Projekt arbeitet mit einer spezifizierenden und einer bauenden Instanz; Beitraege
-werden derzeit nicht angenommen, und Issues sind abgeschaltet.
+werden derzeit nicht angenommen, und Issues sind abgeschaltet. Wer einen Fehler findet -
+eine falsche Zahl, eine Route, die nicht traegt, eine Behauptung ohne Traeger -, melde ihn
+auf X an @PolyContextual.

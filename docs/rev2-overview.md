@@ -73,6 +73,15 @@ eine Umbenennung kauft nichts und kostet einen Eingriff. Das Arbeitspapier liegt
 `docs/`. Der lokale Verzeichnisname weicht vom Remote-Namen ab - fuer Git ohne Belang, hier
 vermerkt, damit es spaeter niemanden irritiert.
 
+**Nachtrag vom 1. August 2026 (Vorgang 6, Stufe 1):** der Remote-Name ist inzwischen
+geaendert - `PKLrev1` heisst jetzt `Polykontextural-Logische-Architektur`. Gemessen an der
+Antwort des Servers beim Push, nicht an der lokalen Konfiguration; `origin` zeigt weiter
+auf den alten Namen und laeuft ueber die Weiterleitung. Die Tafelzeile oben und der Absatz
+davor bleiben stehen: sie halten den frueheren Stand samt seiner Begruendung fest, und die
+Messung vom 29. Juli gilt fuer die damalige Adresse. **Die Pages-Adresse folgt dem
+Repo-Namen**; ob GitHub sie ebenso weiterleitet wie die Repo-URL, ist nicht gemessen und
+vor der Umstellung auf oeffentlich auch nicht messbar.
+
 Das AxiomGate prueft ueber das Modulpraefix `Reformulation`, nicht ueber Verzeichnisnamen.
 Kein Rename beruehrt es.
 

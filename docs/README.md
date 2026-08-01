@@ -15,7 +15,7 @@ unveraendert ausgeliefert.
 ## Einschalten
 
 Repo-Settings -> Pages -> Source: *Deploy from a branch*, Branch `main`, Ordner `/docs`.
-Danach liegt die Seite unter <https://stefan-raffel.github.io/PKLrev1/>.
+Danach liegt die Seite unter <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/>.
 
 ## Konventionen
 
