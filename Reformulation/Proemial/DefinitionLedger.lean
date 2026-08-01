@@ -134,12 +134,14 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L05-2" Reformulation.Proemial.NonUniformCloneBound.W_contexture_faithful
 #ledger_theorem "L05-3" Reformulation.Proemial.StageAggregation.agg_nicht_erzeugbar
 #ledger_theorem "L05-5" Reformulation.Proemial.PolicyCheck.freigabe_nicht_erzeugbar
+#ledger_theorem "L05-6" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar
 
 #ledger_theorem "L06-2" Reformulation.Proemial.NonUniformCloneBound.W_locally_classical
 #ledger_theorem "L06-3" Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone
 #ledger_theorem "L06-4" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 #ledger_theorem "L06-5" Reformulation.Proemial.StageAggregation.agg_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-6" Reformulation.Proemial.PolicyCheck.freigabe_nicht_erzeugbar_konstanten
+#ledger_theorem "L06-7" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar_konstanten
 
 #ledger_def "L07-1" Reformulation.Proemial.TransjunctionCloneBound.negFin
 #ledger_theorem "L07-2" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
@@ -161,11 +163,13 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L11-1" Reformulation.Proemial.NonUniformCloneBound.W
 #ledger_theorem "L11-2" Reformulation.Proemial.StageAggregation.agg_lokal
 #ledger_theorem "L11-4" Reformulation.Proemial.PolicyCheck.freigabe_lokal
+#ledger_theorem "L11-5" Reformulation.Proemial.RAGAuthority.autoritaet_lokal
 
 #ledger_theorem "L12-1" Reformulation.Proemial.GeneralCloneBound.locally_classical_in_clone_iff
 #ledger_def "L12-2" Reformulation.Proemial.StageAggregation.agg
 #ledger_theorem "L12-3" Reformulation.Proemial.RegimeThreshold.regime_threshold_at_four
 #ledger_def "L12-5" Reformulation.Proemial.PolicyCheck.freigabe
+#ledger_def "L12-6" Reformulation.Proemial.RAGAuthority.autoritaet
 
 #ledger_theorem "L13-1" Reformulation.Proemial.TransjunctionCloneBound.T_rejective
 

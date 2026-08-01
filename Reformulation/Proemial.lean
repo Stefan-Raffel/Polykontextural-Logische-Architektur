@@ -36,6 +36,7 @@ import Reformulation.Proemial.CoalgebraMorphism
 import Reformulation.Proemial.ContexturalFibration
 import Reformulation.Proemial.StageAggregation
 import Reformulation.Proemial.PolicyCheck
+import Reformulation.Proemial.RAGAuthority
 import Reformulation.Proemial.ContextureOverlap
 import Reformulation.Proemial.RegimeThreshold
 import Reformulation.Proemial.ElementaryCycle
@@ -844,6 +845,39 @@ Enthält:
   Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (drei Wachen):
   `freigabe_lokal` `[propext]`, die beiden Schranken-Sätze
   `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
+
+- `Proemial.RAGAuthority`: die dritte Anwendung (Quellenautorität für Retrieval) —
+  **BENENNUNG, kein Ertrag**: beide Schranken-Sätze sind INSTANZEN von E3
+  (`autoritaet_nicht_erzeugbar` die `mp`-Richtung von
+  `locally_classical_in_clone_iff` bei m = 4, `autoritaet_nicht_erzeugbar_konstanten`
+  die Konstanten-Fassung `constant_clone_min_or_max`); neu sind allein die Daten
+  (die Politik `autoritaet`, zwei Widerlegungspunkte) und die Lesart. Lesart:
+  `Fin 4` als vier Autoritätsstufen `0 Notiz < 1 Teamdokument < 2 Policy <
+  3 Gesetz` (Namen sind Lesart, term-fest ist `Fin 4`; Skala aus
+  `PKL-Anwendungsfaelle.md` §2), `autoritaet` als Autoritätspolitik — die
+  schwächere Quelle zählt (`min`), mit der einen Ausnahme des internen
+  Governance-Korridors: wo Teamdokument und Policy kollidieren, gilt der Vorrang
+  der Policy (`max` auf `{1,2}`). **Mischstelle MITTE: der dritte Zeuge nach
+  `PolicyCheck.freigabe` (unten, `{0,1}`) und `StageAggregation.agg` (oben,
+  `{2,3}`)** — die Schranke hängt an der Mischung, nicht am Ort der Mischstelle.
+  Punktweise verschieden von `agg` an `(1,2)`, `(2,1)`, `(2,3)`, `(3,2)` und von
+  `freigabe` an `(0,1)`, `(1,0)`, `(1,2)`, `(2,1)`; das ist Definitionsbefund und
+  KEIN Satz — kein Vergleichssatz im Korpus, keine zweite Quelle. Robustheit nach
+  CLAUDE.md §9: die Invariante des konsumierten Satzes ist `R 4`, reflexiv
+  (`R_diag`), darum überlebt die Schranke alle vier Konstanten — ein konstanter
+  Prüfer („diese Quelle gilt immer als Policy") ist der natürlichste Baustein.
+  Anwendungsschwelle vier Stufen (bei m = 3 wäre der Satz falsch, E1) als Verweis,
+  nicht als Wiederholung. Wortlaut-Grenzen:
+  **keine Sicherheits-, Rechts-, Wahrheits- oder Retrievalgarantie**;
+  Autorität ist nicht Evidenz (der Satz sagt nichts über die Wahrheit von
+  Quellinhalten); keine Behauptung über RAG-Systeme (Anwendungsannahme, keine
+  Folgerung); die Schranke trägt nur auf linear gestuften Trägern, gleichrangige
+  Quellen ohne Stufenachse werden nicht getragen (M3-Grenze, Doc-String von
+  `StageAggregation`); Marke 3 unverändert — der Name nennt den
+  Anwendungsgegenstand, nicht einen bewiesenen Retrieval- oder Wahrheitsgehalt
+  (Rückfallname `SourceAuthority`). Drei Statement-Pins; Axiom-Ist je Satz
+  `#guard_msgs`-verwacht (drei Wachen): `autoritaet_lokal` `[propext]`, die beiden
+  Schranken-Sätze `[propext, Quot.sound]` — **kein `Classical`**. 0 Sorries.
 
 - `Proemial.ContextureOverlap`: die Überlappungsrelation des Kontexturengitters
   **satzförmig** (ERTRAG, klein). `elem_contexture_overlap_le_one` — je zwei
