@@ -58,7 +58,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | Build-Jobs | 1300 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `9c48adc`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `e25e912`.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
