@@ -189,8 +189,9 @@ erhebt, und nicht als Korpus-Aussage gefuehrt.
 
 ## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
 
-Alle acht sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
-sie nicht ein zweites Mal gefunden werden muessen.
+Alle neun sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
+sie nicht ein zweites Mal gefunden werden muessen. Der neunte ist kein Lean-Fallstrick,
+sondern einer der Werkzeugkette; er steht hier, weil er dieselbe Sorte ist wie der achte.
 
 **1 - `Fin n`-Subtraktion ist modular.** `|a - b| <= 1` ueber `Fin 4` ist **nicht** die
 Nachbarschaftsrelation, sondern etwas anderes. Relationen dieser Art werden als explizite Tafel
@@ -245,6 +246,25 @@ Quelltext den Beweis ausschreibt. Heilung: explizit mustern.
 
 Der Fehler ist die gefaehrliche Sorte: er liefert kein falsches Ergebnis, sondern ein
 leeres, und ein leeres Ergebnis sieht aus wie eine gute Nachricht. (Phase-2-Zuspitzung.)
+
+**9 - `git grep` fuehrt `\b` nicht.** Die Regex-Maschine von `git grep` kennt die
+Wortgrenze in dieser Betriebsart nicht; das Muster trifft nichts und die Suche meldet
+null. Gemessen am verfolgten Bestand: `git grep -E '\bsorry\b'` liefert **0**, dieselbe
+Suche ohne `\b` liefert **189** Zeilen ueber den ganzen verfolgten Bestand und **153**
+ueber `*.lean`. Es ist die Sorte aus Fallstrick 8 in neuer Gestalt - kein falsches
+Ergebnis, sondern ein leeres, und ein leeres sieht aus wie eine gute Nachricht.
+
+*Gegenprobe, die ihn aufdeckt:* jede Wortgrenzen-Route einmal ohne `\b` fahren. Liefern
+beide 0, ist die Route verdaechtig und nicht der Bestand.
+
+*Heilung:* `git grep -w` traegt die Wortgrenze. Gegengerechnet nach `CLAUDE.md` §12
+Regel 2 - `git grep -cw sorry` und eine Python-Route mit `re.compile(r'\bsorry\b')`
+liefern beide **118** Zeilen; geprueft ist die Gleichheit, nicht der Wert.
+
+*Gegengeprueft, ob eine stehende Route betroffen ist: nein.* `doc_lint.sh` nutzt weder
+`git grep` noch `\b`; die verbindlichen Zaehlrouten in §3 laufen ueber `grep -rE` mit
+expliziten Zeilenanfaengen. Der Eintrag ist Praevention. (Vorgang 6, Stufe 1.)
+
 ---
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
@@ -342,6 +362,17 @@ den Befund, und zwar mit beiden Zahlen und beiden Routen: "dort steht 25, meine 
 Der Unterschied ist der ganze Punkt: berichtet wird, was gemessen wurde; nicht berichtet
 wird, was anderswo geschrieben steht. Wer einen Stand fortfuehrt, steht im jeweiligen
 Dokument selbst - fuer Plan und Erfolgskriterien ist es die Spezifikations-Instanz.
+
+### Wortlaut: „kein Remote" heisst nicht „nicht gepusht"
+
+Ein Remote ist seit Beginn konfiguriert (`origin`, mit Tracking fuer `main` und `rev2`).
+Die Formel **„kein Remote"** stand in jedem Befund dieses Blocks und war jedes Mal
+unrichtig; gemeint war der Ablagezustand, und der heisst **„nicht gepusht"**.
+
+Der Unterschied ist keine Wortklauberei. „Kein Remote" sagt: der Bestand liegt nirgends
+ausser hier. „Nicht gepusht" sagt: er liegt teilweise dort, und wie weit, sagt erst eine
+Messung - `git fetch`, dann `git log --oneline origin/<branch>..<branch> | wc -l`. Wer den
+Remote-Zeiger ohne `git fetch` abliest, misst den lokalen Stand und nicht den Server.
 
 ---
 

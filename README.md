@@ -60,6 +60,15 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `3c74cbe`.
 
+Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kein
+`sorryAx`, die Whitelist ist leer, und jede neue Luecke bricht den Bau. Diese Zusicherung
+gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
+liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
+nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
+eine andere Frage: 123 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
+Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
+Bau je Target zusichert, steht in `docs/build-targets.md`.
+
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
 
@@ -183,3 +192,23 @@ lake env lean /tmp/a.lean
 unter 1 MB.
 
 Bau-Konventionen fuer beitragende Instanzen: siehe `CLAUDE.md`.
+
+---
+
+## Lizenz, Zitate und Beitraege
+
+Der Lean-Bestand steht unter Apache-2.0 (`LICENSE`), die Dokumente unter `docs/` unter
+CC-BY-4.0 (`docs/LICENSE`). Beide Lizenzdateien tragen den Volltext der amtlichen Fassung.
+
+Keine der beiden Lizenzen erstreckt sich auf woertlich zitierte Passagen Dritter. Der
+Korpus enthaelt Zitate aus den Schriften Gotthard Guenthers; sie sind an ihren Fundstellen
+als Zitat gekennzeichnet, stehen unter dem Zitatrecht und verbleiben bei den jeweiligen
+Rechteinhabern. Wer Teile dieses Werks weiterverwendet, prueft die Zitate eigenstaendig.
+
+Zitierangabe: `CITATION.cff`.
+
+Der Spezifikations- und Befundkorpus, auf den Doc-Strings und Dokumente an vielen Stellen
+verweisen, liegt ausserhalb dieses Repositoriums und ist nicht veroeffentlicht.
+
+Dieses Projekt arbeitet mit einer spezifizierenden und einer bauenden Instanz; Beitraege
+werden derzeit nicht angenommen, und Issues sind abgeschaltet.

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Wer diese Arbeit verwendet, zitiert sie bitte wie folgt."
+title: "Reformulation - Polykontexturale Logik in Lean 4"
+abstract: >-
+  Formale Reformulierung der polykontexturalen Logik Gotthard Guenthers in Lean 4
+  mit Mathlib. Der Korpus trennt maschinell zwischen Beweis, Benennung, Deutung und
+  Setzung und fuehrt jede Kennzahl mit ihrer Zaehlroute.
+type: software
+authors:
+  - family-names: Raffel
+    given-names: Stefan
+repository-code: "https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur"
+license:
+  - Apache-2.0
+  - CC-BY-4.0
+date-released: "2026-08-01"
+keywords:
+  - polycontextural logic
+  - Gotthard Guenther
+  - Lean 4
+  - Mathlib
+  - formalisation
