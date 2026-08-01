@@ -52,6 +52,23 @@ aendert nur `docs/` und drei Zeilen `README.md`; der Lean-Bestand steht seit `c5
 
 Entwicklung laeuft auf Branch `rev2`. `main` bleibt auf `59541bd`, bis ein Rev2-Zug gruen ist.
 
+*Nachtrag 1. August 2026 (Vorgang 6, Stufe 1):* die Bedingung ist eingetreten und der
+Fast-Forward vollzogen - `git push origin rev2:main` fuehrt `59541bd..cf5beba`, ein echter
+Fast-Forward ohne Ueberschreiben. `main` und `rev2` stehen seither auf demselben Commit;
+Default am Remote bleibt `main`, ohne dass eine Einstellung geaendert wurde. Der Satz oben
+gilt rueckblickend und beschreibt nicht mehr den heutigen Stand.
+
+Der Anlass war nicht Ordnungsliebe. Pages wird nach `docs/README.md` aus Branch `main`,
+Ordner `/docs` ausgeliefert; am Stand `59541bd` trugen die drei HTML-Dateien fuenfmal den
+Vermerk „nicht zur Veroeffentlichung", und `LICENSE`, `docs/LICENSE` und `CITATION.cff`
+lagen dort nicht. Eine Umstellung auf oeffentlich vor dem Fast-Forward haette also eine
+Projektseite ausgeliefert, die sich selbst als unveroeffentlicht bezeichnet, an einem
+Repositorium ohne Lizenz. Kein Bau meldet das.
+
+Rev1 ist davon nicht beruehrt: der annotierte Tag `rev1` zeigt weiterhin auf `59541bd`,
+lokal wie am Remote, und `59541bd` bleibt Vorfahr von `main`. Ein Fast-Forward ruehrt Tags
+nicht an.
+
 ---
 
 ## 3 - Namenslage
