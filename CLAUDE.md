@@ -29,6 +29,35 @@ laeuft, steht in §3.
 
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
+### Nach jedem Commit auf `rev2` wird `main` per Fast-Forward nachgezogen
+
+```sh
+git push origin rev2
+git push origin rev2:main      # Ausgabe pruefen: alt..neu, zwei Punkte
+```
+
+`main` ist der Default des oeffentlichen Repositoriums; wer auf der Repo-Seite landet,
+sieht `main` und sonst nichts. Ein Zug, der nur `rev2` bewegt, ist fuer jeden fremden
+Leser unsichtbar - und **kein Bau meldet das.** Die beiden Zweige koennen beliebig weit
+auseinanderlaufen, ohne dass eine Kennzahl sich ruehrt, ohne dass das AxiomGate anschlaegt
+und ohne dass `doc_lint` etwas findet. Es ist die Sorte Bruch, gegen die keine Wache
+gebaut ist, weil sie ausserhalb des Baums sitzt.
+
+Sobald GitHub Pages laeuft, gilt dasselbe doppelt: die Quelle ist `main/docs`. Eine
+Projektseite, die aus einem nicht nachgezogenen `main` ausgeliefert wird, beschreibt den
+Bestand nicht mehr und sagt es niemandem.
+
+**Die Ausgabe des zweiten Push ist zu lesen, nicht zu ueberfliegen.** Die Form `alt..neu`
+mit zwei Punkten weist ihn als echten Fast-Forward aus. Steht dort ein `+` oder ein
+Hinweis auf einen erzwungenen Push, ist etwas anderes geschehen als beabsichtigt - dann
+nicht wiederholen, sondern nachsehen.
+
+*Herkunft (1. August 2026, Vorgang 6):* `main` stand vierzig Zuege lang auf dem
+Rev1-Abschluss, waehrend die Arbeit auf `rev2` lief. Beim Oeffentlichwerden waere damit
+ein Stand sichtbar geworden, dem die Lizenzdateien fehlten und dessen Projektseite sich
+selbst als nicht zur Veroeffentlichung bestimmt bezeichnet. Der Tag `rev1` haelt den
+Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
+
 ---
 
 ## 2 - Vor jeder Lieferung
