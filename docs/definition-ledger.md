@@ -9,32 +9,20 @@ jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
 **Die Trägerspalte wird beim Bau geprüft.** `Reformulation/Proemial/DefinitionLedger.lean`
 hält jeden Namen dieser Tabelle gegen die Aggregatumgebung (R1) und den Trägerstatus gegen
 die Deklarationsart (R2); ein falscher Name oder ein falscher Status bricht `lake build` und
-nennt die Zeilen-ID. R3 bis R6 sind Textprüfungen in `doc_lint.sh`, angesetzt auf diese
+nennt die Zeilen-ID. R3 bis R8 sind Textprüfungen in `doc_lint.sh`, angesetzt auf diese
 Datei.
 
-## Bauzustand, auf den sich diese Tabelle bezieht
+## Bauzustand
 
-Nur die Kennzahlen, die eine Spalte dieser Tabelle stützen. Was hier nicht steht — Sätze,
-Statement-Pins, Build-Jobs —, stützt keine Spalte und steht im `README.md`.
+Diese Tabelle führt keine Bau-Kennzahlen. Sie führte bis `9c48adc` vier — geprüfte
+Konstanten, Wachen geschrieben und erzwungen, ausgewiesene Lücken —, und keine davon
+stützte eine ihrer Spalten: R1 prüft Namen gegen die Aggregatumgebung, R2 die
+Deklarationsart, die Wachenspalte trägt Profile je Zeile und keine Summe. Der laufende
+Stand steht im `README.md`, der Gate-Stand in der `AxiomGate`-Zeile des Baus.
 
-| Kennzahl | Wert | Route |
-|---|---:|---|
-| geprüfte Konstanten (AxiomGate) | 2998 | Aggregat-Importbaum von `Reformulation`, gemessen vom `AxiomGate` beim Bau |
-| Axiom-Wachen, geschrieben | 375 über 42 Dateien | `grep -rE '#guard_msgs.*in #print axioms'` über **`Reformulation/` allein** |
-| Axiom-Wachen, vom Bau erzwungen | 375 über 42 Dateien | dieselbe Route, eingeschränkt auf die Import-Hülle der Default-Targets |
-| ausgewiesene Lücken | 0, Whitelist leer | `AxiomGate`-Zeile des grünen Baus |
-
-**Die Zahlen dieser Tafel hängen an Commit *und* Route und werden nicht nachgezogen: sie
-sind ein historischer Messpunkt, kein laufender Stand.** Der laufende Stand steht im
-`README.md`, möglicherweise über andere Bereiche — die Wachenzahl läuft dort seit `b778031`
-über `Reformulation/` **und** `Foreign/` und ist darum größer, ohne dass eine Wache
-hinzugekommen wäre.
-
-Alle Träger dieser Tabelle liegen im Aggregat und sind erzwungen. Über `Reformulation/` fallen
-geschriebene und erzwungene Wachen an diesem Stand zusammen: die dreizehn vormals schlafenden
-Wachen laufen seit dem Buildabdeckungs-Zug C2 mit. Unerzwungen bleiben allein die zehn Wachen
-in `Foreign/PeresMermin.lean`, das außerhalb dieser Route liegt und keine Ledger-Zeile
-betrifft.
+Alle Träger dieser Tabelle liegen im Aggregat; dass R1 sie dort auflöst, prüft der Bau
+bei jedem Lauf. Dass ihre Wachen auch erzwungen sind, prüft heute keine Route — der
+Posten ist benannt (Hüllensonde, `Vorgang4b_Kopf_und_Huelle_Befund.md` §4).
 
 ## Selbstauskunft der Tabelle, mit Route
 
@@ -71,10 +59,13 @@ Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Prüfregeln:** R1 Träger löst gegen die Aggregatumgebung auf · R2 TS stimmt mit der
 Deklarationsart überein · R3 kein ZS `Theorem` · R4 TS `Offen` erzwingt leere Trägerspalte ·
-R5 alle 19 Paragraphen vertreten · R6 TS `Theorem` erzwingt ausgefüllte Wachenspalte.
+R5 alle 19 Paragraphen vertreten · R6 TS `Theorem` erzwingt ausgefüllte Wachenspalte ·
+R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in
+`Reformulation/Proemial/DefinitionLedger.lean` — und umgekehrt · R8 jede Zeilen-ID kommt in
+beiden Dateien genau einmal vor.
 
 R1 und R2 werden von `Reformulation/Proemial/DefinitionLedger.lean` beim Bau geprüft; R3 bis
-R6 sind Textprüfungen in `doc_lint.sh`.
+R8 sind Textprüfungen in `doc_lint.sh`.
 
 **Zur Lesart der Profile.** `[propext, Quot.sound]` ist bei omega-getragenen Beweisen
 Eigenschaft der Taktikhülle. `[propext, Classical.choice, Quot.sound]` ist bei den

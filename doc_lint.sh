@@ -341,7 +341,7 @@ echo "     Wörter:   unabhängig | Unabhängigkeit | independent | independence
 echo "     Trigger:  ZFC | Zermelo   (verengt — Nachschlag Teil 3)"
 printf '%s\n' "$BLOCK_B" | fmt
 echo
-echo "── Gruppe (C) LEDGER-REGELN R3–R6 — docs/definition-ledger.md ────────────────"
+echo "── Gruppe (C) LEDGER-REGELN R3–R8 — docs/definition-ledger.md ────────────────"
 echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
 echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten · R6 Trägerstatus \"Theorem\""
 echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"

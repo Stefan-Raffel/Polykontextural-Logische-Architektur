@@ -27,8 +27,10 @@ Schluss des Typs — dasselbe Kriterium, an dem `CLAUDE.md` §10 haengt.
 ## Was nicht geprueft wird
 
 R3 (kein Zuordnungsstatus `Theorem`), R4 (Traegerstatus `Offen` erzwingt leere
-Traegerspalte), R5 (alle 19 Paragraphen vertreten) und R6 (Traegerstatus `Theorem` erzwingt
-ausgefuellte Wachenspalte) sind Textpruefungen und stehen in `doc_lint.sh`. Der
+Traegerspalte), R5 (alle 19 Paragraphen vertreten), R6 (Traegerstatus `Theorem` erzwingt
+ausgefuellte Wachenspalte), R7 (jede Traegerzeile der Tabelle hat genau eine passende
+Referenz in dieser Datei — und umgekehrt) und R8 (jede Zeilen-ID kommt in beiden Dateien
+genau einmal vor) sind Textpruefungen und stehen in `doc_lint.sh`. Der
 Zuordnungsstatus ist redaktionell und ueberhaupt nicht pruefbar. Zeilen mit Traegerstatus
 `Offen` erscheinen hier nicht.
 
