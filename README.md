@@ -52,10 +52,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3005 Konstanten |
-| Axiom-Wachen | 388 ueber 44 Dateien |
-| Saetze gesamt | 718 |
-| Build-Jobs | 1300 |
+| geprueft (AxiomGate) | 3018 Konstanten |
+| Axiom-Wachen | 396 ueber 45 Dateien |
+| Saetze gesamt | 726 |
+| Build-Jobs | 1301 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `e25e912`.
@@ -82,14 +82,14 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 |---|---:|---:|---|
 | `Proemial/` | 58 | 424 | Proemialrelation, Transjunktion, Klon-Schranken |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
-| `Kenogram/` | 4 | 91 | Kenogrammatik: RGS, Normalform, Operationssemantik |
+| `Kenogram/` | 5 | 99 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation |
 | `F1/` | 20 | 21 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 718 laufen ueber `Reformulation/` allein, die Tafel
+Widerspruch, sondern der Bereich: die 726 laufen ueber `Reformulation/` allein, die Tafel
 weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
 des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
 
@@ -120,12 +120,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 388 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 396 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 388 geschriebenen Wachen erzwingt `lake build`
-**378** (in 43 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 396 geschriebenen Wachen erzwingt `lake build`
+**386** (in 44 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -136,8 +136,8 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-388 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 378 die der erzwungenen: dieselbe Route,
+396 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 386 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets.
 
 ---
@@ -179,7 +179,7 @@ echo '#print axioms Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone' 
 lake env lean /tmp/a.lean
 ```
 
-`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~159 Dateien
+`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~160 Dateien
 unter 1 MB.
 
 Bau-Konventionen fuer beitragende Instanzen: siehe `CLAUDE.md`.

@@ -30,16 +30,16 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 75 |
-| Zeilen mit Träger | 60 |
-| verschiedene Trägernamen | 52 |
-| TS `Theorem` | 43 |
-| TS `Definition` | 16 |
+| Zeilen gesamt | 79 |
+| Zeilen mit Träger | 63 |
+| verschiedene Trägernamen | 55 |
+| TS `Theorem` | 45 |
+| TS `Definition` | 17 |
 | TS `Setzung` | 1 |
-| TS `Offen` | 15 |
+| TS `Offen` | 16 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 60 Zeilen bei 52 Namen. Das ist
+Acht Träger erscheinen in mehr als einer Zeile — daher 63 Zeilen bei 55 Namen. Das ist
 Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 ## Schema
@@ -94,6 +94,7 @@ beider Fehlexpansionen.
 | `IB.` | `Reformulation.Proemial.IntervalBackbone.` | Namensraum |
 | `EC.` | `Reformulation.Proemial.ElementaryCycle.` | Namensraum |
 | `K.` | `Reformulation.Kenogram.` | Namensraum |
+| `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
 
 ## Die Tabelle
 
@@ -169,6 +170,10 @@ beider Fehlexpansionen.
 | L15-1 | Kategorie des Neuen (§15) | — | Offen | Offen | — | nicht formalisiert; laut `TCB`-Doc-String so nicht formalisierbar |
 | L16-1 | Morphogramm (§16) | `K.relabel` | Definition | Operationalisierung | ja, axiomfrei | Normalform einer Folge als RGS; Morphogramm-Bildung, kein Quotientstyp |
 | L16-2 | Morphogramm (§16) | `K.rgs_unique_of_pattern` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | gleiches Muster erzwingt gleiche Normalform |
+| L16-3 | Morphogramm (§16) | `KM.SamePattern` | Definition | Operationalisierung | keine (def) | Muster-Gleichheit als Relation; kein Quotientstyp |
+| L16-4 | Morphogramm (§16) | `KM.samePattern_iff_pattern` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Charakterisierung am Positionsmuster, typübergreifend |
+| L16-5 | Morphogramm (§16) | `KM.samePattern_iff_common_nf` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Muster-Gleichheit = gemeinsame Reduktions-Normalform; nur `List ℕ` |
+| L16-6 | Morphogramm (§16) | — | Offen | Offen | — | Wertbesetzung der Morphogramme (§16 Fälle 1–3, Achter-Tafel) nicht formalisiert |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |
