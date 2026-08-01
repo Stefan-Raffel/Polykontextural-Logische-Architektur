@@ -24,14 +24,16 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
-**Arbeitspapier zur Fassung PKL Rev1** (deutsch und englisch, mit Figuren und Zaehlrouten):
-`docs/de.html` und `docs/en.html`. Die frueher hier genannte Pages-Adresse
-<https://stefan-raffel.github.io/PKLrev1/> loest nicht auf - gemessen am 29. Juli 2026 gibt
-sie ohne Anmeldung HTTP 404 zurueck, wie es bei privatem Repository zu erwarten ist.
-Seither ist das Repositorium umbenannt; die Adresse, die nach der Umstellung auf oeffentlich
-in Frage kommt, lautet <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/>.
-Ob sie aufloest, ist nicht gemessen - bei privatem Repositorium gibt auch sie 404, und das
-sagt ueber die Einrichtung von Pages nichts.
+**Arbeitspapier zur Fassung PKL Rev1** (deutsch und englisch, mit Figuren und
+Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
+und im Bestand unter `docs/de.html` und `docs/en.html`.
+
+Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf
+oeffentlich lieferte die frueher hier genannte Adresse
+<https://stefan-raffel.github.io/PKLrev1/> ohne Anmeldung HTTP 404 - gemessen am
+29. Juli 2026, wie es bei privatem Repositorium zu erwarten ist. Seit dem 1. August 2026
+loest <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> auf; die
+alte Adresse loest nicht auf (gemessen, HTTP 404) - Pages folgt der Umbenennung nicht.
 
 ---
 

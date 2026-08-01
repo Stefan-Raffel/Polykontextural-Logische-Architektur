@@ -99,6 +99,21 @@ Messung vom 29. Juli gilt fuer die damalige Adresse. **Die Pages-Adresse folgt d
 Repo-Namen**; ob GitHub sie ebenso weiterleitet wie die Repo-URL, ist nicht gemessen und
 vor der Umstellung auf oeffentlich auch nicht messbar.
 
+*Nachtrag vom 1. August 2026 (Vorgang 6, Stufe 3):* jetzt gemessen, und die Antwort ist
+**nein**. Anmeldungsfreier Abruf nach der Umstellung und nach dem Einschalten von Pages:
+
+| Adresse | Statuscode |
+|---|---:|
+| `github.com/Stefan-Raffel/Polykontextural-Logische-Architektur` | 200 |
+| `github.com/Stefan-Raffel/PKLrev1` | **301** auf den neuen Namen |
+| `stefan-raffel.github.io/Polykontextural-Logische-Architektur/` | **200** |
+| `stefan-raffel.github.io/PKLrev1/` | **404**, ohne Weiterleitung |
+
+**Repository-URLs leitet GitHub weiter, Pages-Adressen nicht.** Die Messung traegt, weil
+sie beide Seiten zugleich sieht: die neue Pages-Adresse liefert aus, waehrend die alte
+404 gibt - es ist also nicht der Fall, dass nichts ausgeliefert wuerde. Der Satz oben
+bleibt stehen und beschreibt den damaligen Kenntnisstand.
+
 Das AxiomGate prueft ueber das Modulpraefix `Reformulation`, nicht ueber Verzeichnisnamen.
 Kein Rename beruehrt es.
 
