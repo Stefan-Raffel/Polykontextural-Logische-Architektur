@@ -239,9 +239,14 @@ theorem join_absorb : ∀ x y : M3, join x (meet x y) = x := by decide
 /-- **`negM3` ist involutiv.** -/
 theorem negM3_involutive : ∀ x : M3, negM3 (negM3 x) = x := by decide
 
-/-- **`negM3` ist ordnungsumkehrend.** Mit `negM3_involutive` zusammen trägt das die Rede
-von der ordnungsumkehrenden Involution. -/
-theorem negM3_antitone : ∀ x y : M3, le x y → le (negM3 y) (negM3 x) := by decide
+/-- **`negM3` ist ordnungsumkehrend**, als Äquivalenz. Mit `negM3_involutive` zusammen
+trägt das die Rede von der ordnungsumkehrenden Involution.
+
+Die Hinrichtung allein genügte sachlich: die Rückrichtung folgt aus ihr, angewandt auf
+`negM3 x` und `negM3 y`, plus `negM3_involutive`. Gebaut ist trotzdem die Äquivalenz,
+weil sie die spezifizierte Fassung ist — ein Statement, das schwächer ist als das
+verlangte, ist eine Abweichung, auch wo es die stärkere Fassung mitbringt. -/
+theorem negM3_antitone : ∀ x y : M3, le x y ↔ le (negM3 y) (negM3 x) := by decide
 
 /-- **Der Träger ist nicht linear** (Nichttrivialität): das Atompaar `a1`, `a2` ist
 unvergleichbar. Ohne diesen Beleg wäre die Einschränkung auf vergleichbare Paare leer
