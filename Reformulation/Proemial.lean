@@ -15,6 +15,7 @@ import Reformulation.Proemial.TransjunctionCloneBound
 import Reformulation.Proemial.NonUniformCloneBound
 import Reformulation.Proemial.QuaternaryCloneBound
 import Reformulation.Proemial.GeneralCloneBound
+import Reformulation.Proemial.M3CloneWitness
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -241,6 +242,35 @@ Enthält:
   `Classical.choice`; Heilung `ne_or_ne_of_imp` (dite über `Nat.decEq`, axiom-frei).
   Kanten- und Belegungszahlen (14/31/57, 62/1022/32766) bleiben in Sonde 18/19;
   Marke 3 unverändert. Kein Satz zieht `Classical.choice` oder `sorryAx`. 0 Sorries.
+
+- `Proemial.M3CloneWitness`: die M3-Grenze als Satz (ERTRAG). Zielsatz
+  `m3_mixed_term_exists`: auf dem kleinsten flachen Verband `M3` existiert ein Term
+  über derselben Basis `{∧, ∨, ¬}` wie D/E1/E2/E3, dessen Realisierung auf JEDEM
+  VERGLEICHBAREN Paar klassisch wirkt und global weder `meet` noch `join` ist —
+  Zeuge `tM3 = (x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))`, Widerlegungspunkte
+  `fM3 bot a1 = a1 ≠ bot` und `fM3 bot top = bot ≠ top`. Damit steht die Grenze der
+  E3-Charakterisierung auf demselben Grund wie die Charakterisierung selbst; sie war
+  die letzte handgerechnete tragende Aussage der Architektur. Die LEICHTE Hälfte des
+  Differentials (Existenz mit explizitem Zeugen); die schwere steht seit
+  `GeneralCloneBound`. Träger ist ein EIGENER induktiver Typ, nicht `Fin 5`: eine
+  zweite `L.Structure (Fin 5)`-Instanz neben der globalen `strucM` erzeugte im
+  Aggregat eine stille Instanz-Ambiguität, und ein `abbrev` genügte nicht (reducible).
+  Folgerichtig keine Mathlib-`Lattice`/`Order`-Instanz — die Verbandsgesetze und die
+  Involution stehen als benannte `decide`-Lemmata. `meet_leaves_incomparable` bringt
+  die Begriffsgrenze an den Satz: auf einem unvergleichbaren Paar verlässt `meet` die
+  Zweiermenge, sie ist dann keine Elementarkontextur (`Definitionen.md` §2) — darum
+  quantifiziert `LocallyClassicalCmp` nur über vergleichbare Paare; die Begründung
+  stand bisher als Prosa im `StageAggregation`-Doc. Neuer gemessener Fallstrick:
+  `deriving Fintype` zieht `Classical.choice` in jeden `decide`-Satz über `∀ x : M3`
+  (dreizehn Sätze gemessen); die Handinstanz über die Fünf-Elemente-Liste heilt es.
+  Wortlaut-Grenzen: „E3 fällt auf nicht-linearen Verbänden" ist LESART, keine formale
+  Negation von E3 (E3 ist auf `Fin m` formuliert, eine Verbands-Fassung gibt es nicht);
+  die Basis ist GEWÄHLT, nicht gefunden (die Involution ist auf `M3` nicht eindeutig,
+  die Atome sind permutierbar); keine Charakterisierung der auf `M3` erzeugbaren
+  Operationen; die Zahlen der Sondierung bleiben außerhalb (`CLAUDE.md` §6); die
+  Robustheits-Pflicht §9 greift nicht (positive Hälfte, keine Schranke). Drei
+  Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (15 Wachen) — kein
+  `Classical.choice`, kein `sorryAx`. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte
@@ -806,8 +836,9 @@ Enthält:
   Beweis:** `{x,y}` ist unter `min`/`max` genau dann abgeschlossen, wenn `x,y`
   vergleichbar sind — nur dann ist die Zweiermenge eine Elementarkontextur
   (`Definitionen.md` §2); auf nicht-linearen Verbänden fällt die Charakterisierung
-  (bereits am kleinsten flachen Verband `M3`, Sonden-Befund der E4-Begutachtung,
-  außerhalb des Korpus gerechnet). Ein Übergangsgraph benannter Rollen ohne
+  (bereits am kleinsten flachen Verband `M3` — bewiesen in `M3CloneWitness`,
+  `m3_mixed_term_exists`; die Klon-Zählungen der Sondierung bleiben außerhalb des
+  Korpus). Ein Übergangsgraph benannter Rollen ohne
   Stufenordnung wird von dieser Schranke NICHT getragen. Wortlaut-Grenzen: keine
   Behauptung über AI-Systeme (Anwendungsannahme, keine Folgerung), keine
   Sicherheitsgarantie; Marke 3 unverändert (`StageAggregation`, nicht
@@ -893,8 +924,9 @@ Enthält:
   lokal-klassische Operation ist bei `m = 3` erzeugbar (E1,
   `pattern_max_min_min_in_clone`), bei `m = 4` nicht (E3,
   `locally_classical_in_clone_iff`). Qualitativer Regimewechsel, kein Zähler.
-  Konsumiert nur Aggregat-Inhalt. Grenze: fällt auf `M3`/Verbundgitter
-  (E4-Begutachtung). Eine Wache (`[propext, Quot.sound]`), 0 Sorries.
+  Konsumiert nur Aggregat-Inhalt. Grenze: fällt auf `M3`/Verbundgitter — bewiesen
+  in `M3CloneWitness` (`m3_mixed_term_exists`). Eine Wache
+  (`[propext, Quot.sound]`), 0 Sorries.
 - `Proemial.ElementaryCycle`: die Elementarkontextur als **Zweierbahn einer
   Involution** (ERTRAG). `card_orb_le_two` — jede Bahn einer Involution hat
   höchstens zwei Elemente (in dieser Darstellung Spezialisierung von Mathlibs

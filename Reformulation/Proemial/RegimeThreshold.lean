@@ -40,8 +40,10 @@ derselben Achse**, keine Verkonjunktion zweier.
 
 Der Satz trägt auf linearem `Fin m`. Die starke Charakterisierung fällt **nicht**
 auf Kontexturverbände: auf `M3` gibt es lokal-klassische Terme, die weder `meet`
-noch `join` sind (`E4_Anwendungsbruecke_Begutachtung`). Die Schwelle ist ein
-Satz über Wertzahlen, kein Satz über beliebige Verbund-Gitter.
+noch `join` sind — **bewiesen** in `Proemial.M3CloneWitness`
+(`m3_mixed_term_exists`); die Klon-Zählungen der Sondierung bleiben außerhalb des
+Korpus (CLAUDE.md §6). Die Schwelle ist ein Satz über Wertzahlen, kein Satz über
+beliebige Verbund-Gitter.
 
 ## Aggregat-Reife
 

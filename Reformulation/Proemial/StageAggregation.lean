@@ -48,9 +48,12 @@ Begriff, nicht im Beweis.**
 
 Auf nicht-linearen Verbänden fällt die Charakterisierung tatsächlich: bereits am
 kleinsten flachen Verband `M3` ist ein lokal-klassischer Term konstruierbar, der
-weder Infimum noch Supremum ist (Sonden-Befund der E4-Begutachtung,
-**außerhalb des Korpus gerechnet**, Gegenbeispiel von Hand nachgerechnet; die
-Zahlen bleiben außerhalb, CLAUDE.md §6). Ein Übergangsgraph benannter Rollen ohne
+weder Infimum noch Supremum ist. Das ist **bewiesen** in
+`Proemial.M3CloneWitness` (`m3_mixed_term_exists`, Zeuge
+`(x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))`); dort steht auch die Begriffsgrenze selbst als
+Satz (`meet_leaves_incomparable`: auf einem unvergleichbaren Paar verlässt `meet`
+die Zweiermenge). Die Klon-Zählungen der Sondierung bleiben außerhalb des Korpus
+(CLAUDE.md §6). Ein Übergangsgraph benannter Rollen ohne
 Stufenordnung wird von dieser Schranke **nicht** getragen; was dort beweisbar
 bleibt, ist Erreichbarkeit in einem endlichen Graphen und leistet nichts, was ein
 Typsystem nicht auch leistet.

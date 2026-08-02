@@ -85,10 +85,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3018 Konstanten |
-| Axiom-Wachen | 396 ueber 45 Dateien |
-| Saetze gesamt | 726 |
-| Build-Jobs | 1301 |
+| geprueft (AxiomGate) | 3110 Konstanten |
+| Axiom-Wachen | 411 ueber 46 Dateien |
+| Saetze gesamt | 744 |
+| Build-Jobs | 1302 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `3c74cbe`.
@@ -98,19 +98,26 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 130 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
+eine andere Frage: 131 rohe Treffer ueber den ganzen verfolgten Bestand, 96 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
 Die erste Zahl zaehlt sich selbst mit: je drei ihrer Treffer stehen in `docs/de.html` und
 `docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand
 `e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129, und mit
-dem Absatz zu dieser Zahl in `CLAUDE.md` §3 nun 130 - der Absatz nennt den Suchbegriff mit
-Bindestrich, und ein Bindestrich ist eine Wortgrenze. Die zweite und die dritte Zahl sind
-davon unberuehrt - keiner dieser Zuege fasst eine `.lean`-Datei an.
+dem Absatz zu dieser Zahl in `CLAUDE.md` §3 dann 130 - der Absatz nennt den Suchbegriff mit
+Bindestrich, und ein Bindestrich ist eine Wortgrenze. Diese drei Zuege liessen die zweite
+und die dritte Zahl unberuehrt, weil keiner von ihnen eine `.lean`-Datei anfasste.
+
+Der M3-Zug bewegt beide: 130 -> 131 und 95 -> 96, und die Rechnung ist je Datei
+anzugeben. Das eine neue Vorkommen steht im Dateikopf von
+`Reformulation/Proemial/M3CloneWitness.lean`, wo die Ablage-Zeile den Suchbegriff mit
+angehaengtem Bindestrich fuehrt - und ein Bindestrich ist eine Wortgrenze. Sonst aendert
+der Zug an keiner Datei ein Vorkommen. Die dritte Zahl bleibt 27: die neue Datei traegt
+keine offene Stelle.
 
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
-werden **Wortvorkommen** (130 / 95), nicht Zeilen mit mindestens einem Vorkommen (127 / 92).
+werden **Wortvorkommen** (131 / 96), nicht Zeilen mit mindestens einem Vorkommen (128 / 93).
 Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
 eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
 
@@ -134,7 +141,7 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 58 | 424 | Proemialrelation, Transjunktion, Klon-Schranken |
+| `Proemial/` | 59 | 442 | Proemialrelation, Transjunktion, Klon-Schranken |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 5 | 99 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation |
 | `F1/` | 20 | 21 | Belegungen, Faserungen, Cross-Chain-Anschluss |
@@ -143,7 +150,7 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 726 laufen ueber `Reformulation/` allein, die Tafel
+Widerspruch, sondern der Bereich: die 744 laufen ueber `Reformulation/` allein, die Tafel
 weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
 des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
 
@@ -174,12 +181,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 396 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 411 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 396 geschriebenen Wachen erzwingt `lake build`
-**386** (in 44 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 411 geschriebenen Wachen erzwingt `lake build`
+**401** (in 45 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -190,8 +197,8 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-396 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 386 die der erzwungenen: dieselbe Route,
+411 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 401 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets.
 
 ---
@@ -233,7 +240,7 @@ echo '#print axioms Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone' 
 lake env lean /tmp/a.lean
 ```
 
-`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~160 Dateien
+`.lake/` umfasst rund 7,5 GB und ist ausgeschlossen; der Quellbestand sind ~161 Dateien
 unter 1 MB.
 
 Bau-Konventionen fuer beitragende Instanzen: siehe `CLAUDE.md`.
