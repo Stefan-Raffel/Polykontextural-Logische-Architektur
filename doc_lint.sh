@@ -271,7 +271,7 @@ ledger_report() {
   fi
   awk -F'|' '
     function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
-    /^\| L[0-9][0-9]-[0-9] \|/ {
+    /^\| L[0-9][0-9]-[0-9]+ \|/ {
       id = trim($2); traeger = trim($4); ts = trim($5); zs = trim($6); wache = trim($7)
       par[substr(id, 1, 3)] = 1
       n++
@@ -320,7 +320,7 @@ ledger7_report() {
         split($0, k, "|")
         kz[bare(k[2])] = bare(k[3])
       }
-      if ($0 ~ /^\| L[0-9][0-9]-[0-9] \|/) {      # Tabellenzeile
+      if ($0 ~ /^\| L[0-9][0-9]-[0-9]+ \|/) {      # Tabellenzeile
         split($0, c, "|")
         id = bare(c[2]); traeger = bare(c[4]); ts = bare(c[5])
         if (ts != "Offen") {
@@ -394,7 +394,7 @@ ledger8_report() {
   awk '
     function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
     NR == FNR {
-      if ($0 ~ /^\| L[0-9][0-9]-[0-9] \|/) {
+      if ($0 ~ /^\| L[0-9][0-9]-[0-9]+ \|/) {
         split($0, c, "|"); id = trim(c[2])
         if (id in mdLine) {
           printf "  %s  [R8] Zeilen-ID doppelt in der Tabelle — Zeile %d und Zeile %d\n", \

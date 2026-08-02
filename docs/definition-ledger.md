@@ -26,7 +26,7 @@ Posten ist benannt (Hüllensonde, `Vorgang4b_Kopf_und_Huelle_Befund.md` §4).
 
 ## Selbstauskunft der Tabelle, mit Route
 
-Route: `grep -cE '^\| (L[0-9]{2}-[0-9]) \|' docs/definition-ledger.md`
+Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|

@@ -175,6 +175,15 @@ Seite sich bewegt hat, keine Aussage ueber den Bestand. Wer N1 aendert, misst je
 nennt die Rechnung. N2 und N3 sind davon nicht betroffen - sie laufen ueber .lean
 beziehungsweise ueber betroffene Deklarationen.
 
+**Und die Route laeuft ueber den verfolgten Bestand.** Eine Datei, die noch nicht verfolgt
+wird, ist fuer sie nicht vorhanden: N1 bleibt dann unveraendert stehen, obwohl der Zug die
+Zahl bewegt hat, und der Wert ist plausibel und falsch. **Regel: nach dem Hinzufuegen einer
+Datei erst verfolgen, dann messen.** Gemessen am Morphogramm-Zug (Commit `d55158b`) - die
+Messung vor dem Verfolgen lieferte den unveraenderten Vorwert, die Messung danach den um
+eins hoeheren; beide Male stand dieselbe Datei im Arbeitsbaum. Es ist Fallstrick 8 in einer
+weiteren Gestalt: nicht ein falsches Ergebnis, sondern ein unbewegtes, und ein unbewegtes
+sieht aus wie eine gute Nachricht.
+
 Verallgemeinerung. Eine Route, deren Suchwort in Prosa vorkommt, zaehlt ihre eigene
 Dokumentation mit; wer die Route erklaert, veraendert ihren Wert. Das ist kein Fehler und
 keine Ausnahme, sondern die Regel fuer einen Korpus, der seine Werkzeuge in derselben
@@ -273,6 +282,10 @@ entfernt.
 Alle zehn sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
 sie nicht ein zweites Mal gefunden werden muessen. Der neunte ist kein Lean-Fallstrick,
 sondern einer der Werkzeugkette; er steht hier, weil er dieselbe Sorte ist wie der achte.
+
+**Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
+ist nicht immer die Ursache: der zehnte haelt eine Profildifferenz fest, deren Mechanismus
+ungeprueft ist, und sagt das an seiner Stelle. Wer einen Eintrag ergaenzt, trennt beides.
 
 **1 - `Fin n`-Subtraktion ist modular.** `|a - b| <= 1` ueber `Fin 4` ist **nicht** die
 Nachbarschaftsrelation, sondern etwas anderes. Relationen dieser Art werden als explizite Tafel
