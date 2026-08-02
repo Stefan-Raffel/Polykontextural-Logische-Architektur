@@ -1,6 +1,6 @@
 # Reformulation - Polykontexturale Logik in Lean 4
 
-## In English
+###### *English introduction*
 
 This repository contains a formal reformulation of Gotthard Guenther's polycontextural
 logic in Lean 4 with Mathlib. It separates, machine-checkably, what is proved from what is
