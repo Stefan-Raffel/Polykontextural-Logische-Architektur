@@ -301,6 +301,24 @@ beide 0, ist die Route verdaechtig und nicht der Bestand.
 Regel 2 - `git grep -cw sorry` und eine Python-Route mit `re.compile(r'\bsorry\b')`
 liefern beide **118** Zeilen; geprueft ist die Gleichheit, nicht der Wert.
 
+*Nachtrag (Vorgang 10): die Heilung war eine halbe.* Sie traegt die Wortgrenze, aber sie
+beantwortet eine andere Frage als `N1`. **Zwei Routen, zwei Fragen** - gemessen am Stand
+`b6fda6b` und an diesen Stand gebunden:
+
+    Zeilen mit mindestens einem Vorkommen   git grep -cw   127   (davon .lean 92)
+    Wortvorkommen  =  N1                    Python re      130   (davon .lean 95)
+
+Die Differenz sind drei Zeilen, die den Begriff zweimal tragen: zwei in
+`Reformulation/PathC/Classifying/ModelFunctor.lean`, eine in `Reformulation/F3f.lean`.
+**Wer `N1` meint und die Zeilenroute nimmt, misst zu niedrig und merkt es nicht**, weil
+beide Zahlen plausibel sind und keine von beiden 0 ist. Das ist Fallstrick 8 in dritter
+Gestalt: nicht ein leeres Ergebnis, sondern ein knapp falsches - und ein knapp falsches ist
+schwerer zu bemerken als ein leeres.
+
+Die Gleichheitsprobe oben bleibt richtig: beide Routen zaehlen Zeilen und stimmen ueberein.
+Falsch war nur, sie als Route fuer `N1` zu lesen. Eine Route wird an ihrer Frage geprueft,
+nicht an ihrer Uebereinstimmung mit einer zweiten Route derselben Frage.
+
 *Gegengeprueft, ob eine stehende Route betroffen ist: nein.* `doc_lint.sh` nutzt weder
 `git grep` noch `\b`; die verbindlichen Zaehlrouten in §3 laufen ueber `grep -rE` mit
 expliziten Zeilenanfaengen. Der Eintrag ist Praevention. (Vorgang 6, Stufe 1.)
