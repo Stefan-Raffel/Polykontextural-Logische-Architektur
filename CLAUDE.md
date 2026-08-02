@@ -29,29 +29,6 @@ laeuft, steht in §3.
 
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
-### Die Papierfassungen sind Erzeugnisse
-
-`docs/de.html` und `docs/en.html` werden **nicht von Hand geaendert**. Wer den Text aendert,
-aendert die Quelle unter `docs/src/` und erzeugt neu. Ein Zug, der die Erzeugnisse anfasst,
-ist ein Fehler und keine Abkuerzung.
-
-*Herkunft (2. August 2026, Vorgang 8):* es gab zwei Quellen fuer denselben Text und keine
-Route zwischen ihnen. Das hat sich dreimal ausgewirkt - eine Divergenz fand ein Leser, eine
-bestand ueber Wochen, von der dritten wusste niemand.
-
-`pandoc 3.9` ist die **festgeschriebene Fassung**; `docs/src/build.sh` prueft sie und bricht
-sonst ab. Ein Fassungswechsel ist zulaessig und kostet eine Neueichung: Fassung festschreiben,
-erzeugen, die entstehenden Unterschiede einzeln beurteilen, die Erzeugnisse neu ablegen. Das
-ist ein eigener Zug.
-
-`./docs/src/build.sh --check` gehoert ins Abschluss-Ritual, neben `lake build`,
-`lake build ForeignPeresMermin` und `./doc_lint.sh`. Es ist **keine** vierte Lint-Gruppe -
-der Lint hat einen eigenen Vertrag, und eine vierte Gruppe verwischte ihn.
-
-Die Regel ist nicht maschinell erzwungen: nichts hindert einen Zug daran, ein Erzeugnis zu
-oeffnen. Erzwungen wird sie mittelbar, weil `--check` beim naechsten Abschluss bricht. **Das
-ist eine Wache mit Verzoegerung und keine mit Verhinderung**, und darum steht die Regel hier.
-
 ### Nach jedem Commit auf `rev2` wird `main` per Fast-Forward nachgezogen
 
 ```sh
