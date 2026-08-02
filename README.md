@@ -1,5 +1,32 @@
 # Reformulation - Polykontexturale Logik in Lean 4
 
+## In English
+
+This repository contains a formal reformulation of Gotthard Guenther's polycontextural
+logic in Lean 4 with Mathlib. It separates, machine-checkably, what is proved from what is
+named, interpreted or posited, and it carries a counting route for every figure it states.
+
+The project works with one definition. The German wording below is the binding one; this is
+a translation of it:
+
+> A structure is **formally operative polycontextural** if it carries a family of local
+> contextures on which the relevant operations act classically or locally classically, and
+> if in addition a machine-checked theorem shows that the global interplay of these local
+> operations is not generable by any single intra-contextural term calculus.
+
+This is narrower than Guenther's world-picture notion of polycontexturality, which is not
+implemented and is carried as open.
+
+- Working paper, edition Rev2, in English: `docs/en.html`
+- Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
+- What a green build assures, per target: `docs/build-targets.md`
+- Current figures with their counting routes: the German section below
+
+Contributions are not accepted at present and issues are switched off; the reporting
+channel is named at the end of this file.
+
+---
+
 Dieses Repository arbeitet mit einer Projektdefinition, und sie steht vorneweg:
 
 > Eine Struktur ist **formal-operativ polykontextural**, wenn sie eine Familie lokaler
@@ -71,14 +98,21 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 129 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
+eine andere Frage: 130 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
 Die erste Zahl zaehlt sich selbst mit: je drei ihrer Treffer stehen in `docs/de.html` und
 `docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand
-`e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129. Die
-zweite und die dritte Zahl sind davon unberuehrt - der Zug fasst keine `.lean`-Datei an.
+`e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129, und mit
+dem Absatz zu dieser Zahl in `CLAUDE.md` §3 nun 130 - der Absatz nennt den Suchbegriff mit
+Bindestrich, und ein Bindestrich ist eine Wortgrenze. Die zweite und die dritte Zahl sind
+davon unberuehrt - keiner dieser Zuege fasst eine `.lean`-Datei an.
+
+Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
+werden **Wortvorkommen** (130 / 95), nicht Zeilen mit mindestens einem Vorkommen (127 / 92).
+Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
+eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:

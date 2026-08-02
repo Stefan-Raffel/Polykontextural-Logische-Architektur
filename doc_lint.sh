@@ -5,6 +5,8 @@
 # Zwei Wortgruppen, getrennt ausgewiesen:
 #   (A) SUPERLATIV      — Rang-Ansprüche ohne Ist-Prüfung
 #                         (Hausregel: keine „erstmals/einzige/seit F-1" o. Ä.)
+#                         [Vorgang 9] deutsche UND englische Muster in derselben
+#                         Gruppe, eine Trefferzahl — siehe SUPERLATIV_RE unten.
 #   (B) ZFC-RÜCKFALL    — „unabhängig/Unabhängigkeit/independent/independence",
 #                         NUR gemeldet bei Nähe (±1 Zeile) zu einem der
 #                         ZFC-Trigger (ZFC, Zermelo).  [Nachtrag (2a);
@@ -67,8 +69,25 @@ fi
 RUECKFALL_RE='unabhängig|independen'
 # (B) ZFC-Trigger im Nähe-Fenster ±1 Zeile [Nachschlag Teil 3: verengt]:
 TRIGGER_RE='ZFC|Zermelo'
-# (A) Superlativ-/Rang-Phrasen (konservativ):
-SUPERLATIV_RE='erstmals|erstmalig|zum ersten Mal|als erste[rs]?|einzige[rns]?|seit F-1|seit F1'
+# (A) Superlativ-/Rang-Phrasen (konservativ), deutsch und englisch in EINER Gruppe:
+#     Eine getrennte Gruppe erzeugte zwei Zaehlstaende fuer dieselbe Frage; (A) gibt
+#     weiterhin genau eine Trefferzahl aus.
+#
+#     Englische Muster [Vorgang 9]: an `docs/rev1/en.html` gemessen, bevor sie hier
+#     standen — der einzigen umfangreichen englischen Prosa im Baum. Treffer dort:
+#       for the first time 0 · the first to 1 · the only 0 · never before 0 · no other 0
+#     Der eine Treffer ist eine ERWAEHNUNG (der Satz, der diese Musterliste beschreibt),
+#     keine Verwendung — genau die Klasse von Fehlalarm, derentwegen (A) meldet und nicht
+#     bricht. Geprueft und verworfen: `the first` (gewoehnliche Prosa: "the first half",
+#     "the first mark"), `unique` (mathematische Aussage: "retraction is unique"),
+#     `sole(ly)` ("classified solely by which places repeat which"), `uniquely` (ohne
+#     Beleg im Bestand — nicht auf Verdacht aufgenommen).
+#
+#     KEIN `\b`: die awk-Regex-Maschine fuehrt keine Wortgrenze (CLAUDE.md §8,
+#     Fallstrick 9). Die Muster sind darum mehrwortig und tragen ihre Abgrenzung selbst.
+#     Betriebsart wie bei den deutschen Mustern uebernommen, also fallempfindlich; ein
+#     satzinitiales "The only" wird wie ein satzinitiales "Erstmals" nicht erfasst.
+SUPERLATIV_RE='erstmals|erstmalig|zum ersten Mal|als erste[rs]?|einzige[rns]?|seit F-1|seit F1|for the first time|the first to|the only|never before|no other'
 
 # --- Dateiliste -------------------------------------------------------------
 # Markdown + Lean-Modul-Docs; vendored/Meta-Verzeichnisse ausgeschlossen.
@@ -334,6 +353,9 @@ echo "  Dateien gescannt: ${#FILES[@]}  (*.md, *.lean; ohne .lake/.git/.claude)"
 echo "=============================================================================="
 echo
 echo "── Gruppe (A) SUPERLATIV — Rang-Ansprüche ────────────────────────────────────"
+echo "     deutsch:   erstmals | erstmalig | zum ersten Mal | als erste(r/s) | einzige(r/n/s)"
+echo "                seit F-1 | seit F1"
+echo "     englisch:  for the first time | the first to | the only | never before | no other"
 printf '%s\n' "$BLOCK_A" | fmt
 echo
 echo "── Gruppe (B) ZFC-RÜCKFALL — Wort + ZFC-Trigger im Fenster ±1 ────────────────"

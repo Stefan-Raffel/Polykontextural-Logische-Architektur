@@ -141,6 +141,17 @@ Fuer `def` gilt dieselbe Weitung:
 `private def`. Zitate in Memorial-Bloecken gibt es fuer `def` bisher keine; die
 Einrueckungsregel oben gilt trotzdem.
 
+Die rohe sorry-Zahl N1 ist eine selbstzaehlende Groesse. Sie zaehlt Wortvorkommen ueber den
+ganzen verfolgten Bestand, und sie zaehlt Prosa mit Absicht - genau so findet ein fremder
+grep sie. Wer den Wortlaut der Suche in ein Dokument schreibt, erhoeht sie; dreimal gemessen
+(README-Absatz 121 -> 123, deutsche Papierfassung 123 -> 126, englische 126 -> 129), jedes
+Mal ein Fixpunkt, weil das Einsetzen der Ziffer kein Wortvorkommen erzeugt.
+
+Daraus folgt die Regel: eine Differenz zwischen zwei Staenden von N1 ist ohne Angabe, welche
+Seite sich bewegt hat, keine Aussage ueber den Bestand. Wer N1 aendert, misst je Datei und
+nennt die Rechnung. N2 und N3 sind davon nicht betroffen - sie laufen ueber .lean
+beziehungsweise ueber betroffene Deklarationen.
+
 ### Statement-Pins: maschinenlesbar markieren
 
 Jeder Statement-Pin traegt unmittelbar davor die eigene Zeile
