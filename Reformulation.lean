@@ -51,3 +51,4 @@ import Reformulation.Kenogram.Stream
 import Reformulation.Kenogram.Bridge
 import Reformulation.Kenogram.Operational
 import Reformulation.Kenogram.Morphogram
+import Reformulation.Kenogram.Fillability

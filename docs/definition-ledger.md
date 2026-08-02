@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 5.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 6.
 
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `3c74cbe`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
@@ -30,16 +30,16 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 79 |
-| Zeilen mit Träger | 63 |
-| verschiedene Trägernamen | 55 |
-| TS `Theorem` | 45 |
+| Zeilen gesamt | 82 |
+| Zeilen mit Träger | 66 |
+| verschiedene Trägernamen | 58 |
+| TS `Theorem` | 48 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 16 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 63 Zeilen bei 55 Namen. Das ist
+Acht Träger erscheinen in mehr als einer Zeile — daher 66 Zeilen bei 58 Namen. Das ist
 Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 ## Schema
@@ -95,6 +95,7 @@ beider Fehlexpansionen.
 | `EC.` | `Reformulation.Proemial.ElementaryCycle.` | Namensraum |
 | `K.` | `Reformulation.Kenogram.` | Namensraum |
 | `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
+| `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
 
 ## Die Tabelle
 
@@ -173,7 +174,10 @@ beider Fehlexpansionen.
 | L16-3 | Morphogramm (§16) | `KM.SamePattern` | Definition | Operationalisierung | keine (def) | Muster-Gleichheit als Relation; kein Quotientstyp |
 | L16-4 | Morphogramm (§16) | `KM.samePattern_iff_pattern` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Charakterisierung am Positionsmuster, typübergreifend |
 | L16-5 | Morphogramm (§16) | `KM.samePattern_iff_common_nf` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Muster-Gleichheit = gemeinsame Reduktions-Normalform; nur `List ℕ` |
-| L16-6 | Morphogramm (§16) | — | Offen | Offen | — | Wertbesetzung der Morphogramme (§16 Fälle 1–3, Achter-Tafel) nicht formalisiert |
+| L16-6 | Morphogramm (§16) | — | Offen | Offen | — | verengt: Zählung und Besetzbarkeit getragen (L16-7 ff.); offen bleiben die semantischen Fälle 1–3 aus §16 und die zeilenweise Identifikation mit Günthers Tafel VIII |
+| L16-7 | Morphogramm (§16) | `KF.marksLeOne_iff_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Marke ≤ 1 ⟺ Normalform einer zweiwertigen Wertfolge; die Lesung von `Fin n → Bool` als Wahrheitstafel setzt eine gewählte Zeilenordnung voraus |
+| L16-8 | Morphogramm (§16) | `KF.card_rgs_four_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | acht der fünfzehn vierstelligen Morphogramme sind zweiwertig besetzbar; die Identifikation mit den acht klassisch markierten Zeilen Günthers ist Deutung, kein Satz |
+| L16-9 | Morphogramm (§16) | `KF.fillable_card_lt_card` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | strikte Ungleichung als formale Lesung von „morphogrammatisch unvollständig"; der benannte Zeuge dazu ist `KF.exists_nonfillable` (`[0,1,2,0]`, axiomfrei), ohne eigene Zeile |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

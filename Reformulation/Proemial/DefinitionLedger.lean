@@ -178,6 +178,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L16-3" Reformulation.Kenogram.Morphogram.SamePattern
 #ledger_theorem "L16-4" Reformulation.Kenogram.Morphogram.samePattern_iff_pattern
 #ledger_theorem "L16-5" Reformulation.Kenogram.Morphogram.samePattern_iff_common_nf
+#ledger_theorem "L16-7" Reformulation.Kenogram.Fillability.marksLeOne_iff_fillable
+#ledger_theorem "L16-8" Reformulation.Kenogram.Fillability.card_rgs_four_fillable
+#ledger_theorem "L16-9" Reformulation.Kenogram.Fillability.fillable_card_lt_card
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 

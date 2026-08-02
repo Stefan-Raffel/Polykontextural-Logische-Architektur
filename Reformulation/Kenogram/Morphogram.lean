@@ -35,10 +35,15 @@ ist ein `def` und darum für `decide` opak — die Instanz löst genau das).
 ## Die Trito-Grenze
 
 Getragen ist die **Positionsmuster-Ebene** (Trito-Struktur als RGS-Normalform).
-Die Wertbesetzungs-Fragen von `Definitionen.md` §16 — Achter-Tafel,
-trans-klassische Morphogramme, die Wertbesetzungs-Fälle 1 bis 3 — sind **nicht**
-formalisiert und werden im Ledger als offen geführt (L16-6). §14
-(Zyklus/Selbstzyklus) ist nicht Gegenstand dieser Datei.
+Von den Wertbesetzungs-Fragen aus `Definitionen.md` §16 ist die **zweiwertige
+Besetzbarkeit** inzwischen formalisiert: `Kenogram.Fillability` trägt die Brücke
+`marksLeOne_iff_fillable` (Marke ≤ 1 genau dann, wenn die Normalform einer
+zweiwertigen Wertfolge), die Zählung `card_rgs_four_fillable` (acht der fünfzehn)
+und die Unvollständigkeits-Form (`exists_nonfillable`,
+`fillable_card_lt_card`). **Nicht** formalisiert bleiben die semantischen
+Wertbesetzungs-Fälle 1 bis 3 und die zeilenweise Identifikation mit Günthers
+Tafel VIII; die Ledger-Zeile L16-6 bleibt darum offen, jetzt mit verengter
+Grenze (L16-7 ff.). §14 (Zyklus/Selbstzyklus) ist nicht Gegenstand dieser Datei.
 
 **Kein Quotientstyp.** Es gibt keinen `Morphogramm`-Typ als `Quotient` und keine
 `Setoid`-Instanz mit Quotient-Konsum. Der Grund ist nicht Scheu vor dem Aufwand
