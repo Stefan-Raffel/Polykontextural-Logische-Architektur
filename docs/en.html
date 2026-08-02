@@ -411,7 +411,7 @@ normal-form semantics, not as a quotient; that was a construction
 decision and not an embarrassment. L16-5 carries the note that the
 characterisation via the common normal form depends on
 <code>List ℕ</code>, whereas L16-4 is type-independent. The open row
-L16-6 stays open and appears in <a href="#x">§X</a>.</p>
+L16-6 stays open and appears in §X.</p>
 <!-- ===================================================================== -->
 <h2 id="ii">II · Contextures: two discontexturalities, one of them
 proved</h2>
@@ -688,10 +688,9 @@ patterns, and <code>C(m,2) = m(m-1)/2</code> is the number of elementary
 contextures of an <code>m</code>-valued system. The triangular numbers
 Günther carries for compound contextures and for the hierarchy of
 ontologies stand here as the exponent.</p>
-<p class="formula">
-<span class="name">E3</span> <code>m ≥ 4</code>  ⟹  (<code>f</code> in
-the clone  ⟺  <code>f = min</code> or <code>f = max</code>)
-</p>
+<p><span
+class="math display"><strong>E3:</strong>  <em>m</em> ≥ 4 ⇒ (<em>f</em>
+in the clone ⇔ <em>f</em> = min  or <em>f</em> = max )</span></p>
 <p>E3 hangs on no fixed number of values — D and E1 stand at three
 values, E2 at four. Its proof uses no <code>decide</code> and no case
 distinction on <code>m</code>; it runs over six families of edges with
@@ -798,9 +797,9 @@ aggregate</strong>):</p>
 </table>
 </div>
 <p><strong>The counter-probe is the point.</strong> A route that reports
-<em>yes</em> everywhere measures nothing. This one discriminates, and it
-does so at the prerequisite lemmas of the same files — at the nearest
-non-hit and not at an arbitrarily distant counterpart.</p>
+<code>yes</code> everywhere measures nothing. This one discriminates,
+and it does so at the prerequisite lemmas of the same files — at the
+nearest non-hit and not at an arbitrarily distant counterpart.</p>
 <h3 id="the-limit-in-the-same-breath">The limit in the same breath</h3>
 <p>The bound bites on linearly graded carriers from four levels upwards.
 From non-generability follows <strong>no</strong> guarantee of security,
@@ -871,7 +870,7 @@ an exit criterion: what would have to be the case for it to fall.</li>
 <li><strong>2 constitutive posits</strong> — no proof owed, but a
 justification for why none is owed.</li>
 </ul>
-<p>The load-bearing rule is not „the aggregate contains no posit" but
+<p>The load-bearing rule is not "the aggregate contains no posit" but
 <strong>no theorem of the aggregate depends on a posit</strong>. A field
 of type <code>True</code> can enter no proof; why it must nevertheless
 be marked is an epistemic and not a logical argument: what stands in the
@@ -1089,8 +1088,8 @@ guards (<strong>measured</strong>):</p>
 </tbody>
 </table>
 </div>
-<p>The <strong>66</strong> answers „how many of the guarded profiles are
-axiom-free" and not „how many theorems of the corpus are axiom-free";
+<p>The <strong>66</strong> answers "how many of the guarded profiles are
+axiom-free" and not "how many theorems of the corpus are axiom-free";
 the reference quantity 396 belongs beside it.
 <code>Classical.choice</code> appears in 61 profiles — not forbidden,
 but declared.</p>
@@ -1185,7 +1184,7 @@ and each answers a different question (<strong>measured</strong>):
 holdings, <strong>95</strong> in the Lean sources, <strong>27</strong>
 affected declarations in eight files. The third is the load-bearing one;
 the first two include prose — freeze notes, doc strings, the phrase
-„sorry-free".</p>
+"sorry-free".</p>
 <p>Within the Lean sources the 95 distribute over <code>PathC/</code>
 53, <code>Proemial/</code> 27, <code>Reformulation/</code> 5,
 <code>Diagnostics/</code> 5, <code>F3e/</code> 4, <code>F3f/</code>
@@ -1198,7 +1197,7 @@ gap-freeness:</strong> green here means <em>compiles</em>, not
 <em>gap-free</em>, and for a call target there is no axiom gate. The
 same branch carries 53 of the 95 occurrences.</p>
 <h3 id="replicability">Replicability</h3>
-<p>A green build in the working directory says „green on my machine".
+<p>A green build in the working directory says "green on my machine".
 More is measured: from a fresh, unauthenticated clone of the public
 state the tree builds green in 39 seconds, <strong>126 modules built and
 0 replayed</strong>, with the same gate line and an empty whitelist
@@ -1244,7 +1243,7 @@ the directory:</strong> the target of the frozen branch reaches six
 modules under <code>MathlibExtensions/</code> which are not frozen and
 build green through their own target.</p>
 <p>That the ten unenforced guards lie entirely in one file outside the
-closure is the reason why „enforced = 386" is justified via the
+closure is the reason why "enforced = 386" is justified via the
 <strong>closure route</strong> and not via the directory boundary: that
 both yield the same value today is a coincidence and not an
 identity.</p>
@@ -1322,7 +1321,7 @@ empty one — and an empty one looks like good news.</li>
 occurrences: a hit running across a line break dropped out, five instead
 of six.</li>
 <li>An instruction in the imperative, read as a description of state:
-„goes live without further action" stood under the heading „Switching
+"goes live without further action" stood under the heading "Switching
 on".</li>
 <li>A route that reports the same thing before and after a change of
 state and therefore does not measure the change — its result was
@@ -1446,8 +1445,8 @@ roots</td>
 <tr>
 <td>theorems</td>
 <td class="num">726</td>
-<td><code>grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\]
-+)?(theorem|lemma) '</code> over <code>Reformulation/</code></td>
+<td><code>grep -rhE '^((private\|protected\|nonrec) +)?(@\[[^]]*\] +)?(theorem\|lemma) '</code>
+over <code>Reformulation/</code></td>
 </tr>
 <tr>
 <td><code>def</code></td>
@@ -1542,13 +1541,12 @@ closed</h3>
 <p><strong>The equality of the two module lists is checked as a
 set</strong>, not only as a number: the sorted module names of the
 import closure and of the built lines of the clone build were compared,
-and the <code>diff</code> is empty. The line „guards enforced" therefore
+and the <code>diff</code> is empty. The line "guards enforced" therefore
 holds — the route restricts to exactly the set the build touches.</p>
 <p><strong>The domain entries in §VII are present</strong> and stand
 there. The carriers are named with full name and module, because one
 theorem name of that section occurs twice in the tree — once in the
 aggregate and guarded, once in a call target and unguarded.</p>
-<!-- ===================================================================== -->
 
 </main>
 

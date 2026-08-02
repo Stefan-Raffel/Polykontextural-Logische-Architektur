@@ -58,11 +58,8 @@ fi
 
 # --- Erzeugen ----------------------------------------------------------------
 render() {  # $1 = de|en   $2 = Zieldatei
-  local lang="$1" out="$2"
-  # bash 3.2 (macOS) bricht unter `set -u` an einem leeren Array. Darum eine
-  # Zeichenkette mit unschaedlichem Vorgabewert statt eines leeren Arrays.
-  local isen="--metadata=is-en-unused"
-  [ "${lang}" = "en" ] && isen="--variable=is-en"
+  local lang="$1" out="$2" isen=()
+  [ "${lang}" = "en" ] && isen=(--variable=is-en)
   "${PANDOC}" \
     --from=markdown-smart \
     --to=html5 \
@@ -71,7 +68,7 @@ render() {  # $1 = de|en   $2 = Zieldatei
     --toc-depth=2 \
     --template="${SRC}/paper.html" \
     --lua-filter="${SRC}/classes.lua" \
-    "${isen}" \
+    "${isen[@]}" \
     --output="${out}" \
     "${SRC}/${lang}.md"
 }
