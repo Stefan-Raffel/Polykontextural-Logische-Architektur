@@ -29,6 +29,29 @@ laeuft, steht in §3.
 
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
+### Die Papierfassungen: HTML ist Bestand, Markdown ist Entwurf
+
+Die Papierfassungen `docs/de.html` und `docs/en.html` sind der **Bestand**, nicht ein
+Erzeugnis. Textaenderungen laufen dort. Markdown ist Entwurfsmedium: eine kuenftige Ausgabe
+darf in Markdown entworfen werden, der Entwurf wird nach dem Bau **datiert abgelegt und nicht
+gepflegt**.
+
+Wer eine Papierfassung aendert, aendert beide oder begruendet, warum nicht, und faehrt
+`./docs/parity.sh`. Die Ausgabe gehoert in den Befund, auch wenn sie leer ist.
+
+`./docs/figures.sh` gehoert ins Abschluss-Ritual, neben `lake build`,
+`lake build ForeignPeresMermin` und `./doc_lint.sh`. **Es bricht** - eine zerschlagene Figur
+ist kein Ermessen. `parity.sh` daneben meldet nur, wie Gruppe (A) des Lints: eine Abweichung
+zwischen den Sprachfassungen kann eine begruendete Uebersetzungsentscheidung sein.
+
+*Herkunft (2. August 2026, Vorgang 8 und 12):* zwei Darstellungen desselben Textes ohne Route
+dazwischen haben acht Divergenzen erzeugt, drei davon unbemerkt ueber Wochen. Der Versuch,
+sie durch eine Erzeugungsstrecke zu bewachen, hat die fuenf Figuren zerschlagen, ohne dass
+eine von sechzehn Abnahmerouten es sah. Ausweg C beseitigt die Divergenz konstruktiv statt
+sie zu bewachen: ohne zweite Darstellung gibt es nichts nachzufuehren. Was bleibt, ist die
+Divergenz zwischen den Sprachfassungen - dagegen steht `parity.sh`. Der stehende Negativfall
+fuer Darstellungsschaeden ist `a0fe668`; jede kuenftige Route dieser Art wird an ihm geeicht.
+
 ### Nach jedem Commit auf `rev2` wird `main` per Fast-Forward nachgezogen
 
 ```sh
