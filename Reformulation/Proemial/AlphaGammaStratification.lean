@@ -18,9 +18,13 @@ Vier Stufen:
 4. **Negativ-Lemma** `prodHomWitness_not_bcData`: über prodHomWitnessPAS
    existieren KEINE BC-Daten — prodHomWitness formal als Kontrast-Zeuge.
 
-Einzige Bestands-Berührung: die zweite dokumentierte Bereinigungs-Ausnahme
-(eine falsche Doc-string-Zeile an `prodHomWitness_counit_epi` in
-AlphaGammaTransport.lean, ersetzt mit Memorial-Kommentar — siehe dort).
+Bestands-Berührung dieses Zuges, hier abschließend aufgezählt und genau eine: die
+zweite dokumentierte Bereinigungs-Ausnahme (eine falsche Doc-string-Zeile an
+`prodHomWitness_counit_epi` in AlphaGammaTransport.lean, ersetzt mit
+Memorial-Kommentar — siehe dort). Der Zug liegt vor der Versionsgeschichte; ein
+Commit, der ihn eingrenzte, gibt es nicht — die Datei betritt das Repositorium
+mit dem Wurzel-Commit 0085d09. Nachprüfbar ist die Aussage darum an der Spec
+unten und am Gegenstück in AlphaGammaTransport.lean, nicht an einem Diff.
 
 Spec: F3_6a5_Sub_Spec.md. Prompt: F3_6a5_Sub_Prompt.md. Frühjahr 2026.
 

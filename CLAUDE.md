@@ -152,6 +152,15 @@ Seite sich bewegt hat, keine Aussage ueber den Bestand. Wer N1 aendert, misst je
 nennt die Rechnung. N2 und N3 sind davon nicht betroffen - sie laufen ueber .lean
 beziehungsweise ueber betroffene Deklarationen.
 
+Verallgemeinerung. Eine Route, deren Suchwort in Prosa vorkommt, zaehlt ihre eigene
+Dokumentation mit; wer die Route erklaert, veraendert ihren Wert. Das ist kein Fehler und
+keine Ausnahme, sondern die Regel fuer einen Korpus, der seine Werkzeuge in derselben
+Sprache dokumentiert, in der er misst. Drei Belege aus ein und demselben Zug: die rohe Zahl
+oben, das Stichwort der Lint-Gruppe (B), das im Pruefbereich nur in der Zeile vorkommt, die
+den Lint beschreibt, und zwei der drei eingefrorenen Treffer der Gruppe (A), die die
+Musterliste aufzaehlen. Praktische Folge: wer eine solche Route dokumentiert, benennt sie,
+statt das Kommando auszuschreiben, und misst nach dem Zug je Datei.
+
 ### Statement-Pins: maschinenlesbar markieren
 
 Jeder Statement-Pin traegt unmittelbar davor die eigene Zeile

@@ -431,6 +431,15 @@ echo "==========================================================================
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
 echo "  Bereich: ${SCOPE_LABEL}"
 echo "  Dateien gescannt: ${#FILES[@]}  (*.md, *.lean, *.html; ohne .lake/.git/.claude)"
+# [Vorgang 11] Die Locale wird BERICHTET, nicht gesetzt. Die Fallunempfindlichkeit
+# ist locale-abhaengig gemessen (Befund Vorgang 10 §5); eine Messung, deren Ergebnis
+# von der Umgebung abhaengt, traegt ihre Bedingung mit — wie jede andere Zahl dieses
+# Korpus. KEIN `export LC_ALL=C.UTF-8`: ob diese Locale auf der Zielmaschine
+# existiert, ist ungemessen, und ein export, der ins Leere greift, ersetzte eine
+# gemeldete Abhaengigkeit durch eine stille. Wer es dennoch will, misst zuerst
+# `locale -a`.
+echo "  Locale: ${LC_ALL:-${LANG:-nicht gesetzt}}"
+echo "    (unter LC_ALL=C entkaemen Versalienformen der Stichwoerter der Gruppe B)"
 echo "=============================================================================="
 echo
 echo "── Gruppe (A) SUPERLATIV — Rang-Ansprüche ────────────────────────────────────"
