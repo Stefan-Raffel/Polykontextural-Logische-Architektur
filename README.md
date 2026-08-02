@@ -98,7 +98,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 133 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
+eine andere Frage: 136 rohe Treffer ueber den ganzen verfolgten Bestand, 95 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -106,12 +106,12 @@ Die erste Zahl zaehlt sich selbst mit: je drei ihrer Treffer stehen in `docs/de.
 `docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand
 `e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129, und mit
 dem Absatz zu dieser Zahl in `CLAUDE.md` §3 nun 130 - der Absatz nennt den Suchbegriff mit
-Bindestrich, und ein Bindestrich ist eine Wortgrenze. Mit der Papierquelle `docs/src/en.md`,
-die den Wortlaut derselben Suche zitiert wie das Papier, sind es 133. Die zweite und die
+Bindestrich, und ein Bindestrich ist eine Wortgrenze. Mit den beiden Papierquellen unter
+`docs/src/`, die den Wortlaut derselben Suche zitieren wie die Papiere, sind es 136. Die zweite und die
 dritte Zahl sind davon unberuehrt - keiner dieser Zuege fasst eine `.lean`-Datei an.
 
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
-werden **Wortvorkommen** (133 / 95), nicht Zeilen mit mindestens einem Vorkommen (130 / 92).
+werden **Wortvorkommen** (136 / 95), nicht Zeilen mit mindestens einem Vorkommen (133 / 92).
 Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
 eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
 

@@ -267,7 +267,7 @@ theorem character (**proved · aggregate**):
 **No quotient type.** The bridge is built as a normal-form semantics, not as a quotient; that
 was a construction decision and not an embarrassment. L16-5 carries the note that the
 characterisation via the common normal form depends on `List ℕ`, whereas L16-4 is
-type-independent. The open row L16-6 stays open and appears in §X.
+type-independent. The open row L16-6 stays open and appears in [§X](#x).
 
 ---
 
@@ -463,7 +463,8 @@ the number of elementary contextures of an `m`-valued system. The triangular num
 carries for compound contextures and for the hierarchy of ontologies stand here as the
 exponent.
 
-$$\textbf{E3:}\quad m \geq 4 \;\Longrightarrow\; \bigl(f \text{ in the clone} \iff f = \min \text{ or } f = \max\bigr)$$
+<p class="formula"><span class="name">E3</span> <code>m ≥ 4</code> &nbsp;⟹&nbsp;
+(<code>f</code> in the clone &nbsp;⟺&nbsp; <code>f = min</code> or <code>f = max</code>)</p>
 
 E3 hangs on no fixed number of values — D and E1 stand at three values, E2 at four. Its proof
 uses no `decide` and no case distinction on `m`; it runs over six families of edges with
@@ -511,7 +512,7 @@ nowhere else, and it is measured (**measured · aggregate**):
 | `PolicyCheck.freigabe_lokal` (counter-probe) | same target | **no** |
 | `RAGAuthority.autoritaet_lokal` (counter-probe) | same target | **no** |
 
-**The counter-probe is the point.** A route that reports `yes` everywhere measures nothing.
+**The counter-probe is the point.** A route that reports *yes* everywhere measures nothing.
 This one discriminates, and it does so at the prerequisite lemmas of the same files — at the
 nearest non-hit and not at an arbitrarily distant counterpart.
 
@@ -573,7 +574,7 @@ text search. They fall into two classes that do not say the same thing:
   to be the case for it to fall.
 - **2 constitutive posits** — no proof owed, but a justification for why none is owed.
 
-The load-bearing rule is not "the aggregate contains no posit" but **no theorem of the
+The load-bearing rule is not „the aggregate contains no posit" but **no theorem of the
 aggregate depends on a posit**. A field of type `True` can enter no proof; why it must
 nevertheless be marked is an epistemic and not a logical argument: what stands in the
 aggregate reads as certified holdings.
@@ -716,7 +717,7 @@ secures the basis, not the wording. The profile distribution over all 396 writte
 | `[propext, Classical.choice, Quot.sound]` | 61 |
 | `[Quot.sound]` | 2 |
 
-The **66** answers "how many of the guarded profiles are axiom-free" and not "how many
+The **66** answers „how many of the guarded profiles are axiom-free" and not „how many
 theorems of the corpus are axiom-free"; the reference quantity 396 belongs beside it.
 `Classical.choice` appears in 61 profiles — not forbidden, but declared.
 
@@ -759,7 +760,7 @@ Whoever searches the tree for `sorry` finds three numbers, and each answers a di
 question (**measured**): **123** raw word occurrences over the whole tracked holdings, **95**
 in the Lean sources, **27** affected declarations in eight files. The third is the
 load-bearing one; the first two include prose — freeze notes, doc strings, the phrase
-"sorry-free".
+„sorry-free".
 
 Within the Lean sources the 95 distribute over `PathC/` 53, `Proemial/` 27, `Reformulation/`
 5, `Diagnostics/` 5, `F3e/` 4, `F3f/` 1.
@@ -772,7 +773,7 @@ the 95 occurrences.
 
 ### Replicability
 
-A green build in the working directory says "green on my machine". More is measured: from a
+A green build in the working directory says „green on my machine". More is measured: from a
 fresh, unauthenticated clone of the public state the tree builds green in 39 seconds, **126
 modules built and 0 replayed**, with the same gate line and an empty whitelist (**measured**).
 It is a real build and not a replay of an intermediate state.
@@ -797,7 +798,7 @@ domain cannot be read off the directory:** the target of the frozen branch reach
 under `MathlibExtensions/` which are not frozen and build green through their own target.
 
 That the ten unenforced guards lie entirely in one file outside the closure is the reason why
-"enforced = 386" is justified via the **closure route** and not via the directory boundary:
+„enforced = 386" is justified via the **closure route** and not via the directory boundary:
 that both yield the same value today is a coincidence and not an identity.
 
 ---
@@ -861,8 +862,8 @@ shortened. From the block that led to this edition:
   instead of 153. Not a false result but an empty one — and an empty one looks like good news.
 - A count with `grep -c`, which counts lines rather than occurrences: a hit running across a
   line break dropped out, five instead of six.
-- An instruction in the imperative, read as a description of state: "goes live without further
-  action" stood under the heading "Switching on".
+- An instruction in the imperative, read as a description of state: „goes live without further
+  action" stood under the heading „Switching on".
 - A route that reports the same thing before and after a change of state and therefore does not
   measure the change — its result was accidentally right. What carried the finding was the
   second route. Whoever runs two routes survives the failure of one.
@@ -941,7 +942,7 @@ of date, which is why each carries its standing.
 | import closure | 126 of 161 modules | `import` lines followed transitively from the 21 target roots |
 | axiom-free profiles | 66 of 396 guards | `grep -rc 'does not depend on any axioms'` |
 | profile distribution | 183 / 84 / 66 / 61 / 2 | every guard read individually; sum 396 checked as an equation |
-| theorems | 726 | `grep -rhE '^((private\|protected\|nonrec) +)?(@\[[^]]*\] +)?(theorem\|lemma) '` over `Reformulation/` |
+| theorems | 726 | <code>grep -rhE '^((private&#124;protected&#124;nonrec) +)?(@\\[[^]]*\\] +)?(theorem&#124;lemma) '</code> over `Reformulation/` |
 | `def` | 318 | the same widening for `def` |
 | statement pins | 44 | `grep -rc '^-- STATEMENT-PIN'` |
 | build jobs | 1301 jointly | build output per target, **not summed**; per target see above |
@@ -967,10 +968,11 @@ stands there so that it stands nowhere else.
 
 **The equality of the two module lists is checked as a set**, not only as a number: the sorted
 module names of the import closure and of the built lines of the clone build were compared, and
-the `diff` is empty. The line "guards enforced" therefore holds — the route restricts to exactly
+the `diff` is empty. The line „guards enforced" therefore holds — the route restricts to exactly
 the set the build touches.
 
 **The domain entries in §VII are present** and stand there. The carriers are named with full
 name and module, because one theorem name of that section occurs twice in the tree — once in the
 aggregate and guarded, once in a call target and unguarded.
 
+---
