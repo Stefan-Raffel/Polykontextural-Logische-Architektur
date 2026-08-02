@@ -270,7 +270,7 @@ entfernt.
 
 ## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
 
-Alle neun sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
+Alle zehn sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
 sie nicht ein zweites Mal gefunden werden muessen. Der neunte ist kein Lean-Fallstrick,
 sondern einer der Werkzeugkette; er steht hier, weil er dieselbe Sorte ist wie der achte.
 
@@ -364,7 +364,19 @@ nicht an ihrer Uebereinstimmung mit einer zweiten Route derselben Frage.
 `git grep` noch `\b`; die verbindlichen Zaehlrouten in §3 laufen ueber `grep -rE` mit
 expliziten Zeilenanfaengen. Der Eintrag ist Praevention. (Vorgang 6, Stufe 1.)
 
-### Was aus dem achten und neunten folgt - kein zehnter Fallstrick, die Regel dahinter
+**10 - `deriving Fintype` kann `Classical.choice` in jedes `decide` tragen.** Gemessen an
+`Proemial/M3CloneWitness.lean` (Bauzustand `54fa37c`): dieselbe Datei, nur die
+`Fintype`-Instanz getauscht, ergab mit `deriving Fintype` dreizehn Saetze mit
+`[propext, Classical.choice, Quot.sound]` und mit einer Handinstanz ueber die Elementliste
+dieselben dreizehn mit `[propext, Quot.sound]`. Betroffen ist jeder Satz, der ueber
+`forall x : T` quantifiziert; punktweise Saetze bleiben unberuehrt. Gemessen ist die
+**Differenz der beiden Fassungen**, nicht der Weg des Axioms in den Term - die
+naheliegende Erklaerung ueber die Aufzaehlungs-Maschinerie ist Vermutung und nicht
+geprueft. Heilung: bei kleinen Aufzaehlungstypen die `Fintype`-Instanz von Hand schreiben.
+Verwandt mit Fallstrick 3: nicht die Quantifikation selbst, sondern die Maschinerie hinter
+der bequemen Instanz steht im Profil.
+
+### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
 Ein fehlender Treffer und ein anders geschriebener Treffer sehen in einer Trefferzaehlung
 gleich aus. Ebenso ein intaktes und ein zertruemmertes Element. Zwei Belege aus einem Block:

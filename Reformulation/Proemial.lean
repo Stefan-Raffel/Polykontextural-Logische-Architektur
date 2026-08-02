@@ -260,16 +260,21 @@ Enthält:
   die Begriffsgrenze an den Satz: auf einem unvergleichbaren Paar verlässt `meet` die
   Zweiermenge, sie ist dann keine Elementarkontextur (`Definitionen.md` §2) — darum
   quantifiziert `LocallyClassicalCmp` nur über vergleichbare Paare; die Begründung
-  stand bisher als Prosa im `StageAggregation`-Doc. Neuer gemessener Fallstrick:
-  `deriving Fintype` zieht `Classical.choice` in jeden `decide`-Satz über `∀ x : M3`
-  (dreizehn Sätze gemessen); die Handinstanz über die Fünf-Elemente-Liste heilt es.
+  stand bisher als Prosa im `StageAggregation`-Doc — als DICHOTOMIE geführt:
+  `cmp_pair_closed` (vergleichbare Paare sind abgeschlossen, die tragende Hälfte),
+  `incomparable_pair_not_closed` (∀-Fassung der negativen), `meet_leaves_incomparable`
+  als benannter Einzelfall. `le_iff_meet`/`le_iff_join` binden die Ordnung an die
+  Tafeln — ohne sie wären `le` und `meet` zwei zufällig zueinander passende
+  Gegenstände. Neuer Fallstrick (CLAUDE.md §8, Nr. 10): `deriving Fintype` trägt
+  `Classical.choice` in jeden `decide`-Satz über `∀ x : M3`; gemessen ist die Differenz
+  zweier Fassungen (dreizehn Sätze), nicht der Mechanismus — die Handinstanz heilt es.
   Wortlaut-Grenzen: „E3 fällt auf nicht-linearen Verbänden" ist LESART, keine formale
   Negation von E3 (E3 ist auf `Fin m` formuliert, eine Verbands-Fassung gibt es nicht);
   die Basis ist GEWÄHLT, nicht gefunden (die Involution ist auf `M3` nicht eindeutig,
   die Atome sind permutierbar); keine Charakterisierung der auf `M3` erzeugbaren
   Operationen; die Zahlen der Sondierung bleiben außerhalb (`CLAUDE.md` §6); die
-  Robustheits-Pflicht §9 greift nicht (positive Hälfte, keine Schranke). Drei
-  Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (15 Wachen) — kein
+  Robustheits-Pflicht §9 greift nicht (positive Hälfte, keine Schranke). Vier
+  Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (19 Wachen) — kein
   `Classical.choice`, kein `sorryAx`. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).

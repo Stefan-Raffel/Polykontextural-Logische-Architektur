@@ -65,11 +65,19 @@ kein unvergleichbares Paar wird für den Bruch gebraucht.
 ## Warum nur vergleichbare Paare
 
 `LocallyClassicalCmp` quantifiziert über vergleichbare Paare, und das ist Begriff und
-nicht Bequemlichkeit: auf einem unvergleichbaren Paar verlässt `meet` die Zweiermenge
-(`meet_leaves_incomparable`), die Menge ist dann keine Elementarkontextur im Sinne von
-`Definitionen.md` §2 (ein in sich geschlossener zweiwertiger Zusammenhang). Die
+nicht Bequemlichkeit. Die Rechtfertigung steht als **Dichotomie** (Teil 3), nicht als
+Einzelbeobachtung: auf einem vergleichbaren Paar bleiben Infimum und Supremum in der
+Zweiermenge (`cmp_pair_closed`), auf einem unvergleichbaren führen beide heraus
+(`incomparable_pair_not_closed`, `∀`-Fassung; `meet_leaves_incomparable` als benannter
+Einzelfall). Eine Zweiermenge ist genau im ersten Fall eine Elementarkontextur im Sinne
+von `Definitionen.md` §2 (ein in sich geschlossener zweiwertiger Zusammenhang). Die
 Begründung stand bisher als Prosa im Doc-String von `StageAggregation`; hier ist sie
 Satz.
+
+Dass „vergleichbar" dabei der Ordnungsbegriff **dieses** Verbandes ist und nicht eine
+zweite, zufällig passende Relation, tragen `le_iff_meet` und `le_iff_join` (Teil 2):
+`le` ist als Disjunktion definiert, `meet` und `join` als Tafeln — die Brücke zwischen
+beiden ist Satz, nicht Augenschein.
 
 ## Wortlaut-Grenzen (verbindlich)
 
@@ -111,14 +119,17 @@ Ein frischer induktiver Fünf-Elemente-Typ (Begründung im Dateikopf). `Decidabl
 findet die Instanzensuche sonst nichts). Keine Funktionsraum-Quantifikation
 (Fallstrick 3).
 
-**`Fintype` von Hand, nicht per `deriving` — gemessen, nicht vermutet.** `deriving Fintype`
-übersetzt auf diesem Träger anstandslos, zieht aber über seine Aufzählungs-Maschinerie
-`Classical.choice` in **jeden** `decide`-Satz der Datei, der über `∀ x : M3`
-quantifiziert: gemessen wurden dreizehn Sätze mit
-`[propext, Classical.choice, Quot.sound]`. Die Handinstanz über die Fünf-Elemente-Liste
-liefert dieselben Sätze mit `[propext, Quot.sound]`. Es ist derselbe Bruchtyp wie
-Fallstrick 3 (`CLAUDE.md` §8): die Maschinerie hinter einer bequemen Instanz steht am Ende
-im Profil. -/
+**`Fintype` von Hand, nicht per `deriving`.** `deriving Fintype` übersetzt auf diesem
+Träger anstandslos, trägt aber `Classical.choice` in jeden `decide`-Satz der Datei, der
+über `∀ x : M3` quantifiziert. **Gemessen ist die Differenz zweier Fassungen** — dieselbe
+Datei, nur die `Fintype`-Instanz getauscht: dreizehn Sätze mit
+`[propext, Classical.choice, Quot.sound]` gegen dieselben dreizehn mit
+`[propext, Quot.sound]`. Punktweise Sätze bleiben unberührt.
+
+**Nicht gemessen ist der Mechanismus.** Dass die Aufzählungs-Maschinerie hinter
+`deriving` das Axiom trägt, ist die naheliegende Erklärung und bleibt **Vermutung**;
+geprüft wurde der Unterschied der Profile, nicht der Weg des Axioms in den Term. Der
+Eintrag steht als Fallstrick 10 in `CLAUDE.md` §8, dort mit derselben Trennung. -/
 
 /-- Der kleinste flache Verband `M3`: `bot`, drei paarweise unvergleichbare Atome, `top`.
 Eigener Typ statt `Fin 5`, damit keine zweite `L.Structure (Fin 5)`-Instanz neben
@@ -237,17 +248,52 @@ unvergleichbar. Ohne diesen Beleg wäre die Einschränkung auf vergleichbare Paa
 gesprochen und der Satz eine Aussage über eine Kette. -/
 theorem atoms_incomparable : ¬ Cmp M3.a1 M3.a2 := by decide
 
-/-! ## Teil 3 — S2: die Begriffsgrenze
+/-- **Die Ordnung ist die Ordnung dieses Verbandes, erste Hälfte.** `le` und `meet` sind
+getrennt definiert — `le` als Disjunktion, `meet` als Tafel. Ohne diesen Satz wären es
+zwei Gegenstände, die zufällig zueinander passen, und `Cmp` wäre nicht als der
+Ordnungsbegriff *dieses* Verbandes ausgewiesen. -/
+theorem le_iff_meet : ∀ x y : M3, le x y ↔ meet x y = x := by decide
 
-Auf einem unvergleichbaren Paar verlässt `meet` die Zweiermenge. Darum ist eine
-unvergleichbare Zweiermenge keine Elementarkontextur im Sinne von `Definitionen.md` §2,
-und darum quantifiziert `LocallyClassicalCmp` unten nur über vergleichbare Paare. Die
-Begründung stand bisher als Prosa im Doc-String von `StageAggregation`; hier ist sie
-Satz. -/
+/-- **Die Ordnung ist die Ordnung dieses Verbandes, zweite Hälfte.** Dieselbe Bindung
+über das Supremum. -/
+theorem le_iff_join : ∀ x y : M3, le x y ↔ join x y = y := by decide
 
-/-- **S2 — die Begriffsgrenze.** Das Atompaar `{a1, a2}` ist unvergleichbar, und `meet`
-führt aus ihm heraus: `meet a1 a2` ist weder `a1` noch `a2` (es ist `bot`). Die
-Zweiermenge ist unter `meet` nicht abgeschlossen und damit keine Elementarkontextur. -/
+/-! ## Teil 3 — S2: die Begriffsgrenze, als Dichotomie
+
+Die Grenze ist keine Einzelbeobachtung, sondern ein Schnitt durch alle Paare, und sie
+wird hier in beiden Hälften geführt:
+
+* auf einem **vergleichbaren** Paar bleiben `meet` und `join` **in** der Zweiermenge
+  (`cmp_pair_closed`) — die Menge ist dann eine Elementarkontextur im Sinne von
+  `Definitionen.md` §2 (ein in sich geschlossener zweiwertiger Zusammenhang);
+* auf einem **unvergleichbaren** Paar führen beide **heraus**
+  (`incomparable_pair_not_closed`) — die Menge ist dann keine.
+
+Erst die positive Hälfte trägt die Einschränkung von `LocallyClassicalCmp` auf
+vergleichbare Paare: ohne sie stünde im Korpus nur, dass ein Paar ausfällt, nicht dass
+die übrigen tragen. Sie ist zugleich die Stelle, an der die Analogie zu E3 hängt — dort
+quantifiziert `LocallyClassical` über *alle* Paare, weil auf `Fin m` alle vergleichbar
+sind. Die Begründung stand bisher als Prosa im Doc-String von `StageAggregation`; hier
+ist sie Satz. -/
+
+/-- **S2, positive Hälfte — vergleichbare Paare sind abgeschlossen.** Auf einem
+vergleichbaren Paar `{x, y}` liegen Infimum und Supremum wieder in `{x, y}`. Das ist
+der Satz, der die Einschränkung von `LocallyClassicalCmp` trägt: die sieben
+vergleichbaren Paare sind Elementarkontexturen. -/
+theorem cmp_pair_closed : ∀ x y : M3, Cmp x y →
+    (meet x y = x ∨ meet x y = y) ∧ (join x y = x ∨ join x y = y) := by decide
+
+/-- **S2, negative Hälfte — unvergleichbare Paare sind es nicht.** Auf jedem
+unvergleichbaren Paar führen Infimum *und* Supremum aus der Zweiermenge heraus. Die
+`∀`-Fassung; der benannte Einzelfall steht in `meet_leaves_incomparable`. -/
+theorem incomparable_pair_not_closed : ∀ x y : M3, ¬ Cmp x y →
+    (meet x y ≠ x ∧ meet x y ≠ y) ∧ (join x y ≠ x ∧ join x y ≠ y) := by decide
+
+/-- **S2 — der benannte Einzelfall.** Das Atompaar `{a1, a2}` ist unvergleichbar, und
+`meet` führt aus ihm heraus: `meet a1 a2` ist weder `a1` noch `a2` (es ist `bot`). Die
+Zweiermenge ist unter `meet` nicht abgeschlossen und damit keine Elementarkontextur.
+Instanz von `incomparable_pair_not_closed`, hier eigens benannt, weil der Statement-Pin
+und die Nennorte auf ihn zeigen. -/
 theorem meet_leaves_incomparable :
     ¬ Cmp M3.a1 M3.a2 ∧ meet M3.a1 M3.a2 ≠ M3.a1 ∧ meet M3.a1 M3.a2 ≠ M3.a2 := by decide
 
@@ -341,6 +387,10 @@ theorem m3_mixed_term_exists :
 bricht den Build. Namenlose `example`s, keine Axiom-Wache. -/
 
 -- STATEMENT-PIN
+example : ∀ x y : M3, Cmp x y →
+    (meet x y = x ∨ meet x y = y) ∧ (join x y = x ∨ join x y = y) :=
+  cmp_pair_closed
+-- STATEMENT-PIN
 example :
     ¬ Cmp M3.a1 M3.a2 ∧ meet M3.a1 M3.a2 ≠ M3.a1 ∧ meet M3.a1 M3.a2 ≠ M3.a2 :=
   meet_leaves_incomparable
@@ -385,8 +435,20 @@ Teil 1 (Handinstanz statt `deriving Fintype`), gemessen und nicht geschätzt. -/
 /-- info: 'Reformulation.Proemial.M3CloneWitness.negM3_antitone' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms negM3_antitone
 
+/-- info: 'Reformulation.Proemial.M3CloneWitness.le_iff_meet' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms le_iff_meet
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.le_iff_join' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms le_iff_join
+
 /-- info: 'Reformulation.Proemial.M3CloneWitness.atoms_incomparable' does not depend on any axioms -/
 #guard_msgs in #print axioms atoms_incomparable
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.cmp_pair_closed' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms cmp_pair_closed
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.incomparable_pair_not_closed' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms incomparable_pair_not_closed
 
 /-- info: 'Reformulation.Proemial.M3CloneWitness.meet_leaves_incomparable' depends on axioms: [propext] -/
 #guard_msgs in #print axioms meet_leaves_incomparable
