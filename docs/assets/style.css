@@ -389,7 +389,9 @@ nav.toc h2 {
   font-family: inherit;
 }
 
-nav.toc ol { list-style: none; margin: 0; padding: 0; }
+/* ol und ul gleichermassen: die Handfassung setzte ol, die Erzeugungsstrecke
+   (Vorgang 8) setzt ul. Ohne ul erschienen Aufzaehlungspunkte und Einzug. */
+nav.toc ol, nav.toc ul { list-style: none; margin: 0; padding: 0; }
 nav.toc li { margin-bottom: 0.32rem; }
 nav.toc a { text-decoration: none; color: var(--ink-soft); }
 nav.toc a:hover { color: var(--link-hi); text-decoration: underline; }
