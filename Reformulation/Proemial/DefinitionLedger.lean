@@ -103,8 +103,12 @@ elab_rules : command
 end Reformulation.Proemial.DefinitionLedger
 
 -- ============================================================
--- Die Traegerspalte, Zeile fuer Zeile (Ledger Rev. 5)
+-- Die Traegerspalte, Zeile fuer Zeile.
 -- Zeilen mit Traegerstatus `Offen` erscheinen nicht.
+-- Die Revisionsnummer steht in `docs/definition-ledger.md` und nur dort: eine zweite
+-- Darstellung derselben Angabe laeuft auseinander, sobald ein Ort geaendert wird und der
+-- andere nicht (CLAUDE.md §1, Ausweg C). Die Bindung dieser Datei an die Tabelle ist die
+-- Zeilen-ID, und die pruefen R7 und R8.
 -- ============================================================
 
 #ledger_def "L01-1" Reformulation.Proemial.TransjunctionCloneBound.S
