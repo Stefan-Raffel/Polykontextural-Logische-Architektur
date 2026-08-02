@@ -7,9 +7,9 @@ import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Pullbacks
 # Reformulation.Proemial.AlphaGammaTransport — F-3.6.a.2 + F-3.6.a.3 Transport- und Deprecation-Einheit
 
 Siebte Niederlegungs-Schicht (über F-1, F-3, F-3.4/5, F-3.6, F-3.6.a, F-3.6.a.1+b).
-Additiv zu `AlphaGammaWitnesses.lean`; einzige dokumentierte Bestands-Modifikation:
-die Option-B-Bereinigung in `AlphaGammaBeckChevalley.lean` (Memorial-Block, siehe dort)
-plus Aggregat-Nachführung.
+Additiv zu `AlphaGammaWitnesses.lean`; die Bestands-Modifikationen dieses Zuges sind hier
+abschliessend aufgezählt und genau eine: die Option-B-Bereinigung in
+`AlphaGammaBeckChevalley.lean` (Memorial-Block, siehe dort) plus Aggregat-Nachführung.
 
 Zwei Blöcke:
 

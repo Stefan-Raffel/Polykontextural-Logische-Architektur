@@ -257,6 +257,15 @@ erhebt, und nicht als Korpus-Aussage gefuehrt.
 - `lake build` repliziert; ein vollstaendiger Neubau ist nicht noetig, um Profile zu pruefen -
   `lake env lean` auf einer generierten `#print axioms`-Datei genuegt.
 
+### Aenderungen an der Maschine
+
+Eine Aenderung an der Maschine traegt den vorherigen Zustand DESSELBEN Gegenstands, nicht nur
+die Abwesenheit des Ziels. „pandoc nicht gefunden" ist nicht „pypandoc nicht installiert".
+Vor einer Installation wird das Paket selbst abgefragt und die vorgefundene Fassung notiert;
+sonst ist die Umkehr keine Umkehr, sondern eine Loeschung. Gemessen: eine Installation im
+August hat eine im Oktober vorhandene Fassung ueberschrieben, und die Deinstallation hat sie
+entfernt.
+
 ---
 
 ## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
@@ -354,6 +363,21 @@ nicht an ihrer Uebereinstimmung mit einer zweiten Route derselben Frage.
 *Gegengeprueft, ob eine stehende Route betroffen ist: nein.* `doc_lint.sh` nutzt weder
 `git grep` noch `\b`; die verbindlichen Zaehlrouten in §3 laufen ueber `grep -rE` mit
 expliziten Zeilenanfaengen. Der Eintrag ist Praevention. (Vorgang 6, Stufe 1.)
+
+### Was aus dem achten und neunten folgt - kein zehnter Fallstrick, die Regel dahinter
+
+Ein fehlender Treffer und ein anders geschriebener Treffer sehen in einer Trefferzaehlung
+gleich aus. Ebenso ein intaktes und ein zertruemmertes Element. Zwei Belege aus einem Block:
+eine Formel, die in der Quelle anders geschrieben stand als im Erzeugnis und wie eine
+Fehlstelle aussah; und fuenf Figuren, deren Textknoten vollzaehlig und im richtigen
+Elternelement lagen, waehrend die Darstellung zerstoert war. Daraus folgt: eine Route
+unterscheidet nur, was sie zaehlt. Wer eine Eigenschaft pruefen will, die keine Zaehlung ist,
+braucht eine Route, die sie prueft.
+
+Der Commit a0fe668 ist der stehende Negativfall des Projekts. Jede Route gegen
+Darstellungsschaeden wird an ihm geeicht: sie muss dort anschlagen und an b3681b3 schweigen.
+Gemessen: `<p>` innerhalb `<figure>` liefert dort 20 und hier 0. Ein kaputtes Artefakt, das
+man behalten kann, ist wertvoller als jede Beschreibung des Schadens.
 
 ---
 
