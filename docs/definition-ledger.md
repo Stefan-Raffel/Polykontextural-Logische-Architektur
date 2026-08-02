@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 6.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 7.
 
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `d55158b`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
@@ -30,16 +30,16 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 82 |
-| Zeilen mit Träger | 66 |
-| verschiedene Trägernamen | 58 |
-| TS `Theorem` | 48 |
+| Zeilen gesamt | 85 |
+| Zeilen mit Träger | 69 |
+| verschiedene Trägernamen | 61 |
+| TS `Theorem` | 51 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 16 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 66 Zeilen bei 58 Namen. Das ist
+Acht Träger erscheinen in mehr als einer Zeile — daher 69 Zeilen bei 61 Namen. Das ist
 Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 ## Schema
@@ -96,6 +96,7 @@ beider Fehlexpansionen.
 | `K.` | `Reformulation.Kenogram.` | Namensraum |
 | `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
 | `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
+| `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 
 ## Die Tabelle
 
@@ -131,13 +132,14 @@ beider Fehlexpansionen.
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
 | L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L05-6 | Transkontexturalität (§5) | `RA.autoritaet_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | dritter Konsument von E3; kein neuer Satz |
-| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | Definition 6 nicht implementiert; Forschungsstrang Plan §7 |
+| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8 |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
 | L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
 | L06-5 | Poly-Kontexturalität f.-o. (§6) | `SA.agg_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L06-6 | Poly-Kontexturalität f.-o. (§6) | `PC.freigabe_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L06-7 | Poly-Kontexturalität f.-o. (§6) | `RA.autoritaet_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
+| L06-8 | Poly-Kontexturalität f.-o. (§6) | `SAsc.ascent_proper` | Theorem | Deutung | ja, axiomfrei | Wachstums-Lesart: das Bild der Vorstufe verfehlt das neue Element, jedes Paar mit ihm liegt ausserhalb — die Lesung „sich erweiternde Kontexturen" ist Deutung, nicht Satzwortlaut |
 | L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
@@ -165,6 +167,8 @@ beider Fehlexpansionen.
 | L12-4 | Stufengang (§12) | — | Offen | Offen | — | kein unendlicher Stufengang; gerichtetes System offen |
 | L12-5 | Stufengang (§12) | `PC.freigabe` | Definition | Deutung | keine (def) | vier Freigabestufen; Mischstelle unten, Kontrast zu `SA.agg` |
 | L12-6 | Stufengang (§12) | `RA.autoritaet` | Definition | Deutung | keine (def) | vier Autoritätsstufen; Mischstelle Mitte, dritter Zeuge |
+| L12-7 | Stufengang (§12) | `SAsc.exists_locally_classical_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | für jedes m ≥ 4 ist die Lücke der Charakterisierung bewohnt; Klon-Ausschluss ist Konsum der E3-Iff, kein neuer Beweis |
+| L12-8 | Stufengang (§12) | `SAsc.w_castSucc` | Theorem | Operationalisierung | ja, `[propext]` | Zielformel §12: auf dem eingebetteten Quadrat stimmt Stufe m+1 mit Stufe m überein; eine Regel auf allen Stufen, kein Grenzobjekt |
 | L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
 | L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
 | L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |

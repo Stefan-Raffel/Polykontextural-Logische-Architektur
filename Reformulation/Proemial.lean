@@ -16,6 +16,7 @@ import Reformulation.Proemial.NonUniformCloneBound
 import Reformulation.Proemial.QuaternaryCloneBound
 import Reformulation.Proemial.GeneralCloneBound
 import Reformulation.Proemial.M3CloneWitness
+import Reformulation.Proemial.StageAscent
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -276,6 +277,30 @@ Enthält:
   Robustheits-Pflicht §9 greift nicht (positive Hälfte, keine Schranke). Vier
   Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht (19 Wachen) — kein
   `Classical.choice`, kein `sorryAx`. 0 Sorries.
+
+- `Proemial.StageAscent`: der Stufenaufstieg als Probe (ERTRAG mit ausgewiesenem
+  KONSUM-Anteil). Negativer Kern, uniform in m:
+  `exists_locally_classical_not_in_clone` — für JEDES m ≥ 4 ist die Lücke der
+  E3-Charakterisierung bewohnt, Zeuge die Familie `w m` (Maximum auf dem untersten
+  Paar `{0,1}`, sonst Minimum). Der Klon-Ausschluss selbst ist reiner KONSUM:
+  `w_not_in_clone` ist die Kontraposition der E3-Iff, `w_not_in_constant_clone` die
+  der Konstanten-Fassung — keine eigene Invariante, kein kopiertes Kantenlemma, keine
+  eigene Terminduktion. Positive Hälfte: `w_castSucc` — auf dem eingebetteten Quadrat
+  stimmt die Stufe m+1 mit der Stufe m überein, die Familie ist EINE Regel auf allen
+  Stufen; `ascent_proper` — das Bild der Vorstufe verfehlt das neue Element;
+  `choose_two_succ` — jeder Schritt bringt genau m neue Paare, aus
+  `Nat.choose_succ_succ` bewiesen und nicht zitiert. Arbeitet auf `strucM`, KEIN
+  eigener Träger und keine zweite `L.Structure`-Instanz (Gegensatz zu
+  `M3CloneWitness`, wo genau das nötig war). Kein `decide` in der Datei; die
+  Fallzüge laufen von Hand. Gemessener Fallstrick-7-Fall: ein `by omega` mit
+  DISJUNKTIONS-Ziel zog `Classical.choice` in vier Sätze; geheilt durch
+  Konstruktion des Disjunkts am Term. Wortlaut-Grenzen: die Stufen-Lesung
+  („Kontexturen erweitern sich") ist DEUTUNG und steht in keinem Satz und keinem
+  Namen; „unendlich" erscheint nur als ∀ über Stufen, kein Grenzobjekt; die
+  Max-Insel `{0,1}` ist gewählte Basis; die Robustheits-Pflicht §9 greift nicht
+  (keine neue Schranke, die konsumierte trägt ihre Konstanten-Fassung, und die Datei
+  konsumiert sie). Drei Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht
+  (10 Wachen) — kein `Classical.choice`, kein `sorryAx`. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte

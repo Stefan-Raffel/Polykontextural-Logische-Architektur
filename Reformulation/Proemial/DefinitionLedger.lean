@@ -146,6 +146,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L06-5" Reformulation.Proemial.StageAggregation.agg_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-6" Reformulation.Proemial.PolicyCheck.freigabe_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-7" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar_konstanten
+#ledger_theorem "L06-8" Reformulation.Proemial.StageAscent.ascent_proper
 
 #ledger_def "L07-1" Reformulation.Proemial.TransjunctionCloneBound.negFin
 #ledger_theorem "L07-2" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
@@ -174,6 +175,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L12-3" Reformulation.Proemial.RegimeThreshold.regime_threshold_at_four
 #ledger_def "L12-5" Reformulation.Proemial.PolicyCheck.freigabe
 #ledger_def "L12-6" Reformulation.Proemial.RAGAuthority.autoritaet
+#ledger_theorem "L12-7" Reformulation.Proemial.StageAscent.exists_locally_classical_not_in_clone
+#ledger_theorem "L12-8" Reformulation.Proemial.StageAscent.w_castSucc
 
 #ledger_theorem "L13-1" Reformulation.Proemial.TransjunctionCloneBound.T_rejective
 
