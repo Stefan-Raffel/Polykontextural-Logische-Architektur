@@ -21,7 +21,7 @@ a translation of it:
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
 
-- Working paper, edition Rev2, in English: `docs/en.html`
+- Working paper, edition Rev3, in English: `docs/en.html`
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
 - What a green build assures, per target: `docs/build-targets.md`
 - Current figures with their counting routes: the German section below
@@ -60,7 +60,7 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
-**Arbeitspapier zur Fassung PKL Rev1** (deutsch und englisch, mit Figuren und
+**Arbeitspapier zur Fassung PKL Rev3** (deutsch und englisch, mit Figuren und
 Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
 und im Bestand unter `docs/de.html` und `docs/en.html`.
 
@@ -107,7 +107,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 132 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
+eine andere Frage: 138 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -127,8 +127,17 @@ Suchbegriff mit angehaengtem Bindestrich - und ein Bindestrich ist eine Wortgren
 Sonst aendert keiner der beiden Zuege an einer Datei ein Vorkommen. Die dritte Zahl
 bleibt 27: keine der neuen Dateien traegt eine offene Stelle.
 
+Die Papierausgabe Rev3: 132 -> 138. Die Rechnung je Datei: die beiden laufenden Fassungen
+`docs/de.html` und `docs/en.html` tragen den Begriff unveraendert je dreimal, und die
+Archivierung der Rev2-Fassungen unter `docs/rev2/de.html` und `docs/rev2/en.html` bringt
+dieselben zweimal drei Vorkommen ein zweites Mal in den verfolgten Bestand - 6 = 132 -> 138.
+Die zweite und die dritte Zahl bleiben unberuehrt, weil der Zug keine `.lean`-Datei
+anfasst. Gemessen ist die Zahl NACH dem Verfolgen der neuen Dateien: davor liefert
+dieselbe Route den unveraenderten Vorwert, und ein unbewegter Wert sieht aus wie eine
+gute Nachricht.
+
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
-werden **Wortvorkommen** (132 / 97), nicht Zeilen mit mindestens einem Vorkommen (129 / 94).
+werden **Wortvorkommen** (138 / 97), nicht Zeilen mit mindestens einem Vorkommen (135 / 94).
 Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
 eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
 
