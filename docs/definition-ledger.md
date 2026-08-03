@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 8.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 9.
 
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `990077b`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
@@ -30,17 +30,25 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 87 |
-| Zeilen mit Träger | 71 |
-| verschiedene Trägernamen | 63 |
-| TS `Theorem` | 53 |
+| Zeilen gesamt | 89 |
+| Zeilen mit Träger | 73 |
+| verschiedene Trägernamen | 65 |
+| TS `Theorem` | 55 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 16 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 71 Zeilen bei 63 Namen. Das ist
-Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
+**Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
+`GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 73 Zeilen bei 65
+Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
+
+*Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
+einer Zeile". Die Acht ist die Differenz `Zeilen mit Träger − verschiedene Namen`, also die
+Zahl der überzähligen Zeilen, nicht die Zahl der mehrfach auftretenden Träger; die ist fünf
+und war es auch schon in Rev. 8. Gemessen über die Zeilenroute oben mit Häufigkeitszählung
+je Trägername.
 
 ## Schema
 
@@ -96,6 +104,7 @@ beider Fehlexpansionen.
 | `K.` | `Reformulation.Kenogram.` | Namensraum |
 | `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
 | `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
+| `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 
@@ -133,7 +142,7 @@ beider Fehlexpansionen.
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
 | L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L05-6 | Transkontexturalität (§5) | `RA.autoritaet_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | dritter Konsument von E3; kein neuer Satz |
-| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9) |
+| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9); kein endlicher Wertvorrat trägt einen unbeschränkten Strom (L06-9) |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
 | L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
@@ -141,6 +150,7 @@ beider Fehlexpansionen.
 | L06-6 | Poly-Kontexturalität f.-o. (§6) | `PC.freigabe_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L06-7 | Poly-Kontexturalität f.-o. (§6) | `RA.autoritaet_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L06-8 | Poly-Kontexturalität f.-o. (§6) | `SAsc.ascent_proper` | Theorem | Deutung | ja, axiomfrei | Wachstums-Lesart: das Bild der Vorstufe verfehlt das neue Element, jedes Paar mit ihm liegt ausserhalb — die Lesung „sich erweiternde Kontexturen" ist Deutung, nicht Satzwortlaut |
+| L06-9 | Poly-Kontexturalität stark (§6) | `KU.idRGSStream_not_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | der Identitätsstrom wird von jedem endlichen Wertesystem überschritten; die bedingte Allform ist `KU.unbounded_not_fillable`, ohne eigene Zeile. **Deutungs-Sprung: Kenogramm ist nicht Kontextur** — die Lesung als „sich unendlich erweiternde Kontexturen" ist Deutung und trägt kein Satz; getragen ist die Wertseite über `KU.marksLt_iff_fillable` (L16-10) |
 | L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
@@ -185,6 +195,7 @@ beider Fehlexpansionen.
 | L16-7 | Morphogramm (§16) | `KF.marksLeOne_iff_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Marke ≤ 1 ⟺ Normalform einer zweiwertigen Wertfolge; die Lesung von `Fin n → Bool` als Wahrheitstafel setzt eine gewählte Zeilenordnung voraus |
 | L16-8 | Morphogramm (§16) | `KF.card_rgs_four_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | acht der fünfzehn vierstelligen Morphogramme sind zweiwertig besetzbar; die Identifikation mit den acht klassisch markierten Zeilen Günthers ist Deutung, kein Satz |
 | L16-9 | Morphogramm (§16) | `KF.fillable_card_lt_card` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | strikte Ungleichung als formale Lesung von „morphogrammatisch unvollständig"; der benannte Zeuge dazu ist `KF.exists_nonfillable` (`[0,1,2,0]`, axiomfrei), ohne eigene Zeile |
+| L16-10 | Morphogramm (§16) | `KU.marksLt_iff_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | verallgemeinerte Wertbesetzung über `Fin k` für jedes k; **ersetzt die Bool-Fassung L16-7 nicht** — `Fin 2` ist nicht `Bool`, eine Übersetzung ist nicht gebaut; zusammen fällt nur die Prädikat-Seite (`KU.marksLeOne_iff_marksLt_two`, ohne eigene Zeile) |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

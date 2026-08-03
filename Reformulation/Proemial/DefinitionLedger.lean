@@ -147,6 +147,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L06-6" Reformulation.Proemial.PolicyCheck.freigabe_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-7" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-8" Reformulation.Proemial.StageAscent.ascent_proper
+#ledger_theorem "L06-9" Reformulation.Kenogram.Unbounded.idRGSStream_not_fillable
 
 #ledger_def "L07-1" Reformulation.Proemial.TransjunctionCloneBound.negFin
 #ledger_theorem "L07-2" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
@@ -190,6 +191,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L16-7" Reformulation.Kenogram.Fillability.marksLeOne_iff_fillable
 #ledger_theorem "L16-8" Reformulation.Kenogram.Fillability.card_rgs_four_fillable
 #ledger_theorem "L16-9" Reformulation.Kenogram.Fillability.fillable_card_lt_card
+#ledger_theorem "L16-10" Reformulation.Kenogram.Unbounded.marksLt_iff_fillable
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 
