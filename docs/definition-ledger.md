@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 9.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 10.
 
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `e97fdbe`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
@@ -30,10 +30,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 89 |
-| Zeilen mit Träger | 73 |
-| verschiedene Trägernamen | 65 |
-| TS `Theorem` | 55 |
+| Zeilen gesamt | 91 |
+| Zeilen mit Träger | 75 |
+| verschiedene Trägernamen | 67 |
+| TS `Theorem` | 57 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 16 |
@@ -41,7 +41,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 73 Zeilen bei 65
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 75 Zeilen bei 67
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
@@ -107,6 +107,7 @@ beider Fehlexpansionen.
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
+| `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
 
 ## Die Tabelle
 
@@ -142,7 +143,7 @@ beider Fehlexpansionen.
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
 | L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L05-6 | Transkontexturalität (§5) | `RA.autoritaet_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | dritter Konsument von E3; kein neuer Satz |
-| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9); kein endlicher Wertvorrat trägt einen unbeschränkten Strom (L06-9) |
+| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9); kein endlicher Wertvorrat trägt einen unbeschränkten Strom (L06-9); der Reichtum wächst bei konstanter Erreichbarkeit (L06-10, L12-10) |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
 | L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
@@ -151,6 +152,7 @@ beider Fehlexpansionen.
 | L06-7 | Poly-Kontexturalität f.-o. (§6) | `RA.autoritaet_nicht_erzeugbar_konstanten` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Robustheit gegen konstante Prüfer |
 | L06-8 | Poly-Kontexturalität f.-o. (§6) | `SAsc.ascent_proper` | Theorem | Deutung | ja, axiomfrei | Wachstums-Lesart: das Bild der Vorstufe verfehlt das neue Element, jedes Paar mit ihm liegt ausserhalb — die Lesung „sich erweiternde Kontexturen" ist Deutung, nicht Satzwortlaut |
 | L06-9 | Poly-Kontexturalität stark (§6) | `KU.idRGSStream_not_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | der Identitätsstrom wird von jedem endlichen Wertesystem überschritten; die bedingte Allform ist `KU.unbounded_not_fillable`, ohne eigene Zeile. **Deutungs-Sprung: Kenogramm ist nicht Kontextur** — die Lesung als „sich unendlich erweiternde Kontexturen" ist Deutung und trägt kein Satz; getragen ist die Wertseite über `KU.marksLt_iff_fillable` (L16-10) |
+| L06-10 | Poly-Kontexturalität stark (§6) | `CV.card_locallyClassical` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | genau `2^C(m,2)` lokal klassische Operationen auf `Fin m`, als Korollar der Bijektion `CV.locallyClassicalEquiv`; die Erreichbarkeits-Seite ist `CV.clone_locallyClassical_eq` (Mengengleichheit, ab m ≥ 4 genau `min` und `max`), ohne eigene Zeile. **„Wachsender Reichtum bei konstanter Erreichbarkeit" ist Deutung des Paars**, kein Satzwortlaut |
 | L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
@@ -182,6 +184,7 @@ beider Fehlexpansionen.
 | L12-7 | Stufengang (§12) | `SAsc.exists_locally_classical_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | für jedes m ≥ 4 ist die Lücke der Charakterisierung bewohnt; Klon-Ausschluss ist Konsum der E3-Iff, kein neuer Beweis |
 | L12-8 | Stufengang (§12) | `SAsc.w_castSucc` | Theorem | Operationalisierung | ja, `[propext]` | Zielformel §12: auf dem eingebetteten Quadrat stimmt Stufe m+1 mit Stufe m überein; eine Regel auf allen Stufen, kein Grenzobjekt |
 | L12-9 | Stufengang (§12) | `SPar.odd_no_neg_compatible` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | bei ungeradem m ist keine Abbildung `Fin m → Fin (m+1)` negationsverträglich; nur der Schritt m → m+1, nichts über m+2, kein Kolimes-Satz |
+| L12-10 | Stufengang (§12) | `CV.card_locallyClassical_lt` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Zahl der lokal klassischen Operationen wächst je Stufenschritt echt; Konsum von `SAsc.choose_two_succ`, Schranke `1 ≤ m` scharf. Wachstum je Schritt, **kein Grenzobjekt** und keine Aussage über einen Limes |
 | L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
 | L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
 | L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |

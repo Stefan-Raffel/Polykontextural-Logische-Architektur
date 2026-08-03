@@ -18,6 +18,7 @@ import Reformulation.Proemial.GeneralCloneBound
 import Reformulation.Proemial.M3CloneWitness
 import Reformulation.Proemial.StageAscent
 import Reformulation.Proemial.StageParity
+import Reformulation.Proemial.ChoiceVectors
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -326,6 +327,32 @@ Enthält:
   Invariante). Drei Statement-Pins; Axiom-Ist je Deklaration `#guard_msgs`-verwacht
   (8 Wachen, die Definition eingeschlossen), durchgehend `[propext, Quot.sound]` — kein `Classical.choice`, kein
   `sorryAx`. 0 Sorries.
+
+- `Proemial.ChoiceVectors`: die lokal klassischen Operationen als Wahlvektoren (ERTRAG mit
+  ausgewiesenem KONSUM-Anteil). Der Name meint Günther-seitige Wahlmuster, NICHT das
+  Auswahlaxiom (Dateikopf sagt es in Zeile 1). R0 `card_pairs` — der Träger der Wahl hat
+  C(m,2) Stellen. R1 `ofChoices_locallyClassical` und `locallyClassicalEquiv` — das Theorem:
+  jeder Wahlvektor ist lokal klassisch, und die Zuordnung ist eine BIJEKTION; damit ist
+  „lokal klassisch" Bauplan und nicht bloß Eigenschaft. R2 `card_locallyClassical` — als
+  Korollar genau 2^C(m,2) lokal klassische Operationen; die Marken 8/64/1024 des
+  Arbeitspapiers sind damit Instanzen eines Satzes und bleiben selbst außerhalb. R3
+  `clone_locallyClassical_eq` — die Erreichbarkeits-Seite als MENGENGLEICHHEIT (bewusst
+  keine Karte: „im Klon liegen" ist nicht entscheidbar), reiner Konsum der E3-Iff und von
+  `min_in_clone`/`max_in_clone`; `min_ne_max` trägt die „Zwei". R4
+  `card_locallyClassical_lt` — das Wachstum je Stufenschritt, Konsum von
+  `SAsc.choose_two_succ`. Zugabe `two_lt_card_locallyClassical` — ab m ≥ 3 mehr als zwei.
+  Verhältnis zu E2: `QCB.ofC` ist dieselbe Gestalt bei festem m = 4 mit sechs
+  Bool-Argumenten; hier uniform in m und als Bijektion, ohne Umbau an E2 — die Zahlen
+  treffen sich (C(4,2) = 6, also 2^6 = 64). Wortlaut-Grenzen: „wachsender struktureller
+  Reichtum bei konstanter Erreichbarkeit" ist DEUTUNG des Paars R2/R3 samt R4 und steht in
+  keinem Namen; kein Satz über die Def6-Totalität, L06-1 bleibt offen; L03-3 (Grenznotiz A)
+  wird nicht entschieden; die Klon-Reihe bleibt unberührt und choice-frei. Die
+  Robustheits-Pflicht §9 greift nicht (keine neue Schranke). Vier Statement-Pins; Axiom-Ist
+  je Deklaration `#guard_msgs`-verwacht (18 Wachen, Definitionen und Instanzen
+  eingeschlossen). GEMESSENE SCHICHTGRENZE, anders als erwartet: der `Classical.choice`-
+  Anteil sitzt nicht in der Zählschicht allein, sondern schon in der `Bool`-Konversion `==`
+  über Mathlibs `Std.LawfulBEqOrd`-Instanz für `Fin m` — die positive Hälfte von R1 ist
+  `[propext]`, die Bijektion nicht. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte

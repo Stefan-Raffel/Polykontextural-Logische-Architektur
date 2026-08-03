@@ -148,6 +148,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L06-7" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar_konstanten
 #ledger_theorem "L06-8" Reformulation.Proemial.StageAscent.ascent_proper
 #ledger_theorem "L06-9" Reformulation.Kenogram.Unbounded.idRGSStream_not_fillable
+#ledger_theorem "L06-10" Reformulation.Proemial.ChoiceVectors.card_locallyClassical
 
 #ledger_def "L07-1" Reformulation.Proemial.TransjunctionCloneBound.negFin
 #ledger_theorem "L07-2" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
@@ -180,6 +181,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L12-7" Reformulation.Proemial.StageAscent.exists_locally_classical_not_in_clone
 #ledger_theorem "L12-8" Reformulation.Proemial.StageAscent.w_castSucc
 #ledger_theorem "L12-9" Reformulation.Proemial.StageParity.odd_no_neg_compatible
+#ledger_theorem "L12-10" Reformulation.Proemial.ChoiceVectors.card_locallyClassical_lt
 
 #ledger_theorem "L13-1" Reformulation.Proemial.TransjunctionCloneBound.T_rejective
 
