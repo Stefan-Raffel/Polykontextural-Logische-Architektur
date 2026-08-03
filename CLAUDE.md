@@ -279,9 +279,21 @@ entfernt.
 
 ## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
 
-Alle zehn sind an diesem Korpus aufgetreten und haben Zeit gekostet. Sie stehen hier, damit
+Jeder Eintrag ist an diesem Korpus aufgetreten und hat Zeit gekostet. Sie stehen hier, damit
 sie nicht ein zweites Mal gefunden werden muessen. Der neunte ist kein Lean-Fallstrick,
 sondern einer der Werkzeugkette; er steht hier, weil er dieselbe Sorte ist wie der achte.
+
+*Ohne Gesamtzahl, mit Absicht.* Hier stand bis `e97fdbe` eine Ordnungszahl ("Alle zehn").
+Sie war zweimal von Hand nachzuziehen und waere beim naechsten Eintrag ein drittes Mal
+faellig gewesen - eine zweite Darstellung der Eintragszahl ohne Route dazwischen, also
+genau der Fall aus §1 (Ausweg C). Die Eintraege bleiben durchnummeriert; eine Gesamtzahl
+steht nirgends und muss darum auch nirgends nachgezogen werden.
+
+Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
+Paragraphen** - die naive Route ueber die ganze Datei liefert 15 statt 11, weil §12 vier
+gleich ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 elf, §12
+vier, Datei fuenfzehn. Es ist dieselbe Sorte Falle wie in §3: eine Route unterscheidet nur,
+was sie zaehlt.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
 ist nicht immer die Ursache: der zehnte haelt eine Profildifferenz fest, deren Mechanismus
@@ -388,6 +400,30 @@ naheliegende Erklaerung ueber die Aufzaehlungs-Maschinerie ist Vermutung und nic
 geprueft. Heilung: bei kleinen Aufzaehlungstypen die `Fintype`-Instanz von Hand schreiben.
 Verwandt mit Fallstrick 3: nicht die Quantifikation selbst, sondern die Maschinerie hinter
 der bequemen Instanz steht im Profil.
+
+**11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
+`relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
+implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
+Stellen, die in Ordnung sind. Gemessen beim Bau von `Kenogram/Unbounded.lean` (Commit
+`e97fdbe`): `RGSStream` liegt in `Reformulation.Kenogram.Stream`, und `open
+Reformulation.Kenogram` allein holt es nicht. Die Meldung lautete *"Invalid projection ...
+`r` has type `RGSStream` which does not have the necessary form"* und wies damit auf die
+Subtyp-Projektion `.1`, die in Ordnung war; der wahre Grund erschien erst weiter unten als
+*"don't know how to synthesize implicit argument `RGSStream`"*.
+
+Es ist die Sorte aus Fallstrick 8 in weiterer Gestalt: nicht ein leeres und nicht ein knapp
+falsches Ergebnis, sondern ein **falsch adressiertes**. Wer der Meldung folgt, arbeitet an
+einem gesunden Bauteil.
+
+*Heilung:* die fehlenden `open`-Zeilen - hier `Reformulation.Kenogram.Stream` und
+`Reformulation.Kenogram.Bridge` neben `Reformulation.Kenogram`. Danach lief die Vorprobe
+ohne weitere Aenderung durch.
+
+*Gegenprobe, die ihn aufdeckt:* bei einer Projektions- oder Instanzmeldung ueber einen
+eigenen Typ zuerst `#check <Typname>` auf den blossen Namen. `#check` bindet **nicht**
+automatisch und meldet darum, was der Elaborator verschweigt. Gegengerechnet in beide
+Richtungen am selben Stand: ohne den passenden `open` liefert `#check RGSStream`
+*"Unknown identifier"*, mit ihm `Reformulation.Kenogram.Stream.RGSStream : Type`.
 
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
