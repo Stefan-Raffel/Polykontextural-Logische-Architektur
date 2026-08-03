@@ -3,6 +3,13 @@
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
 zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 10.
 
+**Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
+Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
+sind die dort genannten Quellen und nicht die Fassung; dieser Ledger führt Träger und Grenzen,
+nicht den Wortlaut. Die Fassung zieht drei Texte zusammen, wählt aus und paraphrasiert, zählt
+die Paragraphen selbst und trägt in §3 einen dokumentierten Off-by-one gegenüber der Bauform
+des Korpus — siehe **Grenznotiz A**.
+
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `56fe9a0`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
 
