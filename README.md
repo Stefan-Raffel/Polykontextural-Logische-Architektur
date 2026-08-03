@@ -50,8 +50,9 @@ lokale Klassizitaet
 maschinell gepruefte Nicht-Erzeugbarkeit
 ```
 
-Diese Definition ist enger als die philosophische Definition 6 und staerker als blosse
-Mehrwertigkeit oder Rollenpluralitaet. Alles Weitere in diesem README ist an ihr zu messen.
+Diese Definition ist enger als Guenthers weltbildhafter Begriff der Poly-Kontexturalitaet
+und staerker als blosse Mehrwertigkeit oder Rollenpluralitaet. Alles Weitere in diesem README
+ist an ihr zu messen.
 
 Formale Begleitung des Projekts zur Reformulierung der polykontexturalen Logik
 Gotthard Guenthers. Der Code ist kein Beweis der Theorie, sondern ein Pruefwerkzeug:
@@ -76,7 +77,7 @@ alte Adresse loest nicht auf (gemessen, HTTP 404) - Pages folgt der Umbenennung 
 ## Was implementiert ist, und was nicht
 
 Dieses Repository implementiert **nicht** die volle weltbildhafte Poly-Kontexturalitaet aus
-Definition 6 der Definitionen-Fassung: das System sich unendlich erweiternder Kontexturen mit
+§6 der Definitionen-Fassung: das System sich unendlich erweiternder Kontexturen mit
 wachsendem strukturellem Reichtum. Implementiert ist die formal-operative Fassung, die oben
 steht - und nur sie.
 
