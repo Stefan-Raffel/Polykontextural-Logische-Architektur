@@ -17,6 +17,7 @@ import Reformulation.Proemial.QuaternaryCloneBound
 import Reformulation.Proemial.GeneralCloneBound
 import Reformulation.Proemial.M3CloneWitness
 import Reformulation.Proemial.StageAscent
+import Reformulation.Proemial.StageParity
 import Reformulation.Proemial.InteractiveTransjunction
 import Reformulation.Proemial.IntransitivityDifferential
 import Reformulation.Proemial.DirectionChoice
@@ -301,6 +302,30 @@ Enthält:
   (keine neue Schranke, die konsumierte trägt ihre Konstanten-Fassung, und die Datei
   konsumiert sie). Drei Statement-Pins; Axiom-Ist je Satz `#guard_msgs`-verwacht
   (10 Wachen) — kein `Classical.choice`, kein `sorryAx`. 0 Sorries.
+
+- `Proemial.StageParity`: die Parität des Stufenschritts (ERTRAG, kein Konsum einer
+  Klon-Schranke). Drei Sätze in Differential-Form über `GCB.negFin`, der Negation der
+  Korpus-Signatur: G1 `castSucc_negFin_ne` — die Einbettung, unter der sich `SAsc.w`
+  reproduziert, ist an KEINER Stelle negationsverträglich (links `m−1−a`, rechts `m−a`,
+  Differenz 1 punktweise, ohne Fallunterscheidung nach m); G2 `odd_no_neg_compatible` —
+  bei ungeradem m ist ÜBERHAUPT keine Abbildung `Fin m → Fin (m+1)` negationsverträglich,
+  ohne Injektivitäts- und ohne Monotonie-Voraussetzung, bewiesen am Fixpunkt `(m−1)/2` von
+  `negFin m` und der Unlösbarkeit von `2a = m`; G3 `eSym_strictMono` und `eSym_negFin` —
+  bei geradem m trägt die symmetrische Einbettung `eSym` (Lücke am Mittelplatz `m/2`) beides,
+  Ordnungstreue und Negationsverträglichkeit. Zugabe `w_eSym`: ab m ≥ 4 steigt über `eSym`
+  auch die Zeugenfamilie mit — auf den geraden Stufen also Signatur samt Zeuge. Eine
+  Definition (`eSym`), zwei Hilfslemmata (`negFin_val`, `eSym_val`, beide Wert-Auskünfte auf
+  der `.val`-Ebene, beide verwacht); kein Entscheidungsverfahren, keine `Decidable`-Instanz,
+  keine Änderung an `GeneralCloneBound` oder `StageAscent`. Gemessene Choice-Grenze:
+  Mathlibs `Monotone.map_max` zieht `Classical.choice`, die Handrechnung über `.val` mit
+  `Fin.coe_min`/`Fin.coe_max` nicht — darum läuft sie von Hand. Wortlaut-Grenzen: die Lesung
+  („das Umtauschverhältnis ist stufenrelativ") ist DEUTUNG und steht in keinem Satz und
+  keinem Namen; nichts über `m → m+2`, keine Verkettung, kein Grenzobjekt — „kein Kolimes"
+  ist KEIN Satz dieser Datei, L12-4 bleibt unberührt offen; keine Zählung verträglicher
+  Einbettungen. Die Robustheits-Pflicht §9 ist gegenstandslos (keine Schranke, keine
+  Invariante). Drei Statement-Pins; Axiom-Ist je Deklaration `#guard_msgs`-verwacht
+  (8 Wachen, die Definition eingeschlossen), durchgehend `[propext, Quot.sound]` — kein `Classical.choice`, kein
+  `sorryAx`. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte

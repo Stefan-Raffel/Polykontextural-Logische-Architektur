@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 7.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 8.
 
 **Alle Kennzahlen dieser Datei beziehen sich auf den Commit `f7edf85`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
@@ -30,16 +30,16 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 85 |
-| Zeilen mit Träger | 69 |
-| verschiedene Trägernamen | 61 |
-| TS `Theorem` | 51 |
+| Zeilen gesamt | 87 |
+| Zeilen mit Träger | 71 |
+| verschiedene Trägernamen | 63 |
+| TS `Theorem` | 53 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 16 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
-Acht Träger erscheinen in mehr als einer Zeile — daher 69 Zeilen bei 61 Namen. Das ist
+Acht Träger erscheinen in mehr als einer Zeile — daher 71 Zeilen bei 63 Namen. Das ist
 Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 ## Schema
@@ -97,6 +97,7 @@ beider Fehlexpansionen.
 | `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
 | `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
+| `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 
 ## Die Tabelle
 
@@ -132,7 +133,7 @@ beider Fehlexpansionen.
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
 | L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L05-6 | Transkontexturalität (§5) | `RA.autoritaet_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | dritter Konsument von E3; kein neuer Satz |
-| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8 |
+| L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9) |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
 | L06-4 | Poly-Kontexturalität f.-o. (§6) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | Kontexturpluralität mit Überlappung |
@@ -156,6 +157,7 @@ beider Fehlexpansionen.
 | L10-3 | Isomorphie (§10) | `TCB.test1_min_max` | Theorem | Operationalisierung | ja, `[propext]` | Operationsverträglichkeit auf der Kontextur |
 | L10-4 | Anisomorphie (§10) | `NUCB.conj` | Definition | Deutung | keine (def) | Negationskonjugation als Transport, keine Anisomorphie-These |
 | L10-5 | Anisomorphie (§10) | — | Offen | Offen | — | PathC: **eingefroren** (29.07.2026); 27 betroffene Deklarationen mit `sorry` in 8 Dateien (Route: frische Elaboration je Modul, verschiedene Warnpositionen; `docs/build-targets.md`), 0 Wachen, ein Modul rot |
+| L10-6 | Anisomorphie (§10) | `SPar.castSucc_negFin_ne` | Theorem | Deutung | ja, `[propext, Quot.sound]` | die Stufeneinbettung vertauscht an keiner Stelle mit der Negation; dass Nicht-Abbildbarkeit Anisomorphie-Material ist, ist Lesart und kein Satz |
 | L11-1 | Vermittlung (§11) | `NUCB.W` | Definition | Deutung | keine (def) | Dateiname bewusst `NonUniformCloneBound`, nicht `Mediation` |
 | L11-2 | Vermittlung (§11) | `SA.agg_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
@@ -169,6 +171,7 @@ beider Fehlexpansionen.
 | L12-6 | Stufengang (§12) | `RA.autoritaet` | Definition | Deutung | keine (def) | vier Autoritätsstufen; Mischstelle Mitte, dritter Zeuge |
 | L12-7 | Stufengang (§12) | `SAsc.exists_locally_classical_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | für jedes m ≥ 4 ist die Lücke der Charakterisierung bewohnt; Klon-Ausschluss ist Konsum der E3-Iff, kein neuer Beweis |
 | L12-8 | Stufengang (§12) | `SAsc.w_castSucc` | Theorem | Operationalisierung | ja, `[propext]` | Zielformel §12: auf dem eingebetteten Quadrat stimmt Stufe m+1 mit Stufe m überein; eine Regel auf allen Stufen, kein Grenzobjekt |
+| L12-9 | Stufengang (§12) | `SPar.odd_no_neg_compatible` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | bei ungeradem m ist keine Abbildung `Fin m → Fin (m+1)` negationsverträglich; nur der Schritt m → m+1, nichts über m+2, kein Kolimes-Satz |
 | L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
 | L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
 | L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |

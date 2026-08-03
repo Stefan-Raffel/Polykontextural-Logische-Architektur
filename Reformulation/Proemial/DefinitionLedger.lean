@@ -164,6 +164,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L10-2" Reformulation.Proemial.TransjunctionCloneBound.test1_injective
 #ledger_theorem "L10-3" Reformulation.Proemial.TransjunctionCloneBound.test1_min_max
 #ledger_def "L10-4" Reformulation.Proemial.NonUniformCloneBound.conj
+#ledger_theorem "L10-6" Reformulation.Proemial.StageParity.castSucc_negFin_ne
 
 #ledger_def "L11-1" Reformulation.Proemial.NonUniformCloneBound.W
 #ledger_theorem "L11-2" Reformulation.Proemial.StageAggregation.agg_lokal
@@ -177,6 +178,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L12-6" Reformulation.Proemial.RAGAuthority.autoritaet
 #ledger_theorem "L12-7" Reformulation.Proemial.StageAscent.exists_locally_classical_not_in_clone
 #ledger_theorem "L12-8" Reformulation.Proemial.StageAscent.w_castSucc
+#ledger_theorem "L12-9" Reformulation.Proemial.StageParity.odd_no_neg_compatible
 
 #ledger_theorem "L13-1" Reformulation.Proemial.TransjunctionCloneBound.T_rejective
 
