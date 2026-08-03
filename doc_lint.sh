@@ -9,7 +9,8 @@
 #                         Gruppe — siehe SUPERLATIV_RE unten.
 #                         [Vorgang 10] (A) wird in ZWEI Zeilen ausgewiesen:
 #                         laufender Bestand und eingefrorene Fassungen
-#                         (docs/rev1/**). Grund: die eingefrorenen Treffer
+#                         (docs/rev1/**, seit der Rev3-Ausgabe auch
+#                         docs/rev2/**). Grund: die eingefrorenen Treffer
 #                         dürfen nicht geheilt werden — Vorgang 7 sichert deren
 #                         Byte-Gleichheit zu. Liefen sie in derselben Zahl mit,
 #                         wüchse ein Wert, den niemand senken darf, und ein
@@ -235,13 +236,20 @@ RAW="$(
 )"
 
 # [Vorgang 10] (A) zerfällt in zwei Zeilen. Die Trennung geschieht am
-# PFADPRÄFIX `docs/rev1/` und nicht an einer Liste einzelner Dateien — eine
+# PFADPRÄFIX `docs/rev<n>/` und nicht an einer Liste einzelner Dateien — eine
 # Liste veraltete beim nächsten Einfrieren. (B) bleibt einzeilig: dort gibt es
 # bisher keinen Treffer, und eine Trennung ohne Gegenstand wäre Zierat.
+#
+# [Papierausgabe Rev3] Das Präfix ist von `docs/rev1/` auf `docs/rev<Ziffer>/`
+# geweitet, weil die Rev2-Fassungen mit dieser Ausgabe nach `docs/rev2/`
+# archiviert und dort ebenso NICHT mehr nachgeführt werden. Ohne die Weitung
+# wäre die Zahl der zu heilenden Treffer beim Archivieren gestiegen, ohne dass
+# ein Satz sich bewegt hat — und ein unsenkbarer Wert wird bald nicht mehr
+# gelesen. Die Ziffernform trägt die nächste Archivierung mit.
 BLOCK_A_LAUF="$(printf '%s\n' "$RAW" | awk -F'\t' -v root="${ROOT}/" \
-  '$1=="A" { p=$2; sub("^" root, "", p); if (p !~ /^docs\/rev1\//) print }')"
+  '$1=="A" { p=$2; sub("^" root, "", p); if (p !~ /^docs\/rev[0-9]+\//) print }')"
 BLOCK_A_FROZ="$(printf '%s\n' "$RAW" | awk -F'\t' -v root="${ROOT}/" \
-  '$1=="A" { p=$2; sub("^" root, "", p); if (p ~ /^docs\/rev1\//) print }')"
+  '$1=="A" { p=$2; sub("^" root, "", p); if (p ~ /^docs\/rev[0-9]+\//) print }')"
 BLOCK_B="$(printf '%s\n' "$RAW" | awk -F'\t' '$1=="B"')"
 
 fmt() {
@@ -451,10 +459,11 @@ echo
 echo "   (A.1) laufender Bestand — hier wird geheilt:"
 printf '%s\n' "$BLOCK_A_LAUF" | fmt
 echo
-echo "   (A.2) eingefrorene Fassungen docs/rev1/** — NICHT zu heilen:"
-echo "         Vorgang 7 sichert deren Byte-Gleichheit zu. Die Beurteilung dieser"
-echo "         Treffer ist einmal erfolgt und festgeschrieben (Befund Vorgang 10);"
-echo "         künftige Befunde nennen nur noch die Zahl und verweisen."
+echo "   (A.2) eingefrorene Fassungen docs/rev1/** und docs/rev2/** — NICHT zu heilen:"
+echo "         Vorgang 7 sichert die Byte-Gleichheit der rev1-Fassungen zu; die"
+echo "         rev2-Fassungen sind mit der Rev3-Ausgabe ebenso stillgelegt. Die"
+echo "         Beurteilung dieser Treffer ist einmal erfolgt und festgeschrieben"
+echo "         (Befund Vorgang 10); künftige Befunde nennen nur die Zahl und verweisen."
 printf '%s\n' "$BLOCK_A_FROZ" | fmt
 echo
 echo "── Gruppe (B) ZFC-RÜCKFALL — Wort + ZFC-Trigger im Fenster ±1 ────────────────"

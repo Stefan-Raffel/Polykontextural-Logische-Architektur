@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Die mathematische Gestalt der Architektur — PKL Rev2</title>
-<meta name="description" content="Polykontexturale Logik in Lean 4 und Mathlib. Fassung PKL Rev2: zwei Achsen je Aussage, die Schrankenreihe D–E4, die Anwendungsschicht mit gemessenem Konsum, Ledger und Setzungsregister, Bereichstrennung.">
+<title>Die mathematische Gestalt der Architektur — PKL Rev3</title>
+<meta name="description" content="Polykontexturale Logik in Lean 4 und Mathlib. Fassung PKL Rev3: die zwei Strukturklauseln der starken Definition mit Sätzen, die Schrankenreihe D–E4, die Reichtums-Zählung als Bijektion, Ledger Revision 10, Bereichstrennung.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL Rev2</a>
+    <a class="home" href="./">PKL Rev3</a>
     <div class="langswitch">
       <span aria-current="page">DE</span>
       <span class="sep">·</span>
@@ -26,8 +26,8 @@
 
 <header class="doctitle">
   <h1>Die mathematische Gestalt der Architektur</h1>
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev2</p>
-  <p class="dateline">1. August 2026 · Stand aller Kennzahlen: Commit <code>e5ef3d7</code> · Fassung Rev2</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev3</p>
+  <p class="dateline">3. August 2026 · Stand aller Kennzahlen: Commit <code>56fe9a0</code> · Fassung Rev3</p>
 </header>
 
 <nav class="toc" aria-label="Inhaltsverzeichnis">
@@ -35,17 +35,18 @@
   <ol>
     <li><a href="#wovon">Wovon dieses Papier handelt</a></li>
     <li><a href="#achsen">Zwei Achsen je Aussage</a></li>
-    <li><a href="#aendert">Was diese Ausgabe gegenüber der ersten ändert</a></li>
+    <li><a href="#aendert">Was diese Ausgabe gegenüber der zweiten ändert</a></li>
     <li><a href="#i">I · Der Grund: eine Kombinatorik vor der Logik</a></li>
     <li><a href="#ii">II · Kontexturen: zwei Diskontexturalitäten, eine davon bewiesen</a></li>
     <li><a href="#iii">III · Die Beweisform: das Differential</a></li>
     <li><a href="#iv">IV · Die Zeugen: die Reihe der Schranken</a></li>
-    <li><a href="#v">V · Die Anwendungsschicht, und was an ihr gemessen ist</a></li>
-    <li><a href="#vi">VI · Der Ledger und das Register</a></li>
-    <li><a href="#vii">VII · Bewegung und Zeit</a></li>
-    <li><a href="#viii">VIII · Die Sicherungen: Wachen, Profile, Bereiche</a></li>
-    <li><a href="#ix">IX · Die Instrumente als eigener Gegenstand</a></li>
-    <li><a href="#x">X · Reichweite und Grenze</a></li>
+    <li><a href="#v">V · Der Aufstieg: die zwei Strukturklauseln der starken Definition</a></li>
+    <li><a href="#vi">VI · Die Anwendungsschicht, und was an ihr gemessen ist</a></li>
+    <li><a href="#vii">VII · Der Ledger und das Register</a></li>
+    <li><a href="#viii">VIII · Bewegung und Zeit</a></li>
+    <li><a href="#ix">IX · Die Sicherungen: Wachen, Profile, Bereiche</a></li>
+    <li><a href="#x">X · Die Instrumente als eigener Gegenstand</a></li>
+    <li><a href="#xi">XI · Reichweite und Grenze</a></li>
     <li><a href="#anhang">Anhang · Zählrouten</a></li>
   </ol>
 </nav>
@@ -64,9 +65,8 @@ Logik Gotthard Günthers in einer typentheoretischen Beweisumgebung.</p>
 <p>Eine Struktur ist <strong>formal-operativ polykontextural</strong>, wenn sie mehrere lokale
 Kontexturen trägt — unter der zugelassenen Signatur abgeschlossene Bereiche, die einander
 überlappen dürfen — und wenn es auf ihr eine Operation gibt, die auf jeder dieser Kontexturen
-wie eine der klassischen Verknüpfungen wirkt und dennoch aus dem intra-kontexturellen
-Termkalkül nicht erzeugbar ist.</p>
-
+wie eine der klassischen Verknüpfungen wirkt und dennoch aus dem intra-kontexturellen Termkalkül
+nicht erzeugbar ist.</p>
 <p><strong>Formal-operativ</strong> heisst: diese Nicht-Erzeugbarkeit ist nicht behauptet,
 sondern als Theorem maschinell geprüft.</p>
 </div>
@@ -75,11 +75,16 @@ sondern als Theorem maschinell geprüft.</p>
 blosse Mehrwertigkeit oder Rollenpluralität. Sie ist der Massstab, an dem alles Weitere zu
 messen ist.</p>
 
+<p>Seit dieser Ausgabe führt die Definitionenfassung des Projekts eine <strong>zweite
+Stufe</strong> des Begriffs — <em>formal-operativ polykontextural im Aufstieg</em>, prädiziert
+über Familien statt über Strukturen, mit vier Klauseln und vier benannten Sätzen als Trägern.
+Sie steht genau einmal, in §6.3 der Definitionenfassung, und wird absichtlich nirgends
+gespiegelt; dieses Papier beschreibt sie in <a href="#v">§V</a> und zitiert sie nicht.</p>
+
 <!-- ===================================================================== -->
 <h2 id="achsen">Zwei Achsen je Aussage</h2>
 
-<p>Die vorige Ausgabe etikettierte jede Behauptung nach ihrer <strong>Art</strong>. Das genügt
-nicht mehr.</p>
+<p>Jede Behauptung dieses Papiers trägt zwei Etiketten.</p>
 
 <p><strong>Erste Achse — die Art:</strong></p>
 
@@ -97,22 +102,17 @@ nicht mehr.</p>
 Verzeichnis:</p>
 
 <ul>
-  <li><strong>Aggregat</strong> — in der Hülle der fünf Default-Targets; das AxiomGate prüft
-    es beim Bau</li>
+  <li><strong>Aggregat</strong> — in der Hülle der fünf Default-Targets; das AxiomGate prüft es
+  beim Bau</li>
   <li><strong>Rufe-Target</strong> — ausserhalb davon, aber von mindestens einem Rufe-Target
-    erreicht; kein Gate, keine Lückenfreiheitszusage</li>
-  <li><strong>von keinem Target erfasst</strong> — im Baum, von keiner Hülle erreicht; kein
-    Bau fasst es an</li>
+  erreicht; kein Gate, keine Lückenfreiheitszusage</li>
+  <li><strong>von keinem Target erfasst</strong> — im Baum, von keiner Hülle erreicht</li>
 </ul>
 
 <p>Quer dazu steht eine Marke, die kein Hüllenwert ist: <strong>eingefroren</strong> bezeichnet
 den Zweig <code>PathC/</code>, der mit ausdrücklichen Auftaubedingungen stillgelegt ist. Ein
-eingefrorenes Modul kann trotzdem gebaut werden — zwei von achtzehn werden über ein
-Rufe-Target erreicht.</p>
-
-<p>Das Wort <em>standalone</em> ist hier bewusst vermieden. Die Ablagekonvention des Korpus
-nennt so eine Datei, die eine Setzung trägt und von keinem Aggregat-Satz konsumiert wird; das
-ist eine andere Frage, und drei solche Dateien werden heute gebaut.</p>
+eingefrorenes Modul kann trotzdem gebaut werden — zwei von achtzehn werden über ein Rufe-Target
+erreicht.</p>
 
 <p>Der Grund für die zweite Achse ist nicht Ordnungsliebe. <strong>Bewiesen</strong> heisst im
 Aggregat etwas anderes als in einem Rufe-Target: dort greift eine maschinelle Schranke, hier
@@ -121,37 +121,49 @@ eine Zusicherung, die nur die anderen haben.</p>
 
 <p>Die zwei Spalten des Definition-Ledgers — Trägerstatus und Zuordnungsstatus — sind eine
 dritte Sache: sie klassifizieren <strong>Träger</strong>, während die Etiketten hier
-<strong>Aussagen im Fliesstext</strong> klassifizieren. Die Ledger-Tabelle steht in
-<a href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> und wird hier nicht
+<strong>Aussagen im Fliesstext</strong> klassifizieren. Die Ledger-Tabelle steht in <a
+href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> und wird hier nicht
 wiederholt.</p>
 
-<!-- ===================================================================== -->
-<h2 id="aendert">Was diese Ausgabe gegenüber der ersten ändert</h2>
+<p>Neu in dieser Ausgabe ist eine dritte Unterscheidung, die keine Achse ist, sondern eine
+Messform: wo ein Axiomprofil <strong>erklärt</strong> wird, trägt die Erklärung entweder eine
+<strong>Messung mit Differential</strong> — zwei Fassungen, die sich in genau einer Grösse
+unterscheiden — oder die Marke <em>ungemessen</em>. Was das heisst und woher es kommt, steht in
+<a href="#ix">§IX</a>.</p>
 
-<p>Die erste Ausgabe datiert vom 24. Juli 2026 und misst alle Zahlen am Commit
-<code>e89ab47</code>. Sie bleibt unter <a href="rev1/de.html"><code>docs/rev1/</code></a>
-erreichbar und wird nicht nachgeführt.</p>
+<!-- ===================================================================== -->
+<h2 id="aendert">Was diese Ausgabe gegenüber der zweiten ändert</h2>
+
+<p>Die zweite Ausgabe datiert vom 1. August 2026 und misst am Commit <code>e5ef3d7</code>; sie
+bleibt unter <code>docs/rev2/</code> erreichbar und wird nicht nachgeführt. Die beiden Dateien
+sind <a href="rev2/de.html"><code>docs/rev2/de.html</code></a> und <a
+href="rev2/en.html"><code>docs/rev2/en.html</code></a>, gebaut wie die
+<code>rev1/</code>-Ablage.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th></th><th>Fassung Rev1 (24. Juli)</th><th>diese Fassung (1. August)</th></tr></thead>
+<thead><tr><th></th><th>Fassung Rev2 (1. August)</th><th>diese Fassung (3. August)</th></tr></thead>
 <tbody>
-<tr><td>Etikettierung</td><td>eine Achse (Art)</td><td><strong>zwei Achsen</strong> (Art und Bereich)</td></tr>
-<tr><td>Begriffszuordnung</td><td>im Fliesstext verteilt</td><td><strong>compilergeprüfter Ledger</strong>, 19 von 19 Paragraphen</td></tr>
-<tr><td>Setzungen</td><td>benannt</td><td><strong>registriert</strong>, mit Klasse und Exit-Kriterium</td></tr>
-<tr><td>Bereichstrennung</td><td>nicht geführt</td><td><strong>Default-Targets, Rufe-Targets, eingefroren, von keinem Target erfasst</strong></td></tr>
-<tr><td>Anwendungen</td><td>keine</td><td><strong>zwei</strong>, Konsum am Beweisterm gemessen</td></tr>
-<tr><td>Morphogramm-Brücke</td><td>Programm</td><td><strong>drei Sätze, zwei Definitionen, eine offene Zeile</strong></td></tr>
-<tr><td>Replizierbarkeit</td><td>Bau auf einer Maschine</td><td><strong>Bau aus frischem, anmeldungsfreiem Klon</strong></td></tr>
-<tr><td>Zugang</td><td>privat</td><td><strong>öffentlich, Apache-2.0 und CC-BY-4.0</strong></td></tr>
+<tr><td>Definition 6</td><td>offen, eine Ledger-Zeile</td><td><strong>beide Strukturklauseln mit Sätzen</strong>; die Totalität offen, mit vier Verweisen</td></tr>
+<tr><td>Projektdefinition</td><td>eine Stufe</td><td><strong>zwei Stufen</strong>; die erste neu gefasst, die zweite über Familien</td></tr>
+<tr><td>Reichtums-Zahl <code>2^C(m,2)</code></td><td>gerechnet</td><td><strong>bewiesen</strong>, als Bijektion samt Kardinalität</td></tr>
+<tr><td>Wertbesetzung der Muster</td><td>offene Zeile</td><td><strong>zwei Brücken bewiesen</strong> (zweiwertig und <code>k</code>-wertig)</td></tr>
+<tr><td><code>M₃</code>-Gegenbeispiel</td><td>gerechnet, dann Nachtrag</td><td><strong>bewiesen und integriert</strong></td></tr>
+<tr><td>Axiomherkunft</td><td>ausgewiesen</td><td><strong>an vier Fundorten gemessen</strong>, mit Differentialen in einer Grösse</td></tr>
+<tr><td>Ledger</td><td>79 Zeilen</td><td><strong>91 Zeilen, Revision 10</strong>, zweistellige Zeilen-IDs</td></tr>
+<tr><td>Kennzahlen</td><td>3018 / 396 / 726</td><td><strong>3255 / 470 / 792</strong></td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>Was nicht dazugekommen ist, und es steht hier, damit es nicht gesucht werden
-muss:</strong> die proemiale Relation ist nicht formalisiert; die Verbundkontextur ist als
-Zahlenfolge vorhanden und nicht als Begriff gebaut; die starke Definition 6 ist offen und wird
-als offen geführt (Ledger-Zeile L06-1, Trägerstatus <code>Offen</code>).</p>
+<p>Die fünf datierten Kennzahl-Stellen der Rev2-Fassungen sind mit dieser Ausgabe aufgelöst:
+jede Zahl trägt wieder den Stand, an dem sie gemessen wurde.</p>
+
+<p><strong>Was nicht dazugekommen ist, damit es nicht gesucht werden muss:</strong> die
+proemiale Relation ist nicht formalisiert; die Verbundkontextur ist Zahlenfolge, nicht Begriff;
+ein Grenzobjekt des Aufstiegs ist weder gebaut noch behauptet noch ausgeschlossen; die Totalität
+der Definition 6 bleibt offen und wird als offen geführt (L06-1, Trägerstatus <code>Offen</code>
+— und warum das ein Ergebnis ist und kein Ausstand, steht in <a href="#v">§V.6</a>).</p>
 
 <!-- ===================================================================== -->
 <h2 id="i">I · Der Grund: eine Kombinatorik vor der Logik</h2>
@@ -220,8 +232,8 @@ nur die feinste kann sagen, welche Stellen denselben Wert tragen.</figcaption>
 </figure>
 
 <p>Formal wird die Trito-Struktur durch eine Normalform vertreten: eine Folge natürlicher
-Zahlen, die mit <code>0</code> beginnt und in der jede neue Marke das bisherige Maximum um
-genau eins übersteigt — in der Kombinatorik als <em>restricted growth string</em> bekannt. Das
+Zahlen, die mit <code>0</code> beginnt und in der jede neue Marke das bisherige Maximum um genau
+eins übersteigt — in der Kombinatorik als <em>restricted growth string</em> bekannt. Das
 Prädikat ist entscheidbar, und die Kanonisierung ist als Prozedur gebaut, nicht behauptet
 (<strong>bewiesen · Aggregat</strong>; Ledger-Zeile L16-1, <code>K.relabel</code>, axiomfreies
 Profil).</p>
@@ -236,7 +248,9 @@ die letzte Stelle, und genau ein Muster bleibt (<strong>gerechnet</strong>).</p>
 <p>Das ist keine Schreibweise, sondern die Sache selbst: <strong>der Aufstieg wählt, der Abstieg
 rechnet.</strong> Zwischen beiden Richtungen liegt kein Vorzeichenwechsel, sondern ein
 Unterschied in der Art der Bestimmtheit. Günther nennt die eine Richtung <em>evolutiv</em>, die
-andere <em>emanativ</em> (<strong>quellen-fest</strong>).</p>
+andere <em>emanativ</em> (<strong>quellen-fest</strong>). In <a href="#v">§V.3</a> kehrt diese
+Asymmetrie als Satz wieder: der Aufstieg, der wählt, überschreitet jeden endlichen
+Wertvorrat.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -297,15 +311,14 @@ andere <em>emanativ</em> (<strong>quellen-fest</strong>).</p>
 </svg>
 </div>
 <figcaption><span class="fignum">Figur 2</span> — Rücknahme eindeutig, Verlängerung verzweigt.
-Ein Muster mit grösster Marke <em>k</em> hat <em>k</em> + 2 Verlängerungen — jede vorhandene
-Marke oder eine neue — und genau eine Rücknahme (<strong>gerechnet</strong>).</figcaption>
+Ein Muster mit grösster Marke k hat k + 2 Verlängerungen und genau eine Rücknahme
+(gerechnet).</figcaption>
 </figure>
 
 <h3>Die Morphogramm-Brücke</h3>
 
 <p>Auf der Normalform sitzt die Musteridentität: zwei Folgen tragen dasselbe Morphogramm, wenn
-ihre Normalformen übereinstimmen. Der Korpus führt dazu sechs Ledger-Zeilen zu Paragraph 16,
-drei davon mit Satzcharakter (<strong>bewiesen · Aggregat</strong>):</p>
+ihre Normalformen übereinstimmen. Der Kernbestand (<strong>bewiesen · Aggregat</strong>):</p>
 
 <div class="tablewrap">
 <table>
@@ -316,7 +329,6 @@ drei davon mit Satzcharakter (<strong>bewiesen · Aggregat</strong>):</p>
 <tr><td>L16-3</td><td><code>KM.SamePattern</code></td><td>Definition</td><td>—</td></tr>
 <tr><td>L16-4</td><td><code>KM.samePattern_iff_pattern</code></td><td>Theorem</td><td><code>[propext, Classical.choice, Quot.sound]</code></td></tr>
 <tr><td>L16-5</td><td><code>KM.samePattern_iff_common_nf</code></td><td>Theorem</td><td><code>[propext, Classical.choice, Quot.sound]</code></td></tr>
-<tr><td>L16-6</td><td>—</td><td><strong>Offen</strong></td><td>Wertbesetzung der Morphogramme nicht formalisiert</td></tr>
 </tbody>
 </table>
 </div>
@@ -324,8 +336,33 @@ drei davon mit Satzcharakter (<strong>bewiesen · Aggregat</strong>):</p>
 <p><strong>Kein Quotiententyp.</strong> Die Brücke ist als Normalformsemantik gebaut, nicht als
 Quotient; das war eine Bauentscheidung und keine Verlegenheit. L16-5 trägt den Vermerk, dass die
 Charakterisierung über die gemeinsame Normalform an <code>List ℕ</code> hängt, während L16-4
-typübergreifend ist. Die offene Zeile L16-6 bleibt offen und steht in
-<a href="#x">§X</a>.</p>
+typübergreifend ist.</p>
+
+<h3>Die Wertbesetzung, in Rev2 die offene Zeile des Abschnitts</h3>
+
+<p>Rev2 führte hier eine offene Frage: welche Muster können von einer Wertfolge überhaupt
+erfüllt werden? Seit dieser Ausgabe hat sie eine bewiesene Antwort — in der zweiwertigen Fassung
+hier, in der <code>k</code>-wertigen in <a href="#v">§V.3</a>:</p>
+
+<div class="theorem">
+<p><span class="label">Satz (Besetzbarkeit, zweiwertig).</span> Ein Muster ist genau dann von
+einer zweiwertigen Folge erfüllbar, wenn seine Marken nicht über 1
+hinausgehen.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>KF.marksLeOne_iff_fillable</code>)</p>
+</div>
+
+<p>Die Richtung von der Marke zur Folge ist eine Kodierung; die Rückrichtung läuft über die
+Dichtheit der Normalform — eine Marke <code>≥ 2</code> erzwingt drei paarweise verschiedene
+Marken, also drei verschiedene Werte, und die hat eine zweiwertige Folge nicht. Gezählt an der
+Länge vier, <strong>beide Zahlen als Sätze</strong>: von den <strong>15</strong> Mustern der
+Länge 4 sind genau <strong>8</strong> zweiwertig besetzbar (<strong>bewiesen ·
+Aggregat</strong>; <code>KF.card_rgs_four</code>, <code>KF.card_rgs_four_fillable</code>, mit
+<code>fillable_card_lt_card</code> als echter Ungleichung — die Zahl 15, die vierte Bell-Zahl,
+ist damit im Korpus bewiesen und nicht importiert). Ein Zeuge des Überschusses steht dabei: das
+Muster <code>0,1,2,0</code> braucht drei Werte. <strong>Die kenogrammatische Schicht ist
+mächtiger als jede feste Wertigkeit</strong> — an der Länge vier als Ungleichung, im Allgemeinen
+als der Satz von <a href="#v">§V.3</a>. Den Stand der Ledger-Zeilen dieses Abschnitts
+(inzwischen bis L16-10) führt der Ledger selbst; §VII zeigt den Mechanismus.</p>
 
 <!-- ===================================================================== -->
 <h2 id="ii">II · Kontexturen: zwei Diskontexturalitäten, eine davon bewiesen</h2>
@@ -347,8 +384,9 @@ sondern der Weg zu ihr von innen.</p>
 
 <p>Zwei Kurzformen sind darum ausgeschlossen und werden im Korpus als Bauverbot geführt:
 <code>Disjoint K₁ K₂</code> scheitert daran, dass die Elementarkontexturen paarweise in genau
-einem Wert überlappen und diese Überlappung die Beweise trägt; <code>¬ ∃ f : K₁ → K₂</code>
-scheitert am Grundfall Sein/Nichts.</p>
+einem Wert überlappen und diese Überlappung die Beweise trägt — die neu gefasste
+Projektdefinition nennt das Überlappen-Dürfen darum in der Definition selbst statt im Kommentar;
+<code>¬ ∃ f : K₁ → K₂</code> scheitert am Grundfall Sein/Nichts.</p>
 
 <h3>2 · Die erste Relation: symmetrisch, und bewiesen</h3>
 
@@ -359,13 +397,20 @@ zwischen Elementarkontexturen: ungeordnetes Paar, symmetrisch, ohne Richtungssin
 <div class="theorem">
 <p><span class="label">Satz (E3).</span> Für jedes <code>m ≥ 4</code> liegt eine
 kontexturerhaltende, lokal klassische Operation auf <code>m</code> Werten genau dann im Klon der
-intra-kontexturellen Junktoren, wenn sie das Minimum oder das Maximum ist.<br>
-(<strong>bewiesen · Aggregat</strong>;
-<code>GeneralCloneBound.locally_classical_in_clone_iff</code>)</p>
+intra-kontexturellen Junktoren, wenn sie das Minimum oder das Maximum ist.<br>(<strong>bewiesen
+· Aggregat</strong>; <code>GeneralCloneBound.locally_classical_in_clone_iff</code>)</p>
 </div>
 
 <p>Das ist eine <strong>Charakterisierung</strong>, keine Existenzaussage: die Menge der nicht
-zusammensetzbaren Operationen ist nicht bloss nichtleer, sondern vollständig bestimmt.</p>
+zusammensetzbaren Operationen ist nicht bloss nichtleer, sondern vollständig bestimmt. Und sie
+ist in dieser Ausgabe der meistkonsumierten Satz des Korpus geworden: zwei Anwendungen (<a
+href="#vi">§VI</a>), der <code>∀m</code>-Zeuge des Aufstiegs und die Erreichbarkeits-Hälfte der
+Reichtums-Zählung (<a href="#v">§V</a>) rechnen auf ihr; keiner baut sie nach — der Konsum ist
+am Beweisterm gemessen, der Nicht-Nachbau an Darf-nicht-Routen.</p>
+
+<p>Das Umtauschverhältnis selbst hat in dieser Ausgabe eine zweite, unerwartete Eigenschaft
+dazubekommen: <strong>es ist stufenrelativ.</strong> Was das heisst und warum es beweisbar ist,
+steht in <a href="#v">§V.2</a>.</p>
 
 <h3>3 · Die zweite Relation: asymmetrisch, und geteilt</h3>
 
@@ -377,17 +422,17 @@ Definition plus Satz (<strong>gesetzt</strong>, im Korpus als solches markiert).
 
 <h3>4 · Wo die Setzung sitzt</h3>
 
-<div class="callout">
-<p>Eine zweielementige Menge benachbarter Werte ist eine Elementarkontextur in Günthers Sinn.<br>
+<p>Eine zweielementige Menge benachbarter Werte ist eine Elementarkontextur in Günthers Sinn.
 (<strong>gesetzt</strong> — die tragende Wahl der ganzen Schrankenreihe)</p>
-</div>
 
 <p>Für diese Wahl gibt es einen sachlichen Grund, und er ist nicht nachträglich zugeschnitten:
 eine zweielementige Menge ist unter den lokalen Operationen genau dann abgeschlossen, wenn ihre
 beiden Elemente vergleichbar sind. Bei unvergleichbaren Paaren verlässt das Minimum die Menge —
 dann ist sie kein in sich geschlossener Zusammenhang und keine Kontextur im Sinne der
-Definitionen. <strong>Die Grenze der Formalisierung liegt im Begriff, nicht im
-Beweis.</strong></p>
+Definitionen. Seit dem <code>M₃</code>-Zug ist dieser Grund selbst ein Satz
+(<code>meet_leaves_incomparable</code>, <strong>bewiesen · Aggregat</strong>): die Setzung
+bleibt eine Setzung, aber ihr Boden ist beweisbar der behauptete. <strong>Die Grenze der
+Formalisierung liegt im Begriff, nicht im Beweis.</strong></p>
 
 <!-- ===================================================================== -->
 <h2 id="iii">III · Die Beweisform: das Differential</h2>
@@ -411,10 +456,10 @@ unmöglich — als allquantifizierter Satz —, und ein reicher Zeuge trägt es.
 <p>Drei Marken disziplinieren die Form. <strong>Erstens</strong> wird das arme Modell intern
 gebaut, nicht in der Metasprache behauptet. <strong>Zweitens</strong> ist das Ergebnis relativ
 zu den gesetzten Prämissen bedingt; es symmetrisiert den Skeptiker, es zwingt ihn nicht.
-<strong>Drittens</strong> ist bewiesen die Form, nie die Benennung — dass eine
-kontexturrelative Operationswahl aus lokalen Mitteln unerreichbar ist, ist ein Satz; dass diese
-Wahl <em>Vermittlung</em> heisst, bleibt <strong>Deutung</strong>. Die Datei im Korpus heisst
-darum <code>NonUniformCloneBound</code> und nicht <code>Mediation</code>.</p>
+<strong>Drittens</strong> ist bewiesen die Form, nie die Benennung — dass eine kontexturrelative
+Operationswahl aus lokalen Mitteln unerreichbar ist, ist ein Satz; dass diese Wahl
+<em>Vermittlung</em> heisst, bleibt <strong>Deutung</strong>. Die Datei im Korpus heisst darum
+<code>NonUniformCloneBound</code> und nicht <code>Mediation</code>.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -444,6 +489,15 @@ darum <code>NonUniformCloneBound</code> und nicht <code>Mediation</code>.</p>
 Hälften. Erbracht ist es erst mit der negativen.</figcaption>
 </figure>
 
+<p>Neu ist, dass die Form in dieser Ausgabe zweimal <strong>auf die Architektur selbst</strong>
+angewandt wurde. Einmal auf einen Aufstiegssatz: die Paritätsobstruktion (<a href="#v">§V.2</a>)
+hat exakt die Differentialgestalt — die Unmöglichkeitshälfte allquantifiziert über
+<strong>alle</strong> Abbildungen, ohne Injektivitäts- oder Monotonievoraussetzung, die
+Möglichkeitshälfte mit explizitem Zeugen daneben. Und einmal auf eine <strong>Messung</strong>:
+wo ein Axiomprofil erklärt werden soll, verlangt die Werkstatt seit diesem Block zwei Fassungen,
+die sich in genau einer Grösse unterscheiden (<a href="#ix">§IX</a>). Das Differential ist damit
+nicht nur die Beweisform des Gegenstands, sondern auch die Prüfform der Werkstatt.</p>
+
 <!-- ===================================================================== -->
 <h2 id="iv">IV · Die Zeugen: die Reihe der Schranken</h2>
 
@@ -460,7 +514,9 @@ Hälften. Erbracht ist es erst mit der negativen.</figcaption>
 </table>
 </div>
 
-<p>Alle fünf: <strong>bewiesen · Aggregat</strong>.</p>
+<p>Alle fünf: <strong>bewiesen · Aggregat</strong>. Die Reihe ist seit Rev2 nicht länger
+geworden — sie ist <strong>breiter konsumiert</strong> worden, und ihre Zahlen haben die Art
+gewechselt: was dort gerechnet war, ist hier zum Teil bewiesen.</p>
 
 <h3>1 · D — die erste Schranke verorten</h3>
 
@@ -469,17 +525,15 @@ Klon über drei Werten (<strong>bewiesen · Aggregat</strong>; der Beweis ist st
 und läuft über Kontexturerhaltung).</p>
 
 <p>Ausserhalb eines Klons zu liegen ist für sich genommen billig: im binären Fragment umfasst
-der Klon <strong>82 von 19 683</strong> Operationen, 0,42 Prozent
-(<strong>gerechnet</strong>). Die Aussage ruht nicht darauf. Die Basis erhält drei Invarianten,
-und jeder Term über ihr erhält alle drei — nicht nur die Erzeuger (<strong>bewiesen ·
-Aggregat</strong>, durch Terminduktion). Die Rejektion verletzt genau eine davon und erhält die
-beiden anderen. Sie liegt also nicht irgendwo ausserhalb, sondern <strong>an einer bestimmten
-Stelle</strong>.</p>
+der Klon <strong>82 von 19 683</strong> Operationen, 0,42 Prozent (<strong>gerechnet</strong>).
+Die Aussage ruht nicht darauf. Die Basis erhält drei Invarianten, und jeder Term über ihr erhält
+alle drei — nicht nur die Erzeuger (<strong>bewiesen · Aggregat</strong>, durch Terminduktion).
+Die Rejektion verletzt genau eine davon und erhält die beiden anderen. Sie liegt also nicht
+irgendwo ausserhalb, sondern <strong>an einer bestimmten Stelle</strong>.</p>
 
-<p>Eine Randbemerkung, die beim Nachrechnen dieser Ausgabe anfiel und in Rev1 fehlt: das binäre
-Klonfragment hat <strong>bei drei, vier, fünf und sechs Werten dieselbe Grösse 82</strong>
-(<strong>gerechnet</strong>). Die Zahl 82 ist keine Eigenschaft der Dreiwertigkeit, sondern der
-Signatur.</p>
+<p>Die Randbemerkung der Rev2 gilt fort: das binäre Klonfragment hat bei drei, vier, fünf und
+sechs Werten dieselbe Grösse 82 (<strong>gerechnet</strong>) — die Zahl hängt an der Signatur,
+nicht an der Wertzahl.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -502,9 +556,8 @@ Signatur.</p>
 </svg>
 </div>
 <figcaption><span class="fignum">Figur 4</span> — Die Verortung: nicht irgendwo ausserhalb,
-sondern jenseits genau einer von drei erhaltenen Invarianten. Klonzahlen
-<strong>gerechnet</strong>, ausserhalb des Korpus; die Grösse 82 ist eine Eigenschaft der
-Signatur und nicht der Dreiwertigkeit.</figcaption>
+sondern jenseits genau einer von drei erhaltenen Invarianten. Klonzahlen gerechnet, ausserhalb
+des Korpus.</figcaption>
 </figure>
 
 <h3>2 · E1 — der zweite Grund, und die vollständige Teilung</h3>
@@ -516,44 +569,48 @@ klassisch, und wählt auf verschiedenen Kontexturen verschiedene klassische Oper
 
 <p>Der zweite Grund hat einen Zeugen, und zwar vollständig: von den acht Wahlmustern über drei
 Werten sind genau vier zusammensetzbar und genau vier nicht (<strong>bewiesen ·
-Aggregat</strong>; die Teilung ist unter Negationskonjugation abgeschlossen — ein
-Transportlemma ersetzt drei Kopien eines Beweises durch einen Satz).</p>
+Aggregat</strong>; die Teilung ist unter Negationskonjugation abgeschlossen — ein Transportlemma
+ersetzt drei Kopien eines Beweises durch einen Satz).</p>
 
 <p><strong>Die vier erreichbaren Muster sind keine beliebigen vier</strong>
 (<strong>gerechnet</strong>). Ordnet man die drei Elementarkontexturen als <code>{0,1}</code>,
 <code>{0,2}</code>, <code>{1,2}</code>, so sind sie <code>(min,min,min)</code>,
 <code>(max,min,min)</code>, <code>(max,max,min)</code>, <code>(max,max,max)</code> — eine Kette
-von Schwellen und keine verstreute Auswahl.</p>
+von Schwellen und keine verstreute Auswahl. Das Wort <em>Wahlmuster</em> dieses Absatzes ist
+seit dieser Ausgabe übrigens mehr als eine Redeweise: dass eine lokal klassische Operation
+<strong>nichts weiter ist</strong> als ein Wahlvektor über den Elementarkontexturen, ist als
+Bijektion bewiesen (<a href="#v">§V.4</a>).</p>
 
 <h3>3 · E2 und E3 — von der Existenz zur Charakterisierung</h3>
 
 <p>Bei vier Werten kippt das Bild: von den 64 lokal klassischen Operationen bleiben
 <strong>zwei</strong> zusammensetzbar, nämlich Minimum und Maximum selbst (<strong>bewiesen ·
-Aggregat</strong>; <strong>gerechnet</strong> nachgeprüft). Bei fünf Werten sind es 2 von 1024,
-bei sechs 2 von 32 768 (<strong>gerechnet</strong>).</p>
+Aggregat</strong>). Bei fünf Werten sind es 2 von 1024, bei sechs 2 von 32 768.</p>
 
-<p>Die Musterzahlen sind kein Zufall: es sind <code>2^C(m,2)</code> Muster, und
-<code>C(m,2) = m(m-1)/2</code> ist die Zahl der Elementarkontexturen eines
-<code>m</code>-wertigen Systems. Die Dreieckszahlen, die Günther für Verbundkontexturen und für
-die Hierarchie der Ontologien führt, stehen hier als Exponent.</p>
-
-<p class="formula"><span class="name">E3</span> <code>m ≥ 4</code> &nbsp;⟹&nbsp;
-(<code>f</code> im Klon &nbsp;⟺&nbsp; <code>f = min</code> oder <code>f = max</code>)</p>
+<p>Rev2 schrieb an dieser Stelle: die Musterzahlen sind kein Zufall, es sind
+<code>2^C(m,2)</code> Muster — und führte das als <strong>gerechnet</strong>. Seit dieser
+Ausgabe ist es ein <strong>Satz</strong>: die Zahl der lokal klassischen Operationen auf
+<code>m</code> Werten ist <code>2^C(m,2)</code>, für jedes <code>m</code>, als Kardinalität
+einer bewiesenen Bijektion (<a href="#v">§V.4</a>); die Marken 8, 64, 1024, 32 768 sind
+<strong>Instanzen</strong> dieses Satzes und keine eigenen Zählungen mehr. <code>C(m,2) =
+m(m−1)/2</code> ist die Zahl der Elementarkontexturen eines <code>m</code>-wertigen Systems; die
+Dreieckszahlen, die Günther für Verbundkontexturen und für die Hierarchie der Ontologien führt,
+stehen hier als Exponent — jetzt bewiesen, nicht beobachtet.</p>
 
 <p>E3 hängt an keiner festen Wertzahl — D und E1 stehen bei drei Werten, E2 bei vier. Der Beweis
-verwendet kein <code>decide</code> und keine Fallunterscheidung über <code>m</code>; er läuft
+verwendet kein Entscheidungsverfahren und keine Fallunterscheidung über <code>m</code>; er läuft
 über sechs Kantenfamilien mit geschlossenen Bruchstellen und eine Induktion über die
 Weglänge.</p>
 
-<div class="callout">
 <p><strong>Die Schwelle liegt bei vier, und das ist kein Artefakt.</strong> Bei drei Werten ist
 die Aussage <em>falsch</em> — dort sind vier von acht Mustern zusammensetzbar. Bei zwei Werten
 gibt es überhaupt keinen Zeugen, weil es nur eine Kontextur gibt. Das trifft Günthers eigene
 Schwelle: das klassische zweiwertige System stellt noch keine Verbundkontextur dar, der zweite
 Wert liefert nichts Neues und steht dem ersten unvermittelt gegenüber
-(<strong>quellen-fest</strong>). Vermittlung beginnt bei drei — hier als gezählte Null, nicht
-als These.</p>
-</div>
+(<strong>quellen-fest</strong>). Vermittlung beginnt bei drei — in Rev2 als gezählte Null, seit
+dieser Ausgabe als bewiesene: bei <code>m = 2</code> ist die Gesamtzahl <code>2^1 = 2</code>,
+und beide Operationen sind erzeugbar — der Überschuss ist null, als Satz (<a
+href="#v">§V.4</a>).</p>
 
 <h3>4 · Robustheit: wieviel jede Schranke beansprucht</h3>
 
@@ -572,10 +629,181 @@ erweitert, überlebt die Schranke genau dann, wenn die Invariante reflexiv ist.<
 
 <p>Eine Schranke, die an einer hinzugefügten Konstante fällt, beansprucht weniger, als sie zu
 beanspruchen scheint. Die Prüfung ist im Korpus als Pflicht vor jedem neuen Zeugen
-festgeschrieben.</p>
+festgeschrieben — und die vier Züge dieser Ausgabe ziehen <strong>keine</strong> neue Schranke:
+sie konsumieren die bestehende, einschliesslich ihrer Konstanten-Fassung, und ihre Dateiköpfe
+sagen ausdrücklich, dass hier nichts zu prüfen war, damit niemand eine Prüfung vermisst.</p>
 
 <!-- ===================================================================== -->
-<h2 id="v">V · Die Anwendungsschicht, und was an ihr gemessen ist</h2>
+<h2 id="v">V · Der Aufstieg: die zwei Strukturklauseln der starken Definition</h2>
+
+<p>Günthers Definition 6 fasst Poly-Kontexturalität als Weltbild: Wirklichkeit als System
+<em>sich unendlich erweiternder</em> Kontexturen mit <em>wachsendem strukturellem Reichtum</em>.
+Das Weltbild ist kein Satzgegenstand und wird nicht beansprucht. Aber die beiden
+<strong>Strukturklauseln</strong> sind Satzgegenstände, und seit dieser Ausgabe haben beide
+Sätze — auf vier Trägern, in vier Zügen gebaut, jeder mit eigener Spezifikation und
+Begutachtung.</p>
+
+<h3>1 · Der Stufenaufstieg: die Lücke ist überall bewohnt, und sie wandert mit</h3>
+
+<p>Die E3-Charakterisierung bestimmt, was erreichbar ist; sie sagt für sich noch nicht, dass das
+Unerreichbare an jeder Stufe auch <strong>bewohnt</strong> ist. Jetzt sagt es ein Satz:</p>
+
+<div class="theorem">
+<p><span class="label">Satz.</span> Für jedes <code>m ≥ 4</code> existiert eine lokal klassische
+Operation auf <code>m</code> Werten ausserhalb des Klons.<br>(<strong>bewiesen ·
+Aggregat</strong>; <code>SAsc.exists_locally_classical_not_in_clone</code> — als Konsum der
+E3-Iff, nicht als neue Schranke)</p>
+</div>
+
+<p>Der Zeuge ist eine <strong>Familie</strong>: <code>w</code> wirkt als Maximum genau auf der
+Elementarkontextur <code>{0,1}</code> und als Minimum sonst — dieselbe Regel auf jeder Stufe.
+Die Wahl der Max-Insel ist eine gewählte Basis, keine gefundene; jedes andere Paar gäbe einen
+anderen Zeugen, und der Dateikopf sagt es. Entscheidend ist die Stufenverträglichkeit: unter der
+Einbettung <code>Fin m ↪ Fin (m+1)</code> stimmt die Stufe <code>m+1</code> auf dem
+eingebetteten Quadrat mit der Stufe <code>m</code> überein (<strong>bewiesen ·
+Aggregat</strong>; <code>SAsc.w_castSucc</code>). Das ist die Formel der Definitionenfassung —
+„Stufe n enthält alle Strukturen der Stufe n−1 als Sub-Strukturen" — als Satz, nicht als
+Programm. Dazu die Wachstumsarithmetik: jeder Schritt bringt genau <code>m</code> neue
+Elementarkontexturen (<code>SAsc.choose_two_succ</code>), und das Bild der Stufe verfehlt das
+neue Element (<code>SAsc.ascent_proper</code>) — was hinzukommt, war vorher nicht da.</p>
+
+<h3>2 · Die Paritätsobstruktion: der Aufstieg hat keine signaturtreue Gestalt</h3>
+
+<p>Die Einbettung trägt den Verband und den Zeugen. <strong>Die Negation trägt sie nie</strong>
+— an keiner Stelle, für kein <code>m</code> (<strong>bewiesen · Aggregat</strong>;
+<code>SPar.castSucc_negFin_ne</code>; die Werte differieren an jeder Stelle um genau eins). Man
+könnte vermuten, eine geschicktere Abbildung heile das. Die Antwort ist ein Differential im Sinn
+von <a href="#iii">§III</a>:</p>
+
+<div class="theorem">
+<p><span class="label">Satz (Paritäts-No-Go).</span> Für ungerades <code>m</code> kommutiert
+<strong>keine</strong> Abbildung <code>Fin m → Fin (m+1)</code> mit der Negation — ohne
+Injektivitäts- oder Monotonievoraussetzung.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>SPar.odd_no_neg_compatible</code>)</p>
+</div>
+
+<p>Das Argument ist dreizeilig und darum vorzeigbar: bei ungeradem <code>m</code> hat die
+Negation <code>a ↦ m−1−a</code> einen Fixpunkt, den Mittelwert; eine verträgliche Abbildung
+müsste ihn auf einen Fixpunkt der Folgestufe schicken, und die gerade Folgestufe hat keinen. Für
+gerades <code>m</code> existiert dagegen eine ordnungstreue, negationsverträgliche Einbettung,
+mit explizitem Zeugen: <code>eSym</code> lässt die Lücke am Mittelplatz (<strong>bewiesen ·
+Aggregat</strong>; <code>SPar.eSym_strictMono</code>, <code>SPar.eSym_negFin</code>), und ab
+<code>m ≥ 4</code> steigt auch die Zeugenfamilie aus <a href="#v">§V.1</a> unter ihr mit
+(<code>SPar.w_eSym</code>). Die Zahl der verträglichen Einbettungen bei geradem <code>m</code> —
+2, 8, 48 für <code>m</code> = 2, 4, 6 — bleibt <strong>gerechnet</strong> und ausserhalb des
+Korpus; hinein ging die Existenz.</p>
+
+<p><strong>Der Stufenschritt trägt die volle Signatur <code>{∧, ∨, ¬}</code> also genau dann
+nicht, wenn <code>m</code> ungerade ist.</strong> Der Verband steigt schrittweise, die Negation
+nur in Paritätssprüngen — das Umtauschverhältnis ist <strong>stufenrelativ</strong>. Die Deutung
+— genau darum hat der Aufstieg keine Gestalt, die ihn abschlösse; die Erweiterung ist echt,
+<em>weil</em> sie sich nicht signaturtreu einholen lässt — heisst so und steht in keinem
+Satznamen. Ein „kein Kolimes"-Satz ist das nicht, und keiner wird behauptet; über Doppelschritte
+<code>m → m+2</code> sagt der Satz nichts, und die Datei sagt auch das.</p>
+
+<h3>3 · Kein endlicher Wertvorrat: die Unendlichkeit am Objekt</h3>
+
+<p>Die zweiwertige Besetzbarkeits-Brücke aus <a href="#i">§I</a> verallgemeinert sich:</p>
+
+<div class="theorem">
+<p><span class="label">Satz (Besetzbarkeit, <code>k</code>-wertig).</span> Ein Muster der Länge
+<code>n</code> ist genau dann von einer <code>k</code>-wertigen Folge erfüllbar, wenn alle seine
+Marken unter <code>k</code> liegen.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>KU.marksLt_iff_fillable</code>, einschliesslich der Randlagen: bei <code>k = 0</code> und
+nichtleerem Muster sind beide Seiten falsch, bei leerem Muster beide leer wahr)</p>
+</div>
+
+<p>Der Weg von der Marke zur Unmöglichkeit ist derselbe wie in <a href="#i">§I</a>, nur
+allgemein: eine Marke <code>≥ k</code> erzwingt über die Dichtheit <code>k+1</code> paarweise
+verschiedene Werte, und die hat eine <code>k</code>-wertige Folge nicht — das schliessende
+Kardinalitätsargument ist die eine Stelle, an der der Beweis über die Kodierung hinausgeht.</p>
+
+<p>Auf der Strom-Schicht wird daraus die Unendlichkeitsaussage, mit dem Identitätsstrom als
+erstmals <strong>benanntem</strong> Korpus-Objekt (<code>KU.idRGSStream</code> — die anonyme
+Illustration in der Strom-Datei war nicht konsumierbar und steht weiterhin dort):</p>
+
+<div class="theorem">
+<p><span class="label">Satz.</span> Ein kenogrammatischer Strom mit unbeschränkten Marken wird
+von jedem endlichen Wertvorrat überschritten: zu jedem <code>k</code> gibt es eine Präfixlänge,
+ab der das Präfix nicht <code>k</code>-wertig besetzbar ist — und der Identitätsstrom ist ein
+solcher Strom.<br>(<strong>bewiesen · Aggregat</strong>; <code>KU.unbounded_not_fillable</code>,
+<code>KU.idRGSStream_not_fillable</code>)</p>
+</div>
+
+<p>Das ist „sich unendlich erweiternd" in seiner ehrlichsten formalen Form: als negativer Satz
+über jedes endliche Wertesystem, ohne Grenzobjekt — die evolutive Richtung aus <a
+href="#i">§I</a>, die wählt, überschreitet beweisbar jeden Vorrat, aus dem sie wählen könnte.
+<strong>Der Deutungs-Sprung steht dabei ausdrücklich im Korpus:</strong> Kenogramm ist nicht
+Kontextur; die Lesung der <code>k</code>-wertigen Folgen als „k-wertiges System" hängt an der
+Brücke, die sie als Satz stützt, und die Ledger-Zeile des Satzes nennt den Sprung beim Namen
+(<strong>Deutung</strong>, markiert).</p>
+
+<h3>4 · Die Reichtums-Zählung: exponentiell viele, zwei erreichbar</h3>
+
+<div class="theorem">
+<p><span class="label">Satz (Bijektion).</span> Die lokal klassischen Operationen auf <code>Fin
+m</code> stehen in Bijektion zu den Wahlvektoren über den geordneten Paaren; ihre Zahl ist
+<code>2^C(m,2)</code>, für jedes <code>m</code>.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>CV.locallyClassicalEquiv</code>, <code>CV.card_locallyClassical</code>)</p>
+</div>
+
+<p>Die Bijektion ist konstruktiv in beide Richtungen: hin wird je Paar abgelesen, ob die
+Operation dort als Maximum wirkt — wohldefiniert, weil Minimum und Maximum an verschiedenen
+Stellen auseinanderfallen —, zurück baut der Wahlvektor die Operation, mit erzwungener
+Diagonale. „Lokal klassisch" ist damit nicht mehr blosse Eigenschaft, sondern
+<strong>Bauplan</strong>: eine Wahl je Elementarkontextur, nichts weiter. Auch die Randlagen
+tragen ohne Schranke: bei <code>m ≤ 1</code> gibt es keine Paare und genau eine Operation,
+<code>2^0 = 1</code>.</p>
+
+<div class="theorem">
+<p><span class="label">Satz (Erreichbarkeit).</span> Ab <code>m ≥ 4</code> sind von diesen genau
+zwei im Klon: Minimum und Maximum — als Mengengleichheit, mit <code>min ≠ max</code> als eigener
+Ungleichung.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>CV.clone_locallyClassical_eq</code>, <code>CV.min_ne_max</code>; beidseitig Konsum von E3.
+Bewusst keine Kardinalität über dem Klon-Prädikat — „im Klon liegen" ist nicht entscheidbar, und
+die Mengengleichheit braucht keine klassischen Instanzen)</p>
+</div>
+
+<div class="theorem">
+<p><span class="label">Satz (Wachstum).</span> Von Stufe zu Stufe wächst die Zahl echt; und ab
+<code>m ≥ 3</code> sind es mehr als zwei.<br>(<strong>bewiesen · Aggregat</strong>;
+<code>CV.card_locallyClassical_lt</code>, <code>CV.two_lt_card_locallyClassical</code> — die
+Schranken sind scharf: bei <code>m = 0</code> stehen beide Seiten des Wachstums auf 1, bei
+<code>m = 2</code> ist alles Vorhandene erzeugbar)</p>
+</div>
+
+<p>Die Staffel der Anfänge — bei zwei Werten kein Überschuss, bei drei acht gegen vier, ab vier
+<code>2^C(m,2)</code> gegen die konstante Zwei — ist die quantitative Gestalt von „wachsendem
+strukturellem Reichtum bei konstanter Erreichbarkeit". <strong>Dass sie das ist, ist
+Deutung</strong> und steht so markiert; bewiesen sind eine Bijektion, eine Kardinalität, eine
+Mengengleichheit und zwei Ungleichungen.</p>
+
+<h3>5 · Die zweite Begriffsstufe</h3>
+
+<p>Die vier Züge zusammen tragen eine Definition zweiter Stufe, die seit dieser Ausgabe in §6.3
+der Definitionenfassung steht — über <strong>Familien</strong> von Strukturen: jedes Glied
+formal-operativ polykontextural; Einbettungen, die den Zeugen erhalten; echtes Wachstum des
+Vorrats; an jedem Glied genau dieselben zwei benannten erreichbaren Operationen. Erfüllt von der
+Stufenfamilie der <code>Fin m</code> ab vier, mit vier Sätzen als Trägern. <strong>Nicht
+behauptet</strong> sind dort ausdrücklich: eine Erhaltung der vollen Signatur (die
+Paritätsobstruktion verbietet sie — die Erhaltungs-Klausel spricht darum vom Zeugen und nicht
+von der Signatur), ein Grenzobjekt, und die weltbildhafte Definition 6. Bewusst kein
+Lean-Bündel: eine Struktur mit vier <code>Prop</code>-Feldern, die kein Satz anfordert, wäre
+eine Umbenennung der Bibliothek — dieselbe Entscheidung, mit der das Projekt schon eine geplante
+Benennungsschicht hat entfallen lassen. Die Definition steht genau einmal und wird nicht
+gespiegelt — auch hier nicht; dies ist eine Beschreibung mit Fundstelle, kein zweiter Ort.</p>
+
+<h3>6 · Was das für Definition 6 heisst</h3>
+
+<p>Die Ledger-Zeile L06-1 — die starke, weltbildhafte Definition 6 — steht weiter auf
+<code>Offen</code>, jetzt mit vier Verweisen auf die Proben und weiterhin ohne Träger.
+<strong>Das ist das Ergebnis, nicht ein Ausstand:</strong> die Totalität („die Wirklichkeit als
+…") ist keine Struktureigenschaft, und was an Definition 6 Struktur ist, hat Sätze. Der einzige
+formale Weg zur Totalität wäre eine konstitutive Setzung; sie näherte die Definition nicht an,
+sie setzte sie, und sie wird nicht gegangen.</p>
+
+<!-- ===================================================================== -->
+<h2 id="vi">VI · Die Anwendungsschicht, und was an ihr gemessen ist</h2>
 
 <p>Zwei Anwendungen liegen vor: eine Freigabepolitik über vier Autorisierungsstufen und eine
 Quellenautorität über vier Evidenzstufen. Beide sind <strong>Aggregat</strong>.</p>
@@ -614,86 +842,76 @@ immer. Was er nicht sagt, ist, dass die Politik richtig sei.</p>
 <p><strong>Auf einem Verband gleichrangiger Rollen fällt die Schranke.</strong> Auf dem
 kleinsten nicht-distributiven Verband <code>M₃</code> — unten, drei unvergleichbare Elemente,
 oben — umfasst das binäre Klonfragment 166 Operationen, davon sind bei sieben vergleichbaren
-Paaren <strong>zehn lokal klassisch, und acht davon sind weder Infimum noch Supremum</strong>
-(<strong>gerechnet</strong>). Ein Zeuge ist hinzuschreiben: die Operation, die auf den unteren
-Kanten das Supremum und auf den oberen das Infimum wählt. Genau das Muster, das E3 auf linearen
-Skalen ausschliesst, ist hier zusammensetzbar.</p>
-
-<p><strong>Dieser Zeuge ist seit dem M3-Zug bewiesen und nicht mehr gerechnet.</strong>
-<code>Proemial.M3CloneWitness.m3_mixed_term_exists</code> zeigt den Term
-<code>(x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))</code> vor: lokal klassisch auf jedem vergleichbaren
-Paar, global weder Infimum noch Supremum. Mit ihm steht auch die Begriffsgrenze als Satz
-(<code>meet_leaves_incomparable</code>): auf einem unvergleichbaren Paar verlässt das Infimum
-die Zweiermenge, die damit keine Elementarkontextur ist. Die Klonzahlen des Absatzes davor
-bleiben ausserhalb des Korpus; in den Korpus geht die Existenzform.</p>
+Paaren zehn lokal klassisch, und acht davon sind weder Infimum noch Supremum
+(<strong>gerechnet</strong>). Der Zeuge ist seit dem <code>M₃</code>-Zug <strong>bewiesen und
+nicht mehr gerechnet</strong>: <code>M3CloneWitness.m3_mixed_term_exists</code> zeigt den Term
+<code>(x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))</code> vor — lokal klassisch auf jedem vergleichbaren
+Paar, global weder Infimum noch Supremum (<strong>bewiesen · Aggregat</strong>, choice-frei; der
+Träger ist ein eigener induktiver Typ, um jede Instanz-Zweideutigkeit auszuschliessen). Mit ihm
+steht die Begriffsgrenze als Satz (<code>meet_leaves_incomparable</code>, <a
+href="#ii">§II.4</a>). Genau das Muster, das E3 auf linearen Skalen ausschliesst, ist hier
+zusammensetzbar — die Klonzahlen bleiben ausserhalb des Korpus, in den Korpus ging die
+Existenzform.</p>
 
 <p>Ein Übergangsgraph benannter Rollen ohne Stufung wird von dieser Schranke
 <strong>nicht</strong> getragen; was dort beweisbar bleibt, ist Erreichbarkeit, und die leistet
 ein Typsystem auch.</p>
 
 <!-- ===================================================================== -->
-<h2 id="vi">VI · Der Ledger und das Register: die Begriffe und ihre Träger</h2>
+<h2 id="vii">VII · Der Ledger und das Register: die Begriffe und ihre Träger</h2>
 
 <p>Günthers Begriffe stehen in einer Definitionenfassung mit neunzehn Paragraphen. Die Frage,
-welcher Begriff welchen Lean-Träger hat, ist in dieser Ausgabe nicht mehr über den Fliesstext
-verteilt, sondern <strong>maschinell geprüft</strong>.</p>
+welcher Begriff welchen Lean-Träger hat, ist maschinell geprüft.</p>
 
-<p>Der Ledger führt <strong>79 Zeilen</strong>, davon <strong>63 mit Träger</strong> über 55
-verschiedene Trägernamen, und deckt <strong>19 von 19 Paragraphen</strong> ab
-(<strong>gemessen</strong>). Die Trägerstatus verteilen sich auf 45 Theoreme, 17 Definitionen,
-eine Setzung und <strong>16 offene Zeilen</strong>.</p>
+<p>Der Ledger führt <strong>91 Zeilen</strong>, davon <strong>75 mit Träger</strong> über
+<strong>67</strong> verschiedene Trägernamen, und deckt <strong>19 von 19 Paragraphen</strong>
+ab (<strong>gemessen</strong>; Revision 10). Die Trägerstatus verteilen sich auf <strong>57
+Theoreme, 17 Definitionen, eine Setzung und 16 offene Zeilen</strong>. Fünf Träger erscheinen in
+mehr als einer Zeile; die überzähligen Zeilen sind acht, und <code>75 − 67 = 8</code> ist als
+Gleichung geprüft. Dieser Satz stand fünf Revisionen lang falsch in der Selbstauskunft — „acht
+Träger mehrfach" statt „fünf Träger, acht überzählige Zeilen" —, und keine der acht Regeln
+konnte es sehen, weil sie Zeilen lesen und nicht Sätze über Zeilen; gefunden hat ihn die Regel,
+bei jeder berührten Zahl die Nachbarschaft mitzulesen.</p>
 
-<p><strong>Das Papier stellt diese Zuordnung nicht selbst her.</strong> Es zeigt den
-Mechanismus, der sie hält; die Tabelle steht in
-<a href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> und dort allein. Acht
+<p><strong>Das Papier stellt die Zuordnung nicht selbst her.</strong> Es zeigt den Mechanismus,
+der sie hält; die Tabelle steht in <a
+href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> und dort allein. Acht
 Regeln prüfen sie, sechs davon beim Doc-Lint und zwei beim Bau:</p>
 
 <ul>
   <li><strong>R1, R2</strong> (Bau): jeder genannte Träger löst in der Umgebung auf, und sein
-    Trägerstatus stimmt mit der Deklarationsart überein.</li>
+  Trägerstatus stimmt mit der Deklarationsart überein.</li>
   <li><strong>R3</strong> kein Zuordnungsstatus <code>Theorem</code> — ein Zuordnungsstatus ist
-    redaktionell und nie compilergeprüft, und darf sich nicht so nennen.</li>
+  redaktionell und nie compilergeprüft, und darf sich nicht so nennen.</li>
   <li><strong>R4</strong> Trägerstatus <code>Offen</code> erzwingt eine leere Trägerspalte.</li>
   <li><strong>R5</strong> alle neunzehn Paragraphen vertreten.</li>
   <li><strong>R6</strong> Trägerstatus <code>Theorem</code> erzwingt eine Wachenangabe.</li>
   <li><strong>R7</strong> jede Trägerzeile hat genau eine passende Referenz in der
-    Referenzdatei, und umgekehrt; eine verwaiste Referenz ist ebenso ein Verstoss wie eine
-    fehlende.</li>
-  <li><strong>R8</strong> jede Zeilen-ID kommt in beiden Dateien genau einmal vor.</li>
+  Referenzdatei, und umgekehrt.</li>
+  <li><strong>R8</strong> jede Zeilen-ID kommt in beiden Dateien genau einmal vor; die ID-Route
+  trägt seit dieser Ausgabe zweistellige Nummern, und die erste Zeile, die das braucht (L16-10,
+  die <code>k</code>-wertige Brücke), besteht.</li>
 </ul>
 
-<p>R3 bis R8 setzen den Exit-Code des Lints; ein Verstoss macht den Lauf rot. <strong>16 offene
-Zeilen bleiben offen</strong> — darunter die starke Definition 6 (L06-1) und die Wertbesetzung
-der Morphogramme (L16-6). Eine offene Zeile ist kein Mangel des Ledgers, sondern seine
-Leistung.</p>
+<p>R3 bis R8 setzen den Exit-Code des Lints. <strong>16 offene Zeilen bleiben offen</strong> —
+darunter die starke Definition 6 (L06-1, jetzt mit vier Verweisen). Eine offene Zeile ist kein
+Mangel des Ledgers, sondern seine Leistung.</p>
 
 <h3>Das Setzungsregister</h3>
 
-<p>Setzungen verschwinden nicht, sie werden registriert. Gemessen trägt das Aggregat
-<strong>32 Strukturfelder vom Typ <code>True</code></strong> (<strong>gemessen ·
-Aggregat</strong>), gezählt per Umgebungsabfrage und nicht per Textsuche. Sie zerfallen in zwei
-Klassen, die nicht dasselbe sagen:</p>
-
-<ul>
-  <li><strong>30 Platzhalter</strong> — eine verschobene Beweisschuld. Jeder braucht ein
-    Exit-Kriterium: was müsste vorliegen, damit er fällt.</li>
-  <li><strong>2 konstitutive Setzungen</strong> — kein Beweis-Soll, dafür eine Begründung,
-    warum keines besteht.</li>
-</ul>
-
-<p>Die tragende Regel lautet nicht „das Aggregat enthält keine Setzung", sondern <strong>kein
-Satz des Aggregats hängt an einer Setzung</strong>. Ein Feld vom Typ <code>True</code> kann in
-keinen Beweis eingehen; warum es dennoch markiert sein muss, ist ein epistemisches und kein
-logisches Argument: was im Aggregat steht, liest sich als zertifizierter Bestand.</p>
-
-<p>Dazu eine stehende Probe: <strong>keine Nicht-Projektion des Aggregats hat den Schluss
-<code>True</code></strong> (<strong>gemessen · Aggregat</strong>, Wert 0). Sie verhindert
-Deklarationen, deren Name mehr behauptet als ihre Aussage. Die Probe trägt ihre eigene
-Gegenrechnung: dieselbe Route meldet auf der Projektionsseite 32 — einen Wert, dessen Antwort
-bekannt ist.</p>
+<p>Setzungen verschwinden nicht, sie werden registriert. Die tragende Regel lautet nicht „das
+Aggregat enthält keine Setzung", sondern <strong>kein Satz des Aggregats hängt an einer
+Setzung</strong>. Ein Feld vom Typ <code>True</code> kann in keinen Beweis eingehen; warum es
+dennoch markiert sein muss, ist ein epistemisches und kein logisches Argument: was im Aggregat
+steht, liest sich als zertifizierter Bestand. Die Klassenteilung (Platzhalter mit Exit-Kriterium
+gegen konstitutive Setzungen mit Begründung) und die stehende Probe — keine Nicht-Projektion des
+Aggregats hat den Schluss <code>True</code>, Wert 0, mit bekannter Gegenrechnung auf der
+Projektionsseite — gelten unverändert. Am Erzeugungsstand nachgemessen und unverändert:
+<strong>30 Platzhalter und 2 konstitutive Setzungen</strong>, die Gleichung 32 = 30 + 2
+hält.</p>
 
 <!-- ===================================================================== -->
-<h2 id="vii">VII · Bewegung und Zeit</h2>
+<h2 id="viii">VIII · Bewegung und Zeit</h2>
 
 <p>Über dem Gewebe liegt eine modale Trias als Bewegungsvorrat: <strong>Verschiebung</strong> —
 dieselbe Struktur an anderer Stelle; <strong>Umordnung</strong> — dieselben Teile in anderer
@@ -710,11 +928,11 @@ der Wille — der dritte sagt das Gegenteil. Die drei schliessen sich zum Kreis
 
 <p><strong>Was die Architektur daraus macht, ist ein Differential und keine These.</strong>
 Bewiesen ist die arme Seite: in jeder transitiven, irreflexiven Relation — auf jedem Träger,
-ohne Ausnahme — ist ein Dreierzyklus unmöglich, und es gibt ebensowenig ein
-relationserhaltendes Bild eines solchen Zyklus in eine strikte Ordnung. Dass Denken, Wille und
-Zeit sich so verhalten, wird nicht behauptet; behauptet wird: <strong>wenn</strong> sie es tun,
-ist keine lineare Ordnung ihr Mass — und zwar nicht, weil bisher keine gefunden wurde, sondern
-weil keine existieren kann.</p>
+ohne Ausnahme — ist ein Dreierzyklus unmöglich, und es gibt ebensowenig ein relationserhaltendes
+Bild eines solchen Zyklus in eine strikte Ordnung. Dass Denken, Wille und Zeit sich so
+verhalten, wird nicht behauptet; behauptet wird: <strong>wenn</strong> sie es tun, ist keine
+lineare Ordnung ihr Mass — nicht, weil bisher keine gefunden wurde, sondern weil keine
+existieren kann.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -756,90 +974,70 @@ weil keine existieren kann.</p>
 </div>
 <figcaption><span class="fignum">Figur 5</span> — Die drei Mächtigkeitssätze von 1937 und ihr
 intransitiver Kreis. Bewiesen ist nicht der Kreis, sondern seine Unmöglichkeit in jeder
-transitiven, irreflexiven Relation (<strong>bewiesen · Aggregat</strong>).</figcaption>
+transitiven, irreflexiven Relation (bewiesen · Aggregat).</figcaption>
 </figure>
 
 <h3>Die Träger dieses Abschnitts</h3>
 
 <p>Der tragende Satz des Mächtigkeitszyklus ist
-<code>Proemial.IntransitivityDifferential.no_cycle_in_strict_order</code>
-(<strong>bewiesen · Aggregat</strong>, Profil <strong>axiomfrei</strong>): in jeder transitiven,
-irreflexiven Relation ist ein Dreierzyklus unmöglich. Dass ein solcher Zyklus auch kein
-relationserhaltendes Bild in eine strikte Ordnung hat, trägt
-<code>cyc3_not_representable</code> (<strong>bewiesen · Aggregat</strong>,
-<code>[propext]</code>); dass der Zyklus selbst besteht, tragen <code>cyc3_holds</code>,
-<code>cyc3_irrefl</code> und <code>cyc3_not_transitive</code> (dieselben Marken). Alle sechs
-Sätze sind gewacht.</p>
+<code>Proemial.IntransitivityDifferential.no_cycle_in_strict_order</code> (<strong>bewiesen ·
+Aggregat</strong>, Profil <strong>axiomfrei</strong>). Dass ein solcher Zyklus auch kein
+relationserhaltendes Bild in eine strikte Ordnung hat, trägt <code>cyc3_not_representable</code>
+(<code>[propext]</code>); dass der Zyklus selbst besteht, tragen <code>cyc3_holds</code>,
+<code>cyc3_irrefl</code> und <code>cyc3_not_transitive</code>. Alle sechs Sätze sind gewacht.
+Der fehlende Richtungstausch ist <code>Proemial.NoUniformSwap.no_uniform_swap</code>
+(<code>[propext, Classical.choice, Quot.sound]</code>; der Choice-Anteil stammt aus der
+Kategorien-Maschinerie und nicht aus eigener Beweisführung). <strong>Der volle Name mit Modul
+ist keine Pedanterie:</strong> ein Satz gleichen Namens liegt in einem Rufe-Target, ungewacht,
+als historischer Beleg — wer den Namen ohne Modul nennt, lässt offen, welchen er meint, und die
+zweite Achse läuft leer.</p>
 
-<p>Der fehlende Richtungstausch ist <code>Proemial.NoUniformSwap.no_uniform_swap</code>
-(<strong>bewiesen · Aggregat</strong>, <code>[propext, Classical.choice, Quot.sound]</code>,
-gewacht; der Aufruf von <code>Classical.choice</code> stammt aus der Kategorien-Maschinerie und
-nicht aus eigener Beweisführung). <strong>Der volle Name mit Modul ist hier keine
-Pedanterie:</strong> ein Satz gleichen Namens liegt in <code>Diagnostics.SwapSatzProbe</code> —
-Bereich <strong>Rufe-Target</strong>, ungewacht, im Korpus als historischer Beleg geführt. Wer
-den Namen ohne Modul nennt, lässt offen, welchen der beiden er meint, und die zweite Achse läuft
-leer.</p>
-
-<p>Die modale Trias liegt an zwei Orten. Dieser Abschnitt stützt sich auf
-<code>F3e.ModalTwoCategoryWithPullbacks</code> (<strong>Aggregat</strong>); eine Fassung im
-eingefrorenen Zweig (<code>PathC.ModalTwoCategory</code>,
-<code>PathC.ModalTwoCategoryNegation</code>) bleibt ausserhalb der Default-Targets und trägt hier
-nichts.</p>
+<p>Neu anschliessbar, ohne hier mehr zu behaupten: die Paritätsobstruktion aus <a
+href="#v">§V.2</a> ist derselben Gattung — eine Unmöglichkeit der Richtungsübertragung,
+allquantifiziert über alle Kandidaten, mit bewiesener Möglichkeitshälfte daneben. Das
+intransitive 1937-Motiv und das stufenrelative Umtauschverhältnis sind zwei Gestalten desselben
+Befunds: <strong>Günthers Strukturen widersetzen sich der Einbettung in ein einziges lineares
+Mass — und das ist beweisbar, nicht programmatisch.</strong></p>
 
 <!-- ===================================================================== -->
-<h2 id="viii">VIII · Die Sicherungen: Wachen, Profile, Bereiche</h2>
+<h2 id="ix">IX · Die Sicherungen: Wachen, Profile, Bereiche</h2>
 
 <p>Eine Architektur, die Unmöglichkeiten behauptet, muss sagen können, worauf ihre Beweise ruhen
 — und verhindern, dass sich das still ändert.</p>
 
 <h3>Der Stand</h3>
 
-<div class="tablewrap stand">
+<div class="tablewrap">
 <table>
-<thead><tr><th>Kenngrösse</th><th class="num">Wert</th><th>Bereich</th></tr></thead>
+<thead><tr><th>Kenngrösse</th><th>Wert</th><th>Bereich</th></tr></thead>
 <tbody>
-<tr><td>geprüft (AxiomGate)</td><td class="num"><strong>3018</strong> Konstanten</td><td>Importbaum von <code>Reformulation</code>, namensgefiltert</td></tr>
-<tr><td>Axiom-Wachen, geschrieben</td><td class="num"><strong>396</strong> in 45 Dateien</td><td><code>Reformulation/</code> <strong>und</strong> <code>Foreign/</code></td></tr>
-<tr><td>Axiom-Wachen, erzwungen</td><td class="num"><strong>386</strong> in 44 Dateien</td><td>Import-Hülle der fünf Default-Targets</td></tr>
-<tr><td>Statement-Pins</td><td class="num"><strong>44</strong></td><td><code>Reformulation/</code></td></tr>
-<tr><td>Sätze</td><td class="num"><strong>726</strong></td><td><code>Reformulation/</code> allein</td></tr>
-<tr><td><code>def</code></td><td class="num"><strong>318</strong></td><td><code>Reformulation/</code></td></tr>
-<tr><td>Build-Jobs</td><td class="num"><strong>1301</strong></td><td>die fünf Default-Targets zusammen</td></tr>
-<tr><td>Dateien</td><td class="num"><strong>163</strong>, davon 160 <code>.lean</code></td><td><code>Reformulation/</code> und <code>Foreign/</code></td></tr>
-<tr><th>ausgewiesene Lücken</th><td class="num"><strong>0</strong></td><td>Whitelist leer</td></tr>
+<tr><td>geprüft (AxiomGate)</td><td><strong>3255</strong> Konstanten</td><td>Importbaum von <code>Reformulation</code>, namensgefiltert</td></tr>
+<tr><td>Axiom-Wachen, geschrieben</td><td><strong>470</strong> in 51 Dateien</td><td><code>Reformulation/</code> <strong>und</strong> <code>Foreign/</code></td></tr>
+<tr><td>Axiom-Wachen, erzwungen</td><td><strong>460</strong></td><td>Import-Hülle der fünf Default-Targets</td></tr>
+<tr><td>Sätze</td><td><strong>792</strong></td><td><code>Reformulation/</code> allein, geweitete Route</td></tr>
+<tr><td>Build-Jobs</td><td><strong>1307</strong></td><td>die fünf Default-Targets zusammen</td></tr>
+<tr><td>ausgewiesene Lücken</td><td><strong>0</strong></td><td>Whitelist leer</td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>Zur Satzzahl gehört eine Warnung.</strong> Sie vergleicht sich nicht mit der Zahl der
-vorigen Ausgabe: dort stand eine Zahl über einen anderen Bereich, und die Zählroute ist seither
-geweitet worden — sie verfehlte zuvor dreizehn <code>private</code>-Deklarationen und sechs mit
-Attribut und zählte drei Zitate mit. Zwischen den beiden Zahlen liegen zwei Änderungen, und ein
-Nebeneinander zeigte einen Zuwachs, den keine von beiden behauptet.</p>
+<p>Die Wachen-Gleichung hält: 470 geschrieben = 460 erzwungen + 10 in
+<code>Foreign/PeresMermin.lean</code>. Die Satzzahl ist mit der Rev2-Zahl 726
+<strong>vergleichbar</strong> — dieselbe, seit Rev2 geweitete Route; der Zuwachs sind die Sätze
+der vier Aufstiegs-Züge und der Werkzeug-Züge dieses Blocks. Kenngrössen, die seit
+<code>e5ef3d7</code> nicht neu gemessen wurden — Statement-Pins, <code>def</code>-Zahl,
+Profilverteilung, Import-Hüllen-Karte, Klonbau-Replizierbarkeit —, stehen in dieser Ausgabe
+<strong>nicht</strong> mit neuem Stand; wo Rev2 sie führt, gelten sie dort, am dort genannten
+Commit. Ihr Stand-Anker ist damit <code>e5ef3d7</code>, sichtbar in der <a
+href="rev2/de.html">Fassung Rev2</a>; neu gemessen ist keine von ihnen.</p>
 
 <h3>Die vier Mechanismen</h3>
 
 <p><strong>Erstens, die Axiomwachen.</strong> Zu jedem tragenden Satz wird das Axiomprofil
 gemessen und als Erwartung eingefroren; verschiebt sich die Beweisbasis still, bricht der Bau.
-Die Wache sichert die Basis, nicht den Wortlaut. Die Profilverteilung über alle 396 geschriebenen
-Wachen (<strong>gemessen</strong>):</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>Profil</th><th class="num">Wachen</th></tr></thead>
-<tbody>
-<tr><td><code>[propext, Quot.sound]</code></td><td class="num">183</td></tr>
-<tr><td><code>[propext]</code></td><td class="num">84</td></tr>
-<tr><td><strong>axiomfrei</strong></td><td class="num"><strong>66</strong></td></tr>
-<tr><td><code>[propext, Classical.choice, Quot.sound]</code></td><td class="num">61</td></tr>
-<tr><td><code>[Quot.sound]</code></td><td class="num">2</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Die <strong>66</strong> beantwortet „wie viele der gewachten Profile sind axiomfrei" und
-nicht „wie viele Sätze des Korpus sind axiomfrei"; die Bezugsgrösse 396 gehört daneben.
-<code>Classical.choice</code> erscheint in 61 Profilen — nicht verboten, aber ausgewiesen.</p>
+Die Wache sichert die Basis, nicht den Wortlaut. Seit diesem Block gilt die
+Datei-Vollständigkeit auch für Definitionen und Instanzen, deren Wert Beweisterme enthält — mit
+gemessener Begründung, nicht aus Vorsicht.</p>
 
 <p><strong>Zweitens, die Statement-Pins.</strong> Wachen sichern die Basis, nicht die
 Formulierung; ein geschwächter Satz mit gleichem Profil käme durch. Pins nageln den vollen
@@ -847,96 +1045,54 @@ Wortlaut fest und brechen den Bau bei Definitionsdrift.</p>
 
 <p><strong>Drittens, das globale Gate.</strong> Es meldet:</p>
 
-<pre><code>AXIOM-GATE GRÜN — Aggregat Reformulation (3018 geprüfte Konstanten)
+<pre><code>AXIOM-GATE GRÜN — Aggregat Reformulation (3255 geprüfte Konstanten)
 zieht kein sorryAx. Whitelist leer.</code></pre>
 
-<p><strong>Viertens, und in dieser Ausgabe neu: die Bereichstrennung.</strong> Fünf Targets bauen
-auf <code>lake build</code>; fünf weitere laufen nur auf eigenen Ruf. Die Zusicherung des Gates
-gilt für das Aggregat und für keinen anderen Bereich.</p>
+<p><strong>Viertens, die Bereichstrennung.</strong> Fünf Targets bauen auf <code>lake
+build</code>; fünf weitere laufen nur auf eigenen Ruf. Die Zusicherung des Gates gilt für das
+Aggregat und für keinen anderen Bereich; die Target-Tafel samt der Warnung, dass Bauausgaben
+nicht zu summieren sind, steht in Rev2 und gilt fort.</p>
 
-<div class="tablewrap">
-<table>
-<thead><tr><th>Target</th><th class="num">Jobs</th><th>Default</th></tr></thead>
-<tbody>
-<tr><td><code>Reformulation</code></td><td class="num">1274</td><td>ja</td></tr>
-<tr><td><code>AxiomGate</code></td><td class="num">1275</td><td>ja</td></tr>
-<tr><td><code>DefinitionLedger</code></td><td class="num">1275</td><td>ja</td></tr>
-<tr><td><code>Probes</code></td><td class="num">1212</td><td>ja</td></tr>
-<tr><td><code>F1Coalgebraic</code></td><td class="num">671</td><td>ja</td></tr>
-<tr><td><code>ForeignPeresMermin</code></td><td class="num">677</td><td>nein</td></tr>
-<tr><td><code>Diagnostics</code></td><td class="num">1506</td><td>nein</td></tr>
-<tr><td><code>MathlibExtensions</code></td><td class="num">1289</td><td>nein</td></tr>
-<tr><td><code>PreC</code></td><td class="num">1242</td><td>nein</td></tr>
-<tr><td><code>PathC</code></td><td class="num">1388</td><td>nein</td></tr>
-<tr><th><code>lake build</code> ohne Argument</th><td class="num"><strong>1301</strong></td><td>die fünf zusammen</td></tr>
-</tbody>
-</table>
-</div>
+<h3>Die gemessene Axiomherkunft — neu als Praxis, viermal gefahren</h3>
 
-<p><strong>Diese Tafel ist nicht zu addieren, und sie zeigt selbst, warum.</strong> Die fünf
-Default-Targets summieren sich auf 5707 Jobs; der gemeinsame Bau braucht 1301. Der Faktor 4,4
-ist die Überlappung der Import-Hüllen. Wer Bauausgaben mehrerer Targets summiert, zählt Module
-mehrfach.</p>
+<p>Ein Profil zu messen ist billig; zu sagen, <em>woher</em> ein Axiom kommt, ist eine zweite
+Messung, und sie hat seit diesem Block eine Form: <strong>zwei Fassungen, die sich in genau
+einer Grösse unterscheiden.</strong> Vier Befunde (<strong>gemessen</strong>, je mit Muss- und
+Darf-nicht-Fall):</p>
+
+<ul>
+  <li><code>Monotone.map_max</code> zieht <code>Classical.choice</code> in jeden Konsumenten;
+  die Vermeidung über die Wertroute liess vier Sätze choice-frei.</li>
+  <li>Die <code>omega</code>-Hülle einer Definition vererbt sich an ihre Nenner: gemessen am
+  Differential der Negation gegen eine Handfassung mit <strong>identischem Wert</strong> und
+  anderer Schrankenbegründung — gleiche Werte, verschiedene Profile.</li>
+  <li>Die <code>==</code>-Konversion auf <code>Fin</code> zieht <code>Classical.choice</code>
+  über die <code>LawfulBEqOrd</code>-Instanzkette; die <code>ite</code>-Fassung derselben
+  Bijektion ist frei — gemessen an derselben Datei, nur die Konversion getauscht. Ohne diese
+  Messung hätte ein Choice-Profil an der Bijektion plausibel ausgesehen und wäre falsch verortet
+  gewesen.</li>
+  <li>In der Zählschicht sitzt das Axiom in der <code>Fintype</code>-Maschinerie selbst — schon
+  die Instanz und <code>Fintype.card_fin</code> tragen es, <code>Fintype.card_congr</code> ist
+  die freie Übergangskonstante. Daraus eine Trennlinie mit Kriterium statt einer Aufzählung:
+  <strong>jede Aussage der Datei, die eine <code>Fintype.card</code> nennt, trägt
+  <code>Classical.choice</code>; keine, die es nicht tut, trägt es.</strong></li>
+</ul>
+
+<p>Gemessen sind dabei stets Profile und Trennlinien; <strong>nicht</strong> gemessen ist der
+Weg des Axioms in den Term — die Dateiköpfe sagen beides, in dieser Reihenfolge.</p>
 
 <h3>Was ein fremder <code>grep</code> findet</h3>
 
 <p>Wer im Baum nach <code>sorry</code> sucht, findet drei Zahlen, und jede beantwortet eine
-andere Frage (<strong>gemessen</strong>): <strong>123</strong> rohe Wortvorkommen über den ganzen
-verfolgten Bestand, <strong>95</strong> in den Lean-Quellen, <strong>27</strong> betroffene
-Deklarationen in acht Dateien. Die dritte ist die tragende; die ersten beiden zählen Prosa mit —
-Einfriervermerke, Doc-Strings, die Wendung „sorry-frei".</p>
-
-<p>Innerhalb der Lean-Quellen verteilen sich die 95 auf <code>PathC/</code> 53,
-<code>Proemial/</code> 27, <code>Reformulation/</code> 5, <code>Diagnostics/</code> 5,
-<code>F3e/</code> 4, <code>F3f/</code> 1.</p>
-
-<p><strong>Zum eingefrorenen Zweig gehören zwei Sätze, und beide sind wahr.</strong> Das Target
-<code>PathC</code> baut grün, 1388 Jobs — und genau ein Modul des Zweiges liegt in keiner
-Target-Wurzel und übersetzt nicht. <strong>Keine der beiden Aussagen ist eine
-Lückenfreiheitszusage:</strong> grün heisst hier <em>übersetzt</em>, nicht <em>lückenfrei</em>,
-und für ein Rufe-Target gibt es kein AxiomGate. Derselbe Zweig trägt 53 der 95 Vorkommen.</p>
-
-<h3>Replizierbarkeit</h3>
-
-<p>Ein grüner Bau im Arbeitsverzeichnis sagt „grün bei mir". Gemessen ist mehr: aus einem
-frischen, anmeldungsfreien Klon des öffentlichen Standes baut der Baum in 39 Sekunden grün
-durch, <strong>126 Module gebaut und 0 wiedereingespielt</strong>, mit derselben Gate-Zeile und
-leerer Whitelist (<strong>gemessen</strong>). Es ist ein wirklicher Bau und kein Abspielen eines
-Zwischenstands.</p>
-
-<p>Die Zahl 126 ist zugleich der Umfang der Import-Hülle der fünf Default-Targets, aus den
-<code>import</code>-Zeilen gerechnet. <strong>Beide Listen sind als Menge verglichen und
-gleich</strong> — der <code>diff</code> der sortierten Modulnamen ist leer
-(<strong>gemessen</strong>). Die zwei Wege teilen keinen Schritt: der eine liest Quelltext und
-folgt <code>import</code>-Zeilen transitiv, der andere liest die Bauausgabe eines frischen
-Klons.</p>
-
-<p>Die Bereichskarte über alle 161 Projektmodule (<strong>gemessen</strong>):</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>Bereich</th><th class="num">Module</th></tr></thead>
-<tbody>
-<tr><td>Aggregat</td><td class="num">126</td></tr>
-<tr><td>Rufe-Target</td><td class="num">34</td></tr>
-<tr><td>von keinem Target erfasst</td><td class="num">1</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Quer dazu liegen 18 Module im eingefrorenen Zweig; zwei davon werden über ein Rufe-Target
-gebaut, und eines wird von keinem Target erreicht — es ist dasselbe Modul, das nicht übersetzt.
-<strong>Der Bereich ist nicht am Verzeichnis abzulesen:</strong> das Target des eingefrorenen
-Zweiges erreicht sechs Module unter <code>MathlibExtensions/</code>, die über ihr eigenes Target
-grün bauen und nicht eingefroren sind.</p>
-
-<p>Dass die zehn nicht erzwungenen Wachen sämtlich in einer Datei ausserhalb der Hülle liegen,
-ist der Grund, warum „erzwungen = 386" über die <strong>Hüllenroute</strong> und nicht über die
-Verzeichnisgrenze begründet wird: dass beide heute denselben Wert liefern, ist eine Koinzidenz
-und keine Identität.</p>
+andere Frage (<strong>gemessen</strong>): <strong>132</strong> rohe Wortvorkommen über den
+ganzen verfolgten Bestand, <strong>97</strong> in den Lean-Quellen, <strong>27</strong>
+betroffene Deklarationen — sämtlich ausserhalb des Aggregats. Die dritte ist die tragende; die
+ersten beiden zählen Prosa mit — Einfriervermerke, Doc-Strings, die Wendung „sorry-frei". Der
+eingefrorene Zweig <code>PathC/</code> bleibt eingefroren, mit denselben Auftaubedingungen; grün
+heisst dort <em>übersetzt</em>, nicht <em>lückenfrei</em>.</p>
 
 <!-- ===================================================================== -->
-<h2 id="ix">IX · Die Instrumente als eigener Gegenstand</h2>
+<h2 id="x">X · Die Instrumente als eigener Gegenstand</h2>
 
 <p>Neben den Theoremen ist etwas entstanden, das von Günther nichts weiss und weiterreisen
 könnte: eine Prüfpraxis für die Formalisierung philosophischer Texte. Wer einen Denker
@@ -946,75 +1102,74 @@ mehr als das Theorem. Gegen dieses Gefälle helfen keine Vorsätze, nur Mechanis
 
 <h3>Regeln, jede aus einem Fehlgriff</h3>
 
-<ol>
-  <li><strong>Zuerst den Satz suchen, dann nur so viel Träger bauen, wie der Satz
-    verlangt.</strong> Eine Grundschicht, die kein Satz anfordert, ist eine Umbenennung der
-    Bibliothek.</li>
-  <li><strong>Ein Probebau vor jeder Spezifikation, in der Zielumgebung.</strong></li>
-  <li><strong>Die Spezifikation nennt Ziel, Auflagen und Fallstricke — nicht die
-    Verschaltung.</strong></li>
-  <li><strong>Spezifikationen werden ebenfalls begutachtet, nicht nur Baue.</strong></li>
-  <li><strong>Eine Zählroute, die Prosa als Kriterium nimmt, ist eine Zeitbombe.</strong></li>
-  <li><strong>Aggregat heisst setzungsfrei.</strong> Eine Datei kommt in den zertifizierten
-    Bestand, wenn sie keine Setzung trägt — nicht, wenn der Aufwand klein ist.</li>
-  <li><strong>Der Titel überholt das Theorem.</strong></li>
-  <li><strong>Eine Route wird gegengerechnet, bevor ihr Ergebnis in ein Dokument geht</strong> —
-    an einem Fall, dessen Antwort aus dem Quelltext bekannt ist.</li>
-  <li><strong>Eine Messprobe prüft eine Gleichung, nicht eine Zahl.</strong></li>
-  <li><strong>Wertgleichheit zweier Routen ist kein Beleg für Mengengleichheit.</strong>
-    Gemessen: zwei Routen lieferten beide 49 und hatten keine Zeile gemeinsam.</li>
-  <li><strong>Bauausgaben mehrerer Targets werden nicht summiert.</strong></li>
+<p>Die elf Regeln der Rev2 gelten fort — von „zuerst den Satz suchen, dann nur so viel Träger
+bauen, wie der Satz verlangt" bis „Bauausgaben mehrerer Targets werden nicht summiert". Dieser
+Block hat vier hinzugefügt:</p>
+
+<ol start="12">
+  <li><strong>Eine Route trägt Muss- und Darf-nicht-Fall, und ihre Namensgrenze ist eine
+  Zeichenklasse, kein Doppelpunkt</strong> — der Doppelpunkt ist eine Annahme über die
+  Binderform des Baus, keine Prüfung. Dreimal in Folge verletzt, je anders; die Schärfung des
+  zweiten Fehlers war selbst der dritte.</li>
+  <li><strong>Die Vorgaben einer Spezifikation werden gegeneinander geprüft, nicht nur je für
+  sich.</strong> Zwei einzeln richtige Festlegungen können zusammen etwas erzwingen, das keine
+  verlangt — dreimal geschehen, mit steigenden Kosten: erst eine Linter-Ausnahme, dann eine
+  Nicht-Bauentscheidung, dann ein Axiom im Profil.</li>
+  <li><strong>Eine Bestandsangabe ist ein Zeiger, keine Liste.</strong> Aufzählende Angaben ohne
+  Route veralten still; in einem Block wurden vier Klassen davon durch Zeiger ersetzt, darunter
+  neunzehn gleichgebaute in einer einzigen Datei.</li>
+  <li><strong>Aussagen über die Erreichbarkeit eines Ortes sind Schreibproben, keine Folgerungen
+  aus leeren Suchergebnissen.</strong> Ein fehlendes Ergebnis sieht aus wie eine Auskunft;
+  zweimal war es keine.</li>
 </ol>
+
+<p>Die <strong>Werkzeugketten-Fallstricke</strong> sind um zwei gewachsen und im Korpus
+abgelegt: ein nicht aufgelöster Typname wird unter mildem Auto-Binding stillschweigend zur
+Variablen, und die Folgemeldungen zeigen auf gesunde Stellen (Gegenprobe: <code>#check</code>
+auf den blossen Namen); und <code>#print axioms</code> bricht seine Ausgabe an der Summe aus
+Namens- und Profillänge um — gemessen daran, dass ein längerer Name mit kürzerem Profil
+<strong>nicht</strong> bricht.</p>
 
 <h3>Der Lint</h3>
 
-<p>Ein Doc-Lint prüft drei Gruppen über Markdown und Lean-Quellen. Gruppe (A) sucht
-Rangansprüche und <strong>meldet</strong> — derzeit 38 Treffer, jeder einzeln beurteilt, keiner
-mit einer Bezugsmenge ausserhalb des eigenen Bestands. Gruppe (B) sucht einen bestimmten
-begrifflichen Rückfall in der Nähe von Mengenlehre-Stichworten und meldet 0. Gruppe (C) prüft
-die Ledger-Regeln R3 bis R8 und <strong>setzt den Exit-Code</strong>.</p>
-
-<div class="callout">
-<p><strong>Nachtrag vom 2. August 2026.</strong> Die hier genannten Lintzahlen sind am Commit
-<code>e5ef3d7</code> gemessen und mit der damals geltenden Route exakt reproduzierbar. Die
-Route ist seither in drei Punkten korrigiert worden: sie war fallempfindlich, ihre deutschen
-Stichwörter trafen keine transliterierten Schreibweisen, und sie las die HTML-Fassungen nicht.
-Die Trefferzahl der Gruppe (A) ist darum eine untere Schranke und keine Zählung gewesen. Die
-Null der Gruppe (B) war ein Artefakt der Route; seit der Korrektur ist sie eine Zählung, und
-ihr Grund lässt sich nennen: im gesamten Prüfbereich steht genau eine Zeile, in der das
-bewachte Stichwort überhaupt vorkommt, und es ist die Zeile, die den Lint beschreibt. Gruppe
-(B) ist damit eine Wache ohne Gegenstand. Das ist ihre Arbeit, aber es ist kein Beleg.</p>
-</div>
-
-<p>Die Aufteilung ist Absicht: ein Ranganspruch will gelesen und nicht erzwungen werden — ein
-brechender Lint wird umgangen, ein meldender wird gelesen. Ein Widerspruch zwischen Tabelle und
-Referenzdatei dagegen ist objektiv falsch, und wer ihn stehen lässt, veröffentlicht eine
-ungeprüfte Tabelle.</p>
+<p>Der Doc-Lint prüft unverändert drei Gruppen: die Rangansprüche der Gruppe (A) werden gelesen,
+nicht erzwungen — ein brechender Lint wird umgangen, ein meldender wird gelesen —, Gruppe (B)
+bewacht einen begrifflichen Rückfall, die Ledger-Gruppe (C) setzt den Exit-Code. Am
+Erzeugungsstand gemessen: <strong>(A) 49 laufende Treffer und 4 in den eingefrorenen
+<code>rev1/</code>- und <code>rev2/</code>-Fassungen, (B) 0, (C) 0</strong> — der Lint läuft
+grün. Sechs der laufenden Treffer stehen in dieser Ausgabe selbst: eine Route, deren Suchwort in
+Prosa vorkommt, zählt ihre eigene Dokumentation mit.</p>
 
 <h3>Die Fehlerliste</h3>
 
 <p><strong>Der Beleg dafür, dass die Prüfschichten beissen, ist die Fehlerliste</strong> — und
-sie wird fortgeschrieben, nicht gekürzt. Aus dem Block, der zu dieser Ausgabe führte:</p>
+sie wird fortgeschrieben, nicht gekürzt. Die Liste der Rev2 gilt fort; aus dem Block, der zu
+dieser Ausgabe führte, unter anderem:</p>
 
 <ul>
-  <li>Eine Route mit <code>\b</code> in einer Werkzeugbetriebsart, die Wortgrenzen nicht führt:
-    Ergebnis 0 statt 153. Kein falsches Ergebnis, sondern ein leeres — und ein leeres sieht aus
-    wie eine gute Nachricht.</li>
-  <li>Eine Zählung mit <code>grep -c</code>, die Zeilen statt Vorkommen zählt: ein über einen
-    Zeilenumbruch laufender Treffer fiel heraus, fünf statt sechs.</li>
-  <li>Eine Anleitung im Imperativ, gelesen als Zustandsbeschreibung: „geht ohne weiteres Zutun
-    live" stand unter der Überschrift „Einschalten".</li>
-  <li>Eine Route, die vor und nach einem Zustandswechsel dasselbe meldet und den Wechsel darum
-    nicht misst — ihr Ergebnis war zufällig richtig. Getragen hat den Befund die zweite Route.
-    Wer zwei Routen führt, überlebt den Ausfall einer.</li>
-  <li>Eine Herkunftsangabe für zwei Zahlen, die auf das falsche Dokument zeigte.</li>
-  <li>Fünf geschätzte statt sechzehn gezählte Vorkommen eines Namens.</li>
+  <li>Eine Selbstauskunft trug fünf Revisionen lang „acht Träger mehrfach", wo fünf Träger acht
+  überzählige Zeilen erzeugen — zwei Grössen mit demselben Wert, die Prosa hängte den Namen an
+  die falsche.</li>
+  <li>Eine Erklärung stand als „am Term ablesbar", bevor sie abgelesen war; die Messung mit
+  Differential hat sie dann getragen — und an anderer Stelle eine zweite Erklärung widerlegt,
+  die ohne Messung plausibel ausgesehen hätte.</li>
+  <li>Eine Spezifikation schrieb eine Konversionsform vor und prüfte zugleich deren benannte
+  Ausweichroute auf null; das Axiom im Profil war damit von der Spezifikation gesetzt, nicht vom
+  Beweis. Die dritte, ungenannte Route war frei — gefunden von der Begutachtung, gemessen vom
+  Bau, genommen.</li>
+  <li>Eine Ortsangabe („nur von Hand erreichbar") beruhte auf einem leeren Suchergebnis; die
+  Schreibprobe widerlegte sie.</li>
+  <li>Ein erster Rechenlauf lieferte ein plausibles Alles-Falsch aus einer Symbolkollision; die
+  Handrechnung widersprach, der Lauf wurde verworfen und neu gefahren — festgehalten, weil ein
+  plausibles leeres Ergebnis das gefährlichste ist.</li>
 </ul>
 
-<p><strong>Keiner dieser Fehler wurde von der Instanz gefunden, die ihn gemacht hat.</strong></p>
+<p><strong>Keiner dieser Fehler wurde von der Instanz gefunden, die ihn gemacht hat.</strong>
+Der Satz stand so in Rev2, und dieser Block hat ihn nicht widerlegt, sondern in beide Richtungen
+bestätigt.</p>
 
 <!-- ===================================================================== -->
-<h2 id="x">X · Reichweite und Grenze</h2>
+<h2 id="xi">XI · Reichweite und Grenze</h2>
 
 <p>Was diese Architektur behauptet, ist bedingt und wird als bedingt geführt. Sie verspricht
 nicht, den Skeptiker zur Anerkennung einer Irreduzibilität zu zwingen; sie verspricht, ihn zu
@@ -1024,18 +1179,16 @@ selbst eine Setzung ist und als solche keinen Vorrang mehr hat.</p>
 
 <h3>Die drei Grenzen</h3>
 
-<p><strong>Erstens, mathematisch: <code>M₃</code>.</strong> Die Charakterisierung lebt auf linear
-gestuften Trägern und fällt auf Verbänden gleichrangiger Elemente. Das ist keine Beweislücke,
-sondern ein Gegenbeispiel — und die Bruchstelle ist genau die Verbandsform, die eine Architektur
-gleichrangiger Rollen hätte. Seit dem M3-Zug ist das Gegenbeispiel selbst ein Satz
-(<code>M3CloneWitness.m3_mixed_term_exists</code>): die Grenze steht auf demselben Grund wie
-das, was sie begrenzt. Dass damit „die Charakterisierung auf Verbänden fällt", bleibt Lesart —
-E3 ist auf linear geordneten Trägern formuliert, eine Verbandsfassung von E3 gibt es nicht.</p>
+<p><strong>Erstens, mathematisch: <code>M₃</code>.</strong> Die Charakterisierung lebt auf
+linear gestuften Trägern und fällt auf Verbänden gleichrangiger Elemente. Das ist keine
+Beweislücke, sondern ein Gegenbeispiel — und seit dem <code>M₃</code>-Zug steht es auf demselben
+Grund wie das, was es begrenzt. Dass damit „die Charakterisierung auf Verbänden fällt", bleibt
+Lesart: E3 ist auf linear geordneten Trägern formuliert, eine Verbandsfassung von E3 gibt es
+nicht.</p>
 
 <p><strong>Zweitens, hermeneutisch: die Identifikation.</strong> Dass die zweielementige
 Wertmenge Günthers Elementarkontextur <em>ist</em>, entscheidet kein Theorem. Die Setzung steht
-auf begründetem Boden — Abgeschlossenheit unter den lokalen Operationen ist ein sachlicher Grund
-— bleibt aber eine Wahl.</p>
+auf begründetem, seit dem <code>M₃</code>-Zug satzgestütztem Boden — und bleibt eine Wahl.</p>
 
 <p><strong>Drittens, grundsätzlich: die Spontaneität des Vollzugs.</strong> Nicht der Wille als
 Funktion, sondern allein das <em>Dass</em> des Vollzugs ist kein Strukturmerkmal; es gibt kein
@@ -1045,100 +1198,84 @@ Funktion, sondern allein das <em>Dass</em> des Vollzugs ist kein Strukturmerkmal
 
 <p>Die <strong>proemiale Relation</strong> — der Kern von Günthers Theorie — ist nicht
 formalisiert. Die <strong>Verbundkontextur</strong> liegt als Zahlenfolge vor und ist nicht als
-Begriff gebaut. Die starke <strong>Definition 6</strong> ist offen und wird als offen geführt.
-Die <strong>Wertbesetzung der Morphogramme</strong> ist eine offene Ledger-Zeile.
-<strong>Sechzehn Ledger-Zeilen</strong> stehen auf <code>Offen</code>, und sie sollen dort
-stehen bleiben, solange kein Träger sie trägt.</p>
+Begriff gebaut — wobei ihr Exponent <code>C(m,2)</code> seit dieser Ausgabe ein Satz ist. Die
+<strong>Totalität der Definition 6</strong> ist offen und wird als offen geführt; ihre beiden
+Strukturklauseln haben Sätze, und die Grenzspalte der offenen Zeile nennt sie. Ein
+<strong>Grenzobjekt des Aufstiegs</strong> ist weder gebaut noch behauptet noch ausgeschlossen;
+das gerichtete System als Objekt bleibt eine offene Ledger-Zeile. <strong>Sechzehn
+Ledger-Zeilen</strong> stehen auf <code>Offen</code>, und sie sollen dort stehen bleiben,
+solange kein Träger sie trägt.</p>
 
-<p>Eine Anmerkung, die in der Sache selbst liegt: die Definitionenfassung gibt für
-Verbundkontexturen die Formel <code>n(n+1)/2</code> und die Folge <code>1, 3, 6, 10, …</code>
-und sagt zugleich, eine Verbundkontextur brauche mindestens drei Werte. Beides stimmt nicht
-zusammen; die erste Verbundkontextur ist die dreiwertige, die <code>1</code> gehört zur
-Ontologienfolge. Die Architektur zählt die Elementarkontexturen eines <code>m</code>-wertigen
-Systems als <code>m(m-1)/2</code>; das ist mit Günthers Reihe verträglich, aber eine
+<p>Die Anmerkung zur Verbundkontextur-Zählung gilt fort: die Definitionenfassung führt
+<code>n(n+1)/2</code> ab eins und sagt zugleich, eine Verbundkontextur brauche mindestens drei
+Werte; beides stimmt nicht zusammen — die erste Verbundkontextur ist die dreiwertige, die
+<code>1</code> gehört zur Ontologienfolge. Die Architektur zählt <code>m(m−1)/2</code>
+Elementarkontexturen; das ist mit Günthers Reihe verträglich, aber eine
 <strong>Festlegung</strong> und keine Ableitung.</p>
 
 <h3>Das Bild</h3>
 
-<p>Ein Grund, der Wiederholung zählt und dessen Normalisierung als Prozedur gebaut ist; Logiken,
-deren Trennung nicht gesetzt, sondern bewiesen ist — in einer Form, die Günthers Grundfall
-standhält; eine Beweisform, die ihre schwere Hälfte kennt und trägt; eine Zeugenreihe, die von
-einer Existenzbehauptung zu einer Charakterisierung ohne feste Wertzahl gewachsen ist; eine
-Anwendungsschicht, deren Konsum am Term gemessen ist; ein Ledger, der neunzehn Paragraphen
-compilergeprüft hält und sechzehn Zeilen offen lässt; ein Gate ohne <code>sorryAx</code>; und
-drei Grenzen, von denen keine eine Niederlage ist.</p>
+<p>Ein Grund, der Wiederholung zählt und dessen Wertbesetzung jetzt zwei bewiesene Brücken hat;
+Logiken, deren Trennung nicht gesetzt, sondern bewiesen ist — in einer Form, die Günthers
+Grundfall standhält; eine Beweisform, die ihre schwere Hälfte kennt und in diesem Block auch die
+Werkstatt vermessen hat; eine Zeugenreihe, deren Zahlen von Rechnungen zu Sätzen geworden sind;
+ein Aufstieg, der bewohnt ist, sich erhält, echt wächst — und beweisbar keine signaturtreue
+Gestalt hat; eine Anwendungsschicht mit gemessenem Konsum; ein Ledger mit einundneunzig Zeilen,
+sechzehn davon offen; ein Gate ohne <code>sorryAx</code>; und drei Grenzen, von denen keine eine
+Niederlage ist.</p>
 
-<div class="callout">
 <p><strong>Was gesetzt ist, steht am Anfang; was bewiesen ist, ist gezählt; was Deutung ist,
 heisst so.</strong></p>
-</div>
 
 <!-- ===================================================================== -->
 <h2 id="anhang">Anhang · Zählrouten</h2>
 
 <p>Damit die Zahlen nachrechenbar und nicht bloss glaubhaft sind, trägt jede ihre Route. Alle
-Angaben gelten am Commit <code>e5ef3d7</code>; jeder Bauzug macht jede ausgestellte Zahl still
-veraltet, weshalb sie ihren Stand mitführt.</p>
+Angaben gelten am Commit <code>56fe9a0</code>, sofern nicht einzeln anders geankert; die zwei
+nachfolgenden Commits (<code>b51b4fc</code>, <code>fb41c2f</code>) haben keine Kennzahl bewegt
+(<strong>gemessen</strong>, im zugehörigen Befund). Kenngrössen, die seit <code>e5ef3d7</code>
+nicht neu gemessen wurden, stehen hier nicht; sie gelten in Rev2, am dort genannten Commit.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>Grösse</th><th class="num">Wert</th><th>Route</th></tr></thead>
+<thead><tr><th>Grösse</th><th>Wert</th><th>Route</th></tr></thead>
 <tbody>
-<tr><td>geprüfte Konstanten</td><td class="num">3018</td><td>Bauausgabe des AxiomGate</td></tr>
-<tr><td>Wachen geschrieben</td><td class="num">396 / 45 Dateien</td><td><code>grep -rE '#guard_msgs.*in #print axioms'</code> über <code>Reformulation/</code> und <code>Foreign/</code></td></tr>
-<tr><td>Wachen erzwungen</td><td class="num">386 / 44 Dateien</td><td>dieselbe Route, eingeschränkt auf die Import-Hülle der fünf Default-Targets</td></tr>
-<tr><td>Import-Hülle</td><td class="num">126 von 161 Modulen</td><td><code>import</code>-Zeilen ab den 21 Target-Wurzeln transitiv verfolgt</td></tr>
-<tr><td>axiomfreie Profile</td><td class="num">66 von 396 Wachen</td><td><code>grep -rc 'does not depend on any axioms'</code></td></tr>
-<tr><td>Profilverteilung</td><td class="num">183 / 84 / 66 / 61 / 2</td><td>jede Wache einzeln gelesen; Summe 396 als Gleichung geprüft</td></tr>
-<tr><td>Sätze</td><td class="num">726</td><td><code>grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '</code> über <code>Reformulation/</code></td></tr>
-<tr><td><code>def</code></td><td class="num">318</td><td>dieselbe Weitung für <code>def</code></td></tr>
-<tr><td>Statement-Pins</td><td class="num">44</td><td><code>grep -rc '^-- STATEMENT-PIN'</code></td></tr>
-<tr><td>Build-Jobs</td><td class="num">1301 gemeinsam</td><td>Bauausgabe je Target, <strong>nicht summiert</strong>; je Target siehe oben</td></tr>
-<tr><td>Dateien</td><td class="num">163 / 160 <code>.lean</code></td><td>Dateizählung über <code>Reformulation/</code> und <code>Foreign/</code></td></tr>
-<tr><td><code>sorry</code>-Vorkommen</td><td class="num">123 / 95 / 27</td><td>Wortgrenze <code>\bsorry\b</code>, Vorkommen (nicht Zeilen), über <code>git ls-files</code></td></tr>
-<tr><td>Setzungsfelder</td><td class="num">32 = 30 + 2</td><td>Umgebungsabfrage über Strukturfelder und Projektionen</td></tr>
-<tr><td>Nicht-Projektionen mit Schluss <code>True</code></td><td class="num">0</td><td>dieselbe Route, Projektion verneint; Gegenprobe liefert 32</td></tr>
-<tr><td>Ledger</td><td class="num">79 Zeilen / 63 Paare / 19 von 19</td><td>Doc-Lint Gruppe (C)</td></tr>
-<tr><td>Lint</td><td class="num">(A) 38, (B) 0, (C) 0, Exit 0</td><td>ein Lauf</td></tr>
-<tr><td>Konsum der Anwendungen</td><td class="num">4 Treffer / 2 Nicht-Treffer</td><td>Umgebungsabfrage mit expliziter <code>ConstantInfo</code>-Musterung über Typ und Beweisterm</td></tr>
-<tr><td>Klonbau</td><td class="num">1301 Jobs, 126 gebaut / 0 wiedereingespielt</td><td><code>git clone</code>, <code>lake exe cache get</code>, <code>lake build</code>, anmeldungsfrei</td></tr>
-<tr><td>Klonfragment <code>{min,max,neg}</code></td><td class="num">82 bei <code>m</code> = 3, 4, 5, 6</td><td>Abschluss von <code>{p₁,p₂}</code> unter punktweisem Min, Max, Ordnungsumkehr</td></tr>
-<tr><td>lokal klassisch im Klon</td><td class="num">4 von 8 · 2 von 64 · 2 von 1024 · 2 von 32 768</td><td>dieselbe Aufzählung, gefiltert auf lokale Klassizität</td></tr>
-<tr><td><code>M₃</code></td><td class="num">166 Klonglieder, 10 lokal klassisch, 8 davon weder Infimum noch Supremum</td><td>Abschluss unter Infimum, Supremum, Ordnungsumkehr auf dem fünfelementigen Verband</td></tr>
+<tr><td>geprüfte Konstanten</td><td>3255</td><td>Bauausgabe des AxiomGate</td></tr>
+<tr><td>Wachen geschrieben</td><td>470 / 51 Dateien</td><td><code>grep -rE '#guard_msgs.*in #print axioms'</code> über <code>Reformulation/</code> und <code>Foreign/</code></td></tr>
+<tr><td>Wachen erzwungen</td><td>460</td><td>dieselbe Route, Import-Hülle der fünf Default-Targets; Gleichung 470 = 460 + 10 (<code>Foreign/PeresMermin.lean</code>)</td></tr>
+<tr><td>Sätze</td><td>792</td><td>geweitete Satzroute über <code>Reformulation/</code>; mit Rev2 (726) vergleichbar, gleiche Route</td></tr>
+<tr><td>Build-Jobs</td><td>1307</td><td><code>lake build</code>, <strong>nicht summiert</strong></td></tr>
+<tr><td><code>Proemial/</code></td><td>62 Dateien / 475 Sätze</td><td>Struktur-Tafel</td></tr>
+<tr><td><code>sorry</code></td><td>132 / 97 Vorkommen · 27 Deklarationen (tragend)</td><td>Wortgrenze, Vorkommen statt Zeilen, über <code>git ls-files</code></td></tr>
+<tr><td>Ledger</td><td>91 Zeilen / 75 Paare / 67 Namen / 19 von 19</td><td>Doc-Lint Gruppe (C); Überzähligkeit 75 − 67 = 8 als Gleichung</td></tr>
+<tr><td>Trägerstatus</td><td>57 / 17 / 1 / 16</td><td>Selbstauskunft der Ledger-Datei, beim Lint geprüft</td></tr>
+<tr><td>lokal klassische Operationen</td><td><code>2^C(m,2)</code>, jedes <code>m</code></td><td><strong>bewiesen</strong>: <code>CV.card_locallyClassical</code>; 8/64/1024/32 768 sind Instanzen</td></tr>
+<tr><td>davon im Klon</td><td>2 (ab <code>m ≥ 4</code>) · 4 von 8 (<code>m = 3</code>) · 2 von 2 (<code>m = 2</code>)</td><td><strong>bewiesen</strong>: <code>CV.clone_locallyClassical_eq</code> bzw. E1; der Nullüberschuss bei 2 aus <code>CV.two_lt_card_locallyClassical</code> samt Schärfe</td></tr>
+<tr><td>Muster der Länge 4</td><td>15, davon 8 zweiwertig besetzbar</td><td><strong>bewiesen</strong>: <code>KF.card_rgs_four</code>, <code>KF.card_rgs_four_fillable</code></td></tr>
+<tr><td>neg-verträgliche Einbettungen</td><td>0 (ungerades <code>m</code>) · existent (gerades) · 2/8/48 bei <code>m</code> = 2/4/6</td><td>Nichtexistenz und Existenz <strong>bewiesen</strong> (<code>SPar.</code>); die Zählungen <strong>gerechnet</strong>, Vollaufzählung über alle Abbildungen bzw. Injektionen</td></tr>
+<tr><td>Klonfragment <code>{min,max,neg}</code></td><td>82 bei <code>m</code> = 3…6</td><td><strong>gerechnet</strong>, unverändert Rev2</td></tr>
+<tr><td><code>M₃</code></td><td>166 / 10 / 8</td><td><strong>gerechnet</strong>, unverändert Rev2; die Existenzform <strong>bewiesen</strong> (<code>m3_mixed_term_exists</code>)</td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>Drei Regeln zum Zählen.</strong> Erstens: gezählt wird über die Schale, nicht mit
-einer Bibliotheksfunktion, die Leerzeilen überspringt. Zweitens: <strong>Aggregat- und
-Korpuszahlen werden getrennt geführt</strong>; das Aggregat ist der zertifizierte Importbaum,
-der Korpus umfasst zusätzlich die Sonden, die eine markierte Setzung tragen. Drittens:
-<strong>Bauausgaben mehrerer Targets werden nicht summiert</strong> — die 5707 aus §VIII steht
-dort, damit sie nirgends sonst steht.</p>
-
-<h3>Zwei Punkte, die diese Ausgabe geschlossen hat</h3>
-
-<p><strong>Die Gleichheit der beiden Modullisten ist als Menge geprüft</strong>, nicht nur als
-Zahl: die sortierten Modulnamen der Import-Hülle und der Built-Zeilen des Klonbaus wurden
-verglichen, der <code>diff</code> ist leer. Damit trägt die Zeile „Wachen erzwungen" — die Route
-schränkt auf genau die Menge ein, die der Bau anfasst.</p>
-
-<p><strong>Die Bereichsangaben in §VII liegen vor</strong> und stehen dort. Die Träger sind mit
-vollem Namen und Modul genannt, weil ein Satzname des Abschnitts zweimal im Baum vorkommt —
-einmal im Aggregat und gewacht, einmal in einem Rufe-Target und ungewacht.</p>
+<p><strong>Drei Regeln zum Zählen</strong>, unverändert: über die Schale gezählt; Aggregat- und
+Korpuszahlen getrennt; Bauausgaben mehrerer Targets nie summiert. Dazu die vierte dieses Blocks:
+<strong>eine Zahl, die neben einer verwandten steht, wird mit ihr als Gleichung geprüft</strong>
+— zweimal hat genau das einen stehenden Fehler gefunden.</p>
 
 </main>
 
 <footer class="pagefoot">
-  <p>Fassung PKL Rev2 · Stand aller Kennzahlen: Commit <code>e5ef3d7</code> · 1. August 2026</p>
-  <p><a href="./">Übersicht</a> · <a href="en.html">English version</a> · <a href="rev1/de.html">Fassung Rev1</a> ·
+  <p>Fassung PKL Rev3 · Stand aller Kennzahlen: Commit <code>56fe9a0</code> · 3. August 2026</p>
+  <p><a href="./">Übersicht</a> · <a href="en.html">English version</a> · <a href="rev2/de.html">Fassung Rev2</a> · <a href="rev1/de.html">Fassung Rev1</a> ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
   <p class="sources">Quellen der zitierten Stellen: Günther, G. (1970), <em>Die historische
-  Kategorie des Neuen</em>, Hegel-Jahrbuch 34–61; Günther, G. (1937), <em>Wahrheit,
-  Wirklichkeit und Zeit</em>, Paris; Günther, G. (1968), <em>Many-Valued Designations and a
-  Hierarchy of First Order Ontologies</em>. Die begrifflichen Bestimmungen folgen der
-  Definitionenfassung des Projekts. Wörtlich zitierte Passagen Dritter stehen unter dem
-  Zitatrecht und verbleiben bei den jeweiligen Rechteinhabern.</p>
+  Kategorie des Neuen</em>, Hegel-Jahrbuch 34–61; Günther, G. (1937), <em>Wahrheit, Wirklichkeit
+  und Zeit</em>, Paris; Günther, G. (1968), <em>Many-Valued Designations and a Hierarchy of
+  First Order Ontologies</em>. Die begrifflichen Bestimmungen folgen der Definitionenfassung des
+  Projekts; die zweite Begriffsstufe steht dort in §6.3 und nur dort. Wörtlich zitierte Passagen
+  Dritter stehen unter dem Zitatrecht und verbleiben bei den jeweiligen Rechteinhabern.</p>
 </footer>
 
 </body>

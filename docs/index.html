@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PKL Rev2 — Polykontexturale Logik in Lean 4 und Mathlib</title>
-<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev2, Stand Commit e5ef3d7.">
+<title>PKL Rev3 — Polykontexturale Logik in Lean 4 und Mathlib</title>
+<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev3, Stand Commit 56fe9a0.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span class="home">PKL Rev2</span>
+    <span class="home">PKL Rev3</span>
     <div class="langswitch">
       <a href="de.html" hreflang="de">DE</a>
       <span class="sep">·</span>
@@ -26,25 +26,25 @@
 
 <header class="doctitle">
   <h1>Die mathematische Gestalt der Architektur</h1>
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev2</p>
-  <p class="dateline">1. August 2026 · Stand aller Kennzahlen: Commit <code>e5ef3d7</code> · Fassung Rev2</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev3</p>
+  <p class="dateline">3. August 2026 · Stand aller Kennzahlen: Commit <code>56fe9a0</code> · Fassung Rev3</p>
 </header>
 
 <p class="lede">Das Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard
-Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev2, deutsch;
-die englische Übersetzung liegt vor. Die frühere Fassung Rev1 bleibt unter ihrer eigenen
-Adresse erreichbar und wird nicht nachgeführt.</p>
+Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev3, deutsch;
+die englische Übersetzung liegt vor. Die früheren Fassungen Rev2 und Rev1 bleiben unter ihren
+eigenen Adressen erreichbar und werden nicht nachgeführt.</p>
 
 <ul class="cards">
 <li><a class="card" href="de.html" hreflang="de">
-  <span class="kicker">Deutsch · Fassung Rev2</span>
+  <span class="kicker">Deutsch · Fassung Rev3</span>
   <span class="cardtitle">Die mathematische Gestalt der Architektur</span>
-  <span class="cardsub">Zehn Abschnitte, fünf Figuren, Anhang mit den Zählrouten. Stand <code>e5ef3d7</code>.</span>
+  <span class="cardsub">Elf Abschnitte, fünf Figuren, Anhang mit den Zählrouten. Stand <code>56fe9a0</code>.</span>
 </a></li>
 <li><a class="card" href="en.html" hreflang="en">
-  <span class="kicker">English · edition Rev2</span>
+  <span class="kicker">English · edition Rev3</span>
   <span class="cardtitle">The Mathematical Shape of the Architecture</span>
-  <span class="cardsub">Translation of the German edition; ten sections, five figures, appendix with the counting routes. Figures as of <code>e5ef3d7</code>.</span>
+  <span class="cardsub">Translation of the German edition; eleven sections, five figures, appendix with the counting routes. Figures as of <code>56fe9a0</code>.</span>
 </a></li>
 </ul>
 
@@ -54,23 +54,25 @@ Adresse erreichbar und wird nicht nachgeführt.</p>
 <table>
 <thead><tr><th>Fassung</th><th>Sprache</th><th>Stand</th><th>Adresse</th></tr></thead>
 <tbody>
-<tr><td><strong>Rev2</strong> — laufend</td><td>deutsch</td><td>1. August 2026, Commit <code>e5ef3d7</code></td><td><a href="de.html">de.html</a></td></tr>
-<tr><td><strong>Rev2</strong> — laufend</td><td>englisch</td><td>übersetzt 1. August 2026, Kennzahlen Commit <code>e5ef3d7</code></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td><strong>Rev3</strong> — laufend</td><td>deutsch</td><td>3. August 2026, Commit <code>56fe9a0</code></td><td><a href="de.html">de.html</a></td></tr>
+<tr><td><strong>Rev3</strong> — laufend</td><td>englisch</td><td>übersetzt 3. August 2026, Kennzahlen Commit <code>56fe9a0</code></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td>Rev2 — frühere Fassung</td><td>deutsch</td><td>1. August 2026, Commit <code>e5ef3d7</code></td><td><a href="rev2/de.html">rev2/de.html</a></td></tr>
+<tr><td>Rev2 — frühere Fassung</td><td>englisch</td><td>übersetzt 1. August 2026, Kennzahlen Commit <code>e5ef3d7</code></td><td><a href="rev2/en.html">rev2/en.html</a></td></tr>
 <tr><td>Rev1 — frühere Fassung</td><td>deutsch</td><td>24. Juli 2026, Commit <code>e89ab47</code></td><td><a href="rev1/de.html">rev1/de.html</a></td></tr>
 <tr><td>Rev1 — frühere Fassung</td><td>englisch</td><td>24. Juli 2026, Commit <code>e89ab47</code></td><td><a href="rev1/en.html">rev1/en.html</a></td></tr>
 </tbody>
 </table>
 </div>
 
-<p>Rev1 wird <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an <code>e89ab47</code> und
-tragen ihren Stand; wer sie einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
+<p>Rev2 und Rev1 werden <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an
+<code>e5ef3d7</code> beziehungsweise <code>e89ab47</code> und tragen ihren Stand; wer sie
+einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
 
 <h2 id="etiketten">Zwei Achsen je Aussage</h2>
 
 <p>Jede Behauptung trägt zwei Marken: <strong>was</strong> sie ist, und <strong>wo</strong> sie
-steht. Die zweite ist in dieser Ausgabe neu, und sie ist nicht redaktionell — <em>bewiesen</em>
-heisst im zertifizierten Aggregat etwas anderes als in einem Zweig, den nur ein eigener Aufruf
-baut.</p>
+steht. Die zweite ist nicht redaktionell — <em>bewiesen</em> heisst im zertifizierten Aggregat
+etwas anderes als in einem Zweig, den nur ein eigener Aufruf baut.</p>
 
 <div class="tablewrap">
 <table>
@@ -87,9 +89,9 @@ baut.</p>
 </table>
 </div>
 
-<p>Der Bereich ist an den <strong>Import-Hüllen</strong> gemessen und nicht am Verzeichnis: das
-Target des eingefrorenen Zweiges erreicht sechs Module, die über ihr eigenes Target grün bauen
-und nicht eingefroren sind.</p>
+<p>Der Bereich ist an den <strong>Import-Hüllen</strong> gemessen und nicht am Verzeichnis:
+zwei der achtzehn Module des eingefrorenen Zweiges werden über ein Rufe-Target erreicht und
+bauen dort grün.</p>
 
 <h2 id="stand">Der Stand</h2>
 
@@ -97,22 +99,24 @@ und nicht eingefroren sind.</p>
 <table>
 <thead><tr><th>Kenngrösse</th><th class="num">Wert</th><th>Bereich, über den sie läuft</th></tr></thead>
 <tbody>
-<tr><td>geprüfte Konstanten (AxiomGate)</td><td class="num"><strong>3018</strong></td><td>Importbaum von <code>Reformulation</code>, namensgefiltert</td></tr>
-<tr><td>Axiom-Wachen, geschrieben</td><td class="num"><strong>396</strong> / 45 Dateien</td><td><code>Reformulation/</code> und <code>Foreign/</code></td></tr>
-<tr><td>Axiom-Wachen, erzwungen</td><td class="num"><strong>386</strong> / 44 Dateien</td><td>Import-Hülle der fünf Default-Targets</td></tr>
-<tr><td>davon axiomfreie Profile</td><td class="num"><strong>66</strong> von 396</td><td>die geschriebenen Wachen</td></tr>
-<tr><td>Sätze</td><td class="num"><strong>726</strong></td><td><code>Reformulation/</code> allein</td></tr>
-<tr><td>Statement-Pins</td><td class="num"><strong>44</strong></td><td><code>Reformulation/</code></td></tr>
-<tr><td>Build-Jobs</td><td class="num"><strong>1301</strong></td><td>die fünf Default-Targets zusammen</td></tr>
+<tr><td>geprüfte Konstanten (AxiomGate)</td><td class="num"><strong>3255</strong></td><td>Importbaum von <code>Reformulation</code>, namensgefiltert</td></tr>
+<tr><td>Axiom-Wachen, geschrieben</td><td class="num"><strong>470</strong> / 51 Dateien</td><td><code>Reformulation/</code> und <code>Foreign/</code></td></tr>
+<tr><td>Axiom-Wachen, erzwungen</td><td class="num"><strong>460</strong> / 50 Dateien</td><td>Import-Hülle der fünf Default-Targets</td></tr>
+<tr><td>Sätze</td><td class="num"><strong>792</strong></td><td><code>Reformulation/</code> allein, geweitete Route</td></tr>
+<tr><td>Ledger</td><td class="num"><strong>91</strong> Zeilen / 75 mit Träger</td><td><code>docs/definition-ledger.md</code>, Revision 10</td></tr>
+<tr><td>Build-Jobs</td><td class="num"><strong>1307</strong></td><td>die fünf Default-Targets zusammen</td></tr>
 <tr><th>ausgewiesene Lücken</th><td class="num"><strong>0</strong></td><td>Whitelist leer</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>Gemessen am Commit <code>e5ef3d7</code>. Jede Zahl läuft über einen Bereich, und es ist nicht
+<p>Gemessen am Commit <code>56fe9a0</code>. Jede Zahl läuft über einen Bereich, und es ist nicht
 für alle derselbe — darum steht er dabei. Die Zählrouten stehen im
-<a href="de.html#anhang">Anhang der Fassung Rev2</a>; ein Bauzug macht jede ausgestellte Zahl
-still veraltet, weshalb sie ihren Stand mitführt.</p>
+<a href="de.html#anhang">Anhang der Fassung Rev3</a>; ein Bauzug macht jede ausgestellte Zahl
+still veraltet, weshalb sie ihren Stand mitführt. Kenngrössen, die seit <code>e5ef3d7</code>
+nicht neu gemessen wurden — Statement-Pins, <code>def</code>-Zahl, Profilverteilung,
+Import-Hüllen-Karte —, stehen hier nicht; sie gelten in der
+<a href="rev2/de.html">Fassung Rev2</a>, an dem dort genannten Commit.</p>
 
 <h2 id="quellcode">Der Quellcode</h2>
 
@@ -120,7 +124,7 @@ still veraltet, weshalb sie ihren Stand mitführt.</p>
 <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a>.
 Lean <code>4.30.0-rc2</code> mit Mathlib; Bau mit <code>lake build</code>, wobei das
 <code>AxiomGate</code> mitläuft und bei jeder Lücke bricht. Aus einem frischen, anmeldungsfreien
-Klon baut der Baum grün durch — 126 Module gebaut, 0 wiedereingespielt.</p>
+Klon baut der Baum grün durch.</p>
 
 <p>Den laufenden Stand führen
 <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/blob/main/README.md">README.md</a>,
@@ -135,9 +139,10 @@ Grund, der keine Kontextur verlässt, samt vollständiger Klassifikation).</p>
 </main>
 
 <footer class="pagefoot">
-  <p>Fassung PKL Rev2 · Stand aller Kennzahlen: Commit <code>e5ef3d7</code> · 1. August 2026</p>
-  <p><a href="de.html">Fassung Rev2, deutsch</a> · <a href="en.html">Rev2 English</a> · <a href="rev1/de.html">Rev1 deutsch</a> ·
-  <a href="rev1/en.html">Rev1 English</a> ·
+  <p>Fassung PKL Rev3 · Stand aller Kennzahlen: Commit <code>56fe9a0</code> · 3. August 2026</p>
+  <p><a href="de.html">Fassung Rev3, deutsch</a> · <a href="en.html">Rev3 English</a> ·
+  <a href="rev2/de.html">Rev2 deutsch</a> · <a href="rev2/en.html">Rev2 English</a> ·
+  <a href="rev1/de.html">Rev1 deutsch</a> · <a href="rev1/en.html">Rev1 English</a> ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
 

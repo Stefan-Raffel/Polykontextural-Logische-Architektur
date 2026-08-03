@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Mathematical Shape of the Architecture — PKL Rev2</title>
-<meta name="description" content="Polycontextural logic in Lean 4 and Mathlib. Edition PKL Rev2: two axes per claim, the series of bounds D–E4, the layer of applications with measured consumption, ledger and register of posits, domain separation.">
+<title>The Mathematical Shape of the Architecture — PKL Rev3</title>
+<meta name="description" content="Polycontextural logic in Lean 4 and Mathlib. Edition PKL Rev3: the two structural clauses of the strong definition carry theorems, the series of bounds D–E4, the richness count as a bijection, ledger revision 10, separation of ranges.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL Rev2</a>
+    <a class="home" href="./">PKL Rev3</a>
     <div class="langswitch">
       <a href="de.html" hreflang="de">DE</a>
       <span class="sep">·</span>
@@ -26,15 +26,17 @@
 
 <header class="doctitle">
   <h1>The Mathematical Shape of the Architecture</h1>
-  <p class="subtitle">Polycontextural Logic in Lean 4 and Mathlib — Edition PKL Rev2</p>
-  <p class="dateline">Translation of the German edition of 1 August 2026 · translated 1 August 2026 · All figures as of commit <code>e5ef3d7</code> · Edition Rev2</p>
+  <p class="subtitle">Polycontextural Logic in Lean 4 and Mathlib — Edition PKL Rev3</p>
+  <p class="dateline">Translation of the German edition of 3 August 2026 · All figures as of commit <code>56fe9a0</code> · Edition Rev3</p>
 </header>
 
 <div class="callout">
-<p><strong>On the standing of this text.</strong> The German edition is the original; this is
-its translation, and it carries its own date. Where the two diverge, the German edition holds
-and the divergence is a translation backlog, not a contradiction between two originals. Lean
-names, commands, axiom profiles and measured figures are not translated.</p>
+<p><strong>On the standing of this text.</strong> This is the English edition of the
+German original, and the two are the same document in two languages, not two
+documents: every figure, every label, every Lean name and every measured number stands
+at the same place in both. Where they would diverge, the German edition governs and
+the divergence is a translation backlog, not a contradiction between two originals.
+Lean names, commands, axiom profiles and measured figures are not translated.</p>
 </div>
 
 <nav class="toc" aria-label="Table of contents">
@@ -42,17 +44,18 @@ names, commands, axiom profiles and measured figures are not translated.</p>
   <ol>
     <li><a href="#about">What this paper is about</a></li>
     <li><a href="#axes">Two axes per claim</a></li>
-    <li><a href="#changes">What this edition changes relative to the first</a></li>
+    <li><a href="#changes">What this edition changes relative to the second</a></li>
     <li><a href="#i">I · The ground: a combinatorics prior to logic</a></li>
     <li><a href="#ii">II · Contextures: two discontexturalities, one of them proved</a></li>
     <li><a href="#iii">III · The mode of proof: the differential</a></li>
     <li><a href="#iv">IV · The witnesses: the series of bounds</a></li>
-    <li><a href="#v">V · The layer of applications, and what is measured in it</a></li>
-    <li><a href="#vi">VI · The ledger and the register</a></li>
-    <li><a href="#vii">VII · Movement and time</a></li>
-    <li><a href="#viii">VIII · The safeguards: guards, profiles, domains</a></li>
-    <li><a href="#ix">IX · The instruments as a subject of their own</a></li>
-    <li><a href="#x">X · Reach and limit</a></li>
+    <li><a href="#v">V · The ascent: the two structural clauses of the strong definition</a></li>
+    <li><a href="#vi">VI · The application layer, and what is measured on it</a></li>
+    <li><a href="#vii">VII · The ledger and the register</a></li>
+    <li><a href="#viii">VIII · Movement and time</a></li>
+    <li><a href="#ix">IX · The safeguards: guards, profiles, ranges</a></li>
+    <li><a href="#x">X · The instruments as a subject of their own</a></li>
+    <li><a href="#xi">XI · Reach and limit</a></li>
     <li><a href="#appendix">Appendix · Counting routes</a></li>
   </ol>
 </nav>
@@ -64,29 +67,32 @@ names, commands, axiom profiles and measured figures are not translated.</p>
 to be transferable. Its subject is the reformulation of Gotthard Günther's polycontextural logic
 in a type-theoretic proof environment.</p>
 
-<p>The project works with one definition, and it stands first — quoted from
-<code>README.md</code> at commit <code>b51b4fc</code>, where it is at home and not here. The
-binding wording is German; this is a translation of it:</p>
+<p>The project works with one definition, and it stands at the front — quoted from
+<code>README.md</code>, state <code>b51b4fc</code>, and at home there and not here:</p>
 
 <div class="callout">
-<p>A structure is <strong>formally operative polycontextural</strong> if it carries several
+<p>A structure is <strong>formally-operationally polycontextural</strong> if it carries several
 local contextures — regions closed under the admitted signature, which may overlap — and if
 there is an operation on it that acts on each of these contextures like one of the classical
-connectives and is nonetheless not generable from the intra-contextural term calculus.</p>
-
-<p><strong>Formally operative</strong> means: this non-generability is not asserted but
+connectives and nevertheless is not generable from the intra-contextural term calculus.</p>
+<p><strong>Formally-operational</strong> means: this non-generability is not asserted but
 machine-checked as a theorem.</p>
 </div>
 
 <p>This definition is narrower than the world-picture Definition 6 of the source and stronger
-than mere many-valuedness or plurality of roles. It is the measure for everything that
-follows.</p>
+than mere many-valuedness or plurality of roles. It is the measure against which everything else
+is to be read.</p>
+
+<p>As of this edition the project's definitions edition carries a <strong>second stage</strong>
+of the concept — <em>formally-operationally polycontextural in ascent</em>, predicated of
+families rather than of structures, with four clauses and four named theorems as carriers. It
+stands exactly once, in §6.3 of the definitions edition, and is deliberately mirrored nowhere;
+this paper describes it in <a href="#v">§V</a> and does not quote it.</p>
 
 <!-- ===================================================================== -->
 <h2 id="axes">Two axes per claim</h2>
 
-<p>The previous edition labelled every claim by its <strong>kind</strong>. That no longer
-suffices.</p>
+<p>Every claim in this paper carries two labels.</p>
 
 <p><strong>First axis — the kind:</strong></p>
 
@@ -95,70 +101,76 @@ suffices.</p>
   <li><strong>measured</strong> — machine-counted figure</li>
   <li><strong>computed</strong> — exact calculation outside the corpus</li>
   <li><strong>posited</strong> — explicit premise</li>
-  <li><strong>source-verified</strong> — verbatim in Günther, with citation</li>
+  <li><strong>source-verified</strong> — verbatim in Günther, with reference</li>
   <li><strong>interpretation</strong> — assignment of formal to conceptual</li>
   <li><strong>programme</strong> — named, not built</li>
 </ul>
 
-<p><strong>Second axis — the domain</strong>, measured at the import closures and not at the
+<p><strong>Second axis — the range</strong>, measured on the import closures and not on the
 directory:</p>
 
 <ul>
   <li><strong>aggregate</strong> — inside the closure of the five default targets; the axiom
-    gate checks it at build time</li>
+  gate checks it at build time</li>
   <li><strong>call target</strong> — outside that closure, but reached by at least one call
-    target; no gate, no assurance of gap-freeness</li>
-  <li><strong>covered by no target</strong> — in the tree, reached by no closure; no build
-    touches it</li>
+  target; no gate, no gap-freedom assurance</li>
+  <li><strong>covered by no target</strong> — in the tree, reached by no closure</li>
 </ul>
 
-<p>Across these stands a mark that is not a closure value: <strong>frozen</strong> designates
-the branch <code>PathC/</code>, shut down with explicit thawing conditions. A frozen module can
-nevertheless be built — two of eighteen are reached through a call target.</p>
+<p>Across these stands a mark that is not a closure value: <strong>frozen</strong> denotes the
+branch <code>PathC/</code>, shut down with explicit thawing conditions. A frozen module can
+still be built — two of eighteen are reached through a call target.</p>
 
-<p>The word <em>standalone</em> is deliberately avoided here. The filing convention of the
-corpus uses it for a file that carries a posit and is consumed by no aggregate theorem; that is
-a different question, and three such files are built today.</p>
+<p>The reason for the second axis is not tidiness. <strong>Proved</strong> means something else
+in the aggregate than in a call target: there a machine barrier bites, here it does not. A paper
+that carries theorems of both ranges without distinction claims for the one an assurance only
+the other has.</p>
 
-<p>The reason for the second axis is not tidiness. <strong>Proved</strong> means something
-different in the aggregate than in a call target: there a machine barrier applies, here it does
-not. A paper that carries theorems of both domains without distinction claims for the one an
-assurance that only the other has.</p>
-
-<p>The two columns of the definition ledger — carrier status and assignment status — are a
-third thing: they classify <strong>carriers</strong>, whereas the labels here classify
-<strong>claims in running text</strong>. The ledger table is in
-<a href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> and is not repeated
+<p>The two columns of the definition ledger — carrier status and assignment status — are a third
+thing: they classify <strong>carriers</strong>, whereas the labels here classify <strong>claims
+in running text</strong>. The ledger table lives in <a
+href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> and is not repeated
 here.</p>
 
-<!-- ===================================================================== -->
-<h2 id="changes">What this edition changes relative to the first</h2>
+<p>New in this edition is a third distinction that is not an axis but a form of measurement:
+wherever an axiom profile is <strong>explained</strong>, the explanation carries either a
+<strong>measurement with a differential</strong> — two versions differing in exactly one
+quantity — or the mark <em>unmeasured</em>. What that means and where it comes from stands in <a
+href="#ix">§IX</a>.</p>
 
-<p>The first edition is dated 24 July 2026 and measures all its figures at commit
-<code>e89ab47</code>. It remains reachable under
-<a href="rev1/en.html"><code>docs/rev1/</code></a> and is not updated.</p>
+<!-- ===================================================================== -->
+<h2 id="changes">What this edition changes relative to the second</h2>
+
+<p>The second edition is dated 1 August 2026 and measures at commit <code>e5ef3d7</code>; it
+remains reachable under <code>docs/rev2/</code> and is not updated. The two files are <a
+href="rev2/de.html"><code>docs/rev2/de.html</code></a> and <a
+href="rev2/en.html"><code>docs/rev2/en.html</code></a>, built like the <code>rev1/</code>
+filing.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th></th><th>Edition Rev1 (24 July)</th><th>this edition (1 August)</th></tr></thead>
+<thead><tr><th></th><th>Edition Rev2 (1 August)</th><th>this edition (3 August)</th></tr></thead>
 <tbody>
-<tr><td>labelling</td><td>one axis (kind)</td><td><strong>two axes</strong> (kind and domain)</td></tr>
-<tr><td>concept assignment</td><td>spread through running text</td><td><strong>compiler-checked ledger</strong>, 19 of 19 paragraphs</td></tr>
-<tr><td>posits</td><td>named</td><td><strong>registered</strong>, with class and exit criterion</td></tr>
-<tr><td>domain separation</td><td>not carried</td><td><strong>default targets, call targets, frozen, covered by no target</strong></td></tr>
-<tr><td>applications</td><td>none</td><td><strong>two</strong>, consumption measured at the proof term</td></tr>
-<tr><td>morphogram bridge</td><td>programme</td><td><strong>three theorems, two definitions, one open row</strong></td></tr>
-<tr><td>replicability</td><td>build on one machine</td><td><strong>build from a fresh, unauthenticated clone</strong></td></tr>
-<tr><td>access</td><td>private</td><td><strong>public, Apache-2.0 and CC-BY-4.0</strong></td></tr>
+<tr><td>Definition 6</td><td>open, one ledger row</td><td><strong>both structural clauses carry theorems</strong>; the totality open, with four references</td></tr>
+<tr><td>project definition</td><td>one stage</td><td><strong>two stages</strong>; the first recast, the second over families</td></tr>
+<tr><td>richness figure <code>2^C(m,2)</code></td><td>computed</td><td><strong>proved</strong>, as a bijection together with its cardinality</td></tr>
+<tr><td>value-filling of patterns</td><td>open row</td><td><strong>two bridges proved</strong> (two-valued and <code>k</code>-valued)</td></tr>
+<tr><td><code>M₃</code> counterexample</td><td>computed, then an addendum</td><td><strong>proved and integrated</strong></td></tr>
+<tr><td>axiom provenance</td><td>declared</td><td><strong>measured at four sites</strong>, with differentials in one quantity</td></tr>
+<tr><td>ledger</td><td>79 rows</td><td><strong>91 rows, revision 10</strong>, two-digit row IDs</td></tr>
+<tr><td>figures</td><td>3018 / 396 / 726</td><td><strong>3255 / 470 / 792</strong></td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>What has not been added, and it stands here so that it need not be searched
-for:</strong> the proemial relation is not formalised; the compound contexture is present as a
-number sequence and not built as a concept; the strong Definition 6 is open and is carried as
-open (ledger row L06-1, carrier status <code>Offen</code> — the ledger's literal value for
-“open”).</p>
+<p>The five dated figure sites of the Rev2 editions are dissolved with this edition: every
+number again carries the state at which it was measured.</p>
+
+<p><strong>What has not been added, so that no one has to look for it:</strong> the proemial
+relation is not formalised; the compound contexture is a number sequence, not a concept; a limit
+object of the ascent is neither built nor claimed nor excluded; the totality of Definition 6
+remains open and is carried as open (L06-1, carrier status <code>Offen</code> — and why that is a
+result and not an arrears stands in <a href="#v">§V.6</a>).</p>
 
 <!-- ===================================================================== -->
 <h2 id="i">I · The ground: a combinatorics prior to logic</h2>
@@ -169,10 +181,11 @@ which. No values, no negation, no truth; only distinguishability and repetition.
 later is an assignment on these patterns.</p>
 
 <p>Günther distinguishes three granularities (<strong>source-verified</strong>). The
-<strong>proto</strong> structure counts only how many distinct marks occur. The
-<strong>deutero</strong> structure records the repetition profile. The <strong>trito</strong>
-structure retains the position-exact pattern. Only the third is fine enough to serve as the
-ground of a logic: an assignment must be able to say which places carry the same value.</p>
+<strong>proto</strong>-structure counts only how many distinct marks occur. The
+<strong>deutero</strong>-structure records the repetition profile. The
+<strong>trito</strong>-structure retains the position-exact pattern. Only the third is fine
+enough to be the ground of a logic: an assignment must be able to say which places carry the
+same value.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -221,11 +234,11 @@ ground of a logic: an assignment must be able to say which places carry the same
 </svg>
 </div>
 <figcaption><span class="fignum">Figure 1</span> — The same sequence in three granularities:
-proto, deutero and trito as an increasingly fine classification. The coarser ones are quotients
-of the finest; only the finest can say which places carry the same value.</figcaption>
+proto, deutero and trito as increasingly fine classifications. The coarser ones are quotients of
+the finest; only the finest can say which places carry the same value.</figcaption>
 </figure>
 
-<p>Formally the trito structure is represented by a normal form: a sequence of natural numbers
+<p>Formally the trito-structure is represented by a normal form: a sequence of natural numbers
 beginning with <code>0</code> in which each new mark exceeds the previous maximum by exactly one
 — known in combinatorics as a <em>restricted growth string</em>. The predicate is decidable, and
 the canonisation is built as a procedure, not asserted (<strong>proved · aggregate</strong>;
@@ -240,8 +253,9 @@ precisely one pattern remains (<strong>computed</strong>).</p>
 
 <p>This is no notational nicety but the structure itself: <strong>ascent chooses, descent
 computes.</strong> Between the two directions lies not a change of sign but a difference in the
-kind of determinacy. Günther calls one direction <em>evolutive</em>, the other <em>emanative</em>
-(<strong>source-verified</strong>).</p>
+kind of determinacy. Günther calls one direction <em>evolutive</em>, the other
+<em>emanative</em> (<strong>source-verified</strong>). In <a href="#v">§V.3</a> this asymmetry
+returns as a theorem: the ascent that chooses exceeds every finite stock of values.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -302,34 +316,57 @@ kind of determinacy. Günther calls one direction <em>evolutive</em>, the other 
 </svg>
 </div>
 <figcaption><span class="fignum">Figure 2</span> — Retraction unique, extension branching. A
-pattern whose largest mark is <em>k</em> has <em>k</em> + 2 extensions — any existing mark or a
-new one — and exactly one retraction (<strong>computed</strong>).</figcaption>
+pattern with largest mark k has k + 2 extensions and exactly one retraction
+(computed).</figcaption>
 </figure>
 
 <h3>The morphogram bridge</h3>
 
 <p>On the normal form sits pattern identity: two sequences carry the same morphogram if their
-normal forms agree. The corpus carries six ledger rows for paragraph 16, three of them with
-theorem character (<strong>proved · aggregate</strong>):</p>
+normal forms agree. The core holdings (<strong>proved · aggregate</strong>):</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>Row</th><th>Carrier</th><th>Kind</th><th>Profile</th></tr></thead>
+<thead><tr><th>row</th><th>carrier</th><th>kind</th><th>profile</th></tr></thead>
 <tbody>
 <tr><td>L16-1</td><td><code>K.relabel</code></td><td>definition</td><td>axiom-free</td></tr>
 <tr><td>L16-2</td><td><code>K.rgs_unique_of_pattern</code></td><td>theorem</td><td><code>[propext, Quot.sound]</code></td></tr>
 <tr><td>L16-3</td><td><code>KM.SamePattern</code></td><td>definition</td><td>—</td></tr>
 <tr><td>L16-4</td><td><code>KM.samePattern_iff_pattern</code></td><td>theorem</td><td><code>[propext, Classical.choice, Quot.sound]</code></td></tr>
 <tr><td>L16-5</td><td><code>KM.samePattern_iff_common_nf</code></td><td>theorem</td><td><code>[propext, Classical.choice, Quot.sound]</code></td></tr>
-<tr><td>L16-6</td><td>—</td><td><strong>open</strong></td><td>value assignment of morphograms not formalised</td></tr>
 </tbody>
 </table>
 </div>
 
 <p><strong>No quotient type.</strong> The bridge is built as a normal-form semantics, not as a
 quotient; that was a construction decision and not an embarrassment. L16-5 carries the note that
-the characterisation via the common normal form depends on <code>List ℕ</code>, whereas L16-4 is
-type-independent. The open row L16-6 stays open and appears in <a href="#x">§X</a>.</p>
+the characterisation via the common normal form hangs on <code>List ℕ</code>, whereas L16-4 is
+type-transverse.</p>
+
+<h3>Value-filling, in Rev2 the open row of this section</h3>
+
+<p>Rev2 carried an open question here: which patterns can be filled by a sequence of values at
+all? As of this edition it has a proved answer — in the two-valued version here, in the
+<code>k</code>-valued version in <a href="#v">§V.3</a>:</p>
+
+<div class="theorem">
+<p><span class="label">Theorem (fillability, two-valued).</span> A pattern is fillable by a
+two-valued sequence if and only if its marks do not exceed 1.<br>(<strong>proved ·
+aggregate</strong>; <code>KF.marksLeOne_iff_fillable</code>)</p>
+</div>
+
+<p>The direction from the mark to the sequence is an encoding; the converse runs via the density
+of the normal form — a mark <code>≥ 2</code> forces three pairwise distinct marks, hence three
+distinct values, and a two-valued sequence does not have them. Counted at length four,
+<strong>both numbers as theorems</strong>: of the <strong>15</strong> patterns of length 4
+exactly <strong>8</strong> are two-valued fillable (<strong>proved · aggregate</strong>;
+<code>KF.card_rgs_four</code>, <code>KF.card_rgs_four_fillable</code>, with
+<code>fillable_card_lt_card</code> as a strict inequality — the number 15, the fourth Bell
+number, is thereby proved inside the corpus and not imported). A witness of the excess stands
+beside it: the pattern <code>0,1,2,0</code> needs three values. <strong>The kenogrammatic layer
+is richer than any fixed valency</strong> — at length four as an inequality, in general as the
+theorem of <a href="#v">§V.3</a>. The current state of this section's ledger rows (by now up to
+L16-10) is carried by the ledger itself; §VII shows the mechanism.</p>
 
 <!-- ===================================================================== -->
 <h2 id="ii">II · Contextures: two discontexturalities, one of them proved</h2>
@@ -339,7 +376,7 @@ type-independent. The open row L16-6 stays open and appears in <a href="#x">§X<
 <h3>1 · What discontexturality is not</h3>
 
 <p>Günther's most elementary case of discontexturality is the opposition of Being and Nothing —
-and these two are for him <strong>isomorphic</strong> (<strong>source-verified</strong>).
+and for him these two are <strong>isomorphic</strong> (<strong>source-verified</strong>).
 Between them there is a complete, structure-preserving map, and they are discontextural
 nonetheless.</p>
 
@@ -348,10 +385,11 @@ appears <strong>not</strong> as the non-existence of a map, but as <strong>non-g
 the term clone</strong> — as the impossibility of assembling a mediating operation from
 intra-contextural means. What is missing is not the map, but the path to it from within.</p>
 
-<p>Two short forms are thereby excluded and are carried in the corpus as a construction
-prohibition: <code>Disjoint K₁ K₂</code> fails because the elementary contextures overlap
-pairwise in exactly one value and this overlap carries the proofs;
-<code>¬ ∃ f : K₁ → K₂</code> fails at the basic case Being/Nothing.</p>
+<p>Two short forms are therefore excluded and carried in the corpus as construction
+prohibitions: <code>Disjoint K₁ K₂</code> fails because the elementary contextures overlap
+pairwise in exactly one value and this overlap carries the proofs — which is why the recast
+project definition names the permission to overlap in the definition itself rather than in a
+comment; <code>¬ ∃ f : K₁ → K₂</code> fails at the basic case Being/Nothing.</p>
 
 <h3>2 · The first relation: symmetric, and proved</h3>
 
@@ -362,13 +400,21 @@ between elementary contextures: an unordered pair, symmetric, without directiona
 <div class="theorem">
 <p><span class="label">Theorem (E3).</span> For every <code>m ≥ 4</code>, a
 contexture-preserving, locally classical operation on <code>m</code> values lies in the clone of
-the intra-contextural connectives if and only if it is the minimum or the maximum.<br>
-(<strong>proved · aggregate</strong>;
+the intra-contextural connectives if and only if it is the minimum or the
+maximum.<br>(<strong>proved · aggregate</strong>;
 <code>GeneralCloneBound.locally_classical_in_clone_iff</code>)</p>
 </div>
 
 <p>This is a <strong>characterisation</strong>, not an existence claim: the set of
-non-assemblable operations is not merely non-empty but completely determined.</p>
+non-assemblable operations is not merely non-empty but completely determined. And in this
+edition it has become the most consumed theorem of the corpus: two applications (<a
+href="#vi">§VI</a>), the <code>∀m</code> witness of the ascent and the reachability half of the
+richness count (<a href="#v">§V</a>) all compute on it; none rebuilds it — consumption is
+measured at the proof term, non-rebuilding by must-not routes.</p>
+
+<p>The exchange relation itself has gained a second, unexpected property in this edition:
+<strong>it is stage-relative.</strong> What that means and why it is provable stands in <a
+href="#v">§V.2</a>.</p>
 
 <h3>3 · The second relation: asymmetric, and divided</h3>
 
@@ -380,21 +426,22 @@ definition plus theorem (<strong>posited</strong>, marked as such in the corpus)
 
 <h3>4 · Where the posit sits</h3>
 
-<div class="callout">
-<p>A two-element set of neighbouring values is an elementary contexture in Günther's sense.<br>
+<p>A two-element set of neighbouring values is an elementary contexture in Günther's sense.
 (<strong>posited</strong> — the load-bearing choice of the entire series of bounds)</p>
-</div>
 
 <p>There is a substantive reason for this choice, and it is not cut to fit after the fact: a
 two-element set is closed under the local operations if and only if its two elements are
-comparable. On incomparable pairs the minimum leaves the set — then it is no self-contained
-connection and no contexture in the sense of the definitions. <strong>The limit of the
-formalisation lies in the concept, not in the proof.</strong></p>
+comparable. On incomparable pairs the minimum leaves the set — then it is no longer a
+self-contained connection and no contexture in the sense of the definitions. Since the
+<code>M₃</code> move this reason is itself a theorem (<code>meet_leaves_incomparable</code>,
+<strong>proved · aggregate</strong>): the posit remains a posit, but its ground is provably the
+one claimed. <strong>The limit of the formalisation lies in the concept, not in the
+proof.</strong></p>
 
 <!-- ===================================================================== -->
 <h2 id="iii">III · The mode of proof: the differential</h2>
 
-<p>How does one prove what is inalienably absent from a structure, without the
+<p>How does one prove what is inalienably missing from a structure, without the
 self-contradiction of a system certifying its own limit from within? Not positively within one
 system, but <strong>differentially between two</strong>. For each structural feature a poor
 class is named and a pair is exhibited: over all instances of the poor class the feature is
@@ -446,12 +493,21 @@ corpus is therefore named <code>NonUniformCloneBound</code> and not <code>Mediat
 halves. It is delivered only with the negative one.</figcaption>
 </figure>
 
+<p>New is that in this edition the form was applied twice <strong>to the architecture
+itself</strong>. Once to a theorem of the ascent: the parity obstruction (<a href="#v">§V.2</a>)
+has exactly the differential shape — the impossibility half universally quantified over
+<strong>all</strong> maps, without injectivity or monotonicity assumptions, the possibility half
+with an explicit witness beside it. And once to a <strong>measurement</strong>: wherever an
+axiom profile is to be explained, the workshop has since this block required two versions
+differing in exactly one quantity (<a href="#ix">§IX</a>). The differential is thus not only the
+mode of proof of the subject, but also the mode of checking of the workshop.</p>
+
 <!-- ===================================================================== -->
 <h2 id="iv">IV · The witnesses: the series of bounds</h2>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th></th><th>Theorem</th><th>Kind of non-internality</th><th>Reach</th></tr></thead>
+<thead><tr><th></th><th>theorem</th><th>kind of non-internality</th><th>reach</th></tr></thead>
 <tbody>
 <tr><td><strong>D</strong></td><td>rejection does not lie in the clone</td><td><strong>transcendence</strong> — it leaves the contexture</td><td><code>m = 3</code></td></tr>
 <tr><td><strong>E1</strong></td><td>complete classification</td><td><strong>non-uniformity</strong> — it stays and chooses differently</td><td><code>m = 3</code></td></tr>
@@ -462,7 +518,9 @@ halves. It is delivered only with the negative one.</figcaption>
 </table>
 </div>
 
-<p>All five: <strong>proved · aggregate</strong>.</p>
+<p>All five: <strong>proved · aggregate</strong>. The series has not grown longer since Rev2 —
+it has been <strong>consumed more widely</strong>, and its numbers have changed kind: what was
+computed there is in part proved here.</p>
 
 <h3>1 · D — locating the first bound</h3>
 
@@ -472,15 +530,14 @@ via contexture preservation).</p>
 
 <p>Lying outside a clone is cheap in itself: in the binary fragment the clone comprises
 <strong>82 of 19,683</strong> operations, 0.42 per cent (<strong>computed</strong>). The claim
-does not rest on that. The basis preserves three invariants, and every term over it preserves
-all three — not merely the generators (<strong>proved · aggregate</strong>, by term induction).
+does not rest there. The basis preserves three invariants, and every term over it preserves all
+three — not merely the generators (<strong>proved · aggregate</strong>, by term induction).
 Rejection violates exactly one of them and preserves the other two. It therefore lies not
 somewhere outside, but <strong>at a determinate place</strong>.</p>
 
-<p>A marginal note that arose while recomputing for this edition and is absent from Rev1: the
-binary clone fragment has <strong>the same size 82 at three, four, five and six
-values</strong> (<strong>computed</strong>). The number 82 is not a property of
-three-valuedness but of the signature.</p>
+<p>The marginal note of Rev2 still holds: the binary clone fragment has the same size 82 at
+three, four, five and six values (<strong>computed</strong>) — the number hangs on the
+signature, not on the number of values.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -503,9 +560,8 @@ three-valuedness but of the signature.</p>
 </svg>
 </div>
 <figcaption><span class="fignum">Figure 4</span> — The location: not somewhere outside, but
-beyond exactly one of three preserved invariants. Clone figures <strong>computed</strong>,
-outside the corpus; the size 82 is a property of the signature and not of
-three-valuedness.</figcaption>
+beyond exactly one of three preserved invariants. Clone counts computed, outside the
+corpus.</figcaption>
 </figure>
 
 <h3>2 · E1 — the second reason, and the complete division</h3>
@@ -515,45 +571,48 @@ three-valuedness.</figcaption>
 <strong>non-uniformity</strong> — it preserves every contexture, acts classically on each, and
 chooses different classical operations on different contextures.</p>
 
-<p>The second reason has a witness, and completely so: of the eight choice patterns over three
+<p>The second reason has a witness, and a complete one: of the eight choice patterns over three
 values exactly four are assemblable and exactly four are not (<strong>proved ·
 aggregate</strong>; the division is closed under negation conjugation — a transport lemma
 replaces three copies of a proof by one theorem).</p>
 
-<p><strong>The four reachable patterns are not an arbitrary four</strong>
+<p><strong>The four reachable patterns are not four arbitrary ones</strong>
 (<strong>computed</strong>). Ordering the three elementary contextures as <code>{0,1}</code>,
 <code>{0,2}</code>, <code>{1,2}</code>, they are <code>(min,min,min)</code>,
 <code>(max,min,min)</code>, <code>(max,max,min)</code>, <code>(max,max,max)</code> — a chain of
-thresholds and not a scattered selection.</p>
+thresholds and not a scattered selection. The word <em>choice pattern</em> in this paragraph is,
+incidentally, more than a manner of speaking since this edition: that a locally classical
+operation <strong>is nothing but</strong> a choice vector over the elementary contextures is
+proved as a bijection (<a href="#v">§V.4</a>).</p>
 
 <h3>3 · E2 and E3 — from existence to characterisation</h3>
 
 <p>At four values the picture tips: of the 64 locally classical operations <strong>two</strong>
-remain assemblable, namely minimum and maximum themselves (<strong>proved · aggregate</strong>;
-verified <strong>computed</strong>). At five values it is 2 of 1,024, at six 2 of 32,768
-(<strong>computed</strong>).</p>
+remain assemblable, namely minimum and maximum themselves (<strong>proved · aggregate</strong>).
+At five values it is 2 of 1,024, at six 2 of 32,768.</p>
 
-<p>The pattern counts are no accident: there are <code>2^C(m,2)</code> patterns, and
-<code>C(m,2) = m(m-1)/2</code> is the number of elementary contextures of an
-<code>m</code>-valued system. The triangular numbers Günther carries for compound contextures
-and for the hierarchy of ontologies stand here as the exponent.</p>
-
-<p class="formula"><span class="name">E3</span> <code>m ≥ 4</code> &nbsp;⟹&nbsp;
-(<code>f</code> in the clone &nbsp;⟺&nbsp; <code>f = min</code> or <code>f = max</code>)</p>
+<p>Rev2 wrote at this point: the pattern counts are no accident, there are <code>2^C(m,2)</code>
+patterns — and carried that as <strong>computed</strong>. As of this edition it is a
+<strong>theorem</strong>: the number of locally classical operations on <code>m</code> values is
+<code>2^C(m,2)</code>, for every <code>m</code>, as the cardinality of a proved bijection (<a
+href="#v">§V.4</a>); the marks 8, 64, 1,024, 32,768 are <strong>instances</strong> of that
+theorem and no longer counts of their own. <code>C(m,2) = m(m−1)/2</code> is the number of
+elementary contextures of an <code>m</code>-valued system; the triangular numbers Günther
+carries for compound contextures and for the hierarchy of ontologies stand here as the exponent
+— now proved, not observed.</p>
 
 <p>E3 hangs on no fixed number of values — D and E1 stand at three values, E2 at four. Its proof
-uses no <code>decide</code> and no case distinction on <code>m</code>; it runs over six families
+uses no decision procedure and no case distinction on <code>m</code>; it runs over six families
 of edges with closed-form breaking points and an induction on path length.</p>
 
-<div class="callout">
 <p><strong>The threshold lies at four, and this is not an artefact.</strong> At three values the
 statement is <em>false</em> — there four of eight patterns are assemblable. At two values there
 is no witness at all, because there is only one contexture. This meets Günther's own threshold:
 the classical two-valued system does not yet represent a compound contexture, the second value
 yields nothing new and stands unmediated over against the first
-(<strong>source-verified</strong>). Mediation begins at three — here as a counted zero, not as a
-thesis.</p>
-</div>
+(<strong>source-verified</strong>). Mediation begins at three — in Rev2 as a counted zero, as of
+this edition as a proved one: at <code>m = 2</code> the total is <code>2^1 = 2</code>, and both
+operations are generable — the excess is zero, as a theorem (<a href="#v">§V.4</a>).</p>
 
 <h3>4 · Robustness: how much each bound claims</h3>
 
@@ -562,7 +621,7 @@ the bound survives precisely when the invariant is reflexive.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>Witness</th><th>Invariant</th><th>survives constants</th></tr></thead>
+<thead><tr><th>witness</th><th>invariant</th><th>survives constants</th></tr></thead>
 <tbody>
 <tr><td>D</td><td>one elementary contexture</td><td><strong>no</strong></td></tr>
 <tr><td>E2, E3, E4</td><td>neighbourhood with broken edges</td><td><strong>yes</strong></td></tr>
@@ -571,125 +630,285 @@ the bound survives precisely when the invariant is reflexive.</p>
 </div>
 
 <p>A bound that falls to an added constant claims less than it appears to. The inspection is
-written into the corpus as a duty before every new witness.</p>
+written into the corpus as a duty before every new witness — and the four moves of this edition
+draw <strong>no</strong> new bound: they consume the existing one, including its constants
+version, and their file headers say explicitly that there was nothing to inspect here, so that
+no one misses an inspection.</p>
 
 <!-- ===================================================================== -->
-<h2 id="v">V · The layer of applications, and what is measured in it</h2>
+<h2 id="v">V · The ascent: the two structural clauses of the strong definition</h2>
 
-<p>Two applications exist: a release policy over four authorisation levels and a source
+<p>Günther's Definition 6 takes polycontexturality as a world picture: reality as a system of
+<em>infinitely expanding</em> contextures with <em>growing structural richness</em>. The world
+picture is no subject for theorems and is not claimed. But the two <strong>structural
+clauses</strong> are subjects for theorems, and as of this edition both have them — on four
+carriers, built in four moves, each with its own specification and review.</p>
+
+<h3>1 · The stage ascent: the gap is inhabited everywhere, and it travels along</h3>
+
+<p>The E3 characterisation determines what is reachable; by itself it does not yet say that the
+unreachable is <strong>inhabited</strong> at every stage. Now a theorem says it:</p>
+
+<div class="theorem">
+<p><span class="label">Theorem.</span> For every <code>m ≥ 4</code> there exists a locally
+classical operation on <code>m</code> values outside the clone.<br>(<strong>proved ·
+aggregate</strong>; <code>SAsc.exists_locally_classical_not_in_clone</code> — as a consumption
+of the E3 iff, not as a new bound)</p>
+</div>
+
+<p>The witness is a <strong>family</strong>: <code>w</code> acts as maximum exactly on the
+elementary contexture <code>{0,1}</code> and as minimum elsewhere — the same rule at every
+stage. The choice of the max-island is a chosen basis, not a found one; any other pair would
+give another witness, and the file header says so. What matters is stage compatibility: under
+the embedding <code>Fin m ↪ Fin (m+1)</code> stage <code>m+1</code> agrees with stage
+<code>m</code> on the embedded square (<strong>proved · aggregate</strong>;
+<code>SAsc.w_castSucc</code>). That is the formula of the definitions edition — "stage n
+contains all structures of stage n−1 as substructures" — as a theorem, not as a programme.
+Beside it the growth arithmetic: each step brings exactly <code>m</code> new elementary
+contextures (<code>SAsc.choose_two_succ</code>), and the image of the stage misses the new
+element (<code>SAsc.ascent_proper</code>) — what is added was not there before.</p>
+
+<h3>2 · The parity obstruction: the ascent has no signature-faithful shape</h3>
+
+<p>The embedding carries the lattice and the witness. <strong>It never carries the
+negation</strong> — at no place, for no <code>m</code> (<strong>proved · aggregate</strong>;
+<code>SPar.castSucc_negFin_ne</code>; the values differ at every place by exactly one). One
+might suspect a cleverer map would heal this. The answer is a differential in the sense of <a
+href="#iii">§III</a>:</p>
+
+<div class="theorem">
+<p><span class="label">Theorem (parity no-go).</span> For odd <code>m</code>,
+<strong>no</strong> map <code>Fin m → Fin (m+1)</code> commutes with the negation — without
+injectivity or monotonicity assumptions.<br>(<strong>proved · aggregate</strong>;
+<code>SPar.odd_no_neg_compatible</code>)</p>
+</div>
+
+<p>The argument is three lines and therefore exhibitable: for odd <code>m</code> the negation
+<code>a ↦ m−1−a</code> has a fixed point, the middle value; a compatible map would have to send
+it to a fixed point of the successor stage, and the even successor stage has none. For even
+<code>m</code>, by contrast, an order-faithful, negation-compatible embedding exists, with an
+explicit witness: <code>eSym</code> leaves the gap at the middle place (<strong>proved ·
+aggregate</strong>; <code>SPar.eSym_strictMono</code>, <code>SPar.eSym_negFin</code>), and from
+<code>m ≥ 4</code> the witness family of <a href="#v">§V.1</a> ascends under it as well
+(<code>SPar.w_eSym</code>). The number of compatible embeddings for even <code>m</code> — 2, 8,
+48 for <code>m</code> = 2, 4, 6 — remains <strong>computed</strong> and outside the corpus; what
+went in was existence.</p>
+
+<p><strong>The stage step therefore fails to carry the full signature <code>{∧, ∨, ¬}</code>
+precisely when <code>m</code> is odd.</strong> The lattice ascends stepwise, the negation only
+in parity jumps — the exchange relation is <strong>stage-relative</strong>. The interpretation —
+that this is exactly why the ascent has no shape that would close it; that the expansion is
+genuine <em>because</em> it cannot be caught up signature-faithfully — is called that and stands
+in no theorem name. This is not a "no colimit" theorem, and none is claimed; about double steps
+<code>m → m+2</code> the theorem says nothing, and the file says that too.</p>
+
+<h3>3 · No finite stock of values: infinity at the object</h3>
+
+<p>The two-valued fillability bridge of <a href="#i">§I</a> generalises:</p>
+
+<div class="theorem">
+<p><span class="label">Theorem (fillability, <code>k</code>-valued).</span> A pattern of length
+<code>n</code> is fillable by a <code>k</code>-valued sequence if and only if all its marks lie
+below <code>k</code>.<br>(<strong>proved · aggregate</strong>;
+<code>KU.marksLt_iff_fillable</code>, including the boundary cases: at <code>k = 0</code> with a
+non-empty pattern both sides are false, at the empty pattern both are vacuously true)</p>
+</div>
+
+<p>The path from the mark to impossibility is the same as in <a href="#i">§I</a>, only general:
+a mark <code>≥ k</code> forces, via density, <code>k+1</code> pairwise distinct values, and a
+<code>k</code>-valued sequence does not have them — the closing cardinality argument is the one
+place where the proof goes beyond the encoding.</p>
+
+<p>On the stream layer this becomes the infinity claim, with the identity stream as the first
+<strong>named</strong> corpus object (<code>KU.idRGSStream</code> — the anonymous illustration
+in the stream file was not consumable and still stands there):</p>
+
+<div class="theorem">
+<p><span class="label">Theorem.</span> A kenogrammatic stream with unbounded marks is exceeded
+by every finite stock of values: for every <code>k</code> there is a prefix length beyond which
+the prefix is not <code>k</code>-valued fillable — and the identity stream is such a
+stream.<br>(<strong>proved · aggregate</strong>; <code>KU.unbounded_not_fillable</code>,
+<code>KU.idRGSStream_not_fillable</code>)</p>
+</div>
+
+<p>That is "infinitely expanding" in its most honest formal shape: as a negative theorem about
+every finite system of values, without a limit object — the evolutive direction of <a
+href="#i">§I</a>, the one that chooses, provably exceeds every stock it could choose from.
+<strong>The interpretive jump is stated explicitly in the corpus:</strong> kenogram is not
+contexture; reading the <code>k</code>-valued sequences as a "k-valued system"
+hangs on the bridge that supports it as a theorem, and the ledger row of the theorem names the
+jump (<strong>interpretation</strong>, marked).</p>
+
+<h3>4 · The richness count: exponentially many, two reachable</h3>
+
+<div class="theorem">
+<p><span class="label">Theorem (bijection).</span> The locally classical operations on <code>Fin
+m</code> are in bijection with the choice vectors over the ordered pairs; their number is
+<code>2^C(m,2)</code>, for every <code>m</code>.<br>(<strong>proved · aggregate</strong>;
+<code>CV.locallyClassicalEquiv</code>, <code>CV.card_locallyClassical</code>)</p>
+</div>
+
+<p>The bijection is constructive in both directions: forwards one reads off, for each pair,
+whether the operation acts there as maximum — well defined because minimum and maximum come
+apart at distinct places; backwards the choice vector builds the operation, with a forced
+diagonal. "Locally classical" is thereby no longer a mere property but a
+<strong>blueprint</strong>: one choice per elementary contexture, nothing further. The boundary
+cases carry without side conditions as well: for <code>m ≤ 1</code> there are no pairs and
+exactly one operation, <code>2^0 = 1</code>.</p>
+
+<div class="theorem">
+<p><span class="label">Theorem (reachability).</span> From <code>m ≥ 4</code> exactly two of
+these lie in the clone: minimum and maximum — as a set equality, with <code>min ≠ max</code> as
+an inequality of its own.<br>(<strong>proved · aggregate</strong>;
+<code>CV.clone_locallyClassical_eq</code>, <code>CV.min_ne_max</code>; both halves consuming E3.
+Deliberately no cardinality over the clone predicate — "lying in the clone" is not decidable,
+and the set equality needs no classical instances)</p>
+</div>
+
+<div class="theorem">
+<p><span class="label">Theorem (growth).</span> From stage to stage the number grows strictly;
+and from <code>m ≥ 3</code> it exceeds two.<br>(<strong>proved · aggregate</strong>;
+<code>CV.card_locallyClassical_lt</code>, <code>CV.two_lt_card_locallyClassical</code> — the
+bounds are sharp: at <code>m = 0</code> both sides of the growth stand at 1, at <code>m =
+2</code> everything present is generable)</p>
+</div>
+
+<p>The staggering of the beginnings — at two values no excess, at three eight against four, from
+four <code>2^C(m,2)</code> against the constant two — is the quantitative shape of "growing
+structural richness at constant reachability". <strong>That it is that is
+interpretation</strong> and is marked as such; what is proved is a bijection, a cardinality, a
+set equality and two inequalities.</p>
+
+<h3>5 · The second stage of the concept</h3>
+
+<p>The four moves together carry a second-stage definition, which as of this edition stands in
+§6.3 of the definitions edition — over <strong>families</strong> of structures: every member
+formally-operationally polycontextural; embeddings that preserve the witness; strict growth of
+the stock; at every member exactly the same two named reachable operations. Satisfied by the
+stage family of the <code>Fin m</code> from four upwards, with four theorems as carriers.
+<strong>Not claimed</strong> there, explicitly: a preservation of the full signature (the parity
+obstruction forbids it — the preservation clause therefore speaks of the witness and not of the
+signature), a limit object, and the world-picture Definition 6. Deliberately no Lean bundle: a
+structure with four <code>Prop</code> fields that no theorem requests would be a renaming of the
+library — the same decision with which the project already let a planned naming layer lapse. The
+definition stands exactly once and is not mirrored — not here either; this is a description with
+a reference, not a second site.</p>
+
+<h3>6 · What this means for Definition 6</h3>
+
+<p>The ledger row L06-1 — the strong, world-picture Definition 6 — still stands at
+<code>Offen</code>, now with four references to the probes and still without a carrier.
+<strong>That is the result, not an arrears:</strong> the totality ("reality as …") is not a
+structural property, and what is structure in Definition 6 has theorems. The only formal path to
+the totality would be a constitutive posit; it would not approximate the definition, it would
+posit it, and it is not taken.</p>
+
+<!-- ===================================================================== -->
+<h2 id="vi">VI · The application layer, and what is measured on it</h2>
+
+<p>Two applications are in place: a release policy over four authorisation levels and a source
 authority over four evidence levels. Both are <strong>aggregate</strong>.</p>
 
-<p><strong>The load-bearing claim is not that they exist.</strong> It is: the applications
+<p><strong>The load-bearing claim is not that they exist.</strong> It is that the applications
 <strong>consume</strong> the generic theorem instead of reproducing its proof. That is
 measurable at the proof term and nowhere else, and it is measured (<strong>measured ·
 aggregate</strong>):</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>Theorem</th><th>references in its term</th><th></th></tr></thead>
+<thead><tr><th>theorem</th><th>referenced in the term</th><th></th></tr></thead>
 <tbody>
 <tr><td><code>PolicyCheck.freigabe_nicht_erzeugbar</code></td><td><code>GCB.locally_classical_in_clone_iff</code></td><td><strong>yes</strong></td></tr>
 <tr><td><code>RAGAuthority.autoritaet_nicht_erzeugbar</code></td><td><code>GCB.locally_classical_in_clone_iff</code></td><td><strong>yes</strong></td></tr>
 <tr><td><code>PolicyCheck.freigabe_nicht_erzeugbar_konstanten</code></td><td><code>GCB.constant_clone_min_or_max</code></td><td><strong>yes</strong></td></tr>
 <tr><td><code>RAGAuthority.autoritaet_nicht_erzeugbar_konstanten</code></td><td><code>GCB.constant_clone_min_or_max</code></td><td><strong>yes</strong></td></tr>
-<tr><td><code>PolicyCheck.freigabe_lokal</code> (counter-probe)</td><td>same target</td><td><strong>no</strong></td></tr>
-<tr><td><code>RAGAuthority.autoritaet_lokal</code> (counter-probe)</td><td>same target</td><td><strong>no</strong></td></tr>
+<tr><td><code>PolicyCheck.freigabe_lokal</code> (control)</td><td>the same target</td><td><strong>no</strong></td></tr>
+<tr><td><code>RAGAuthority.autoritaet_lokal</code> (control)</td><td>the same target</td><td><strong>no</strong></td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>The counter-probe is the point.</strong> A route that reports <em>yes</em> everywhere
+<p><strong>The control is the point.</strong> A route that reports <em>yes</em> everywhere
 measures nothing. This one discriminates, and it does so at the prerequisite lemmas of the same
-files — at the nearest non-hit and not at an arbitrarily distant counterpart.</p>
+files — at the nearest non-hit and not at some arbitrarily distant counterpart.</p>
 
 <h3>The limit in the same breath</h3>
 
 <p>The bound bites on linearly graded carriers from four levels upwards. From non-generability
-follows <strong>no</strong> guarantee of security, legality, truth or retrieval. What the
-theorem says is: a mixed policy is not assemblable from local, contexture-blind checkers — in
-whatever wiring and to whatever depth. What it does not say is that the policy is right.</p>
+follows <strong>no</strong> security, legal, truth or retrieval guarantee. What the theorem says
+is: a mixed policy is not assemblable from local, contexture-blind checkers — in whatever wiring
+and to whatever depth. What it does not say is that the policy is right.</p>
 
 <p><strong>On a lattice of equal-ranking roles the bound falls.</strong> On the smallest
 non-distributive lattice <code>M₃</code> — bottom, three incomparable elements, top — the binary
-clone fragment comprises 166 operations; over the seven comparable pairs <strong>ten of them are
-locally classical, and eight of those are neither infimum nor supremum</strong>
-(<strong>computed</strong>). One witness can simply be written down: the operation choosing the
-supremum on the lower edges and the infimum on the upper ones. Exactly the pattern that E3
-excludes on linear scales is assemblable here.</p>
+clone fragment comprises 166 operations, of which, over seven comparable pairs, ten are locally
+classical, and eight of those are neither infimum nor supremum (<strong>computed</strong>). The
+witness is, since the <code>M₃</code> move, <strong>proved and no longer computed</strong>:
+<code>M3CloneWitness.m3_mixed_term_exists</code> exhibits the term <code>(x ∧ y) ∨ ((x ∨ y) ∧
+(¬x ∧ ¬y))</code> — locally classical on every comparable pair, globally neither infimum nor
+supremum (<strong>proved · aggregate</strong>, choice-free; the carrier is an inductive type of
+its own, to exclude any instance ambiguity). With it the conceptual limit stands as a theorem
+(<code>meet_leaves_incomparable</code>, <a href="#ii">§II.4</a>). Exactly the pattern E3
+excludes on linear scales is assemblable here — the clone counts remain outside the corpus, what
+went into the corpus is the existence form.</p>
 
-<p><strong>Since the M3 move this witness is proved and no longer computed.</strong>
-<code>Proemial.M3CloneWitness.m3_mixed_term_exists</code> exhibits the term
-<code>(x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))</code>: locally classical on every comparable pair,
-globally neither infimum nor supremum. With it the conceptual limit stands as a theorem too
-(<code>meet_leaves_incomparable</code>): on an incomparable pair the infimum leaves the
-two-element set, which is therefore no elementary contexture. The clone counts of the preceding
-paragraph stay outside the corpus; what enters the corpus is the existence form.</p>
-
-<p>A transition graph of named roles without grading is <strong>not</strong> carried by this
-bound; what remains provable there is reachability, and a type system achieves that too.</p>
+<p>A transition graph of named roles without a grading is <strong>not</strong> carried by this
+bound; what remains provable there is reachability, and that a type system achieves too.</p>
 
 <!-- ===================================================================== -->
-<h2 id="vi">VI · The ledger and the register: the concepts and their carriers</h2>
+<h2 id="vii">VII · The ledger and the register: the concepts and their carriers</h2>
 
-<p>Günther's concepts stand in a definitions edition with nineteen paragraphs. Which concept has
-which Lean carrier is, in this edition, no longer spread through the running text but
-<strong>machine-checked</strong>.</p>
+<p>Günther's concepts stand in a definitions edition of nineteen paragraphs. The question which
+concept has which Lean carrier is machine-checked.</p>
 
-<p>The ledger carries <strong>79 rows</strong>, <strong>63 of them with a carrier</strong> over
-55 distinct carrier names, and covers <strong>19 of 19 paragraphs</strong>
-(<strong>measured</strong>). The carrier statuses distribute over 45 theorems, 17 definitions,
-one posit and <strong>16 open rows</strong>.</p>
+<p>The ledger carries <strong>91 rows</strong>, of which <strong>75 have a carrier</strong> over
+<strong>67</strong> distinct carrier names, and covers <strong>19 of 19 paragraphs</strong>
+(<strong>measured</strong>; revision 10). The carrier statuses distribute over <strong>57
+theorems, 17 definitions, one posit and 16 open rows</strong>. Five carriers appear in more than
+one row; the surplus rows are eight, and <code>75 − 67 = 8</code> is checked as an equation.
+This sentence stood wrong in the self-report for five revisions — "eight carriers more than
+once" instead of "five carriers, eight surplus rows" — and none of the eight rules could see it,
+because they read rows and not sentences about rows; what found it was the rule of reading the
+neighbourhood of every number one touches.</p>
 
-<p><strong>The paper does not establish this assignment itself.</strong> It shows the mechanism
-that holds it; the table is in
-<a href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> and there alone. Eight
-rules check it, six of them in the doc lint and two at build time:</p>
+<p><strong>The paper does not establish the assignment itself.</strong> It shows the mechanism
+that holds it; the table lives in <a
+href="definition-ledger.md"><code>docs/definition-ledger.md</code></a> and there alone. Eight
+rules check it, six at lint time and two at build time:</p>
 
 <ul>
   <li><strong>R1, R2</strong> (build): every named carrier resolves in the environment, and its
-    carrier status agrees with the kind of declaration.</li>
+  carrier status matches the kind of declaration.</li>
   <li><strong>R3</strong> no assignment status <code>Theorem</code> — an assignment status is
-    editorial and never compiler-checked, and must not call itself so.</li>
+  editorial and never compiler-checked, and must not call itself so.</li>
   <li><strong>R4</strong> carrier status <code>Offen</code> forces an empty carrier column.</li>
   <li><strong>R5</strong> all nineteen paragraphs represented.</li>
   <li><strong>R6</strong> carrier status <code>Theorem</code> forces a guard entry.</li>
   <li><strong>R7</strong> every carrier row has exactly one matching reference in the reference
-    file, and conversely; an orphaned reference is as much a violation as a missing one.</li>
-  <li><strong>R8</strong> every row ID occurs exactly once in both files.</li>
+  file, and conversely.</li>
+  <li><strong>R8</strong> every row ID occurs exactly once in both files; the ID route carries
+  two-digit numbers as of this edition, and the first row that needs it (L16-10, the
+  <code>k</code>-valued bridge) exists.</li>
 </ul>
 
-<p>R3 through R8 set the exit code of the lint; a violation turns the run red. <strong>Sixteen
-open rows stay open</strong> — among them the strong Definition 6 (L06-1) and the value
-assignment of morphograms (L16-6). An open row is not a defect of the ledger but its
-achievement.</p>
+<p>R3 through R8 set the exit code of the lint. <strong>Sixteen open rows remain open</strong> —
+among them the strong Definition 6 (L06-1, now with four references). An open row is not a
+defect of the ledger but its achievement.</p>
 
 <h3>The register of posits</h3>
 
-<p>Posits do not disappear, they are registered. As measured, the aggregate carries <strong>32
-structure fields of type <code>True</code></strong> (<strong>measured · aggregate</strong>),
-counted by environment query and not by text search. They fall into two classes that do not say
-the same thing:</p>
-
-<ul>
-  <li><strong>30 placeholders</strong> — a deferred proof debt. Each needs an exit criterion:
-    what would have to be the case for it to fall.</li>
-  <li><strong>2 constitutive posits</strong> — no proof owed, but a justification for why none
-    is owed.</li>
-</ul>
-
-<p>The load-bearing rule is not “the aggregate contains no posit” but <strong>no theorem of the
-aggregate depends on a posit</strong>. A field of type <code>True</code> can enter no proof; why
-it must nevertheless be marked is an epistemic and not a logical argument: what stands in the
-aggregate reads as certified holdings.</p>
-
-<p>Alongside this a standing probe: <strong>no non-projection of the aggregate has conclusion
-<code>True</code></strong> (<strong>measured · aggregate</strong>, value 0). It prevents
-declarations whose name claims more than their statement. The probe carries its own
-counter-calculation: the same route reports 32 on the projection side — a value whose answer is
-known.</p>
+<p>Posits do not disappear, they are registered. The load-bearing rule is not "the aggregate
+contains no posit" but <strong>no theorem of the aggregate hangs on a posit</strong>. A field of
+type <code>True</code> can enter no proof; why it must nevertheless be marked is an epistemic
+and not a logical argument: what stands in the aggregate reads as certified holdings. The class
+division (placeholders with an exit criterion against constitutive posits with a justification)
+and the standing probe — no non-projection of the aggregate has conclusion <code>True</code>,
+value 0, with a known counter-count on the projection side — hold unchanged. Re-measured at the
+generation state and unchanged: <strong>30 placeholders and 2 constitutive posits</strong>, the
+equation 32 = 30 + 2 holds.</p>
 
 <!-- ===================================================================== -->
-<h2 id="vii">VII · Movement and time</h2>
+<h2 id="viii">VIII · Movement and time</h2>
 
 <p>Over the web lies a modal triad as a stock of movement: <strong>displacement</strong> — the
 same structure at another place; <strong>reorganisation</strong> — the same parts in another
@@ -697,19 +916,19 @@ order; <strong>irreversible positing</strong> — the step that is not taken bac
 compositions are smooth in exactly one direction; there is no canonical interchange of
 directions.</p>
 
-<p>Before that it is worth looking at the place where Günther first came upon the matter. In
-1937 he sets three propositions about potency side by side, each immediately plausible on its
-own: time is more powerful than will; thought is more powerful than time; will is more powerful
-than thought. Take the first two together and it follows that thought is more powerful than will
-— the third says the opposite. The three close into a circle (<strong>source-verified</strong>,
+<p>Before that, the place where Günther first came upon the matter is worth a look. In 1937 he
+sets three propositions about potency side by side, each immediately plausible on its own: time
+is more powerful than will; thought is more powerful than time; will is more powerful than
+thought. Take the first two together and it follows that thought is more powerful than will —
+the third says the opposite. The three close into a circle (<strong>source-verified</strong>,
 <em>Wahrheit, Wirklichkeit und Zeit</em>, Paris 1937).</p>
 
 <p><strong>What the architecture makes of this is a differential and not a thesis.</strong> What
 is proved is the poor side: in every transitive, irreflexive relation — on every carrier,
 without exception — a three-cycle is impossible, and there is likewise no relation-preserving
-image of such a cycle into a strict order. That thought, will and time behave this way is not
-claimed; what is claimed is: <strong>if</strong> they do, then no linear order is their measure
-— and not because none has been found so far, but because none can exist.</p>
+image of such a cycle into a strict order. It is not claimed that thought, will and time behave
+this way; what is claimed is: <strong>if</strong> they do, then no linear order is their measure
+— not because none has been found so far, but because none can exist.</p>
 
 <figure class="fig wide">
 <div class="fig-scroll">
@@ -749,90 +968,72 @@ claimed; what is claimed is: <strong>if</strong> they do, then no linear order i
   <text class="txs" x="350" y="337" text-anchor="middle">the third says the opposite. <tspan class="b">The cycle closes.</tspan></text>
 </svg>
 </div>
-<figcaption><span class="fignum">Figure 5</span> — The three propositions of potency of 1937 and
-their intransitive circle. What is proved is not the circle but its impossibility in every
-transitive, irreflexive relation (<strong>proved · aggregate</strong>).</figcaption>
+<figcaption><span class="fignum">Figure 5</span> — Günther's three principles of potency of 1937
+and their intransitive cycle. What is proved is not the cycle but its impossibility in every
+transitive, irreflexive relation (proved · aggregate).</figcaption>
 </figure>
 
 <h3>The carriers of this section</h3>
 
 <p>The load-bearing theorem of the potency cycle is
-<code>Proemial.IntransitivityDifferential.no_cycle_in_strict_order</code>
-(<strong>proved · aggregate</strong>, profile <strong>axiom-free</strong>): in every transitive,
-irreflexive relation a three-cycle is impossible. That such a cycle also has no
+<code>Proemial.IntransitivityDifferential.no_cycle_in_strict_order</code> (<strong>proved ·
+aggregate</strong>, profile <strong>axiom-free</strong>). That such a cycle also has no
 relation-preserving image into a strict order is carried by <code>cyc3_not_representable</code>
-(<strong>proved · aggregate</strong>, <code>[propext]</code>); that the cycle itself obtains is
-carried by <code>cyc3_holds</code>, <code>cyc3_irrefl</code> and
-<code>cyc3_not_transitive</code> (same marks). All six theorems are guarded.</p>
+(<code>[propext]</code>); that the cycle itself holds is carried by <code>cyc3_holds</code>,
+<code>cyc3_irrefl</code> and <code>cyc3_not_transitive</code>. All six theorems are guarded. The
+missing interchange of directions is <code>Proemial.NoUniformSwap.no_uniform_swap</code>
+(<code>[propext, Classical.choice, Quot.sound]</code>; the choice component comes from the
+category machinery and not from the proof itself). <strong>The full name with its module is no
+pedantry:</strong> a theorem of the same name lies in a call target, unguarded, as a historical
+record — whoever names the name without the module leaves open which one is meant, and the
+second axis runs empty.</p>
 
-<p>The absent interchange of directions is
-<code>Proemial.NoUniformSwap.no_uniform_swap</code> (<strong>proved · aggregate</strong>,
-<code>[propext, Classical.choice, Quot.sound]</code>, guarded; the appeal to
-<code>Classical.choice</code> comes from the category-theoretic machinery and not from the proof
-itself). <strong>The full name with module is no pedantry here:</strong> a theorem of the same
-name lies in <code>Diagnostics.SwapSatzProbe</code> — domain <strong>call target</strong>,
-unguarded, carried in the corpus as a historical record. Whoever names it without the module
-leaves open which of the two he means, and the second axis runs empty.</p>
-
-<p>The modal triad lies at two places. This section rests on
-<code>F3e.ModalTwoCategoryWithPullbacks</code> (<strong>aggregate</strong>); a version in the
-frozen branch (<code>PathC.ModalTwoCategory</code>, <code>PathC.ModalTwoCategoryNegation</code>)
-remains outside the default targets and carries nothing here.</p>
+<p>Newly connectable, without claiming more here: the parity obstruction of <a
+href="#v">§V.2</a> is of the same genus — an impossibility of transporting a direction,
+universally quantified over all candidates, with a proved possibility half beside it. The
+intransitive 1937 motif and the stage-relative exchange relation are two shapes of the same
+finding: <strong>Günther's structures resist embedding into a single linear measure — and that
+is provable, not programmatic.</strong></p>
 
 <!-- ===================================================================== -->
-<h2 id="viii">VIII · The safeguards: guards, profiles, domains</h2>
+<h2 id="ix">IX · The safeguards: guards, profiles, ranges</h2>
 
 <p>An architecture that asserts impossibilities must be able to say what its proofs rest on —
 and must prevent that from changing silently.</p>
 
 <h3>The standing</h3>
 
-<div class="tablewrap stand">
+<div class="tablewrap">
 <table>
-<thead><tr><th>Figure</th><th class="num">Value</th><th>Domain</th></tr></thead>
+<thead><tr><th>figure</th><th>value</th><th>range</th></tr></thead>
 <tbody>
-<tr><td>checked (axiom gate)</td><td class="num"><strong>3018</strong> constants</td><td>import tree of <code>Reformulation</code>, name-filtered</td></tr>
-<tr><td>axiom guards, written</td><td class="num"><strong>396</strong> in 45 files</td><td><code>Reformulation/</code> <strong>and</strong> <code>Foreign/</code></td></tr>
-<tr><td>axiom guards, enforced</td><td class="num"><strong>386</strong> in 44 files</td><td>import closure of the five default targets</td></tr>
-<tr><td>statement pins</td><td class="num"><strong>44</strong></td><td><code>Reformulation/</code></td></tr>
-<tr><td>theorems</td><td class="num"><strong>726</strong></td><td><code>Reformulation/</code> alone</td></tr>
-<tr><td><code>def</code></td><td class="num"><strong>318</strong></td><td><code>Reformulation/</code></td></tr>
-<tr><td>build jobs</td><td class="num"><strong>1301</strong></td><td>the five default targets together</td></tr>
-<tr><td>files</td><td class="num"><strong>163</strong>, of which 160 <code>.lean</code></td><td><code>Reformulation/</code> and <code>Foreign/</code></td></tr>
-<tr><th>declared gaps</th><td class="num"><strong>0</strong></td><td>whitelist empty</td></tr>
+<tr><td>constants checked (gate)</td><td><strong>3255</strong></td><td>import tree of <code>Reformulation</code>, name-filtered</td></tr>
+<tr><td>axiom guards, written</td><td><strong>470</strong> in 51 files</td><td><code>Reformulation/</code> <strong>and</strong> <code>Foreign/</code></td></tr>
+<tr><td>axiom guards, enforced</td><td><strong>460</strong></td><td>import closure of the five default targets</td></tr>
+<tr><td>theorems</td><td><strong>792</strong></td><td><code>Reformulation/</code> alone, widened route</td></tr>
+<tr><td>build jobs</td><td><strong>1307</strong></td><td>the five default targets together</td></tr>
+<tr><td>declared gaps</td><td><strong>0</strong></td><td>whitelist empty</td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>A warning belongs to the theorem count.</strong> It does not compare with the figure
-of the previous edition: that one ran over a different domain, and the counting route has since
-been widened — it previously missed thirteen <code>private</code> declarations and six carrying
-an attribute, and counted three quotations. Two changes lie between the two numbers, and setting
-them side by side would show a growth that neither of them claims.</p>
+<p>The guard equation holds: 470 written = 460 enforced + 10 in
+<code>Foreign/PeresMermin.lean</code>. The theorem count is <strong>comparable</strong> with the
+Rev2 figure 726 — the same route, widened since Rev2; the increase is the theorems of the four
+ascent moves and of this block's instrument moves. Figures not re-measured since
+<code>e5ef3d7</code> — statement pins, <code>def</code> count, profile distribution,
+import-closure map, clone-construction replicability — do <strong>not</strong> appear in this
+edition with a new state; where Rev2 carries them, they hold there, at the commit named there.
+Their state anchor is therefore <code>e5ef3d7</code>, visible in the <a href="rev2/en.html">Rev2
+edition</a>; none of them is re-measured.</p>
 
 <h3>The four mechanisms</h3>
 
-<p><strong>First, the axiom guards.</strong> For every load-bearing theorem its axiom profile is
+<p><strong>First, the axiom guards.</strong> For every load-bearing theorem the axiom profile is
 measured and frozen as an expectation; if the proof basis shifts silently, the build breaks. The
-guard secures the basis, not the wording. The profile distribution over all 396 written guards
-(<strong>measured</strong>):</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>Profile</th><th class="num">Guards</th></tr></thead>
-<tbody>
-<tr><td><code>[propext, Quot.sound]</code></td><td class="num">183</td></tr>
-<tr><td><code>[propext]</code></td><td class="num">84</td></tr>
-<tr><td><strong>axiom-free</strong></td><td class="num"><strong>66</strong></td></tr>
-<tr><td><code>[propext, Classical.choice, Quot.sound]</code></td><td class="num">61</td></tr>
-<tr><td><code>[Quot.sound]</code></td><td class="num">2</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>The <strong>66</strong> answers “how many of the guarded profiles are axiom-free” and not
-“how many theorems of the corpus are axiom-free”; the reference quantity 396 belongs beside it.
-<code>Classical.choice</code> appears in 61 profiles — not forbidden, but declared.</p>
+guard secures the basis, not the wording. Since this block, file completeness also covers
+definitions and instances whose value contains proof terms — with a measured justification, not
+out of caution.</p>
 
 <p><strong>Second, the statement pins.</strong> Guards secure the basis, not the formulation; a
 weakened theorem with the same profile would pass. Pins nail down the full wording and break the
@@ -840,93 +1041,54 @@ build on definitional drift.</p>
 
 <p><strong>Third, the global gate.</strong> It reports:</p>
 
-<pre><code>AXIOM-GATE GRÜN — Aggregat Reformulation (3018 geprüfte Konstanten)
+<pre><code>AXIOM-GATE GRÜN — Aggregat Reformulation (3255 geprüfte Konstanten)
 zieht kein sorryAx. Whitelist leer.</code></pre>
 
-<p><strong>Fourth, and new in this edition: the domain separation.</strong> Five targets build
-on <code>lake build</code>; five more run only when called. The assurance of the gate holds for
-the aggregate and for no other domain.</p>
+<p><strong>Fourth, the separation of ranges.</strong> Five targets build on <code>lake
+build</code>; five more run only when called. The gate's assurance holds for the aggregate and
+for no other range; the target table together with the warning that build outputs must not be
+summed stands in Rev2 and holds on.</p>
 
-<div class="tablewrap">
-<table>
-<thead><tr><th>Target</th><th class="num">Jobs</th><th>Default</th></tr></thead>
-<tbody>
-<tr><td><code>Reformulation</code></td><td class="num">1274</td><td>yes</td></tr>
-<tr><td><code>AxiomGate</code></td><td class="num">1275</td><td>yes</td></tr>
-<tr><td><code>DefinitionLedger</code></td><td class="num">1275</td><td>yes</td></tr>
-<tr><td><code>Probes</code></td><td class="num">1212</td><td>yes</td></tr>
-<tr><td><code>F1Coalgebraic</code></td><td class="num">671</td><td>yes</td></tr>
-<tr><td><code>ForeignPeresMermin</code></td><td class="num">677</td><td>no</td></tr>
-<tr><td><code>Diagnostics</code></td><td class="num">1506</td><td>no</td></tr>
-<tr><td><code>MathlibExtensions</code></td><td class="num">1289</td><td>no</td></tr>
-<tr><td><code>PreC</code></td><td class="num">1242</td><td>no</td></tr>
-<tr><td><code>PathC</code></td><td class="num">1388</td><td>no</td></tr>
-<tr><th><code>lake build</code> without argument</th><td class="num"><strong>1301</strong></td><td>the five together</td></tr>
-</tbody>
-</table>
-</div>
+<h3>Measured axiom provenance — new as a practice, run four times</h3>
 
-<p><strong>This table is not to be added up, and it shows why.</strong> The five default targets
-sum to 5707 jobs; the joint build needs 1301. The factor 4.4 is the overlap of the import
-closures. Whoever sums build outputs of several targets counts modules more than once.</p>
+<p>Measuring a profile is cheap; saying <em>where</em> an axiom comes from is a second
+measurement, and since this block it has a form: <strong>two versions differing in exactly one
+quantity.</strong> Four findings (<strong>measured</strong>, each with a must and a must-not
+case):</p>
 
-<h3>What a stranger's <code>grep</code> finds</h3>
+<ul>
+  <li><code>Monotone.map_max</code> draws <code>Classical.choice</code> into every consumer;
+  avoiding it via the value route left four theorems choice-free.</li>
+  <li>The <code>omega</code> hull of a definition is inherited by its users: measured at the
+  differential of the negation against a hand-written version with an <strong>identical
+  value</strong> and a different bound justification — same values, different profiles.</li>
+  <li>The <code>==</code> conversion on <code>Fin</code> draws <code>Classical.choice</code>
+  through the <code>LawfulBEqOrd</code> instance chain; the <code>ite</code> version of the same
+  bijection is free — measured on the same file, with only the conversion exchanged. Without
+  this measurement a choice profile on the bijection would have looked plausible and would have
+  been located wrongly.</li>
+  <li>In the counting layer the axiom sits in the <code>Fintype</code> machinery itself — the
+  instance and <code>Fintype.card_fin</code> already carry it, <code>Fintype.card_congr</code>
+  is the free transition constant. Hence a dividing line with a criterion instead of an
+  enumeration: <strong>every statement in the file that names a <code>Fintype.card</code>
+  carries <code>Classical.choice</code>; none that does not, does.</strong></li>
+</ul>
+
+<p>What is measured throughout are profiles and dividing lines; what is <strong>not</strong>
+measured is the path of the axiom into the term — the file headers say both, in that order.</p>
+
+<h3>What a foreign <code>grep</code> finds</h3>
 
 <p>Whoever searches the tree for <code>sorry</code> finds three numbers, and each answers a
-different question (<strong>measured</strong>): <strong>123</strong> raw word occurrences over
-the whole tracked holdings, <strong>95</strong> in the Lean sources, <strong>27</strong>
-affected declarations in eight files. The third is the load-bearing one; the first two include
-prose — freeze notes, doc strings, the phrase “sorry-free”.</p>
-
-<p>Within the Lean sources the 95 distribute over <code>PathC/</code> 53,
-<code>Proemial/</code> 27, <code>Reformulation/</code> 5, <code>Diagnostics/</code> 5,
-<code>F3e/</code> 4, <code>F3f/</code> 1.</p>
-
-<p><strong>Two sentences belong to the frozen branch, and both are true.</strong> The target
-<code>PathC</code> builds green, 1388 jobs — and exactly one module of the branch lies in no
-target root and does not compile. <strong>Neither statement is an assurance of
-gap-freeness:</strong> green here means <em>compiles</em>, not <em>gap-free</em>, and for a call
-target there is no axiom gate. The same branch carries 53 of the 95 occurrences.</p>
-
-<h3>Replicability</h3>
-
-<p>A green build in the working directory says “green on my machine”. More is measured: from a
-fresh, unauthenticated clone of the public state the tree builds green in 39 seconds,
-<strong>126 modules built and 0 replayed</strong>, with the same gate line and an empty
-whitelist (<strong>measured</strong>). It is a real build and not a replay of an intermediate
-state.</p>
-
-<p>The number 126 is at the same time the size of the import closure of the five default
-targets, computed from the <code>import</code> lines. <strong>Both lists have been compared as
-sets and are equal</strong> — the <code>diff</code> of the sorted module names is empty
-(<strong>measured</strong>). The two routes share no step: one reads source text and follows
-<code>import</code> lines transitively, the other reads the build output of a fresh clone.</p>
-
-<p>The domain map over all 161 project modules (<strong>measured</strong>):</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>Domain</th><th class="num">Modules</th></tr></thead>
-<tbody>
-<tr><td>aggregate</td><td class="num">126</td></tr>
-<tr><td>call target</td><td class="num">34</td></tr>
-<tr><td>covered by no target</td><td class="num">1</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Across these, 18 modules lie in the frozen branch; two of them are built through a call
-target, and one is reached by no target — it is the same module that does not compile.
-<strong>The domain cannot be read off the directory:</strong> the target of the frozen branch
-reaches six modules under <code>MathlibExtensions/</code> which are not frozen and build green
-through their own target.</p>
-
-<p>That the ten unenforced guards lie entirely in one file outside the closure is the reason why
-“enforced = 386” is justified via the <strong>closure route</strong> and not via the directory
-boundary: that both yield the same value today is a coincidence and not an identity.</p>
+different question (<strong>measured</strong>): <strong>132</strong> raw word occurrences across
+the whole tracked holdings, <strong>97</strong> in the Lean sources, <strong>27</strong>
+affected declarations — all of them outside the aggregate. The third is the load-bearing one;
+the first two count prose along — freeze notes, doc strings, the phrase "sorry-free". The frozen
+branch <code>PathC/</code> stays frozen, with the same thawing conditions; green means
+<em>compiles</em> there, not <em>gap-free</em>.</p>
 
 <!-- ===================================================================== -->
-<h2 id="ix">IX · The instruments as a subject of their own</h2>
+<h2 id="x">X · The instruments as a subject of their own</h2>
 
 <p>Alongside the theorems something has arisen that knows nothing of Günther and could travel
 further: a reviewing practice for the formalisation of philosophical texts. Whoever formalises a
@@ -936,74 +1098,70 @@ theorem. Against this gradient no resolutions help, only mechanisms.</p>
 
 <h3>Rules, each from a misstep</h3>
 
-<ol>
-  <li><strong>Look for the theorem first, then build only as much carrier as the theorem
-    demands.</strong> A base layer that no theorem requests is a renaming of the library.</li>
-  <li><strong>A trial build before every specification, in the target environment.</strong></li>
-  <li><strong>The specification names goal, constraints and pitfalls — not the
-    wiring.</strong></li>
-  <li><strong>Specifications are reviewed too, not only builds.</strong></li>
-  <li><strong>A counting route that takes prose as its criterion is a time bomb.</strong></li>
-  <li><strong>Aggregate means free of posits.</strong> A file enters the certified body if it
-    carries no posit — not if the effort is small.</li>
-  <li><strong>The title outruns the theorem.</strong></li>
-  <li><strong>A route is counter-calculated before its result enters a document</strong> —
-    against a case whose answer is known from the source.</li>
-  <li><strong>A measuring probe checks an equation, not a number.</strong></li>
-  <li><strong>Equality of value between two routes is no evidence of equality of set.</strong>
-    Measured: two routes both yielded 49 and had no line in common.</li>
-  <li><strong>Build outputs of several targets are not summed.</strong></li>
+<p>The eleven rules of Rev2 hold on — from "look for the theorem first, then build only as much
+carrier as the theorem demands" to "build outputs of several targets are not summed". This block
+has added four:</p>
+
+<ol start="12">
+  <li><strong>A route carries a must and a must-not case, and its name boundary is a character
+  class, not a colon</strong> — the colon is an assumption about the binder form of the build,
+  not a check. Violated three times in a row, each time differently; the sharpening of the
+  second error was itself the third.</li>
+  <li><strong>The stipulations of a specification are checked against each other, not only each
+  on its own.</strong> Two individually correct stipulations can jointly force something neither
+  demands — three times, at rising cost: first a linter exception, then a non-construction
+  decision, then an axiom in a profile.</li>
+  <li><strong>A statement of holdings is a pointer, not a list.</strong> Enumerating statements
+  without a route go stale silently; in one block four classes of them were replaced by
+  pointers, among them nineteen identically built ones in a single file.</li>
+  <li><strong>Claims about the reachability of a location are write probes, not inferences from
+  empty search results.</strong> A missing result looks like an answer; twice it was none.</li>
 </ol>
+
+<p>The <strong>toolchain pitfalls</strong> have grown by two and are filed in the corpus: an
+unresolved type name silently becomes a variable under mild auto-binding, and the follow-up
+messages point at healthy places (control: <code>#check</code> on the bare name); and
+<code>#print axioms</code> breaks its output at the sum of name and profile length — measured
+against the fact that a longer name with a shorter profile does <strong>not</strong> break.</p>
 
 <h3>The lint</h3>
 
-<p>A doc lint checks three groups over Markdown and Lean sources. Group (A) searches for claims
-of rank and <strong>reports</strong> — currently 38 hits, each individually assessed, none with
-a reference set outside the corpus's own holdings. Group (B) searches for a particular
-conceptual relapse near set-theoretic trigger words and reports 0. Group (C) checks the ledger
-rules R3 to R8 and <strong>sets the exit code</strong>.</p>
-
-<div class="callout">
-<p><strong>Addendum, 2 August 2026.</strong> The lint figures given here are measured at commit
-<code>e5ef3d7</code> and are exactly reproducible with the route in force at that time. The
-route has since been corrected in three respects: it was case-sensitive, its German keywords
-did not match transliterated spellings, and it did not read the HTML editions. The group (A)
-figure was therefore a lower bound and not a count. The zero of group (B) was an artefact of
-the route; since the correction it is a count, and its reason can be named: in the whole
-scanned body there is a single line in which the guarded keyword occurs at all, and it is the
-line that describes the lint. Group (B) is thus a guard without an object. That is its work,
-but it is not evidence.</p>
-</div>
-
-<p>The split is deliberate: a claim of rank wants to be read and not enforced — a breaking lint
-gets circumvented, a reporting one gets read. A contradiction between table and reference file,
-by contrast, is objectively wrong, and whoever leaves it standing publishes an unchecked
-table.</p>
+<p>The doc lint checks three groups unchanged: the rank claims of group (A) are read, not
+enforced — a breaking lint gets circumvented, a reporting one gets read —, group (B) guards a
+conceptual relapse, and the ledger group (C) sets the exit code. Measured at the generation
+state: <strong>(A) 49 running hits and 4 in the frozen <code>rev1/</code> and <code>rev2/</code>
+editions, (B) 0, (C) 0</strong> — the lint runs green. Six of the running hits stand in this
+edition itself: a route whose search term occurs in prose counts its own documentation.</p>
 
 <h3>The list of errors</h3>
 
 <p><strong>The evidence that the review layers bite is the list of errors</strong> — and it is
-continued, not shortened. From the block that led to this edition:</p>
+continued, not shortened. The Rev2 list holds on; from the block that led to this edition, among
+others:</p>
 
 <ul>
-  <li>A route using <code>\b</code> in a tool mode that does not carry word boundaries: result 0
-    instead of 153. Not a false result but an empty one — and an empty one looks like good
-    news.</li>
-  <li>A count with <code>grep -c</code>, which counts lines rather than occurrences: a hit
-    running across a line break dropped out, five instead of six.</li>
-  <li>An instruction in the imperative, read as a description of state: “goes live without
-    further action” stood under the heading “Switching on”.</li>
-  <li>A route that reports the same thing before and after a change of state and therefore does
-    not measure the change — its result was accidentally right. What carried the finding was the
-    second route. Whoever runs two routes survives the failure of one.</li>
-  <li>A provenance note for two figures that pointed at the wrong document.</li>
-  <li>Five estimated instead of sixteen counted occurrences of a name.</li>
+  <li>A self-report carried "eight carriers more than once" for five revisions, where five
+  carriers produce eight surplus rows — two quantities with the same value, and the prose
+  attached the name to the wrong one.</li>
+  <li>An explanation stood as "readable at the term" before it had been read; the measurement
+  with a differential then supported it — and elsewhere refuted a second explanation that would
+  have looked plausible without measurement.</li>
+  <li>A specification prescribed a conversion form and at the same time checked its named
+  fallback route to zero; the axiom in the profile was thereby set by the specification, not by
+  the proof. The third, unnamed route was free — found by the review, measured by the build,
+  taken.</li>
+  <li>A statement of location ("reachable only by hand") rested on an empty search result; the
+  write probe refuted it.</li>
+  <li>A first computation run produced a plausible all-false from a symbol collision; the hand
+  calculation disagreed, the run was discarded and redone — recorded, because a plausible empty
+  result is the most dangerous one.</li>
 </ul>
 
-<p><strong>None of these errors was found by the instance that made it.</strong></p>
+<p><strong>None of these errors was found by the instance that made it.</strong> The sentence
+stood so in Rev2, and this block has not refuted it but confirmed it in both directions.</p>
 
 <!-- ===================================================================== -->
-<h2 id="x">X · Reach and limit</h2>
+<h2 id="xi">XI · Reach and limit</h2>
 
 <p>What this architecture claims is conditional and is carried as such. It does not promise to
 compel the sceptic to acknowledge an irreducibility; it promises to <strong>symmetrise</strong>
@@ -1015,16 +1173,13 @@ precedence.</p>
 
 <p><strong>First, mathematical: <code>M₃</code>.</strong> The characterisation lives on linearly
 graded carriers and falls on lattices of equal-ranking elements. This is not a proof gap but a
-counterexample — and the breaking point is exactly the lattice shape an architecture of
-equal-ranking roles would have. Since the M3 move the counterexample is itself a theorem
-(<code>M3CloneWitness.m3_mixed_term_exists</code>): the limit stands on the same ground as what
-it limits. That “the characterisation falls on lattices” remains a reading — E3 is formulated
-on linearly ordered carriers, and a lattice version of E3 does not exist.</p>
+counterexample — and since the <code>M₃</code> move it stands on the same ground as what it
+limits. That "the characterisation falls on lattices" remains a reading: E3 is formulated on
+linearly ordered carriers, and a lattice version of E3 does not exist.</p>
 
 <p><strong>Second, hermeneutic: the identification.</strong> That the two-element value set
 <em>is</em> Günther's elementary contexture is settled by no theorem. The posit stands on
-grounded soil — closure under the local operations is a substantive reason — but it remains a
-choice.</p>
+grounded soil — since the <code>M₃</code> move, theorem-supported — and remains a choice.</p>
 
 <p><strong>Third, in principle: the spontaneity of enactment.</strong> Not the will as a
 function, but solely the <em>that</em> of enactment is no structural feature; there is no poorer
@@ -1034,100 +1189,83 @@ model in which it is missing as a position, because it is not a position.</p>
 
 <p>The <strong>proemial relation</strong> — the core of Günther's theory — is not formalised.
 The <strong>compound contexture</strong> is present as a number sequence and is not built as a
-concept. The strong <strong>Definition 6</strong> is open and is carried as open. The
-<strong>value assignment of morphograms</strong> is an open ledger row. <strong>Sixteen ledger
-rows</strong> stand on <code>Offen</code>, and they are to remain there as long as no carrier
-carries them.</p>
+concept — though its exponent <code>C(m,2)</code> is a theorem as of this edition. The
+<strong>totality of Definition 6</strong> is open and is carried as open; its two structural
+clauses have theorems, and the limit column of the open row names them. A <strong>limit object
+of the ascent</strong> is neither built nor claimed nor excluded; the directed system as an
+object remains an open ledger row. <strong>Sixteen ledger rows</strong> stand at
+<code>Offen</code>, and they are to stay there as long as no carrier carries them.</p>
 
-<p>A note that lies in the matter itself: the definitions edition gives for compound contextures
-the formula <code>n(n+1)/2</code> and the sequence <code>1, 3, 6, 10, …</code> and states at the
-same time that a compound contexture requires at least three values. The two do not agree; the
-first compound contexture is the three-valued one, and the <code>1</code> belongs to the
-ontology sequence. The architecture counts the elementary contextures of an
-<code>m</code>-valued system as <code>m(m-1)/2</code>; this is compatible with Günther's series,
-but it is a <strong>stipulation</strong> and not a derivation.</p>
+<p>The note on counting compound contextures holds on: the definitions edition gives
+<code>n(n+1)/2</code> from one upwards and states at the same time that a compound contexture
+requires at least three values; the two do not agree — the first compound contexture is the
+three-valued one, the <code>1</code> belongs to the ontology sequence. The architecture counts
+<code>m(m−1)/2</code> elementary contextures; this is compatible with Günther's series, but it
+is a <strong>stipulation</strong> and not a derivation.</p>
 
 <h3>The picture</h3>
 
-<p>A ground that counts repetition and whose normalisation is built as a procedure; logics whose
-separation is not posited but proved, in a form that withstands Günther's basic case; a mode of
-proof that knows and carries its hard half; a series of witnesses grown from an existence claim
-to a characterisation without a fixed number of values; a layer of applications whose
-consumption is measured at the term; a ledger that holds nineteen paragraphs compiler-checked
-and leaves sixteen rows open; a gate with no <code>sorryAx</code>; and three limits, none of
-which is a defeat.</p>
+<p>A ground that counts repetition and whose value-filling now has two proved bridges; logics
+whose separation is not posited but proved — in a form that withstands Günther's basic case; a
+mode of proof that knows its hard half and in this block measured the workshop as well; a series
+of witnesses whose numbers have turned from computations into theorems; an ascent that is
+inhabited, preserves itself, grows strictly — and provably has no signature-faithful shape; an
+application layer with measured consumption; a ledger of ninety-one rows, sixteen of them open;
+a gate with no <code>sorryAx</code>; and three limits, none of which is a defeat.</p>
 
-<div class="callout">
 <p><strong>What is posited stands at the beginning; what is proved is counted; what is
 interpretation is called so.</strong></p>
-</div>
 
 <!-- ===================================================================== -->
 <h2 id="appendix">Appendix · Counting routes</h2>
 
 <p>So that the figures are recomputable and not merely credible, each carries a route. All
-statements hold at commit <code>e5ef3d7</code>; any build move renders every exhibited number
-silently out of date, which is why each carries its standing.</p>
+entries hold at commit <code>56fe9a0</code> unless anchored otherwise; the two following commits
+(<code>b51b4fc</code>, <code>fb41c2f</code>) shifted no figure (<strong>measured</strong>, in
+the corresponding report). Figures not re-measured since <code>e5ef3d7</code> do not appear
+here; they hold in Rev2, at the commit named there.</p>
 
 <div class="tablewrap">
 <table>
-<thead><tr><th>Quantity</th><th class="num">Value</th><th>Route</th></tr></thead>
+<thead><tr><th>quantity</th><th>value</th><th>route</th></tr></thead>
 <tbody>
-<tr><td>checked constants</td><td class="num">3018</td><td>build output of the axiom gate</td></tr>
-<tr><td>guards written</td><td class="num">396 / 45 files</td><td><code>grep -rE '#guard_msgs.*in #print axioms'</code> over <code>Reformulation/</code> and <code>Foreign/</code></td></tr>
-<tr><td>guards enforced</td><td class="num">386 / 44 files</td><td>same route, restricted to the import closure of the five default targets</td></tr>
-<tr><td>import closure</td><td class="num">126 of 161 modules</td><td><code>import</code> lines followed transitively from the 21 target roots</td></tr>
-<tr><td>axiom-free profiles</td><td class="num">66 of 396 guards</td><td><code>grep -rc 'does not depend on any axioms'</code></td></tr>
-<tr><td>profile distribution</td><td class="num">183 / 84 / 66 / 61 / 2</td><td>every guard read individually; sum 396 checked as an equation</td></tr>
-<tr><td>theorems</td><td class="num">726</td><td><code>grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '</code> over <code>Reformulation/</code></td></tr>
-<tr><td><code>def</code></td><td class="num">318</td><td>the same widening for <code>def</code></td></tr>
-<tr><td>statement pins</td><td class="num">44</td><td><code>grep -rc '^-- STATEMENT-PIN'</code></td></tr>
-<tr><td>build jobs</td><td class="num">1301 jointly</td><td>build output per target, <strong>not summed</strong>; per target see above</td></tr>
-<tr><td>files</td><td class="num">163 / 160 <code>.lean</code></td><td>file count over <code>Reformulation/</code> and <code>Foreign/</code></td></tr>
-<tr><td><code>sorry</code> occurrences</td><td class="num">123 / 95 / 27</td><td>word boundary <code>\bsorry\b</code>, occurrences (not lines), over <code>git ls-files</code></td></tr>
-<tr><td>posit fields</td><td class="num">32 = 30 + 2</td><td>environment query over structure fields and projections</td></tr>
-<tr><td>non-projections with conclusion <code>True</code></td><td class="num">0</td><td>same route, projection negated; counter-probe yields 32</td></tr>
-<tr><td>ledger</td><td class="num">79 rows / 63 pairs / 19 of 19</td><td>doc lint group (C)</td></tr>
-<tr><td>lint</td><td class="num">(A) 38, (B) 0, (C) 0, exit 0</td><td>one run</td></tr>
-<tr><td>consumption of the applications</td><td class="num">4 hits / 2 non-hits</td><td>environment query with explicit <code>ConstantInfo</code> matching over type and proof term</td></tr>
-<tr><td>clone build</td><td class="num">1301 jobs, 126 built / 0 replayed</td><td><code>git clone</code>, <code>lake exe cache get</code>, <code>lake build</code>, unauthenticated</td></tr>
-<tr><td>clone fragment <code>{min,max,neg}</code></td><td class="num">82 at <code>m</code> = 3, 4, 5, 6</td><td>closure of <code>{p₁,p₂}</code> under pointwise min, max, order reversal</td></tr>
-<tr><td>locally classical in the clone</td><td class="num">4 of 8 · 2 of 64 · 2 of 1024 · 2 of 32,768</td><td>the same enumeration, filtered for local classicality</td></tr>
-<tr><td><code>M₃</code></td><td class="num">166 clone members, 10 locally classical, 8 of them neither infimum nor supremum</td><td>closure under infimum, supremum, order reversal on the five-element lattice</td></tr>
+<tr><td>constants checked</td><td>3255</td><td>build output of the axiom gate</td></tr>
+<tr><td>guards written</td><td>470 / 51 files</td><td><code>grep -rE '#guard_msgs.*in #print axioms'</code> over <code>Reformulation/</code> and <code>Foreign/</code></td></tr>
+<tr><td>guards enforced</td><td>460</td><td>the same route, import closure of the five default targets; equation 470 = 460 + 10 (<code>Foreign/PeresMermin.lean</code>)</td></tr>
+<tr><td>theorems</td><td>792</td><td>widened theorem route over <code>Reformulation/</code>; comparable with Rev2 (726), same route</td></tr>
+<tr><td>build jobs</td><td>1307</td><td><code>lake build</code>, <strong>not summed</strong></td></tr>
+<tr><td><code>Proemial/</code></td><td>62 files / 475 theorems</td><td>structure table</td></tr>
+<tr><td><code>sorry</code></td><td>132 / 97 occurrences · 27 declarations (load-bearing)</td><td>word boundary, occurrences rather than lines, over <code>git ls-files</code></td></tr>
+<tr><td>ledger</td><td>91 rows / 75 pairs / 67 names / 19 of 19</td><td>doc lint group (C); surplus 75 − 67 = 8 as an equation</td></tr>
+<tr><td>carrier statuses</td><td>57 / 17 / 1 / 16</td><td>self-report of the ledger file, checked at lint time</td></tr>
+<tr><td>locally classical operations</td><td><code>2^C(m,2)</code>, every <code>m</code></td><td><strong>proved</strong>: <code>CV.card_locallyClassical</code>; 8/64/1,024/32,768 are instances</td></tr>
+<tr><td>of these in the clone</td><td>2 (from <code>m ≥ 4</code>) · 4 of 8 (<code>m = 3</code>) · 2 of 2 (<code>m = 2</code>)</td><td><strong>proved</strong>: <code>CV.clone_locallyClassical_eq</code> resp. E1; the zero excess at 2 from <code>CV.two_lt_card_locallyClassical</code> with its sharpness</td></tr>
+<tr><td>patterns of length 4</td><td>15, of these 8 two-valued fillable</td><td><strong>proved</strong>: <code>KF.card_rgs_four</code>, <code>KF.card_rgs_four_fillable</code></td></tr>
+<tr><td>negation-compatible embeddings</td><td>0 (odd <code>m</code>) · exist (even) · 2/8/48 at <code>m</code> = 2/4/6</td><td>non-existence and existence <strong>proved</strong> (<code>SPar.</code>); the counts <strong>computed</strong>, exhaustive enumeration over all maps resp. injections</td></tr>
+<tr><td>clone fragment <code>{min,max,neg}</code></td><td>82 at <code>m</code> = 3…6</td><td><strong>computed</strong>, unchanged from Rev2</td></tr>
+<tr><td><code>M₃</code></td><td>166 / 10 / 8</td><td><strong>computed</strong>, unchanged from Rev2; the existence form <strong>proved</strong> (<code>m3_mixed_term_exists</code>)</td></tr>
 </tbody>
 </table>
 </div>
 
-<p><strong>Three rules on counting.</strong> First, counting is done through the shell, not with
-a library function that skips blank lines. Second, <strong>aggregate and corpus figures are kept
-apart</strong>; the aggregate is the certified import tree, the corpus additionally comprises
-the probes that carry a marked posit. Third, <strong>build outputs of several targets are not
-summed</strong> — the 5707 in §VIII stands there so that it stands nowhere else.</p>
-
-<h3>Two points this edition has closed</h3>
-
-<p><strong>The equality of the two module lists is checked as a set</strong>, not only as a
-number: the sorted module names of the import closure and of the built lines of the clone build
-were compared, and the <code>diff</code> is empty. The line “guards enforced” therefore holds —
-the route restricts to exactly the set the build touches.</p>
-
-<p><strong>The domain entries in §VII are present</strong> and stand there. The carriers are
-named with full name and module, because one theorem name of that section occurs twice in the
-tree — once in the aggregate and guarded, once in a call target and unguarded.</p>
+<p><strong>Three rules on counting</strong>, unchanged: counting is done over the shell;
+aggregate and corpus figures are kept apart; build outputs of several targets are never summed.
+Added by this block, a fourth: <strong>a number standing next to a related one is checked
+against it as an equation</strong> — twice exactly that found a standing error.</p>
 
 </main>
 
 <footer class="pagefoot">
-  <p>Edition PKL Rev2 · All figures as of commit <code>e5ef3d7</code> · translated 1 August 2026</p>
-  <p><a href="./">Overview</a> · <a href="de.html">Deutsche Fassung</a> ·
-  <a href="rev1/en.html">Edition Rev1</a> ·
+  <p>Edition PKL Rev3 · All figures as of commit <code>56fe9a0</code> · 3 August 2026</p>
+  <p><a href="./">Overview</a> · <a href="de.html">Deutsche Fassung</a> · <a href="rev2/en.html">Edition Rev2</a> · <a href="rev1/en.html">Edition Rev1</a> ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
   <p class="sources">Sources of the passages cited: Günther, G. (1970), <em>Die historische
-  Kategorie des Neuen</em>, Hegel-Jahrbuch 34–61; Günther, G. (1937), <em>Wahrheit,
-  Wirklichkeit und Zeit</em>, Paris; Günther, G. (1968), <em>Many-Valued Designations and a
-  Hierarchy of First Order Ontologies</em>. The conceptual determinations follow the project's
-  definitions edition. Passages quoted verbatim from third parties stand under the right of
-  quotation and remain with their respective rights holders.</p>
+  Kategorie des Neuen</em>, Hegel-Jahrbuch 34–61; Günther, G. (1937), <em>Wahrheit, Wirklichkeit
+  und Zeit</em>, Paris; Günther, G. (1968), <em>Many-Valued Designations and a Hierarchy of
+  First Order Ontologies</em>. The conceptual determinations follow the project's definitions
+  edition; the second stage of the concept stands there in §6.3 and only there. Passages quoted
+  verbatim from third parties stand under the right of quotation and remain with their
+  respective rights holders.</p>
 </footer>
 
 </body>
