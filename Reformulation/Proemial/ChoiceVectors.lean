@@ -72,32 +72,38 @@ gefuehrt und dort gemessen (`GCB.constant_clone_min_or_max`, Invariante `R m` re
 `GCB.R_diag`). Hier ist nichts zu pruefen, und das steht hier, damit niemand eine Pruefung
 vermisst, die es nicht zu fuehren gibt.
 
-## Zum Axiom-Profil — die Schichtgrenze, gemessen und anders als erwartet
+## Zum Axiom-Profil — die Schichtgrenze, gemessen
 
-Die Erwartung war: Aequivalenz-Schicht choice-frei, Zaehl-Schicht mit `Classical.choice`
-ueber die `Fintype`-Kette des Funktionsraums. **Gemessen laeuft die Grenze woanders**, und
-zwar quer durch die Aequivalenz-Schicht:
+| Schicht | Deklarationen | Profil |
+|---|---|---|
+| Traeger | `Pairs` | axiomfrei |
+| Bauplan | `ofChoices`, `ofChoices_pair`, `ofChoices_diag`, `ofChoices_locallyClassical`, `min/max_locallyClassical`, die drei `Decidable`-Instanzen | `[propext]` |
+| Punkt-Ungleichungen und die Bijektion | `min_ne_max_of_ne`, `min_ne_max`, `clone_locallyClassical_eq`, `locallyClassicalEquiv` | `[propext, Quot.sound]` |
+| Zaehlung | `card_pairs`, `card_locallyClassical`, `card_locallyClassical_lt`, `two_lt_card_locallyClassical` | `[propext, Classical.choice, Quot.sound]` |
 
-| Schicht | Profil |
-|---|---|
-| `Pairs` | axiomfrei |
-| `ofChoices`, `ofChoices_pair`, `ofChoices_diag`, `ofChoices_locallyClassical`, `min/max_locallyClassical`, die drei `Decidable`-Instanzen | `[propext]` |
-| `min_ne_max_of_ne`, `min_ne_max`, `clone_locallyClassical_eq` | `[propext, Quot.sound]` |
-| `locallyClassicalEquiv`, `card_pairs`, `card_locallyClassical`, `card_locallyClassical_lt`, `two_lt_card_locallyClassical` | `[propext, Classical.choice, Quot.sound]` |
+**Die ganze Aequivalenz-Schicht ist choice-frei, die Zaehl-Schicht nicht** — und das ist
+gemessen und nicht bloss angesetzt. Die Grenze zwischen beiden ist die
+`Fintype`-Maschinerie: `Fintype.card_congr` traegt `[propext, Quot.sound]`, aber schon die
+Instanz `Fintype (Pairs m)` und selbst `Fintype.card_fin` messen
+`[propext, Classical.choice, Quot.sound]`. Jede Aussage dieser Datei, die eine
+`Fintype.card` nennt, erbt es darum; keine, die es nicht tut, traegt es.
 
-**Die positive Haelfte von R1 ist choice-frei** (`ofChoices_locallyClassical`,
-`[propext]`); die **Bijektion** ist es nicht. Herkunft, an vier Punkten gemessen: die
-`Bool`-Konversion `==` auf `Fin m` laeuft ueber `LawfulBEq`/`ReflBEq`, und diese loesen
-gegen Mathlibs `Std.LawfulBEqOrd`-Instanz auf, die aus der `LinearOrder`-Vergleichsfunktion
-kommt. Gemessen: `Ord (Fin m)` axiomfrei, `Std.LawfulBEqOrd (Fin m)` und daraus
-`LawfulBEq`/`ReflBEq` mit `Classical.choice`; die allgemeinen Lemmata `beq_iff_eq` und
-`beq_self_eq_true` sind fuer sich axiomfrei und ziehen es erst an dieser Instanz. Der
-Choice-Anteil sitzt damit **nicht** in den Schranken und nicht erst im Zaehlen, sondern in
-der Konversion nach `Bool`.
+**Die Konversion nach `Bool` haengt daran, und zwar messbar.** Die Hinrichtung von
+`locallyClassicalEquiv` laeuft ueber `if _ = _ then true else false`, also ueber
+`instDecidableEqFin`. Eine Fassung mit `==` waere kuerzer und **zoege `Classical.choice` in
+die Bijektion**: gemessen an derselben Datei, nur die Konversion getauscht, ergibt die
+`==`-Fassung `[propext, Classical.choice, Quot.sound]` und die `ite`-Fassung
+`[propext, Quot.sound]`. Die Herkunft ist an vier Punkten verortet: `beq_iff_eq` und
+`beq_self_eq_true` sind fuer sich axiomfrei, an `Fin m` instanziiert nicht; `Ord (Fin m)`
+ist axiomfrei, aber `Std.LawfulBEqOrd (Fin m)` — aufgeloest gegen Mathlibs Instanz aus der
+`LinearOrder`-Vergleichsfunktion — und daraus `LawfulBEq`/`ReflBEq` tragen das Axiom. Wo ein
+Beweis nur „gleich oder nicht" braucht, ist die `Prop`-Ebene darum billiger als der Umweg
+ueber `Bool`.
 
-Gemessen sind die Profile und die Trennlinie entlang dessen, was die Deklarationen nennen.
-**Nicht** gemessen ist der Weg des Axioms in den Term; die Herkunftsangabe oben ist eine
-Kette gemessener Instanz-Profile, keine Ableitung.
+Gemessen sind die Profile, die Trennlinie entlang dessen, was die Deklarationen nennen, und
+die genannte Differenz der beiden Konversionsformen. **Nicht** gemessen ist der Weg des
+Axioms in den Term; die Herkunftsangaben sind Ketten gemessener Instanz-Profile, keine
+Ableitungen.
 
 **Ablage:** setzungsfrei, ohne offene Stelle, konsumiert nur Aggregat-Inhalt — Aggregat.
 -/
@@ -237,13 +243,14 @@ liest je Paar ab, ob die Operation dort als Maximum wirkt; die Rueckrichtung ist
 Bauplan. -/
 def locallyClassicalEquiv (m : ℕ) :
     { f : Fin m → Fin m → Fin m // LocallyClassical f } ≃ (Pairs m → Bool) where
-  toFun f p := f.1 p.1.1 p.1.2 == max p.1.1 p.1.2
+  toFun f p := if f.1 p.1.1 p.1.2 = max p.1.1 p.1.2 then true else false
   invFun c := ⟨ofChoices m c, ofChoices_locallyClassical m c⟩
   left_inv := by
     rintro ⟨f, hf⟩
     apply Subtype.ext
     funext a b
-    show ofChoices m (fun p : Pairs m => f p.1.1 p.1.2 == max p.1.1 p.1.2) a b = f a b
+    show ofChoices m
+      (fun p : Pairs m => if f p.1.1 p.1.2 = max p.1.1 p.1.2 then true else false) a b = f a b
     have hdiag : ∀ a : Fin m, f a a = a := by
       intro a
       rcases Nat.lt_or_ge m 2 with hm | hm
@@ -262,27 +269,29 @@ def locallyClassicalEquiv (m : ℕ) :
         · exact (h1 a a (Or.inr rfl) (Or.inr rfl)).trans (min_self a)
         · exact (h2 a a (Or.inr rfl) (Or.inr rfl)).trans (max_self a)
     by_cases hab : a < b
-    · obtain ⟨e1, -⟩ := ofChoices_pair m (fun p => f p.1.1 p.1.2 == max p.1.1 p.1.2) hab
+    · obtain ⟨e1, -⟩ := ofChoices_pair m
+        (fun p => if f p.1.1 p.1.2 = max p.1.1 p.1.2 then true else false) hab
       rw [e1]
-      by_cases hc : (f a b == max a b) = true
-      · rw [if_pos hc]; exact (beq_iff_eq.mp hc).symm
-      · rw [if_neg hc]
+      by_cases hc : f a b = max a b
+      · rw [if_pos hc, if_pos rfl]; exact hc.symm
+      · rw [if_neg hc, if_neg Bool.false_ne_true]
         rcases hf a b (ne_of_lt hab) with h1 | h2
         · exact (h1 a b (Or.inl rfl) (Or.inr rfl)).symm
-        · exact absurd (beq_iff_eq.mpr (h2 a b (Or.inl rfl) (Or.inr rfl))) hc
+        · exact absurd (h2 a b (Or.inl rfl) (Or.inr rfl)) hc
     · by_cases hba : b < a
-      · obtain ⟨-, e2⟩ := ofChoices_pair m (fun p => f p.1.1 p.1.2 == max p.1.1 p.1.2) hba
+      · obtain ⟨-, e2⟩ := ofChoices_pair m
+          (fun p => if f p.1.1 p.1.2 = max p.1.1 p.1.2 then true else false) hba
         rw [e2]
-        by_cases hc : (f b a == max b a) = true
-        · rw [if_pos hc]
+        by_cases hc : f b a = max b a
+        · rw [if_pos hc, if_pos rfl]
           rcases hf b a (ne_of_lt hba) with h1 | h2
-          · exact absurd ((h1 b a (Or.inl rfl) (Or.inr rfl)).symm.trans (beq_iff_eq.mp hc))
+          · exact absurd ((h1 b a (Or.inl rfl) (Or.inr rfl)).symm.trans hc)
               (min_ne_max_of_ne (ne_of_lt hba))
           · rw [max_comm]; exact (h2 a b (Or.inr rfl) (Or.inl rfl)).symm
-        · rw [if_neg hc]
+        · rw [if_neg hc, if_neg Bool.false_ne_true]
           rcases hf b a (ne_of_lt hba) with h1 | h2
           · rw [min_comm]; exact (h1 a b (Or.inr rfl) (Or.inl rfl)).symm
-          · exact absurd (beq_iff_eq.mpr (h2 b a (Or.inl rfl) (Or.inr rfl))) hc
+          · exact absurd (h2 b a (Or.inl rfl) (Or.inr rfl)) hc
       · have hEq : a = b := le_antisymm (not_lt.mp hba) (not_lt.mp hab)
         subst hEq
         rw [ofChoices_diag]
@@ -290,14 +299,13 @@ def locallyClassicalEquiv (m : ℕ) :
   right_inv := by
     intro c
     funext p
-    show (ofChoices m c p.1.1 p.1.2 == max p.1.1 p.1.2) = c p
+    show (if ofChoices m c p.1.1 p.1.2 = max p.1.1 p.1.2 then true else false) = c p
     obtain ⟨e1, -⟩ := ofChoices_pair m c p.2
     have hp : (⟨(p.1.1, p.1.2), p.2⟩ : Pairs m) = p := rfl
     rw [e1, hp]
     rcases Bool.eq_false_or_eq_true (c p) with hc | hc <;> rw [hc]
-    · rw [if_pos rfl]; exact beq_self_eq_true _
-    · rw [if_neg Bool.false_ne_true]
-      exact beq_eq_false_iff_ne.mpr (min_ne_max_of_ne (ne_of_lt p.2))
+    · rw [if_pos rfl, if_pos rfl]
+    · rw [if_neg Bool.false_ne_true, if_neg (min_ne_max_of_ne (ne_of_lt p.2))]
 
 /-! ## Teil 4 — R2: die Zahl
 
@@ -456,7 +464,7 @@ im Dateikopf. -/
 /-- info: 'Reformulation.Proemial.ChoiceVectors.ofChoices_locallyClassical' depends on axioms: [propext] -/
 #guard_msgs in #print axioms ofChoices_locallyClassical
 
-/-- info: 'Reformulation.Proemial.ChoiceVectors.locallyClassicalEquiv' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.ChoiceVectors.locallyClassicalEquiv' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms locallyClassicalEquiv
 
 /-- info: 'Reformulation.Proemial.ChoiceVectors.instDecidableActsAsMin' depends on axioms: [propext] -/

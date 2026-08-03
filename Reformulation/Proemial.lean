@@ -349,10 +349,13 @@ Enthält:
   wird nicht entschieden; die Klon-Reihe bleibt unberührt und choice-frei. Die
   Robustheits-Pflicht §9 greift nicht (keine neue Schranke). Vier Statement-Pins; Axiom-Ist
   je Deklaration `#guard_msgs`-verwacht (18 Wachen, Definitionen und Instanzen
-  eingeschlossen). GEMESSENE SCHICHTGRENZE, anders als erwartet: der `Classical.choice`-
-  Anteil sitzt nicht in der Zählschicht allein, sondern schon in der `Bool`-Konversion `==`
-  über Mathlibs `Std.LawfulBEqOrd`-Instanz für `Fin m` — die positive Hälfte von R1 ist
-  `[propext]`, die Bijektion nicht. 0 Sorries.
+  eingeschlossen). GEMESSENE SCHICHTGRENZE: die ganze Äquivalenz-Schicht bleibt choice-frei
+  (bis `[propext, Quot.sound]`), der `Classical.choice`-Anteil sitzt in der
+  `Fintype`-Maschinerie — schon `Fintype (Pairs m)` und `Fintype.card_fin` tragen ihn, jede
+  `Fintype.card`-Aussage erbt ihn. Dass die Bijektion frei davon bleibt, hängt an der
+  Konversionsform: die Hinrichtung läuft über `if _ = _ then true else false`
+  (`instDecidableEqFin`); dieselbe Datei mit `==` zieht `Classical.choice` in die Bijektion,
+  über Mathlibs `Std.LawfulBEqOrd`-Instanz für `Fin m`. Beide Fassungen gemessen. 0 Sorries.
 
 - `Proemial.InteractiveTransjunction`: der Interaktions-Zeuge (dreizehnte Schicht).
   Präzisiert die „binär-interaktiv"-Erzählung der zwölften Schicht am Term (die alte

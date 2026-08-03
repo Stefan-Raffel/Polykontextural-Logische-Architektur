@@ -9,10 +9,14 @@ named, interpreted or posited, and it carries a counting route for every figure 
 The project works with one definition. The German wording below is the binding one; this is
 a translation of it:
 
-> A structure is **formally operative polycontextural** if it carries a family of local
-> contextures on which the relevant operations act classically or locally classically, and
-> if in addition a machine-checked theorem shows that the global interplay of these local
-> operations is not generable by any single intra-contextural term calculus.
+> A structure is **formally operative polycontextural** if it carries several local
+> contextures - regions closed under the admitted signature, which may overlap - and if
+> there is an operation on it that acts on each of these contextures like one of the
+> classical connectives and is nonetheless not generable from the intra-contextural term
+> calculus.
+>
+> **Formally operative** means: this non-generability is not asserted but machine-checked
+> as a theorem.
 
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
@@ -29,16 +33,21 @@ channel is named at the end of this file.
 
 Dieses Repository arbeitet mit einer Projektdefinition, und sie steht vorneweg:
 
-> Eine Struktur ist **formal-operativ polykontextural**, wenn sie eine Familie lokaler
-> Kontexturen traegt, auf denen die relevanten Operationen jeweils klassisch oder lokal
-> klassisch wirken, und wenn zusaetzlich ein maschinell gepruefter Satz zeigt, dass das
-> globale Zusammenspiel dieser lokalen Operationen nicht durch einen einheitlichen
-> intra-kontexturellen Termkalkuel erzeugbar ist.
+> Eine Struktur ist **formal-operativ polykontextural**, wenn sie mehrere lokale
+> Kontexturen traegt - unter der zugelassenen Signatur abgeschlossene Bereiche, die
+> einander ueberlappen duerfen - und wenn es auf ihr eine Operation gibt, die auf jeder
+> dieser Kontexturen wie eine der klassischen Verknuepfungen wirkt und dennoch aus dem
+> intra-kontexturellen Termkalkuel nicht erzeugbar ist.
+>
+> **Formal-operativ** heisst: diese Nicht-Erzeugbarkeit ist nicht behauptet, sondern als
+> Theorem maschinell geprueft.
 
 Als Arbeitsformel:
 
 ```text
-lokale Klassizitaet + Kontexturpluralitaet + beweisbarer globaler Reduzierbarkeitsbruch
+Kontexturpluralitaet mit Ueberlappung
+lokale Klassizitaet
+maschinell gepruefte Nicht-Erzeugbarkeit
 ```
 
 Diese Definition ist enger als die philosophische Definition 6 und staerker als blosse
