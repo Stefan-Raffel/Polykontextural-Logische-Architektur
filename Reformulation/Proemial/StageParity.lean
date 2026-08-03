@@ -66,6 +66,29 @@ Konsumenten (gemessen in der Vorprobe: `[propext, Classical.choice, Quot.sound]`
 `max` dort nativ. Der Weg ist notiert, weil `CLAUDE.md` §2 ihn verlangt, wo er vermeidbar
 war.
 
+## Woher das durchgehende `[propext, Quot.sound]` kommt — gemessen, nicht erschlossen
+
+Alle acht Deklarationen tragen dasselbe Profil, auch `negFin_val`, dessen Beweis `rfl` ist.
+Der Grund ist eine Wegwerf-Messung an vier Punkten und nicht eine Erzaehlung ueber den Term:
+
+| Konstruktion | Schranke im Wert | Definition | `rfl`-Wert-Auskunft darueber |
+|---|---|---|---|
+| `Fin.castSucc` | keine | axiomfrei | axiomfrei |
+| Handfassung von `negFin` (`Nat.sub_le`, `Nat.sub_lt`) | von Hand | axiomfrei | axiomfrei |
+| `GCB.negFin` | `by … omega` | `[propext, Quot.sound]` | `[propext, Quot.sound]` |
+| `eSym` (hier) | `by … omega`, beide Zweige | `[propext, Quot.sound]` | — |
+
+Die dritte und die zweite Zeile unterscheiden sich in **einer** Groesse: derselbe Wert
+`⟨m − 1 − a.val, _⟩`, einmal mit `omega`-Schranke, einmal mit Handschranke. Damit ist die
+Vererbung gemessen und nicht bloss plausibel — die Definition traegt das Profil, und die
+Wert-Auskunft erbt es, auch wenn sie `rfl` ist. **Das ist der Grund fuer die Wache auf der
+Definition `eSym`:** sie hat ein eigenes, messbares Profil, das driften kann. `SAsc.w` hat
+keines und traegt darum dort keine.
+
+Was damit **nicht** gemessen ist: dass `omega` das Axiom auf genau diesem und keinem anderen
+Weg in den Term bringt. Gemessen ist die Differenz der Fassungen bei sonst gleicher
+Konstruktion (`CLAUDE.md` §8, Vorspann: aufgetreten heisst nicht erklaert).
+
 **Ablage:** setzungsfrei, ohne offene Stelle, konsumiert nur Aggregat-Inhalt — Aggregat.
 -/
 
@@ -233,11 +256,9 @@ example (m : ℕ) (a : Fin m) :
 
 Ist-Ausgabe des gruenen Builds (v4.30.0-rc2), pro Deklaration eingefroren
 (Datei-Vollstaendigkeits-Regel, einschliesslich beider Hilfslemmata **und der Definition**).
-Das durchgehende `[propext, Quot.sound]` ist die `omega`-Huelle; `negFin_val` traegt es,
-obwohl sein Beweis `rfl` ist, weil `GCB.negFin` seine Schranke selbst per `omega` fuehrt, und
-`eSym` traegt es aus demselben Grund: die beiden Schranken der Fallunterscheidung sind
-`omega`-Beweise im Wert der Definition. Darum steht hier ausnahmsweise auch eine Wache auf
-einer Definition — sie hat ein Profil, das driften kann. -/
+Das durchgehende `[propext, Quot.sound]` und der Grund, warum auch die Definition eine Wache
+traegt, stehen im Dateikopf unter „Woher das durchgehende Profil kommt" — dort mit der
+Messung, auf die sie sich stuetzen. -/
 
 /-- info: 'Reformulation.Proemial.StageParity.negFin_val' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms negFin_val
