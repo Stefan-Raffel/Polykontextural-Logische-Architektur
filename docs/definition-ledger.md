@@ -3,7 +3,7 @@
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
 zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 9.
 
-**Alle Kennzahlen dieser Datei beziehen sich auf den Commit `990077b`.** Ein Bau-Zug macht
+**Alle Kennzahlen dieser Datei beziehen sich auf den Commit `e97fdbe`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
 
 **Die Trägerspalte wird beim Bau geprüft.** `Reformulation/Proemial/DefinitionLedger.lean`
