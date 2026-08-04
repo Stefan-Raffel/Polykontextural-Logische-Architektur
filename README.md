@@ -108,7 +108,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 139 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
+eine andere Frage: 140 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -137,14 +137,20 @@ anfasst. Gemessen ist die Zahl NACH dem Verfolgen der neuen Dateien: davor liefe
 dieselbe Route den unveraenderten Vorwert, und ein unbewegter Wert sieht aus wie eine
 gute Nachricht.
 
-Der Fallstrick-13-Zug: 138 -> 139. Die Rechnung je Datei: ein neues Vorkommen in
-`CLAUDE.md` §8, wo der Eintrag die `sorry`-Zahl als Vergleichsfall nennt - 2 -> 3 in
-dieser Datei, sonst keine Bewegung. Die zweite und die dritte Zahl bleiben unberuehrt,
-weil der Zug keine `.lean`-Datei anfasst. Es ist derselbe Mechanismus wie oben: wer die
-Route erklaert, erhoeht ihren Wert.
+Der Fallstrick-13-Zug: 138 -> 140, und die zwei Schritte gehoeren beide dazu. Die
+Rechnung je Datei: `CLAUDE.md` §8 2 -> 3, weil der neue Eintrag die `sorry`-Zahl als
+Vergleichsfall nennt; und **dieser Absatz selbst** 1 -> 2, weil er den Begriff ein
+zweites Mal nennt, um die Bewegung zu erklaeren. Sonst keine Datei bewegt. Die zweite
+und die dritte Zahl bleiben unberuehrt, weil der Zug keine `.lean`-Datei anfasst.
+
+**Die Nachfuehrung einer selbstzaehlenden Zahl bewegt sie ein zweites Mal.** Der Commit
+`23104c9` traegt darum an dieser Stelle 139 und war damit an seinem eigenen Stand schon
+falsch: gemessen waren 140, weil die erklaerende Zeile mitzaehlt. Das Einsetzen der
+**Ziffer** ist ein Fixpunkt, das Schreiben des **Satzes** ist es nicht - und wer eine
+solche Zahl nachfuehrt, misst darum NACH dem Schreiben und nicht davor.
 
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
-werden **Wortvorkommen** (138 / 97), nicht Zeilen mit mindestens einem Vorkommen (135 / 94).
+werden **Wortvorkommen** (140 / 97), nicht Zeilen mit mindestens einem Vorkommen (137 / 94).
 Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
 eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
 
