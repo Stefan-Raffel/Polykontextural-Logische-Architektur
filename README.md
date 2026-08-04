@@ -108,7 +108,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 138 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
+eine andere Frage: 139 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -136,6 +136,12 @@ Die zweite und die dritte Zahl bleiben unberuehrt, weil der Zug keine `.lean`-Da
 anfasst. Gemessen ist die Zahl NACH dem Verfolgen der neuen Dateien: davor liefert
 dieselbe Route den unveraenderten Vorwert, und ein unbewegter Wert sieht aus wie eine
 gute Nachricht.
+
+Der Fallstrick-13-Zug: 138 -> 139. Die Rechnung je Datei: ein neues Vorkommen in
+`CLAUDE.md` §8, wo der Eintrag die `sorry`-Zahl als Vergleichsfall nennt - 2 -> 3 in
+dieser Datei, sonst keine Bewegung. Die zweite und die dritte Zahl bleiben unberuehrt,
+weil der Zug keine `.lean`-Datei anfasst. Es ist derselbe Mechanismus wie oben: wer die
+Route erklaert, erhoeht ihren Wert.
 
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
 werden **Wortvorkommen** (138 / 97), nicht Zeilen mit mindestens einem Vorkommen (135 / 94).

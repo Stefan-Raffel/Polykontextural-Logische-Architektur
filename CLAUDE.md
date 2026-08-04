@@ -141,8 +141,9 @@ fuer README, Ledger und Befunde ist die dritte:
   `.ctorIdx`, `._sizeOf_*`.
 
 Gemessen wird per Umgebungsabfrage (`env.constants` plus `findDeclarationRanges?`), nicht per
-`grep`. Die Satzzahl bleibt eine `grep`-Route, aber seit dem Satzrouten-Zug in geweiteter
-Form:
+`grep`. **Die Satzzahl bleibt eine `grep`-Route, und das ist keine Bequemlichkeit** - die
+Umgebung fuehrt Saetze, die niemand geschrieben hat, siehe Fallstrick 13. Seit dem
+Satzrouten-Zug in geweiteter Form:
 
     grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '
 
@@ -300,8 +301,8 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 zwoelf, §12 fuenf,
-Datei siebzehn; die Gleichung 12 + 5 = 17 geht auf. Es ist dieselbe Sorte Falle wie in §3:
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 dreizehn, §12 fuenf,
+Datei achtzehn; die Gleichung 13 + 5 = 18 geht auf. Es ist dieselbe Sorte Falle wie in §3:
 eine Route unterscheidet nur, was sie zaehlt.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
@@ -449,6 +450,26 @@ einer frueheren Messung; ohne ihn waere „die englischen Bereiche tragen kein S
 ein plausibler und falscher Befund geworden. Damit gilt §12 Regel 1 (Muss- und
 Darf-nicht-Fall) auch fuer Uebersichtsmessungen, nicht nur fuer Akzeptanzrouten. Es ist der
 achte Fallstrick in weiterer Gestalt: kein falsches Ergebnis, sondern ein leeres.
+
+**13 - Eine Satzmenge „aus der Umgebung" enthaelt Saetze, die niemand geschrieben hat.**
+Eine Struktur mit einem `Prop`-Feld erzeugt eine Projektion, die die Umgebung als `thmInfo`
+fuehrt und die im Quelltext keine `theorem`-Zeile hat. Der Filter auf Quell-Deklarationen
+(§3) faengt sie nicht: sie tragen keinen der Begleiter-Suffixe. Gemessen an den neun
+`Proemial.AlphaGamma*`-Modulen (Vorgang 15, Stand `3b2da94`): die Umgebungsroute liefert
+**54**, die verbindliche `grep`-Satzroute **43**; die Differenz sind Prop-Feld-Projektionen
+und drei Deklarationen, deren Bereichsangabe auf den Doc-Kommentar zeigt statt auf die
+Deklarationszeile.
+
+*Welche Route richtig ist, entscheidet die Frage und nicht die Bequemlichkeit.* Fuer die
+**Wachenpflicht** ist es die `grep`-Route, weil die Pflicht an geschriebenen Saetzen haengt;
+fuer eine Aussage darueber, was die Umgebung traegt, ist es die Umgebungsroute. Dieselbe
+Lehre wie bei der `sorry`-Zahl und bei der Satzroute selbst, hier zum ersten Mal an der
+**Umgebung** statt am Text - und darum ein eigener Eintrag: wer eine Menge dort bildet,
+misst mehr und freut sich, statt nachzusehen.
+
+*Heilung, falls beides gebraucht wird:* die Menge aus der `grep`-Route bilden und in der
+Umgebung **aufloesen**, statt sie dort zu suchen. Die Aufloesungsprobe (alle gefunden?) ist
+dann die Gegenprobe, die eine Suche nicht hat.
 
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
