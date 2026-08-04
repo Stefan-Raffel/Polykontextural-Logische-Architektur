@@ -18,7 +18,7 @@ any `RollupDoubleValuation` to a triple of F3.f instances:
 - `StageTransition.{1} 1` linking the two stages via a constant translate.
 
 Also introduces `coalgebraic_inheritance`, the Schicht-Vertiefung consistency
-theorem with four aspects: both stageObj values and both initialConfig values
+  theorem with four aspects: both stageObj values and both initialConfig values
 match the `RollupDoubleValuation` inputs and the K1/K2 anchoring.
 
 ## Rev2 over Rev1

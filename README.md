@@ -97,7 +97,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 |---|---:|
 | geprueft (AxiomGate) | 3255 Konstanten |
 | Axiom-Wachen | 470 ueber 51 Dateien |
-| Saetze gesamt | 792 |
+| Saetze gesamt | 791 |
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
@@ -160,20 +160,25 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 
 ## Struktur
 
+**Dateien** zaehlt die Dateien *im Verzeichnis*, ohne das gleichnamige Sammelmodul daneben
+(`Reformulation/Proemial.lean`, `F1.lean`, `PreC.lean`); jene tragen null Saetze. Ohne dieses
+Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
+
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 62 | 475 | Proemialrelation, Transjunktion, Klon-Schranken |
+| `Proemial/` | 62 | 475 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 7 | 114 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat |
-| `F1/` | 20 | 21 | Belegungen, Faserungen, Cross-Chain-Anschluss |
+| `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 792 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus. Der fremd gestellte Fall liegt ausserhalb
-des Aggregats und wird darum in der Gesamtzahl nicht mitgezaehlt.
+Widerspruch, sondern der Bereich: die 791 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 791 + 10 = 801 ist die Tafelsumme. Der
+fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
+mitgezaehlt.
 
 Zwei Module tragen die schaerfsten Aussagen des Korpus:
 

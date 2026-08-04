@@ -151,10 +151,19 @@ falsch. Sie verfehlte 13 `private`-Deklarationen und 6 Deklarationen mit Attribu
 Deklarationszeile, und sie zaehlte 3 Zitate entfernter Aussagen in Memorial-Bloecken mit.
 Beleg am Commit dieses Zuges; die laufenden Werte stehen im README.
 
-**Zitate in Memorial-Bloecken werden um zwei Leerzeichen eingerueckt.** Die Satzroute
-zaehlt Zeilenanfaenge; ein uneingeruecktes Zitat wird als Deklaration gezaehlt und ist
-damit eine stille Falschzaehlung. Die Regel gilt fuer `theorem`, `lemma`, `def`, `abbrev`
-und `instance` gleichermassen.
+**Keine uneingerueckte Zeile beginnt mit einem Deklarationswort.** Die Satzroute zaehlt
+Zeilenanfaenge; jede Zeile, die am linken Rand mit `theorem`, `lemma`, `def`, `abbrev` oder
+`instance` beginnt, wird als Deklaration gezaehlt. Wo das keine ist, steht eine stille
+Falschzaehlung. Heilung: zwei Leerzeichen davor, oder den Umbruch eine Silbe frueher.
+
+Die Regel galt bis zum Scan-B-Zug nur fuer **Zitate in Memorial-Bloecken** und deckte damit
+den haeufigeren Fall nicht: gewoehnliche Prosa im Doc-String, deren Umbruch ein
+Deklarationswort an den Zeilenanfang schiebt. Gemessen am Stand `427b4b0`: die verbindliche
+Satzroute liefert 802, dieselbe Route mit einer Deklarations-Verschaerfung (nach dem Namen
+muss `(`, `{`, `[`, `⦃`, `:` oder Zeilenende folgen) liefert 801; die Differenz war genau
+eine Zeile, `F1/D2/Rollups/Coalgebraic.lean` 21, wo `consistency theorem with four aspects`
+umbrach. Die Verschaerfung taugt als Gegenprobe, nicht als Ersatz — sie kennt die
+Binderformen des Baus nicht.
 
 Fuer `def` gilt dieselbe Weitung:
 
@@ -290,10 +299,10 @@ genau der Fall aus §1 (Ausweg C). Die Eintraege bleiben durchnummeriert; eine G
 steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
-Paragraphen** - die naive Route ueber die ganze Datei liefert 15 statt 11, weil §12 vier
-gleich ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 elf, §12
-vier, Datei fuenfzehn. Es ist dieselbe Sorte Falle wie in §3: eine Route unterscheidet nur,
-was sie zaehlt.
+Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 zwoelf, §12 fuenf,
+Datei siebzehn; die Gleichung 12 + 5 = 17 geht auf. Es ist dieselbe Sorte Falle wie in §3:
+eine Route unterscheidet nur, was sie zaehlt.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
 ist nicht immer die Ursache: der zehnte haelt eine Profildifferenz fest, deren Mechanismus
@@ -424,6 +433,22 @@ eigenen Typ zuerst `#check <Typname>` auf den blossen Namen. `#check` bindet **n
 automatisch und meldet darum, was der Elaborator verschweigt. Gegengerechnet in beide
 Richtungen am selben Stand: ohne den passenden `open` liefert `#check RGSStream`
 *"Unknown identifier"*, mit ihm `Reformulation.Kenogram.Stream.RGSStream : Type`.
+
+**12 - Eine unquotierte Pfadliste in einer Variablen wird von `zsh` nicht wortgeteilt.**
+`AREAS="dirA dirB"; grep -r muster $AREAS` uebergibt beides als **einen** Pfad; `grep` findet
+ihn nicht, warnt nach stderr und liefert **0**. Mit `2>/dev/null` bleibt eine plausible Null.
+Gemessen im Scan-B-Nachtrag: eine Uebersicht ueber neunundzwanzig Suchwoerter lieferte fuer
+**jedes** den Wert 0 - auch fuer `placeholder`, von dem aus einer frueheren Messung bekannt
+war, dass es in 24 Dateien steht. Heilung: Pfadlisten als Array fuehren (`AREAS=(dirA dirB)`),
+in bash `"${AREAS[@]}"`.
+
+*Die zweite Haelfte der Heilung ist die wertvollere, weil sie nicht an `zsh` haengt:* **eine
+Route, die fuer jedes Suchwort denselben Wert liefert, ist zuerst an sich selbst zu
+verdaechtigen und nicht am Bestand.** Aufgefallen ist der Fehler allein an einem Muss-Fall aus
+einer frueheren Messung; ohne ihn waere „die englischen Bereiche tragen kein Statusvokabular"
+ein plausibler und falscher Befund geworden. Damit gilt §12 Regel 1 (Muss- und
+Darf-nicht-Fall) auch fuer Uebersichtsmessungen, nicht nur fuer Akzeptanzrouten. Es ist der
+achte Fallstrick in weiterer Gestalt: kein falsches Ergebnis, sondern ein leeres.
 
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
@@ -576,6 +601,16 @@ Routen vergleicht, vergleicht ihre Mengen und nicht ihre Summen.
 Import-Huellen; ein Modul, das in zweien liegt, meldet zweimal. Gemessen: 27 betroffene
 Deklarationen wurden auf diesem Weg zu 34. Wer ueber mehrere Targets zaehlt, gleicht die
 Huellen ab oder misst je Modul mit `lake env lean`.
+
+**5 - Ein erweitertes Nachschlagewerk wird als Menge geprueft, nicht als Zahl.** Wer Ledger,
+Markenregister, Setzungsregister oder Statusregister erweitert, prueft die **Inklusion** des
+alten Standes im neuen ueber die Eintrags-Schluessel - nicht, ob die Zahl gewachsen ist. Eine
+wachsende Zahl belegt bei einer Erweiterung nichts; im schlimmeren Fall verdeckt sie einen
+Verlust. Gemessen am Markenregister Rev. 2: der erste Anlauf verlor **neun** Eintraege des
+alten Standes an die Aehnlichkeits-Entdopplung, darunter zwei Benennungs-Marken, und die
+Gesamtzahl stieg dabei von 125 auf 281. Gefunden hat es die Mengenprobe, nicht der
+Zahlenvergleich. Das ist Regel 3 in ihrer schaerfsten Gestalt: dort belegte Wertgleichheit
+keine Mengengleichheit, hier belegt Wertzuwachs keine Mengeninklusion.
 
 Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
 der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.

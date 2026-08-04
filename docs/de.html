@@ -160,11 +160,12 @@ href="rev2/en.html"><code>docs/rev2/en.html</code></a>, gebaut wie die
 jede Zahl trägt wieder den Stand, an dem sie gemessen wurde.</p>
 
 <p><strong>Was nicht dazugekommen ist, damit es nicht gesucht werden muss:</strong> die
-proemiale Relation ist nicht formalisiert; die Verbundkontextur ist Zahlenfolge, nicht Begriff;
-ein Grenzobjekt des Aufstiegs ist weder gebaut noch behauptet noch ausgeschlossen; die Totalität
-des weltbildhaften Begriffs bleibt offen und wird als offen geführt (L06-1, Trägerstatus
-<code>Offen</code> — und warum das ein Ergebnis ist und kein Ausstand, steht in
-<a href="#v">§V.6</a>).</p>
+proemiale Relation als Ganzes ist nicht gebaut — ein Ausschnitt ist term-belegt, und welcher,
+steht in <a href="#xi">§XI</a>; die Verbundkontextur ist zu einem Drittel getragen und als
+Begriff nicht gebaut; ein Grenzobjekt des Aufstiegs ist weder gebaut noch behauptet noch
+ausgeschlossen; die Totalität des weltbildhaften Begriffs bleibt offen und wird als offen
+geführt (L06-1, Trägerstatus <code>Offen</code> — und warum das ein Ergebnis ist und kein
+Ausstand, steht in <a href="#v">§V.6</a>).</p>
 
 <!-- ===================================================================== -->
 <h2 id="i">I · Der Grund: eine Kombinatorik vor der Logik</h2>
@@ -761,8 +762,9 @@ tragen ohne Schranke: bei <code>m ≤ 1</code> gibt es keine Paare und genau ein
 zwei im Klon: Minimum und Maximum — als Mengengleichheit, mit <code>min ≠ max</code> als eigener
 Ungleichung.<br>(<strong>bewiesen · Aggregat</strong>;
 <code>CV.clone_locallyClassical_eq</code>, <code>CV.min_ne_max</code>; beidseitig Konsum von E3.
-Bewusst keine Kardinalität über dem Klon-Prädikat — „im Klon liegen" ist nicht entscheidbar, und
-die Mengengleichheit braucht keine klassischen Instanzen)</p>
+Bewusst keine Kardinalität über dem Klon-Prädikat: „im Klon liegen" ist als Existenz über Termen
+formuliert und trägt darum keine Entscheidbarkeits-Instanz; eine Zählform darüber bräuchte
+klassische Instanzen ohne Not. Die Mengengleichheit kommt ohne sie aus)</p>
 </div>
 
 <div class="theorem">
@@ -798,10 +800,11 @@ gespiegelt — auch hier nicht; dies ist eine Beschreibung mit Fundstelle, kein 
 
 <p>Die Ledger-Zeile L06-1 — der starke, weltbildhafte Begriff — steht weiter auf
 <code>Offen</code>, jetzt mit vier Verweisen auf die Proben und weiterhin ohne Träger.
-<strong>Das ist das Ergebnis, nicht ein Ausstand:</strong> die Totalität („die Wirklichkeit als
-…") ist keine Struktureigenschaft, und was an diesem Begriff Struktur ist, hat Sätze. Der einzige
-formale Weg zur Totalität wäre eine konstitutive Setzung; sie näherte die Definition nicht an,
-sie setzte sie, und sie wird nicht gegangen.</p>
+<strong>Das ist das Ergebnis, nicht ein Ausstand:</strong> dass die Totalität („die Wirklichkeit
+als …") keine Struktureigenschaft ist, ist die tragende <strong>Deutung</strong> dieser Ausgabe
+— der einzige formale Weg zu ihr wäre eine konstitutive Setzung; sie näherte die Definition
+nicht an, sie setzte sie, und sie wird nicht gegangen. Was an diesem Begriff Struktur ist, hat
+Sätze.</p>
 
 <!-- ===================================================================== -->
 <h2 id="vi">VI · Die Anwendungsschicht, und was an ihr gemessen ist</h2>
@@ -987,8 +990,9 @@ relationserhaltendes Bild in eine strikte Ordnung hat, trägt <code>cyc3_not_rep
 (<code>[propext]</code>); dass der Zyklus selbst besteht, tragen <code>cyc3_holds</code>,
 <code>cyc3_irrefl</code> und <code>cyc3_not_transitive</code>. Alle sechs Sätze sind gewacht.
 Der fehlende Richtungstausch ist <code>Proemial.NoUniformSwap.no_uniform_swap</code>
-(<code>[propext, Classical.choice, Quot.sound]</code>; der Choice-Anteil stammt aus der
-Kategorien-Maschinerie und nicht aus eigener Beweisführung). <strong>Der volle Name mit Modul
+(<code>[propext, Classical.choice, Quot.sound]</code>; der Choice-Anteil kommt mutmasslich aus
+der Kategorien-Maschinerie — der Weg des Axioms in den Term ist nicht gemessen, siehe
+<a href="#ix">§IX</a>). <strong>Der volle Name mit Modul
 ist keine Pedanterie:</strong> ein Satz gleichen Namens liegt in einem Rufe-Target, ungewacht,
 als historischer Beleg — wer den Namen ohne Modul nennt, lässt offen, welchen er meint, und die
 zweite Achse läuft leer.</p>
@@ -1124,12 +1128,14 @@ Block hat vier hinzugefügt:</p>
   zweimal war es keine.</li>
 </ol>
 
-<p>Die <strong>Werkzeugketten-Fallstricke</strong> sind um zwei gewachsen und im Korpus
-abgelegt: ein nicht aufgelöster Typname wird unter mildem Auto-Binding stillschweigend zur
-Variablen, und die Folgemeldungen zeigen auf gesunde Stellen (Gegenprobe: <code>#check</code>
-auf den blossen Namen); und <code>#print axioms</code> bricht seine Ausgabe an der Summe aus
+<p>Die <strong>Werkzeugketten-Fallstricke</strong> sind um zwei gewachsen, und sie liegen an
+zwei verschiedenen Orten: ein nicht aufgelöster Typname wird unter mildem Auto-Binding
+stillschweigend zur Variablen, und die Folgemeldungen zeigen auf gesunde Stellen (Gegenprobe:
+<code>#check</code> auf den blossen Namen) — der steht in der Fallstrickliste des
+veröffentlichten Bestandes; und <code>#print axioms</code> bricht seine Ausgabe an der Summe aus
 Namens- und Profillänge um — gemessen daran, dass ein längerer Name mit kürzerem Profil
-<strong>nicht</strong> bricht.</p>
+<strong>nicht</strong> bricht — der ist im nicht veröffentlichten Spezifikationskorpus abgelegt
+und im Bestand nicht nachschlagbar.</p>
 
 <h3>Der Lint</h3>
 
@@ -1197,9 +1203,21 @@ Funktion, sondern allein das <em>Dass</em> des Vollzugs ist kein Strukturmerkmal
 
 <h3>Was nicht gebaut ist</h3>
 
-<p>Die <strong>proemiale Relation</strong> — der Kern von Günthers Theorie — ist nicht
-formalisiert. Die <strong>Verbundkontextur</strong> liegt als Zahlenfolge vor und ist nicht als
-Begriff gebaut — wobei ihr Exponent <code>C(m,2)</code> seit dieser Ausgabe ein Satz ist. Die
+<p>Die <strong>proemiale Relation als Ganzes</strong> — der Kern von Günthers Theorie — ist
+nicht gebaut. Term-belegt ist ein Ausschnitt, und zwar die Stufen-Bewegung: der Abstieg hat
+einen Schnitt (anhängen und wieder streichen führt zurück), er ist kein Iso (über einem Muster
+liegen zwei verschiedene Urbilder), und beides zusammen zeigt, dass die Bewegung nicht zum Iso
+kollabiert. <strong>Dass diese Faser-Asymmetrie Günthers proemielle Typinversion
+<em>ist</em>, entscheidet kein Theorem</strong> — das ist Deutung, und der Dateikopf führt sie
+als solche. Nicht berührt sind die proemielle Verschränkung und die Allgemeinheit über
+beliebige Stellenvertauschungen. Bereichsangabe, <strong>gemessen</strong>: die vier Sonden
+liegen nicht im Aggregat und tragen keine Axiom-Wache; sie bauen über ein eigenes Default-Target
+bei jedem <code>lake build</code> mit, aber die Zusicherung des Gates gilt für sie nicht. Die
+<strong>Verbundkontextur</strong> ist zu einem Drittel getragen: ihr Exponent
+<code>C(m,2)</code> ist seit dieser Ausgabe ein Satz, mit Zuordnungsstatus
+<strong>Deutung</strong>; die beiden übrigen Ledger-Zeilen zum Gegenstand stehen auf
+<code>Offen</code>. Als <strong>Begriff</strong> — nicht als Zahlenfolge — ist sie nicht
+gebaut. Die
 <strong>Totalität des weltbildhaften Begriffs</strong> ist offen und wird als offen geführt; ihre
 beiden Strukturklauseln haben Sätze, und die Grenzspalte der offenen Zeile nennt sie. Ein
 <strong>Grenzobjekt des Aufstiegs</strong> ist weder gebaut noch behauptet noch ausgeschlossen;
@@ -1220,8 +1238,9 @@ Elementarkontexturen; das ist mit Günthers Reihe verträglich, aber eine
 Logiken, deren Trennung nicht gesetzt, sondern bewiesen ist — in einer Form, die Günthers
 Grundfall standhält; eine Beweisform, die ihre schwere Hälfte kennt und in diesem Block auch die
 Werkstatt vermessen hat; eine Zeugenreihe, deren Zahlen von Rechnungen zu Sätzen geworden sind;
-ein Aufstieg, der bewohnt ist, sich erhält, echt wächst — und beweisbar keine signaturtreue
-Gestalt hat; eine Anwendungsschicht mit gemessenem Konsum; ein Ledger mit einundneunzig Zeilen,
+ein Aufstieg, der bewohnt ist, sich erhält, echt wächst — und dessen Paritätsobstruktion
+bewiesen ist, weshalb er, so die Deutung des Dateikopfs, keine signaturtreue Gestalt hat;
+eine Anwendungsschicht mit gemessenem Konsum; ein Ledger mit einundneunzig Zeilen,
 sechzehn davon offen; ein Gate ohne <code>sorryAx</code>; und drei Grenzen, von denen keine eine
 Niederlage ist.</p>
 

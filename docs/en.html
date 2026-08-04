@@ -167,10 +167,12 @@ filing.</p>
 number again carries the state at which it was measured.</p>
 
 <p><strong>What has not been added, so that no one has to look for it:</strong> the proemial
-relation is not formalised; the compound contexture is a number sequence, not a concept; a limit
-object of the ascent is neither built nor claimed nor excluded; the totality of the world-picture
-notion remains open and is carried as open (L06-1, carrier status <code>Offen</code> — and why
-that is a result and not an arrears stands in <a href="#v">§V.6</a>).</p>
+relation as a whole is not built — a section of it is term-borne, and which one stands in
+<a href="#xi">§XI</a>; the compound contexture is carried in one of its three ledger lines and
+is not built as a concept; a limit object of the ascent is neither built nor claimed nor
+excluded; the totality of the world-picture notion remains open and is carried as open (L06-1,
+carrier status <code>Offen</code> — and why that is a result and not an arrears stands in
+<a href="#v">§V.6</a>).</p>
 
 <!-- ===================================================================== -->
 <h2 id="i">I · The ground: a combinatorics prior to logic</h2>
@@ -761,8 +763,9 @@ exactly one operation, <code>2^0 = 1</code>.</p>
 these lie in the clone: minimum and maximum — as a set equality, with <code>min ≠ max</code> as
 an inequality of its own.<br>(<strong>proved · aggregate</strong>;
 <code>CV.clone_locallyClassical_eq</code>, <code>CV.min_ne_max</code>; both halves consuming E3.
-Deliberately no cardinality over the clone predicate — "lying in the clone" is not decidable,
-and the set equality needs no classical instances)</p>
+Deliberately no cardinality over the clone predicate: "lying in the clone" is phrased as an
+existence over terms and therefore carries no decidability instance; a counting form over it
+would need classical instances without necessity. The set equality does without them)</p>
 </div>
 
 <div class="theorem">
@@ -798,10 +801,10 @@ a reference, not a second site.</p>
 
 <p>The ledger row L06-1 — the strong, world-picture notion — still stands at
 <code>Offen</code>, now with four references to the probes and still without a carrier.
-<strong>That is the result, not an arrears:</strong> the totality ("reality as …") is not a
-structural property, and what is structure in that notion has theorems. The only formal path to
-the totality would be a constitutive posit; it would not approximate the definition, it would
-posit it, and it is not taken.</p>
+<strong>That is the result, not an arrears:</strong> that the totality ("reality as …") is not a
+structural property is the load-bearing <strong>Deutung</strong> of this edition — the only
+formal path to it would be a constitutive posit; it would not approximate the definition, it
+would posit it, and it is not taken. What is structure in that notion has theorems.</p>
 
 <!-- ===================================================================== -->
 <h2 id="vi">VI · The application layer, and what is measured on it</h2>
@@ -982,8 +985,9 @@ relation-preserving image into a strict order is carried by <code>cyc3_not_repre
 (<code>[propext]</code>); that the cycle itself holds is carried by <code>cyc3_holds</code>,
 <code>cyc3_irrefl</code> and <code>cyc3_not_transitive</code>. All six theorems are guarded. The
 missing interchange of directions is <code>Proemial.NoUniformSwap.no_uniform_swap</code>
-(<code>[propext, Classical.choice, Quot.sound]</code>; the choice component comes from the
-category machinery and not from the proof itself). <strong>The full name with its module is no
+(<code>[propext, Classical.choice, Quot.sound]</code>; the choice component presumably comes
+from the category machinery — the path of the axiom into the term is not measured, see
+<a href="#ix">§IX</a>). <strong>The full name with its module is no
 pedantry:</strong> a theorem of the same name lies in a call target, unguarded, as a historical
 record — whoever names the name without the module leaves open which one is meant, and the
 second axis runs empty.</p>
@@ -1118,11 +1122,14 @@ has added four:</p>
   empty search results.</strong> A missing result looks like an answer; twice it was none.</li>
 </ol>
 
-<p>The <strong>toolchain pitfalls</strong> have grown by two and are filed in the corpus: an
-unresolved type name silently becomes a variable under mild auto-binding, and the follow-up
-messages point at healthy places (control: <code>#check</code> on the bare name); and
+<p>The <strong>toolchain pitfalls</strong> have grown by two, and they are filed in two
+different places: an unresolved type name silently becomes a variable under mild auto-binding,
+and the follow-up messages point at healthy places (control: <code>#check</code> on the bare
+name) — that one stands in the pitfall list of the published corpus; and
 <code>#print axioms</code> breaks its output at the sum of name and profile length — measured
-against the fact that a longer name with a shorter profile does <strong>not</strong> break.</p>
+against the fact that a longer name with a shorter profile does <strong>not</strong> break —
+that one is filed in the unpublished specification corpus and cannot be looked up in the
+codebase.</p>
 
 <h3>The lint</h3>
 
@@ -1187,9 +1194,21 @@ model in which it is missing as a position, because it is not a position.</p>
 
 <h3>What is not built</h3>
 
-<p>The <strong>proemial relation</strong> — the core of Günther's theory — is not formalised.
-The <strong>compound contexture</strong> is present as a number sequence and is not built as a
-concept — though its exponent <code>C(m,2)</code> is a theorem as of this edition. The
+<p>The <strong>proemial relation as a whole</strong> — the core of Günther's theory — is not
+built. A section of it is term-borne, namely the stage movement: the descent has a section
+(appending a place and deleting it again returns to the start), it is no isomorphism (two
+distinct preimages lie over one pattern), and both together show that the movement does not
+collapse to an isomorphism. <strong>That this fibre asymmetry <em>is</em> Günther's proemial
+type inversion is settled by no theorem</strong> — it is interpretation, and the file header
+carries it as such. Untouched are the proemial interlocking and the generality over arbitrary
+permutations of places. Scope, <strong>measured</strong>: the four probes do not lie in the
+aggregate and carry no axiom guard; they are built on every <code>lake build</code> through a
+default target of their own, but the gate's assurance does not extend to them. The
+<strong>compound contexture</strong> is carried in one of its three ledger lines: its exponent
+<code>C(m,2)</code> is a theorem as of this edition, with assignment status
+<strong>Deutung</strong>; the two remaining ledger lines on the subject stand at
+<code>Offen</code>. As a <strong>concept</strong> — not as a number sequence — it is not
+built. The
 <strong>totality of the world-picture notion</strong> is open and is carried as open; its two
 structural clauses have theorems, and the limit column of the open row names them. A
 <strong>limit object of the ascent</strong> is neither built nor claimed nor excluded; the
@@ -1210,7 +1229,8 @@ is a <strong>stipulation</strong> and not a derivation.</p>
 whose separation is not posited but proved — in a form that withstands Günther's basic case; a
 mode of proof that knows its hard half and in this block measured the workshop as well; a series
 of witnesses whose numbers have turned from computations into theorems; an ascent that is
-inhabited, preserves itself, grows strictly — and provably has no signature-faithful shape; an
+inhabited, preserves itself, grows strictly — and whose parity obstruction is proved, whence it
+has, so the file header's interpretation, no signature-faithful shape; an
 application layer with measured consumption; a ledger of ninety-one rows, sixteen of them open;
 a gate with no <code>sorryAx</code>; and three limits, none of which is a defeat.</p>
 
