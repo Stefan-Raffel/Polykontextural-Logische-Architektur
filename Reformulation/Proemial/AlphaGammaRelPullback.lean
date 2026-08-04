@@ -240,4 +240,18 @@ theorem rel_pullback_diagonal_not_both
   rintro ⟨h_diag, h_split⟩
   exact rel_pullback_diagonal_not_iso BC σ h_split h_rel_not_iso h_diag
 
+/-! **Wachen.** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2). Gewacht ist der im Kopf
+als **Zentrale Substanz** benannte Kern dieser Datei; die Wachenspitze des Strangs ist in
+`Wachenspitze_AlphaGamma_Vorgabe.md` begruendet. Das Profil traegt `Classical.choice` aus
+der Kategorien- und Pullback-Maschinerie; der Weg des Axioms in den Term ist **nicht**
+gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.RelPullback.rel_pullback_diagonal_not_iso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms rel_pullback_diagonal_not_iso
+
+
 end Reformulation.Proemial.Substantial.RelPullback

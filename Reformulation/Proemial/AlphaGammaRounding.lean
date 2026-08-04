@@ -201,4 +201,12 @@ theorem prodHomWitness_not_unconditional :
   fun h => ((bcData_nonempty_iff_unconditional prodHomWitnessPAS).mpr h).elim
     prodHomWitness_not_bcData.false
 
+/-! **Wachen.** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2). Gewacht ist das im Kopf
+benannte **End-Lemma** dieser Datei. Das Profil traegt `Classical.choice` aus der
+Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen. -/
+
+/-- info: 'Reformulation.Proemial.Substantial.Rounding.end_id_comm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms end_id_comm
+
+
 end Reformulation.Proemial.Substantial.Rounding

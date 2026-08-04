@@ -260,4 +260,18 @@ theorem prodHomWitness_not_bcData :
   have happ := congrArg (fun g => (ConcreteCategory.hom g) false) hz
   exact Bool.noConfusion (congrArg Prod.fst happ)
 
+/-! **Wachen.** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2). Gewacht ist das im Kopf
+benannte **Zentrum-Lemma** dieser Datei. Es liegt bereits in der Huelle der Wache von
+`Discontextural.transition_isIso_ofBewohnteSchicht` und wird trotzdem gewacht: eine Huelle
+sichert mittelbar, eine Wache unmittelbar. Das Profil traegt `Classical.choice` aus der
+Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Stratification.unit_isIso_of_natIso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms unit_isIso_of_natIso
+
+
 end Reformulation.Proemial.Substantial.Stratification

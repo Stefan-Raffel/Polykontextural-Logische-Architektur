@@ -394,4 +394,16 @@ Trito-geltende PAS ist `prodHomWitnessPAS` (rechte Spalte); mit
 Haupt-Theorems — Epi-bei-¬Iso als die volle Stufe-2-Konfiguration.
 -/
 
+/-! **Wachen.** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2). Gewacht ist das im Kopf
+benannte **Haupt-Theorem** dieser Datei. Das Profil traegt `Classical.choice` aus der
+Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.rel_diagonal_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms rel_diagonal_transport
+
+
 end Reformulation.Proemial.Substantial.Transport
