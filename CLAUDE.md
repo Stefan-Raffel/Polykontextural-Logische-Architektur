@@ -301,9 +301,10 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Zuges A: §8 siebzehn, §12 acht,
-Datei fuenfundzwanzig; die Gleichung 17 + 8 = 25 geht auf, und kein weiterer Paragraph
-fuehrt fett nummerierte Eintraege. Es ist dieselbe Sorte Falle wie in §3: eine Route
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Formulierungs-Zuges: §8
+neunzehn, §12 neun, Datei achtundzwanzig; die Gleichung 19 + 9 = 28 geht auf, und kein
+weiterer Paragraph fuehrt fett nummerierte Eintraege. (Am Stand des Zuges A las dieselbe
+Route 17 + 8 = 25.) Es ist dieselbe Sorte Falle wie in §3: eine Route
 unterscheidet nur, was sie zaehlt.
 
 *Und die Abschnittsgrenze gehoert zur Route.* Beim Nachzaehlen in Zug A lieferte ein erster
@@ -568,6 +569,50 @@ Lean-Namen enthalten keine Leerzeichen; der Anker macht das sicher. *Gegenprobe:
 gewonnene Namensmenge gegen die verbindliche Wachenroute eichen, Mengengroesse gegen
 Mengengroesse (§12 Regel 2).
 
+**18 - Eine Route, deren Bereichsliste aelter ist als der Zug, misst den Vorstand und
+meldet ihn als neuen Stand.** Gemessen im Stellen-Tausch-Zug: der erste Lauf der zweiten
+Messung nahm die Modulliste der Aggregat-Huelle aus einem Stand **vor** dem Zug, in dem das
+neue Modul `Kenogram/PlaceSwap.lean` naturgemaess fehlt.
+
+*Was die Gestalt neu macht:* **das Ergebnis war richtig und die Route trotzdem blind.**
+Dieselbe Zahl - wachenfreie Aggregat-Saetze, 66 in 22 Modulen - waere herausgekommen, weil
+die Route das neue Modul **gar nicht angesehen** hat. Und **keine bestehende Gegenprobe
+haette es gezeigt: sie alle sehen auf den Wert.**
+
+Damit fuehrt der Korpus drei Gestalten des Messfehlers, und das ist die dritte: das
+**leere** Ergebnis (Fallstrick 9), das **knapp zu kleine** (Fallstricke 15 und 17), und das
+**richtige aus dem falschen Grund**. Die Reihe steht hier zusammen, weil ein Leser die
+Gattung an ihr erkennt und nicht am Einzelfall.
+
+*Heilung:* **die Bereichsliste nach dem Zug erzeugen, nicht vor ihm** - und die
+**Modulzahl selbst als Gegenprobe lesen**: sie muss sich bewegt haben. Gemessen 112 -> 113
+Module; die Bewegung trat erst nach der Heilung ein. Vor dem Zug erzeugte Listen sind fuer
+den Regel-6-Lauf (§12) richtig und fuer die Nachmessung falsch; beide Laeufe brauchen ihre
+eigene Liste.
+
+**19 - Die Textextraktion aus PDF setzt an Zeilenumbruechen Trennstriche; ein
+Zitatvergleich ohne Tilgung meldet Fehlalarm.** Gemessen an `KorpusRev1/e_und_w.pdf` ueber
+`pypdf` (kein `pdftotext` auf dieser Maschine): von fuenf woertlich richtigen Zitaten
+meldeten **zwei** Abweichung - `Um- tauschrelation` auf S. 27 und `Rangord- nung` auf
+S. 29. Dieselbe Extraktion zerreisst ausserdem Woerter ohne Trennstrich
+(`kenogrammatisch en`).
+
+*Die Begruendung des Eintrags ist die Quote und nicht der Einzelfall.* **Eine Pruefung,
+die bei zwei von fuenf richtigen Stellen anschlaegt, wird beim dritten Mal nicht mehr
+gelesen** - und uebersieht dann die eine echte Abweichung, fuer die sie gebaut wurde. Es
+ist dasselbe Argument, mit dem der Lint seinen Pfadausschluss bekam: eine Meldung, die man
+gewohnheitsmaessig wegdrueckt, ist schlechter als keine.
+
+*Heilung:* vor dem Vergleich Trennstriche **und** Leerraum tilgen; wer nur Leerraum tilgt,
+faengt die zweite Haelfte der Faelle nicht.
+
+*Und die Verschaerfung, die daran haengt.* Das Etikett **quellen-fest** heisst: an der
+Quelle geprueft, mit Seitenangabe, und die Pruefung ist benannt. Keine neue Regel - ein
+vorhandener Mechanismus, der eine Route hatte fuer alles ausser fuer sich selbst. *Anlass:*
+eine Wiedergabe im Transkript hat als Quelle gedient, und eine Wendung darin war
+abgewichen (`welche Schaerfe die Ordnung hat` gegen die *implikative* Schaerfe der Quelle).
+Mitzupruefen ist der Seitenanker selbst: Druck- und PDF-Seite koennen auseinanderfallen.
+
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
 Ein fehlender Treffer und ein anders geschriebener Treffer sehen in einer Trefferzaehlung
@@ -697,7 +742,8 @@ Remote-Zeiger ohne `git fetch` abliest, misst den lokalen Stand und nicht den Se
 ## 12 - Messen: was eine Route zu leisten hat
 
 Regeln, jede aus einem gemessenen Fehlgriff dieses Korpus. Sie gelten fuer jede Zahl,
-die ein Dokument verlaesst.
+die ein Dokument verlaesst - und, seit der neunten, auch fuer die Pruefungen, deren
+Unterlassung sich nicht meldet.
 
 **1 - Eine Route wird gegengerechnet, bevor ihr Ergebnis in ein Dokument geht.** Der
 Gegenfall ist einer, dessen Antwort aus dem Quelltext bekannt ist - einer, der treffen muss,
@@ -776,6 +822,60 @@ Faelle **aus dem Ausschlussbereich** ueberleben - in Zug B waren das die
 `Diagnostics`-Messwerkzeuge, die nach Vorgabe nackt bleiben. Die geheilten Stellen wechseln
 die Seite und werden zu **Darf-nicht-Faellen**; dort sind sie wertvoller als vorher, weil
 sie pruefen, dass der Zug gegriffen hat.
+
+**9 - Vor der Vergabe eines Namens wird geprueft, ob er im Bestand oder im Umfeld besetzt
+ist; ist er es, entscheidet die Bedeutung und nicht die Naehe.** Die Regel steht in diesem
+Paragraphen, obwohl sie keine Zahl regelt: sie teilt mit den uebrigen den Ausfallmodus -
+**die unterlassene Pruefung meldet sich nicht**, sie laesst den Bau gruen.
+
+Zwei Anlaesse, beide gemessen:
+
+- **Ein Buchstabe, der im selben Strang zwei verschiedene Dinge bezeichnete.** Im
+  α+γ-Strang trug `γ` den **Tausch** `(L ⋙ R) ⟶ (R ⋙ L)` an einer Stelle und den
+  **Kollaps** `L ⋙ R ≅ 𝟭 S` ueberall sonst. Zwei Saetze mit fast gleichem Namen und
+  entgegengesetzter Substanzlage; die Doppeldeutigkeit war jahrelang unsichtbar, weil
+  beide Lesarten fuer sich stimmig sind.
+- **Ein Name, unter dem der Bestand bereits die Werte-Vertauschung fuehrt.** Fuer die
+  Stellen-Vertauschung lag `swapVals` nahe - und ist in
+  `Proemial/K3CouplingProbe.lean` fuer die **Werte**-Vertauschung besetzt. Die Folge, die
+  ihn gefaehrlich macht, ist gemessen: **mit `Kenogram.swapVals` waeren zwei Saetze des
+  Moduls trivial und der Bau gruen** (`relabel ∘ swapVals` ist auf Normalformen die
+  Identitaet, die Kommutation gaelte geschenkt, die Charakterisierung waere falsch).
+
+*Und der prophylaktische Fall, der zeigt, dass die Regel nicht bloss Vorsatz ist.* Im
+Stellen-Tausch-Zug wurden drei Namen **vor** der Definition geprueft und zwei begruendet
+verworfen: `swapVals` (im Bestand besetzt) und `swapAt` (`Array.swapAt`/`Vector.swapAt`
+setzen einen Wert und geben den alten zurueck - im Umfeld anders bedeutend). Gebaut wurde
+`swapPlaces`, 0 Vorkommen im Bestand, kein `List.swapPlaces`/`Array.swapPlaces` im Umfeld.
+**Die Regel hat gegen ihren eigenen Vorschlagenden entschieden.**
+
+*Route:* den Kandidaten vor der Definition ueber `Reformulation/` und `Foreign/` suchen
+**und** im Umfeld (Mathlib, Lean-Kern) - und bei einem Treffer nicht die Naehe entscheiden
+lassen, sondern die Bedeutung.
+
+### Die Kontaktzahl: eine Messgroesse und ihr Bereich
+
+Die Kontaktzahl misst, ob ein Beweisterm im Aggregat **beide Straenge** beruehrt - den
+kenogrammatischen und den kategorialen.
+
+Sie war ueber ein **Modul-Namensmuster** definiert (`Kenogram.*` gegen `AlphaGamma*`), mit
+dem Muster als Stellvertreter des kategorialen Strangs. Seit dessen Haelfte in
+`Proemial/ArrowAscent.lean` liegt, trifft der Stellvertreter seinen Gegenstand nicht mehr.
+**Geaendert ist die Definition der Groesse, nicht ihr Wert:**
+
+- sie nennt den **Strang** und nicht ein Namensmuster;
+- die Modulliste wird **bei jeder Messung neu gebildet**, nicht fortgeschrieben - sonst
+  altert sie beim naechsten Modul wieder (Fallstrick 18 ist derselbe Fehler an einer
+  anderen Groesse);
+- verbindlich ist der Stand **ein Kontakt**, mit `Proemial/RetractionBracket.lean`
+  `both_strands_retract` als benannter Ursache;
+- **beide Zahlen bleiben in den Befunden stehen, aus denen sie stammen**; die frueheren
+  Nullen waren an ihrem Stand richtig.
+
+*Gegen den Verdacht der Opportunitaet, und darum hier vermerkt:* haette man die Groesse
+einen Zug frueher geweitet, stuende sie weiterhin bei **null** - die beiden kategorialen
+Zeugen des Ordnungswechsel-Zuges beruehren weder `Kenogram.*` noch `AlphaGamma*`. **Die
+Weitung erfindet keine rueckwirkende Bewegung.**
 
 Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
 der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.
