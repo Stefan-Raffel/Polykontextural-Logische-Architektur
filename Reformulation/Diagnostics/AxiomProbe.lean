@@ -1,3 +1,8 @@
+-- LINT-AUSNAHME (D): Messwerkzeug. Ein Werkzeug, das Profile anzeigen soll, darf sie
+-- nicht einfrieren; die nackten `#print axioms` dieser Datei sind ihre Bauform und kein
+-- Mangel. Die Marke ist eine bewusste Handlung, keine Duldung: sie nimmt die Datei aus
+-- Gruppe (D) von `doc_lint.sh` heraus und muss beim Anlegen begruendet werden.
+
 import Reformulation
 import Lean
 

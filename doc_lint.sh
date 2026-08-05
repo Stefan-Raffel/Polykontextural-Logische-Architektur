@@ -429,11 +429,186 @@ ledger8_report() {
   ' "${LEDGER}" "${LEDGER_LEAN}"
 }
 
+# --- (D) Gedruckt gegen gewacht ---------------------------------------------
+# Ein `#print axioms` ohne `#guard_msgs` in derselben Anweisung druckt ein Profil
+# in die Bauausgabe und sichert NICHTS: aendert der Satz sein Profil, druckt es
+# das neue und der Bau bleibt gruen. In einer Datei sieht das aus wie eine
+# Sicherung. CLAUDE.md §3 unterscheidet *geschrieben* und *erzwungen*; hier liegt
+# eine dritte Stufe darunter — *gedruckt gegen gewacht* (Fallstrick 16).
+#
+# BRECHEND, anders als (A) und (B). Der Befund ist nicht auslegungsbeduerftig:
+# entweder steht eine Wache dabei oder nicht. Und die Grundlinie ist null — wer
+# einen neuen nackten Aufruf schreibt, hat entweder eine Wache vergessen oder ein
+# Werkzeug gebaut; im zweiten Fall traegt die Datei die Marke aus AUSNAHME_RE,
+# und das ist eine bewusste Handlung.
+#
+# ROUTE: Kommentare ZUERST entfernen, dann suchen. Eine grep-Zeile taugt nicht —
+# das Suchwort steht in Prosa und seit den Wachen auch in den eingefrorenen
+# Erwartungstexten; die naive Differenz misst zu hoch. Entfernt werden `--` bis
+# Zeilenende und `/- … -/` VERSCHACHTELT (einschliesslich `/--` und `/-!`);
+# Strings werden uebersprungen. Was danach bleibt, ist Kommando-Text.
+#
+# PRUEFBEREICH: `.lean` allein — dieselben Dateien wie die Satz- und Wachenrouten.
+# Markdown ist NICHT im Bereich; das ist gemessen (Zug-A-Befund §5.6) und der
+# Grund, warum der Fallstricktext in CLAUDE.md seine eigene Route nicht bewegt.
+#
+# AUSSCHLUSS als Marke im Dateikopf und nicht als Dateiliste: die Praezedenz ist
+# der Archiv-Ausschluss, der auf `docs/rev<n>/` geweitet wurde, statt Revisionen
+# aufzuzaehlen. Ein Verzeichnis-Ausschluss traegt hier NICHT — `Diagnostics/`
+# enthaelt neben den zwei Werkzeugen auch `HeteroreferenzProbe.lean`, eine Sonde,
+# deren sieben Saetze in Zug B gewacht wurden; ein Verzeichnisschnitt naehme sie
+# still mit heraus. Die Marke waechst dagegen mit: ein drittes Werkzeug traegt
+# sie und braucht keine Aenderung an diesem Skript.
+#
+# Die Marke wird am ROHEN Text gesucht, vor dem Entfernen der Kommentare — sie
+# steht in einem `--`-Kommentar und waere danach fort. Sie fuehrt den Suchbegriff
+# absichtlich NICHT, damit sie sich nicht selbst meldet.
+AUSNAHME_RE='^-- LINT-AUSNAHME \(D\):'
+
+# Der Kern-Scanner. Gibt je Fundstelle eine Zeile `KLASSE<TAB>NR<TAB>DATEI<TAB>ZIEL`:
+#   B = nackt (bare)   W = gewacht, gleiche Anweisung   S = getrennte Form
+# Die getrennte Form (`#guard_msgs` allein auf einer Zeile) kommt im Bestand nicht
+# vor — geprueft, null Treffer. Sie gilt als gewacht und wird eigens ausgewiesen,
+# damit ein kuenftiger Fall nicht stillschweigend unter W verschwindet.
+bare_scan_file() {
+  awk -v FN="$1" '
+    function blank(s) { return s ~ /^[[:space:]]*$/ }
+    BEGIN { depth = 0; prev = "" }
+    {
+      line = $0; out = ""; i = 1; n = length(line)
+      while (i <= n) {
+        c = substr(line, i, 1); two = substr(line, i, 2)
+        if (depth == 0 && c == "\"") {                    # String ueberspringen
+          j = i + 1
+          while (j <= n) {
+            cc = substr(line, j, 1)
+            if (cc == "\\") { j += 2; continue }
+            if (cc == "\"") break
+            j++
+          }
+          out = out substr(line, i, j - i + 1); i = j + 1; continue
+        }
+        if (two == "/-") { depth++; i += 2; continue }     # fasst /-- und /-! mit
+        if (two == "-/" && depth > 0) { depth--; i += 2; continue }
+        if (depth == 0 && two == "--") break               # Rest der Zeile ist Kommentar
+        if (depth == 0) out = out c
+        i++
+      }
+      if (index(out, "#print axioms") > 0) {
+        if (index(out, "#guard_msgs") > 0) cls = "W"
+        else if (prev ~ /#guard_msgs[[:space:]]*(in)?[[:space:]]*$/) cls = "S"
+        else cls = "B"
+        t = out
+        sub(/^.*#print axioms[[:space:]]*/, "", t)
+        sub(/[[:space:]].*$/, "", t)
+        printf "%s\t%d\t%s\t%s\n", cls, NR, FN, t
+      }
+      if (!blank(out)) prev = out
+    }
+  ' "$1"
+}
+
+# Alle Fundstellen des Bereichs, mit Spalte 5 = "AUSNAHME" oder "GEPRUEFT".
+bare_collect() {
+  local f base
+  while IFS= read -r -d '' f; do
+    case "$f" in (*/.lake/*) continue;; esac
+    if grep -qE "${AUSNAHME_RE}" "$f" 2>/dev/null; then base="AUSNAHME"; else base="GEPRUEFT"; fi
+    bare_scan_file "$f" | awk -v M="$base" -F'\t' '{ printf "%s\t%s\n", $0, M }'
+  done < <(
+    find "${ROOT}" \
+      \( -name '.lake' -o -name '.git' -o -name '.claude' -o -name 'node_modules' \) -prune -o \
+      -name '*.lean' -type f -print0 | sort -z
+  )
+}
+
+# ANKER, im Skript und nicht im Befund — sonst gelten sie einmal und nie wieder.
+# Sie sind INHALTLICH und nicht ueber Zeilennummern verankert: der Zug, der diese
+# Pruefung anlegte, hat den beiden Werkzeugdateien die Ausnahme-Marke vorangestellt
+# und damit ihre Zeilennummern verschoben. Ein Zeilenanker haette das nicht
+# ueberlebt (CLAUDE.md §12 Regel 8).
+#   MUSS       — zwei nackte Aufrufe im Ausschlussbereich. Ohne Ausschluss zu
+#                finden, mit Ausschluss nicht: prueft Route und Ausschluss in einem.
+#   DARF NICHT — eine Prosastelle (Kommentar mit dem Suchbegriff), eine in Zug B
+#                geheilte Datei, eine durchweg gewachte Datei. Keine der drei darf
+#                als nackt erscheinen. Alle drei liegen in Dateien, die der
+#                anlegende Zug nicht angefasst hat.
+# Form `Datei::Ziel`, damit die Anwesenheit der Ankerdatei getrennt von der des
+# Ziels geprueft werden kann: bei einem Lauf ueber einen FREMDEN Pfad
+# (`doc_lint.sh <pfad>`) liegt keine Ankerdatei im Bereich, und ein Selbsttest,
+# der dann zwangslaeufig failt, waere ein Konstruktionsfehler und kein Befund.
+BARE_MUSS='Diagnostics/AxiomProbe.lean::Reformulation.Kenogram.soundness Diagnostics/SwapSatzProbe.lean::Reformulation.PathC.elementaryTopos_of_components'
+BARE_DARFNICHT='Kenogram/Operational.lean Proemial/K4DiscontexturalityProbe.lean Proemial/AlphaGamma.lean'
+
+bare_report() {
+  local all rc=0 n_alle n_geprueft n_ausnahme n_getrennt hit
+  all="$(bare_collect)"
+  if [ -z "${all}" ]; then
+    echo "  (keine \`#print axioms\`-Anweisung im Bereich — Gruppe (D) nicht anwendbar)"
+    echo "  ── (D) 0 Verstöße"
+    return 0
+  fi
+  n_alle="$(printf '%s\n' "${all}" | awk -F'\t' '$1=="B"' | wc -l | tr -d ' ')"
+  n_ausnahme="$(printf '%s\n' "${all}" | awk -F'\t' '$1=="B" && $5=="AUSNAHME"' | wc -l | tr -d ' ')"
+  n_geprueft="$(printf '%s\n' "${all}" | awk -F'\t' '$1=="B" && $5=="GEPRUEFT"' | wc -l | tr -d ' ')"
+  n_getrennt="$(printf '%s\n' "${all}" | awk -F'\t' '$1=="S"' | wc -l | tr -d ' ')"
+
+  # --- Anker zuerst: eine gebrochene Probe ist ein Routenfehler, kein Bestandsfund.
+  local ankerdatei ankerziel
+  for hit in ${BARE_MUSS}; do
+    ankerdatei="${hit%%::*}"; ankerziel="${hit##*::}"
+    if ! printf '%s\n' "${all}" | awk -F'\t' -v d="${ankerdatei}" 'index($3,d)>0' | grep -q .; then
+      echo "  [ANKER] ${ankerdatei} liegt nicht im Bereich — Selbsttest für diesen Anker übersprungen."
+      continue
+    fi
+    if ! printf '%s\n' "${all}" | awk -F'\t' -v h="${ankerziel}" '$1=="B" && $4==h' | grep -q .; then
+      echo "  [ANKER] MUSS-Fall NICHT getroffen: ${ankerziel} in ${ankerdatei}"
+      echo "          Die Route ist zuerst zu verdaechtigen, nicht der Bestand."
+      rc=1
+    fi
+    # Zweite Haelfte desselben Ankers: die Route findet ihn, der Ausschluss haelt
+    # ihn aus der Wertung. Faellt eine der beiden Haelften, ist entweder die Route
+    # blind oder der Ausschluss unwirksam — beides waere still.
+    if printf '%s\n' "${all}" | awk -F'\t' -v h="${ankerziel}" '$1=="B" && $4==h && $5=="GEPRUEFT"' | grep -q .; then
+      echo "  [ANKER] Ausschluss unwirksam: ${ankerziel} steht trotz Marke in der Wertung."
+      rc=1
+    fi
+  done
+  for hit in ${BARE_DARFNICHT}; do
+    if printf '%s\n' "${all}" | awk -F'\t' -v h="${hit}" '$1=="B" && index($3,h)>0' | grep -q .; then
+      echo "  [ANKER] DARF-NICHT-Fall getroffen: ${hit}"
+      rc=1
+    fi
+  done
+
+  if [ "${n_getrennt}" -gt 0 ]; then
+    echo "  Hinweis: ${n_getrennt} Aufruf(e) in getrennter Form (\`#guard_msgs\` auf eigener Zeile)."
+    echo "           Gilt als gewacht; der Fall kam im Bestand bisher nicht vor und gehört in den Befund."
+  fi
+
+  if [ "${n_geprueft}" -gt 0 ]; then
+    printf '%s\n' "${all}" | awk -F'\t' '$1=="B" && $5=="GEPRUEFT" { printf "  %s:%s  nackt: %s\n", $3, $2, $4 }'
+    echo "  Heilung: \`#guard_msgs in #print axioms …\` mit dem GEMESSENEN Profil davor —"
+    echo "           oder, wenn die Datei ein Messwerkzeug ist, die Marke \`-- LINT-AUSNAHME (D):\`"
+    echo "           im Dateikopf, mit Begründung."
+    rc=1
+  else
+    echo "  (keine nackten \`#print axioms\` im geprüften Bereich)"
+  fi
+  printf "  ── (D) %d Verstöße; %d nackte Aufrufe insgesamt, davon %d in Dateien mit Ausnahme-Marke\n" \
+         "${n_geprueft}" "${n_alle}" "${n_ausnahme}"
+  return "${rc}"
+}
+
 # Gruppe (C) vorab fahren: ihre Rückgabecodes bestimmen den Exit-Code des Laufs.
 C_RC=0
 BLOCK_C1="$(ledger_report)"  || C_RC=1
 BLOCK_C2="$(ledger7_report)" || C_RC=1
 BLOCK_C3="$(ledger8_report)" || C_RC=1
+
+# Gruppe (D) ebenso vorab: sie bricht wie (C).
+D_RC=0
+BLOCK_D="$(bare_report)" || D_RC=1
 
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
@@ -485,13 +660,29 @@ printf '%s\n' "$BLOCK_C1"
 printf '%s\n' "$BLOCK_C2"
 printf '%s\n' "$BLOCK_C3"
 echo
+echo "── Gruppe (D) GEDRUCKT GEGEN GEWACHT — \`#print axioms\` ohne \`#guard_msgs\` ─────"
+echo "     Ein gedrucktes Profil sichert nichts: aendert der Satz sein Profil, druckt es"
+echo "     das neue und der Bau bleibt gruen. Grundlinie null (CLAUDE.md §8 Fallstrick 16)."
+echo "     Bereich: *.lean; Kommentare werden zuerst entfernt, dann wird gesucht."
+echo "     Ausnahme: Dateien mit der Marke \`-- LINT-AUSNAHME (D):\` im Kopf — Messwerkzeuge,"
+echo "     die Profile anzeigen und darum nicht einfrieren duerfen. Pfadschnitt, keine"
+echo "     Zahlentoleranz: ein Lint mit geduldeten Treffern wird ueberlesen."
+printf '%s\n' "$BLOCK_D"
+echo
 
-if [ "${C_RC}" -ne 0 ]; then
-  echo "── Ende Report.  Exit 1: Gruppe (C) meldet mindestens einen Verstoß. ─────────"
+if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ]; then
+  echo -n "── Ende Report.  Exit 1: "
+  if [ "${C_RC}" -ne 0 ] && [ "${D_RC}" -ne 0 ]; then
+    echo "Gruppen (C) und (D) melden Verstöße. ────────────────"
+  elif [ "${C_RC}" -ne 0 ]; then
+    echo "Gruppe (C) meldet mindestens einen Verstoß. ─────────"
+  else
+    echo "Gruppe (D) meldet mindestens einen Verstoß. ─────────"
+  fi
   echo "   (A) und (B) beeinflussen den Exit-Code nicht — sie melden."
   exit 1
 fi
-echo "── Ende Report.  Exit 0: Gruppe (C) ohne Verstoß. ───────────────────────────"
+echo "── Ende Report.  Exit 0: Gruppen (C) und (D) ohne Verstoß. ──────────────────"
 echo "   (A) und (B) melden nur; ihre Treffer setzen keinen Exit-Code."
 
 exit 0

@@ -545,6 +545,12 @@ blosse `grep`-Differenz misst **zu hoch**: das Suchwort steht auch in Prosa, und
 Wachen zusaetzlich in Erwartungstexten. Gegengerechnet am selben Stand:
 roh 551 = 501 Wachen + 39 nackt + 11 Prosa.
 
+*Seit dem Lint-Zug ist der Fall bewacht.* **Gruppe (D) von `doc_lint.sh` faehrt diese
+Route bei jedem Lauf und bricht** - Grundlinie null, Bereich `.lean`, Ausschluss ueber die
+Marke `-- LINT-AUSNAHME (D):` im Dateikopf statt ueber eine Dateiliste. Wer ein neues
+Messwerkzeug anlegt, setzt die Marke und begruendet sie; wer sie ohne Grund setzt, hat den
+Fallstrick nicht geheilt, sondern verlegt.
+
 **17 - Lean-Namen duerfen `?` und `!` enthalten; eine Zeichenklasse verliert sie still.**
 Die Route `'([A-Za-z0-9_.']+)'` ueber die eingefrorenen Erwartungstexte lieferte **500**
 Namen bei **501** Wachen. Die eine Differenz war
