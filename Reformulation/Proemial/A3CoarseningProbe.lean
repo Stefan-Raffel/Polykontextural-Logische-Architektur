@@ -85,11 +85,37 @@ Der Informationsverlust von §II.2/§II.3 kommt allein von der A3-Stufung. -/
 example : relabel [0, 0, 1] = [0, 0, 1] := relabel_eq_self_of_isRGS (by decide)
 
 -- ============================================================
--- §III — Verifikation (kein `sorryAx`)
+-- §III — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms coarsening_factors
-#print axioms deutero_not_injective
-#print axioms proto_coarser_than_deutero
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz eingefroren.
+Alle drei Sätze der Datei tragen eine Wache.
+
+`Classical.choice` in den beiden Nicht-Injektivitäts-Sätzen sitzt am `decide`
+über einer **Multiset**-Gleichung. Gemessen als Differential am selben Stand, in
+einer Wegwerf-Datei über demselben Import: `({1,2} : Multiset ℕ) = {2,1}` per
+`decide` ergibt `[propext, Classical.choice, Quot.sound]`, `([0,0,1] : List ℕ) ≠
+[0,1,0]` per `decide` ergibt *kein* Axiom. Gemessen ist damit, an welcher der
+beiden Entscheidungen die Klassik hängt — **nicht**, auf welchem Weg sie in den
+Term gelangt (CLAUDE.md §8, „Aufgetreten heisst nicht erklärt"). Vermeidbar wäre
+sie nur durch einen anderen Träger als `Multiset` für `deutero`, und der ist der
+Grund der Definition: die Permutationsinvarianz der Klassen-Größen. -/
+
+/-- info: 'Reformulation.Proemial.A3CoarseningProbe.coarsening_factors' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms coarsening_factors
+
+/--
+info: 'Reformulation.Proemial.A3CoarseningProbe.deutero_not_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms deutero_not_injective
+
+/--
+info: 'Reformulation.Proemial.A3CoarseningProbe.proto_coarser_than_deutero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms proto_coarser_than_deutero
 
 end Reformulation.Proemial.A3CoarseningProbe

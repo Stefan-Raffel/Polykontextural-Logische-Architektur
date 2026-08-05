@@ -90,10 +90,31 @@ die Länge bleibt 3, kein Abstieg auf Länge 2. -/
 example : (relabel [0, 1, 1]).length = 3 := by decide
 
 -- ============================================================
--- §III — Verifikation (kein `sorryAx`)
+-- §III — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms isRGS_dropLast
-#print axioms descent_not_injective
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz eingefroren.
+Alle vier Sätze der Datei tragen eine Wache; das Hilfslemma `isRGS_dropLast` ist
+mit aufgenommen, weil an ihm die Wohldefiniertheit von `descent` und damit eine
+Eigenschaft der ganzen Datei hängt (CLAUDE.md §3, „Ausnahme, die keine ist").
+
+`Classical.choice` in `relabel_id_on_rgs` ist geerbt und nicht hier erzeugt: der
+Beweis ist der Aufruf von `Kenogram.relabel_eq_self_of_isRGS`, und dessen Profil
+ist am selben Stand gemessen `[propext, Classical.choice, Quot.sound]`. Die drei
+übrigen Profile der Datei sind choice-frei; insbesondere trägt
+`relabel_no_stage_change` über `Kenogram.relabel_length` nur `[propext,
+Quot.sound]`. -/
+
+/-- info: 'Reformulation.Proemial.A1DescentProbe.isRGS_dropLast' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isRGS_dropLast
+
+/-- info: 'Reformulation.Proemial.A1DescentProbe.descent_not_injective' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms descent_not_injective
+
+/-- info: 'Reformulation.Proemial.A1DescentProbe.relabel_no_stage_change' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms relabel_no_stage_change
+
+/-- info: 'Reformulation.Proemial.A1DescentProbe.relabel_id_on_rgs' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms relabel_id_on_rgs
 
 end Reformulation.Proemial.A1DescentProbe

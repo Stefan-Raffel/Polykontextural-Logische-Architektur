@@ -69,10 +69,26 @@ theorem coupling_selective :
     ∧ (exchange 0 1 [0, 1, 1]).dropLast = ([0, 1, 1] : List ℕ).dropLast := by decide
 
 -- ============================================================
--- §III — Verifikation (kein sorryAx, kein Lean.ofReduceBool)
+-- §III — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms coupling_fires
-#print axioms coupling_selective
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz eingefroren.
+Alle drei Sätze der Datei tragen eine Wache; gewacht ist damit auch der
+Falsifikator `decoupled_commutes`, der bisher als einziger der drei ohne
+`#print axioms` stand.
+
+Die Profile sind `[propext]` — die schmalsten des ρ-Sonden-Vierers. Kein
+`Quot.sound`: die Sätze rechnen über `List ℕ` und `dropLast`, nicht über
+`Multiset` wie `A3CoarseningProbe` und nicht über den `RGS`-Subtyp wie
+`A1DescentProbe`. -/
+
+/-- info: 'Reformulation.Proemial.K3CouplingProbe.coupling_fires' depends on axioms: [propext] -/
+#guard_msgs in #print axioms coupling_fires
+
+/-- info: 'Reformulation.Proemial.K3CouplingProbe.decoupled_commutes' depends on axioms: [propext] -/
+#guard_msgs in #print axioms decoupled_commutes
+
+/-- info: 'Reformulation.Proemial.K3CouplingProbe.coupling_selective' depends on axioms: [propext] -/
+#guard_msgs in #print axioms coupling_selective
 
 end Reformulation.Proemial.K3CouplingProbe

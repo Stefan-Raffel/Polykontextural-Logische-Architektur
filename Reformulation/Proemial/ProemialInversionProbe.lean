@@ -142,11 +142,29 @@ theorem inversion_changes_stage {n : ℕ} (r : RGS (n + 1)) :
   rw [List.length_dropLast, r.property.1]; omega
 
 -- ============================================================
--- §VI — Verifikation (kein `sorryAx`)
+-- §VI — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms descent_extend
-#print axioms fiber_nontrivial
-#print axioms inversion_changes_stage
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz eingefroren.
+Alle vier Sätze der Datei tragen eine Wache; gewacht ist damit auch der
+zusammenführende Satz `split_epi_not_iso`, der bisher als einziger der vier ohne
+`#print axioms` stand — und gerade er ist der von `AsymmetricDiscontexturality`
+und `AsymmetricDiscontexturalityProbeRegister` zitierte Zeuge.
+
+Alle vier Profile sind identisch `[propext, Quot.sound]`, choice-frei. Der
+Unterschied zu `A3CoarseningProbe` ist gemessen und liegt am Träger: hier
+entscheidet nichts über einer `Multiset`. -/
+
+/-- info: 'Reformulation.Proemial.ProemialInversionProbe.descent_extend' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms descent_extend
+
+/-- info: 'Reformulation.Proemial.ProemialInversionProbe.fiber_nontrivial' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms fiber_nontrivial
+
+/-- info: 'Reformulation.Proemial.ProemialInversionProbe.split_epi_not_iso' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms split_epi_not_iso
+
+/-- info: 'Reformulation.Proemial.ProemialInversionProbe.inversion_changes_stage' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms inversion_changes_stage
 
 end Reformulation.Proemial.ProemialInversionProbe

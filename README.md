@@ -96,7 +96,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | Kennzahl | Wert |
 |---|---:|
 | geprueft (AxiomGate) | 3255 Konstanten |
-| Axiom-Wachen | 487 ueber 60 Dateien |
+| Axiom-Wachen | 501 ueber 64 Dateien |
 | Saetze gesamt | 791 |
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
@@ -228,12 +228,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 487 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 501 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 487 geschriebenen Wachen erzwingt `lake build`
-**477** (in 59 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 501 geschriebenen Wachen erzwingt `lake build`
+**491** (in 63 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -244,10 +244,10 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-487 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 477 die der erzwungenen: dieselbe Route,
+501 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 491 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets. Die Gleichung
-487 = 477 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
+501 = 491 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
 
 Die siebzehn juengsten stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
 je eine in `AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und
@@ -257,6 +257,19 @@ dreizehn weitere ueber alle neun Module des Strangs: acht auf Saetze, die der Do
 ihrer Datei benennen - diese fuenf als Ermessensauswahl, im Wachen-Block als solche
 markiert. Damit tragen alle neun Module des Strangs mindestens eine Wache; 22 seiner
 43 Saetze liegen weiterhin ausserhalb jeder Wachen-Huelle.
+
+Die vierzehn juengsten stehen an den vier Sonden, die sich im Dateikopf gleichlautend als
+*vor dem proemialen Entwurf ρ stehend* ausweisen: `A1DescentProbe` (4), `A3CoarseningProbe`
+(3), `K3CouplingProbe` (3), `ProemialInversionProbe` (4). Bis dahin trugen sie null Wachen;
+zehn ihrer Saetze standen unter einem blossen `#print axioms`, das druckt und nichts
+sichert, vier unter gar nichts - darunter `split_epi_not_iso`, der von
+`AsymmetricDiscontexturality` und vom Sonden-Register namentlich als Zeuge zitiert wird.
+Alle vierzehn Wachen sind **erzwungen**: die vier Module sind Wurzeln des Targets `Probes`
+und laufen bei jedem `lake build`. Was sie **nicht** sind: gegatet. Das AxiomGate misst den
+Importbaum von `Reformulation`, und alle vier liegen ausserhalb davon - gemessen ueber
+`env.allImportedModuleNames` unter `import Reformulation` (3405 Module, keines der vier
+darunter). Die Wachen sichern damit das Profil, das Gate die `sorryAx`-Freiheit; fuer die
+vier Sonden gilt das erste und nicht das zweite.
 
 ---
 
