@@ -263,4 +263,19 @@ wäre es eine andere Signatur. Kein Konsument im Aggregat; die Streichung bricht
 ```
 -/
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht sind die beiden Saetze, die die Begriffe dieser Datei benennen.
+**Ermessensauswahl:** keine Quelle des Strangs benennt diese Saetze; sie tragen die
+Begriffe, fuer die ihre Datei steht. Die Marke steht hier und nicht nur im
+Spezifikationskorpus, damit ein spaeterer Zug mit besserer Grundlage erkennen kann, was er
+umstuft. Das Profil traegt `Classical.choice` aus der Kategorien-Maschinerie; der Weg des
+Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/-- info: 'Reformulation.Proemial.adjunction_not_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms adjunction_not_equivalence
+
+/-- info: 'Reformulation.Proemial.beck_chevalley_verschraenkung' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms beck_chevalley_verschraenkung
+
+
 end Reformulation.Proemial

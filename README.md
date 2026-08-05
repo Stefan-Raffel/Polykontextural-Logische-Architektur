@@ -96,7 +96,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | Kennzahl | Wert |
 |---|---:|
 | geprueft (AxiomGate) | 3255 Konstanten |
-| Axiom-Wachen | 474 ueber 55 Dateien |
+| Axiom-Wachen | 487 ueber 60 Dateien |
 | Saetze gesamt | 791 |
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
@@ -219,12 +219,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 474 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 487 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 474 geschriebenen Wachen erzwingt `lake build`
-**464** (in 54 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 487 geschriebenen Wachen erzwingt `lake build`
+**477** (in 59 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -235,14 +235,19 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-474 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 464 die der erzwungenen: dieselbe Route,
+487 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 477 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets. Die Gleichung
-474 = 464 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
+487 = 477 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
 
-Die vier juengsten stehen am alpha+gamma-Strang (Wachenspitze, Stufe 1): je eine in
-`AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und
-`AlphaGammaRounding`, gesetzt auf den im jeweiligen Dateikopf benannten Kern.
+Die siebzehn juengsten stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
+je eine in `AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und
+`AlphaGammaRounding`, gesetzt auf den im jeweiligen Dateikopf benannten Kern. Stufe 2 setzte
+dreizehn weitere ueber alle neun Module des Strangs: acht auf Saetze, die der Doc-Index von
+`Reformulation/Proemial.lean` beim Namen fuehrt, und fuenf auf die Saetze, die die Begriffe
+ihrer Datei benennen - diese fuenf als Ermessensauswahl, im Wachen-Block als solche
+markiert. Damit tragen alle neun Module des Strangs mindestens eine Wache; 22 seiner
+43 Saetze liegen weiterhin ausserhalb jeder Wachen-Huelle.
 
 ---
 

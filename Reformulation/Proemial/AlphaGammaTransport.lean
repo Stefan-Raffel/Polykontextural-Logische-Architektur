@@ -406,4 +406,25 @@ info: 'Reformulation.Proemial.Substantial.Transport.rel_diagonal_transport' depe
 #guard_msgs in #print axioms rel_diagonal_transport
 
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht sind die beiden Saetze dieser Datei, die **aus dem Doc-Index von `Proemial.lean`
+beim Namen gefuehrt** werden — die Verschraenkungs-Gleichung und ihre iso-dichte
+Verschaerfung. Beide Profile tragen `Classical.choice` aus der Kategorien-Maschinerie; der
+Weg des Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.diagonal_transport_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms diagonal_transport_eq
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.bcIso_diagonal_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms bcIso_diagonal_transport
+
+
 end Reformulation.Proemial.Substantial.Transport

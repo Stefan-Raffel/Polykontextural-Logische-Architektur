@@ -301,8 +301,8 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 dreizehn, §12 fuenf,
-Datei achtzehn; die Gleichung 13 + 5 = 18 geht auf. Es ist dieselbe Sorte Falle wie in §3:
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 vierzehn, §12 fuenf,
+Datei neunzehn; die Gleichung 14 + 5 = 19 geht auf. Es ist dieselbe Sorte Falle wie in §3:
 eine Route unterscheidet nur, was sie zaehlt.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
@@ -470,6 +470,27 @@ misst mehr und freut sich, statt nachzusehen.
 *Heilung, falls beides gebraucht wird:* die Menge aus der `grep`-Route bilden und in der
 Umgebung **aufloesen**, statt sie dort zu suchen. Die Aufloesungsprobe (alle gefunden?) ist
 dann die Gegenprobe, die eine Suche nicht hat.
+
+**14 - `#print axioms` bricht seine Ausgabe an der ZEILENLAENGE um, nicht an der
+Namenslaenge.** Die gedruckte Zeile lautet `'<Name>' depends on axioms: <Profil>`; fuer das
+Profil `[propext, Classical.choice, Quot.sound]` gilt
+
+    Zeilenlaenge  =  len(Name) + 61
+
+**Gemessen:** ohne Umbruch bei Zeilenlaenge 116 (`end_id_comm`, 55 Namenszeichen), mit
+Umbruch bei 123 (`naturality_K_from_S`, 62 Namenszeichen). **Das Intervall ist in seiner
+Mitte offen** - zwischen 55 und 62 Namenszeichen liegt am gemessenen Bestand kein Messpunkt.
+Die pp-Breite 120 ist mit dem Intervall vertraeglich; sie stammt aus einer frueheren Messung
+des Korpus und ist **nicht** hier am Werkzeug abgefragt. Bei einem anderen Profil verschiebt
+sich die Schwelle um dessen Laengendifferenz.
+
+*Die Folge fuer den Leser:* ein umgebrochener Erwartungstext ist die richtige Form und keine
+Schlamperei. Er wird **nicht** „geheilt" - `#guard_msgs` vergleicht die Ausgabe verbatim, und
+eine glattgezogene Erwartung bricht den Bau. Umgekehrt gilt dasselbe: wer alle Wachen einer
+Reihe nach einer Schablone setzt, bricht die kurzen. Gemessen an den 17 Saetzen des
+α+γ-Strangs (Stand `8e54889`); beim Setzen der dreizehn Wachen der Stufe 2 hat jede der
+dreizehn Erwartungen beim ersten Lauf gehalten, elf in umgebrochener und zwei in einzeiliger
+Form.
 
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 

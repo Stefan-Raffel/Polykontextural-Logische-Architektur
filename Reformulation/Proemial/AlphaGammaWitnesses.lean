@@ -277,4 +277,17 @@ theorem prodHomWitness_tritoVielfalt_substantial :
   (tritoStellungsVielfalt_iff_substantial prodHomWitnessPAS).mp
     prodHomWitness_tritoVielfalt
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht ist die Aequivalenz, die **aus dem Doc-Index von `Proemial.lean` beim Namen gefuehrt**
+wird. Das Profil traegt `Classical.choice` aus der Kategorien-Maschinerie; der Weg des
+Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.tritoStellungsVielfalt_iff_substantial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms tritoStellungsVielfalt_iff_substantial
+
+
 end Reformulation.Proemial.Substantial.Witnesses

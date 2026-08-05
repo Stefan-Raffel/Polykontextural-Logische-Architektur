@@ -263,4 +263,28 @@ theorem adjunction_not_equivalence_substantial_refined
   haveI : IsIso PAS.adj.counit := inferInstance
   exact inferInstance
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2). Zwei
+Wachen mit verschiedener Grundlage. `naturality_K_from_S` ist **aus dem Doc-Index von
+`Proemial.lean` beim Namen gefuehrt** (F-3.4). `adjunction_not_equivalence_substantial_refined`
+steht auf **Ermessensauswahl:** keine Quelle des Strangs benennt diesen Satz; er traegt den
+Begriff, fuer den seine Datei steht. Die Marke steht hier und nicht nur im
+Spezifikationskorpus, damit ein spaeterer Zug mit besserer Grundlage erkennen kann, was er
+umstuft. Beide Profile tragen `Classical.choice` aus der Kategorien-Maschinerie; der Weg des
+Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Refined.naturality_K_from_S' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms naturality_K_from_S
+
+/--
+info: 'Reformulation.Proemial.Substantial.Refined.adjunction_not_equivalence_substantial_refined' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms adjunction_not_equivalence_substantial_refined
+
+
 end Reformulation.Proemial.Substantial.Refined

@@ -209,4 +209,25 @@ Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen. -
 #guard_msgs in #print axioms end_id_comm
 
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht sind die beiden Saetze dieser Datei, die **aus dem Doc-Index von `Proemial.lean`
+beim Namen gefuehrt** werden — die unkonditionale Aequivalenz und ihr Konsistenz-Korollar.
+Beide Profile tragen `Classical.choice` aus der Kategorien-Maschinerie; der Weg des Axioms
+in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Rounding.bcData_nonempty_iff_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms bcData_nonempty_iff_unconditional
+
+/--
+info: 'Reformulation.Proemial.Substantial.Rounding.prodHomWitness_not_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms prodHomWitness_not_unconditional
+
+
 end Reformulation.Proemial.Substantial.Rounding

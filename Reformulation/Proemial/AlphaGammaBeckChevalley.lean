@@ -323,4 +323,20 @@ theorem beck_chevalley_verschraenkung_truly_substantial
     rw [hinv]; exact Iso.inv_hom_id_app BC.bcIso s
   exact lhs.trans rhs.symm
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht ist der Satz, der den Begriff dieser Datei benennt. **Ermessensauswahl:** keine
+Quelle des Strangs benennt diesen Satz; er traegt den Begriff, fuer den seine Datei steht.
+Die Marke steht hier und nicht nur im Spezifikationskorpus, damit ein spaeterer Zug mit
+besserer Grundlage erkennen kann, was er umstuft. Das Profil traegt `Classical.choice` aus
+der Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen
+(`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.BeckChevalley.beck_chevalley_verschraenkung_truly_substantial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms beck_chevalley_verschraenkung_truly_substantial
+
+
 end Reformulation.Proemial.Substantial.BeckChevalley

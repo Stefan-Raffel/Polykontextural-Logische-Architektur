@@ -393,4 +393,20 @@ theorem adjunction_not_equivalence_substantial
   -- ergibt IsIso (PAS.adj.counit.app σ.k).
   exact inferInstance
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht ist der Satz, der den Begriff dieser Datei benennt. **Ermessensauswahl:** keine
+Quelle des Strangs benennt diesen Satz; er traegt den Begriff, fuer den seine Datei steht.
+Die Marke steht hier und nicht nur im Spezifikationskorpus, damit ein spaeterer Zug mit
+besserer Grundlage erkennen kann, was er umstuft. Das Profil traegt `Classical.choice` aus
+der Kategorien-Maschinerie; der Weg des Axioms in den Term ist **nicht** gemessen
+(`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.adjunction_not_equivalence_substantial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms adjunction_not_equivalence_substantial
+
+
 end Reformulation.Proemial.Substantial

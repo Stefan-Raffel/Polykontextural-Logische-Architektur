@@ -274,4 +274,25 @@ info: 'Reformulation.Proemial.Substantial.Stratification.unit_isIso_of_natIso' d
 #guard_msgs in #print axioms unit_isIso_of_natIso
 
 
+/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
+Gewacht sind die beiden Saetze dieser Datei, die **aus dem Doc-Index von `Proemial.lean`
+beim Namen gefuehrt** werden — die Bewohntheits-Aequivalenz und ihr Negativ-Lemma. Beide
+Profile tragen `Classical.choice` aus der Kategorien-Maschinerie; der Weg des Axioms in den
+Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Stratification.bcData_nonempty_iff_unit_isIso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms bcData_nonempty_iff_unit_isIso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Stratification.prodHomWitness_not_bcData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms prodHomWitness_not_bcData
+
+
 end Reformulation.Proemial.Substantial.Stratification
