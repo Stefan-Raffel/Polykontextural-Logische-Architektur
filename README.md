@@ -95,10 +95,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3304 Konstanten |
-| Axiom-Wachen | 552 ueber 74 Dateien |
-| Saetze gesamt | 810 |
-| Build-Jobs | 1309 |
+| geprueft (AxiomGate) | 3328 Konstanten |
+| Axiom-Wachen | 568 ueber 76 Dateien |
+| Saetze gesamt | 821 |
+| Build-Jobs | 1311 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build, Stand Commit `465c3af`.
@@ -108,7 +108,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 142 rohe Treffer ueber den ganzen verfolgten Bestand, 99 in den
+eine andere Frage: 144 rohe Treffer ueber den ganzen verfolgten Bestand, 101 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -146,6 +146,11 @@ zweites Mal nennt, um die Bewegung zu erklaeren. Sonst keine Datei bewegt. Die z
 und die dritte Zahl bleiben unberuehrt, weil der Zug keine `.lean`-Datei anfasst.
 
 Die Papierausgabe Rev4: 140 -> 140, und der Stillstand ist eine Rechnung und kein Ausbleiben.
+
+Der Klammer-Zug: 142 -> 144 und 99 -> 101, je ein neues Vorkommen in den Dateikoepfen
+von `Reformulation/Kenogram/Descent.lean` und `Reformulation/Proemial/RetractionBracket.lean`,
+beide in der Zusicherung, dass die Datei keine offene Stelle traegt. Sonst keine Datei
+bewegt; die dritte Zahl bleibt 27. Gemessen NACH dem Verfolgen.
 
 Der Ordnungswechsel-Zug: 141 -> 142 und 98 -> 99, ein neues Vorkommen im Dateikopf von
 `Reformulation/Proemial/ArrowAscent.lean`, in der Zusicherung, dass die Datei keine offene
@@ -198,17 +203,17 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 63 | 479 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
+| `Proemial/` | 64 | 485 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
-| `Kenogram/` | 8 | 129 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch |
+| `Kenogram/` | 9 | 134 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch |
 | `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 810 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 810 + 10 = 820 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 821 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 821 + 10 = 831 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 
@@ -239,12 +244,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 552 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 568 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 552 geschriebenen Wachen erzwingt `lake build`
-**542** (in 73 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 568 geschriebenen Wachen erzwingt `lake build`
+**558** (in 75 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -255,10 +260,10 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-552 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 542 die der erzwungenen: dieselbe Route,
+568 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 558 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets. Die Gleichung
-552 = 542 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
+568 = 558 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
 
 Die siebzehn juengsten stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
 je eine in `AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und

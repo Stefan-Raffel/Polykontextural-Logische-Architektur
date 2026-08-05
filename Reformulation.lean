@@ -54,3 +54,4 @@ import Reformulation.Kenogram.Morphogram
 import Reformulation.Kenogram.Fillability
 import Reformulation.Kenogram.Unbounded
 import Reformulation.Kenogram.PlaceSwap
+import Reformulation.Kenogram.Descent
