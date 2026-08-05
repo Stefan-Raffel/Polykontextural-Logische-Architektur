@@ -187,11 +187,22 @@ Der Grund steht im Plan §11 und wird hier nicht wiederholt.
 Kalibrierungscheck. Standalone-Dateien werden gelistet, aber nicht mit dem Aggregatstatus
 vermischt. README-Kennzahlen werden nachgefuehrt, sobald ein Modul ins Aggregat kommt.
 
-`doc_lint.sh` liegt in der Repo-Wurzel und prueft die Prosa auf zwei Wortgruppen:
-Rang-Ansprueche ohne Ist-Pruefung (Gruppe A) und ZFC-Rueckfaelle (Gruppe B). Ohne Argument
-laeuft er ueber das Repo, mit Pfadargument ueber Aussentexte. Er **meldet und bricht
-nicht** - ein brechender Lint wird umgangen, ein meldender wird gelesen. Die Beurteilung
-eines Treffers bleibt ausserhalb: das Skript nennt das Muster, nicht das Urteil.
+`doc_lint.sh` liegt in der Repo-Wurzel. Ohne Argument laeuft er ueber das Repo, mit
+Pfadargument ueber Aussentexte. Seine Gruppen zerfallen in zwei Arten, und die Art
+entscheidet ueber den Exit-Code:
+
+- **meldende Gruppen** - Rang-Ansprueche ohne Ist-Pruefung und ZFC-Rueckfaelle. Sie setzen
+  keinen Exit-Code: ein Rang-Anspruch ist Ermessenssache, und ein brechender Lint wird
+  umgangen, waehrend ein meldender gelesen wird. Die Beurteilung eines Treffers bleibt
+  ausserhalb - das Skript nennt das Muster, nicht das Urteil.
+- **brechende Gruppen** - dort, wo nichts zu ermessen ist und die Grundlinie null:
+  Ledger-Regeln, gedruckte statt gewachte Axiomprofile, ausgabeinterne Ziffern von aussen
+  zitiert. Ein Treffer setzt Exit 1.
+
+*Welche Gruppen es heute gibt, sagt der Report des Laufs und nicht diese Datei; hier stand
+bis zum Ziffern-Zug die Zahl zwei und der Satz „meldet und bricht nicht". Beides war seit
+den brechenden Gruppen falsch und ist beim Anlegen der naechsten aufgefallen - eine
+Gruppenzahl in Prosa ist eine Liste, und Listen altern.*
 
 ---
 

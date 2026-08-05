@@ -552,6 +552,30 @@ Marke `-- LINT-AUSNAHME (D):` im Dateikopf statt ueber eine Dateiliste. Wer ein 
 Messwerkzeug anlegt, setzt die Marke und begruendet sie; wer sie ohne Grund setzt, hat den
 Fallstrick nicht geheilt, sondern verlegt.
 
+### Ausgabeinterne Ziffern - der Gegenstand der Lint-Gruppe (E)
+
+**Die Ziffern in eckigen Klammern, mit denen Teil A der Papierfassung auf die Traegertafel
+in Teil B verweist, sind AUSGABEINTERN.** Sie werden je Ausgabe neu vergeben, wie
+Fussnotennummern, und ausserhalb von Ausgabe und Entwurf nicht zitiert. Der Grund ist die
+Lesereihenfolge: neue Saetze in den vorderen Kapiteln muessen eingefuegt werden, und dann
+verschiebt sich alles Folgende. Wer eine Ziffer von aussen zitiert, zeigt nach der
+naechsten Ausgabe auf einen anderen Satz - und **niemand merkt es**, weil kein Bau bricht.
+
+**Ergebnisdokumente sind ausgenommen, und das ist keine Ausnahme, sondern eine Anwendung.**
+Ein Ergebnisdokument haelt einen Stand seines Datums fest (§11: Fund ja, Stand nein); seine
+Kennzahlen werden nicht nachgefuehrt, wenn sich der Bestand bewegt, und seine Ziffern sind
+derselbe Fall - sie meinen die Traegertafel seines Datums. Der Schnitt laeuft darum ueber
+`Papierausgabe_*.md`, als Glob und nicht als Dateiliste.
+
+*Was der Schnitt kostet, gehoert dazu:* die Gruppe sieht gerade die Dokumente nicht, in
+denen die Ziffern am dichtesten stehen - gemessen 25 Verweisungen in den drei
+Rev4-Zugdokumenten. Sie bewacht den **laufenden** Bestand, und dort ist die Grundlinie
+null.
+
+*Und ein Fund, der die Festlegung erst noetig machte:* die Traegertafel ist eine Erfindung
+der **vierten** Ausgabe. `docs/rev1|rev2|rev3` tragen je null Ziffern; vor Rev4 gab es
+nichts zu bewachen.
+
 **17 - Lean-Namen duerfen `?` und `!` enthalten; eine Zeichenklasse verliert sie still.**
 Die Route `'([A-Za-z0-9_.']+)'` ueber die eingefrorenen Erwartungstexte lieferte **500**
 Namen bei **501** Wachen. Die eine Differenz war

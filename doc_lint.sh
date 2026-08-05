@@ -600,6 +600,280 @@ bare_report() {
   return "${rc}"
 }
 
+# --- (E) Ausgabeinterne Ziffern ---------------------------------------------
+# Teil A der Papierfassung verweist ueber Ziffern in eckigen Klammern auf die
+# Traegertafel in Teil B. FESTLEGUNG: diese Ziffern sind AUSGABEINTERN — sie
+# werden je Ausgabe neu vergeben und nirgends ausserhalb von Ausgabe und Entwurf
+# zitiert, wie Fussnotennummern.
+#
+# WARUM DIE FESTLEGUNG: neue Saetze in den vorderen Kapiteln muessen in der
+# Lesereihenfolge eingefuegt werden; dann verschiebt sich alles Folgende. Die
+# Alternative — fortlaufend anhaengen — liesse die Zifferfolge im Text
+# unmonoton. Neu vergeben ist billiger, ABER nur solange niemand von aussen
+# zitiert; sonst zeigt jede Ziffer nach der naechsten Ausgabe falsch.
+#
+# WARUM DIE WACHE: die Festlegung ist ohne Route eine Absicht. Die erste
+# Zitierung von aussen faellt niemandem auf — kein Bau bricht, kein Lint schlaegt
+# an —, und dann altert die Festlegung wie die Liste, die sie ersetzt.
+# Gemessen bei der Anlage: NULL Zitierungen von aussen. Die Wache haelt die
+# Grundlinie, sie heilt keinen Bestand.
+#
+# BRECHEND wie (C) und (D), und aus demselben Grund: der Befund ist nicht
+# auslegungsbeduerftig, und die Grundlinie ist null.
+#
+# ROUTE — VERENGUNG STATT BEREICHSSCHNITT. Ein Muster, das jedes `[n]` faengt,
+# meldet im Bestand 34 Fundstellen, von denen KEINE eine Verweisung ist:
+# Listenliterale (`[0]`, `[0,1]`), Iterationsnotation (`f^[2]`), Feldindizes der
+# Shell (`BASH_SOURCE[0]`, `sys.argv[1]`). Eine Meldung, die man
+# gewohnheitsmaessig wegdrueckt, ist schlechter als keine — dasselbe Argument,
+# mit dem die Nackt-Pruefung ihren Pfadausschluss bekam. Die Lean- und
+# Shell-Quellen GANZ auszunehmen waere der falsche Ausweg: dort koennte eine
+# spaetere Zitierung stehen. Verengt wird darum das Muster, in zwei Schritten:
+#   1. Nur PROSA wird gelesen. `.md` ohne Zaunbloecke; `.lean` nur die
+#      Kommentarregionen (`--` bis Zeilenende, `/- … -/` verschachtelt, fasst
+#      `/--` und `/-!` mit); `.sh` nur ab `#`; `.html` markup-entfernt. In allen
+#      vier Faellen werden danach die Backtick-Spannen getilgt — dort steht Code,
+#      auch wenn er in einem Kommentar zitiert wird.
+#   2. Ein `[n]` unmittelbar nach `^` ist Lean-Iterationsnotation und nie eine
+#      Verweisung. Gemessen: genau EIN Rest ueberlebte Schritt 1 —
+#      `(reflect f)^[1]` in einem `--`-Kommentar von `MediationProcess.lean`.
+#      Ohne diesen zweiten Schritt waere die Grundlinie eins statt null.
+#   3. Ein `[n]` unmittelbar VOR einer tiefgestellten Ziffer ist die
+#      Morphogramm-Notation `[15]₄` — Morphogramm Nr. 15 der Stelligkeit 4 — und
+#      nie eine Verweisung. Gemessen: sechs Reste ueberlebten die Schritte 1 und 2,
+#      alle sechs von dieser Gestalt, in `Definitionen.md` (Guenther-Zitat) und in
+#      den beiden Morphogramm-Dokumenten. Erst mit diesem Schritt ist die
+#      Grundlinie null.
+# Alle drei Schritte sind Verengungen des Musters und keine Ausschluesse von Orten.
+# Die dritte war erst sichtbar, nachdem der Korpus wirklich gelesen wurde — vorher
+# stieg `find` nicht in den Symlink hinab, und der Bereich war leer.
+#
+# BEREICHSSCHNITT, dreiteilig: Ausgabe (`docs/*.html`, `docs/rev<n>/*.html`),
+# Entwuerfe (`Entwurf_*.md`) und ERGEBNISDOKUMENTE EINER AUSGABE
+# (`Papierausgabe_*.md`). Fuer die ersten beiden ist der Grund offensichtlich:
+# dort IST die Tafel, und dort sind die Ziffern genau das Verweisungsmittel, fuer
+# das sie gebaut sind.
+#
+# DER DRITTE TEIL BRAUCHT SEINEN SATZ, sonst waere er eine stille Ausnahme:
+#
+#   Ein Ergebnisdokument haelt einen Stand SEINES DATUMS fest (§11: Fund ja,
+#   Stand nein). Seine Kennzahlen werden nicht nachgefuehrt, wenn sich der
+#   Bestand bewegt — sie sind an ihren Commit gebunden und dort richtig. Seine
+#   Ziffern sind derselbe Fall: sie meinen die Traegertafel seines Datums.
+#
+# Der Schnitt ist damit keine Ausnahme von der Festlegung, sondern die Anwendung
+# einer Regel, die der Korpus schon fuehrt. Gemessen bei der Anlage: 25 echte
+# Verweisungen im Korpus, saemtlich in `Papierausgabe_Rev4_Befund/_Vorgabe/
+# _Abnahme.md` — den Arbeitsdokumenten des Zuges, der die Tafel angelegt hat.
+# Sie sind mit dem Gesuchten GESTALTGLEICH; keine Verengung trennt sie, und wer
+# es doch versuchte, schloesse denselben Zug auch fuer die Zukunft aus.
+#
+# WAS DER SCHNITT KOSTET, und es ist nicht nichts: die Wache sieht gerade die
+# Dokumente nicht, in denen die Ziffern am dichtesten stehen. Sie bewacht den
+# LAUFENDEN Bestand — Lean-Quellen, Repo-Doku, Sonden, Befunde ausserhalb der
+# Ausgabenreihe —, und dort ist die Grundlinie null.
+#
+# `docs/index.html` faellt unter das erste Glob und traegt null Ziffern — der
+# Schnitt kostet dort nichts, gemessen und nicht angenommen.
+#
+# BEREICH: der Lauf-ROOT und, wenn ROOT das Repo ist, zusaetzlich ein
+# geschwisterliches `KorpusRev2/`. Der Korpus ist kein Teil des Repos; ohne ihn
+# bewachte die Gruppe gerade den Ort NICHT, an dem eine Zitierung am ehesten
+# stuende — einen Befund. Seine Erreichbarkeit wird BERICHTET und nicht
+# vorausgesetzt: fehlt er, laeuft die Gruppe ueber das Repo allein und sagt es.
+ZIFFER_ROOTS=()
+ziffer_roots_bestimmen() {
+  ZIFFER_ROOTS=("${ROOT}")
+  ZIFFER_KORPUS_LAGE="nicht gesucht (Lauf ueber Argument-Pfad)"
+  local self korpus
+  self="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  [ "${ROOT}" = "${self}" ] || return 0
+  korpus="$(dirname "${ROOT}")/KorpusRev2"
+  if [ -d "${korpus}" ] && ls -A "${korpus}" >/dev/null 2>&1; then
+    ZIFFER_ROOTS+=("${korpus}")
+    ZIFFER_KORPUS_LAGE="erreichbar: ${korpus}"
+  else
+    ZIFFER_KORPUS_LAGE="NICHT erreichbar — Bereich ist das Repo allein"
+  fi
+}
+
+# Die Dateizahl je Wurzel wird BERICHTET, und der Grund ist gemessen: der Korpus
+# haengt als Symlink im Baum (hier nach iCloud), und `find` ohne `-L` steigt in
+# einen Symlink NICHT hinab. Der erste Lauf dieser Gruppe meldete darum
+# „Korpus: erreichbar" ueber einem Bereich von NULL Dateien — eine beruhigende
+# Zeile ueber einer leeren Menge, die schlimmste Form. Gefunden hat es nicht die
+# Grundlinie (die war so oder so null), sondern eine eingesetzte Zitierung.
+# Seither `find -L`, und die Zahl steht im Report: eine Null ist sichtbar.
+ziffer_bereich_zeile() {
+  local r n out=""
+  for r in "${ZIFFER_ROOTS[@]}"; do
+    n="$(find -L "$r" \
+          \( -name '.lake' -o -name '.git' -o -name '.claude' -o -name 'node_modules' \) -prune -o \
+          \( -name '*.md' -o -name '*.lean' -o -name '*.html' -o -name '*.sh' \) -type f -print \
+          2>/dev/null | wc -l | tr -d ' ')"
+    out="${out}${out:+ · }$(basename -- "$r"): ${n}"
+  done
+  printf '%s' "${out}"
+}
+
+# Der Kern-Scanner. Gibt je Fundstelle `DATEI<TAB>ZEILE<TAB>ZIFFER<TAB>KONTEXT`.
+# Die Prosa-Gewinnung laeuft zeilenweise mit mitgefuehrter Kommentartiefe, wie
+# bei (D); `--` innerhalb eines `/- … -/` ist dort kein Zeilenkommentar.
+ziffer_scan_file() {
+  awk -v FN="$1" -v EXT="$2" '
+    function entbacktick(s,   r, p, q) {
+      r = ""
+      while ((p = index(s, "`")) > 0) {
+        r = r substr(s, 1, p - 1); s = substr(s, p + 1)
+        q = index(s, "`"); if (q == 0) { s = ""; break }
+        s = substr(s, q + 1)
+      }
+      return r s
+    }
+    # Die zehn tiefgestellten Ziffern als DREI-BYTE-Literale. Der naheliegende
+    # Weg — eine Zeichenklasse `/^[₀…₉]/` — funktioniert, wirft aber bei jeder
+    # Zeile mit einem Mehrbyte-Zeichen `awk: towc: multibyte conversion failure`
+    # auf stderr; gemessen an `Definitionen.md:281`. Eine Pruefung, die Muell
+    # ausgibt, wird nicht gelesen. `substr` arbeitet hier BYTEWEISE (gemessen:
+    # `substr(s,i,3)` liefert genau die drei Bytes eines Subskripts), darum ist
+    # der Nachschlag in einer Tabelle exakt und ohne Regex-Maschine.
+    BEGIN {
+      depth = 0; zaun = 0
+      split("₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉", t9, " ")
+      for (q = 1; q <= 10; q++) TIEF[t9[q]] = 1
+    }
+    {
+      line = $0; prosa = ""
+      if (EXT == "md") {
+        if (line ~ /^[[:space:]]*```/) { zaun = 1 - zaun; next }
+        if (zaun) next
+        prosa = line
+      } else if (EXT == "sh") {
+        p = index(line, "#"); if (p == 0) next
+        prosa = substr(line, p)
+      } else if (EXT == "html") {
+        prosa = line; gsub(/<[^>]*>/, " ", prosa)
+      } else {                                        # lean
+        i = 1; n = length(line)
+        while (i <= n) {
+          two = substr(line, i, 2)
+          if (two == "/-") { depth++; i += 2; continue }
+          if (two == "-/" && depth > 0) { depth--; i += 2; continue }
+          if (depth == 0 && two == "--") { prosa = prosa substr(line, i); break }
+          if (depth > 0) prosa = prosa substr(line, i, 1)
+          i++
+        }
+      }
+      prosa = entbacktick(prosa)
+      rest = prosa; vorher = ""
+      while (match(rest, /\[[0-9][0-9]?\]/)) {
+        vor = (RSTART > 1) ? substr(rest, RSTART - 1, 1) : substr(vorher, length(vorher), 1)
+        nach = substr(rest, RSTART + RLENGTH, 3)
+        z = substr(rest, RSTART, RLENGTH)
+        if (vor != "^" && !(nach in TIEF)) {
+          k = prosa; gsub(/\t/, " ", k); sub(/^[[:space:]]+/, "", k)
+          printf "%s\t%d\t%s\t%s\n", FN, NR, z, substr(k, 1, 90)
+        }
+        vorher = vorher substr(rest, 1, RSTART + RLENGTH - 1)
+        rest = substr(rest, RSTART + RLENGTH)
+      }
+    }
+  ' "$1"
+}
+
+# $1 = "mit" (Bereichsschnitt aktiv) oder "ohne" (Vergleichslauf)
+ziffer_collect() {
+  local modus="$1" f base ext
+  local r
+  for r in "${ZIFFER_ROOTS[@]}"; do
+    while IFS= read -r -d '' f; do
+      base="$(basename -- "$f")"
+      if [ "${modus}" = "mit" ]; then
+        case "$f" in (*/docs/*.html) continue;; esac
+        case "${base}" in (Entwurf_*.md|Papierausgabe_*.md) continue;; esac
+      fi
+      case "${base}" in
+        (*.md)   ext="md";;
+        (*.lean) ext="lean";;
+        (*.sh)   ext="sh";;
+        (*.html) ext="html";;
+        (*)      continue;;
+      esac
+      ziffer_scan_file "$f" "$ext"
+    done < <(
+      find -L "$r" \
+        \( -name '.lake' -o -name '.git' -o -name '.claude' -o -name 'node_modules' \) -prune -o \
+        \( -name '*.md' -o -name '*.lean' -o -name '*.html' -o -name '*.sh' \) -type f -print0 \
+        2>/dev/null | sort -z
+    )
+  done
+}
+
+# ANKER, im Skript und nicht im Befund. INHALTLICH verankert, nicht ueber
+# Zeilennummern (§12 Regel 8) — und samtlich in Dateien, die der anlegende Zug
+# NICHT angefasst hat: er fasst `doc_lint.sh` und `CLAUDE.md` an, sonst nichts.
+# Aus demselben Grund ist `doc_lint.sh` KEIN Darf-nicht-Anker, obwohl es mit
+# `k[2]` und `k[3]` zwei Feldindizes traegt.
+#   MUSS       — die Traegertafel selbst. Ohne Schnitt zu finden, mit Schnitt
+#                nicht: prueft Route und Schnitt in einem Zug.
+#   DARF NICHT — je eine der drei Fremdgestalten. Die zweite ist die schaerfste:
+#                sie steht in einem `--`-Kommentar und ueberlebt die
+#                Prosa-Verengung; nur die `^`-Regel haelt sie heraus.
+#
+# EINE HAELFTE DES SCHNITTS IST HEUTE NICHT VERANKERT, und das steht hier statt
+# unbemerkt zu bleiben: die Traegertafel ist eine Erfindung der VIERTEN Ausgabe.
+# Gemessen tragen `docs/rev1|rev2|rev3` je NULL Ziffern; ein Anker dort war ein
+# erster Versuch dieses Zuges und schlug fehl, weil er geraten und nicht gemessen
+# war. Der Glob `docs/rev<n>/*.html` schneidet also derzeit nichts, was die
+# Route faende. AUSLOESER: sobald eine Ausgabe mit Traegertafel archiviert wird —
+# also mit der fuenften —, gehoert `docs/rev4/de.html` in die MUSS-Liste.
+ZIFFER_MUSS='docs/de.html docs/en.html'
+ZIFFER_DARFNICHT='Reformulation/Kenogram/Basic.lean Reformulation/Proemial/MediationProcess.lean docs/parity.sh'
+
+ziffer_report() {
+  local mit ohne rc=0 n_mit n_ohne hit
+  ziffer_roots_bestimmen
+  mit="$(ziffer_collect mit)"
+  ohne="$(ziffer_collect ohne)"
+  n_mit="$(printf '%s' "${mit}" | grep -c . || true)"
+  n_ohne="$(printf '%s' "${ohne}" | grep -c . || true)"
+
+  echo "  Korpus: ${ZIFFER_KORPUS_LAGE}"
+  echo "  Dateien je Wurzel: $(ziffer_bereich_zeile)"
+
+  # --- Anker zuerst: eine gebrochene Probe ist ein Routenfehler, kein Bestandsfund.
+  for hit in ${ZIFFER_MUSS}; do
+    if ! printf '%s\n' "${ohne}" | awk -F'\t' -v d="${hit}" 'index($1,d)>0' | grep -q .; then
+      echo "  [ANKER] MUSS-Fall NICHT getroffen: ${hit}"
+      echo "          Die Route ist zuerst zu verdaechtigen, nicht der Bestand."
+      rc=1
+    fi
+    if printf '%s\n' "${mit}" | awk -F'\t' -v d="${hit}" 'index($1,d)>0' | grep -q .; then
+      echo "  [ANKER] Bereichsschnitt unwirksam: ${hit} steht trotz Schnitt in der Wertung."
+      rc=1
+    fi
+  done
+  for hit in ${ZIFFER_DARFNICHT}; do
+    if printf '%s\n' "${ohne}" | awk -F'\t' -v d="${hit}" 'index($1,d)>0' | grep -q .; then
+      echo "  [ANKER] DARF-NICHT-Fall getroffen: ${hit}"
+      echo "          Die Verengung greift nicht mehr — Muster pruefen, nicht Bestand heilen."
+      rc=1
+    fi
+  done
+
+  if [ "${n_mit}" -gt 0 ]; then
+    printf '%s\n' "${mit}" | awk -F'\t' '{ printf "  %s:%s  Ziffer %s — %s\n", $1, $2, $3, $4 }'
+    echo "  Heilung: die Ziffer NICHT zitieren, sondern den Traeger beim Namen nennen."
+    echo "           Die Ziffern sind ausgabeintern und zeigen nach der naechsten Ausgabe falsch."
+    rc=1
+  else
+    echo "  (keine ausgabeinternen Ziffern ausserhalb von Ausgabe und Entwurf)"
+  fi
+  printf "  ── (E) %d Verstöße; Vergleichslauf ohne Bereichsschnitt: %d Fundstellen\n" \
+         "${n_mit}" "${n_ohne}"
+  return "${rc}"
+}
+
 # Gruppe (C) vorab fahren: ihre Rückgabecodes bestimmen den Exit-Code des Laufs.
 C_RC=0
 BLOCK_C1="$(ledger_report)"  || C_RC=1
@@ -609,6 +883,10 @@ BLOCK_C3="$(ledger8_report)" || C_RC=1
 # Gruppe (D) ebenso vorab: sie bricht wie (C).
 D_RC=0
 BLOCK_D="$(bare_report)" || D_RC=1
+
+# Gruppe (E) ebenso: sie bricht wie (C) und (D).
+E_RC=0
+BLOCK_E="$(ziffer_report)" || E_RC=1
 
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
@@ -670,19 +948,29 @@ echo "     Zahlentoleranz: ein Lint mit geduldeten Treffern wird ueberlesen."
 printf '%s\n' "$BLOCK_D"
 echo
 
-if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ]; then
-  echo -n "── Ende Report.  Exit 1: "
-  if [ "${C_RC}" -ne 0 ] && [ "${D_RC}" -ne 0 ]; then
-    echo "Gruppen (C) und (D) melden Verstöße. ────────────────"
-  elif [ "${C_RC}" -ne 0 ]; then
-    echo "Gruppe (C) meldet mindestens einen Verstoß. ─────────"
-  else
-    echo "Gruppe (D) meldet mindestens einen Verstoß. ─────────"
-  fi
+echo "── Gruppe (E) AUSGABEINTERNE ZIFFERN — Traegertafel-Verweisungen von aussen ───"
+echo "     Die Ziffern in eckigen Klammern verweisen auf die Traegertafel und werden je"
+echo "     Ausgabe NEU vergeben. Wer sie ausserhalb von Ausgabe und Entwurf zitiert, zeigt"
+echo "     nach der naechsten Ausgabe falsch — und niemand merkt es. Grundlinie null."
+echo "     Bereich: *.md, *.lean, *.sh, *.html; nur Prosa (Zaunbloecke, Code-Regionen und"
+echo '     Backtick-Spannen entfallen); `^[n]` ist Iterationsnotation und `[n]₄` ist die'
+echo "     Morphogramm-Notation — beides keine Verweisung."
+echo "     Schnitt: docs/*.html, docs/rev<n>/*.html, Entwurf_*.md — dort IST die Tafel;"
+echo "     dazu Papierausgabe_*.md: ein Ergebnisdokument haelt einen Stand seines Datums"
+echo "     fest, und seine Ziffern meinen die Tafel dieses Datums — wie seine Kennzahlen."
+printf '%s\n' "$BLOCK_E"
+echo
+
+if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ] || [ "${E_RC}" -ne 0 ]; then
+  betroffen=""
+  [ "${C_RC}" -ne 0 ] && betroffen="${betroffen}(C) "
+  [ "${D_RC}" -ne 0 ] && betroffen="${betroffen}(D) "
+  [ "${E_RC}" -ne 0 ] && betroffen="${betroffen}(E) "
+  echo "── Ende Report.  Exit 1: ${betroffen}melden Verstöße. ────────────────"
   echo "   (A) und (B) beeinflussen den Exit-Code nicht — sie melden."
   exit 1
 fi
-echo "── Ende Report.  Exit 0: Gruppen (C) und (D) ohne Verstoß. ──────────────────"
+echo "── Ende Report.  Exit 0: Gruppen (C), (D) und (E) ohne Verstoß. ─────────────"
 echo "   (A) und (B) melden nur; ihre Treffer setzen keinen Exit-Code."
 
 exit 0
