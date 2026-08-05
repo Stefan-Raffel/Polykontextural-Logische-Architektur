@@ -45,9 +45,10 @@ Schicht) noch als Triaden-Asymmetrie erzählt; die Schicht heißt nach dem Bewie
 
 Die Sonde `Reformulation/Diagnostics/SwapSatzProbe.lean` bleibt als historischer
 Beleg (getrennter Namespace, unangetastet). Die Proemial-Involution (γ-2-Iso,
-`AlphaGamma`, `form_inhalt_vertauschungs_operativitaet`) ist das Spiegel-Bild —
-dort *ist* ein Iso Datum, hier ist eine Nicht-Existenz Satz; Vermerk, keine
-Behauptung.
+`AlphaGamma`, `pbv_gamma_isIso` — bis Zug A `form_inhalt_vertauschungs_operativitaet`)
+ist das Spiegel-Bild — dort *ist* ein Iso Datum, hier ist eine Nicht-Existenz Satz;
+Vermerk, keine Behauptung. **Nachtrag Zug A:** „dort ist ein Iso Datum" ist seither
+schärfer zu lesen — die Struktur, die das Datum trägt, hat im Bestand keinen Zeugen.
 
 ## (6) Sorry-Bilanz und Axiom-Ist (am `#print`, nach dem Build befüllt)
 
@@ -58,8 +59,8 @@ nicht eigene Beweisführung. **Abweichungs-Vermerk (am Term geprüft):** die
 Spec-Erwartung „erstmals `Classical.choice` im Aggregat-Profil" ist NICHT zutreffend
 — `Classical.choice` ist bereits präsent, sowohl über PathC
 (`ModalEndofunctor.tauOmega`) als auch INNERHALB Proemial über
-`AlphaGamma.form_inhalt_vertauschungs_operativitaet`; diese Schicht führt es also
-nicht neu ein. Kein `sorryAx`, kein `decide`-Axiom (das `decide` in M1/M2 ist
+`AlphaGamma.pbv_gamma_isIso` (bis Zug A `form_inhalt_vertauschungs_operativitaet`;
+gleiches Profil); diese Schicht führt es also nicht neu ein. Kein `sorryAx`, kein `decide`-Axiom (das `decide` in M1/M2 ist
 Kernel-Berechnung, kein Axiom).
 -/
 

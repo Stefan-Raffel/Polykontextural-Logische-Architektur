@@ -18,6 +18,29 @@ Vier Sub-Aufgaben:
 
 Spec: F3_6_Sub_Spec.md. Prompt: F3_6_Sub_Prompt.md. Frühjahr 2026.
 
+## Das `γ` dieser Datei ist der Kollaps, nicht der Tausch
+
+Der α+γ-Strang schreibt `γ` für zwei typverschiedene Objekte (ausführlich im Kopf von
+`AlphaGamma.lean`):
+
+| | Typ | wo |
+| --- | --- | --- |
+| **γ-Tausch** | `(L ⋙ R) ⟶ (R ⋙ L)` | **nur** in `ProemialBeckChevalleyVerschraenkung`, `AlphaGamma.lean` |
+| **γ-Kollaps** | `L ⋙ R ≅ 𝟭 S` | hier und überall sonst: `bcIso`, `ProemialGammaMorphism*.γ` |
+
+**Alles γ dieser Datei ist Kollaps-γ.** `SubstantialBeckChevalleyData.bcIso` und
+`ProemialGammaMorphismTrulyMinimal.γ` identifizieren die Komposition mit der Identität; sie
+vertauschen nichts.
+
+**Zwei Sätze mit fast gleichem Namen haben darum entgegengesetzte Substanzlage:**
+`beck_chevalley_verschraenkung_truly_substantial` (hier, unten) ist ein
+Eindeutigkeitssatz über zwei Kollaps-Isos, mit Beweis über Epi-Kanzelierung und mit
+Zeugen (`identityWitnessBC` in `AlphaGammaWitnesses.lean`).
+`AlphaGamma.pbv_gamma_isIso` — bis Zug A (5. August 2026)
+`beck_chevalley_verschraenkung` — liest dagegen ein Feld einer Struktur ab, die im
+ganzen Bestand **keinen Zeugen** hat. Die Namensähnlichkeit ist irreführend und hier
+ausdrücklich benannt.
+
 ## Klasse-B-Befunde
 
 **B-1 — HasPullbacks-Modul:** `HasPullbacks` liegt in

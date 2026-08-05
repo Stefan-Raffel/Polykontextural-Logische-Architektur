@@ -98,9 +98,10 @@ theorem classIV_subtype_stage_succ (n : ℕ) (h : n ≥ 1) :
 
 Gewacht ist `classI_iff_stage_1`, und zwar nach dem **zweiten** Kriterium des Zuges: er
 trug keinen `#print axioms`-Aufruf, wird aber von `Reformulation.F3g.Quine` im
-Beweisterm konsumiert und liegt ausserhalb jeder Wachenhülle. Er ist der einzige Satz
-des Zuges, der allein über den Zeugen-Konsum hereinkommt — und der erste, den das
-Kriterium **im Aggregat** trifft statt im Sondenbereich.
+Beweisterm konsumiert und liegt ausserhalb jeder Wachenhülle. **Bezugsmenge:** die 29
+Sätze des Zuges B; von ihnen ist dies der einzige, der allein über den Zeugen-Konsum
+hereinkommt — die übrigen 28 waren Ziele nackter `#print axioms`-Aufrufe. Er ist zugleich
+der einzige der 29, den das Kriterium **im Aggregat** trifft statt im Sondenbereich.
 
 Die übrigen vier Sätze dieser Datei tragen nach der Vorgabe keine Wache: sie werden
 modulfremd nicht konsumiert. -/

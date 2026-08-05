@@ -36,6 +36,44 @@ erfordert sub-Formulation; kein Sorry, da Or.inl-Reformulierung trägt.
 Form niedergelegt (γ ist NatTrans in der Funktor-Kategorie; IsIso darauf
 bezeichnet Invertierbarkeit als natürlichen Isomorphismus).
 
+## Zwei Dinge heissen hier `γ`, und sie sind entgegengesetzt
+
+Der α+γ-Strang schreibt `γ` für zwei typverschiedene Objekte. Wer sie verwechselt, liest
+Kollaps-Sätze als Vertauschungs-Sätze:
+
+| | Typ | wo |
+| --- | --- | --- |
+| **γ-Tausch** | `(L ⋙ R) ⟶ (R ⋙ L)` | **nur** in `ProemialBeckChevalleyVerschraenkung`, dieser Datei |
+| **γ-Kollaps** | `L ⋙ R ≅ 𝟭 S` | überall sonst: `SubstantialBeckChevalleyData.bcIso`, `ProemialGammaMorphism*.γ` |
+
+Der erste geht von der einen Kompositionsreihenfolge in die andere — er hat die Gestalt
+einer **Vertauschung**. Der zweite identifiziert die Komposition mit der Identität — er hat
+die Gestalt eines **Zusammenfalls**.
+
+**Bezugsmenge der Aussage „nur hier", ausdrücklich:** geprüft ist der α+γ-Strang, also die
+neun `AlphaGamma*`-Module mit ihren 43 Sätzen (Erhebung vom 5. August 2026). Innerhalb
+dieser Menge trägt allein `ProemialBeckChevalleyVerschraenkung.γ` die Tausch-Gestalt; jedes
+andere `γ` ist Kollaps-γ. **Ob das korpusweit gilt, ist nicht gemessen** und wird hier
+nicht behauptet.
+
+**Folge, die beim Lesen zu beachten ist:** `pbv_gamma_isIso` (hier) und
+`beck_chevalley_verschraenkung_truly_substantial` (in `AlphaGammaBeckChevalley.lean`)
+tragen fast gleiche Namen und haben entgegengesetzte Substanzlage. Der zweite ist ein
+Eindeutigkeitssatz über zwei **Kollaps**-Isos mit Beweis und mit Zeugen
+(`identityWitnessBC`); der erste liest ein Feld einer **zeugenlosen** Struktur ab.
+
+## Umbenennung: zwei zeichengleiche Sätze wurden einer
+
+Bis zum Zug A (5. August 2026) trugen dieser Satz und ein zeichengleicher Zwilling die
+Namen `beck_chevalley_verschraenkung` und `form_inhalt_vertauschungs_operativitaet`. Sie
+waren zeichengleich bis auf die Namenszeile — gleiche Binder, gleiche Hypothesen, gleiche
+Konklusion, gleicher Beweisterm `PBV.isIso`. **Beide Namen kündigten mehr an, als der Satz
+aussagt: er projiziert ein Strukturfeld.** Der Zwilling ist entfallen, der verbleibende
+Satz nach seiner Tat benannt (`pbv_gamma_isIso`).
+
+Die alten Namen stehen hier, damit sie auffindbar bleiben: sie kommen in Dokumenten des
+Umfelds vor, und ein Name, der spurlos verschwindet, ist im Korpus eine Fehlstelle.
+
 ## Sorry-Bilanz
 
 - Phase 1: 0 Sorries.
@@ -160,6 +198,23 @@ von L∘R nach R∘L (beide Endofunktoren auf C für S = K = C). Die Invertierba
 (isIso) reflektiert die operative Reversibilität der Form-Inhalt-Vertauschung.
 Naturality-Felder sind Prop-field-True-Platzhalter; konkrete Verschränkungsformel
 mit `beckChevalleyFromData` belegungsspezifisch (F1).
+
+## STATUS: STRUKTUR OHNE ZEUGEN
+
+**Im ganzen Bestand existiert keine Instanz dieser Struktur** — keine `def`, kein
+Existenzbeleg, kein Konsument, der sie baut. Gemessen (Zug A, 5. August 2026): fünf
+Vorkommen des Namens, alle in dieser Datei — zweimal in Prosa, einmal als diese
+Definition, zweimal als Hypothese.
+
+**Was daraus folgt:** jeder Satz, der sie als Hypothese führt, ist leer, solange kein
+Zeuge existiert. Das betrifft `pbv_gamma_isIso` unten und ist dort benannt. Die Struktur
+bleibt trotzdem stehen, weil sie im α+γ-Strang als **einzige** einen Typ mit der Gestalt
+einer Vertauschung trägt (`(L ⋙ R) ⟶ (R ⋙ L)`; Bezugsmenge und Messung im Dateikopf) —
+eine Information, die sichtbar bleiben soll.
+
+**Exit-Kriterium: der erste Zeuge, oder Streichung.** Die beiden `True`-Felder stehen als
+`S29`/`S30` im Setzungsregister (`docs/status-register.md`); die Zeugenlosigkeit ist dort
+nachgetragen.
 -/
 structure ProemialBeckChevalleyVerschraenkung
     {C : Type*} [Category C]
@@ -200,39 +255,23 @@ theorem adjunction_not_equivalence
     ¬ IsIso PA.adj.unit ∨ ¬ IsIso PA.adj.counit :=
   Or.inl h
 
-/-- Theorem γ-V: γ verschränkt die Adjunktion mit der BC-Verträglichkeit.
+/-- **Feld-Projektion:** das γ der übergebenen `ProemialBeckChevalleyVerschraenkung` ist
+invertierbar. Der Beweis ist `PBV.isIso` — das Strukturfeld, abgelesen.
 
-Der 2-Morphismus γ in `ProemialBeckChevalleyVerschraenkung` ist invertierbar
-(IsIso), was die Verschränkung der Adjunktion L ⊣ R mit der Beck-Chevalley-
-Verträglichkeitsstruktur der Doppelfaserung bezeugt.
+**Was der Satz leistet, und was nicht.** Er leistet: die Invertierbarkeit von γ als
+Aussage in der Sprache der Adjunktion verfügbar zu machen. Er leistet **nicht**: einen
+Nachweis, dass es ein solches γ gibt. Die Struktur ist **zeugenlos** (siehe ihren
+Status-Block oben); solange das so ist, ist dieser Satz leer — wahr, aber ohne Instanz,
+auf die er anwendbar wäre.
 
-B-2-Anpassung: vollständige BC-API-Verschränkungsformel (γ ≅ beckChevalleyFromData)
-belegungsspezifisch (F1); hier: Invertierbarkeit von γ direkt aus PBV.isIso.
-Folge-Aufgabe: explizite Verschränkungsformel mit F3e.beckChevalleyFromData
-in F1-Belegungskontext.
+**Benennung, nicht Ertrag** (`CLAUDE.md` §4). Der Name sagt, was der Satz tut, und nicht,
+was die Struktur bedeutet. Zu den beiden früheren Namen und zum Grund der Umbenennung
+siehe den Dateikopf.
+
+B-2-Anpassung, unverändert gültig: die vollständige BC-API-Verschränkungsformel
+(γ ≅ `beckChevalleyFromData`) ist belegungsspezifisch (F1) und steht aus.
 -/
-theorem beck_chevalley_verschraenkung
-    {C : Type*} [Category C]
-    (PA : ProemialAdjunction C C)
-    (M : Reformulation.F3e.ModalTwoCategoryWithPullbacks C)
-    (PBV : ProemialBeckChevalleyVerschraenkung PA M) :
-    IsIso PBV.γ :=
-  PBV.isIso
-
-/-- Theorem F-S: Form-Inhalt-Vertauschungs-Operativität im γ-Morphismus.
-
-F-6-Konsolidierung in F-1, Lesart B. Der 2-Morphismus γ trägt die Form-Inhalt-
-Vertauschungs-Operativität intrinsisch: die strukturale Bewegung, in der Form
-Inhalt werden kann und umgekehrt, realisiert sich durch γʼs Invertierbarkeit.
-
-Programmatische Verankerung (Günther, E&W S. 28, erster Absatz):
-"Was Stoff (Inhalt) ist kann Form werden, und was Form ist kann auf den
-Status bloßer ʻMaterialitätʼ reduziert werden."
-
-Der 2-Isomorphismus γ (via PBV.isIso) ist der operative Träger: Invertierbarkeit
-= operative Reversibilität der Vertauschung. Folgt aus γ-V plus IsIso γ.
--/
-theorem form_inhalt_vertauschungs_operativitaet
+theorem pbv_gamma_isIso
     {C : Type*} [Category C]
     (PA : ProemialAdjunction C C)
     (M : Reformulation.F3e.ModalTwoCategoryWithPullbacks C)
@@ -263,19 +302,24 @@ wäre es eine andere Signatur. Kein Konsument im Aggregat; die Streichung bricht
 ```
 -/
 
-/-! **Wachen (Wachenspitze Stufe 2).** Ist-Ausgabe des gruenen Builds (v4.30.0-rc2).
-Gewacht sind die beiden Saetze, die die Begriffe dieser Datei benennen.
-**Ermessensauswahl:** keine Quelle des Strangs benennt diese Saetze; sie tragen die
+/-! **Wachen (Wachenspitze Stufe 2, Namen nachgefuehrt in Zug A).** Ist-Ausgabe des
+gruenen Builds (v4.30.0-rc2). Gewacht sind zwei Saetze dieser Datei.
+**Ermessensauswahl:** keine Quelle des Strangs benennt diese Saetze; sie trugen die
 Begriffe, fuer die ihre Datei steht. Die Marke steht hier und nicht nur im
 Spezifikationskorpus, damit ein spaeterer Zug mit besserer Grundlage erkennen kann, was er
 umstuft. Das Profil traegt `Classical.choice` aus der Kategorien-Maschinerie; der Weg des
-Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10). -/
+Axioms in den Term ist **nicht** gemessen (`CLAUDE.md` §8 Fallstrick 10).
+
+Die zweite Wache stand bis Zug A auf `beck_chevalley_verschraenkung`; der Satz heisst jetzt
+`pbv_gamma_isIso`, das Profil ist unveraendert. Der zeichengleiche Zwilling
+`form_inhalt_vertauschungs_operativitaet` ist entfallen und trug keine Wache — die Zahl der
+Wachen bewegt sich durch diesen Zug also nicht. -/
 
 /-- info: 'Reformulation.Proemial.adjunction_not_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms adjunction_not_equivalence
 
-/-- info: 'Reformulation.Proemial.beck_chevalley_verschraenkung' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in #print axioms beck_chevalley_verschraenkung
+/-- info: 'Reformulation.Proemial.pbv_gamma_isIso' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms pbv_gamma_isIso
 
 
 end Reformulation.Proemial

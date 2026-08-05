@@ -312,10 +312,21 @@ Die Erwartungstexte sind dreizeilig umgebrochen — `#print axioms` bricht an de
 Zeilenlänge, nicht an der Namenslänge (`CLAUDE.md` §8 Fallstrick 14). Die Form ist
 gemessen und nicht geglättet; `#guard_msgs` vergleicht verbatim.
 
-Sechs weitere Sätze dieser Datei bleiben nach der Vorgabe ungewacht
-(`cnt_append_singleton`, `cnt_pos_of_mem`, `mem_of_cnt_pos`, `le_foldr_max_of_mem`,
-`foldr_max_mem`, `rgs_lueckenlos`). Ob sie über die Hülle der drei hier gewachten
-mitgesichert sind, ist eine Messung und keine Setzung; sie steht im Zug-B-Befund. -/
+**Die sechs übrigen Sätze der Datei, nach der Hüllenmessung aus Zug B getrennt.** Fünf
+sind über die Hülle der drei hier gewachten Sätze mitgesichert und damit Hilfslemmata im
+Sinne der Ausnahme von `CLAUDE.md` §3: `cnt_append_singleton`, `cnt_pos_of_mem`,
+`mem_of_cnt_pos`, `le_foldr_max_of_mem`, `rgs_lueckenlos`. Gemessen, nicht gesetzt — die
+Hülle der drei umfasst 3509 Konstanten.
+
+**`foldr_max_mem` ist weder gewacht noch hüllengedeckt, und er wird nicht gewacht.** Der
+Bestand setzt für ihn keine Marke: kein nackter `#print axioms`-Aufruf, kein fremdes
+Zitat, keine Hüllendeckung. Eine Wache hier zu setzen, weil es nur noch einer ist, wäre ein
+Grössenargument und kein Kriterium — dasselbe Argument, das für die 22 hüllenfreien
+α+γ-Sätze abgelehnt wurde, dort nur teurer.
+
+**Auslöser für eine Wache auf `foldr_max_mem`:** der erste Fall, in dem er in einer
+Ledger-Zeile, in einer Papierfassung oder als Voraussetzung ausserhalb dieser Datei
+auftaucht. -/
 
 /--
 info: 'Reformulation.Proemial.K4DiscontexturalityProbe.deutero_descent_eq' depends on axioms: [propext,

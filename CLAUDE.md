@@ -301,9 +301,16 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 fuenfzehn, §12 sechs,
-Datei einundzwanzig; die Gleichung 15 + 6 = 21 geht auf. Es ist dieselbe Sorte Falle wie in §3:
-eine Route unterscheidet nur, was sie zaehlt.
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Zuges A: §8 siebzehn, §12 acht,
+Datei fuenfundzwanzig; die Gleichung 17 + 8 = 25 geht auf, und kein weiterer Paragraph
+fuehrt fett nummerierte Eintraege. Es ist dieselbe Sorte Falle wie in §3: eine Route
+unterscheidet nur, was sie zaehlt.
+
+*Und die Abschnittsgrenze gehoert zur Route.* Beim Nachzaehlen in Zug A lieferte ein erster
+Lauf fuer §12 **null**, weil das Abbruchmuster fuer das Dateiende versehentlich auf jede
+Leerzeile passte und den Paragraphen an seiner ersten abschnitt. Die Gleichung fiel damit
+laut aus (17 + 0 gegen 25) - §12 Regel 2 in Reinform: eine Probe, die nur eine Zahl
+abliest, haette hier geschwiegen.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
 ist nicht immer die Ursache: der zehnte haelt eine Profildifferenz fest, deren Mechanismus
@@ -512,6 +519,49 @@ Zwischenrechnung faellt dabei auf; gefunden hat es allein die Eichung. Das ist d
 Fallstrick in weiterer Gestalt, und die unangenehmere: ein leeres Ergebnis stutzt, ein knapp
 zu kleines nicht.
 
+**16 - Ein blosses `#print axioms` sieht aus wie eine Sicherung und ist keine.** Ohne
+`#guard_msgs` davor druckt es ein Profil in die Bauausgabe und sichert **nichts**: aendert
+der Satz sein Profil, druckt es das neue und der Bau bleibt gruen. In einer Datei steht
+dann ein Abschnitt, oft unter der Ueberschrift „Verifikation (kein `sorryAx`)", der wie
+Sorgfalt aussieht. §3 unterscheidet *geschrieben* und *erzwungen*; hier liegt eine dritte
+Stufe darunter - **gedruckt gegen gewacht.**
+
+**Gemessen am Stand `4c263ee`** (die Zahlen bleiben an diesem Stand geankert, auch nachdem
+Zug B sie geheilt hat - historische Messung wie „415 statt 487" im fuenfzehnten Eintrag):
+**39** blosse Aufrufe in 9 Dateien, davon **28** auf einen Satz der **eigenen** Datei in
+der Import-Huelle der Default-Targets. Nackt und gewacht kamen dabei in keiner Datei
+zusammen vor.
+
+*Zwei Klassen, die nicht zusammengeworfen werden duerfen.* In einem **Messwerkzeug** ist
+der nackte Aufruf die **richtige Bauform** - ein Werkzeug, das Profile anzeigen soll, darf
+sie nicht einfrieren; betroffen sind `Diagnostics/AxiomProbe.lean` und
+`Diagnostics/SwapSatzProbe.lean` mit zusammen 11 Aufrufen. Nackt **neben einem Satz, den
+man sichern koennte**, ist der Fallstrick. Eine Route, die beides zaehlt, erzeugt falsche
+Treffer, und eine Pruefung mit falschen Treffern wird abgeschaltet.
+
+*Route.* **Zuerst die Kommentare entfernen** - `--` bis Zeilenende und `/- -/`
+verschachtelt, einschliesslich `/--` und `/-!`, Strings uebersprungen -, dann suchen. Eine
+blosse `grep`-Differenz misst **zu hoch**: das Suchwort steht auch in Prosa, und seit den
+Wachen zusaetzlich in Erwartungstexten. Gegengerechnet am selben Stand:
+roh 551 = 501 Wachen + 39 nackt + 11 Prosa.
+
+**17 - Lean-Namen duerfen `?` und `!` enthalten; eine Zeichenklasse verliert sie still.**
+Die Route `'([A-Za-z0-9_.']+)'` ueber die eingefrorenen Erwartungstexte lieferte **500**
+Namen bei **501** Wachen. Die eine Differenz war
+`Reformulation.Kenogram.relabel_getElem?_eq_iff`. Eine zweite Route,
+`grep -oE '#print axioms [A-Za-z_0-9.]+'`, schnitt denselben Namen an derselben Stelle ab
+und meldete eine Scheindifferenz - **zwei Routen, derselbe blinde Fleck.**
+
+Das Ergebnis war nicht leer, sondern **um eins zu klein**; ohne Eichung waere die
+Wachenhuelle um einen Saatnamen zu klein geworden, und ein Satz, den nur dieser Zweig
+deckt, waere faelschlich als huellenfrei gemeldet worden.
+
+*Heilung:* **den Namen nicht durch eine Zeichenklasse beschreiben, sondern durch das, was
+ihn begrenzt** - hier die Anfuehrungszeichen und der folgende Literaltext, also `'(\S+)'`.
+Lean-Namen enthalten keine Leerzeichen; der Anker macht das sicher. *Gegenprobe:* die
+gewonnene Namensmenge gegen die verbindliche Wachenroute eichen, Mengengroesse gegen
+Mengengroesse (§12 Regel 2).
+
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
 Ein fehlender Treffer und ein anders geschriebener Treffer sehen in einer Trefferzaehlung
@@ -688,6 +738,38 @@ Route **in zwei Zuegen dasselbe misst**. Eine Abweichung im ersten Lauf hiesse: 
 Messungen sind nicht vergleichbar - und das faellt sonst niemandem auf, weil beide fuer sich
 plausibel sind. Sie ersetzt keine der uebrigen Regeln; sie kommt hinzu, wo ein Stand gegen
 einen frueheren gestellt wird.
+
+**7 - Wer einen Bestand aendert, prueft die Aussagen anderer Dateien ueber diesen
+Bestand.** §11 regelt den fremden Stand, den man *mitliest*; hier geht es um den fremden
+Stand, den die **eigene Aenderung entwertet**. Der Unterschied ist, dass niemand ihn meldet:
+kein Bau bricht, kein Lint schlaegt an, und die falsch gewordene Aussage steht in einer
+Datei, die der Zug gar nicht angefasst hat.
+
+Gemessen: der K1-Zug wachte vier Sonden und machte damit den Kopfvermerk in
+`Proemial/AsymmetricDiscontexturalityProbeRegister.lean` falsch - dort stand „die Sonden
+selbst tragen nach Bestand keine Wachen". Er wurde im selben Zug nachgefuehrt. Zug A
+benannte einen Satz um und machte damit drei Prosastellen in drei anderen Dateien falsch.
+
+*Route:* vor dem Abschluss den geaenderten Namen oder Sachverhalt ueber `Reformulation/`
+und `Foreign/` suchen, **auch in Prosa und Doc-Strings** - ein Term-Konsument bricht den
+Bau, eine Prosa-Aussage nicht. Wer nur den Bau als Probe nimmt, findet die zweite Klasse
+nie.
+
+**8 - Eine Gegenprobe wird gegen den Zug geprueft, der sie verwendet; ihr Anker liegt an
+einer Stelle, die der Zug nicht beruehrt.** Ein Muss-Fall, der auf eine Fundstelle zeigt,
+die der Zug beseitigt, wird durch den Zug selbst falsch - und er ist danach
+**stillschweigend unbrauchbar** statt auffaellig kaputt.
+
+Gemessen: der Muss-Fall der Nackt-Route zeigte auf drei Zeilen in
+`Proemial/K4DiscontexturalityProbe.lean`, die Zug B geheilt hat; die Nachmessung meldete
+fuer ihn `False`, ohne dass an der Route etwas falsch war.
+
+*Die Sortierung, die hilft.* Muss-Faelle **aus dem Zielbereich** sind nach dem Zug
+verbraucht; sie belegen den Vorstand und sind fuer die Nachmessung neu zu setzen. Muss-
+Faelle **aus dem Ausschlussbereich** ueberleben - in Zug B waren das die
+`Diagnostics`-Messwerkzeuge, die nach Vorgabe nackt bleiben. Die geheilten Stellen wechseln
+die Seite und werden zu **Darf-nicht-Faellen**; dort sind sie wertvoller als vorher, weil
+sie pruefen, dass der Zug gegriffen hat.
 
 Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
 der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.

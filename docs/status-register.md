@@ -87,10 +87,21 @@ und bei Widerspruch gilt der Feld-Doc, weil der Bau ihn traegt.
 | S26 | `F3e.BeckChevalleyAxioms.triangle` | `F3e/BeckChevalleyAxioms.lean` | Platzhalter | Wie `S25`, fuer die Dreiecks-Identitaet. |
 | S27 | `F3f.Stage.noAlgebraExtension` | `F3f/Stage.lean` | Platzhalter | Ein Nicht-Existenz-Satz: kein globaler Stapeloperator setzt die stufenlokalen Endenfunktoren kohaerent ueber die Stufen hinweg fort. Siehe §3 — die Zuordnung ist strittig und hier bewusst konservativ. |
 | S28 | `Proemial.Discontextural.DiscontexturalStratification.discontextural_posited` | `Proemial/DiscontexturalStratification.lean` | **konstitutiv** | Kein Exit. Begruendung: Diskontexturalitaet ist intra-kontextural nicht beweisbar — ein Beweis waere ein Selbstwiderspruch. Das Feld markiert die Setzung, statt sie zu verbergen; ein Sorry an dieser Stelle waere ein Befund gegen die Form. In `CLAUDE.md` §10 namentlich gefuehrt. |
-| S29 | `Proemial.ProemialBeckChevalleyVerschraenkung.naturality_C` | `Proemial/AlphaGamma.lean` | Platzhalter | Die konkrete Form der ψ*-Rueckzugs-Vertraeglichkeit auf der 𝒞-Achse; belegungsspezifisch (F1). |
-| S30 | `Proemial.ProemialBeckChevalleyVerschraenkung.naturality_O` | `Proemial/AlphaGamma.lean` | Platzhalter | Wie `S29`, fuer die 𝒪-Achse. |
+| S29 | `Proemial.ProemialBeckChevalleyVerschraenkung.naturality_C` | `Proemial/AlphaGamma.lean` | Platzhalter | Die konkrete Form der ψ*-Rueckzugs-Vertraeglichkeit auf der 𝒞-Achse; belegungsspezifisch (F1). **Ihre Struktur ist zeugenlos** — siehe die Notiz unter der Tafel. |
+| S30 | `Proemial.ProemialBeckChevalleyVerschraenkung.naturality_O` | `Proemial/AlphaGamma.lean` | Platzhalter | Wie `S29`, fuer die 𝒪-Achse; dieselbe Zeugenlosigkeit. |
 | S31 | `Proemial.Substantial.ProemialGammaMorphismSubstantial.bc_compat` | `Proemial/AlphaGammaSubstantial.lean` | Platzhalter | Aufloesung des B-2-Befunds: Architektur-Mismatch zwischen F3e-BC (Endofunktor) und F-3 (S ≠ K). Bis dahin ist die volle BC-Integration belegungsspezifisch. |
 | S32 | `Proemial.Transjunction.CharacterizedPosit.contexturePartitionGenuine` | `Proemial/ContexturalTransjunction.lean` | **konstitutiv** | Kein Exit. Begruendung: die Echtheit der Kontextur-Partition ist der gesetzte Rand (Grenze 4), Daten-Charakter analog Beck-Chevalley. Der Kern derselben Struktur ist bewiesen (`not_S_internal`); die Grenze zwischen beiden ist die Pointe und kein Mangel. In `CLAUDE.md` §10 namentlich gefuehrt. |
+
+**Nachtrag Zug A (5. August 2026) zu `S29` und `S30`: die tragende Struktur hat keinen
+Zeugen.** `Proemial.ProemialBeckChevalleyVerschraenkung` wird im ganzen Bestand nirgends
+instanziiert — keine `def`, kein Existenzbeleg, kein Konsument, der sie baut; gemessen fuenf
+Vorkommen des Namens, alle in `Proemial/AlphaGamma.lean`. Das ist **keine dritte Klasse von
+Setzung**, sondern eine Angabe ueber die Reichweite der beiden vorhandenen: ein `True`-Feld
+einer zeugenlosen Struktur kann nicht nur in keinen Beweis eingehen, es hat auch keinen Fall,
+auf den es zutraefe. **Exit-Kriterium der Struktur: der erste Zeuge, oder Streichung** — es
+steht am Ort, im Status-Block der Struktur. **Bezugsmenge:** nach Zug A fuehrt genau ein
+Satz des Bestandes diese Struktur als Hypothese, `Proemial.pbv_gamma_isIso`; solange das
+Exit-Kriterium offen ist, ist er leer. Bis Zug A waren es zwei zeichengleiche.
 
 30 Platzhalter, 2 konstitutiv. Die beiden konstitutiven sind `S28` und `S32`,
 und sie tragen ihre Klasse, weil sie kein Beweis-Soll haben — nicht, weil eine

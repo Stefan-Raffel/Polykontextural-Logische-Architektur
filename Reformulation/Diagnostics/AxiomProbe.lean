@@ -80,7 +80,8 @@ end Reformulation.Diagnostics
 #print axioms Reformulation.F3e.beckChevalleyFromData
 
 -- Proemial-γ-Sätze, die BeckChevalley referenzieren:
-#print axioms Reformulation.Proemial.beck_chevalley_verschraenkung
+-- Bis Zug A (5. August 2026) hiess dieser Satz `beck_chevalley_verschraenkung`.
+#print axioms Reformulation.Proemial.pbv_gamma_isIso
 -- (Sorry-Konsolidierung γ-V: `beck_chevalley_verschraenkung_substantial` entfernt —
 --  veraltete F-3-Stub-Parallelform; Substanz sorry-frei in `…truly_substantial` unten.)
 

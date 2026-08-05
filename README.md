@@ -95,9 +95,9 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3255 Konstanten |
+| geprueft (AxiomGate) | 3254 Konstanten |
 | Axiom-Wachen | 530 ueber 72 Dateien |
-| Saetze gesamt | 791 |
+| Saetze gesamt | 790 |
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
@@ -187,7 +187,7 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 62 | 475 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
+| `Proemial/` | 62 | 474 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 7 | 114 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat |
 | `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
@@ -196,8 +196,8 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 791 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 791 + 10 = 801 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 790 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 790 + 10 = 800 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 
@@ -287,10 +287,15 @@ darf. Die Zahl 39 = 28 + 1 (anderes Kriterium, ohne Aufruf) + 11 (Werkzeuge) geh
 auf, wobei der 29. nicht unter den 39 steht - die Gleichung der Wachen lautet
 501 + 29 = 530.
 
-Nebenwirkung, gemessen statt gerechnet: die wachenfreien Aggregat-Saetze gehen von **71 in
-23 Modulen** auf **66 in 22** zurueck. Der Rueckgang ist 5 und nicht 1, weil die Route
-Saetze in wachenfreien *Modulen* zaehlt - mit der einen Wache faellt `F3g/Availability.lean`
-mit allen fuenf Saetzen aus der Zaehlung. Neue Gleichung: F3a-F3g 56 + F1-Belegungen 10 = 66
+Nebenwirkung, gemessen statt gerechnet: die **Saetze in Aggregat-Modulen, die keine Wache
+tragen**, gehen von **71 in 23 Modulen** auf **66 in 22** zurueck.
+
+**Die Beschreibung ist genau zu nehmen, und zwar an dieser Stelle mehr als anderswo.**
+Gezaehlt werden Saetze, deren **Modul** keine einzige Wache traegt - nicht Saetze ohne
+eigene Wache. Das sind zwei verschiedene Groessen, und die Verwechslung ist in diesem
+Projekt zweimal aufgetreten. Hier ist die Folge: der Rueckgang ist **5 und nicht 1**,
+obwohl nur eine Wache hinzukam. Mit ihr faellt `F3g/Availability.lean` als ganze Datei aus
+der Zaehlung, mit allen fuenf Saetzen. Neue Gleichung: F3a-F3g 56 + F1-Belegungen 10 = 66
 in 13 + 9 = 22 Modulen.
 
 ---

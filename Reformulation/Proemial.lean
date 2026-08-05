@@ -435,7 +435,8 @@ Enthält:
   `propext`, `Classical.choice`, `Quot.sound` (Herkunft CategoryTheory- und Iso-Maschinerie,
   kein `sorryAx`, kein `decide`-Axiom). **Abweichung vom Spec-Wortlaut (am Term):** `Classical.choice`
   tritt NICHT erstmals mit dieser Schicht ins Aggregat-Profil — es ist bereits präsent (via PathC
-  `ModalEndofunctor.tauOmega` und via Proemial `AlphaGamma.form_inhalt_vertauschungs_operativitaet`).
+  `ModalEndofunctor.tauOmega` und via Proemial `AlphaGamma.pbv_gamma_isIso`, das bis Zug A
+  `form_inhalt_vertauschungs_operativitaet` hiess; das Profil ist dasselbe geblieben).
   0 Sorries.
 
 - `Proemial.ExtensionalCollapse`: der extensionale Kollaps (achtzehnte Schicht) — das
