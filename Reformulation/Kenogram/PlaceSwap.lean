@@ -46,7 +46,16 @@ sie **setzen** einen Wert und geben den alten zurück.
 
 `Proemial.K3CouplingProbe.swapVals` ist zeichengleich mit `swapPlaces` hier. Die Sonde
 bleibt unangetastet; eine Zusammenlegung berührte ihre Wachen. **Auslösebedingung für die
-Zusammenlegung: der erste Zug, in dem beide in einer Import-Hülle liegen.**
+Zusammenlegung: der erste Zug, in dem eine Aggregat-Datei die Stellen-Vertauschung erneut
+definiert oder die Sonde konsumiert.**
+
+*Warum nicht mehr die Import-Hülle.* Die frühere Fassung lautete „der erste Zug, in dem
+beide in einer Import-Hülle liegen". Sie ist beim Klammer-Zug **nicht ausgelöst worden**,
+obwohl der Zug stattfand — weil die Hausform der Hebung das **Neubauen** ist:
+`Kenogram/Descent.lean` baut die Sätze der Sonden neu, statt sie zu importieren, und damit
+kommt `K3CouplingProbe` gar nicht erst in die Hülle. Die Bedingung war weder eingelöst noch
+vertagt, sondern **wirkungslos** — sie kannte die Baupraxis nicht, unter der sie stand. Die
+neue Fassung nennt den Sachverhalt statt des Trägers.
 
 ## Die Seite des Präfix-Lemmas gehört zur Aussage
 
@@ -325,8 +334,8 @@ theorem relabel_eq_iff_pattern {q p : List ℕ} (hp : IsRGS p) (hlen : q.length 
 /-- **Die Bedingung.** Der Tausch der Stelle `i` mit der letzten lässt das
 Gleichheitsmuster des Präfixes unverändert.
 
-**Vier Fälle, und alle vier werden gebraucht** — die Disjunktion ist nicht redundant und
-die Konjunktion in der zweiten Hälfte auch nicht:
+**Eine Disjunktion mit zwei Gliedern, das zweite eine Konjunktion aus zweien — und jedes
+Glied ist unentbehrlich:**
 
 * **(a)** die beiden Werte stimmen überein — der Tausch ist auf dem Muster keiner;
 * **(b1)** der Wert an der Stelle `i` kommt im Präfix **genau einmal** vor, **und**
@@ -335,7 +344,13 @@ die Konjunktion in der zweiten Hälfte auch nicht:
 Ohne (a) bleiben Ausnahmen; ohne (b) ebenso; und **keine der beiden Hälften von (b)
 impliziert die andere** — `[0,1,0]` mit `i = 1` erfüllt (b1) ohne (b2), `[0,0,1]` mit
 `i = 0` erfüllt (b2) ohne (b1). Wer die Bedingung beim Zitieren verkürzt, verkürzt sie
-falsch. -/
+falsch.
+
+*Hier stand eine Fallzahl, und sie ging nicht auf.* Der Text kündigte vier Fälle an und
+zählte drei auf; die Zahl stammte aus der Prosa der Spezifikation und war aus einer
+Messung destilliert, die etwas anderes zählte — drei Varianten der Konjunktion
+gegeneinander. **Die Zahl fällt und wird nicht auf drei gesetzt: eine Zahl, die nie eine
+Route hatte, bekommt durch Korrektur keine.** Route statt Liste. -/
 def preservesPrefixPattern (l : List ℕ) (i : ℕ) : Prop :=
   l.getD (l.length - 1) 0 = l.dropLast.getD i 0
   ∨ (List.count (l.dropLast.getD i 0) l.dropLast = 1
