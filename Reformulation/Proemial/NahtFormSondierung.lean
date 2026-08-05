@@ -192,10 +192,30 @@ def exLiftedC : LiftedTransjunctiveC Type Type where
 
 end CandidateC
 
--- Axiom-Sauberkeit der beweisbaren Kerne (kein `sorryAx`):
-#print axioms no_generic_switch
-#print axioms exA_not_internal
-#print axioms no_generic_transjunctive
-#print axioms exBtransject_not_internal
+-- ============================================================
+-- Wachen — Axiom-Profile
+-- ============================================================
+
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die vier vormals nackten Aufrufe über den beweisbaren Kernen.
+
+`no_generic_switch` und `no_generic_transjunctive` sind **axiomfrei** und tragen darum
+den anderen der beiden Ausgabe-Wortlaute (`CLAUDE.md` §8 Fallstrick 15).
+
+Drei Sätze dieser Datei bleiben nach der Vorgabe ungewacht
+(`switch_isEmpty_bool_empty`, `no_transjunctive_into_empty`, `switch_not_generic`): kein
+Aufruf, kein fremdes Zitat. -/
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.no_generic_switch' does not depend on any axioms -/
+#guard_msgs in #print axioms no_generic_switch
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.exA_not_internal' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exA_not_internal
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.no_generic_transjunctive' does not depend on any axioms -/
+#guard_msgs in #print axioms no_generic_transjunctive
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.exBtransject_not_internal' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exBtransject_not_internal
 
 end Reformulation.Proemial.NahtFormSondierung

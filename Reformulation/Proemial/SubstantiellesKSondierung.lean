@@ -203,13 +203,30 @@ theorem binary_captures_all {S K : Type*} [Inhabited S] [Inhabited K]
   | inr k => simp [h]
 
 -- ============================================================
--- Axiom-Sauberkeit der beweisbaren Kerne
+-- Wachen — Axiom-Profile
 -- ============================================================
 
-#print axioms unit_captures_all
-#print axioms exTransjectA_outside
-#print axioms rejection_targets_injective
-#print axioms exTransjectB_inside
-#print axioms binary_captures_all
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die fünf vormals nackten Aufrufe. Alle fünf Sätze der Datei
+tragen eine Wache, alle mit demselben Profil `[propext]`.
+
+Der Namensraum heisst `Reformulation.Proemial.SubstantiellesK`, die Datei
+`SubstantiellesKSondierung.lean`; die Erwartungstexte führen den Namensraum und nicht
+den Dateinamen. -/
+
+/-- info: 'Reformulation.Proemial.SubstantiellesK.unit_captures_all' depends on axioms: [propext] -/
+#guard_msgs in #print axioms unit_captures_all
+
+/-- info: 'Reformulation.Proemial.SubstantiellesK.exTransjectA_outside' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exTransjectA_outside
+
+/-- info: 'Reformulation.Proemial.SubstantiellesK.rejection_targets_injective' depends on axioms: [propext] -/
+#guard_msgs in #print axioms rejection_targets_injective
+
+/-- info: 'Reformulation.Proemial.SubstantiellesK.exTransjectB_inside' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exTransjectB_inside
+
+/-- info: 'Reformulation.Proemial.SubstantiellesK.binary_captures_all' depends on axioms: [propext] -/
+#guard_msgs in #print axioms binary_captures_all
 
 end Reformulation.Proemial.SubstantiellesK

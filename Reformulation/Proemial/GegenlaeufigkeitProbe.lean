@@ -98,11 +98,20 @@ example : ∃ (a : RGS 4) (b : RGS 3), proto a < proto b :=
   ⟨⟨[0,0,0,0], by decide⟩, ⟨[0,1,2], by decide⟩, by decide⟩
 
 -- ============================================================
--- §IV — Verifikation (kein `sorryAx`)
+-- §IV — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms proto_descent_le
-#print axioms foldr_max_sublist_le
-#print axioms foldr_max_append_ge
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die drei vormals nackten Aufrufe. Alle drei Sätze der Datei
+tragen eine Wache. -/
+
+/-- info: 'Reformulation.Proemial.GegenlaeufigkeitProbe.proto_descent_le' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms proto_descent_le
+
+/-- info: 'Reformulation.Proemial.GegenlaeufigkeitProbe.foldr_max_sublist_le' depends on axioms: [propext] -/
+#guard_msgs in #print axioms foldr_max_sublist_le
+
+/-- info: 'Reformulation.Proemial.GegenlaeufigkeitProbe.foldr_max_append_ge' depends on axioms: [propext] -/
+#guard_msgs in #print axioms foldr_max_append_ge
 
 end Reformulation.Proemial.GegenlaeufigkeitProbe

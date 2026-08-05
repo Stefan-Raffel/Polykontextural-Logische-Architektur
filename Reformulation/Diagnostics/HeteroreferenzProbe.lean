@@ -172,17 +172,45 @@ theorem var0_not_depends_foreign : ¬ DependsOnForeign (Term.var 0) := by
 end Denotation
 
 -- ============================================================
--- Axiom-Ist der Sonde (nackt; kein `sorryAx`)
+-- Wachen — Axiom-Profile
 -- ============================================================
 
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren. Sie ersetzen die sieben vormals nackten `#print axioms`-Aufrufe: ein
+gedrucktes Profil sichert nichts, es druckt bei einer Änderung das neue und der Bau
+bleibt grün.
+
+`proj_not_heteroreferent` ist **axiomfrei** und trägt darum den anderen der beiden
+Ausgabe-Wortlaute (`CLAUDE.md` §8 Fallstrick 15); eingefroren ist das gemessene
+Axiomfrei-Sein, nicht ein leeres Profil.
+
+Zwei Sätze dieser Datei bleiben nach der Vorgabe ungewacht — `mixed_of_fst` und
+`proj_in_mixed` tragen weder Aufruf noch fremdes Zitat, der Bestand setzt dort keine
+Marke. -/
+
 -- Fassung (a):
-#print axioms exTransjectI_heteroreferent
-#print axioms proj_not_heteroreferent
-#print axioms exTransjectB_not_heteroreferent
-#print axioms rejection_not_sufficient
-#print axioms heteroreferent_discriminates
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.exTransjectI_heteroreferent' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exTransjectI_heteroreferent
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.proj_not_heteroreferent' does not depend on any axioms -/
+#guard_msgs in #print axioms proj_not_heteroreferent
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.exTransjectB_not_heteroreferent' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exTransjectB_not_heteroreferent
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.rejection_not_sufficient' depends on axioms: [propext] -/
+#guard_msgs in #print axioms rejection_not_sufficient
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.heteroreferent_discriminates' depends on axioms: [propext] -/
+#guard_msgs in #print axioms heteroreferent_discriminates
+
 -- Fassung (b):
-#print axioms var1_depends_foreign
-#print axioms var0_not_depends_foreign
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.var1_depends_foreign' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms var1_depends_foreign
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.var0_not_depends_foreign' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms var0_not_depends_foreign
 
 end Reformulation.Diagnostics.HeteroreferenzProbe

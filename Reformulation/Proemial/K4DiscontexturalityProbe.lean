@@ -298,11 +298,44 @@ theorem lastBlock_not_deutero_determined :
   · decide
 
 -- ============================================================
--- §IV — Verifikation (kein `sorryAx`)
+-- §IV — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms deutero_descent_eq
-#print axioms descent_not_factoring
-#print axioms lastBlock_not_deutero_determined
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die drei vormals nackten Aufrufe.
+
+`descent_not_factoring` fällt unter zwei Kriterien zugleich: er war Ziel eines nackten
+Aufrufs, **und** er wird von `AsymmetricDiscontexturalityProbeRegister` im Beweisterm
+konsumiert (`⟨descent_not_factoring⟩`). Gezählt ist er einmal.
+
+Die Erwartungstexte sind dreizeilig umgebrochen — `#print axioms` bricht an der
+Zeilenlänge, nicht an der Namenslänge (`CLAUDE.md` §8 Fallstrick 14). Die Form ist
+gemessen und nicht geglättet; `#guard_msgs` vergleicht verbatim.
+
+Sechs weitere Sätze dieser Datei bleiben nach der Vorgabe ungewacht
+(`cnt_append_singleton`, `cnt_pos_of_mem`, `mem_of_cnt_pos`, `le_foldr_max_of_mem`,
+`foldr_max_mem`, `rgs_lueckenlos`). Ob sie über die Hülle der drei hier gewachten
+mitgesichert sind, ist eine Messung und keine Setzung; sie steht im Zug-B-Befund. -/
+
+/--
+info: 'Reformulation.Proemial.K4DiscontexturalityProbe.deutero_descent_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms deutero_descent_eq
+
+/--
+info: 'Reformulation.Proemial.K4DiscontexturalityProbe.descent_not_factoring' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms descent_not_factoring
+
+/--
+info: 'Reformulation.Proemial.K4DiscontexturalityProbe.lastBlock_not_deutero_determined' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms lastBlock_not_deutero_determined
 
 end Reformulation.Proemial.K4DiscontexturalityProbe

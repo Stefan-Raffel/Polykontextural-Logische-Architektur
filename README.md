@@ -96,7 +96,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | Kennzahl | Wert |
 |---|---:|
 | geprueft (AxiomGate) | 3255 Konstanten |
-| Axiom-Wachen | 501 ueber 64 Dateien |
+| Axiom-Wachen | 530 ueber 72 Dateien |
 | Saetze gesamt | 791 |
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
@@ -228,12 +228,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 501 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren 530 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 501 geschriebenen Wachen erzwingt `lake build`
-**491** (in 63 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: von den 530 geschriebenen Wachen erzwingt `lake build`
+**520** (in 71 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -244,10 +244,10 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-501 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 491 die der erzwungenen: dieselbe Route,
+530 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
+ueber `Reformulation/` und `Foreign/` -, 520 die der erzwungenen: dieselbe Route,
 eingeschraenkt auf die Import-Huelle der Default-Targets. Die Gleichung
-501 = 491 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
+530 = 520 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
 
 Die siebzehn juengsten stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
 je eine in `AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und
@@ -270,6 +270,28 @@ Importbaum von `Reformulation`, und alle vier liegen ausserhalb davon - gemessen
 `env.allImportedModuleNames` unter `import Reformulation` (3405 Module, keines der vier
 darunter). Die Wachen sichern damit das Profil, das Gate die `sorryAx`-Freiheit; fuer die
 vier Sonden gilt das erste und nicht das zweite.
+
+Die **29 juengsten** stammen aus einem Zug, der eine dritte Stufe unter der Unterscheidung
+*geschrieben/erzwungen* geschlossen hat: **gedruckt gegen gewacht.** Ein blosses
+`#print axioms` ohne `#guard_msgs` druckt ein Profil in die Bauausgabe und sichert nichts -
+aendert der Satz sein Profil, druckt es das neue und der Bau bleibt gruen. Gemessen am
+Stand `4c263ee`: **39** solcher Aufrufe in 9 Dateien, davon **28** in Modulen, die bei
+jedem Bau mitlaufen und auf einen Satz der eigenen Datei zeigen. Diese 28 sind jetzt
+Wachen, dazu ein 29. nach einem zweiten Kriterium - `F3g.classI_iff_stage_1`, ohne Aufruf,
+aber im Beweisterm von `F3g.Quine` konsumiert und ausserhalb jeder Huelle.
+
+**Die elf uebrigen bleiben nackt, und das ist kein Rest.** Sie stehen in
+`Diagnostics/AxiomProbe.lean` und `Diagnostics/SwapSatzProbe.lean`; dort ist der nackte
+Aufruf die Bauform, weil ein Werkzeug, das Profile *anzeigen* soll, sie nicht einfrieren
+darf. Die Zahl 39 = 28 + 1 (anderes Kriterium, ohne Aufruf) + 11 (Werkzeuge) geht damit
+auf, wobei der 29. nicht unter den 39 steht - die Gleichung der Wachen lautet
+501 + 29 = 530.
+
+Nebenwirkung, gemessen statt gerechnet: die wachenfreien Aggregat-Saetze gehen von **71 in
+23 Modulen** auf **66 in 22** zurueck. Der Rueckgang ist 5 und nicht 1, weil die Route
+Saetze in wachenfreien *Modulen* zaehlt - mit der einen Wache faellt `F3g/Availability.lean`
+mit allen fuenf Saetzen aus der Zaehlung. Neue Gleichung: F3a-F3g 56 + F1-Belegungen 10 = 66
+in 13 + 9 = 22 Modulen.
 
 ---
 

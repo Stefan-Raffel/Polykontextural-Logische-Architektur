@@ -86,10 +86,17 @@ theorem extension_without_intension :
   T_not_in_clone
 
 -- ============================================================
--- §III — Verifikation (kein `sorryAx`)
+-- §III — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms realize_not_injective
-#print axioms extension_without_intension
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die zwei vormals nackten Aufrufe. Beide Sätze der Datei
+tragen eine Wache. -/
+
+/-- info: 'Reformulation.Proemial.ReflexionsrestProbe.realize_not_injective' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms realize_not_injective
+
+/-- info: 'Reformulation.Proemial.ReflexionsrestProbe.extension_without_intension' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms extension_without_intension
 
 end Reformulation.Proemial.ReflexionsrestProbe

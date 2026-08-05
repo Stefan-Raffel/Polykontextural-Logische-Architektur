@@ -90,4 +90,22 @@ theorem classIV_subtype_stage_succ (n : ℕ) (h : n ≥ 1) :
   | zero  => omega
   | succ k => rfl
 
+-- ============================================================
+-- Wachen — Axiom-Profile
+-- ============================================================
+
+/-! **Wache (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), eingefroren.
+
+Gewacht ist `classI_iff_stage_1`, und zwar nach dem **zweiten** Kriterium des Zuges: er
+trug keinen `#print axioms`-Aufruf, wird aber von `Reformulation.F3g.Quine` im
+Beweisterm konsumiert und liegt ausserhalb jeder Wachenhülle. Er ist der einzige Satz
+des Zuges, der allein über den Zeugen-Konsum hereinkommt — und der erste, den das
+Kriterium **im Aggregat** trifft statt im Sondenbereich.
+
+Die übrigen vier Sätze dieser Datei tragen nach der Vorgabe keine Wache: sie werden
+modulfremd nicht konsumiert. -/
+
+/-- info: 'Reformulation.F3g.classI_iff_stage_1' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms classI_iff_stage_1
+
 end Reformulation.F3g

@@ -88,12 +88,30 @@ theorem surjection_when_fixpoint :
   ⟨Unit, Unit, fun _ _ => (), fun _ => ⟨(), funext fun _ => Subsingleton.elim _ _⟩⟩
 
 -- ============================================================
--- §III — Verifikation (kein `sorryAx`)
+-- §III — Wachen: Axiom-Profile
 -- ============================================================
 
-#print axioms lawvere_fixpoint
-#print axioms no_point_surjection_of_fixpoint_free
-#print axioms no_universal_extension
-#print axioms surjection_when_fixpoint
+/-! **Wachen (Zug B).** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Satz
+eingefroren; sie ersetzen die vier vormals nackten Aufrufe.
+
+Diese Datei trägt die schmalsten Profile des Zuges: **drei ihrer vier Sätze sind
+axiomfrei** und drucken darum den anderen der beiden Ausgabe-Wortlaute (`CLAUDE.md` §8
+Fallstrick 15). Der vierte trägt `[Quot.sound]` **ohne** `propext` — im Bestand eine
+seltene Form; sie stammt aus dem `funext`/`Subsingleton.elim`-Zeugen und ist gemessen,
+nicht erklärt.
+
+`not_ne_self` bleibt nach der Vorgabe ungewacht: kein Aufruf, kein fremdes Zitat. -/
+
+/-- info: 'Reformulation.Proemial.LawvereVorSonde.lawvere_fixpoint' does not depend on any axioms -/
+#guard_msgs in #print axioms lawvere_fixpoint
+
+/-- info: 'Reformulation.Proemial.LawvereVorSonde.no_point_surjection_of_fixpoint_free' does not depend on any axioms -/
+#guard_msgs in #print axioms no_point_surjection_of_fixpoint_free
+
+/-- info: 'Reformulation.Proemial.LawvereVorSonde.no_universal_extension' does not depend on any axioms -/
+#guard_msgs in #print axioms no_universal_extension
+
+/-- info: 'Reformulation.Proemial.LawvereVorSonde.surjection_when_fixpoint' depends on axioms: [Quot.sound] -/
+#guard_msgs in #print axioms surjection_when_fixpoint
 
 end Reformulation.Proemial.LawvereVorSonde
