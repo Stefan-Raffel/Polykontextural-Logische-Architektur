@@ -459,11 +459,13 @@ echo
 echo "   (A.1) laufender Bestand — hier wird geheilt:"
 printf '%s\n' "$BLOCK_A_LAUF" | fmt
 echo
-echo "   (A.2) eingefrorene Fassungen docs/rev1/** und docs/rev2/** — NICHT zu heilen:"
-echo "         Vorgang 7 sichert die Byte-Gleichheit der rev1-Fassungen zu; die"
-echo "         rev2-Fassungen sind mit der Rev3-Ausgabe ebenso stillgelegt. Die"
-echo "         Beurteilung dieser Treffer ist einmal erfolgt und festgeschrieben"
-echo "         (Befund Vorgang 10); künftige Befunde nennen nur die Zahl und verweisen."
+echo "   (A.2) eingefrorene Fassungen unter docs/rev<Ziffer>/ — NICHT zu heilen:"
+echo "         Die Route ist das Präfix, nicht eine Liste der Revisionen: jede"
+echo "         archivierte Fassung faellt automatisch hierher. Vorgang 7 sichert die"
+echo "         Byte-Gleichheit der ersten Fassung zu; jede weitere ist mit ihrer"
+echo "         Nachfolge-Ausgabe ebenso stillgelegt. Die Beurteilung dieser Treffer"
+echo "         ist einmal erfolgt und festgeschrieben (Befund Vorgang 10); kuenftige"
+echo "         Befunde nennen nur die Zahl und verweisen."
 printf '%s\n' "$BLOCK_A_FROZ" | fmt
 echo
 echo "── Gruppe (B) ZFC-RÜCKFALL — Wort + ZFC-Trigger im Fenster ±1 ────────────────"

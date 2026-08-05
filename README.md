@@ -21,7 +21,7 @@ a translation of it:
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
 
-- Working paper, edition Rev3, in English: `docs/en.html`
+- Working paper, edition Rev4, in English: `docs/en.html` (Part A the shape, Part B the apparatus)
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
 - What a green build assures, per target: `docs/build-targets.md`
 - Current figures with their counting routes: the German section below
@@ -61,8 +61,8 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
-**Arbeitspapier zur Fassung PKL Rev3** (deutsch und englisch, mit Figuren und
-Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
+**Arbeitspapier zur Fassung PKL Rev4** (deutsch und englisch, zwei Teile in einem Dokument,
+acht Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
 und im Bestand unter `docs/de.html` und `docs/en.html`.
 
 Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf
@@ -112,8 +112,10 @@ eine andere Frage: 140 rohe Treffer ueber den ganzen verfolgten Bestand, 97 in d
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
-Die erste Zahl zaehlt sich selbst mit: je drei ihrer Treffer stehen in `docs/de.html` und
-`docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitiert. Am Stand
+Die erste Zahl zaehlt sich selbst mit: bis zur dritten Fassung standen je drei ihrer Treffer
+in `docs/de.html` und `docs/en.html`, weil das Arbeitspapier den Wortlaut dieser Suche zitierte;
+seit der vierten stehen sie in `docs/rev3/`, weil die vierte Fassung die Marke benennt statt sie
+zu zitieren. Am Stand
 `e5ef3d7` waren es 123, mit der deutschen Fassung Rev2 126, mit der englischen 129, und mit
 dem Absatz zu dieser Zahl in `CLAUDE.md` §3 dann 130 - der Absatz nennt den Suchbegriff mit
 Bindestrich, und ein Bindestrich ist eine Wortgrenze. Diese drei Zuege liessen die zweite
@@ -142,6 +144,13 @@ Rechnung je Datei: `CLAUDE.md` §8 2 -> 3, weil der neue Eintrag die `sorry`-Zah
 Vergleichsfall nennt; und **dieser Absatz selbst** 1 -> 2, weil er den Begriff ein
 zweites Mal nennt, um die Bewegung zu erklaeren. Sonst keine Datei bewegt. Die zweite
 und die dritte Zahl bleiben unberuehrt, weil der Zug keine `.lean`-Datei anfasst.
+
+Die Papierausgabe Rev4: 140 -> 140, und der Stillstand ist eine Rechnung und kein Ausbleiben.
+Je Datei: die Archivierung der Rev3-Fassungen unter `docs/rev3/de.html` und `docs/rev3/en.html`
+bringt zweimal drei Vorkommen neu in den verfolgten Bestand (+6); die beiden laufenden Fassungen
+verlieren dieselben zweimal drei (-6), weil die vierte Fassung die Marke benennt statt ihren
+Wortlaut zu zitieren. Die zweite und die dritte Zahl bleiben unberuehrt, weil der Zug keine
+`.lean`-Datei anfasst. Gemessen ist die Zahl NACH dem Verfolgen der neuen Dateien.
 
 **Die Nachfuehrung einer selbstzaehlenden Zahl bewegt sie ein zweites Mal.** Der Commit
 `23104c9` traegt darum an dieser Stelle 139 und war damit an seinem eigenen Stand schon
