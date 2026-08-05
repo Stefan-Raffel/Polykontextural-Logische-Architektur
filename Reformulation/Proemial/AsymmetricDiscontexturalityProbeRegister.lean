@@ -45,10 +45,19 @@ verbleibende Grenze — der gebundene Zeuge entscheidet KA nur **modulo** der
 markierten Identifikation „Stufenwechsel = Kontexturwechsel" — ist im Dateikopf
 von `AsymmetricDiscontexturalTransition` benannt.
 
-**Wachenlos mit Vermerk:** die Sonden selbst tragen nach Bestand keine Wachen;
-diese Standalone-Datei folgt der Sonden-Praxis. Bei einem späteren
-Aggregatanschluss sind Wachen nachzurüsten und die Eichwerte neu zu messen
-(CLAUDE.md §§1–3).
+**Wachenlos mit Vermerk.** Der zitierte Zeuge `ProemialInversionProbe.split_epi_not_iso`
+trägt seit dem K1-Zug (5. August 2026) eine eigene Wache, ebenso die übrigen drei Sätze
+seiner Datei und die zehn der Sonden `A1DescentProbe`, `A3CoarseningProbe` und
+`K3CouplingProbe`; alle vierzehn sind über das Target `Probes` erzwungen. Der zweite
+zitierte Zeuge `K4DiscontexturalityProbe.descent_not_factoring` ist davon **nicht**
+erfasst — jene Sonde führt den Wortlaut „vor dem proemialen Entwurf ρ" nicht und stand
+darum ausserhalb der K1-Menge; ihre neun Sätze sind ungewacht.
+
+Diese Datei selbst bleibt wachenlos. Ihre zwei Sätze sind Einpackungen
+(`⟨split_epi_not_iso⟩`, `⟨descent_not_factoring⟩`) und tragen keinen Gehalt über die
+eingepackten Zeugen hinaus; das Profil von `split_epi_not_iso` ist seit K1 an der Quelle
+gewacht, das von `descent_not_factoring` nicht. Bei einem späteren Aggregatanschluss sind
+Wachen nachzurüsten und die Eichwerte neu zu messen (CLAUDE.md §§1–3).
 
 ## Status
 
