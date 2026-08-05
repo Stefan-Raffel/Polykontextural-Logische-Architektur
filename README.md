@@ -101,7 +101,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | Build-Jobs | 1307 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
-Kennzahlen gezaehlt am gruenen Build, Stand Commit `7eeec6f`.
+Kennzahlen gezaehlt am gruenen Build, Stand Commit `c2cb1fc`.
 
 Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kein
 `sorryAx`, die Whitelist ist leer, und jede neue Luecke bricht den Bau. Diese Zusicherung
