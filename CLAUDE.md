@@ -301,8 +301,8 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 vierzehn, §12 fuenf,
-Datei neunzehn; die Gleichung 14 + 5 = 19 geht auf. Es ist dieselbe Sorte Falle wie in §3:
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand dieses Zuges: §8 fuenfzehn, §12 sechs,
+Datei einundzwanzig; die Gleichung 15 + 6 = 21 geht auf. Es ist dieselbe Sorte Falle wie in §3:
 eine Route unterscheidet nur, was sie zaehlt.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
@@ -492,6 +492,26 @@ Reihe nach einer Schablone setzt, bricht die kurzen. Gemessen an den 17 Saetzen 
 dreizehn Erwartungen beim ersten Lauf gehalten, elf in umgebrochener und zwei in einzeiliger
 Form.
 
+**15 - `#print axioms` hat ZWEI Wortlaute; wer nur einen sucht, misst zu klein.** Die
+Ausgabe lautet
+
+    '<Name>' depends on axioms: <Profil>          fuer jeden Satz mit Axiomen
+    '<Name>' does not depend on any axioms        fuer jeden axiomfreien Satz
+
+Wer die gewachten Namen aus den eingefrorenen Erwartungstexten zieht und nur den ersten
+Wortlaut sucht, findet die axiomfreien Wachen nicht. **Gemessen am Stand `c3b28cb`:** die
+Route ueber den ersten Wortlaut allein liefert **415** Namen, ueber beide **487** - 72
+Wachen des Bestandes sind axiomfrei.
+
+*Heilung:* beide Wortlaute suchen, und die gewonnene Namensmenge gegen die `grep`-Route der
+Wachen eichen - Mengengroesse gegen Mengengroesse, §12 Regel 2.
+
+*Warum der Eintrag hier steht:* das Ergebnis war **nicht leer, sondern knapp zu klein**.
+Eine Huelle aus 415 Saatnamen laesst sich rechnen, sie sieht plausibel aus, und keine
+Zwischenrechnung faellt dabei auf; gefunden hat es allein die Eichung. Das ist der achte
+Fallstrick in weiterer Gestalt, und die unangenehmere: ein leeres Ergebnis stutzt, ein knapp
+zu kleines nicht.
+
 ### Was aus dem achten und neunten folgt - kein eigener Fallstrick, die Regel dahinter
 
 Ein fehlender Treffer und ein anders geschriebener Treffer sehen in einer Trefferzaehlung
@@ -620,7 +640,7 @@ Remote-Zeiger ohne `git fetch` abliest, misst den lokalen Stand und nicht den Se
 
 ## 12 - Messen: was eine Route zu leisten hat
 
-Vier Regeln, jede aus einem gemessenen Fehlgriff dieses Korpus. Sie gelten fuer jede Zahl,
+Regeln, jede aus einem gemessenen Fehlgriff dieses Korpus. Sie gelten fuer jede Zahl,
 die ein Dokument verlaesst.
 
 **1 - Eine Route wird gegengerechnet, bevor ihr Ergebnis in ein Dokument geht.** Der
@@ -653,6 +673,21 @@ alten Standes an die Aehnlichkeits-Entdopplung, darunter zwei Benennungs-Marken,
 Gesamtzahl stieg dabei von 125 auf 281. Gefunden hat es die Mengenprobe, nicht der
 Zahlenvergleich. Das ist Regel 3 in ihrer schaerfsten Gestalt: dort belegte Wertgleichheit
 keine Mengengleichheit, hier belegt Wertzuwachs keine Mengeninklusion.
+
+**6 - Eine wiederholte Messung laeuft zuerst mit der Saatmenge des vorigen Zuges.** Wird
+eine Messung nach einer Aenderung wiederholt, muss dieser erste Lauf die Zahlen des vorigen
+Zuges **exakt** reproduzieren; erst dann gilt der neue Lauf. Anlass: die Wachenspitze
+Stufe 2 - die Huellenmessung lief zweimal ueber dieselbe Umgebung, einmal mit den 474
+Wachennamen des Vorstandes und einmal mit allen 487. Der erste Lauf bestaetigte den Stand
+der Stufe 1 Zahl fuer Zahl (464 wirksam, Huelle 7585, 6 innen, 37 aussen), und erst damit
+war der zweite mit ihm vergleichbar.
+
+**Was die Regel leistet, und was nicht.** Die Regeln 1 bis 3 pruefen ein *Ergebnis* gegen
+eine Erwartung oder gegen eine zweite Route desselben Standes. Diese hier prueft, ob die
+Route **in zwei Zuegen dasselbe misst**. Eine Abweichung im ersten Lauf hiesse: die beiden
+Messungen sind nicht vergleichbar - und das faellt sonst niemandem auf, weil beide fuer sich
+plausibel sind. Sie ersetzt keine der uebrigen Regeln; sie kommt hinzu, wo ein Stand gegen
+einen frueheren gestellt wird.
 
 Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
 der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.
