@@ -23,6 +23,11 @@
 #   ./kennzahlen.sh --lint     zusaetzlich doc_lint.sh (Gruppensummen)
 #   ./kennzahlen.sh --alles    beides
 #   ./kennzahlen.sh --tsv      nur Name<TAB>Wert, fuer Weiterverarbeitung
+#   ./kennzahlen.sh --markdown schreibt docs/kennzahlen.md (impliziert --alles)
+#
+# docs/kennzahlen.md ist die EINZIGE Stelle, an der Kennzahlen des Korpus als
+# Werte stehen. Papier, README und Befunde zeigen dorthin und schreiben keine
+# Zahl ab (CLAUDE.md §13). Die Datei wird nie von Hand geaendert.
 #
 # Die Werte gelten am ausgewiesenen Commit. Kennzahlen gehoeren NICHT in diese
 # Datei und nicht in CLAUDE.md — hier stehen nur die Routen.
@@ -30,38 +35,47 @@
 set -u
 cd "$(dirname "$0")" || exit 2
 
-BAU=0; LINT=0; TSV=0
+BAU=0; LINT=0; TSV=0; MD=0
 for a in "$@"; do
   case "$a" in
     --bau) BAU=1 ;;
     --lint) LINT=1 ;;
     --alles) BAU=1; LINT=1 ;;
     --tsv) TSV=1 ;;
-    -h|--help) sed -n '2,21p' "$0"; exit 0 ;;
+    --markdown) MD=1; BAU=1; LINT=1 ;;
+    -h|--help) sed -n '2,27p' "$0"; exit 0 ;;
     *) echo "unbekanntes Argument: $a" >&2; exit 2 ;;
   esac
 done
 
 FEHLER=0
 declare -a TSVZEILEN=()
+declare -a MDZEILEN=()
 
 k() { # k NAME WERT ROUTE
   TSVZEILEN+=("$1	$2")
+  MDZEILEN+=("| $1 | $2 | $3 |")
   [ "$TSV" = 1 ] && return
   printf '  %-34s %10s   %s\n' "$1" "$2" "$3"
 }
-ueberschrift() { [ "$TSV" = 1 ] || printf '\n── %s %s\n' "$1" "$(printf '─%.0s' $(seq 1 $((72 - ${#1}))))"; }
+ueberschrift() {
+  MDZEILEN+=("|  |  |  |" "| **$1** |  |  |")
+  [ "$TSV" = 1 ] || printf '\n── %s %s\n' "$1" "$(printf '─%.0s' $(seq 1 $((72 - ${#1}))))"
+}
 gleichung() { # gleichung TEXT LINKS RECHTS
   local ok="✓"
   if [ "$2" != "$3" ]; then ok="✗ FAELLT"; FEHLER=1; fi
   TSVZEILEN+=("gleichung.$1	$2=$3")
+  MDZEILEN+=("| Gleichung *$1* | $ok | $2 gegen $3 |")
   [ "$TSV" = 1 ] && return
   printf '  %-34s %10s   %s\n' "Gleichung $1" "$ok" "$2 gegen $3"
 }
 
 # --- Stand ------------------------------------------------------------------
 COMMIT=$(git rev-parse --short HEAD 2>/dev/null || echo '—')
-DIRTY=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+# docs/kennzahlen.md ist die Ausgabe dieses Laufs und zaehlt fuer den Anker nicht mit —
+# sonst waere die Tafel schon durch ihr eigenes Schreiben nie verankert.
+DIRTY=$(git status --porcelain 2>/dev/null | grep -v 'docs/kennzahlen\.md$' | wc -l | tr -d ' ')
 [ "$DIRTY" = 0 ] && SAUBER="sauber" || SAUBER="$DIRTY geaenderte Dateien — Werte gelten NICHT am Commit"
 
 if [ "$TSV" = 0 ]; then
@@ -303,6 +317,37 @@ if [ "$LINT" = 1 ] && [ -x ./doc_lint.sh ]; then
 fi
 
 # --- Abschluss --------------------------------------------------------------
+if [ "$MD" = 1 ]; then
+  mkdir -p docs
+  {
+    echo "# Kennzahlen"
+    echo
+    echo "**Erzeugt von \`kennzahlen.sh --markdown\`. Nicht von Hand aendern.**"
+    echo
+    echo "Dies ist die einzige Stelle im Korpus, an der Kennzahlen als **Werte** stehen."
+    echo "Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab."
+    echo "Der Grund steht in \`CLAUDE.md\` §13: eine Zahl, die an zwei Orten steht, hat"
+    echo "einen Ort zu viel, und der zweite altert unbemerkt."
+    echo
+    echo "Stand: Commit \`$COMMIT\` ($SAUBER)."
+    if [ "$FEHLER" = 0 ]; then
+      echo "Alle mitlaufenden Gleichungen halten."
+    else
+      echo "**MINDESTENS EINE GLEICHUNG FAELLT — diese Tafel ist nicht zu verwenden.**"
+    fi
+    echo
+    echo "| Kennzahl | Wert | Route |"
+    echo "|---|---:|---|"
+    printf '%s\n' "${MDZEILEN[@]}"
+    echo
+    echo "**Was hier nicht steht.** Zahlen, die ein Satz des Korpus *behauptet*, sind keine"
+    echo "Kennzahlen — sie stehen in der Traegertafel des Papiers, mit dem Satz, der sie"
+    echo "traegt. Und Zahlen, die ausserhalb des Korpus gerechnet wurden, tragen dort den"
+    echo "Vermerk *gerechnet* und keine Route in diese Datei."
+  } > docs/kennzahlen.md
+  [ "$TSV" = 0 ] && echo && echo "── docs/kennzahlen.md geschrieben ($(wc -l < docs/kennzahlen.md | tr -d ' ') Zeilen)."
+fi
+
 if [ "$TSV" = 1 ]; then
   printf '%s\n' "${TSVZEILEN[@]}"
   exit $FEHLER
