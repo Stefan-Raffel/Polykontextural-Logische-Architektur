@@ -25,3 +25,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `786d495` | Rev5, Schritt 1: Rev4 archiviert, Muss-Anker gesetzt | die Archivierung bewegt N1 nicht — das Papier nennt den Suchbegriff bewusst nicht |
 | 2026-08-06 | `df7c1cc` | Rev5, Nachzug: zehnte Messregel | eine Auflage stuetzte eine Aussage ueber vierzig Traeger auf die Pruefung von dreien |
 | 2026-08-06 | `292844f` `0b2bc66` | Rueckbau 1: `kennzahlen.sh`, §13, `docs/kennzahlen.md` | N1 ohne Wortgrenze zaehlt `sorryAx` mit — 230 statt 144 |
+| 2026-08-06 | `7f2c48e` | Rueckbau 2: Kennzahlentafel, Journal, kein Befund je Zug | zwoelf Mess-Marken im Papier waren ersetzbar, ohne dass eine Aussage verloren geht |
