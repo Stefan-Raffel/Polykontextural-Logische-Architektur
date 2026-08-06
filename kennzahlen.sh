@@ -276,6 +276,34 @@ k "N1 roh" "$N1" "WORTvorkommen (\\bsorry\\b) ueber den verfolgten Bestand; zaeh
 k "  davon .lean" "$N1LEAN" "dieselbe Route, auf *.lean eingeschraenkt"
 k "Zeilen mit Vorkommen" "$N1ZEILEN" "ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9)"
 
+# --- Ablagen ----------------------------------------------------------------
+ueberschrift "ABLAGEN (CLAUDE.md — selbstzaehlend)"
+
+ABL=$(python3 - <<'PY'
+import re
+lines = open('CLAUDE.md', encoding='utf-8').read().split('\n')
+def para(rx):
+    idx = [k for k, l in enumerate(lines) if re.match(rx, l)]
+    if not idx:
+        return []
+    i = idx[0]
+    j = next((k for k in range(i + 1, len(lines)) if re.match(r'^## ', lines[k])), len(lines))
+    return lines[i:j]
+p = re.compile(r'^\*\*\d+ - ')
+f = len([l for l in para(r'^## 8 ') if p.match(l)])
+r = len([l for l in para(r'^## 12 ') if p.match(l)])
+d = len([l for l in lines if p.match(l)])
+print(f"fallstricke\t{f}\nregeln\t{r}\ndatei\t{d}")
+PY
+)
+A_FALL=$(echo "$ABL" | awk -F'\t' '$1=="fallstricke"{print $2}')
+A_REG=$(echo "$ABL" | awk -F'\t' '$1=="regeln"{print $2}')
+A_DAT=$(echo "$ABL" | awk -F'\t' '$1=="datei"{print $2}')
+k "Fallstricke (§8)" "$A_FALL" "fett nummerierte Eintraege INNERHALB von §8"
+k "Messregeln (§12)" "$A_REG" "dieselbe Route in §12"
+k "fett nummeriert, ganze Datei" "$A_DAT" "die naive Route — sie mischt beide Ablagen"
+gleichung "Ablagen" "$A_DAT" "$((A_FALL + A_REG))"
+
 # --- Ledger -----------------------------------------------------------------
 if [ -f docs/definition-ledger.md ] && [ -f Reformulation/Proemial/DefinitionLedger.lean ]; then
   ueberschrift "DEFINITION-LEDGER"
@@ -324,7 +352,7 @@ if [ "$MD" = 1 ]; then
     echo
     echo "**Erzeugt von \`kennzahlen.sh --markdown\`. Nicht von Hand aendern.**"
     echo
-    echo "Dies ist die einzige Stelle im Korpus, an der Kennzahlen als **Werte** stehen."
+    echo "Kennzahlen des Korpus stehen als **Werte** hier und sonst nirgends."
     echo "Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab."
     echo "Der Grund steht in \`CLAUDE.md\` §13: eine Zahl, die an zwei Orten steht, hat"
     echo "einen Ort zu viel, und der zweite altert unbemerkt."

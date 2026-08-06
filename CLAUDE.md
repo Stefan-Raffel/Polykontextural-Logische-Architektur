@@ -304,19 +304,16 @@ faellig gewesen - eine zweite Darstellung der Eintragszahl ohne Route dazwischen
 genau der Fall aus §1 (Ausweg C). Die Eintraege bleiben durchnummeriert; eine Gesamtzahl
 steht nirgends und muss darum auch nirgends nachgezogen werden.
 
-Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
-Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Rev5-Zuges: §8
-neunzehn, §12 zehn, Datei neunundzwanzig; die Gleichung 19 + 10 = 29 geht auf, und kein
-weiterer Paragraph fuehrt fett nummerierte Eintraege. (Am Stand des Formulierungs-Zuges las
-dieselbe Route 19 + 9 = 28, am Stand des Zuges A 17 + 8 = 25.) Es ist dieselbe Sorte Falle wie in §3: eine Route
-unterscheidet nur, was sie zaehlt.
+**Wer sie doch braucht, ruft `./kennzahlen.sh`** - es zaehlt §8, §12 und die ganze Datei
+und prueft die Gleichung `§8 + §12 = Datei` mit. Von Hand wurde diese Zahl dreimal
+nachgezogen; seit §13 wird sie nicht mehr nachgezogen, sondern gemessen.
 
-*Und die Abschnittsgrenze gehoert zur Route.* Beim Nachzaehlen in Zug A lieferte ein erster
-Lauf fuer §12 **null**, weil das Abbruchmuster fuer das Dateiende versehentlich auf jede
-Leerzeile passte und den Paragraphen an seiner ersten abschnitt. Die Gleichung fiel damit
-laut aus (17 + 0 gegen 25) - §12 Regel 2 in Reinform: eine Probe, die nur eine Zahl
-abliest, haette hier geschwiegen.
+*Warum die Route eine Abschnittsgrenze braucht.* Die naive Route ueber die ganze Datei
+liefert mehr als §8, weil §12 gleich ausgezeichnete Eintraege fuehrt - und beim Nachzaehlen
+in Zug A lieferte ein erster Lauf fuer §12 **null**, weil das Abbruchmuster fuer das
+Dateiende auf jede Leerzeile passte. Die Gleichung fiel damals laut aus; eine Probe, die nur
+eine Zahl abliest, haette geschwiegen. Beide Fehler sind der Grund, aus dem das Skript nicht
+zaehlt, sondern eine Gleichung prueft.
 
 **Aufgetreten heisst nicht erklaert.** Ein Eintrag haelt fest, was gemessen wurde, und das
 ist nicht immer die Ursache: der zehnte haelt eine Profildifferenz fest, deren Mechanismus
@@ -739,8 +736,22 @@ gehen standalone, solange kein Aggregat-Satz sie konsumiert.
 
 ## 11 - Ergebnisdokumente: Fund ja, Stand nein
 
-Jeder Auftrag endet in einem Ergebnisdokument. Es berichtet, was der Zug getan und gemessen
-hat - und nur das.
+**Die Regelform: die Commit-Nachricht ist der Bericht.** Ein Zug endet in einem Commit und
+einer Zeile in `docs/journal.md`. Die Nachricht traegt, was der Zug getan und gemessen hat;
+die Journalzeile traegt Datum, Hash, einen Satz und - wenn es einen gab - den Fund. Beides
+liegt in der Geschichte, ist an den Stand gebunden und kostet keinen zweiten Ort.
+
+**Ein eigenes Ergebnisdokument nur auf Verlangen** oder wenn der Zug etwas findet, das
+laenger ist als eine Commit-Nachricht: eine Erhebung, eine Begutachtung, eine Messung mit
+Tafel. **Die Faustregel: was in eine Commit-Nachricht passt, gehoert in eine
+Commit-Nachricht.** Bis zu diesem Paragraphen endete jeder Zug in einem mehrhundertzeiligen
+Befund; das war der groesste Einzelposten dieses Projekts und hat den Bau verdraengt, den er
+berichten sollte (§13).
+
+**Und kein Ergebnisdokument schreibt eine Kennzahl ab.** Sie stehen in `docs/kennzahlen.md`,
+erzeugt von `./kennzahlen.sh --markdown`, mit Stand-Anker. Ein Bericht zeigt dorthin.
+
+Was fuer beide Formen gilt - Nachricht wie Dokument:
 
 **Kein fremder Stand.** Ein Befund schreibt den Stand eines Dokuments, das er nicht geaendert
 hat, nicht fort: nicht den Plan, nicht das README, nicht das Ledger, nicht das Register. Wer

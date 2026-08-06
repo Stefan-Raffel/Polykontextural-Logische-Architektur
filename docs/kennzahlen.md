@@ -2,12 +2,12 @@
 
 **Erzeugt von `kennzahlen.sh --markdown`. Nicht von Hand aendern.**
 
-Dies ist die einzige Stelle im Korpus, an der Kennzahlen als **Werte** stehen.
+Kennzahlen des Korpus stehen als **Werte** hier und sonst nirgends.
 Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `292844f` (1 geaenderte Dateien — Werte gelten NICHT am Commit).
+Stand: Commit `0b2bc66` (3 geaenderte Dateien — Werte gelten NICHT am Commit).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -46,6 +46,12 @@ Alle mitlaufenden Gleichungen halten.
 |   davon .lean | 101 | dieselbe Route, auf *.lean eingeschraenkt |
 | Zeilen mit Vorkommen | 141 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
 |  |  |  |
+| **ABLAGEN (CLAUDE.md — selbstzaehlend)** |  |  |
+| Fallstricke (§8) | 19 | fett nummerierte Eintraege INNERHALB von §8 |
+| Messregeln (§12) | 10 | dieselbe Route in §12 |
+| fett nummeriert, ganze Datei | 29 | die naive Route — sie mischt beide Ablagen |
+| Gleichung *Ablagen* | ✓ | 29 gegen 29 |
+|  |  |  |
 | **DEFINITION-LEDGER** |  |  |
 | Ledger-Zeilen | 91 | Zeilen-IDs in docs/definition-ledger.md |
 | Referenzen im Bau | 75 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
@@ -55,7 +61,7 @@ Alle mitlaufenden Gleichungen halten.
 | geprueft (AxiomGate) | 3328 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 67 | Superlativ, meldend |
+| (A.1) laufender Bestand | 68 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 24 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
