@@ -301,10 +301,10 @@ steht nirgends und muss darum auch nirgends nachgezogen werden.
 
 Wer sie doch zaehlen will, zaehlt die fetten Eintragsnummern **innerhalb dieses
 Paragraphen** - die naive Route ueber die ganze Datei liefert mehr, weil §12 gleich
-ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Formulierungs-Zuges: §8
-neunzehn, §12 neun, Datei achtundzwanzig; die Gleichung 19 + 9 = 28 geht auf, und kein
-weiterer Paragraph fuehrt fett nummerierte Eintraege. (Am Stand des Zuges A las dieselbe
-Route 17 + 8 = 25.) Es ist dieselbe Sorte Falle wie in §3: eine Route
+ausgezeichnete Regeln fuehrt. Gegengerechnet am Stand des Rev5-Zuges: §8
+neunzehn, §12 zehn, Datei neunundzwanzig; die Gleichung 19 + 10 = 29 geht auf, und kein
+weiterer Paragraph fuehrt fett nummerierte Eintraege. (Am Stand des Formulierungs-Zuges las
+dieselbe Route 19 + 9 = 28, am Stand des Zuges A 17 + 8 = 25.) Es ist dieselbe Sorte Falle wie in §3: eine Route
 unterscheidet nur, was sie zaehlt.
 
 *Und die Abschnittsgrenze gehoert zur Route.* Beim Nachzaehlen in Zug A lieferte ein erster
@@ -876,6 +876,39 @@ setzen einen Wert und geben den alten zurueck - im Umfeld anders bedeutend). Geb
 *Route:* den Kandidaten vor der Definition ueber `Reformulation/` und `Foreign/` suchen
 **und** im Umfeld (Mathlib, Lean-Kern) - und bei einem Treffer nicht die Naehe entscheiden
 lassen, sondern die Bedeutung.
+
+**10 - Fallen Wortlaut und Grund einer Vorgabe auseinander, gilt der Grund - und die
+Divergenz wird gemeldet.** Auch diese Regel regelt keine Zahl; sie steht hier aus demselben
+Grund wie die neunte und mit demselben Ausfallmodus in seiner schaerfsten Gestalt: **die
+buchstabengetreue Befolgung meldet sich nicht als Fehler, sondern als Erfolg.** Wer den
+Wortlaut erfuellt und die Sache verfehlt, hat einen gruenen Zug, eine erfuellte Auflage und
+kein Warnzeichen.
+
+Zwei Anlaesse, beide gemessen:
+
+- **Ein Gegenstand, den die Vorgabe der Ablage zuwies und der in einer Lean-Datei lag.** Im
+  Formulierungs-Zug verlangte §1 die Trennung von Ablage- und Bestands-Commit; Gegenstand 4
+  war dort der Ablage zugeschlagen. Die Suche ueber `Reformulation/`, `Foreign/`, `docs/`,
+  `README.md` und `CLAUDE.md` fand ihn an **einer** Stelle, und die war ein Dateikopf in
+  `Kenogram/PlaceSwap.lean`. Nach dem Wortlaut haette eine Lean-Datei in den Ablage-Commit
+  gehoert - und genau das haette aufgehoben, was die Trennung sichern soll: der
+  Ablage-Commit haette einen Bau nach sich gezogen und die Kennzahlenmessung ihre Ursache
+  verloren. Der Gegenstand ging in den Bestands-Commit.
+- **Eine Pruefung, deren Bereich kleiner war als der Anspruch, den sie pruefen sollte.** Die
+  Vorgabe zur fuenften Ausgabe knuepfte eine Aussage ueber **alle** vierzig Traeger des
+  Papiers an die Profile von **dreien**. Keiner der drei fiel axiomfrei aus; nach dem
+  Wortlaut haette die Rangaussage stehen duerfen. Gemessen wurden alle vierzig - und der
+  vierte axiomfreie Traeger, `Proemial/StageAscent.lean` `ascent_proper`, stand in keiner
+  der drei Marken. Die Rangaussage faellt und wird durch die gemessene Liste ersetzt.
+
+*Route:* vor der Ausfuehrung einer Auflage den Bereich nennen, ueber den sie entscheidet,
+und ihn gegen den Bereich der Aussage halten, die sie schuetzen soll. Sind die beiden
+verschieden, wird der groessere gemessen und die Divergenz in den Befund geschrieben - die
+Auflage wird dabei nicht stillschweigend geweitet, sondern ihr Fehlgriff benannt.
+
+*Und die Grenze der Regel.* Sie erlaubt kein Auslegen nach Gutduenken: der Grund muss der
+**genannte** Grund der Vorgabe sein, nicht ein unterstellter. Wo die Vorgabe ihren Grund
+nicht nennt, gilt ihr Wortlaut, und die Nachfrage ist der Zug.
 
 ### Die Kontaktzahl: eine Messgroesse und ihr Bereich
 
