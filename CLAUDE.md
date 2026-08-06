@@ -99,6 +99,11 @@ Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
 
 ## 3 - Wachen
 
+> **Die Zaehlrouten dieses Paragraphen fahren in `./kennzahlen.sh`** (§13). Wer eine
+> Kennzahl braucht, ruft das Skript - es gibt jede Zahl mit ihrer Route aus und prueft vier
+> Gleichungen mit. Die Prosa hier begruendet die Routen; sie ist **nicht** die Vorlage zum
+> Abschreiben.
+
 Jeder **tragende** Satz traegt eine Wache. Hilfslemmata sind ausgenommen, sofern ihr Profil
 ueber die Huelle eines gewachten Satzes mitgesichert ist - Axiom-Profile sind
 Huell-Eigenschaften, ein konsumierender Satz faengt Aenderungen in seinen Voraussetzungen mit.
@@ -936,3 +941,38 @@ Weitung erfindet keine rueckwirkende Bewegung.**
 
 Die vierte Regel hat eine Schwester in §3: die Anwesenheit einer `.olean` ist kein Nachweis
 der Targetzugehoerigkeit. Beide Male ist die Import-Huelle die tragende Groesse.
+
+---
+
+## 13 - Rueckbau: wann eine Regel entfaellt
+
+Bis zu diesem Paragraphen wuchs diese Datei **monoton**. Jeder Fehlgriff wurde zu einer
+Regel, jede Regel prueft seither jeden Zug, und keine ist je entfallen - neunundzwanzig
+Eintraege, null Ausserkraftsetzungen. Der Apparat sollte Zahlen schuetzen; er hat angefangen,
+die Arbeit zu verdraengen, die er schuetzt. **Das ist kein Vorwurf an die Regeln, sondern ein
+fehlendes Gegenstueck**: eine Ablage ohne Verfall ist kein Werkzeug, sondern ein Archiv.
+
+**§13.1 - Was ein Skript fahren kann, steht nicht als Handlungsanweisung.** Eine Regel, deren
+Route maschinell laeuft, wird zur Zeile im Skript; in dieser Datei bleibt der **Grund** und
+ein Zeiger, nicht das Kommando. Ein Grund altert nicht, ein Kommando altert bei jedem Zug.
+
+**§13.2 - Eine Regel, die zwei Ausgaben lang nicht gefeuert hat, wird gestrichen oder
+maschinell.** Gefeuert heisst: sie hat einen Zug angehalten oder korrigiert, nachweisbar an
+einem Befund oder einem Commit. Wer sie behalten will, nennt den Fall. **Eine Regel ohne
+Fall ist eine Vermutung mit Nummer.**
+
+**§13.3 - Wer eine Regel setzt, sagt, wie sie wieder verschwindet.** Zu jedem neuen Eintrag
+gehoert ein Satz: was sie maschinell machen wuerde, oder woran man merkt, dass sie sich
+erledigt hat. Ohne diesen Satz ist der Eintrag unvollstaendig.
+
+**§13.4 - Der Rueckbau ist ein eigener Zug und braucht keine Vorgabe.** Er darf Regeln
+streichen, zusammenlegen und in Skripte verschieben; er darf keine setzen. Was er streicht,
+nennt er mit Nummer und Grund in der Commit-Nachricht - **die Geschichte behaelt, was die
+Datei verliert.**
+
+*Erster Vollzug, `kennzahlen.sh`.* Die Zaehlrouten aus §3 fahren jetzt in einem Skript, mit
+vier mitlaufenden Gleichungen. Die Prosa in §3 begruendet sie weiterhin und **ersetzt sie
+nicht mehr**: wer eine Kennzahl braucht, ruft `./kennzahlen.sh` und schreibt keine `grep`
+Zeile von Hand ab. Damit sind §12 Regel 1, 2 und 4 an dieser Stelle **ausgefuehrt statt
+befolgt** - die Gegenrechnung, die Gleichungspruefung und die Nicht-Summierung der Targets
+stehen im Skript und nicht mehr in der Sorgfalt des Zuges.
