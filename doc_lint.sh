@@ -820,14 +820,14 @@ ziffer_collect() {
 #                sie steht in einem `--`-Kommentar und ueberlebt die
 #                Prosa-Verengung; nur die `^`-Regel haelt sie heraus.
 #
-# EINE HAELFTE DES SCHNITTS IST HEUTE NICHT VERANKERT, und das steht hier statt
-# unbemerkt zu bleiben: die Traegertafel ist eine Erfindung der VIERTEN Ausgabe.
-# Gemessen tragen `docs/rev1|rev2|rev3` je NULL Ziffern; ein Anker dort war ein
-# erster Versuch dieses Zuges und schlug fehl, weil er geraten und nicht gemessen
-# war. Der Glob `docs/rev<n>/*.html` schneidet also derzeit nichts, was die
-# Route faende. AUSLOESER: sobald eine Ausgabe mit Traegertafel archiviert wird —
-# also mit der fuenften —, gehoert `docs/rev4/de.html` in die MUSS-Liste.
-ZIFFER_MUSS='docs/de.html docs/en.html'
+# BEIDE HAELFTEN DES SCHNITTS SIND JETZT VERANKERT. Bis zur fuenften Ausgabe war
+# die Archiv-Haelfte leer: die Traegertafel ist eine Erfindung der VIERTEN
+# Ausgabe, und `docs/rev1|rev2|rev3` tragen je NULL Ziffern — gemessen, nachdem
+# ein geratener Anker dort fehlgeschlagen war. Der damals vermerkte AUSLOESER hat
+# mit der Archivierung von Rev4 gefeuert: `docs/rev4/de.html` traegt 106 Ziffern
+# und steht seither in der MUSS-Liste. Der Glob `docs/rev<n>/*.html` schneidet
+# damit nachweislich etwas, was die Route sonst faende.
+ZIFFER_MUSS='docs/de.html docs/en.html docs/rev4/de.html'
 ZIFFER_DARFNICHT='Reformulation/Kenogram/Basic.lean Reformulation/Proemial/MediationProcess.lean docs/parity.sh'
 
 ziffer_report() {
