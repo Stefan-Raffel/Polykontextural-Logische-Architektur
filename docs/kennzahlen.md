@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `31fb841` (2 geaenderte Dateien — Werte gelten NICHT am Commit).
+Stand: Commit `d9e6e80` (1 geaenderte Dateien — Werte gelten NICHT am Commit).
 **MINDESTENS EINE GLEICHUNG FAELLT — diese Tafel ist nicht zu verwenden.**
 
 | Kennzahl | Wert | Route |
