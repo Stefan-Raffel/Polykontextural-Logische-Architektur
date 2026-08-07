@@ -31,3 +31,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `6fe7d53` | Ausgabenprobe gebaut; letzte Marke der Traegertafel entfaellt | die vier Groessen der Vorgabe fangen einen gestrichenen Absatz NICHT — eine fuenfte war noetig |
 | 2026-08-06 | `bb2ad69` | Ausgabenprobe fuer md gegen html geeicht; Erzeugung Rev5 begonnen | sechs Fehler in der Probe selbst — `<p[^>]*>` faengt auch `<pre>` |
 | 2026-08-06 | `d7104ff` | Ankerprobe (F), Traegertafel als ganze Zeile, Zitatbloecke; Streckenprobe gefahren | ein Wandler liess eine SETZUNG fallen und alle Groessen schwiegen — die sechste Groesse ist daraus entstanden |
+| 2026-08-06 | `745369b` | Siebte Groesse (Raenge); Streckenprobe an Teil B | Teil B haelt alle sieben — aber die Ausnahmen-Pruefung findet vier Klassen mit Inhalt und ohne Deckung |
