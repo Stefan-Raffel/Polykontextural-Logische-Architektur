@@ -373,6 +373,21 @@ Quelltext den Beweis ausschreibt. Heilung: explizit mustern.
 Der Fehler ist die gefaehrliche Sorte: er liefert kein falsches Ergebnis, sondern ein
 leeres, und ein leeres Ergebnis sieht aus wie eine gute Nachricht. (Phase-2-Zuspitzung.)
 
+*Zweite Heilung, kuerzer, und beide gemessen gleich (7. August 2026):* `value?` nimmt ein
+optionales Argument, und **`ci.value? (allowOpaque := true)` sieht den Beweisterm eines
+Satzes**. Gemessen an zwei Saetzen des Aggregats unter `v4.30.0-rc2`:
+
+    ci.value?                        -> none  (thmInfo, beide)
+    ci.value? (allowOpaque := true)  -> some  (thmInfo, beide)
+    ci.value?                        -> some  (defnInfo — dort braucht es das Argument nicht)
+
+Die Konsumentenmessung dieses Tages ist auf **beiden** Wegen gefahren worden, von zwei
+Instanzen unabhaengig: Musterung nach `.thmInfo v => v.value` und `value?` mit dem
+Argument. Beide liefern **dieselben sieben Namen**. Der Eintrag bleibt trotzdem stehen,
+und zwar unveraendert in seinem Kern: **die Route ohne das Argument ist blind**, und wer
+`value?` gedankenlos aufruft, misst null. Das Argument ist die Heilung, nicht die
+Entwarnung.
+
 **9 - `git grep` fuehrt `\b` nicht.** Die Regex-Maschine von `git grep` kennt die
 Wortgrenze in dieser Betriebsart nicht; das Muster trifft nichts und die Suche meldet
 null. Gemessen am verfolgten Bestand: `git grep -E '\bsorry\b'` liefert **0**, dieselbe
