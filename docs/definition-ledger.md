@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 10.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 11.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,18 +37,18 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 91 |
-| Zeilen mit Träger | 75 |
-| verschiedene Trägernamen | 67 |
-| TS `Theorem` | 57 |
+| Zeilen gesamt | 93 |
+| Zeilen mit Träger | 79 |
+| verschiedene Trägernamen | 71 |
+| TS `Theorem` | 61 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
-| TS `Offen` | 16 |
+| TS `Offen` | 14 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 75 Zeilen bei 67
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 79 Zeilen bei 71
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
@@ -103,6 +103,7 @@ beider Fehlexpansionen.
 | `PC.` | `Reformulation.Proemial.PolicyCheck.` | Namensraum |
 | `RA.` | `Reformulation.Proemial.RAGAuthority.` | Namensraum |
 | `CO.` | `Reformulation.Proemial.ContextureOverlap.` | Namensraum |
+| `CC.` | `Reformulation.Proemial.CompoundContexture.` | Namensraum |
 | `DS.` | `Reformulation.Proemial.Discontextural.DiscontexturalStratification.` | Namensraum **plus Struktur** |
 | `CF.` | `Reformulation.Proemial.ContexturalFibration.` | Namensraum |
 | `RT.` | `Reformulation.Proemial.RegimeThreshold.` | Namensraum |
@@ -136,8 +137,10 @@ beider Fehlexpansionen.
 | L02-7 | Elementarkontextur (§2) | `EC.isElemContexture_orb_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Bahn ist Elementarkontextur genau dann, wenn `x` kein Fixpunkt ist |
 | L02-8 | Elementarkontextur (§2) | `EC.exists_involutive_orb_eq` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | jede Elementarkontextur ist Zweierbahn einer Involution; Existenz, **nicht** Eindeutigkeit — siehe Grenznotiz C |
 | L03-1 | Verbundkontextur (§3) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | trägt Nicht-Erzeugbarkeit, nicht Vermittlung |
-| L03-2 | Verbundkontextur (§3) | — | Offen | Offen | — | Rev. 1 trug hier `IntervalBackbone`; zurückgenommen, das Modul trägt die Ontologien-Folge |
-| L03-3 | Verbundkontextur (§3) | — | Offen | Offen | — | zwei Zählfunktionen, siehe Grenznotiz A |
+| L03-2 | Verbundkontextur (§3) | `CC.overlap_or_third_touches` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Zusammenschluss als Berührungsstruktur: überlappend oder über eine dritte Elementarkontextur. **Grenze:** Berührung, nicht Günthers Vermittlung — die zweite Negation ist nicht getragen. Existenz, nicht Eindeutigkeit |
+| L03-3 | Verbundkontextur (§3) | `CC.zaehlungen_nirgends_gleich` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | die zwei Zählungen der Grenznotiz A stimmen nirgends überein, richtungstreu. **Grenze:** strikte Ungleichung auf der Verbundfolge; der Stirling-Zusatz bleibt gerechnet |
+| L03-4 | Verbundkontextur (§3) | `CC.two_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Mindestdreiwertigkeit als Satz: mehrere Elementarkontexturen gibt es genau ab `m = 3`. **Grenze:** dass dies Günthers Begründung über den unvermittelten zweiten Wert ist, bleibt Deutung |
+| L03-5 | Verbundkontextur (§3) | `CC.disjoint_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Schwelle: disjunkte Elementarkontexturen genau ab `m = 4`; gibt `RT.regime_threshold_at_four` seinen begrifflichen Rahmen, ohne gemeinsamen Satz |
 | L04-1 | Diskontexturalität (§4) | `TCB.T_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Nicht-Erzeugbarkeit im Termklon, `m = 3` |
 | L04-2 | Diskontexturalität (§4) | `NUCB.W_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Bruch ohne Verlassen einer Kontextur |
 | L04-3 | Diskontexturalität (§4) | `GCB.locally_classical_in_clone_iff` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Charakterisierung für alle `m ≥ 4` |
@@ -226,11 +229,20 @@ Daraus die Rücknahme in L03-2. `IB.intervalStart` ist die Ontologien-Wertzahl; 
 Verbundkontextur-Folge ist ihr Bild ab Index 2. Dieselbe Arithmetik trägt beide Folgen bei
 verschobenem Index — und darum darf sie nicht unter beiden Paragraphen stehen.
 
+**Nachtrag (Ledger Rev. 11): der Kern dieser Notiz ist satzförmig.** Was oben als Rechnung
+stand — die beiden Zählungen stimmen an keiner Stelle überein —, trägt jetzt ein Theorem:
+`CC.zaehlungen_nirgends_gleich` (L03-3) zeigt `guentherZaehlung k < korpusZaehlung k` für
+alle `k`, also **strikt und richtungstreu**; die Korpuszählung liegt stets über Günthers.
+Die Indexbrücke steht dabei nicht mehr still im Text, sondern ausgeschrieben in
+`CC.verbundWertzahl := IB.intervalStart (k + 2)` — die Form, die die Rücknahme in L03-2
+verlangt: dieselbe Arithmetik, sichtbar versetzt, statt unter zwei Paragraphen.
+
 **Zusatz (computed, außerhalb des Korpus).** Die beiden Zählungen berühren sich an genau
 einer Stelle: |s(m, m−1)| = C(m,2) für m = 2 bis 8 gerechnet, also bei den Permutationen mit
 genau einer Transposition. Günthers Stirling-Zählung aus §14 und die Korpuszählung fallen
 dort zusammen. Das ist ein gerechneter Vorbefund und **kein Satz des Korpus**; keine Zahl
-davon ist in eine Lean-Datei eingegangen.
+davon ist in eine Lean-Datei eingegangen. **Auch der Nachtrag ändert daran nichts:** der
+Satz oben trägt die Nichtübereinstimmung, nicht die Stirling-Koinzidenz.
 
 ## Grenznotiz B — zwei Begriffe, und die Aggregatregel
 

@@ -126,6 +126,10 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L02-8" Reformulation.Proemial.ElementaryCycle.exists_involutive_orb_eq
 
 #ledger_theorem "L03-1" Reformulation.Proemial.GeneralCloneBound.locally_classical_in_clone_iff
+#ledger_theorem "L03-2" Reformulation.Proemial.CompoundContexture.overlap_or_third_touches
+#ledger_theorem "L03-3" Reformulation.Proemial.CompoundContexture.zaehlungen_nirgends_gleich
+#ledger_theorem "L03-4" Reformulation.Proemial.CompoundContexture.two_elem_contextures_iff
+#ledger_theorem "L03-5" Reformulation.Proemial.CompoundContexture.disjoint_elem_contextures_iff
 
 #ledger_theorem "L04-1" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
 #ledger_theorem "L04-2" Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone
