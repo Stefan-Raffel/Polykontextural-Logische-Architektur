@@ -600,6 +600,76 @@ bare_report() {
   return "${rc}"
 }
 
+# --- (F) Sprungziele: jeder Verweis loest auf --------------------------------
+# Eine Ausgabe verweist ueber `href="#x"` auf ihre eigene Traegertafel und ihre
+# Kapitel. Loest ein Verweis nicht auf, fuehrt ein Klick ins Leere — und zwar
+# still: der Browser meldet nichts, und keine der uebrigen Proben sieht es.
+#
+# ANLASS (Sondierung zur Erzeugungsstrecke, 6. August 2026): unter den
+# eingesetzten Treffern war ein zerstoertes Sprungziel `#t7` -> `#t77`. Weder
+# `ausgabe_probe.sh` noch `figures.sh` haben es gesehen — beide blind. Es ist
+# einer von drei gemessenen blinden Flecken und der einzige, der sich OHNE
+# Vergleichsstueck pruefen laesst: die Ausgabe traegt Frage und Antwort selbst.
+#
+# GRUNDLINIE NULL, gemessen ueber ALLE elf Fassungen unter docs/ — die laufenden
+# und die vier archivierten, deutsch und englisch: null unaufgeloeste Verweise
+# und null doppelt vergebene Anker. Kein Archivschnitt noetig; die eingefrorenen
+# Fassungen sind selbst sauber. Kein Ermessen im Befund: ein Verweis loest auf
+# oder nicht.
+#
+# ZWEI VERSTOSSARTEN, beide brechend:
+#   F1  ein `href="#x"` ohne `id="x"` in derselben Datei;
+#   F2  ein `id` zweimal vergeben — dann ist unbestimmt, wohin der Verweis geht.
+anker_report() {
+  local rc=0 n_dateien=0 n_refs=0 n_ids=0 v1=0 v2=0 ausgabe=""
+  local datei
+  while IFS= read -r datei; do
+    [ -f "$datei" ] || continue
+    n_dateien=$((n_dateien + 1))
+    local bericht
+    bericht="$(python3 - "$datei" <<'PY_ANKER'
+import re, sys
+p = sys.argv[1]
+s = open(p, encoding='utf-8', errors='replace').read()
+ids = re.findall(r'\bid="([^"]+)"', s)
+refs = re.findall(r'\bhref="#([^"]+)"', s)
+gesetzt = set(ids)
+offen = sorted({r for r in refs if r not in gesetzt})
+doppelt = sorted({i for i in gesetzt if ids.count(i) > 1})
+print(f"ZAHL\t{len(set(refs))}\t{len(gesetzt)}\t{len(offen)}\t{len(doppelt)}")
+for x in offen:
+    print(f"F1\t{x}")
+for x in doppelt:
+    print(f"F2\t{x}")
+PY_ANKER
+)"
+    local zahl
+    zahl="$(printf '%s\n' "$bericht" | awk -F'\t' '$1=="ZAHL"{print $2" "$3}')"
+    n_refs=$((n_refs + $(echo "$zahl" | cut -d' ' -f1)))
+    n_ids=$((n_ids + $(echo "$zahl" | cut -d' ' -f2)))
+    local zeile
+    while IFS= read -r zeile; do
+      case "$zeile" in
+        F1*) v1=$((v1 + 1)); rc=1
+             ausgabe="${ausgabe}  ${datei}: Verweis auf #$(printf '%s' "$zeile" | cut -f2) ohne Anker"$'\n' ;;
+        F2*) v2=$((v2 + 1)); rc=1
+             ausgabe="${ausgabe}  ${datei}: Anker $(printf '%s' "$zeile" | cut -f2) zweimal vergeben"$'\n' ;;
+      esac
+    done <<< "$bericht"
+  done <<< "$(find -L "${ROOT}/docs" -name '*.html' -type f 2>/dev/null | sort)"
+
+  if [ -n "$ausgabe" ]; then
+    printf '%s' "$ausgabe"
+    echo "  Heilung: den Anker setzen oder den Verweis entfernen — ein Verweis ins Leere"
+    echo "           meldet sich nie von selbst."
+  else
+    echo "  (jeder Verweis loest auf, kein Anker doppelt)"
+  fi
+  printf "  ── (F) %d Verstöße (F1 %d, F2 %d); %d Dateien, %d Verweise, %d Anker\n" \
+         "$((v1 + v2))" "${v1}" "${v2}" "${n_dateien}" "${n_refs}" "${n_ids}"
+  return "${rc}"
+}
+
 # --- (E) Ausgabeinterne Ziffern ---------------------------------------------
 # Teil A der Papierfassung verweist ueber Ziffern in eckigen Klammern auf die
 # Traegertafel in Teil B. FESTLEGUNG: diese Ziffern sind AUSGABEINTERN — sie
@@ -888,6 +958,10 @@ BLOCK_D="$(bare_report)" || D_RC=1
 E_RC=0
 BLOCK_E="$(ziffer_report)" || E_RC=1
 
+# Gruppe (F) ebenso: Grundlinie null ueber alle elf Fassungen unter docs/.
+F_RC=0
+BLOCK_F="$(anker_report)" || F_RC=1
+
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
 echo "  Bereich: ${SCOPE_LABEL}"
@@ -961,16 +1035,26 @@ echo "     fest, und seine Ziffern meinen die Tafel dieses Datums — wie seine 
 printf '%s\n' "$BLOCK_E"
 echo
 
-if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ] || [ "${E_RC}" -ne 0 ]; then
+echo "── Gruppe (F) SPRUNGZIELE — jeder Verweis loest auf ──────────────────────────"
+echo "     Ein href=\"#x\" ohne id=\"x\" fuehrt ins Leere, und zwar still: der Browser"
+echo "     meldet nichts, und keine andere Probe sieht es. Grundlinie null, gemessen"
+echo "     ueber ALLE Fassungen unter docs/ — die laufenden und die archivierten."
+echo "     F1: Verweis ohne Anker.  F2: Anker zweimal vergeben (Ziel unbestimmt)."
+echo "     Kein Archivschnitt: die eingefrorenen Fassungen sind selbst sauber."
+printf '%s\n' "$BLOCK_F"
+echo
+
+if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ] || [ "${E_RC}" -ne 0 ] || [ "${F_RC}" -ne 0 ]; then
   betroffen=""
   [ "${C_RC}" -ne 0 ] && betroffen="${betroffen}(C) "
   [ "${D_RC}" -ne 0 ] && betroffen="${betroffen}(D) "
   [ "${E_RC}" -ne 0 ] && betroffen="${betroffen}(E) "
+  [ "${F_RC}" -ne 0 ] && betroffen="${betroffen}(F) "
   echo "── Ende Report.  Exit 1: ${betroffen}melden Verstöße. ────────────────"
   echo "   (A) und (B) beeinflussen den Exit-Code nicht — sie melden."
   exit 1
 fi
-echo "── Ende Report.  Exit 0: Gruppen (C), (D) und (E) ohne Verstoß. ─────────────"
+echo "── Ende Report.  Exit 0: Gruppen (C), (D), (E) und (F) ohne Verstoß. ────────"
 echo "   (A) und (B) melden nur; ihre Treffer setzen keinen Exit-Code."
 
 exit 0

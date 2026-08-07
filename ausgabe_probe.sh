@@ -15,7 +15,7 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# FUENF BRECHENDE GROESSEN, je Sprachpaar:
+# SECHS BRECHENDE GROESSEN, je Sprachpaar:
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
@@ -23,6 +23,8 @@
 #                       (Querverweise sind ein Bogen des Papiers, kein Fehler)
 #   4. Figuren        — Zahl und Reihenfolge der Bildunterschriften
 #   5. Absatz-Anfaenge — die ersten sechs Woerter jedes Textabsatzes, in Folge
+#   6. Zitatbloecke   — dort stehen die Setzungen; im Entwurf ohne den Vorspann
+#                       vor der ersten Trennlinie
 #
 # Die fuenfte steht NICHT in der Vorgabe. Sie ist hinzugekommen, weil die vier
 # einen gestrichenen Absatz NICHT fangen — gemessen an der Saat: nur der
@@ -127,22 +129,26 @@ def norm_text(t):
     return t.strip()
 
 def tafelzeilen(art, s):
-    """Zeilen der Traegertafel: eine Ziffer, ein Traeger. Formatunabhaengig
-    ueber die Ziffer am Zeilen- bzw. Zellenanfang."""
+    """Zeilen der Traegertafel: Ziffer UND Traeger, nicht nur die Ziffer.
+
+    Bis zur Sondierung verglich diese Groesse allein die Ziffernspalte. Gemessen
+    an einem eingesetzten Treffer war das der teuerste der drei blinden Flecken:
+    eine geaenderte Tabellenzelle bei gleicher Zeilenzahl blieb unsichtbar — und
+    der Traegername ist der tragende Inhalt von Teil B. Verglichen wird jetzt die
+    Zeile als Ganzes, exakt und ohne Toleranz."""
     if art == 'html':
-        zeilen = re.findall(r'(?is)<tr[^>]*>(.*?)</tr>', s)
         aus = []
-        for z in zeilen:
+        for z in re.findall(r'(?is)<tr[^>]*>(.*?)</tr>', s):
             zellen = [norm_text(entferne_html(c)) for c in
                       re.findall(r'(?is)<t[dh][^>]*>(.*?)</t[dh]>', z)]
             if zellen and re.match(r'^\[\d+\]$|^—$|^-$', zellen[0]):
-                aus.append(zellen[0])
+                aus.append(' | '.join(zellen[:2]))
         return aus
     aus = []
     for z in s.split('\n'):
-        m = re.match(r'^\|\s*(\[\d+\]|—)\s*\|', z)
+        m = re.match(r'^\|\s*(\[\d+\]|—)\s*\|([^|]*)\|', z)
         if m:
-            aus.append(m.group(1))
+            aus.append(norm_text(m.group(1)) + ' | ' + norm_text(m.group(2)))
     return aus
 
 def ziffern(art, s):
@@ -226,6 +232,41 @@ def absatz_anfaenge(art, s, woerter=6):
     schliesse()
     return aus
 
+def zitatbloecke(art, s, woerter=8):
+    """Zitatbloecke — dort stehen die Setzungen.
+
+    Gebaut nach einem Fund der Streckenprobe: ein Wandler liess die Setzung aus
+    Kapitel 2 fallen ("Eine zweielementige Menge benachbarter Werte ist eine
+    Elementarkontextur"), und ALLE Groessen schwiegen — Zitatbloecke waren aus
+    dem Absatzvergleich beidseits ausgenommen. Der tragendste Satz eines
+    Kapitels fiel unbemerkt aus der Ausgabe.
+
+    Im Entwurf faellt der Vorspann vor der ersten Trennlinie weg: dort steht,
+    was den Entwurf betrifft und nicht die Ausgabe. Das ist eine Ortsangabe und
+    kein Ermessen."""
+    aus = []
+    if art == 'html':
+        for roh in re.findall(r'(?is)<blockquote\b[^>]*>(.*?)</blockquote>', s):
+            t = norm_text(entferne_html(roh))
+            if len(t.split(' ')) >= woerter:
+                aus.append(' '.join(t.split(' ')[:woerter]))
+        return aus
+    if re.search(r'(?m)^---\s*$', s):
+        s = s[re.search(r'(?m)^---\s*$', s).end():]
+    block = []
+    def schliesse():
+        t = norm_text(' '.join(x.lstrip('> ').rstrip() for x in block))
+        if len(t.split(' ')) >= woerter:
+            aus.append(' '.join(t.split(' ')[:woerter]))
+        block.clear()
+    for z in s.split('\n'):
+        if z.startswith('>'):
+            block.append(z)
+        elif block:
+            schliesse()
+    schliesse()
+    return aus
+
 def volltext(art, s):
     t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
@@ -289,6 +330,7 @@ for entwurf_spez, ausgabe_spez in paare:
     ok &= mengen_bericht("Ziffern (Menge)", sammle_menge(e_teile, ziffern), sammle_menge(a_teile, ziffern))
     ok &= folgen_bericht("Figuren", sammle(e_teile, figuren), sammle(a_teile, figuren))
     ok &= folgen_bericht("Absatz-Anfaenge", sammle(e_teile, absatz_anfaenge), sammle(a_teile, absatz_anfaenge))
+    ok &= folgen_bericht("Zitatbloecke", sammle(e_teile, zitatbloecke), sammle(a_teile, zitatbloecke))
 
     we, wa = sammle(e_teile, volltext), sammle(a_teile, volltext)
     sm = difflib.SequenceMatcher(None, we, wa, autojunk=False)
@@ -300,7 +342,7 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── " + ("alle fuenf brechenden Groessen gleich." if rc == 0 else
+print("── " + ("alle sechs brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY
