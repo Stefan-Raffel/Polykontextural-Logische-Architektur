@@ -80,6 +80,21 @@ def lies(spez):
     return teile, art
 
 # ---------------------------------------------------------------- Auszuege ---
+def ohne_moebel(s, auch_kopf=True):
+    """Die Moebel einer Ausgabe sind kein Text des Papiers: Titelblock,
+    Inhaltsverzeichnis, Fusszeile und Bildunterschriften. Das
+    Inhaltsverzeichnis faellt IMMER weg — es ist eine Kopie der Ueberschriften
+    und wuerde jede von ihnen doppelt zaehlen."""
+    s = re.sub(r'(?is)<nav\b.*?</nav>', ' ', s)
+    if auch_kopf:
+        # Ein Zitatblock ist kein Absatz: im Entwurf steht er als >-Zeile und
+        # wird dort uebersprungen.
+        s = re.sub(r'(?is)<blockquote\b.*?</blockquote>', ' ', s)
+        s = re.sub(r'(?is)<header\b.*?</header>', ' ', s)
+        s = re.sub(r'(?is)<footer\b.*?</footer>', ' ', s)
+        s = re.sub(r'(?is)<figure\b.*?</figure>', ' ', s)
+    return s
+
 def entferne_html(s):
     s = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', s)
     s = re.sub(r'<[^>]+>', ' ', s)
@@ -87,7 +102,7 @@ def entferne_html(s):
 
 def ueberschriften(art, s):
     if art == 'html':
-        roh = re.findall(r'(?is)<h[1-6][^>]*>(.*?)</h[1-6]>', s)
+        roh = re.findall(r'(?is)<h[1-6][^>]*>(.*?)</h[1-6]>', ohne_moebel(s, auch_kopf=False))
         return [norm_text(entferne_html(x)) for x in roh]
     aus, zaun = [], False
     for z in s.split('\n'):
@@ -105,8 +120,11 @@ def norm_text(t):
     t = re.sub(r'[*_`]', '', t)
     t = re.sub(r'[«»„“”"‚‘’\']', '', t)
     t = re.sub(r'[–—−]', '-', t)
-    t = re.sub(r'\s+', ' ', t).strip()
-    return t
+    t = re.sub(r'\s+', ' ', t)
+    # Inline-Auszeichnung wird beim Entfernen zu einem Leerzeichen; ohne diese
+    # Zeile stuende "evolutiv ," gegen "evolutiv,".
+    t = re.sub(r'\s+([,.;:!?])', r'\1', t)
+    return t.strip()
 
 def tafelzeilen(art, s):
     """Zeilen der Traegertafel: eine Ziffer, ein Traeger. Formatunabhaengig
@@ -128,7 +146,14 @@ def tafelzeilen(art, s):
     return aus
 
 def ziffern(art, s):
-    text = entferne_html(s) if art == 'html' else s
+    # Code ist keine Prosa: `[0,1]` ist eine Liste und keine Verweisung. Erst
+    # die Code-Spannen entfernen, dann suchen — dieselbe Reihenfolge wie in der
+    # Ziffern-Wache des Lints.
+    if art == 'html':
+        text = entferne_html(re.sub(r'(?is)<(code|pre)\b.*?</\1>', ' ', ohne_moebel(s, auch_kopf=False)))
+    else:
+        text = re.sub(r'```.*?```', ' ', s, flags=re.S)
+        text = re.sub(r'`[^`\n]*`', ' ', text)
     # Iterationsnotation ^[n] und Morphogramm-Notation [n]₄ sind keine Ziffern.
     treffer = set()
     for m in re.finditer(r'\[(\d+)\]', text):
@@ -140,10 +165,20 @@ def ziffern(art, s):
     return treffer
 
 def figuren(art, s):
-    text = entferne_html(s) if art == 'html' else s
-    text = norm_text(text)
-    return [norm_text(m.group(0)) for m in
-            re.finditer(r'(?:Figur|Figure|Abbildung)\s+\d+', text)]
+    """Im Entwurf steht eine Figur als Marke ⟦Figur n …⟧, in der Ausgabe als
+    <figcaption>. Der blosse Wortlaut "Figur n" taugt nicht: der Entwurf nennt
+    fruehere Nummern im Fliesstext ("dort Figur 1")."""
+    if art == 'html':
+        quellen = re.findall(r'(?is)<figcaption[^>]*>(.*?)</figcaption>', s)
+        quellen = [entferne_html(q) for q in quellen]
+    else:
+        quellen = re.findall(r'⟦(.*?)⟧', s, flags=re.S)
+    aus = []
+    for q in quellen:
+        m = re.match(r'\s*\**\s*(Figur|Figure|Abbildung)\s+(\d+)', norm_text(q))
+        if m:
+            aus.append(f'{m.group(1)} {m.group(2)}')
+    return aus
 
 def absatz_anfaenge(art, s, woerter=6):
     """Der Anfang jedes Textabsatzes, normalisiert. Faengt einen gestrichenen,
@@ -151,17 +186,22 @@ def absatz_anfaenge(art, s, woerter=6):
     Markup faellt vorher weg, darum traegt die Groesse ueber beide Formate."""
     aus = []
     if art == 'html':
-        for roh in re.findall(r'(?is)<p[^>]*>(.*?)</p>', s):
+        # <p…> und NICHT <pre>: `<p[^>]*>` faengt beides, und dann wandert
+        # ein Codeblock in den Absatz davor.
+        for roh in re.findall(r'(?is)<p(?:\s[^>]*)?>(.*?)</p>', ohne_moebel(s)):
             if '<path' in roh or '<line' in roh or '<text' in roh:
                 continue
             t = norm_text(entferne_html(roh))
             if len(t.split(' ')) >= woerter:
                 aus.append(' '.join(t.split(' ')[:woerter]))
         return aus
+    # Marken ⟦…⟧ sind Anweisungen an die Erzeugung und kein Text der Ausgabe;
+    # sie fallen vor der Absatzbildung weg.
+    s = re.sub(r'⟦.*?⟧', '', s, flags=re.S)
     zaun, block = False, []
     def schliesse():
         t = norm_text(' '.join(block))
-        if t and len(t.split(' ')) >= woerter and not t.startswith('|'):
+        if t and len(t.split(' ')) >= woerter:
             aus.append(' '.join(t.split(' ')[:woerter]))
         block.clear()
     for z in s.split('\n'):
@@ -171,14 +211,23 @@ def absatz_anfaenge(art, s, woerter=6):
             continue
         if not z.strip():
             schliesse(); continue
-        if re.match(r'^#{1,6}\s|^\||^---\s*$|^>', z):
+        # Ueberschrift, Tafelzeile, Trennlinie, Zitatblock und Listenpunkt sind
+        # keine Absaetze: im HTML stehen sie als h/tr/hr/blockquote/li und nicht
+        # als p. Verglichen wird Prosa gegen Prosa.
+        if re.match(r'^#{1,6}\s|^\||^---\s*$|^>|^\s*[-*+]\s|^\s*\d+\.\s', z):
             schliesse(); continue
+        # Ein eingerueckter Block ist Code (Markdown-Konvention: vier Leerzeichen)
+        # und steht in der Ausgabe als pre/code, nicht als p.
+        if re.match(r'^(    |\t)', z):
+            schliesse(); continue
+        if z.startswith(' '):
+            block.append(z.strip()); continue
         block.append(z)
     schliesse()
     return aus
 
 def volltext(art, s):
-    t = entferne_html(s) if art == 'html' else s
+    t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
     t = re.sub(r'⟦[^⟧]*⟧', ' ', t)
     return [w for w in norm_text(t).split(' ') if w]
