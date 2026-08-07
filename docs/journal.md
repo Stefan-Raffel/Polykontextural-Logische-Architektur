@@ -35,3 +35,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `e4b7102` | Achte Groesse (Code), Bildunterschriften im Wortlaut, Ausnahmen-Pruefung | die Bildunterschrift von Figur 4 (de) und 8 (en) weicht in Rev4 vom Entwurf ab — das SVG ist unveraendert |
 | 2026-08-06 | `e696870` | **Die fuenfte Ausgabe, erzeugt** — beide Sprachen, acht Groessen Exit 0 | zwei Bildunterschriften weichen von Rev4 ab, ohne dass sich die Figur bewegt hat |
 | 2026-08-06 | `fb0630b` | Neunte Groesse: Anzeigeformeln, Quelle gegen Darstellung getrennt | die rohe LaTeX-Quelle stand sichtbar auf der Seite — der erste blinde Fleck, den ein Leser fand und keine Probe |
+| 2026-08-07 | `19f586f` | Verbundkontextur als Struktur: `CompoundContexture`, Ledger Rev. 11 | zwei Profil-Erwartungen falsch — die Finset-Gestalt zieht Choice auf drei unabhaengigen Routen |
