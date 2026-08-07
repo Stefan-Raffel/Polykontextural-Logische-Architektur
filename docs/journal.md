@@ -32,3 +32,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `bb2ad69` | Ausgabenprobe fuer md gegen html geeicht; Erzeugung Rev5 begonnen | sechs Fehler in der Probe selbst — `<p[^>]*>` faengt auch `<pre>` |
 | 2026-08-06 | `d7104ff` | Ankerprobe (F), Traegertafel als ganze Zeile, Zitatbloecke; Streckenprobe gefahren | ein Wandler liess eine SETZUNG fallen und alle Groessen schwiegen — die sechste Groesse ist daraus entstanden |
 | 2026-08-06 | `745369b` | Siebte Groesse (Raenge); Streckenprobe an Teil B | Teil B haelt alle sieben — aber die Ausnahmen-Pruefung findet vier Klassen mit Inhalt und ohne Deckung |
+| 2026-08-06 | `e4b7102` | Achte Groesse (Code), Bildunterschriften im Wortlaut, Ausnahmen-Pruefung | die Bildunterschrift von Figur 4 (de) und 8 (en) weicht in Rev4 vom Entwurf ab — das SVG ist unveraendert |
