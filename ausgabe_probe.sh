@@ -15,18 +15,39 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# SIEBEN BRECHENDE GROESSEN, je Sprachpaar:
+# ACHT BRECHENDE GROESSEN, je Sprachpaar:
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
 #                       Vorkommen: eine Ziffer darf in Teil A mehrfach stehen
 #                       (Querverweise sind ein Bogen des Papiers, kein Fehler)
-#   4. Figuren        — Zahl und Reihenfolge der Bildunterschriften
+#   4. Figuren        — Nummer UND WORTLAUT der Bildunterschriften; im Entwurf
+#                       steht er in der Marke hinter "Bildunterschrift:"/"Caption:"
 #   5. Absatz-Anfaenge — die ersten sechs Woerter jedes Textabsatzes, in Folge
 #   6. Zitatbloecke   — dort stehen die Setzungen; im Entwurf ohne den Vorspann
 #                       vor der ersten Trennlinie
-#   7. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
+#   7. Code           — Code-Spannen und Code-Bloecke, in Folge, exakt
+#   8. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
 #                       (siehe `raenge`), exakt und ohne Toleranz
+#
+# DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
+# einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
+# und welche Groesse sie deckt.
+#
+#   Inhaltsverzeichnis  eine Kopie der Ueberschriften und Navigationsziele
+#                       -> Ziele: Lint-Gruppe (F); Wortlaut: abgeleitet, behauptet
+#                          nichts. MOEBEL-GRUND.
+#   Zitatblock          die SETZUNGEN des Papiers            -> Groesse 6
+#   Code                Musterbeispiele und Lean-Namen        -> Groesse 7
+#   Bildunterschrift    die Deutung jeder Figur               -> Groesse 4
+#   Titelblock          Ausgabebezeichnung, Datum, Zeiger auf den Stand-Anker
+#                       -> keine Behauptung, nur eine Ortsangabe; dass der Zeiger
+#                          aufloest, prueft die Erzeugungs-Vorgabe. MOEBEL-GRUND.
+#   Fusszeile           Ausgabe, Datum, Verweise auf die Archive
+#                       -> die Quellenangaben stehen im FLIESSTEXT am Ende von
+#                          Teil A und gehoeren NICHT zusaetzlich in die Fusszeile:
+#                          zweimal dieselbe Auskunft, und die zweite saehe keine
+#                          Probe. MOEBEL-GRUND, sobald die Doppelung entfaellt.
 #
 # Die fuenfte steht NICHT in der Vorgabe. Sie ist hinzugekommen, weil die vier
 # einen gestrichenen Absatz NICHT fangen — gemessen an der Saat: nur der
@@ -181,15 +202,20 @@ def figuren(art, s):
     <figcaption>. Der blosse Wortlaut "Figur n" taugt nicht: der Entwurf nennt
     fruehere Nummern im Fliesstext ("dort Figur 1")."""
     if art == 'html':
-        quellen = re.findall(r'(?is)<figcaption[^>]*>(.*?)</figcaption>', s)
-        quellen = [entferne_html(q) for q in quellen]
-    else:
-        quellen = re.findall(r'⟦(.*?)⟧', s, flags=re.S)
+        return [norm_text(entferne_html(q))
+                for q in re.findall(r'(?is)<figcaption[^>]*>(.*?)</figcaption>', s)]
     aus = []
-    for q in quellen:
-        m = re.match(r'\s*\**\s*(Figur|Figure|Abbildung)\s+(\d+)', norm_text(q))
-        if m:
-            aus.append(f'{m.group(1)} {m.group(2)}')
+    for q in re.findall(r'⟦(.*?)⟧', s, flags=re.S):
+        t = norm_text(q)
+        m = re.match(r'\s*(Figur|Figure|Abbildung)\s+(\d+)', t)
+        if not m:
+            continue
+        # Der Wortlaut steht in der Marke hinter "Bildunterschrift:" bzw.
+        # "Caption:". Bis zur Entscheidung zu Schritt 4 verglich diese Groesse
+        # nur die NUMMER — die Deutung jeder Figur war damit ungeprueft.
+        u = re.search(r'(?:Bildunterschrift|Caption):\s*(.*)$', t)
+        aus.append(f'{m.group(1)} {m.group(2)} - {u.group(1).strip()}' if u
+                   else f'{m.group(1)} {m.group(2)}')
     return aus
 
 def absatz_anfaenge(art, s, woerter=6):
@@ -314,6 +340,50 @@ def raenge(art, s):
             aus.append(tiefe + 1)
     return aus
 
+def code(art, s):
+    """Code-Spannen und Code-Bloecke, in Folge.
+
+    Kapitel 1 argumentiert an Musterbeispielen, Teil B traegt die Lean-Namen in
+    Code-Spannen: der tragende Inhalt beider Teile — und bis zur Entscheidung zu
+    Schritt 4 gegenueber dem Entwurf ungeprueft. `parity.sh` deckt ihn nur
+    zwischen den Sprachen und nur meldend."""
+    aus = []
+    if art == 'html':
+        # Bildunterschriften tragen Code ("Marke `k`, `k+2` Fortsetzungen") und
+        # werden von der Figuren-Groesse verglichen; im Entwurf stehen sie in der
+        # Marke und fallen dort weg. Ohne diesen Schnitt zaehlte die Ausgabe sie
+        # ein zweites Mal — gemessen: 20 gegen 18.
+        rest = re.sub(r'(?is)<(nav|header|footer|figure)\b.*?</\1>', ' ', s)
+        for m in re.finditer(r'(?is)<pre\b[^>]*>(.*?)</pre>|<code\b[^>]*>(.*?)</code>', rest):
+            aus.append(norm_text(entferne_html(m.group(1) if m.group(1) is not None else m.group(2))))
+        return aus
+    # Dieselben zwei Ausnahmen wie bei den uebrigen Groessen, und aus demselben
+    # Grund: der Vorspann vor der ersten Trennlinie betrifft den Entwurf, und
+    # die ⟦Marken⟧ sind Anweisungen an die Erzeugung. Beides ist kein Text der
+    # Ausgabe. Gemessen ohne sie: `docs/` aus dem Vorspann und `2^C(m,2)` aus
+    # der Marke zu Figur 1 waren die einzigen zwei Ueberzaehligen.
+    if re.search(r'(?m)^---\s*$', s):
+        s = s[re.search(r'(?m)^---\s*$', s).end():]
+    s = re.sub(r'⟦.*?⟧', ' ', s, flags=re.S)
+    zaun, block = False, []
+    for z in s.split('\n'):
+        if z.startswith('```'):
+            if zaun:
+                aus.append(norm_text(' '.join(block))); block = []
+            zaun = not zaun
+            continue
+        if zaun:
+            block.append(z); continue
+        if re.match(r'^(    |\t)\S', z):
+            block.append(z); continue
+        if block:
+            aus.append(norm_text(' '.join(block))); block = []
+        for m in re.finditer(r'`([^`\n]+)`', z):
+            aus.append(norm_text(m.group(1)))
+    if block:
+        aus.append(norm_text(' '.join(block)))
+    return aus
+
 def volltext(art, s):
     t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
@@ -378,6 +448,7 @@ for entwurf_spez, ausgabe_spez in paare:
     ok &= folgen_bericht("Figuren", sammle(e_teile, figuren), sammle(a_teile, figuren))
     ok &= folgen_bericht("Absatz-Anfaenge", sammle(e_teile, absatz_anfaenge), sammle(a_teile, absatz_anfaenge))
     ok &= folgen_bericht("Zitatbloecke", sammle(e_teile, zitatbloecke), sammle(a_teile, zitatbloecke))
+    ok &= folgen_bericht("Code", sammle(e_teile, code), sammle(a_teile, code))
     ok &= folgen_bericht("Ueberschriftenraenge",
                          [str(x) for x in sammle(e_teile, raenge)],
                          [str(x) for x in sammle(a_teile, raenge)])
@@ -392,7 +463,7 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── " + ("alle sieben brechenden Groessen gleich." if rc == 0 else
+print("── " + ("alle acht brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY
