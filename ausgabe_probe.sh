@@ -15,7 +15,7 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# SECHS BRECHENDE GROESSEN, je Sprachpaar:
+# SIEBEN BRECHENDE GROESSEN, je Sprachpaar:
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
@@ -25,6 +25,8 @@
 #   5. Absatz-Anfaenge — die ersten sechs Woerter jedes Textabsatzes, in Folge
 #   6. Zitatbloecke   — dort stehen die Setzungen; im Entwurf ohne den Vorspann
 #                       vor der ersten Trennlinie
+#   7. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
+#                       (siehe `raenge`), exakt und ohne Toleranz
 #
 # Die fuenfte steht NICHT in der Vorgabe. Sie ist hinzugekommen, weil die vier
 # einen gestrichenen Absatz NICHT fangen — gemessen an der Saat: nur der
@@ -126,6 +128,10 @@ def norm_text(t):
     # Inline-Auszeichnung wird beim Entfernen zu einem Leerzeichen; ohne diese
     # Zeile stuende "evolutiv ," gegen "evolutiv,".
     t = re.sub(r'\s+([,.;:!?])', r'\1', t)
+    # Dasselbe an Klammern: `(\`2^1 = 2\`)` wird im Entwurf zu "(2^1 = 2)" und in
+    # der Ausgabe ueber <code> zu "( 2^1 = 2 )".
+    t = re.sub(r'\(\s+', '(', t)
+    t = re.sub(r'\s+\)', ')', t)
     return t.strip()
 
 def tafelzeilen(art, s):
@@ -204,7 +210,7 @@ def absatz_anfaenge(art, s, woerter=6):
     # Marken ⟦…⟧ sind Anweisungen an die Erzeugung und kein Text der Ausgabe;
     # sie fallen vor der Absatzbildung weg.
     s = re.sub(r'⟦.*?⟧', '', s, flags=re.S)
-    zaun, block = False, []
+    zaun, block, liste = False, [], False
     def schliesse():
         t = norm_text(' '.join(block))
         if t and len(t.split(' ')) >= woerter:
@@ -212,16 +218,23 @@ def absatz_anfaenge(art, s, woerter=6):
         block.clear()
     for z in s.split('\n'):
         if z.startswith('```'):
-            zaun = not zaun; schliesse(); continue
+            zaun = not zaun; schliesse(); liste = False; continue
         if zaun:
             continue
         if not z.strip():
-            schliesse(); continue
+            schliesse(); liste = False; continue
+        # Ein Listenpunkt laeuft bis zur naechsten Leerzeile. Ohne diesen Zustand
+        # wird jede Fortsetzungszeile eines umbrochenen Punktes zu einem
+        # Phantom-Absatz — an Teil B waren es fuenfzehn.
+        if liste:
+            continue
         # Ueberschrift, Tafelzeile, Trennlinie, Zitatblock und Listenpunkt sind
         # keine Absaetze: im HTML stehen sie als h/tr/hr/blockquote/li und nicht
         # als p. Verglichen wird Prosa gegen Prosa.
-        if re.match(r'^#{1,6}\s|^\||^---\s*$|^>|^\s*[-*+]\s|^\s*\d+\.\s', z):
+        if re.match(r'^#{1,6}\s|^\||^---\s*$|^>', z):
             schliesse(); continue
+        if re.match(r'^\s*[-*+]\s|^\s*\d+\.\s', z):
+            schliesse(); liste = True; continue
         # Ein eingerueckter Block ist Code (Markdown-Konvention: vier Leerzeichen)
         # und steht in der Ausgabe als pre/code, nicht als p.
         if re.match(r'^(    |\t)', z):
@@ -265,6 +278,40 @@ def zitatbloecke(art, s, woerter=8):
         elif block:
             schliesse()
     schliesse()
+    return aus
+
+# ABBILDUNG DER RAENGE, festgelegt (Vorgabe zur Streckenprobe an Teil B, §2):
+#     erstes `#` einer Entwurfsdatei  -> h1   (der Titel des Teils)
+#     jedes weitere `#`              -> h2   (Kapitel)
+#     `##`                           -> h3   (Abschnitt)
+#     `###`                          -> h4   (Unterabschnitt)
+# Sie ist eine ENTSCHEIDUNG und keine Duldung: weicht eine Strecke ab, wird die
+# Strecke berichtigt und nicht die Groesse. Vier <h1> in einem Dokument sind
+# gueltig und nicht die Gliederung, die dieses Papier fuehrt.
+#
+# ABWEICHUNG VON DER VORGABE, gemeldet: die Tafel dort fuehrt h1 als
+# "Dokumenttitel, einmal je Datei" ohne Gegenstueck im Entwurf. Das traegt nicht,
+# wenn ZWEI Teile in EINER Datei stehen — und die Entwuerfe fuehren ihre
+# Teiltitel als `#`. Die Regel oben ist positionsgenau und ohne Ermessen; sie
+# liefert je Teil genau ein h1 statt je Datei.
+def raenge(art, s):
+    if art == 'html':
+        return [int(m.group(1)) for m in
+                re.finditer(r'(?is)<h([1-6])[^>]*>', ohne_moebel(s, auch_kopf=False))]
+    aus, zaun, erstes = [], False, True
+    for z in s.split('\n'):
+        if z.startswith('```'):
+            zaun = not zaun; continue
+        if zaun:
+            continue
+        m = re.match(r'^(#{1,6})\s+\S', z)
+        if not m:
+            continue
+        tiefe = len(m.group(1))
+        if tiefe == 1 and erstes:
+            aus.append(1); erstes = False
+        else:
+            aus.append(tiefe + 1)
     return aus
 
 def volltext(art, s):
@@ -331,6 +378,9 @@ for entwurf_spez, ausgabe_spez in paare:
     ok &= folgen_bericht("Figuren", sammle(e_teile, figuren), sammle(a_teile, figuren))
     ok &= folgen_bericht("Absatz-Anfaenge", sammle(e_teile, absatz_anfaenge), sammle(a_teile, absatz_anfaenge))
     ok &= folgen_bericht("Zitatbloecke", sammle(e_teile, zitatbloecke), sammle(a_teile, zitatbloecke))
+    ok &= folgen_bericht("Ueberschriftenraenge",
+                         [str(x) for x in sammle(e_teile, raenge)],
+                         [str(x) for x in sammle(a_teile, raenge)])
 
     we, wa = sammle(e_teile, volltext), sammle(a_teile, volltext)
     sm = difflib.SequenceMatcher(None, we, wa, autojunk=False)
@@ -342,7 +392,7 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── " + ("alle sechs brechenden Groessen gleich." if rc == 0 else
+print("── " + ("alle sieben brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY
