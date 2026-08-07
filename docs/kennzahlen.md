@@ -7,8 +7,8 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `9535c3f` (1 geaenderte Dateien — Werte gelten NICHT am Commit).
-Alle mitlaufenden Gleichungen halten.
+Stand: Commit `31fb841` (2 geaenderte Dateien — Werte gelten NICHT am Commit).
+**MINDESTENS EINE GLEICHUNG FAELLT — diese Tafel ist nicht zu verwenden.**
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
@@ -64,7 +64,7 @@ Alle mitlaufenden Gleichungen halten.
 | (A.1) laufender Bestand | 67 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 24 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
-| doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
+| doc_lint Exit | 1 | 0 heisst: (C), (D) und (E) ohne Verstoss |
 
 **Was hier nicht steht.** Zahlen, die ein Satz des Korpus *behauptet*, sind keine
 Kennzahlen — sie stehen in der Traegertafel des Papiers, mit dem Satz, der sie

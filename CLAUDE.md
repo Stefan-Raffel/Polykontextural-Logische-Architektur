@@ -100,9 +100,9 @@ Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
 ## 3 - Wachen
 
 > **Die Zaehlrouten dieses Paragraphen fahren in `./kennzahlen.sh`** (§13). Wer eine
-> Kennzahl braucht, ruft das Skript - es gibt jede Zahl mit ihrer Route aus und prueft vier
-> Gleichungen mit. Die Prosa hier begruendet die Routen; sie ist **nicht** die Vorlage zum
-> Abschreiben.
+> Kennzahl braucht, ruft das Skript - es gibt jede Zahl mit ihrer Route aus und prueft
+> Gleichungen zwischen ihnen mit. Die Prosa hier begruendet die Routen; sie ist **nicht**
+> die Vorlage zum Abschreiben.
 
 Jeder **tragende** Satz traegt eine Wache. Hilfslemmata sind ausgenommen, sofern ihr Profil
 ueber die Huelle eines gewachten Satzes mitgesichert ist - Axiom-Profile sind

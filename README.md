@@ -102,7 +102,7 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
-gibt jede Zahl mit ihrer Route aus und prueft vier Gleichungen mit; faellt eine, sind die
+gibt jede Zahl mit ihrer Route aus und prueft Gleichungen zwischen ihnen mit; faellt eine, sind die
 Werte nicht zu verwenden. Von Hand abgeschriebene Zaehlkommandos gehoeren nicht mehr in
 Dokumente (`CLAUDE.md` §13).
 
