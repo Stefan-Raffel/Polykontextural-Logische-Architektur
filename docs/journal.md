@@ -36,3 +36,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `e696870` | **Die fuenfte Ausgabe, erzeugt** — beide Sprachen, acht Groessen Exit 0 | zwei Bildunterschriften weichen von Rev4 ab, ohne dass sich die Figur bewegt hat |
 | 2026-08-06 | `fb0630b` | Neunte Groesse: Anzeigeformeln, Quelle gegen Darstellung getrennt | die rohe LaTeX-Quelle stand sichtbar auf der Seite — der erste blinde Fleck, den ein Leser fand und keine Probe |
 | 2026-08-07 | `19f586f` | Verbundkontextur als Struktur: `CompoundContexture`, Ledger Rev. 11 | zwei Profil-Erwartungen falsch — die Finset-Gestalt zieht Choice auf drei unabhaengigen Routen |
+| 2026-08-07 | `20d4c0b` | Paarmischung: `PairwiseMixture`, Ledger Rev. 12 | der Choice-Anteil sitzt in der GESTALT DER VORAUSSETZUNG, nicht im Argument — zwei Fassungen, eine Groesse Unterschied |
