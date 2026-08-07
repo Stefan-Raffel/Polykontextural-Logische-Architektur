@@ -15,7 +15,7 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# ACHT BRECHENDE GROESSEN, je Sprachpaar:
+# NEUN BRECHENDE GROESSEN, je Sprachpaar:
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
@@ -27,7 +27,9 @@
 #   6. Zitatbloecke   — dort stehen die Setzungen; im Entwurf ohne den Vorspann
 #                       vor der ersten Trennlinie
 #   7. Code           — Code-Spannen und Code-Bloecke, in Folge, exakt
-#   8. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
+#   8. Formeln        — Anzeigeformeln; verglichen wird die LaTeX-QUELLE
+#                       ($$…$$ gegen data-tex), nicht die Darstellung
+#   9. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
 #                       (siehe `raenge`), exakt und ohne Toleranz
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
@@ -226,7 +228,8 @@ def absatz_anfaenge(art, s, woerter=6):
     if art == 'html':
         # <p…> und NICHT <pre>: `<p[^>]*>` faengt beides, und dann wandert
         # ein Codeblock in den Absatz davor.
-        for roh in re.findall(r'(?is)<p(?:\s[^>]*)?>(.*?)</p>', ohne_moebel(s)):
+        rumpf = re.sub(r'(?is)<p class="formel".*?</p>', ' ', ohne_moebel(s))
+        for roh in re.findall(r'(?is)<p(?:\s[^>]*)?>(.*?)</p>', rumpf):
             if '<path' in roh or '<line' in roh or '<text' in roh:
                 continue
             t = norm_text(entferne_html(roh))
@@ -234,8 +237,10 @@ def absatz_anfaenge(art, s, woerter=6):
                 aus.append(' '.join(t.split(' ')[:woerter]))
         return aus
     # Marken ⟦…⟧ sind Anweisungen an die Erzeugung und kein Text der Ausgabe;
-    # sie fallen vor der Absatzbildung weg.
+    # sie fallen vor der Absatzbildung weg. Anzeigeformeln ebenso: sie sind kein
+    # Absatz, und die Formel-Groesse vergleicht sie an ihrer Quelle.
     s = re.sub(r'⟦.*?⟧', '', s, flags=re.S)
+    s = re.sub(r'\$\$.+?\$\$', '', s, flags=re.S)
     zaun, block, liste = False, [], False
     def schliesse():
         t = norm_text(' '.join(block))
@@ -384,6 +389,20 @@ def code(art, s):
         aus.append(norm_text(' '.join(block)))
     return aus
 
+def formeln(art, s):
+    """Anzeigeformeln: im Entwurf $$…$$, in der Ausgabe das Attribut data-tex.
+
+    Verglichen wird die QUELLE und nicht die Darstellung. Der Bestand hat keinen
+    Formelsetzer; die Ausgabe uebersetzt die Formel in den Zeichenvorrat des
+    Papiers (∧ ∨ ¬) und behaelt die LaTeX-Quelle im Artefakt. Ohne diese Groesse
+    stand die rohe Quelle sichtbar auf der Seite, und keine andere sah es:
+    `$$…$$` ist weder Code noch Absatzanfang noch Ueberschrift."""
+    if art == 'html':
+        roh = re.findall(r'(?is)data-tex="([^"]*)"', s)
+    else:
+        roh = re.findall(r'\$\$(.+?)\$\$', s, flags=re.S)
+    return [re.sub(r'\s+', ' ', x).strip() for x in roh]
+
 def volltext(art, s):
     t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
@@ -449,6 +468,7 @@ for entwurf_spez, ausgabe_spez in paare:
     ok &= folgen_bericht("Absatz-Anfaenge", sammle(e_teile, absatz_anfaenge), sammle(a_teile, absatz_anfaenge))
     ok &= folgen_bericht("Zitatbloecke", sammle(e_teile, zitatbloecke), sammle(a_teile, zitatbloecke))
     ok &= folgen_bericht("Code", sammle(e_teile, code), sammle(a_teile, code))
+    ok &= folgen_bericht("Formeln", sammle(e_teile, formeln), sammle(a_teile, formeln))
     ok &= folgen_bericht("Ueberschriftenraenge",
                          [str(x) for x in sammle(e_teile, raenge)],
                          [str(x) for x in sammle(a_teile, raenge)])
@@ -463,7 +483,7 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── " + ("alle acht brechenden Groessen gleich." if rc == 0 else
+print("── " + ("alle neun brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY

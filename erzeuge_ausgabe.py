@@ -69,6 +69,54 @@ def figuren_aus(pfad):
     return re.findall(r'(?is)<figure class="fig.*?</figure>', s)
 
 
+# --- Formeln -----------------------------------------------------------------
+# Die Entwuerfe fuehren seit Rev5 Anzeigeformeln in LaTeX ($$…$$). Der Bestand
+# hat KEINEN Formelsetzer, und die vierte Ausgabe hatte keine Formel: sie schrieb
+# `2^C(m,2)` als Code-Spanne im Fliesstext. Roh durchgereicht steht die
+# LaTeX-Quelle sichtbar auf der Seite — gemeldet nach der fuenften Ausgabe, und
+# von keiner Groesse gefangen.
+#
+# Darum: die Formel wird in den Zeichenvorrat uebersetzt, den das Papier ohnehin
+# fuehrt (∧ ∨ ¬ stehen seit Rev4 darin), UND die LaTeX-Quelle bleibt im Artefakt,
+# als data-tex. Damit ist der Vergleich Entwurf gegen Ausgabe exakt: die neunte
+# Groesse haelt `$$…$$` gegen data-tex und sieht keine Uebersetzung, sondern die
+# Quelle. Was uebersetzt wird, ist die DARSTELLUNG; was verglichen wird, die QUELLE.
+TEX_ZEICHEN = [
+    (r'\\wedge', '∧'), (r'\\vee', '∨'), (r'\\lnot', '¬'), (r'\\neg', '¬'),
+    (r'\\times', '×'), (r'\\le\b', '≤'), (r'\\ge\b', '≥'), (r'\\ne\b', '≠'),
+    (r'\\to\b', '→'), (r'\\cdot', '·'), (r'\\emptyset', '∅'),
+]
+
+
+def tex_zu_text(tex):
+    t = tex.strip()
+    t = re.sub(r'\\binom\{([^{}]*)\}\{([^{}]*)\}', r'C(\1,\2)', t)
+    t = re.sub(r'\\(bigl|bigr|Bigl|Bigr|left|right)\b', '', t)
+    for muster, zeichen in TEX_ZEICHEN:
+        t = re.sub(muster, zeichen, t)
+    t = re.sub(r'\^\{([^{}]*)\}', r'^\1', t)
+    t = re.sub(r'_\{([^{}]*)\}', r'_\1', t)
+    t = re.sub(r'\s+', ' ', t)
+    t = re.sub(r'([∧∨¬])\s+', lambda m: m.group(1) + ('' if m.group(1) == '¬' else ' '), t)
+    t = re.sub(r'\(\s+', '(', t)
+    t = re.sub(r'\s+\)', ')', t)
+    return t.strip()
+
+
+def formeln_setzen(text):
+    """$$…$$ vor dem Wandler herausnehmen; der Wandler kennt kein LaTeX."""
+    aus = []
+
+    def d(m):
+        tex = re.sub(r'\s+', ' ', m.group(1).strip())
+        sicht = tex_zu_text(tex)
+        aus.append(f'<p class="formel" data-tex="{tex}">{sicht}</p>')
+        return f'\n\nFORMELPLATZ{len(aus) - 1}ENDE\n\n'
+
+    text = re.sub(r'\$\$(.+?)\$\$', d, text, flags=re.S)
+    return text, aus
+
+
 def wandle_teil(md_text, figuren, caption_wort):
     zeilen = md_text.split('\n')
     trenn = next((i for i, z in enumerate(zeilen) if z.strip() == '---'), 0)
@@ -99,6 +147,7 @@ def wandle_teil(md_text, figuren, caption_wort):
         return f'\n\nFIGURPLATZ{len(platz) - 1}ENDE\n\n'
 
     text = re.sub(r'⟦(.*?)⟧', marke, text, flags=re.S)
+    text, formeln = formeln_setzen(text)
     html = mistune.create_markdown(escape=False, plugins=['table'])(text)
 
     # Raenge: erstes h1 bleibt, jedes weitere h1 -> h2, h2 -> h3, h3 -> h4.
@@ -133,6 +182,8 @@ def wandle_teil(md_text, figuren, caption_wort):
 
     for i, f in enumerate(platz):
         html = html.replace(f'<p>FIGURPLATZ{i}ENDE</p>', f).replace(f'FIGURPLATZ{i}ENDE', f)
+    for i, f in enumerate(formeln):
+        html = html.replace(f'<p>FORMELPLATZ{i}ENDE</p>', f).replace(f'FORMELPLATZ{i}ENDE', f)
     return html
 
 

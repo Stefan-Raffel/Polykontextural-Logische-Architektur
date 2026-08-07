@@ -491,3 +491,13 @@ footer.pagefoot p { margin: 0 0 0.4rem; }
   main { max-width: none; }
   a { color: #000; text-decoration: none; }
 }
+
+/* Anzeigeformel. Der Bestand hat keinen Formelsetzer: die Formel steht im
+   Zeichenvorrat des Papiers, die LaTeX-Quelle bleibt als data-tex im Artefakt
+   und wird von der Ausgabenprobe gegen den Entwurf gehalten. */
+p.formel {
+  margin: 1.6rem 0;
+  text-align: center;
+  font-size: 1.08em;
+  letter-spacing: 0.01em;
+}
