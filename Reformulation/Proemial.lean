@@ -47,6 +47,7 @@ import Reformulation.Proemial.ContextureOverlap
 import Reformulation.Proemial.RegimeThreshold
 import Reformulation.Proemial.ElementaryCycle
 import Reformulation.Proemial.CompoundContexture
+import Reformulation.Proemial.PairwiseMixture
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)

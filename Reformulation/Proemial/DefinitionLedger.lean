@@ -130,6 +130,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L03-3" Reformulation.Proemial.CompoundContexture.zaehlungen_nirgends_gleich
 #ledger_theorem "L03-4" Reformulation.Proemial.CompoundContexture.two_elem_contextures_iff
 #ledger_theorem "L03-5" Reformulation.Proemial.CompoundContexture.disjoint_elem_contextures_iff
+#ledger_theorem "L03-6" Reformulation.Proemial.PairwiseMixture.w_differs_on_disjoint
 
 #ledger_theorem "L04-1" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
 #ledger_theorem "L04-2" Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone
@@ -143,6 +144,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L05-3" Reformulation.Proemial.StageAggregation.agg_nicht_erzeugbar
 #ledger_theorem "L05-5" Reformulation.Proemial.PolicyCheck.freigabe_nicht_erzeugbar
 #ledger_theorem "L05-6" Reformulation.Proemial.RAGAuthority.autoritaet_nicht_erzeugbar
+#ledger_theorem "L05-7" Reformulation.Proemial.PairwiseMixture.not_in_clone_pair_mixture
 
 #ledger_theorem "L06-2" Reformulation.Proemial.NonUniformCloneBound.W_locally_classical
 #ledger_theorem "L06-3" Reformulation.Proemial.NonUniformCloneBound.W_not_in_clone

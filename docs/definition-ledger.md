@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 11.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 12.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,10 +37,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 93 |
-| Zeilen mit Träger | 79 |
-| verschiedene Trägernamen | 71 |
-| TS `Theorem` | 61 |
+| Zeilen gesamt | 95 |
+| Zeilen mit Träger | 81 |
+| verschiedene Trägernamen | 73 |
+| TS `Theorem` | 63 |
 | TS `Definition` | 17 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
@@ -48,7 +48,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 79 Zeilen bei 71
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 81 Zeilen bei 73
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
@@ -104,6 +104,7 @@ beider Fehlexpansionen.
 | `RA.` | `Reformulation.Proemial.RAGAuthority.` | Namensraum |
 | `CO.` | `Reformulation.Proemial.ContextureOverlap.` | Namensraum |
 | `CC.` | `Reformulation.Proemial.CompoundContexture.` | Namensraum |
+| `PM.` | `Reformulation.Proemial.PairwiseMixture.` | Namensraum |
 | `DS.` | `Reformulation.Proemial.Discontextural.DiscontexturalStratification.` | Namensraum **plus Struktur** |
 | `CF.` | `Reformulation.Proemial.ContexturalFibration.` | Namensraum |
 | `RT.` | `Reformulation.Proemial.RegimeThreshold.` | Namensraum |
@@ -141,6 +142,7 @@ beider Fehlexpansionen.
 | L03-3 | Verbundkontextur (§3) | `CC.zaehlungen_nirgends_gleich` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | die zwei Zählungen der Grenznotiz A stimmen nirgends überein, richtungstreu. **Grenze:** strikte Ungleichung auf der Verbundfolge; der Stirling-Zusatz bleibt gerechnet |
 | L03-4 | Verbundkontextur (§3) | `CC.two_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Mindestdreiwertigkeit als Satz: mehrere Elementarkontexturen gibt es genau ab `m = 3`. **Grenze:** dass dies Günthers Begründung über den unvermittelten zweiten Wert ist, bleibt Deutung |
 | L03-5 | Verbundkontextur (§3) | `CC.disjoint_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Schwelle: disjunkte Elementarkontexturen genau ab `m = 4`; gibt `RT.regime_threshold_at_four` seinen begrifflichen Rahmen, ohne gemeinsamen Satz |
+| L03-6 | Verbundkontextur (§3) | `PM.w_differs_on_disjoint` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | am Bestandszeugen `w` liegt die Mischung auf zwei disjunkten Elementarkontexturen. **Grenze:** Verortung am gewählten Zeugen; die Disjunktheit ist Zeugen- und nicht Gattungseigenschaft — Gegenbeispiel in der Grenznotiz des Moduls |
 | L04-1 | Diskontexturalität (§4) | `TCB.T_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Nicht-Erzeugbarkeit im Termklon, `m = 3` |
 | L04-2 | Diskontexturalität (§4) | `NUCB.W_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Bruch ohne Verlassen einer Kontextur |
 | L04-3 | Diskontexturalität (§4) | `GCB.locally_classical_in_clone_iff` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Charakterisierung für alle `m ≥ 4` |
@@ -153,6 +155,7 @@ beider Fehlexpansionen.
 | L05-4 | Transkontexturalität (§5) | — | Offen | Offen | — | Erzeugung des geschichtlich Neuen nicht formalisiert |
 | L05-5 | Transkontexturalität (§5) | `PC.freigabe_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | zweiter Konsument von E3; kein neuer Satz |
 | L05-6 | Transkontexturalität (§5) | `RA.autoritaet_nicht_erzeugbar` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | dritter Konsument von E3; kein neuer Satz |
+| L05-7 | Transkontexturalität (§5) | `PM.not_in_clone_pair_mixture` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | nicht im Klon heisst: wählt auf zwei verschiedenen Paaren verschieden. Tragendes Allgemeines: `PM.pair_mixture_of_ne_min_ne_max`. **Grenze:** Paar-Verschiedenheit, nicht Disjunktheit |
 | L06-1 | Poly-Kontexturalität stark (§6) | — | Offen | Offen | — | verengt: ein gerichteter Stufenaufstieg ist als Probe getragen (L12-7, L12-8, L06-8); die weltbildhafte Totalität der Definition bleibt ohne Träger, Forschungsstrang Plan §8; der Stufenschritt selbst ist paritätsabhängig (L10-6, L12-9); kein endlicher Wertvorrat trägt einen unbeschränkten Strom (L06-9); der Reichtum wächst bei konstanter Erreichbarkeit (L06-10, L12-10) |
 | L06-2 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_locally_classical` | Theorem | Deutung | ja, `[propext]` | lokale Klassizität, `Fin 3` |
 | L06-3 | Poly-Kontexturalität f.-o. (§6) | `NUCB.W_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | globaler Reduzierbarkeitsbruch |
