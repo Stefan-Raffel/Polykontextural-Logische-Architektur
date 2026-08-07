@@ -29,3 +29,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-06 | `9535c3f` | Profil-Route: `profil_probe.sh`, Profilspalte gemessen statt getippt | 44 Zeilen bestaetigt, 0 Abweichungen — die getippte Spalte war korrekt, und das ist jetzt geprueft statt geglaubt |
 | 2026-08-06 | `d9e6e80` `0eedc78` | Manifest der Prozessoptimierung, Befund zum Erreichten | "vier Gleichungen" war nach einem Tag falsch — Zahlwort gestrichen statt nachgefuehrt; die Ziffern-Wache traf den Befund selbst — und `d9e6e80` wurde ROT committet, weil ich den Exit-Code mit einem `echo` verschluckt hatte; `0eedc78` repariert es |
 | 2026-08-06 | `6fe7d53` | Ausgabenprobe gebaut; letzte Marke der Traegertafel entfaellt | die vier Groessen der Vorgabe fangen einen gestrichenen Absatz NICHT — eine fuenfte war noetig |
+| 2026-08-06 | `bb2ad69` | Ausgabenprobe fuer md gegen html geeicht; Erzeugung Rev5 begonnen | sechs Fehler in der Probe selbst — `<p[^>]*>` faengt auch `<pre>` |
