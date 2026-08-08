@@ -56,3 +56,4 @@ import Reformulation.Kenogram.Unbounded
 import Reformulation.Kenogram.Fiber
 import Reformulation.Kenogram.PlaceSwap
 import Reformulation.Kenogram.Descent
+import Reformulation.Kenogram.JointClosure

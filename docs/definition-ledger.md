@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 14.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 15.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -218,6 +218,8 @@ beider Fehlexpansionen.
 | L16-12 | Morphogramm (§16) | `KFib.fiberEquiv` | Definition | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Faser der Kanonisierung ist zweielementig, als Äquivalenz zu `Bool`; dazu `KFib.card_bool_fun_eq_two_mul` als Gleichung 16 = 2·8 zwischen Korpus-Kardinalitäten. **Grenze:** Faser bei `n = 4`; allgemeines `n` bleibt aussen |
 | L16-13 | Morphogramm (§16) | `KFib.witness_over_three` | Theorem | Operationalisierung | ja, axiomfrei | zweiter Zeuge `[0,1,2,3]`: von keinem dreiwertigen, wohl aber von einem vierwertigen System besetzbar; Gegenstück `KFib.witness_over_two`. **Grenze:** Stufentrennung am Zeugen; die Tafelnummern-Zuordnung bleibt Deutung |
 | L16-14 | Morphogramm (§16) | `RelInv.relabel_map_negFin` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Kanonisierung ist gegen jede **injektive** Umbenennung der Werte invariant (`RelInv.relabel_map_of_injective`, heterogen); die Instanz an der ordnungsumkehrenden Negation `negFin` folgt daraus. **Grenze:** Invarianz der Kanonisierung gegen injektive Wertumbenennung; **keine** Nichtdarstellbarkeitsaussage |
+| L16-15 | Morphogramm (§16) | `K.JointlyClosed` | Definition | Operationalisierung | ja, `[propext]` | Abgeschlossenheit einer Reihenmenge unter jedem Stellentausch **innerhalb der Reihe** und unter dem Abstieg; trägt L16-16. **Grenze:** die Indexschranke ist gemessen und nicht gewählt — ohne sie setzt `exchangeAt` bei einem Index ausserhalb eine Stelle auf `0`, statt zwei zu tauschen (Vorprobe im Dateikopf) |
+| L16-16 | Morphogramm (§16) | `K.hull_le_of_jointlyClosed` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | jede gemeinsam abgeschlossene Menge, die eine RGS-Reihe der Länge ≥ 2 enthält, enthält `{[],[0],[0,0]}` oder `{[],[0],[0,1]}` **ganz** — ohne Längenschranke. Daneben `K.jointlyClosed_hull_pair` (beide Dreiermengen sind selbst gemeinsam abgeschlossen, `[propext, Quot.sound]`), ohne eigene Zeile — L05-7-Präzedenz. **Grenze:** eine ⊆-Untergrenze; keine Prioritätsaussage |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

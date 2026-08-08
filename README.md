@@ -133,10 +133,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3328 Konstanten |
-| Axiom-Wachen | 568 ueber 76 Dateien |
-| Saetze gesamt | 821 |
-| Build-Jobs | 1311 |
+| geprueft (AxiomGate) | 3428 Konstanten |
+| Axiom-Wachen | 585 ueber 81 Dateien |
+| Saetze gesamt | 846 |
+| Build-Jobs | 1316 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript

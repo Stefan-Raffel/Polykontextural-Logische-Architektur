@@ -204,6 +204,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L16-12" Reformulation.Kenogram.Fiber.fiberEquiv
 #ledger_theorem "L16-13" Reformulation.Kenogram.Fiber.witness_over_three
 #ledger_theorem "L16-14" Reformulation.Proemial.RelabelInvariance.relabel_map_negFin
+#ledger_def "L16-15" Reformulation.Kenogram.JointlyClosed
+#ledger_theorem "L16-16" Reformulation.Kenogram.hull_le_of_jointlyClosed
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 
