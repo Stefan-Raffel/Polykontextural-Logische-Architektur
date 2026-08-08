@@ -85,10 +85,22 @@ Stufen**: ab vier ist jede echt gemischte, lokal klassische Politik unkomponierb
 die Haelfte der Mischungen sehr wohl aus lokalen Pruefern zusammensetzbar
 (`NonUniformCloneBound.four_of_eight_generatable`).
 
-**Das Pruefkriterium.** Eine unkomponierbare Politik ist an ihrer Wertetafel erkennbar: es
-gibt **zwei Stufenpaare**, auf denen sie entgegengesetzt wirkt - auf dem einen wie das
-Maximum, auf dem anderen wie das Minimum (`PairwiseMixture.not_in_clone_pair_mixture`). Der
-Satz garantiert zwei Paare; er garantiert nicht, dass sie benachbart oder disjunkt sind.
+**Und die zweite Bedingung ist die schwierigere.** *Lokal klassisch* heisst: die Politik
+wirkt auf **jedem** Stufenpaar wie das Minimum oder wie das Maximum - auch auf den nicht
+benachbarten. Bei vier Stufen sind das **sechs** Paare, nicht drei (allgemein `m(m-1)/2`).
+Genau hier bricht der naheliegende Entwurf: eine Eskalationsregel bei Konflikt der
+Randstufen - *gesperrt und privilegiert treffen zusammen, also zur Pruefung* - ist auf
+diesem Paar weder das Minimum noch das Maximum, und der Satz greift nicht mehr. Dass
+gerade der durchdachte Entwurf die Voraussetzung verlaesst, ist die nuetzlichste Auskunft
+dieses Absatzes.
+
+**Das Pruefkriterium.** Ist die Voraussetzung erfuellt, so ist eine unkomponierbare Politik
+an ihrer Wertetafel erkennbar: es gibt **zwei Stufenpaare**, auf denen sie entgegengesetzt
+wirkt - auf dem einen wie das Maximum, auf dem anderen wie das Minimum
+(`PairwiseMixture.not_in_clone_pair_mixture`). Der Satz garantiert zwei Paare; er
+garantiert nicht, dass sie benachbart oder disjunkt sind. Und die Schranke haelt auch dann,
+wenn man **fest verdrahtete Pruefer** als Bausteine hinzunimmt - den Allowlist-Eintrag, die
+Ausnahme fuer ein einzelnes Werkzeug (`PolicyCheck.freigabe_nicht_erzeugbar_konstanten`).
 
 **Die Grenze.** Vorausgesetzt ist eine **lineare** Stufenskala. Mehrere Rollen, mehrere
 Perspektiven, mehrere Agenten genuegen nicht, und auf nicht-linearen Verbaenden faellt die
