@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PKL Rev5 — Polykontexturale Logik in Lean 4 und Mathlib</title>
-<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev5 in zwei Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
+<title>PKL Rev6 — Polykontexturale Logik in Lean 4 und Mathlib</title>
+<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev6 in zwei Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span class="home">PKL Rev5</span>
+    <span class="home">PKL Rev6</span>
     <div class="langswitch">
       <a href="de.html" hreflang="de">DE</a>
       <span class="sep">·</span>
@@ -26,25 +26,25 @@
 
 <header class="doctitle">
   <h1>Die mathematische Gestalt der Architektur</h1>
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev5, in zwei Teilen</p>
-  <p class="dateline">6. August 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev5</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev6, in zwei Teilen</p>
+  <p class="dateline">8. August 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev6</p>
 </header>
 
 <p class="lede">Das Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard
-Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev5, deutsch;
+Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev6, deutsch;
 die englische Übersetzung liegt vor. <strong>Sie hat zwei Teile in einem Dokument:</strong> Teil A
 stellt die Gestalt dar, Teil B liefert Trägertafel, Axiomprofile, Zählrouten und Prüfapparat; die
-Ziffern in Teil A verweisen anklickbar auf ihre Zeile in Teil B. Die früheren Fassungen Rev4, Rev3, Rev2
+Ziffern in Teil A verweisen anklickbar auf ihre Zeile in Teil B. Die früheren Fassungen Rev5, Rev4, Rev3, Rev2
 und Rev1 bleiben unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt.</p>
 
 <ul class="cards">
 <li><a class="card" href="de.html" hreflang="de">
-  <span class="kicker">Deutsch · Fassung Rev5</span>
+  <span class="kicker">Deutsch · Fassung Rev6</span>
   <span class="cardtitle">Die mathematische Gestalt der Architektur</span>
   <span class="cardsub">Zwei Teile, sieben plus sechs Abschnitte, acht Figuren, Anhang mit den Zählrouten. Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
 </a></li>
 <li><a class="card" href="en.html" hreflang="en">
-  <span class="kicker">English · edition Rev5</span>
+  <span class="kicker">English · edition Rev6</span>
   <span class="cardtitle">The Mathematical Shape of the Architecture</span>
   <span class="cardsub">Translation of the German edition; two parts, seven plus six sections, eight figures, appendix with the counting routes. Figures in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
 </a></li>
@@ -56,8 +56,10 @@ und Rev1 bleiben unter ihren eigenen Adressen erreichbar und werden nicht nachge
 <table>
 <thead><tr><th>Fassung</th><th>Sprache</th><th>Stand</th><th>Adresse</th></tr></thead>
 <tbody>
-<tr><td><strong>Rev5</strong> — laufend</td><td>deutsch</td><td>6. August 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
-<tr><td><strong>Rev5</strong> — laufend</td><td>englisch</td><td>übersetzt 6. August 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td><strong>Rev6</strong> — laufend</td><td>deutsch</td><td>8. August 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
+<tr><td><strong>Rev6</strong> — laufend</td><td>englisch</td><td>übersetzt 8. August 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td>Rev5 — frühere Fassung</td><td>deutsch</td><td>6. August 2026, Commit <code>fb0630b</code></td><td><a href="rev5/de.html">rev5/de.html</a></td></tr>
+<tr><td>Rev5 — frühere Fassung</td><td>englisch</td><td>übersetzt 6. August 2026, Kennzahlen Commit <code>fb0630b</code></td><td><a href="rev5/en.html">rev5/en.html</a></td></tr>
 <tr><td>Rev4 — frühere Fassung</td><td>deutsch</td><td>5. August 2026, Commit <code>24f7fe8</code></td><td><a href="rev4/de.html">rev4/de.html</a></td></tr>
 <tr><td>Rev4 — frühere Fassung</td><td>englisch</td><td>übersetzt 5. August 2026, Kennzahlen Commit <code>24f7fe8</code></td><td><a href="rev4/en.html">rev4/en.html</a></td></tr>
 <tr><td>Rev3 — frühere Fassung</td><td>deutsch</td><td>3. August 2026, Commit <code>56fe9a0</code></td><td><a href="rev3/de.html">rev3/de.html</a></td></tr>
@@ -70,7 +72,7 @@ und Rev1 bleiben unter ihren eigenen Adressen erreichbar und werden nicht nachge
 </table>
 </div>
 
-<p>Rev4, Rev3, Rev2 und Rev1 werden <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an
+<p>Rev5, Rev4, Rev3, Rev2 und Rev1 werden <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an
 <code>24f7fe8</code>, <code>56fe9a0</code>, <code>e5ef3d7</code> beziehungsweise <code>e89ab47</code> und tragen ihren
 Stand; wer sie einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
 
@@ -118,7 +120,7 @@ bauen dort grün.</p>
 
 <p>Gemessen am Commit <code>24f7fe8</code>. Jede Zahl läuft über einen Bereich, und es ist nicht
 für alle derselbe — darum steht er dabei. Die Zählrouten stehen im
-<a href="de.html#b6">Anhang der Fassung Rev5</a>; ein Bauzug macht jede ausgestellte Zahl
+<a href="de.html#b6">Anhang der Fassung Rev6</a>; ein Bauzug macht jede ausgestellte Zahl
 still veraltet, weshalb sie ihren Stand mitführt. Kenngrössen, die hier nicht stehen, führt der
 Anhang der laufenden Fassung mit ihrer Route und ihrem eigenen Anker.</p>
 
@@ -140,13 +142,15 @@ Klon baut der Baum grün durch.</p>
 Elementarkontextur) und <code>Proemial/NonUniformCloneBound.lean</code> (Zeuge E1 — ein zweiter
 Grund, der keine Kontextur verlässt, samt vollständiger Klassifikation). Welcher Satz welche
 Ziffer des Papiers trägt, steht in der
-<a href="de.html#b1">Trägertafel der Fassung Rev5</a>.</p>
+<a href="de.html#b1">Trägertafel der Fassung Rev6</a>.</p>
 
 </main>
 
 <footer class="pagefoot">
-  <p>Fassung PKL Rev5 · 6. August 2026</p>
-  <p><a href="de.html">Fassung Rev5, deutsch</a> · <a href="en.html">Rev5 English</a> ·
+  <p>Fassung PKL Rev6 · 8. August 2026</p>
+  <p><a href="de.html">Fassung Rev6, deutsch</a> · <a href="en.html">Rev6 English</a> ·
+  <a href="rev5/de.html">Rev5 deutsch</a> · <a href="rev5/en.html">Rev5 English</a> ·
+  <a href="rev4/de.html">Rev4 deutsch</a> · <a href="rev4/en.html">Rev4 English</a> ·
   <a href="rev3/de.html">Rev3 deutsch</a> · <a href="rev3/en.html">Rev3 English</a> ·
   <a href="rev2/de.html">Rev2 deutsch</a> · <a href="rev2/en.html">Rev2 English</a> ·
   <a href="rev1/de.html">Rev1 deutsch</a> · <a href="rev1/en.html">Rev1 English</a> ·

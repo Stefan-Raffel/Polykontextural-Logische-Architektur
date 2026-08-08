@@ -35,11 +35,11 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel='Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev5, in zwei Teilen',
-        datum='6. August 2026',
-        teile=[f'{K}/Entwurf_2026-08-05_Rev4_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-08-05_Rev4_TeilB_Apparat_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev4/de.html',
+        untertitel='Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev6, in zwei Teilen',
+        datum='8. August 2026',
+        teile=[f'{K}/Entwurf_2026-08-08_Rev6_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-08-08_Rev6_TeilB_Apparat_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev5/de.html',
         inhalt='Inhalt', teilA='Teil A · Die Gestalt', teilB='Teil B · Der Apparat',
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
@@ -49,11 +49,11 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel='Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev5, in two parts',
-        datum='6 August 2026',
-        teile=[f'{K}/Entwurf_2026-08-05_Rev4_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-08-05_Rev4_TeilB_Apparatus_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev4/en.html',
+        untertitel='Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev6, in two parts',
+        datum='8 August 2026',
+        teile=[f'{K}/Entwurf_2026-08-08_Rev6_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-08-08_Rev6_TeilB_Apparatus_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev5/en.html',
         inhalt='Contents', teilA='Part A · The Shape', teilB='Part B · The Apparatus',
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
@@ -132,7 +132,21 @@ def wandle_teil(md_text, figuren, caption_wort):
         inhalt = re.sub(r'[ \t]*\n[ \t]*', ' ', m.group(1))
         k = re.match(r'\s*\**\s*(?:Figur|Figure|Abbildung)\s+(\d+)', inhalt)
         if not k:
-            return ''
+            # BIS REV5 STAND HIER `return ''` — und das war eine stille Loeschung.
+            # Gemessen an der fuenften Ausgabe: der Entwurf zu Teil A trug eine
+            # offene Klaerungs-Marke, und der Absatz in Teil B, der das
+            # Markenzeichen ERKLAERT, trug es als Beispiel. Beide verschwanden;
+            # der Erklaerungsabsatz stand danach in BEIDEN Sprachfassungen ohne
+            # Satzgegenstand („Marken. bezeichnete in den frueheren Fassungen").
+            # Keine der neun Groessen sah es, weil die Probe die Marken auf der
+            # Entwurfsseite ebenso entfernt — sie spiegelt diese Route, statt sie
+            # zu pruefen. Eine begruendete Ausnahme auf beiden Seiten ist kein
+            # Vergleich mehr.
+            raise SystemExit(
+                'FEHLER: Marke ohne Figur-Kopf — die Strecke loescht nicht mehr '
+                'stillschweigend.\n         ⟦' + inhalt[:120] + '⟧\n'
+                '         Entweder als Figur schreiben, oder aus dem Entwurf '
+                'nehmen; ein Klaerungsvermerk gehoert nicht in die Ausgabe.')
         fig = figuren[int(k.group(1)) - 1]
         u = re.search(rf'(?:{caption_wort}):\s*\**\s*(.*)$', inhalt)
         if u:
@@ -233,13 +247,13 @@ def baue(sprache):
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (4, 3, 2, 1))
+                         for n in (5, 4, 3, 2, 1))
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{c['titel']} — PKL Rev5</title>
+<title>{c['titel']} — PKL Rev6</title>
 <meta name="description" content="{c['untertitel']}">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -247,7 +261,7 @@ def baue(sprache):
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL Rev5</a>
+    <a class="home" href="./">PKL Rev6</a>
     <div class="langswitch">
       <span aria-current="page">{sprache.upper()}</span>
       <span class="sep">·</span>
@@ -284,7 +298,7 @@ def baue(sprache):
 </main>
 
 <footer class="pagefoot">
-  <p>PKL Rev5 · {c['datum']}</p>
+  <p>PKL Rev6 · {c['datum']}</p>
   <p><a href="./">{c['uebersicht']}</a> · <a href="{c['andere']}">{c['andere_wort']}</a> · {archive} ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
