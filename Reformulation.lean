@@ -53,5 +53,6 @@ import Reformulation.Kenogram.Operational
 import Reformulation.Kenogram.Morphogram
 import Reformulation.Kenogram.Fillability
 import Reformulation.Kenogram.Unbounded
+import Reformulation.Kenogram.Fiber
 import Reformulation.Kenogram.PlaceSwap
 import Reformulation.Kenogram.Descent

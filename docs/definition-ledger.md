@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 12.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 13.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,18 +37,18 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 95 |
-| Zeilen mit Träger | 81 |
-| verschiedene Trägernamen | 73 |
-| TS `Theorem` | 63 |
-| TS `Definition` | 17 |
+| Zeilen gesamt | 98 |
+| Zeilen mit Träger | 84 |
+| verschiedene Trägernamen | 76 |
+| TS `Theorem` | 64 |
+| TS `Definition` | 19 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
 | Paragraphen von `Definitionen.md` | 19 von 19 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 81 Zeilen bei 73
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 84 Zeilen bei 76
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
@@ -113,6 +113,7 @@ beider Fehlexpansionen.
 | `K.` | `Reformulation.Kenogram.` | Namensraum |
 | `KM.` | `Reformulation.Kenogram.Morphogram.` | Namensraum |
 | `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
+| `KFib.` | `Reformulation.Kenogram.Fiber.` | Namensraum |
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
@@ -212,6 +213,9 @@ beider Fehlexpansionen.
 | L16-8 | Morphogramm (§16) | `KF.card_rgs_four_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | acht der fünfzehn vierstelligen Morphogramme sind zweiwertig besetzbar; die Identifikation mit den acht klassisch markierten Zeilen Günthers ist Deutung, kein Satz |
 | L16-9 | Morphogramm (§16) | `KF.fillable_card_lt_card` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | strikte Ungleichung als formale Lesung von „morphogrammatisch unvollständig"; der benannte Zeuge dazu ist `KF.exists_nonfillable` (`[0,1,2,0]`, axiomfrei), ohne eigene Zeile |
 | L16-10 | Morphogramm (§16) | `KU.marksLt_iff_fillable` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | verallgemeinerte Wertbesetzung über `Fin k` für jedes k; **ersetzt die Bool-Fassung L16-7 nicht** — `Fin 2` ist nicht `Bool`, eine Übersetzung ist nicht gebaut; zusammen fällt nur die Prädikat-Seite (`KU.marksLeOne_iff_marksLt_two`, ohne eigene Zeile) |
+| L16-11 | Morphogramm (§16) | `KF.MarksLeOne` | Definition | Operationalisierung | keine (def) | Wertseiten-Prädikat der Zweiwertigkeit; trägt L16-7 bis L16-9 |
+| L16-12 | Morphogramm (§16) | `KFib.fiberEquiv` | Definition | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Faser der Kanonisierung ist zweielementig, als Äquivalenz zu `Bool`; dazu `KFib.card_bool_fun_eq_two_mul` als Gleichung 16 = 2·8 zwischen Korpus-Kardinalitäten. **Grenze:** Faser bei `n = 4`; allgemeines `n` bleibt aussen |
+| L16-13 | Morphogramm (§16) | `KFib.witness_over_three` | Theorem | Operationalisierung | ja, axiomfrei | zweiter Zeuge `[0,1,2,3]`: von keinem dreiwertigen, wohl aber von einem vierwertigen System besetzbar; Gegenstück `KFib.witness_over_two`. **Grenze:** Stufentrennung am Zeugen; die Tafelnummern-Zuordnung bleibt Deutung |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

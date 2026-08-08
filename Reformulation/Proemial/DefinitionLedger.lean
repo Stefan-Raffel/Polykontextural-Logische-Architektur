@@ -200,6 +200,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L16-8" Reformulation.Kenogram.Fillability.card_rgs_four_fillable
 #ledger_theorem "L16-9" Reformulation.Kenogram.Fillability.fillable_card_lt_card
 #ledger_theorem "L16-10" Reformulation.Kenogram.Unbounded.marksLt_iff_fillable
+#ledger_def "L16-11" Reformulation.Kenogram.Fillability.MarksLeOne
+#ledger_def "L16-12" Reformulation.Kenogram.Fiber.fiberEquiv
+#ledger_theorem "L16-13" Reformulation.Kenogram.Fiber.witness_over_three
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 
