@@ -287,6 +287,29 @@ Nicht-Kontextur sagt er `1 ≠ 2`. Wörtlich aus dem Befund:
 > Der Selbstzyklus trägt im Zielsatz mit — aber nur als der Fall, der keinen eigenen Satz
 > hat. Er ist der Zweig, der die Dichotomie erschöpfend macht.
 
+**Nachtrag (Ledger Rev. 15): eine vierte, gemessene Lage — auf der kenogrammatischen
+Seite.** Die drei geprüften Fassungen oben liegen sämtlich auf der Wertseite. Seit
+`K.JointlyClosed` (L16-15) und seinen beiden Konsumenten (L16-16) steht eine vierte
+daneben, und sie ist von anderer Art: unter Abschluss gegen **Stellentausch und
+Abstieg** zeichnet der Bestand genau zwei Reihen der Länge zwei aus — `[0,0]` und
+`[0,1]`. Jede gemeinsam abgeschlossene Menge, die eine RGS-Reihe der Länge ≥ 2 enthält,
+enthält die Hülle einer der beiden **ganz** (`K.hull_le_of_jointlyClosed`), und beide
+Hüllen sind selbst gemeinsam abgeschlossen (`K.jointlyClosed_hull_pair`).
+
+*Was daran Satz ist und was nicht, getrennt:* die **⊆-Untergrenze** und die
+**Abgeschlossenheit beider Hüllen** sind Sätze, über alle Längen. Dass die beiden die
+**einzigen** ⊆-minimalen sind, ist **gemessen** (Aufzählung der Längen 0–6,
+`KorpusRev2/Kenogrammatischer_Invariantenschnitt_Befund.md`) und **kein Satz** — ein
+„genau zwei"-Satz war freigestellt und ist nicht gebaut.
+
+*Und die Zuordnung ist Deutung:* dass `[0,0]` **der Selbstzyklus** aus
+`Definitionen.md` §2(a) und `[0,1]` **das Umtauschverhältnis** aus §2(b) sei, ist eine
+Lesart und trägt kein Satz. **L14-1 bleibt darum offen:** ein wertseitiger
+Selbstzyklus-Begriff ist weiterhin nicht gebaut, und die kenogrammatische Lage ersetzt
+ihn nicht. Was der Nachtrag ändert, ist allein dies — der Selbstzyklus ist hier zum
+ersten Mal nicht der Fall ohne eigenen Satz, sondern eine von zwei ausgezeichneten
+Gestalten; und keine Zeile hat sich dafür bewegt.
+
 **Die Eindeutigkeit des Umtauschverhältnisses ist nicht getragen.** `Definitionen.md` §2(b)
 versteht die Elementarkontextur als *Umtauschverhältnis* zweier Werte, und dessen Pointe ist
 Eindeutigkeit. L02-8 liefert Existenz, nicht Eindeutigkeit — und an dieser Signatur wäre
