@@ -862,6 +862,14 @@ und `Foreign/` suchen, **auch in Prosa und Doc-Strings** - ein Term-Konsument br
 Bau, eine Prosa-Aussage nicht. Wer nur den Bau als Probe nimmt, findet die zweite Klasse
 nie.
 
+**Und der Suchbereich endet nicht am Lean-Bestand.** Seit dem Schaufenster-Zug stehen
+Satznamen auch in `docs/index.html` und in `README.md` - beide ausserhalb jeder
+Namensprobe: `profil_probe.sh` loest nur Traegertafel-Namen auf, und Lint-Gruppe (F)
+prueft Anker, keine Namen. **Wer einen Satz umbenennt, der auf der Startseite oder im
+README beim Namen steht, fuehrt beide nach.** Kein neues Werkzeug: eine stehende
+Papier-gegen-Bestand-Lint ist mit der Rev6-Entscheidung abgelehnt, und der Ausfallmodus
+ist derselbe wie bei der uebrigen Regel - kein Bau bricht, kein Lint schlaegt an.
+
 **8 - Eine Gegenprobe wird gegen den Zug geprueft, der sie verwendet; ihr Anker liegt an
 einer Stelle, die der Zug nicht beruehrt.** Ein Muss-Fall, der auf eine Fundstelle zeigt,
 die der Zug beseitigt, wird durch den Zug selbst falsch - und er ist danach

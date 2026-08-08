@@ -76,6 +76,46 @@ und Rev1 bleiben unter ihren eigenen Adressen erreichbar und werden nicht nachge
 <code>24f7fe8</code>, <code>56fe9a0</code>, <code>e5ef3d7</code> beziehungsweise <code>e89ab47</code> und tragen ihren
 Stand; wer sie einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
 
+<h2 id="schaufenster">Woran man es sieht: eine Politik, die sich nicht zusammensetzen lässt</h2>
+
+<p>Diese Tafel ist das kleinste Stück des Projekts, das ohne Vorkenntnis lesbar ist.
+Vier Stufen der Quellenautorität — <em>Notiz</em>, <em>Teamdokument</em>, <em>Policy</em>,
+<em>Gesetz</em> — und eine Regel, die zwei Quellen zu einer Stufe zusammenfasst: es gilt die
+<strong>schwächere</strong> Quelle. Ausgenommen ist der interne Governance-Korridor: wo
+Teamdokument und Policy zusammentreffen, gilt der Vorrang der Policy.</p>
+
+<div class="tablewrap">
+<table class="matrix">
+<thead><tr><th></th><th>Notiz</th><th>Teamdok.</th><th>Policy</th><th>Gesetz</th></tr></thead>
+<tbody>
+<tr><th>Notiz</th><td>Notiz</td><td class="hi">Notiz</td><td>Notiz</td><td>Notiz</td></tr>
+<tr><th>Teamdok.</th><td>Notiz</td><td>Teamdok.</td><td class="hi">Policy</td><td>Teamdok.</td></tr>
+<tr><th>Policy</th><td>Notiz</td><td>Policy</td><td>Policy</td><td>Policy</td></tr>
+<tr><th>Gesetz</th><td>Notiz</td><td>Teamdok.</td><td>Policy</td><td>Gesetz</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Die beiden hervorgehobenen Zellen sind der ganze Punkt.</strong> In der einen wirkt
+die Regel wie das <em>Minimum</em> — Notiz und Teamdokument ergeben Notiz. In der anderen wirkt
+dieselbe Regel wie das <em>Maximum</em> — Teamdokument und Policy ergeben Policy. Auf jedem
+einzelnen Stufenpaar entscheidet sie also klassisch, im ganzen aber weder durchgehend nach
+unten noch durchgehend nach oben.</p>
+
+<p>Und das ist es, was sich beweisen lässt: <strong>eine solche gemischte Regel ist aus
+stufenblinden Bausteinen nicht zusammensetzbar</strong> — gleich in welcher Verschaltung und bis
+zu welcher Tiefe. Wer sie haben will, muss sie als eigene Instanz hinstellen; wegkompilieren
+lässt sie sich nicht. Der Satz heisst <code>GCB.locally_classical_in_clone_iff</code>, die
+Politik <code>RAGAuthority.autoritaet</code>; die Tafel oben ist aus deren Definition erzeugt
+und nicht abgeschrieben.</p>
+
+<p><strong>Was der Satz nicht sagt</strong>, steht im Kopf des Moduls und wird hier wörtlich
+übernommen: <em>„Diese Datei gibt keine Sicherheits-, Rechts-, Wahrheits- oder
+Retrievalgarantie. Bewiesen ist, was aus lokalen, kontextur-blinden Prüfern nicht
+zusammensetzbar ist."</em> Er setzt ausserdem eine <strong>lineare Stufenskala</strong> voraus —
+mehrere Rollen oder Perspektiven ohne Stufung genügen nicht. Wo die Schranke beisst und wo
+sie fällt, steht im Arbeitspapier: <a href="de.html#a7">Kapitel 7 — Reichweite und Grenze</a>.</p>
+
 <h2 id="etiketten">Zwei Achsen je Aussage</h2>
 
 <p>Jede Behauptung trägt zwei Marken: <strong>was</strong> sie ist, und <strong>wo</strong> sie

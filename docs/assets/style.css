@@ -302,6 +302,22 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 table.routes code { font-size: 0.78rem; white-space: nowrap; }
 
+/* --- Schaufenster: die Wertetafel einer Anwendungspolitik ------------------
+   Nur auf der Startseite verwendet. Die Zahlen der Tafel sind AUS DER DEFINITION
+   erzeugt (`#eval` ueber `RAGAuthority.autoritaet`), nicht getippt; die zwei
+   hervorgehobenen Zellen sind die Widerlegungspunkte, die der Beweis fuehrt. */
+table.matrix { min-width: 0; max-width: 34rem; font-variant-numeric: tabular-nums; }
+table.matrix th { font-weight: 600; color: var(--muted); font-size: 0.82rem; }
+table.matrix thead th { text-align: center; }
+table.matrix tbody th { text-align: right; white-space: nowrap; }
+table.matrix td { text-align: center; font-weight: 600; }
+table.matrix td.hi {
+  background: var(--f12);
+  outline: 1.5px solid var(--mark);
+  outline-offset: -1.5px;
+  color: var(--mark);
+}
+
 /* --- Figuren ------------------------------------------------------------- */
 
 figure.fig { margin: 2.4rem 0; }

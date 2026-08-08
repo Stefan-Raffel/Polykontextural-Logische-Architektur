@@ -74,6 +74,32 @@ alte Adresse loest nicht auf (gemessen, HTTP 404) - Pages folgt der Umbenennung 
 
 ---
 
+## Was hat man davon?
+
+Drei Saetze fuer den eiligen Leser, in der Reihenfolge Entwurf, Pruefung, Grenze.
+
+**Die Entwurfsregel.** Wer eine Stufenskala so bauen will, dass jede gemischte Politik eine
+eigene, nicht wegkompilierbare Vermittlungsinstanz erzwingt, braucht **mindestens vier
+Stufen**: ab vier ist jede echt gemischte, lokal klassische Politik unkomponierbar
+(`GeneralCloneBound.locally_classical_in_clone_iff`), darunter nicht - bei drei Stufen ist
+die Haelfte der Mischungen sehr wohl aus lokalen Pruefern zusammensetzbar
+(`NonUniformCloneBound.four_of_eight_generatable`).
+
+**Das Pruefkriterium.** Eine unkomponierbare Politik ist an ihrer Wertetafel erkennbar: es
+gibt **zwei Stufenpaare**, auf denen sie entgegengesetzt wirkt - auf dem einen wie das
+Maximum, auf dem anderen wie das Minimum (`PairwiseMixture.not_in_clone_pair_mixture`). Der
+Satz garantiert zwei Paare; er garantiert nicht, dass sie benachbart oder disjunkt sind.
+
+**Die Grenze.** Vorausgesetzt ist eine **lineare** Stufenskala. Mehrere Rollen, mehrere
+Perspektiven, mehrere Agenten genuegen nicht, und auf nicht-linearen Verbaenden faellt die
+Charakterisierung nachweislich. Und was bewiesen ist, ist nicht mehr als das - im Wortlaut
+der Modulkoepfe: *keine Sicherheits-, Rechts-, Wahrheits- oder Retrievalgarantie. Bewiesen
+ist, was aus lokalen, kontextur-blinden Pruefern nicht zusammensetzbar ist.*
+
+Eine Wertetafel zum Ansehen steht auf der Projektseite, im Abschnitt *Woran man es sieht*.
+
+---
+
 ## Was implementiert ist, und was nicht
 
 Dieses Repository implementiert **nicht** die volle weltbildhafte Poly-Kontexturalitaet aus
