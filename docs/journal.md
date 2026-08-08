@@ -38,3 +38,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-08-07 | `19f586f` | Verbundkontextur als Struktur: `CompoundContexture`, Ledger Rev. 11 | zwei Profil-Erwartungen falsch — die Finset-Gestalt zieht Choice auf drei unabhaengigen Routen |
 | 2026-08-07 | `20d4c0b` | Paarmischung: `PairwiseMixture`, Ledger Rev. 12 | der Choice-Anteil sitzt in der GESTALT DER VORAUSSETZUNG, nicht im Argument — zwei Fassungen, eine Groesse Unterschied |
 | 2026-08-07 | `2b8cfa6` | Fallstrick 8 um die `allowOpaque`-Heilung ergaenzt | zwei Instanzen, zwei Routen, dieselben sieben Namen — der Kern des Eintrags bleibt: ohne das Argument ist die Route blind |
+| 2026-08-07 | `00d4941` | Kuer des Morphogramm-Zugs: `Kenogram/Fiber`, Ledger Rev. 13 | die Profil-Erwartung war durch LESEN falsifizierbar — die Wache des konsumierten Satzes stand zwei Dateien weiter |
