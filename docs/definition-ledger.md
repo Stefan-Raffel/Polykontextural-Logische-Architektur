@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 13.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 14.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,10 +37,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 98 |
-| Zeilen mit Träger | 84 |
-| verschiedene Trägernamen | 76 |
-| TS `Theorem` | 64 |
+| Zeilen gesamt | 99 |
+| Zeilen mit Träger | 85 |
+| verschiedene Trägernamen | 77 |
+| TS `Theorem` | 65 |
 | TS `Definition` | 19 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
@@ -98,6 +98,7 @@ beider Fehlexpansionen.
 | `TCB.` | `Reformulation.Proemial.TransjunctionCloneBound.` | Namensraum |
 | `NUCB.` | `Reformulation.Proemial.NonUniformCloneBound.` | Namensraum |
 | `GCB.` | `Reformulation.Proemial.GeneralCloneBound.` | Namensraum |
+| `RelInv.` | `Reformulation.Proemial.RelabelInvariance.` | Namensraum |
 | `QCB.` | `Reformulation.Proemial.QuaternaryCloneBound.` | Namensraum |
 | `SA.` | `Reformulation.Proemial.StageAggregation.` | Namensraum |
 | `PC.` | `Reformulation.Proemial.PolicyCheck.` | Namensraum |
@@ -216,6 +217,7 @@ beider Fehlexpansionen.
 | L16-11 | Morphogramm (§16) | `KF.MarksLeOne` | Definition | Operationalisierung | keine (def) | Wertseiten-Prädikat der Zweiwertigkeit; trägt L16-7 bis L16-9 |
 | L16-12 | Morphogramm (§16) | `KFib.fiberEquiv` | Definition | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Faser der Kanonisierung ist zweielementig, als Äquivalenz zu `Bool`; dazu `KFib.card_bool_fun_eq_two_mul` als Gleichung 16 = 2·8 zwischen Korpus-Kardinalitäten. **Grenze:** Faser bei `n = 4`; allgemeines `n` bleibt aussen |
 | L16-13 | Morphogramm (§16) | `KFib.witness_over_three` | Theorem | Operationalisierung | ja, axiomfrei | zweiter Zeuge `[0,1,2,3]`: von keinem dreiwertigen, wohl aber von einem vierwertigen System besetzbar; Gegenstück `KFib.witness_over_two`. **Grenze:** Stufentrennung am Zeugen; die Tafelnummern-Zuordnung bleibt Deutung |
+| L16-14 | Morphogramm (§16) | `RelInv.relabel_map_negFin` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Kanonisierung ist gegen jede **injektive** Umbenennung der Werte invariant (`RelInv.relabel_map_of_injective`, heterogen); die Instanz an der ordnungsumkehrenden Negation `negFin` folgt daraus. **Grenze:** Invarianz der Kanonisierung gegen injektive Wertumbenennung; **keine** Nichtdarstellbarkeitsaussage |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

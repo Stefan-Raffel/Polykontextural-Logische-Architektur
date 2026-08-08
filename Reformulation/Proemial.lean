@@ -29,6 +29,7 @@ import Reformulation.Proemial.ExhaustionTransition
 import Reformulation.Proemial.RecurringGround
 import Reformulation.Proemial.ArrowAscent
 import Reformulation.Proemial.RetractionBracket
+import Reformulation.Proemial.RelabelInvariance
 import Reformulation.Proemial.IntervalBackbone
 import Reformulation.Proemial.ReversibleExchange
 import Reformulation.Proemial.IrreversibleAdvance
