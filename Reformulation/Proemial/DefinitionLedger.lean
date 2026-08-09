@@ -212,6 +212,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L16-20" Reformulation.Kenogram.PairStageBound.no_injective_pair_three
 #ledger_def "L16-21" Reformulation.Kenogram.concatWith
 #ledger_theorem "L16-22" Reformulation.Kenogram.concatWith_pair_not_injective
+#ledger_theorem "L08-5" Reformulation.Proemial.ContextureEscapeBound.not_in_clone_of_escapes
+#ledger_def "L08-6" Reformulation.Proemial.ContextureEscapeBound.contexture03
+#ledger_theorem "L08-7" Reformulation.Proemial.ContextureEscapeBound.avgDown_not_in_clone
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 

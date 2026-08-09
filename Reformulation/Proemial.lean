@@ -49,6 +49,7 @@ import Reformulation.Proemial.RegimeThreshold
 import Reformulation.Proemial.ElementaryCycle
 import Reformulation.Proemial.CompoundContexture
 import Reformulation.Proemial.PairwiseMixture
+import Reformulation.Proemial.ContextureEscapeBound
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1032,6 +1033,19 @@ Enthält:
   durchgängig `[propext, Classical.choice, Quot.sound]` — externer Träger über
   `Function.minimalPeriod`; die Involutionsaussage `isPeriodicPt_two` davor zieht
   nur `[Quot.sound]`. 0 Sorries.
+
+- `Proemial.ContextureEscapeBound`: das **Zeugnis mit Menge und Punkt** (ERTRAG).
+  `not_in_clone_of_escapes` — allgemein über jeder Sprache, jeder Struktur und
+  jeder Substruktur: verlässt eine Operation eine abgeschlossene Menge an einem
+  angebbaren Punkt, so ist sie kein Term über der Signatur; die Voraussetzung
+  nennt die Menge **und** den Punkt. `contexture03` und `contexture12` heben die
+  Bauform von `TransjunctionCloneBound` auf `Fin 4` (die zwei nichttrivial
+  abgeschlossenen Mengen, exhaustiv über alle 16 Teilmengen gemessen);
+  `avgDown_not_in_clone` instanziiert am abgerundeten Durchschnitt, der `{0,3}`
+  am Punkt `(0,3)` verlässt. `locallyClassical_preserves_both` setzt die zwei
+  Zeugnisse des Bestandes zueinander: jede lokal klassische Operation erhält
+  beide Kontexturen, trägt also nie ein Zeugnis dieser Art. **Hinreichend, nicht
+  notwendig** — das Fehlen eines Punktes ist kein Zeugnis für Erzeugbarkeit.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/

@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 18.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 19.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,18 +37,18 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 107 |
-| Zeilen mit Träger | 93 |
-| verschiedene Trägernamen | 85 |
-| TS `Theorem` | 70 |
-| TS `Definition` | 22 |
+| Zeilen gesamt | 110 |
+| Zeilen mit Träger | 96 |
+| verschiedene Trägernamen | 88 |
+| TS `Theorem` | 72 |
+| TS `Definition` | 23 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
 | Paragraphen von `Definitionen.md` | 19 von 20 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 93 Zeilen bei 85
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 96 Zeilen bei 88
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
@@ -128,6 +128,7 @@ beider Fehlexpansionen.
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `KOS.` | `Reformulation.Kenogram.OccupancySeparation.` | Namensraum |
 | `KPS.` | `Reformulation.Kenogram.PairStageBound.` | Namensraum |
+| `CEB.` | `Reformulation.Proemial.ContextureEscapeBound.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 | `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
@@ -188,6 +189,9 @@ beider Fehlexpansionen.
 | L08-2 | Transjunktion (§8) | `TCB.T_rejective` | Theorem | Operationalisierung | ja, `[propext]` | rejektiver Kern `T 0 2 = 1` |
 | L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten |
 | L08-4 | Transjunktion (§8) | — | Offen | Offen | — | Produktion des ontologisch Neuen nicht formalisiert |
+| L08-5 | Transjunktion (§8) | `CEB.not_in_clone_of_escapes` | Theorem | Operationalisierung | ja, `[propext]` | **das Zeugnis mit Menge und Punkt**, allgemein über jeder Sprache, jeder Struktur und jeder Substruktur: verlässt eine Operation eine abgeschlossene Menge an einem angebbaren Punkt, so ist sie kein Term über der Signatur. Konsumiert Mathlibs `Term.realize_mem`. **Grenze:** hinreichend, nicht notwendig — das Fehlen eines Punktes ist kein Zeugnis für Erzeugbarkeit |
+| L08-6 | Transjunktion (§8) | `CEB.contexture03` | Definition | Operationalisierung | keine (def) | die Randkontextur `{0,3}` als Substruktur über `L` bei `m = 4`; Gegenstück `CEB.contexture12` ohne eigene Zeile. Benannte Konsumenten: L08-7, `CEB.mem_contexture03`, `CEB.mem_contexture12`, `CEB.avgDown_escapes`. **Grenze:** exhaustiv über alle 16 Teilmengen gemessen sind genau diese zwei nichttrivial abgeschlossen; über andere Wertzahlen ist nichts gemessen |
+| L08-7 | Transjunktion (§8) | `CEB.avgDown_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | der abgerundete Durchschnitt `CEB.avgDown` verlässt `{0,3}` am Punkt `(0,3)` (`CEB.avgDown_escapes`) und liegt darum nicht im Klon von `{min, max, ¬}`. Daneben ohne eigene Zeile — L05-7-Präzedenz: `CEB.locallyClassical_preserves_both`, das die zwei Zeugnisse des Bestandes gegeneinander abgrenzt. **Grenze:** eine Aussage über eine Operation, keine über eine Politik |
 | L09-1 | Intra-kontexturell (§9) | `TCB.L` | Definition | Operationalisierung | keine (def) | Signatur `{¬, ∧, ∨}`, keine Konstante |
 | L09-2 | Intra-kontexturell (§9) | `TCB.term_preserves_contextur` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | konsumiert Mathlibs `Term.realize_mem` |
 | L09-3 | Trans-kontexturell (§9) | `TCB.term_clone_localization` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Verortung auf Klon-Ebene, kein freies Prädikat |

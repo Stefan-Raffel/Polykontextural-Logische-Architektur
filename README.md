@@ -133,10 +133,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3503 Konstanten |
-| Axiom-Wachen | 608 ueber 84 Dateien |
-| Saetze gesamt | 872 |
-| Build-Jobs | 1319 |
+| geprueft (AxiomGate) | 3527 Konstanten |
+| Axiom-Wachen | 614 ueber 85 Dateien |
+| Saetze gesamt | 883 |
+| Build-Jobs | 1320 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
@@ -244,7 +244,7 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 
 | Bereich | Dateien | Saetze | Gegenstand |
 |---|---:|---:|---|
-| `Proemial/` | 67 | 501 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
+| `Proemial/` | 68 | 512 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Kontextur-Zeugnis · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
 | `Kenogram/` | 14 | 169 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare, Verkettung unter Identifikation |
 | `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
@@ -253,8 +253,8 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 872 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 872 + 10 = 882 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 883 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 883 + 10 = 893 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 
