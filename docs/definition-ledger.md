@@ -10,7 +10,7 @@ nicht den Wortlaut. Die Fassung zieht drei Texte zusammen, wählt aus und paraph
 die Paragraphen selbst und trägt in §3 einen dokumentierten Off-by-one gegenüber der Bauform
 des Korpus — siehe **Grenznotiz A**.
 
-**Alle Kennzahlen dieser Datei beziehen sich auf den Commit `b43b4d4`.** Ein Bau-Zug macht
+**Alle Kennzahlen dieser Datei beziehen sich auf den Commit `5e1f30e`.** Ein Bau-Zug macht
 jede ausgestellte Zahl still veraltet; darum trägt sie hier ihren Stand.
 
 **Die Trägerspalte wird beim Bau geprüft.** `Reformulation/Proemial/DefinitionLedger.lean`
