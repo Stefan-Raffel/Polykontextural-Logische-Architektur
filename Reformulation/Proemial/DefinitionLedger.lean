@@ -206,6 +206,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L16-14" Reformulation.Proemial.RelabelInvariance.relabel_map_negFin
 #ledger_def "L16-15" Reformulation.Kenogram.JointlyClosed
 #ledger_theorem "L16-16" Reformulation.Kenogram.hull_le_of_jointlyClosed
+#ledger_theorem "L16-17" Reformulation.Kenogram.OccupancySeparation.canonicalize_eq_of_ne
+#ledger_def "L16-18" Reformulation.Kenogram.OccupancySeparation.RisingOccupancy
+#ledger_theorem "L16-19" Reformulation.Kenogram.OccupancySeparation.separation_is_the_order
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 

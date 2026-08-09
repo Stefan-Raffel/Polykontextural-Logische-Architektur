@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 15.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 16.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,18 +37,18 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 99 |
-| Zeilen mit Träger | 85 |
-| verschiedene Trägernamen | 77 |
-| TS `Theorem` | 65 |
-| TS `Definition` | 19 |
+| Zeilen gesamt | 104 |
+| Zeilen mit Träger | 90 |
+| verschiedene Trägernamen | 82 |
+| TS `Theorem` | 68 |
+| TS `Definition` | 21 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
-| Paragraphen von `Definitionen.md` | 19 von 19 |
+| Paragraphen von `Definitionen.md` | 19 von 20 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 84 Zeilen bei 76
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 90 Zeilen bei 82
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
@@ -116,6 +116,7 @@ beider Fehlexpansionen.
 | `KF.` | `Reformulation.Kenogram.Fillability.` | Namensraum |
 | `KFib.` | `Reformulation.Kenogram.Fiber.` | Namensraum |
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
+| `KOS.` | `Reformulation.Kenogram.OccupancySeparation.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 | `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
@@ -220,6 +221,9 @@ beider Fehlexpansionen.
 | L16-14 | Morphogramm (§16) | `RelInv.relabel_map_negFin` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Kanonisierung ist gegen jede **injektive** Umbenennung der Werte invariant (`RelInv.relabel_map_of_injective`, heterogen); die Instanz an der ordnungsumkehrenden Negation `negFin` folgt daraus. **Grenze:** Invarianz der Kanonisierung gegen injektive Wertumbenennung; **keine** Nichtdarstellbarkeitsaussage |
 | L16-15 | Morphogramm (§16) | `K.JointlyClosed` | Definition | Operationalisierung | ja, `[propext]` | Abgeschlossenheit einer Reihenmenge unter jedem Stellentausch **innerhalb der Reihe** und unter dem Abstieg; trägt L16-16. **Grenze:** die Indexschranke ist gemessen und nicht gewählt — ohne sie setzt `exchangeAt` bei einem Index ausserhalb eine Stelle auf `0`, statt zwei zu tauschen (Vorprobe im Dateikopf) |
 | L16-16 | Morphogramm (§16) | `K.hull_le_of_jointlyClosed` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | jede gemeinsam abgeschlossene Menge, die eine RGS-Reihe der Länge ≥ 2 enthält, enthält `{[],[0],[0,0]}` oder `{[],[0],[0,1]}` **ganz** — ohne Längenschranke. Daneben `K.jointlyClosed_hull_pair` (beide Dreiermengen sind selbst gemeinsam abgeschlossen, `[propext, Quot.sound]`), ohne eigene Zeile — L05-7-Präzedenz. **Grenze:** eine ⊆-Untergrenze; keine Prioritätsaussage |
+| L16-17 | Morphogramm (§16) | `KOS.canonicalize_eq_of_ne` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | über **zwei** Stellen haben je zwei Belegungen mit verschiedenen Werten dieselbe Normalform — heterogen über beliebigen Trägern mit entscheidbarer Gleichheit. Daneben `KOS.canonicalize_comp_swap` (der Stellentausch ist für die Normalform unsichtbar, ohne Voraussetzung an die Belegung), ohne eigene Zeile — L05-7-Präzedenz. **Grenze:** eine Blindheitsaussage über zwei Stellen; keine Aussage über die Proemialrelation |
+| L16-18 | Morphogramm (§16) | `KOS.RisingOccupancy` | Definition | Operationalisierung | keine (def) | Wertbesetzung zweier Stellen: die Werte steigen längs der Stellen; Gegenstück `KOS.FallingOccupancy` ohne eigene Zeile. Trägt L16-19 sowie `KOS.occupancy_exclusive`, `KOS.occupancy_total`, `KOS.no_occupancy_of_eq`. **Grenze:** welcher der beiden Fälle Günthers symmetrisches Umtauschverhältnis und welcher seine Ordnung trägt, ist **nicht** zugeordnet — die Quelle sagt es an dieser Stelle nicht, und L16-19 zeigt, dass die Trennleistung es nicht bestimmt |
+| L16-19 | Morphogramm (§16) | `KOS.separation_is_the_order` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | jedes unter Ordnungseinbettungen stabile Kriterienpaar, das die verschiedenwertigen Belegungen zweier Stellen ausschliessend und vollständig teilt, **ist** das Ordnungspaar — in einer der beiden Benennungen und in keiner dritten Gestalt. **Grenze:** zwei Stellen und ein blosses `LinearOrder`; über mehr Stellen oder mehr Trägerstruktur sagt der Satz nichts |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |
