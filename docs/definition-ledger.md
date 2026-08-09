@@ -51,6 +51,14 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 `TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 90 Zeilen bei 82
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
+**Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
+keinen formalen Träger beansprucht.** Das ist die Statuslage und keine Lücke, die zu füllen
+wäre — eine Zeile dort wiese ihren Träger als Träger des Begriffs aus, und genau das
+bestreiten die Deutungsgrenzen der Module, die an der Stelle arbeiten
+(`Kenogram/OccupancySeparation.lean`). Die Träger, die aus der Quellenstelle des §20
+hervorgegangen sind, stehen unter §16, wo die Wertbesetzungs-Linie liegt: L16-17 bis
+L16-19. Entschieden in der Abnahme zum Trennsatz-Zug (9. August 2026).
+
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
 einer Zeile". Die Acht ist die Differenz `Zeilen mit Träger − verschiedene Namen`, also die
 Zahl der überzähligen Zeilen, nicht die Zahl der mehrfach auftretenden Träger; die ist fünf
@@ -74,7 +82,9 @@ je Trägername.
 
 **Prüfregeln:** R1 Träger löst gegen die Aggregatumgebung auf · R2 TS stimmt mit der
 Deklarationsart überein · R3 kein ZS `Theorem` · R4 TS `Offen` erzwingt leere Trägerspalte ·
-R5 alle 19 Paragraphen vertreten · R6 TS `Theorem` erzwingt ausgefüllte Wachenspalte ·
+R5 alle 19 Paragraphen vertreten (die 19 ist die Statuslage, nicht eine vergessene
+Obergrenze — siehe „Warum 19 von 20" oben) · R6 TS `Theorem` erzwingt ausgefüllte
+Wachenspalte ·
 R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in
 `Reformulation/Proemial/DefinitionLedger.lean` — und umgekehrt · R8 jede Zeilen-ID kommt in
 beiden Dateien genau einmal vor.

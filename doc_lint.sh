@@ -294,6 +294,13 @@ ledger_report() {
       }
     }
     END {
+      # Die Obergrenze 19 ist die STATUSLAGE und keine vergessene Zahl.
+      # `Definitionen.md` fuehrt zwanzig Paragraphen; §20 (Proemialrelation) ist ein
+      # Quellenparagraph, fuer den der Korpus keinen formalen Traeger beansprucht - eine
+      # Ledger-Zeile dort wiese ihren Traeger als Traeger des Begriffs aus. Entschieden in
+      # der Abnahme zum Trennsatz-Zug (9. August 2026); die Begruendung steht in
+      # docs/definition-ledger.md unter "Warum 19 von 20". Wer die Grenze hebt, hebt damit
+      # die Statusentscheidung - das ist ein eigener Zug und kein Nachziehen.
       k = 0
       for (i = 1; i <= 19; i++) {
         p = sprintf("L%02d", i)
@@ -1003,7 +1010,9 @@ printf '%s\n' "$BLOCK_B" | fmt
 echo
 echo "── Gruppe (C) LEDGER-REGELN R3–R8 — docs/definition-ledger.md ────────────────"
 echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
-echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten · R6 Trägerstatus \"Theorem\""
+echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten (die 19 ist die Statuslage,"
+echo "     nicht eine vergessene Obergrenze: §20 ist ein Quellenparagraph ohne"
+echo "     beanspruchten formalen Träger) · R6 Trägerstatus \"Theorem\""
 echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"
 echo "     R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in"
 echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."
