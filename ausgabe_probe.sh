@@ -31,6 +31,17 @@
 #                       ($$…$$ gegen data-tex), nicht die Darstellung
 #   9. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
 #                       (siehe `raenge`), exakt und ohne Toleranz
+#  10. Fassungswoerter — EINMAL ueber die laufenden Flaechen (README.md,
+#                       docs/index.html und die beiden erzeugten Fassungen), nicht
+#                       je Sprachpaar. Drei Bedingungen: die MOEBEL nennen die
+#                       laufende Nummer; die ARCHIVKETTEN sind lueckenlos, gleich
+#                       besetzt und haben so viele Anker wie Glieder; das ARCHIV
+#                       ist unangetastet (Zaehlstand).
+#                       SIE PRUEFT NICHT: freie Prosa, die eine Fassung nennt.
+#                       Gemessen und nicht angenommen — `Fassung Rev6` in einem
+#                       laufenden Satz und `mit der deutschen Fassung Rev2 126` in
+#                       einer Messgeschichte sind am Muster nicht zu trennen. Wer
+#                       die eine faengt, faengt die andere falsch.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -82,9 +93,13 @@ fi
 # und ein Entwurf DARF aus mehreren Dateien bestehen.
 AP_ARGS=$(printf '%s\n' "$@")
 export AP_ARGS
+AP_SKRIPT="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+export AP_SKRIPT
 
 python3 - <<'PY'
 import os, re, sys, html as htmlmod, difflib
+
+REPO = os.path.dirname(os.path.abspath(os.environ.get('AP_SKRIPT', '.')))
 
 # Ein Argument je Zeile; ein Argument darf eine leerzeichengetrennte Dateiliste
 # sein (Teil A und Teil B einer Sprache).
@@ -436,6 +451,134 @@ def folgen_bericht(name, a, b, zeigen=6):
             print("      …"); break
     return False
 
+
+# --- 10. Groesse: Fassungswoerter -------------------------------------------
+# Anlass ist kein Verdacht, sondern ein gemessener Ausfall: die
+# Fassungsbezeichnung stand nach der siebten Ausgabe an fuenf Stellen eine
+# Nummer zu tief, und neun brechende Groessen, parity, figures und doc_lint
+# liefen dabei gruen. parity schwieg aus angebbarem Grund — BEIDE Sprachen
+# trugen denselben Fehler, und ein Vergleich zweier Fassungen sieht nichts, was
+# beide teilen.
+#
+# DIE LAUFENDE NUMMER WIRD GELESEN, NICHT GESETZT: aus `FASSUNG` in
+# erzeuge_ausgabe.py, derselben Quelle, aus der die Erzeugung sie nimmt. Eine
+# Groesse, die ihre Sollzahl selbst setzt, prueft nichts.
+#
+# WAS SIE NICHT PRUEFT, und das ist gemessen und nicht angenommen:
+# freie Prosa, die eine Fassung nennt. Sie ist am Muster nicht von datierter
+# Prosa zu trennen — `Fassung Rev6` in einem laufenden Satz und
+# `mit der deutschen Fassung Rev2 126` in einer Messgeschichte sehen gleich aus,
+# und eine Regel, die das eine faengt, faengt das andere falsch. Der Bereich der
+# Groesse sind darum die MOEBEL (Titel, Kopfleiste, Untertitel, Fusszeile,
+# Sprachlinks), die KETTEN und der ZAEHLSTAND des Archivs. Ein Fund aus der
+# Vorprobe, den sie folglich nicht faengt, steht im Befund zum Bau.
+def fassungswoerter():
+    import os
+    def lies_datei(pf):
+        try: return open(pf, encoding='utf-8', errors='replace').read()
+        except OSError: return None
+
+    quelle = lies_datei(os.path.join(REPO, 'erzeuge_ausgabe.py'))
+    m = re.search(r"^FASSUNG\s*=\s*'Rev(\d+)'", quelle or '', re.M)
+    if not m:
+        print(f"  {'Fassungswoerter':22s} ✗  laufende Nummer in erzeuge_ausgabe.py nicht lesbar")
+        return False
+    lauf = int(m.group(1))
+    fehler = []
+
+    # --- Klasse 1: die Moebel nennen die laufende Nummer ---------------------
+    MOEBEL = [
+        ('docs/de.html',    r'<title>[^<]*PKL Rev(\d+)'),
+        ('docs/de.html',    r'class="home"[^>]*>PKL Rev(\d+)<'),
+        ('docs/de.html',    r'Fassung PKL Rev(\d+),'),
+        ('docs/de.html',    r'<p>PKL Rev(\d+) ·'),
+        ('docs/en.html',    r'<title>[^<]*PKL Rev(\d+)'),
+        ('docs/en.html',    r'class="home"[^>]*>PKL Rev(\d+)<'),
+        ('docs/en.html',    r'Edition PKL Rev(\d+),'),
+        ('docs/en.html',    r'<p>PKL Rev(\d+) ·'),
+        ('docs/index.html', r'<title>PKL Rev(\d+)'),
+        ('docs/index.html', r'class="home">PKL Rev(\d+)<'),
+        ('docs/index.html', r'Fassung PKL Rev(\d+),? '),
+        ('docs/index.html', r'laufende Fassung ist Rev(\d+)'),
+        ('docs/index.html', r'Deutsch · Fassung Rev(\d+)<'),
+        ('docs/index.html', r'English · edition Rev(\d+)<'),
+        ('docs/index.html', r'<p>Fassung PKL Rev(\d+) ·'),
+        ('docs/index.html', r'>Fassung Rev(\d+), deutsch<'),
+        ('README.md',       r'Fassung PKL Rev(\d+)\*\*'),
+        ('README.md',       r'edition Rev(\d+), in English'),
+    ]
+    for pf, muster in MOEBEL:
+        s2 = lies_datei(os.path.join(REPO, pf))
+        if s2 is None:
+            fehler.append(f"{pf}: fehlt"); continue
+        tr = re.findall(muster, s2)
+        if not tr:
+            fehler.append(f"{pf}: Moebel-Muster ohne Treffer — {muster}")
+        for t in tr:
+            if int(t) != lauf:
+                fehler.append(f"{pf}: Moebel nennt Rev{t} statt Rev{lauf} — {muster}")
+
+    # --- Klasse 2: Ketten lueckenlos, Anker so viele wie Glieder -------------
+    for pf in ('docs/de.html', 'docs/en.html', 'docs/index.html'):
+        s2 = lies_datei(os.path.join(REPO, pf))
+        if s2 is None: continue
+        ziel = {int(x) for x in re.findall(r'href="rev(\d+)/', s2)}
+        soll = set(range(1, lauf))
+        if ziel != soll:
+            fehlend = sorted(soll - ziel); zuviel = sorted(ziel - soll)
+            fehler.append(f"{pf}: Archivkette {sorted(ziel)} statt {sorted(soll)}"
+                          + (f", fehlend {fehlend}" if fehlend else "")
+                          + (f", zuviel {zuviel}" if zuviel else ""))
+        # Die Mengenregel faengt eine ganz fehlende Ausgabe. Sie faengt NICHT das
+        # fehlende Glied EINES Bandes, wenn eine andere Kette derselben Datei die
+        # Ausgabe noch nennt — genau der Fall der siebten Ausgabe, wo die Tafel
+        # `rev6` fuehrte und die Fussleiste nicht. Darum zusaetzlich die
+        # Haeufigkeit: in einer Datei tritt jede archivierte Ausgabe gleich oft
+        # auf, weil jede in denselben Baendern steht. Gemessen am gebrochenen
+        # Stand `fc88fd0`: rev6 zweimal gegen viermal bei allen uebrigen.
+        haeufig = {}
+        for x in re.findall(r'href="rev(\d+)/', s2):
+            haeufig[int(x)] = haeufig.get(int(x), 0) + 1
+        if len(set(haeufig.values())) > 1:
+            fehler.append(f"{pf}: Archivketten ungleich besetzt — "
+                          + ", ".join(f"rev{k}: {v}x" for k, v in sorted(haeufig.items())))
+    s2 = lies_datei(os.path.join(REPO, 'docs/index.html')) or ''
+    mk = re.search(r'<p>((?:Rev\d+[,\s und]*)+)werden <strong>nicht nachgeführt</strong>(.*?)</p>',
+                   s2, re.S)
+    if not mk:
+        fehler.append("docs/index.html: Nicht-nachgefuehrt-Zeile nicht gefunden")
+    else:
+        glieder = len(re.findall(r'Rev\d+', mk.group(1)))
+        anker = len(re.findall(r'<code>[0-9a-f]{7}</code>', mk.group(2)))
+        if glieder != anker:
+            fehler.append(f"docs/index.html: {glieder} Kettenglieder gegen {anker} Anker")
+
+    # --- Klasse 3: das Archiv ist unangetastet -------------------------------
+    # Zaehlstand, gemessen an `99371ae`. Er steigt NUR, wenn eine Ausgabe
+    # archiviert wird; jede andere Bewegung ist ein Eingriff in eine
+    # eingefrorene Fassung. "Nicht angefasst" ohne Zahl ist eine Behauptung.
+    ARCHIV_ERWARTET = 204
+    archiv = 0
+    dw = os.path.join(REPO, 'docs')
+    for d in sorted(os.listdir(dw)):
+        if not re.fullmatch(r'rev\d+', d) or not os.path.isdir(os.path.join(dw, d)):
+            continue
+        for f in sorted(os.listdir(os.path.join(dw, d))):
+            s3 = lies_datei(os.path.join(dw, d, f))
+            if s3: archiv += len(re.findall(r'[Rr]ev[0-9]', s3))
+    if archiv != ARCHIV_ERWARTET:
+        fehler.append(f"Archiv: {archiv} Fundstellen statt {ARCHIV_ERWARTET} — "
+                      "eine eingefrorene Fassung ist bewegt oder eine neue archiviert")
+
+    if fehler:
+        print(f"  {'Fassungswoerter':22s} ✗  laufend Rev{lauf}; {len(fehler)} Verstoss/Verstoesse")
+        for z in fehler[:8]:
+            print(f"      {z[:110]}")
+        if len(fehler) > 8: print("      …")
+        return False
+    print(f"  {'Fassungswoerter':22s} ✓  laufend Rev{lauf}; Moebel, Ketten und Archiv ({archiv}) stimmen")
+    return True
+
 rc = 0
 for entwurf_spez, ausgabe_spez in paare:
     print()
@@ -483,7 +626,13 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── " + ("alle neun brechenden Groessen gleich." if rc == 0 else
+print("── Fassungswoerter (einmal, ueber die laufenden Flaechen)")
+print("   " + "─" * 74)
+if not fassungswoerter():
+    rc = 1
+
+print()
+print("── " + ("alle zehn brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY
