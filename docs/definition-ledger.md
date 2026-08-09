@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 19.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 20.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,10 +37,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 110 |
-| Zeilen mit Träger | 96 |
-| verschiedene Trägernamen | 88 |
-| TS `Theorem` | 72 |
+| Zeilen gesamt | 111 |
+| Zeilen mit Träger | 97 |
+| verschiedene Trägernamen | 89 |
+| TS `Theorem` | 73 |
 | TS `Definition` | 23 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
@@ -48,7 +48,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 96 Zeilen bei 88
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 97 Zeilen bei 89
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
@@ -128,6 +128,7 @@ beider Fehlexpansionen.
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `KOS.` | `Reformulation.Kenogram.OccupancySeparation.` | Namensraum |
 | `KPS.` | `Reformulation.Kenogram.PairStageBound.` | Namensraum |
+| `KPC.` | `Reformulation.Kenogram.PartitionCount.` | Namensraum |
 | `CEB.` | `Reformulation.Proemial.ContextureEscapeBound.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
@@ -242,6 +243,7 @@ beider Fehlexpansionen.
 | L16-20 | Morphogramm (§16) | `KPS.no_injective_pair_three` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | keine Abbildung der **geordneten** Paare von `RGS 3` in `RGS 4` ist injektiv (`25 > 15`). Daneben ohne eigene Zeile — L05-7-Präzedenz: `KPS.no_injective_pair_four` (`225 > 52`), `KPS.exists_injective_pair_two` (`4 ≤ 5`, die Schwelle ist scharf) und die drei benannten Stufenzahlen `KPS.card_rgs_two`, `KPS.card_rgs_three`, `KPS.card_rgs_five`, gerechnet aus dem Generator wie `KF.card_rgs_four`. **Grenze:** eine Kardinalitätsschranke zwischen zwei Stufen; die geordnete Paar-Lesart ist eine Setzung ausserhalb des Moduls, und dass die Vier-Relata-Bewegung diese Gestalt hat, ist Lesart und nicht Gegenstand des Satzes |
 | L16-21 | Morphogramm (§16) | `K.concatWith` | Definition | Operationalisierung | keine (def) | Verkettung zweier Reihen unter einer **Identifikation** — einer injektiven Umbenennung der Symbole der hinteren Reihe; die Wohlgeformtheit wird durch die Kanonisierung erzeugt und nicht von den Argumenten verlangt. Benannte Konsumenten: L16-22 sowie `K.concatWith_take_left`, `K.concatWith_pattern_right`, `K.concatWith_dropLast`, `K.concatWith_ambiguous_nonempty`. **Grenze:** die Injektivität sitzt im Typ `ℕ ↪ ℕ`; dass jede auf den Symbolen der hinteren Reihe injektive Belegung sich dorthin fortsetzt, ist nicht bewiesen |
 | L16-22 | Morphogramm (§16) | `K.concatWith_pair_not_injective` | Theorem | Operationalisierung | ja, `[propext]` | aus der verketteten Reihe ist die **Zerlegung** nicht zurückgewinnbar, und zwar für keine Identifikation. Daneben ohne eigene Zeile — L05-7-Präzedenz: `K.concatWith_ambiguous_nonempty` (derselbe Befund an vier nichtleeren wohlgeformten Reihen, axiomfrei), `K.concatWith_isRGS_length` (Z1) und `K.concatWith_dropLast` (Z2, der Abstieg wirkt auf dem hinteren Teil, Voraussetzung gemessen). **Grenze:** über die **Identifikation** sagt der Satz nichts — im gezählten Bereich wurde keine echte Freiheit gefunden, ausserhalb ist es ungemessen |
+| L16-23 | Morphogramm (§16) | `KPC.card_rgs_eq_card_finpartition` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die RGS-Reihen der Länge `n` und die Mengenpartitionen von `Fin n` sind **gleich viele** — die Kardinalitätsseite des Repräsentations-Theorems `K.rgs_equiv_partition`. Daneben ohne eigene Zeile — L05-7-Präzedenz: `KPC.card_finpartition_fin_two`, `_three`, `_four`, `_five`, die vier Werte über die vorhandenen Marken der Berechnungs-Reihe. **Paragraphenwahl:** §16, weil der gezählte Gegenstand die Morphogramm-Normalform ist und die Stufenzahlen `KPS.card_rgs_*` unter L16-20 stehen; die Partition ist hier Zielseite und nicht Gegenstand. **Grenze:** die Bell-Zahl kommt nicht vor — dass `Nat.bell n` die Partitionen zählt, ist weder hier noch in Mathlib bewiesen, das die Aussage als offenen Posten führt. Und die Zahlen sind über `RGS` gerechnet, nicht über die Partitionen; der Satz transportiert sie |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

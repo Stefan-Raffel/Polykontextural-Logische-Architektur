@@ -133,10 +133,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3527 Konstanten |
-| Axiom-Wachen | 614 ueber 85 Dateien |
-| Saetze gesamt | 883 |
-| Build-Jobs | 1320 |
+| geprueft (AxiomGate) | 3532 Konstanten |
+| Axiom-Wachen | 619 ueber 86 Dateien |
+| Saetze gesamt | 888 |
+| Build-Jobs | 1321 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
@@ -246,15 +246,15 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 |---|---:|---:|---|
 | `Proemial/` | 68 | 512 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Kontextur-Zeugnis · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
-| `Kenogram/` | 14 | 169 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare, Verkettung unter Identifikation |
+| `Kenogram/` | 15 | 174 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare, Verkettung unter Identifikation, Zahl der Mengenpartitionen |
 | `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 883 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 883 + 10 = 893 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 888 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 888 + 10 = 898 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 

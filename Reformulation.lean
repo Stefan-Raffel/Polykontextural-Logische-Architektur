@@ -60,3 +60,4 @@ import Reformulation.Kenogram.JointClosure
 import Reformulation.Kenogram.OccupancySeparation
 import Reformulation.Kenogram.PairStageBound
 import Reformulation.Kenogram.IdentifiedConcat
+import Reformulation.Kenogram.PartitionCount
