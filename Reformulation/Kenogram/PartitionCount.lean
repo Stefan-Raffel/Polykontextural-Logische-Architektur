@@ -54,6 +54,8 @@ Doppeldeutigkeit ist gemessen und benannt, nicht beseitigt.
 
 `rgs_equiv_partition` traegt `[propext, Classical.choice, Quot.sound]`, und die Wachen unten
 erben es. Gemessen, nicht erwartet.
+
+Kein `sorry`, kein `axiom`, kein `: True`-Feld.
 -/
 
 open Finset
