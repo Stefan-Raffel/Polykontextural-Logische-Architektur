@@ -79,6 +79,12 @@ sondern in diesem Bereich nicht gefunden.** Ausserhalb des gezählten Bereichs
 — längere Reihen, grössere Wertevorräte — ist es **ungemessen**. Der Korpus
 führt hier keine Aussage, weil er keine hat.
 
+**Und eine zweite Reichweitengrenze, damit die zwei Sätze nicht
+zusammengelesen werden:** Z3 gilt für **jede** Identifikation, sein Zeuge
+benutzt aber die leere Reihe; der nichtleere Zeuge daneben ist für die
+**Identität** gebaut. *Für jede Identifikation ein nichtleerer Zeuge* ist
+**nicht gemessen** und steht hier nicht.
+
 ## Deutungsgrenzen
 
 **Eine Kopplung ist kein Grund.** Diese Sätze konstituieren **keine**
@@ -203,7 +209,10 @@ theorem concatWith_pair_not_injective (g : ℕ ↪ ℕ) :
 /-- **Z3, nichtentartet.** Derselbe Befund an vier **nichtleeren** und
 **wohlgeformten** Reihen: `[0]` mit `[0,0]` und `[0,0]` mit `[0]` liefern
 dieselbe Reihe. Der Satz steht daneben, weil der Zeuge von Z3 die leere Reihe
-benutzt und die Nichtinjektivität sonst als Randfall gelesen werden könnte. -/
+benutzt und die Nichtinjektivität sonst als Randfall gelesen werden könnte.
+
+**Er gilt für die Identität und nicht für jede Identifikation** — die
+allgemeine Fassung ist ungemessen, siehe Kopf. -/
 theorem concatWith_ambiguous_nonempty :
     ∃ a₁ b₁ a₂ b₂ : List ℕ,
       (a₁, b₁) ≠ (a₂, b₂) ∧ a₁ ≠ [] ∧ b₁ ≠ [] ∧ a₂ ≠ [] ∧ b₂ ≠ [] ∧
