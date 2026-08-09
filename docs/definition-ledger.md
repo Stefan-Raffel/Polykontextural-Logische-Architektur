@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 16.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 17.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -37,10 +37,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 104 |
-| Zeilen mit Träger | 90 |
-| verschiedene Trägernamen | 82 |
-| TS `Theorem` | 68 |
+| Zeilen gesamt | 105 |
+| Zeilen mit Träger | 91 |
+| verschiedene Trägernamen | 83 |
+| TS `Theorem` | 69 |
 | TS `Definition` | 21 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
@@ -48,7 +48,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 90 Zeilen bei 82
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 91 Zeilen bei 83
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
@@ -127,6 +127,7 @@ beider Fehlexpansionen.
 | `KFib.` | `Reformulation.Kenogram.Fiber.` | Namensraum |
 | `KU.` | `Reformulation.Kenogram.Unbounded.` | Namensraum |
 | `KOS.` | `Reformulation.Kenogram.OccupancySeparation.` | Namensraum |
+| `KPS.` | `Reformulation.Kenogram.PairStageBound.` | Namensraum |
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 | `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
@@ -234,6 +235,7 @@ beider Fehlexpansionen.
 | L16-17 | Morphogramm (§16) | `KOS.canonicalize_eq_of_ne` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | über **zwei** Stellen haben je zwei Belegungen mit verschiedenen Werten dieselbe Normalform — heterogen über beliebigen Trägern mit entscheidbarer Gleichheit. Daneben `KOS.canonicalize_comp_swap` (der Stellentausch ist für die Normalform unsichtbar, ohne Voraussetzung an die Belegung), ohne eigene Zeile — L05-7-Präzedenz. **Grenze:** eine Blindheitsaussage über zwei Stellen; keine Aussage über die Proemialrelation |
 | L16-18 | Morphogramm (§16) | `KOS.RisingOccupancy` | Definition | Operationalisierung | keine (def) | Wertbesetzung zweier Stellen: die Werte steigen längs der Stellen; Gegenstück `KOS.FallingOccupancy` ohne eigene Zeile. Trägt L16-19 sowie `KOS.occupancy_exclusive`, `KOS.occupancy_total`, `KOS.no_occupancy_of_eq`. **Grenze:** welcher der beiden Fälle Günthers symmetrisches Umtauschverhältnis und welcher seine Ordnung trägt, ist **nicht** zugeordnet — die Quelle sagt es an dieser Stelle nicht, und L16-19 zeigt, dass die Trennleistung es nicht bestimmt |
 | L16-19 | Morphogramm (§16) | `KOS.separation_is_the_order` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | jedes unter Ordnungseinbettungen stabile Kriterienpaar, das die verschiedenwertigen Belegungen zweier Stellen ausschliessend und vollständig teilt, **ist** das Ordnungspaar — in einer der beiden Benennungen und in keiner dritten Gestalt. **Grenze:** zwei Stellen und ein blosses `LinearOrder`; über mehr Stellen oder mehr Trägerstruktur sagt der Satz nichts |
+| L16-20 | Morphogramm (§16) | `KPS.no_injective_pair_three` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | keine Abbildung der **geordneten** Paare von `RGS 3` in `RGS 4` ist injektiv (`25 > 15`). Daneben ohne eigene Zeile — L05-7-Präzedenz: `KPS.no_injective_pair_four` (`225 > 52`), `KPS.exists_injective_pair_two` (`4 ≤ 5`, die Schwelle ist scharf) und die drei benannten Stufenzahlen `KPS.card_rgs_two`, `KPS.card_rgs_three`, `KPS.card_rgs_five`, gerechnet aus dem Generator wie `KF.card_rgs_four`. **Grenze:** eine Kardinalitätsschranke zwischen zwei Stufen; die geordnete Paar-Lesart ist eine Setzung ausserhalb des Moduls, und dass die Vier-Relata-Bewegung diese Gestalt hat, ist Lesart und nicht Gegenstand des Satzes |
 | L17-1 | Trans-klass. Mehrwertigkeit (§17) | `CO.three_contextures_overlap` | Theorem | Deutung | ja, `[propext]` | die drei Zweierkontexturen als Verkopplung 1↔2, 2↔3, 1↔3 |
 | L18-1 | Ontologie vs. Logik (§18) | `IB.two_mul_intervalStart` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ontologien-Wertzahl `n(n+1)/2`; Profil ist omega-Hülle |
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |

@@ -58,3 +58,4 @@ import Reformulation.Kenogram.PlaceSwap
 import Reformulation.Kenogram.Descent
 import Reformulation.Kenogram.JointClosure
 import Reformulation.Kenogram.OccupancySeparation
+import Reformulation.Kenogram.PairStageBound

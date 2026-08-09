@@ -133,10 +133,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3483 Konstanten |
-| Axiom-Wachen | 596 ueber 82 Dateien |
-| Saetze gesamt | 860 |
-| Build-Jobs | 1317 |
+| geprueft (AxiomGate) | 3491 Konstanten |
+| Axiom-Wachen | 602 ueber 83 Dateien |
+| Saetze gesamt | 866 |
+| Build-Jobs | 1318 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
@@ -246,15 +246,15 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 |---|---:|---:|---|
 | `Proemial/` | 67 | 501 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Sonden |
 | `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
-| `Kenogram/` | 12 | 157 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen |
+| `Kenogram/` | 13 | 163 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare |
 | `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
 | `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
 | `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 860 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 860 + 10 = 870 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 866 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 866 + 10 = 876 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 
