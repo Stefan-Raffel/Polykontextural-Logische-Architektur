@@ -48,11 +48,21 @@
 #                       Auszeichnung, die der Wandler nicht aufloest und die als
 #                       rohes Sternchen auf der Seite steht: dort traegt der
 #                       Entwurf eine Spanne, die die Ausgabe nicht hat.
-#                       SIE PRUEFT NICHT die Kursivauszeichnung — ungemessen und
-#                       darum nicht gebaut. Der offene Flank steht hier, damit er
-#                       nicht als geprueft gelesen wird: die drei Schaeden, die
-#                       den Bau ausgeloest haben, lagen alle in einer fetten
-#                       Spanne, und die Kursivroute ist nie gefahren worden.
+#                       IHRE REICHWEITE, JE KLASSE GEMESSEN und nicht behauptet:
+#                       jede der drei Schadensklassen einzeln wieder eingesetzt,
+#                       Ausgabe daraus erzeugt, die ganze Probe gefahren.
+#                         Klasse 1  fett-in-kursiv            -> ✗ 456/455
+#                         Klasse 2  kursiv-in-kursiv          -> ALLE ELF GRUEN
+#                         Klasse 3  kursiv-in-fett-in-kursiv  -> ✗ 446/445
+#                       SIE FAENGT ALSO ZWEI VON DREI. Klasse 2 traegt keine
+#                       fette Spanne im beschaedigten Bereich; die Ausgabe zeigte
+#                       dort 2 rohe Sternchen, und keine Groesse sah es. Die
+#                       Kursivauszeichnung selbst ist ungemessen und nicht
+#                       gebaut. Der Rest des blinden Flecks steht hier, damit er
+#                       nicht als geprueft gelesen wird.
+#                       DIE GROESSE, DIE ALLE DREI FAENGT, IST NICHT GEBAUT: die
+#                       Zahl der rohen Sternchen im dargestellten Text, Grundlinie
+#                       null. Gemessen 6, 2 und 6 gegen 0 am geheilten Stand.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -451,7 +461,15 @@ def fettauszeichnung(art, s):
     und nennt die fehlende Spanne. Darf-nicht-Fall: der geheilte Stand, 456 gegen
     456 und 446 gegen 446, kein Diff. Der Muss-Fall stammt aus dem Zielbereich
     und ist mit der Heilung verbraucht (§12 Regel 8); wer ihn wiederholt, setzt
-    ihn wie hier neu."""
+    ihn wie hier neu.
+
+    UND DIE REICHWEITE IST GEMESSEN, NICHT ABGELEITET. Der Kopf dieses Skripts
+    fuehrt die Tafel je Schadensklasse. Sie faengt ZWEI von drei: Klasse 2
+    (kursiv-in-kursiv) laesst alle elf Groessen gruen, weil im beschaedigten
+    Bereich keine fette Spanne liegt. Der erste Anlauf dieses Kopfes behauptete
+    das Gegenteil — alle drei Schaeden laegen in einer fetten Spanne —, und die
+    Behauptung war aus dem Bau abgeleitet statt gemessen. Die Klassentafel ist
+    die Berichtigung."""
     if art == 'html':
         rest = re.sub(r'(?is)<(nav|header|footer|figure)\b.*?</\1>', ' ', s)
         rest = re.sub(r'(?is)<(pre|code)\b[^>]*>.*?</\1>', ' ', rest)
