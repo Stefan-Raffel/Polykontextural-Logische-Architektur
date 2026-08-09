@@ -210,6 +210,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L16-18" Reformulation.Kenogram.OccupancySeparation.RisingOccupancy
 #ledger_theorem "L16-19" Reformulation.Kenogram.OccupancySeparation.separation_is_the_order
 #ledger_theorem "L16-20" Reformulation.Kenogram.PairStageBound.no_injective_pair_three
+#ledger_def "L16-21" Reformulation.Kenogram.concatWith
+#ledger_theorem "L16-22" Reformulation.Kenogram.concatWith_pair_not_injective
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 
