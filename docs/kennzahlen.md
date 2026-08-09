@@ -7,44 +7,44 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `bf7d82f` (sauber).
+Stand: Commit `238504e` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 177 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 860 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 860 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| Module (.lean, verfolgt) | 178 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Saetze gesamt | 866 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 866 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
 | def-Deklarationen | 357 | geweitete def-Route ueber Reformulation/ |
-| Statement-Pins | 83 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
+| Statement-Pins | 86 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 596 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 82 | dieselbe Route, -l |
+| Wachen geschrieben | 602 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 83 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
-| Aggregat | 122 | Huelle der Wurzel Reformulation.lean |
+| Aggregat | 123 | Huelle der Wurzel Reformulation.lean |
 | mitgebaut | 20 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 34 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
-| Gate-Huelle | 123 | Huelle von Reformulation/AxiomGate.lean |
-| Saetze im Aggregat | 676 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 586 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Gate-Huelle | 124 | Huelle von Reformulation/AxiomGate.lean |
+| Saetze im Aggregat | 682 | Satzroute, auf die Aggregathuelle eingeschraenkt |
+| Wachen erzwungen | 592 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 177 gegen 177 |
-| Gleichung *Gate=Aggregat+1* | ✓ | 123 gegen 123 |
-| Gleichung *Wachen* | ✓ | 596 gegen 596 |
+| Gleichung *Partition* | ✓ | 178 gegen 178 |
+| Gleichung *Gate=Aggregat+1* | ✓ | 124 gegen 124 |
+| Gleichung *Wachen* | ✓ | 602 gegen 602 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
-| N1 roh | 150 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit |
-|   davon .lean | 107 | dieselbe Route, auf *.lean eingeschraenkt |
-| Zeilen mit Vorkommen | 147 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
+| N1 roh | 151 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit |
+|   davon .lean | 108 | dieselbe Route, auf *.lean eingeschraenkt |
+| Zeilen mit Vorkommen | 148 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
 |  |  |  |
 | **ABLAGEN (CLAUDE.md — selbstzaehlend)** |  |  |
 | Fallstricke (§8) | 19 | fett nummerierte Eintraege INNERHALB von §8 |
@@ -53,12 +53,12 @@ Alle mitlaufenden Gleichungen halten.
 | Gleichung *Ablagen* | ✓ | 29 gegen 29 |
 |  |  |  |
 | **DEFINITION-LEDGER** |  |  |
-| Ledger-Zeilen | 104 | Zeilen-IDs in docs/definition-ledger.md |
-| Referenzen im Bau | 90 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
+| Ledger-Zeilen | 105 | Zeilen-IDs in docs/definition-ledger.md |
+| Referenzen im Bau | 91 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1317 | lake build ueber die Default-Targets |
-| geprueft (AxiomGate) | 3483 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
+| Build-Jobs | 1318 | lake build ueber die Default-Targets |
+| geprueft (AxiomGate) | 3491 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
 | (A.1) laufender Bestand | 74 | Superlativ, meldend |
