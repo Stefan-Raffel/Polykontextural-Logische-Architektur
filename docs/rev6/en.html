@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Mathematical Shape of the Architecture — PKL Rev6</title>
-<meta name="description" content="Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev7, in two parts">
+<meta name="description" content="Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev6, in two parts">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -25,8 +25,8 @@
 <main>
 
 <header class="doctitle">
-  <p class="subtitle">Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev7, in two parts</p>
-  <p class="dateline">9 August 2026 · Figures of the checking apparatus: <a href="kennzahlen.md">kennzahlen.md</a>, with a state anchor</p>
+  <p class="subtitle">Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev6, in two parts</p>
+  <p class="dateline">8 August 2026 · Figures of the checking apparatus: <a href="kennzahlen.md">kennzahlen.md</a>, with a state anchor</p>
 </header>
 
 <nav class="toc" aria-label="Contents">
@@ -168,24 +168,6 @@ connection is thereby regulated and not grounded.</p>
 </div>
 <figcaption><span class="fignum">Figure 1</span> — The chapters and the arc they carry. The same asymmetry in three languages; the measure stands in the middle, the limit at the edge.</figcaption>
 </figure>
-<h3>For Thomas Mahler</h3>
-<p>This paper stands in a line it did not itself found. Thomas Mahler's
-<em>Morphogrammatik</em> (Bochum and Dortmund, 1993) worked kenogrammatics out as a
-formal theory where Günther had left it as a programme — keno-sequences, normal
-forms, concatenation, degree of accretion. It arose in the research project
-<em>Theorie komplexer biologischer Systeme</em> under the direction of Rudolf Kaehr, who
-continued Günther's work after his death; that Kaehr took his doctorate with
-Günther is said concordantly by several sources, and this paper reports it as
-their information and not as its own.</p>
-<p>What is formalised here would not have been possible in this form without that
-earlier work. We have read Mahler's concatenation and built it differently where
-our tool allowed — functionally rather than over a list of triples —; that is no
-objection to it but its use. Where this paper gets further, it gets further on
-paths not its own, and where it does not get further, it stands at the same
-limits Mahler himself named.</p>
-<p><em>On the bibliographic record: the version used here names Thomas Mahler alone on
-its title page. Some catalogues list the printed edition of 1993 under two names,
-Kaehr and Mahler; the printed edition was not available for inspection.</em></p>
 <h2 id="a1">1 · The ground: a combinatorics prior to logic</h2>
 <p>At the very bottom lies something that is not yet a logic. One may picture it as
 a row of empty places into which nothing has yet been entered. Two such rows
@@ -474,7 +456,7 @@ fact one can count.</p>
 <p>Consider three values and the two-element regions within them: <code>{0,1}</code>, <code>{1,2}</code>,
 <code>{0,2}</code>. Any two of them have <strong>exactly one</strong> element in common. This is no
 convention that could have been settled otherwise, but a counting statement — and
-it is proved <a href="#t12">[12]</a>.</p>
+it is proved <a href="#t11">[11]</a>.</p>
 <p><strong>That is more than it looks.</strong> Were the overlap merely a construction decision,
 one could drop it and model contextures as disjoint; the prohibition would then be
 a house rule. Since it is a counted property of the situation, the prohibition is
@@ -493,15 +475,15 @@ contexture requires at least three values, and he justifies it by saying that
 with two the second value stands over against the first unmediated. The
 corresponding theorem says it without appeal to intuition: <strong>more than one
 elementary contexture — that is, anything at all that could come together —
-exists exactly from three values on</strong> <a href="#t13">[13]</a>. At two values the situation is not
+exists exactly from three values on</strong> <a href="#t12">[12]</a>. At two values the situation is not
 poor but single: there is one contexture, and with one alone nothing joins.</p>
 <p><strong>They hang together.</strong> Take two distinct elementary contextures: either they
-overlap, or there is a third that touches both <a href="#t14">[14]</a>. The connection therefore
+overlap, or there is a third that touches both <a href="#t13">[13]</a>. The connection therefore
 does not fall apart as soon as the stock of values grows; it only becomes
 indirect. This is the version that survives the preceding section: pairwise
 overlap holds at three values, connectedness holds beyond that.</p>
 <p><strong>And from four on they also occur without a common value.</strong> Two elementary
-contextures with no element in common exist exactly from four values on <a href="#t15">[15]</a>.
+contextures with no element in common exist exactly from four values on <a href="#t14">[14]</a>.
 Below that every one touches every other; from four on there are pairs that no
 longer see each other. <strong>It is the same number at which reachability tips over in
 chapter 5</strong> — what becomes of it there stands there.</p>
@@ -513,15 +495,14 @@ it. Chapter 7 says what exactly that means.</p>
 <p>One point must be stated openly, because the whole series that follows rests on
 it.</p>
 <blockquote>
-<p><strong>Every two-element set of values is an elementary contexture in Günther's
-sense — any two, not only those neighbouring in size.</strong> — This is posited, not
-proved.</p>
+<p><strong>A two-element set of neighbouring values is an elementary contexture in
+Günther's sense.</strong> — This is posited, not proved.</p>
 </blockquote>
 <p>No theorem decides whether Günther's concept means precisely this. The posit is
 the load-bearing choice of the architecture, and it stands as such in the corpus.</p>
 <p><strong>But its ground is not arbitrary, and that can be shown.</strong> A two-element set is
 closed under the local operations if and only if its two elements are comparable.
-If they are not, then even the minimum leaves the set — proved <a href="#t16">[16]</a>. Then it is no
+If they are not, then even the minimum leaves the set — proved <a href="#t15">[15]</a>. Then it is no
 self-contained connection and hence no contexture in the sense of the definition
 from which the architecture proceeds.</p>
 <p>The posit remains a posit. But it does not stand on taste, it stands on a
@@ -562,8 +543,8 @@ course of time in actual consciousness remains always ambiguous.</p>
 of three names to three corners is interpretation and is carried as such.</p>
 <p>What is proved is the other, the hard half: <strong>in every transitive, irreflexive
 ordering — on every carrier, without exception — such a three-cycle is
-impossible</strong> <a href="#t17">[17]</a>. And there is likewise no structure-preserving image of such a
-cycle into an ordering <a href="#t18">[18]</a>; it cannot be accommodated by clever translation
+impossible</strong> <a href="#t16">[16]</a>. And there is likewise no structure-preserving image of such a
+cycle into an ordering <a href="#t17">[17]</a>; it cannot be accommodated by clever translation
 either. The core of these theorems manages without the classical instruments of
 set theory.</p>
 <p>The claim is therefore: <strong>if</strong> the three behave this way, then no linear order is
@@ -619,7 +600,7 @@ which something can change, without its yet being said <em>what</em> changes:</p
 <li><strong>irreversible positing</strong> — the step that is not taken back.</li>
 </ul>
 <p>Their compositions are smooth in exactly one direction; there is no canonical
-interchange of directions, and that is not an image but proved <a href="#t19">[19]</a>.</p>
+interchange of directions, and that is not an image but proved <a href="#t18">[18]</a>.</p>
 <h3>Two differentials, separated by the number of contextures</h3>
 <p>Time falls into two statements, and what separates them is a single hard
 quantity: the number of contextures involved.</p>
@@ -731,28 +712,27 @@ means available inside. This chapter says <strong>how much</strong> that is. For
 impossibility becomes information only when one knows how large the unreachable is
 against the reachable.</p>
 <p>The frame is everywhere the same. We have finitely many values ordered by size.
-The elementary contextures are the two-element regions — <strong>any two values</strong>, and
-with four levels that is <strong>six</strong> pairs, in general <code>m(m−1)/2</code>. The local means
-are two connectives — minimum and maximum — and the reversal of order.
+The elementary contextures are the two-element regions of neighbouring values. The
+local means are two connectives — minimum and maximum — and the reversal of order.
 An operation is called <strong>locally classical</strong> if on every elementary contexture it
 acts like one of the two connectives and does not leave it. The question is which
 of the locally classical operations can be built from the local means.</p>
 <h3>Two values: no excess</h3>
 <p>At two values there is exactly one elementary contexture and exactly two locally
 classical operations — minimum and maximum themselves. Both are trivially
-buildable. <strong>The excess is zero</strong>, and that is proved <a href="#t20">[20]</a> and not merely
+buildable. <strong>The excess is zero</strong>, and that is proved <a href="#t19">[19]</a> and not merely
 observed.</p>
 <p>This meets Günther's own threshold, and does so literally: for him the classical
 two-valued system does not yet represent a compound contexture; the second value
 yields nothing new and stands unmediated over against the first. <strong>What is a
 thesis in him stands here as a counted zero.</strong> And his justification is by now
 itself a theorem: at two values there is no second elementary contexture, and
-there is one exactly from three on <a href="#t13">[13]</a>.</p>
+there is one exactly from three on <a href="#t12">[12]</a>.</p>
 <h3>Three values: half, and in steps</h3>
 <p>At three values there are three elementary contextures, and a locally classical
 operation is nothing other than the specification of on which of them it acts as
 minimum and on which as maximum: <strong>eight choice patterns</strong>. Of these <strong>exactly
-four</strong> are buildable and exactly four are not — proved <a href="#t21">[21]</a>.</p>
+four</strong> are buildable and exactly four are not — proved <a href="#t20">[20]</a>.</p>
 <p>The four reachable ones are not four arbitrary ones. Ordering the elementary
 contextures by size, they read</p>
 <pre><code>(min, min, min)   (max, min, min)   (max, max, min)   (max, max, max)</code></pre>
@@ -769,7 +749,7 @@ has one now, and completely so — the division into four and four leaves nothin
 open.</p>
 <p>The first reason has its own witness: an operation that refuses an offered pair of
 values as a whole and thereby produces the third value. It does not lie in what
-can be built — proved <a href="#t22">[22]</a>. And it lies not somewhere outside, but at a
+can be built — proved <a href="#t21">[21]</a>. And it lies not somewhere outside, but at a
 determinate place: the local means preserve three properties, and every operation
 built from them preserves all three — not merely the generators, but every
 composition. The refusal violates <strong>exactly one</strong> of them and preserves the other
@@ -801,22 +781,22 @@ on that. It rests on the location.</p>
 </figure>
 <h3>Four values and beyond: two remain</h3>
 <p>At four values the picture tips. Of the 64 locally classical operations <strong>two</strong>
-remain buildable — minimum and maximum themselves <a href="#t23">[23]</a>. At five values it is 2 of
+remain buildable — minimum and maximum themselves <a href="#t22">[22]</a>. At five values it is 2 of
 1,024, at six 2 of 32,768.</p>
 <p>And this is no accident of small numbers but a theorem for all value counts from
 four upwards: <strong>a locally classical operation is buildable if and only if it is
-globally the minimum or globally the maximum</strong> <a href="#t24">[24]</a>. The proof manages without
+globally the minimum or globally the maximum</strong> <a href="#t23">[23]</a>. The proof manages without
 case distinction on the number of values and without machine enumeration; it runs
 over six families of neighbourhood relations with breaking points given in closed
 form, and an induction on path lengths.</p>
 <p><strong>The threshold lies at four, and it is no artefact.</strong> At three values the
 statement is <em>false</em> — there four of eight are reachable. At two values there is
 no witness, because there is only one contexture — and that no second one joins
-it there is the theorem from chapter 2 <a href="#t13">[13]</a>. Mediation begins at three; it
+it there is the theorem from chapter 2 <a href="#t12">[12]</a>. Mediation begins at three; it
 becomes completely unreachable from four upwards.</p>
 <p>The same threshold shows itself on the contexture side, and there it is a
 different statement: only from four values on are there two elementary
-contextures with no common value <a href="#t15">[15]</a>. That both thresholds lie at four
+contextures with no common value <a href="#t14">[14]</a>. That both thresholds lie at four
 follows from the two theorems; that they lie there for the <strong>same reason</strong> is
 said by neither.</p>
 <h3>What it means not to be generable</h3>
@@ -826,7 +806,7 @@ whole class.</p>
 <p><strong>Whoever is not generable chooses differently.</strong> From four values on: if a
 locally classical operation is not constructible, then there are <strong>two distinct
 pairs</strong>, on one of which it acts like the maximum and on the other like the
-minimum — and the two pairs do not coincide <a href="#t25">[25]</a>. With this the phrase used
+minimum — and the two pairs do not coincide <a href="#t24">[24]</a>. With this the phrase used
 several times in this chapter becomes a theorem about the class, and no longer a
 description of its witnesses.</p>
 <p><strong>And its limit belongs beside it.</strong> Choosing <em>differently</em> does not mean
@@ -835,7 +815,7 @@ does not yield two pairs without a common value. The class does not achieve
 that — a single witness does: over four and more values there is a
 non-constructible operation and, for it, two elementary contextures <strong>with no
 common value</strong>, on one of which it acts like the maximum and on the other like
-the minimum <a href="#t26">[26]</a>. <strong>Poor class, rich witness</strong> — the same shape as with the
+the minimum <a href="#t25">[25]</a>. <strong>Poor class, rich witness</strong> — the same shape as with the
 measure itself, and here for the second time.</p>
 <p>It is at the same time the one place where the two threads of this paper hold the
 same object: the theorem speaks in the terms of chapter 2 — elementary contexture,
@@ -844,7 +824,7 @@ no common value — about an object of this chapter.</p>
 <p>Where do the numbers 8, 64, 1,024, 32,768 come from? They are not separate counts
 but instances of one theorem.</p>
 <p><strong>A locally classical operation is nothing other than one choice per elementary
-contexture.</strong> That is proved as a one-to-one correspondence <a href="#t27">[27]</a>: forwards one
+contexture.</strong> That is proved as a one-to-one correspondence <a href="#t26">[26]</a>: forwards one
 reads off, for each elementary contexture, whether the operation acts there as
 maximum; backwards one builds the operation from the choice data. Their number is
 thereby</p>
@@ -862,9 +842,9 @@ operation.</p>
 <p>Now the question of this chapter can be answered. From value stage to value stage</p>
 <ul>
 <li><strong>the richness grows strictly</strong> — the number of locally classical operations
-increases at every step <a href="#t28">[28]</a>, and from three values on it exceeds two <a href="#t29">[29]</a>;</li>
+increases at every step <a href="#t27">[27]</a>, and from three values on it exceeds two <a href="#t28">[28]</a>;</li>
 <li><strong>the reachable stays at two</strong> — from four values on it is exactly minimum and
-maximum, and at every stage the same two <a href="#t24">[24]</a>.</li>
+maximum, and at every stage the same two <a href="#t23">[23]</a>.</li>
 </ul>
 <p><strong>That is the most precise version of what &quot;mediation needs more than local means&quot;
 says:</strong> a distance between two numbers, one of which grows exponentially and the
@@ -958,7 +938,7 @@ the structural richness grows. Both have theorems, and this chapter presents the
 <p>Chapter 5 says what is reachable. It does not say that the unreachable is also
 <strong>inhabited</strong> at every stage — that there is anything there at all that is locally
 classical and yet not buildable. Now a theorem says it: for every value count from
-four upwards such an operation exists <a href="#t30">[30]</a>.</p>
+four upwards such an operation exists <a href="#t29">[29]</a>.</p>
 <p>The witness is a <strong>rule and not a single case</strong>: act as maximum exactly on the
 lowest elementary contexture and as minimum everywhere else. The same prescription
 at every stage. That the lowest is chosen is a chosen and not a found basis — any
@@ -968,25 +948,25 @@ other pair would give another witness, and the corpus says so on the spot.</p>
 order-faithfully into the larger — the values keep their sequence, and one is
 added.</p>
 <p><strong>On the embedded region the rule of the larger stage agrees with that of the
-smaller</strong> <a href="#t31">[31]</a>. The witness is thus not lost and need not be chosen anew; it is the
+smaller</strong> <a href="#t30">[30]</a>. The witness is thus not lost and need not be chosen anew; it is the
 same one, seen from further up.</p>
 <p>This is the formal version of what Günther's stepwise progression means by &quot;every
 stage contains the previous one as a substructure&quot; — here as a theorem and not as
 a programme. Beside it the arithmetic of growth: each step adds <strong>exactly <code>m</code></strong> new
-elementary contextures when going from <code>m</code> to <code>m+1</code> values <a href="#t32">[32]</a>, and the image of
-the old stage does not reach the new element <a href="#t33">[33]</a>. What is added was not there
+elementary contextures when going from <code>m</code> to <code>m+1</code> values <a href="#t31">[31]</a>, and the image of
+the old stage does not reach the new element <a href="#t32">[32]</a>. What is added was not there
 before.</p>
 <h3>And yet the step does not carry the signature</h3>
 <p>Here comes the finding no one had reckoned with.</p>
 <p>The embedding carries the order, it carries the lattice, it carries the witness.
-<strong>The reversal of order it never carries</strong> — at no place, for no value count <a href="#t34">[34]</a>.
+<strong>The reversal of order it never carries</strong> — at no place, for no value count <a href="#t33">[33]</a>.
 The reason is elementary: the reversal reflects the values about the middle, and
 the middle shifts when a value is added.</p>
 <p>One might hope a cleverer embedding heals this. The answer is a differential in
 the sense of chapter 4, and it comes out hard:</p>
 <blockquote>
 <p><strong>If the value count is odd, then not a single map into the next stage commutes
-with the reversal of order</strong> <a href="#t35">[35]</a> — without any assumption of injectivity or
+with the reversal of order</strong> <a href="#t34">[34]</a> — without any assumption of injectivity or
 monotonicity, over all maps whatsoever.</p>
 </blockquote>
 <p>The argument is three lines long and therefore exhibitable. At an odd value count
@@ -996,8 +976,8 @@ stage has an even value count — and there the reversal has no fixed point. Hen
 there is no such map.</p>
 <p>And the possibility half stands beside it: at an even value count there is indeed
 an order-faithful, reversal-compatible embedding — it leaves the gap exactly in the
-middle <a href="#t36">[36]</a>, <a href="#t37">[37]</a> — and from four values upwards the witness ascends under it as
-well <a href="#t38">[38]</a>.</p>
+middle <a href="#t35">[35]</a>, <a href="#t36">[36]</a> — and from four values upwards the witness ascends under it as
+well <a href="#t37">[37]</a>.</p>
 <figure class="fig wide">
 <div class="fig-scroll">
 <svg viewBox="0 0 700 320" role="img" aria-label="The parity obstruction: a fixed point at odd, none at even value counts">
@@ -1086,14 +1066,14 @@ strike the last place. Both are total, both are cheap. The question is: does the
 order of the two matter?</p>
 <p><strong>Mostly not.</strong> If the swap does not touch the last place, then it is the same
 whether one swaps first and then strikes or the other way round — the two
-operations commute (proved <a href="#t39">[39]</a>, for arbitrary rows and without any normal-form
+operations commute (proved <a href="#t38">[38]</a>, for arbitrary rows and without any normal-form
 assumption).</p>
 <p><strong>At the last place it becomes interesting.</strong> There interchangeability no longer
 holds in general — but neither does it simply never hold. It holds exactly under a
 statable condition, and the condition is a statement about the repetition pattern:
 the swap changes nothing if the two values agree anyway, or if the place concerned
 stands alone in the remaining part <strong>and</strong> the value of the last place does not
-occur there at all. Otherwise it changes the result of the striking — proved <a href="#t40">[40]</a>,
+occur there at all. Otherwise it changes the result of the striking — proved <a href="#t39">[39]</a>,
 as a biconditional and <strong>for normal forms</strong>.</p>
 <p><strong>Thereby the last place is distinguished not by a naming but by its behaviour:</strong>
 it is the one whose exchange does not commute with the ordering step. That is read
@@ -1110,13 +1090,13 @@ stood there before.</p>
 <p>The second structural statement — <em>infinitely expanding</em> — is redeemed not by a
 limit object but by a negative theorem about every finite stock of values.</p>
 <p>The fillability bridge of chapter 1 generalises: <strong>a pattern can be filled with
-<code>k</code> values if and only if all its signs lie below <code>k</code></strong> <a href="#t41">[41]</a>, boundary cases
+<code>k</code> values if and only if all its signs lie below <code>k</code></strong> <a href="#t40">[40]</a>, boundary cases
 included. The way is the same as in the two-valued case, only general: a sign at
 <code>k</code> or above forces <code>k+1</code> pairwise distinct values.</p>
 <p>Now consider an infinite sequence of patterns whose signs grow beyond every bound.
 It follows that <strong>for every <code>k</code> there is a place from which on the initial segment
-can no longer be filled with <code>k</code> values</strong> <a href="#t42">[42]</a>. And such a stream exists — the
-simplest is the one in which every place brings a new sign <a href="#t43">[43]</a>.</p>
+can no longer be filled with <code>k</code> values</strong> <a href="#t41">[41]</a>. And such a stream exists — the
+simplest is the one in which every place brings a new sign <a href="#t42">[42]</a>.</p>
 <p><strong>That is &quot;infinitely expanding&quot; in its most honest formal shape:</strong> not as a claim
 about an infinite, but as a statement about every finite. The evolutive direction
 of chapter 1 — the one that chooses — provably exceeds every stock from which it
@@ -1126,8 +1106,8 @@ could choose.</p>
 and is labelled interpretation in the corpus.</p>
 <h3>The richness grows, the reachable does not</h3>
 <p>The third ingredient has already fallen in chapter 5 and belongs here: the space of
-possibilities grows strictly from stage to stage <a href="#t28">[28]</a>, the reachable remains at
-every stage the same two <a href="#t24">[24]</a>, <a href="#t29">[29]</a>. <strong>That is the quantitative shape of &quot;growing
+possibilities grows strictly from stage to stage <a href="#t27">[27]</a>, the reachable remains at
+every stage the same two <a href="#t23">[23]</a>, <a href="#t28">[28]</a>. <strong>That is the quantitative shape of &quot;growing
 structural richness&quot;.</strong></p>
 <p>That this gradation <em>is</em> what Günther means is interpretation. What is proved are a
 correspondence, a cardinality, a set equality and two inequalities.</p>
@@ -1165,8 +1145,8 @@ is not taken.</p>
 <p>The characterisation of chapter 5 has a face of application, and it is narrower
 than the name polycontexturality suggests.</p>
 <p>It bites where a <strong>linear scale of at least four levels</strong> is present and a policy
-is called for that decides classically on <strong>every</strong> pair of levels — with four
-levels on all six — but not everywhere alike. Release levels from <em>blocked</em> to <em>privileged</em>; source authority
+is called for that decides classically on every neighbouring pair of levels but not
+everywhere alike. Release levels from <em>blocked</em> to <em>privileged</em>; source authority
 from <em>note</em> to <em>statute</em>; security levels; hierarchies of norms. In such cases the
 theorem says: <strong>a mixed policy is not assemblable from local, level-blind
 checkers</strong> — in whatever wiring and to whatever depth.</p>
@@ -1178,40 +1158,12 @@ it cannot be compiled away.</p>
 perspectives, several agents — that does not suffice. A transition graph of named
 roles without gradation is not carried by this bound; what remains provable there
 is reachability, and a type system achieves that too.</p>
-<h3>Two ways of falling out of the local means</h3>
-<p>Up to here one way has been in the foreground: <strong>mixture</strong>. A policy that decides
-classically on every pair of levels and is nevertheless not everywhere alike is
-not assemblable from the local means; its certificate is <strong>two pairs</strong> on which
-it acts in opposite ways <a href="#t25">[25]</a>.</p>
-<p>The corpus carries a second, independent way: <strong>leaving a contexture</strong>. A set of
-values closed under the local means is never left by an assembled expression. If
-an operation leaves it at a nameable point, it is no such expression <a href="#t58">[58]</a> — and
-the certificate names <strong>the set and the point</strong>.</p>
-<p>An example one can check by hand. Over four levels exactly two two-element sets
-are closed under minimum, maximum and the reversal of order: <code>{0,3}</code> and <code>{1,2}</code>
-<a href="#t59">[59]</a>. The rounded-down average of two levels — the familiar rule <em>take the
-middle</em> — maps <code>0</code> and <code>3</code> to <code>1</code> and thereby leaves <code>{0,3}</code> at the point
-<code>(0,3)</code> <a href="#t60">[60]</a>. An auditor thus receives a cell and not a verdict: <em>your rule
-leaves the contexture <code>{0,3}</code> at <code>(0,3)</code>.</em></p>
-<p><strong>Three things that do not follow from this.</strong></p>
-<p><strong>The narrowness stated above stands in full.</strong> It concerned the first way, and
-it holds unchanged; the second stands beside it and does not replace it.</p>
-<p><strong>The precondition of the scale is not loosened.</strong> The second way too computes
-over the linear scale of levels — its means are minimum, maximum and the
-reversal of order, and these presuppose the order. Whoever reads a wider reach
-out of the two ways reads it in: <em>several roles, several perspectives, several
-agents — that does not suffice</em> holds for both.</p>
-<p><strong>And the certificate is sufficient, not necessary.</strong> If no point is found at
-which a rule leaves a closed set, then <strong>nothing</strong> is shown by that, least of all
-that the rule were assemblable. There are operations that preserve both sets and
-are nevertheless not assemblable; for them this paper carries no certificate, and
-it says so rather than pass over a gap in silence.</p>
 <h3>The height of the fall, and that it can be stated</h3>
 <p>What happens if one removes the order? Take the smallest lattice in which three
 elements stand side by side as equals — a bottom element, three incomparable above
 it, a top. On it there is an operation that acts classically on every comparable
 pair and is globally neither the infimum nor the supremum. It is not merely
-calculated but exhibited as a term and proved <a href="#t52">[52]</a>:</p>
+calculated but exhibited as a term and proved <a href="#t43">[43]</a>:</p>
 <p class="formel" data-tex="(x \wedge y) \vee \bigl((x \vee y) \wedge (\lnot x \wedge \lnot y)\bigr)">(x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))</p>
 <p><strong>A lattice version of the characterisation is thereby not open but refuted.</strong> That
 is more than &quot;we have not proved it&quot;: exactly the pattern that the characterisation
@@ -1222,7 +1174,7 @@ architecture of equal-ranking roles would have.</p>
 strongest piece.</strong> It stands on order, not on plurality, and it can say by what one
 notices the difference.</p>
 <p>And the theorem that supports the posit of chapter 2 belongs in the same context: on
-an incomparable pair even the minimum leaves the two-element set <a href="#t16">[16]</a>. The same
+an incomparable pair even the minimum leaves the two-element set <a href="#t15">[15]</a>. The same
 property that grounds the posit is the one whose absence makes the bound fall.</p>
 <h3>The four limits</h3>
 <p><strong>First, mathematical.</strong> The characterisation lives on linearly graded carriers and
@@ -1282,8 +1234,8 @@ chapter surveys Günther's answer to it</strong> — and says how far it carries
 matter.</p>
 <p><strong>The stage movement</strong> carries a section property and an asymmetry of fibres and
 does not collapse into an invertibility: the descent is canonical, the ascent a
-choice <a href="#t53">[53]</a> — and that it is one stands as a theorem and not as a remark, because
-two admissible ascents demonstrably come apart <a href="#t54">[54]</a>.</p>
+choice <a href="#t44">[44]</a> — and that it is one stands as a theorem and not as a remark, because
+two admissible ascents demonstrably come apart <a href="#t45">[45]</a>.</p>
 <p><strong>The chiasm of exchange and order</strong> — Günther's <strong>interlocking</strong>, and the word is
 his: the proemial relation, he writes, &quot;represents a peculiar interlocking of
 exchange and order&quot; — the German translation renders it <em>Ineinandergreifen</em>, which
@@ -1305,23 +1257,23 @@ precisely the representable exchange of cognition and volition itself.</strong><
 <p><strong>The role exchange itself</strong> is not built. In its place stands a differential: over
 every carrier whose stock of values carries a fixed-point-free exchange — hence over
 Günther's own table of negation — the relations cannot be named by their members
-<a href="#t55">[55]</a>; and one order up a morphism becomes an object <a href="#t56">[56]</a>. <strong>The exchange enforces
+<a href="#t46">[46]</a>; and one order up a morphism becomes an object <a href="#t47">[47]</a>. <strong>The exchange enforces
 the order; the order does not perform the exchange.</strong></p>
 <p><strong>The generalisation</strong> holds for <strong>transpositions</strong> — the commutation theorem holds
 over arbitrary pairs of places and even over arbitrary rows, without any normal-form
-assumption <a href="#t39">[39]</a>. For <strong>arbitrary permutations</strong> nothing stands.</p>
+assumption <a href="#t38">[38]</a>. For <strong>arbitrary permutations</strong> nothing stands.</p>
 <p><strong>And both strands of the construction</strong> instantiate the same form of proof —
 retraction without invertibility —; there is now a proof term that reaches both
-<a href="#t57">[57]</a>.</p>
+<a href="#t48">[48]</a>.</p>
 <p><em>That Günther locates the proemial relation itself at the level of the
 kenogrammatic structures — as pure possibility that becomes actual only as the
 exchange or as the ordering relation, written with two kenograms — is the reason why
 the load-bearing theorems lie there and nowhere else (checked against the source).</em></p>
 <p><strong>The compound contexture</strong> is <strong>half built</strong>, and the halves can be named. The
 <strong>joining</strong> stands as structure: several elementary contextures exactly from
-three values on <a href="#t13">[13]</a>, their connectedness through overlap or a third <a href="#t14">[14]</a>,
-their coming apart exactly from four on <a href="#t15">[15]</a>; and its exponent is a theorem
-<a href="#t27">[27]</a>. The <strong>mediation</strong> does not stand: Günther binds it to the second negation,
+three values on <a href="#t12">[12]</a>, their connectedness through overlap or a third <a href="#t13">[13]</a>,
+their coming apart exactly from four on <a href="#t14">[14]</a>; and its exponent is a theorem
+<a href="#t26">[26]</a>. The <strong>mediation</strong> does not stand: Günther binds it to the second negation,
 and no theorem of this paper carries that.</p>
 <p><strong>A limit object of the ascent</strong> is neither built nor claimed nor excluded. These
 three negations have three different reaches, and they are not the same.</p>
@@ -1438,7 +1390,7 @@ conflict the German edition governs</em> does not apply.</p>
 <p><strong>The <em>profile</em> column is measured, not typed.</strong> A probe of the repository reads
 this table, resolves every name given against the corpus, measures its axiom
 profile and holds the result against the column; it reports every deviation and
-every name it cannot resolve uniquely. <strong>At the state of this edition: 64 rows
+every name it cannot resolve uniquely. <strong>At the state of this edition: 52 rows
 confirmed, no deviation, no unresolved name.</strong> Four rows carry a reference to §1.7
 instead of a profile — the reason stands there, and a prose entry is no
 machine-readable claim.</p>
@@ -1515,12 +1467,6 @@ claim. That remains the business of whoever sets the numeral.</p>
   <td>aggregate</td>
   <td><strong>axiom-free</strong></td>
 </tr>
-<tr id="t11">
-  <td>[11]</td>
-  <td><code>RelInv.relabel_map_of_injective</code> — canonicalisation is invariant under <strong>every injective</strong> renaming of the values, heterogeneously over arbitrary carriers; the instance at the reversal of order is <code>RelInv.relabel_map_negFin</code></td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
 <tr>
   <td>—</td>
   <td><code>K.relabel</code> — the canonisation as a procedure, not as a claim (definition)</td>
@@ -1566,39 +1512,39 @@ authority.</p>
 </tr>
 </thead>
 <tbody>
-<tr id="t12">
-  <td>[12]</td>
+<tr id="t11">
+  <td>[11]</td>
   <td><code>CO.three_contextures_overlap</code> — the pairwise overlap as a counting statement</td>
   <td>aggregate</td>
   <td><code>[propext]</code></td>
 </tr>
+<tr id="t12">
+  <td>[12]</td>
+  <td><code>CC.two_elem_contextures_iff</code> — two distinct elementary contextures exactly from three values on</td>
+  <td>aggregate</td>
+  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
+</tr>
 <tr id="t13">
   <td>[13]</td>
-  <td><code>CC.two_elem_contextures_iff</code> — two distinct elementary contextures exactly from three values on</td>
+  <td><code>CC.overlap_or_third_touches</code> — any two distinct ones overlap, or a third touches both</td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t14">
   <td>[14]</td>
-  <td><code>CC.overlap_or_third_touches</code> — any two distinct ones overlap, or a third touches both</td>
+  <td><code>CC.disjoint_elem_contextures_iff</code> — two without a common value exactly from four values on</td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t15">
   <td>[15]</td>
-  <td><code>CC.disjoint_elem_contextures_iff</code> — two without a common value exactly from four values on</td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
-<tr id="t16">
-  <td>[16]</td>
   <td><code>meet_leaves_incomparable</code> — on an incomparable pair the infimum leaves the two-element set</td>
   <td>aggregate</td>
   <td><code>[propext]</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>On <a href="#t12">[12]</a> — the upgrade of the fourth edition.</strong> The file header of the carrier
+<p><strong>On <a href="#t11">[11]</a> — the upgrade of the fourth edition.</strong> The file header of the carrier
 expressly labels the overlap a <strong>cardinality theorem and not an interpretation</strong>.
 The third edition carried it, at both places where it occurs, as a construction
 prohibition and as a grounded choice respectively — the theorem did not appear in
@@ -1615,20 +1561,20 @@ corpus by subject matter.</p>
 </tr>
 </thead>
 <tbody>
-<tr id="t17">
-  <td>[17]</td>
+<tr id="t16">
+  <td>[16]</td>
   <td><code>Proemial.IntransitivityDifferential.no_cycle_in_strict_order</code></td>
   <td>aggregate</td>
   <td><strong>axiom-free</strong></td>
 </tr>
-<tr id="t18">
-  <td>[18]</td>
+<tr id="t17">
+  <td>[17]</td>
   <td><code>cyc3_not_representable</code></td>
   <td>aggregate</td>
   <td><code>[propext]</code></td>
 </tr>
-<tr id="t19">
-  <td>[19]</td>
+<tr id="t18">
+  <td>[18]</td>
   <td><code>Proemial.NoUniformSwap.no_uniform_swap</code></td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
@@ -1641,10 +1587,10 @@ corpus by subject matter.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>The full name with its module is no pedantry at <a href="#t19">[19]</a>.</strong> A theorem of the same name
+<p><strong>The full name with its module is no pedantry at <a href="#t18">[18]</a>.</strong> A theorem of the same name
 lies in a call target, unguarded, as a historical record. Whoever names the name
 without the module leaves open which one he means — and the range of validity this
-part carries then runs empty. The choice component at <a href="#t19">[19]</a> stems from the category
+part carries then runs empty. The choice component at <a href="#t18">[18]</a> stems from the category
 machinery used and not from the proof itself; <strong>the path of the axiom into the term
 is not measured</strong>, and the corpus says so there.</p>
 <h3>1.4 The measure of the separation (chapter 5)</h3>
@@ -1658,62 +1604,62 @@ is not measured</strong>, and the corpus says so there.</p>
 </tr>
 </thead>
 <tbody>
-<tr id="t20">
-  <td>[20]</td>
+<tr id="t19">
+  <td>[19]</td>
   <td><code>CV.card_locallyClassical</code> at two values (<code>2^1 = 2</code>), together with <code>CV.min_ne_max</code>; the sharpness of the bound from <code>CV.two_lt_card_locallyClassical</code></td>
   <td>aggregate</td>
   <td><code>Classical.choice</code> (see 1.7)</td>
 </tr>
-<tr id="t21">
-  <td>[21]</td>
+<tr id="t20">
+  <td>[20]</td>
   <td><code>NUCB.four_of_eight_generatable</code> <strong>and</strong> <code>NUCB.locally_classical_dichotomy</code> — the complete classification over three values: the choice-vector version and the ops version without choice-vector coding</td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
-<tr id="t22">
-  <td>[22]</td>
+<tr id="t21">
+  <td>[21]</td>
   <td><code>TCB.T_not_in_clone</code>; with <code>TCB.T_rejective</code> and the departure from the contexture</td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code> · <code>[propext]</code></td>
 </tr>
+<tr id="t22">
+  <td>[22]</td>
+  <td><code>QCB.locally_classical_in_clone_iff4</code> — the characterisation at four values</td>
+  <td>aggregate</td>
+  <td><code>[propext, Quot.sound]</code></td>
+</tr>
 <tr id="t23">
   <td>[23]</td>
-  <td><code>QCB.locally_classical_in_clone_iff4</code> — the characterisation at four values</td>
+  <td><code>GCB.locally_classical_in_clone_iff</code> — for all <code>m ≥ 4</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
 <tr id="t24">
   <td>[24]</td>
-  <td><code>GCB.locally_classical_in_clone_iff</code> — for all <code>m ≥ 4</code></td>
+  <td><code>PM.not_in_clone_pair_mixture</code> — not constructible means: acts on two distinct pairs as maximum and as minimum; the general form is <code>PM.pair_mixture_of_ne_min_ne_max</code></td>
   <td>aggregate</td>
-  <td><code>[propext, Quot.sound]</code></td>
+  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t25">
   <td>[25]</td>
-  <td><code>PM.not_in_clone_pair_mixture</code> — not constructible means: acts on two distinct pairs as maximum and as minimum; the general form is <code>PM.pair_mixture_of_ne_min_ne_max</code></td>
+  <td><code>PM.w_differs_on_disjoint</code> — the witness achieves it on two elementary contextures <strong>with no common value</strong></td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t26">
   <td>[26]</td>
-  <td><code>PM.w_differs_on_disjoint</code> — the witness achieves it on two elementary contextures <strong>with no common value</strong></td>
+  <td><code>CV.locallyClassicalEquiv</code> and <code>CV.card_locallyClassical</code></td>
   <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
+  <td>see 1.7</td>
 </tr>
 <tr id="t27">
   <td>[27]</td>
-  <td><code>CV.locallyClassicalEquiv</code> and <code>CV.card_locallyClassical</code></td>
+  <td><code>CV.card_locallyClassical_lt</code></td>
   <td>aggregate</td>
   <td>see 1.7</td>
 </tr>
 <tr id="t28">
   <td>[28]</td>
-  <td><code>CV.card_locallyClassical_lt</code></td>
-  <td>aggregate</td>
-  <td>see 1.7</td>
-</tr>
-<tr id="t29">
-  <td>[29]</td>
   <td><code>CV.two_lt_card_locallyClassical</code></td>
   <td>aggregate</td>
   <td>see 1.7</td>
@@ -1732,25 +1678,16 @@ is not measured</strong>, and the corpus says so there.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>On <a href="#t24">[24]</a> — the consumption, measured.</strong> <strong>Seven</strong> declarations of the aggregate
+<p><strong>On <a href="#t23">[23]</a> — the consumption, measured.</strong> <strong>Seven</strong> declarations of the aggregate
 reference it in their proof term; none rebuilds it. Both are measured: the
 consumption at the proof term, the non-rebuilding by must-not routes. The number
 holds at the anchor of this edition and is measured afresh for each one — in the
-fifth it was six, in the sixth seven, and in this one it is seven still.</p>
-<p><strong>A ranking claim of the fifth edition fell back then.</strong> There it read that <a href="#t24">[24]</a>
-was <em>the most consumed theorem of the corpus</em>. Measured at the anchor of the
-sixth edition that was not so: four auxiliary lemmas lay above it, the highest at
-ten.</p>
-<p><strong>And the sentence that took its place now falls itself.</strong> The sixth edition
-wrote: among the carriers of this table <a href="#t24">[24]</a> is the most consumed, seven against
-six for the next. At the anchor of this edition <strong>three</strong> carriers stand at seven
-— <a href="#t1">[1]</a>, <a href="#t24">[24]</a> and <a href="#t50">[50]</a> — and none above. The rank has become a tie, and what
-remains is the list.</p>
-<p><strong>The difference from the first case is the instructive one.</strong> Then the range of
-the claim was too wide; this time the claim was correct at its anchor and <strong>the
-corpus moved</strong> — <a href="#t50">[50]</a> arrived only with this edition, and <a href="#t1">[1]</a> gained a consumer.
-A ranking claim about a moving corpus is therefore true, even with a route, only
-as long as its anchor.</p>
+fifth it was six, and the increase is a theorem of this edition <a href="#t24">[24]</a>.</p>
+<p><strong>A ranking claim of the fifth edition falls in the process.</strong> There it read that
+<a href="#t23">[23]</a> was <em>the most consumed theorem of the corpus</em>. Measured at the same anchor
+that is not so: four auxiliary lemmas lie above it, the highest at ten. What
+remains is the statement that has a route — <strong>among the carriers of this table it
+is the most consumed</strong>, with seven against six for the next.</p>
 <h3>1.5 The ascent (chapter 6)</h3>
 <table>
 <thead>
@@ -1762,134 +1699,86 @@ as long as its anchor.</p>
 </tr>
 </thead>
 <tbody>
-<tr id="t30">
-  <td>[30]</td>
+<tr id="t29">
+  <td>[29]</td>
   <td><code>SAsc.exists_locally_classical_not_in_clone</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
+<tr id="t30">
+  <td>[30]</td>
+  <td><code>SAsc.w_castSucc</code></td>
+  <td>aggregate</td>
+  <td><code>[propext]</code></td>
+</tr>
 <tr id="t31">
   <td>[31]</td>
-  <td><code>SAsc.w_castSucc</code></td>
+  <td><code>SAsc.choose_two_succ</code></td>
   <td>aggregate</td>
   <td><code>[propext]</code></td>
 </tr>
 <tr id="t32">
   <td>[32]</td>
-  <td><code>SAsc.choose_two_succ</code></td>
-  <td>aggregate</td>
-  <td><code>[propext]</code></td>
-</tr>
-<tr id="t33">
-  <td>[33]</td>
   <td><code>SAsc.ascent_proper</code></td>
   <td>aggregate</td>
   <td><strong>axiom-free</strong> (measured at <code>786d495</code>)</td>
 </tr>
+<tr id="t33">
+  <td>[33]</td>
+  <td><code>SPar.castSucc_negFin_ne</code></td>
+  <td>aggregate</td>
+  <td><code>[propext, Quot.sound]</code></td>
+</tr>
 <tr id="t34">
   <td>[34]</td>
-  <td><code>SPar.castSucc_negFin_ne</code></td>
+  <td><code>SPar.odd_no_neg_compatible</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
 <tr id="t35">
   <td>[35]</td>
-  <td><code>SPar.odd_no_neg_compatible</code></td>
+  <td><code>SPar.eSym_strictMono</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
 <tr id="t36">
   <td>[36]</td>
-  <td><code>SPar.eSym_strictMono</code></td>
+  <td><code>SPar.eSym_negFin</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
 <tr id="t37">
   <td>[37]</td>
-  <td><code>SPar.eSym_negFin</code></td>
+  <td><code>SPar.w_eSym</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
 <tr id="t38">
   <td>[38]</td>
-  <td><code>SPar.w_eSym</code></td>
-  <td>aggregate</td>
-  <td><code>[propext, Quot.sound]</code></td>
-</tr>
-<tr id="t39">
-  <td>[39]</td>
   <td><code>K.dropLast_exchangeAt</code> — commutation when the swap does not touch the last place</td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code> — <strong>choice-free</strong>, without <code>IsRGS</code></td>
 </tr>
+<tr id="t39">
+  <td>[39]</td>
+  <td><code>K.dropLast_exchangeAt_last_iff</code> — characterisation at the last place, <strong>under <code>IsRGS</code></strong>; with a statement pin</td>
+  <td>aggregate</td>
+  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
+</tr>
 <tr id="t40">
   <td>[40]</td>
-  <td><code>K.dropLast_exchangeAt_last_iff</code> — characterisation at the last place, <strong>under <code>IsRGS</code></strong>; with a statement pin</td>
+  <td><code>KU.marksLt_iff_fillable</code></td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t41">
   <td>[41]</td>
-  <td><code>KU.marksLt_iff_fillable</code></td>
+  <td><code>KU.unbounded_not_fillable</code></td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
 </tr>
 <tr id="t42">
   <td>[42]</td>
-  <td><code>KU.unbounded_not_fillable</code></td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
-<tr id="t44">
-  <td>[44]</td>
-  <td><code>K.JointlyClosed</code> — closure of a set of rows under the exchange of places <strong>within the row</strong> and under the descent</td>
-  <td>aggregate</td>
-  <td><code>[propext]</code></td>
-</tr>
-<tr id="t45">
-  <td>[45]</td>
-  <td><code>K.hull_le_of_jointlyClosed</code> — every such set containing a row of length ≥ 2 contains <code>{[],[0],[0,0]}</code> or <code>{[],[0],[0,1]}</code> entirely; both are themselves closed (<code>K.jointlyClosed_hull_pair</code>)</td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code> · <code>[propext, Quot.sound]</code></td>
-</tr>
-<tr id="t46">
-  <td>[46]</td>
-  <td><code>KOS.canonicalize_eq_of_ne</code> — over <strong>two</strong> places any two occupancies with distinct values have the same normal form; the exchange of places is invisible to it (<code>KOS.canonicalize_comp_swap</code>)</td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
-<tr id="t47">
-  <td>[47]</td>
-  <td><code>KOS.RisingOccupancy</code> — the value occupancy of two places, rising along the places; counterpart <code>KOS.FallingOccupancy</code></td>
-  <td>aggregate</td>
-  <td><code>[propext]</code></td>
-</tr>
-<tr id="t48">
-  <td>[48]</td>
-  <td><code>KOS.separation_is_the_order</code> — every pair of criteria stable under order embeddings that divides the distinct-valued occupancies exclusively and completely <strong>is</strong> the order pair</td>
-  <td>aggregate</td>
-  <td><code>[propext, Quot.sound]</code></td>
-</tr>
-<tr id="t49">
-  <td>[49]</td>
-  <td><code>KPS.no_injective_pair_three</code> — no map of the ordered pairs of one stage into the next is injective (<code>25 &gt; 15</code>); one stage higher likewise (<code>KPS.no_injective_pair_four</code>), below there is one (<code>KPS.exists_injective_pair_two</code>)</td>
-  <td>aggregate</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
-<tr id="t50">
-  <td>[50]</td>
-  <td><code>K.concatWith</code> — concatenation of two rows under an <strong>identification</strong>, an injective renaming of the symbols of the rear row</td>
-  <td>aggregate</td>
-  <td><strong>axiomfrei</strong></td>
-</tr>
-<tr id="t51">
-  <td>[51]</td>
-  <td><code>K.concatWith_pair_not_injective</code> — the <strong>decomposition</strong> is not recoverable from the concatenated row; the descent acts on the rear part (<code>K.concatWith_dropLast</code>)</td>
-  <td>aggregate</td>
-  <td><code>[propext]</code> · <code>[propext, Quot.sound]</code></td>
-</tr>
-<tr id="t43">
-  <td>[43]</td>
   <td><code>KU.idRGSStream_not_fillable</code></td>
   <td>aggregate</td>
   <td><code>[propext, Classical.choice, Quot.sound]</code></td>
@@ -1908,30 +1797,30 @@ as long as its anchor.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>On <a href="#t39">[39]</a> and <a href="#t40">[40]</a> — three things the corpus says expressly.</strong></p>
+<p><strong>On <a href="#t38">[38]</a> and <a href="#t39">[39]</a> — three things the corpus says expressly.</strong></p>
 <p><strong>First: commutation and not invariance.</strong> The probe says, at its witness, that the
 descent stays <em>the same</em>; that holds there only because the swapped initial segment
 happens to carry the same pattern. <strong>Whoever generalises the probe's theorem writes
 down a false theorem — and it would look enough like the probe to pass.</strong></p>
-<p><strong>Second: the premises are unequal.</strong> <a href="#t39">[39]</a> holds for <strong>arbitrary rows</strong>, without any
+<p><strong>Second: the premises are unequal.</strong> <a href="#t38">[38]</a> holds for <strong>arbitrary rows</strong>, without any
 normal-form assumption — the RGS hypothesis did not occur in the proof, so it does
-not stand there. <a href="#t40">[40]</a> has <code>IsRGS</code> as a hypothesis. The contrast implies this;
+not stand there. <a href="#t39">[39]</a> has <code>IsRGS</code> as a hypothesis. The contrast implies this;
 <strong>implying is not saying</strong>, and that is why both parts name it.</p>
-<p><strong>Third: the pin.</strong> <a href="#t40">[40]</a> is a characterisation; a weakening of the right-hand side —
+<p><strong>Third: the pin.</strong> <a href="#t39">[39]</a> is a characterisation; a weakening of the right-hand side —
 dropping one of the two conjuncts, say — would pass an axiom guard, because a guard
 checks the profile and not the statement. The pin freezes the statement.</p>
 <p><strong>And the classical principle distributes tellingly:</strong> the two pure list theorems —
-the prefix lemma <a href="#t4">[4]</a> and the commutation <a href="#t39">[39]</a> — are choice-free. <code>Classical.choice</code>
+the prefix lemma <a href="#t4">[4]</a> and the commutation <a href="#t38">[38]</a> — are choice-free. <code>Classical.choice</code>
 appears only where the work goes through the normal-form property or through
 counting. <strong>The commutation rule costs no classical principle; the characterisation
 does.</strong></p>
-<p><strong>On the witness at <a href="#t30">[30]</a>.</strong> The choice of the lowest elementary contexture as the
+<p><strong>On the witness at <a href="#t29">[29]</a>.</strong> The choice of the lowest elementary contexture as the
 max-island is a <strong>chosen basis</strong>, not a found one; any other pair would give another
 witness. The file header says so, and Part A says so too.</p>
-<p><strong>On <a href="#t35">[35]</a>.</strong> The proof runs via the fixed point of the order reversal and needs
+<p><strong>On <a href="#t34">[34]</a>.</strong> The proof runs via the fixed point of the order reversal and needs
 neither injectivity nor monotonicity. About double steps — from <code>m</code> to <code>m+2</code> — it
 says nothing; that too stands in the corpus.</p>
-<p><strong>On <a href="#t41">[41]</a> to <a href="#t43">[43]</a>.</strong> With <a href="#t43">[43]</a> the identity stream is for the first time a <strong>named</strong>
+<p><strong>On <a href="#t40">[40]</a> to <a href="#t42">[42]</a>.</strong> With <a href="#t42">[42]</a> the identity stream is for the first time a <strong>named</strong>
 object of the corpus; the anonymous illustration that stood elsewhere before was not
 consumable and still stands there.</p>
 <h3>1.6 Reach (chapter 7)</h3>
@@ -1945,90 +1834,72 @@ consumable and still stands there.</p>
 </tr>
 </thead>
 <tbody>
-<tr id="t52">
-  <td>[52]</td>
+<tr id="t43">
+  <td>[43]</td>
   <td><code>M3CloneWitness.m3_mixed_term_exists</code></td>
   <td>aggregate</td>
   <td><strong>choice-free</strong></td>
 </tr>
-<tr id="t53">
-  <td>[53]</td>
+<tr id="t44">
+  <td>[44]</td>
   <td><code>K.descent_split_epi_not_iso</code> — the retraction equation for <strong>every admissible</strong> ascent; the non-injectivity <strong>at one witness</strong></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
-<tr id="t54">
-  <td>[54]</td>
+<tr id="t45">
+  <td>[45]</td>
   <td><code>RB.kenoAscents_differ</code> — two admissible ascents come apart</td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
-<tr id="t55">
-  <td>[55]</td>
+<tr id="t46">
+  <td>[46]</td>
   <td><code>AA.no_naming_of_fixpointfree</code> — where the stock of values carries a fixed-point-free exchange, there is no naming of the relations by their members</td>
   <td>aggregate</td>
   <td><strong>axiom-free</strong></td>
 </tr>
-<tr id="t56">
-  <td>[56]</td>
+<tr id="t47">
+  <td>[47]</td>
   <td><code>AA.arrow_left_id</code> and <code>AA.arrow_left_not_injective</code> — the section and the forgetting, one order up</td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code></td>
 </tr>
-<tr id="t57">
-  <td>[57]</td>
+<tr id="t48">
+  <td>[48]</td>
   <td><code>RB.both_strands_retract</code> — both strands satisfy the same statement form; the form itself <code>RB.RetractionWithoutIso</code></td>
   <td>aggregate</td>
   <td><code>[propext, Quot.sound]</code>; the form <strong>axiom-free</strong></td>
 </tr>
-<tr id="t58">
-  <td>[58]</td>
-  <td><code>CEB.not_in_clone_of_escapes</code> — if an operation leaves a set closed under the basis at a nameable point, it is no term over the basis; general over every signature, structure and substructure</td>
-  <td>aggregate</td>
-  <td><code>[propext]</code></td>
-</tr>
-<tr id="t59">
-  <td>[59]</td>
-  <td><code>CEB.contexture03</code> — the boundary contexture <code>{0,3}</code> as a substructure at four levels; counterpart <code>CEB.contexture12</code></td>
-  <td>aggregate</td>
-  <td><code>[propext, Quot.sound]</code></td>
-</tr>
-<tr id="t60">
-  <td>[60]</td>
-  <td><code>CEB.avgDown_not_in_clone</code> — the rounded-down average <code>CEB.avgDown</code> leaves <code>{0,3}</code> at the point <code>(0,3)</code> (<code>CEB.avgDown_escapes</code>) and therefore does not lie in the clone</td>
-  <td>aggregate</td>
-  <td><code>[propext, Quot.sound]</code></td>
-</tr>
 </tbody>
 </table>
-<p><strong>On <a href="#t55">[55]</a> — axiom-free and universally quantified.</strong> It is quantified over <strong>all</strong>
+<p><strong>On <a href="#t46">[46]</a> — axiom-free and universally quantified.</strong> It is quantified over <strong>all</strong>
 carriers and draws <strong>no axiom</strong>.</p>
 <p><strong>Which carriers are axiom-free: the list, not the rank.</strong> Measured across all forty
-numerals, state <code>786d495</code>, three impossibility statements are axiom-free — <a href="#t17">[17]</a>,
-<a href="#t33">[33]</a> and <a href="#t55">[55]</a> — together with one axiom-free <strong>definition</strong>: the statement form at
-<a href="#t57">[57]</a>, which claims nothing and therefore stands beside the row and not in it.
+numerals, state <code>786d495</code>, three impossibility statements are axiom-free — <a href="#t16">[16]</a>,
+<a href="#t32">[32]</a> and <a href="#t46">[46]</a> — together with one axiom-free <strong>definition</strong>: the statement form at
+<a href="#t48">[48]</a>, which claims nothing and therefore stands beside the row and not in it.
 <strong>The list says no more than that.</strong> It enumerates what was measured at the state
 named; it claims no exclusiveness. Whether a further carrier turns out axiom-free is
 a question for the corpus and for a measurement, not for this paragraph. <strong>The
 contrast within the differential carries even without a rank:</strong> the poor half costs
-no classical principle, the rich half <a href="#t56">[56]</a> does.</p>
+no classical principle, the rich half <a href="#t47">[47]</a> does.</p>
 <p>The hypothesis is not arbitrarily chosen: <strong>Günther's table of negation is a
 fixed-point-free exchange</strong> — proved at the two-valued swap. The converse does not
 hold, and the theorem does not need it: it speaks about <strong>all</strong> such exchanges and
 therefore covers the table of negation too. In the form of a theorem it says: <em>the
 exchange enforces the order.</em></p>
-<p><strong>On <a href="#t56">[56]</a> — why two theorems and not one.</strong> Section and non-injectivity stand apart
-so that <a href="#t57">[57]</a> can take them up <strong>verbatim</strong>. The composite statement — <em>retraction
-without invertibility</em> — is exactly what <a href="#t57">[57]</a> claims, and for both strands;
-anticipating it here would have left <a href="#t57">[57]</a> nothing but a renaming.</p>
-<p><strong>On <a href="#t57">[57]</a> — why the statement form is not a renaming.</strong> It requires, on the
+<p><strong>On <a href="#t47">[47]</a> — why two theorems and not one.</strong> Section and non-injectivity stand apart
+so that <a href="#t48">[48]</a> can take them up <strong>verbatim</strong>. The composite statement — <em>retraction
+without invertibility</em> — is exactly what <a href="#t48">[48]</a> claims, and for both strands;
+anticipating it here would have left <a href="#t48">[48]</a> nothing but a renaming.</p>
+<p><strong>On <a href="#t48">[48]</a> — why the statement form is not a renaming.</strong> It requires, on the
 kenogrammatic side, a construction that would not exist without it: a <strong>total</strong>
 section. The available ascent is partial — it takes a place and two proof
 arguments. <strong>It is not the theorems that are cut differently, but the ascents: one
 is total, one partial</strong> — and that the ascent chooses is the reason it has
 arguments. That is precisely the condition under which a statement form is more
 than a notation.</p>
-<p><strong>On <a href="#t52">[52]</a> — the second upgrade of the fourth edition.</strong> The third edition wrote that
+<p><strong>On <a href="#t43">[43]</a> — the second upgrade of the fourth edition.</strong> The third edition wrote that
 a lattice version of the characterisation &quot;does not exist&quot;. The corpus carries more:
 the term is exhibited and proved, so a lattice version is not open but <strong>refuted</strong>.
 The carrier is built on an inductive type of its own, to exclude any ambiguity of
@@ -2037,7 +1908,7 @@ instances.</p>
 classical, of which eight are neither infimum nor supremum — are <strong>computed</strong>,
 outside the corpus, and carry no claim.</p>
 <h3>1.7 A dividing line with a criterion</h3>
-<p>In the counting layer <a href="#t20">[20]</a>, <a href="#t27">[27]</a>, <a href="#t28">[28]</a>, <a href="#t29">[29]</a> <code>Classical.choice</code> sits <strong>in the
+<p>In the counting layer <a href="#t19">[19]</a>, <a href="#t26">[26]</a>, <a href="#t27">[27]</a>, <a href="#t28">[28]</a> <code>Classical.choice</code> sits <strong>in the
 finiteness machinery itself</strong> — the instance and the cardinality of the base set
 already carry it; the transition constant between the layers stays free. Hence the
 dividing line that stands in the file header:</p>
@@ -2131,9 +2002,9 @@ file header together with both reasons for the fall of the literal version.</p>
 <h3>2.3 The differential, applied to the workshop</h3>
 <p>In the most recent working phase the form has been applied twice to the architecture
 itself.</p>
-<p><strong>To a theorem:</strong> the parity obstruction <a href="#t35">[35]</a> has exactly the differential shape —
+<p><strong>To a theorem:</strong> the parity obstruction <a href="#t34">[34]</a> has exactly the differential shape —
 the impossibility half over <em>all</em> maps without side conditions, the possibility half
-with an explicit witness <a href="#t36">[36]</a>, <a href="#t37">[37]</a> beside it.</p>
+with an explicit witness <a href="#t35">[35]</a>, <a href="#t36">[36]</a> beside it.</p>
 <p><strong>To a measurement:</strong> where an axiom profile is to be <strong>explained</strong>, the workshop has
 since required two versions differing in exactly one quantity. The four cases stand
 in §4.3.</p>
@@ -2464,29 +2335,12 @@ was not old but incorrect — and it described the instrument that refuted it.</
 <li><strong>A ranking claim had no route.</strong> &quot;The most consumed theorem of the corpus&quot;
 stood without a measurement; at the anchor of this edition four auxiliary lemmas
 lie above it. The sentence has been replaced by the measured statement (§1.4).</li>
-<li><strong>A ranking claim was correct at its anchor and did not stay so.</strong> The sixth
-edition replaced the fallen ranking claim by one with a route: among the
-carriers of its table <a href="#t24">[24]</a> was the most consumed, seven against six. At the
-anchor of this edition <strong>three</strong> carriers stand at seven. This time the error is
-not the range but the <strong>durability</strong>: a ranking claim about a moving corpus is
-true, even with a route, only as long as its anchor. It now stands as a tie with
-a list.</li>
-<li><strong>A ban on rank claims caught a factual error, it did not tend style.</strong> In a
-step about the value-blindness of canonicalisation a theorem was to be presented
-as the &quot;first negative contact&quot; of the two strands. The specification forbade
-rank claims without a route; the measurement then carried out showed that the
-proof term of the theorem names <strong>no</strong> kenogrammatic constant — the connection
-lies in the statement — and that the corpus's contact figure measures something
-other than was claimed. <strong>Without the ban a false claim would stand in the
-corpus.</strong> The entry is here because it tells the reader something about the way
-of working: a ban that merely tended style would have caught nothing here.</li>
 </ul>
-<p><strong>Two classes stand in the last entries.</strong> One is a number taken from a
-<strong>subset</strong> that appears as a number about the <strong>whole set</strong>; it is the sister of
-the empty field with a reassuring label — there the range is blind, here too
-small, and both times the number looks right. The other is a claim that was
-<strong>correct</strong> at its anchor and became untrue as the corpus moved — not an error of
-the measurement but of its <strong>durability</strong>.</p>
+<p><strong>The class this edition adds stands in the last entry:</strong> a number taken from a
+<strong>subset</strong> that appears as a number about the <strong>whole set</strong>. The ranking claim
+took it from the carriers of the table and spoke about the corpus. It is the
+sister of the empty field with a reassuring label: there the range is blind, here
+it is too small — and both times the number looks right.</p>
 <h3>5.5 What this edition has learnt methodically</h3>
 <p>The third edition explained its reticence by an asymmetric burden of proof: against
 overstatement there is an apparatus, against understatement nothing, so the text drifts
@@ -2496,7 +2350,7 @@ closing picture where the carrier expressly says interpretation.</p>
 <p>What explains both directions: <strong>a mark set by the carrier is lost on the way into the
 paper.</strong> From &quot;carries no decidability instance&quot; comes &quot;is not decidable&quot;; from
 &quot;interpretation&quot; comes &quot;provably&quot;. And the loss does not hit negations only: the overlap
-<a href="#t12">[12]</a> is a cardinality theorem in its carrier's header and stood in the paper as a
+<a href="#t11">[11]</a> is a cardinality theorem in its carrier's header and stood in the paper as a
 construction prohibition.</p>
 <p>Hence the obligation under which Part A is written, and it has three limbs: <strong>every
 negation carries a route as a rank claim does; every upgrade carries a measurement; and
@@ -2574,11 +2428,11 @@ or computed. That is the information a table generated from the corpus cannot gi
 </tr>
 <tr>
   <td>locally classical operations</td>
-  <td><strong>proved</strong> [27]; 8, 64, 1024, 32,768 are instances</td>
+  <td><strong>proved</strong> [26]; 8, 64, 1024, 32,768 are instances</td>
 </tr>
 <tr>
   <td>of these buildable</td>
-  <td><strong>proved</strong> [24], [21], [20]</td>
+  <td><strong>proved</strong> [23], [20], [19]</td>
 </tr>
 <tr>
   <td>patterns of length 4</td>
@@ -2586,7 +2440,7 @@ or computed. That is the information a table generated from the corpus cannot gi
 </tr>
 <tr>
   <td>reversal-compatible embeddings</td>
-  <td>non-existence and existence <strong>proved</strong> [35], [36]; the counts <strong>computed</strong></td>
+  <td>non-existence and existence <strong>proved</strong> [34], [35]; the counts <strong>computed</strong></td>
 </tr>
 <tr>
   <td>clone fragment over three values</td>
@@ -2594,7 +2448,7 @@ or computed. That is the information a table generated from the corpus cannot gi
 </tr>
 <tr>
   <td>flat lattice</td>
-  <td><strong>computed</strong>; the existence form <strong>proved</strong> [52]</td>
+  <td><strong>computed</strong>; the existence form <strong>proved</strong> [43]</td>
 </tr>
 </tbody>
 </table>
@@ -2616,8 +2470,8 @@ translation.</em></p>
 </main>
 
 <footer class="pagefoot">
-  <p>PKL Rev6 · 9 August 2026</p>
-  <p><a href="./">Overview</a> · <a href="de.html">Deutsche Fassung</a> · <a href="rev6/en.html">Edition Rev6</a> · <a href="rev5/en.html">Edition Rev5</a> · <a href="rev4/en.html">Edition Rev4</a> · <a href="rev3/en.html">Edition Rev3</a> · <a href="rev2/en.html">Edition Rev2</a> · <a href="rev1/en.html">Edition Rev1</a> ·
+  <p>PKL Rev6 · 8 August 2026</p>
+  <p><a href="./">Overview</a> · <a href="de.html">Deutsche Fassung</a> · <a href="rev5/en.html">Edition Rev5</a> · <a href="rev4/en.html">Edition Rev4</a> · <a href="rev3/en.html">Edition Rev3</a> · <a href="rev2/en.html">Edition Rev2</a> · <a href="rev1/en.html">Edition Rev1</a> ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
 

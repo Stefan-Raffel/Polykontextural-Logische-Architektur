@@ -35,11 +35,11 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel='Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev6, in zwei Teilen',
-        datum='8. August 2026',
-        teile=[f'{K}/Entwurf_2026-08-08_Rev6_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-08-08_Rev6_TeilB_Apparat_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev5/de.html',
+        untertitel='Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev7, in zwei Teilen',
+        datum='9. August 2026',
+        teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparat_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev6/de.html',
         inhalt='Inhalt', teilA='Teil A · Die Gestalt', teilB='Teil B · Der Apparat',
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
@@ -49,11 +49,11 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel='Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev6, in two parts',
-        datum='8 August 2026',
-        teile=[f'{K}/Entwurf_2026-08-08_Rev6_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-08-08_Rev6_TeilB_Apparatus_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev5/en.html',
+        untertitel='Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev7, in two parts',
+        datum='9 August 2026',
+        teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparatus_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev6/en.html',
         inhalt='Contents', teilA='Part A · The Shape', teilB='Part B · The Apparatus',
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
@@ -247,7 +247,7 @@ def baue(sprache):
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (5, 4, 3, 2, 1))
+                         for n in (6, 5, 4, 3, 2, 1))
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>
