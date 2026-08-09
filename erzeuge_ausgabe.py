@@ -32,10 +32,18 @@ import mistune
 REPO = os.path.dirname(os.path.abspath(__file__))
 K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 
+# Die Fassungsbezeichnung steht an EINER Stelle. Bis zur siebten Ausgabe stand sie
+# an vier — Titel, Kopfleiste, Fusszeile, Untertitel —, und drei davon blieben beim
+# Rev6-Zug auf der sechsten stehen, ohne dass eine der neun brechenden Groessen,
+# `parity`, `figures` oder `doc_lint` es meldete. Keine Probe fuehrt die
+# Fassungsbezeichnung; die Heilung ist darum die Aufhebung der Mehrfachnennung und
+# nicht eine zehnte Groesse.
+FASSUNG = 'Rev7'
+
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel='Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev7, in zwei Teilen',
+        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in zwei Teilen',
         datum='9. August 2026',
         teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Gestalt_de.md',
                f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparat_de.md'],
@@ -49,7 +57,7 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel='Polycontextural logic in Lean 4 and Mathlib — Edition PKL Rev7, in two parts',
+        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in two parts',
         datum='9 August 2026',
         teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Shape_en.md',
                f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparatus_en.md'],
@@ -253,7 +261,7 @@ def baue(sprache):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{c['titel']} — PKL Rev6</title>
+<title>{c['titel']} — PKL {FASSUNG}</title>
 <meta name="description" content="{c['untertitel']}">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -261,7 +269,7 @@ def baue(sprache):
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL Rev6</a>
+    <a class="home" href="./">PKL {FASSUNG}</a>
     <div class="langswitch">
       <span aria-current="page">{sprache.upper()}</span>
       <span class="sep">·</span>
@@ -298,7 +306,7 @@ def baue(sprache):
 </main>
 
 <footer class="pagefoot">
-  <p>PKL Rev6 · {c['datum']}</p>
+  <p>PKL {FASSUNG} · {c['datum']}</p>
   <p><a href="./">{c['uebersicht']}</a> · <a href="{c['andere']}">{c['andere_wort']}</a> · {archive} ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
