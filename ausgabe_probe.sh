@@ -15,7 +15,8 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# NEUN BRECHENDE GROESSEN, je Sprachpaar:
+# ZEHN BRECHENDE GROESSEN je Sprachpaar, und eine elfte (die zehnte in der
+# Aufzaehlung) EINMAL ueber die laufenden Flaechen:
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
@@ -42,6 +43,16 @@
 #                       laufenden Satz und `mit der deutschen Fassung Rev2 126` in
 #                       einer Messgeschichte sind am Muster nicht zu trennen. Wer
 #                       die eine faengt, faengt die andere falsch.
+#  11. Fettauszeichnung — die FOLGE der fett gesetzten Spannen, Entwurf gegen
+#                       Ausgabe, je Sprachpaar. Sie faengt die verschachtelte
+#                       Auszeichnung, die der Wandler nicht aufloest und die als
+#                       rohes Sternchen auf der Seite steht: dort traegt der
+#                       Entwurf eine Spanne, die die Ausgabe nicht hat.
+#                       SIE PRUEFT NICHT die Kursivauszeichnung — ungemessen und
+#                       darum nicht gebaut. Der offene Flank steht hier, damit er
+#                       nicht als geprueft gelesen wird: die drei Schaeden, die
+#                       den Bau ausgeloest haben, lagen alle in einer fetten
+#                       Spanne, und die Kursivroute ist nie gefahren worden.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -418,6 +429,48 @@ def formeln(art, s):
         roh = re.findall(r'\$\$(.+?)\$\$', s, flags=re.S)
     return [re.sub(r'\s+', ' ', x).strip() for x in roh]
 
+def fettauszeichnung(art, s):
+    """Die Folge der fett gesetzten Spannen, Entwurf gegen Ausgabe.
+
+    Gebaut nach der Klaerung der Restdifferenz (Rev8-Merkliste 4.1). Bis dahin
+    stand die Inline-Auszeichnung als blinder Fleck in diesem Kopf: naiv 73
+    gegen 62, mit Moebelausschluss 59 gegen 58 — eine Restdifferenz, die keine
+    Route erklaerte. Sie war kein Messartefakt, sondern ein Darstellungsschaden:
+    verschachtelte Auszeichnung, die der Wandler nicht aufloest und die als rohes
+    Sternchen auf der Seite steht. Drei Klassen, gemessen an Rev7:
+    fett-in-kursiv, kursiv-in-kursiv, kursiv-in-fett-in-kursiv; 8 rohe Sternchen
+    in `docs/de.html`, 14 in `docs/en.html`.
+
+    Was die frueheren Routen falsch machten, ist der Grund fuer die Form hier:
+    sie zaehlten MENGEN. Verglichen wird die FOLGE — eine gefallene Spanne faellt
+    dann auf, auch wenn ihr Wortlaut anderswo noch einmal vorkommt.
+
+    Gegenprobe (§12 Regel 1), gemessen und nicht angenommen. Muss-Fall: die
+    geheilte Stelle in Kapitel 6 des deutschen Entwurfs wieder in ihr aeusseres
+    Kursiv gesetzt, Ausgabe daraus erzeugt — 456 gegen 455, die Groesse bricht
+    und nennt die fehlende Spanne. Darf-nicht-Fall: der geheilte Stand, 456 gegen
+    456 und 446 gegen 446, kein Diff. Der Muss-Fall stammt aus dem Zielbereich
+    und ist mit der Heilung verbraucht (§12 Regel 8); wer ihn wiederholt, setzt
+    ihn wie hier neu."""
+    if art == 'html':
+        rest = re.sub(r'(?is)<(nav|header|footer|figure)\b.*?</\1>', ' ', s)
+        rest = re.sub(r'(?is)<(pre|code)\b[^>]*>.*?</\1>', ' ', rest)
+        return [norm_text(entferne_html(m.group(1)))
+                for m in re.finditer(r'(?is)<strong\b[^>]*>(.*?)</strong>', rest)]
+    # Dieselben zwei Schnitte wie bei der Code-Groesse: der Vorspann vor der
+    # ersten Trennlinie betrifft den Entwurf, die ⟦Marken⟧ sind Anweisungen an
+    # die Erzeugung. Das Zitatzeichen faellt und der Zitatinhalt bleibt — anders
+    # als bei den Absatz-Groessen, denn die Ausgabe setzt `<strong>` auch im
+    # Zitatblock.
+    m = re.search(r'(?m)^---\s*$', s)
+    if m:
+        s = s[m.end():]
+    s = re.sub(r'```.*?```', ' ', s, flags=re.S)
+    s = re.sub(r'⟦.*?⟧', ' ', s, flags=re.S)
+    s = re.sub(r'`[^`\n]*`', ' ', s)
+    s = re.sub(r'(?m)^> ?', '', s)
+    return [norm_text(x.group(1)) for x in re.finditer(r'\*\*(.+?)\*\*', s, re.S)]
+
 def volltext(art, s):
     t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
@@ -615,6 +668,8 @@ for entwurf_spez, ausgabe_spez in paare:
     ok &= folgen_bericht("Ueberschriftenraenge",
                          [str(x) for x in sammle(e_teile, raenge)],
                          [str(x) for x in sammle(a_teile, raenge)])
+    ok &= folgen_bericht("Fettauszeichnung", sammle(e_teile, fettauszeichnung),
+                         sammle(a_teile, fettauszeichnung))
 
     we, wa = sammle(e_teile, volltext), sammle(a_teile, volltext)
     sm = difflib.SequenceMatcher(None, we, wa, autojunk=False)
@@ -632,7 +687,7 @@ if not fassungswoerter():
     rc = 1
 
 print()
-print("── " + ("alle zehn brechenden Groessen gleich." if rc == 0 else
+print("── " + ("alle elf brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY
