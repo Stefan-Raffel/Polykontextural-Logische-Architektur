@@ -51,6 +51,7 @@ import Reformulation.Proemial.CompoundContexture
 import Reformulation.Proemial.PairwiseMixture
 import Reformulation.Proemial.ContextureEscapeBound
 import Reformulation.Proemial.TowerAsymmetry
+import Reformulation.Proemial.TwoPlaceOccupancy
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1063,6 +1064,24 @@ Enthält:
   Wachen, Profil durchgängig `[propext, Quot.sound]`. **Die Stufenachse ist die
   Stellenzahl, nicht Günthers Relationsordnung; kein Satz dieser Datei trägt
   einen §20-Anspruch, und „RGS-Stufe = Kontextur" bleibt Setzung.**
+
+- `Proemial.TwoPlaceOccupancy`: die **Faser über der zweistelligen Figur**
+  (ERTRAG). Über den zwei Kenogrammen der Länge zwei — `figEq` mit einer Marke,
+  `figNe` mit zweien — wird die Wertbelegung vermessen. `canonicalize_eq_figEq_iff`
+  und `canonicalize_eq_figNe_iff`: der Stellentausch **trennt** die beiden Figuren,
+  und zwar am Muster und nicht an den Werten. `swapOnFiber_reversible` und
+  `swapOnFiber_fixpointfree`: auf der Faser der zweiten Figur ist der Tausch
+  selbstinvers und fixpunktfrei — dieselben zwei Prädikate, die
+  `Proemial.ArrowAscent` in seiner armen Hälfte als Hypothese verlangt.
+  `fiberEqualEquiv` und `fiberDistinctEquiv` geben beide Fasern als Äquivalenz
+  (konstante Belegungen bzw. geordnete Paare verschiedener Werte), allgemein in
+  `k` und für `n = 2`; die `m`-Marken-Fassung ist **nicht** gebaut.
+  `invariant_const_two` ist die eigentliche Auskunft und **negativ**: bei zwei
+  Werten ist jede unter den Wertvertauschungen invariante Funktion auf der Faser
+  konstant — **aus der Belegung allein ist kein Ordnungsdatum zu gewinnen.**
+  Vierzehn Wachen; zwei Sätze liegen unter `Classical.choice` (`[propext]` bzw.
+  `[propext, Quot.sound]`), der Rest erbt es über `canonicalize`. **Kein Satz
+  trägt einen §20-Anspruch**, keine Ledger-Zeile, keine Marke.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
