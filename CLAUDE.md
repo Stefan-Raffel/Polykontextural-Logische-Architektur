@@ -54,6 +54,17 @@ fuer Darstellungsschaeden ist `a0fe668`; jede kuenftige Route dieser Art wird an
 
 ### Nach jedem Commit auf `rev2` wird `main` per Fast-Forward nachgezogen
 
+Vorabpruefung, damit der Fehlschlag vor dem Push lesbar ist:
+
+    git fetch origin
+    git merge-base --is-ancestor origin/main rev2   # muss Exit 0 geben
+
+Sie schuetzt nicht — das tut der Server, der einen Nicht-Fast-Forward ohne
+--force zurueckweist. Gegen den lokalen Zweig `main` geprueft waere sie wertlos:
+er wird nicht nachgezogen und kann beliebig alt sein (am 10. August 2026 stand er
+auf 43cd0f1, 142 Commits hinter rev2). Gibt die Pruefung nicht Exit 0, anhalten
+und melden.
+
 ```sh
 git push origin rev2
 git push origin rev2:main      # Ausgabe pruefen: alt..neu, zwei Punkte
