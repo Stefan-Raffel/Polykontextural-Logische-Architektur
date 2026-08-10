@@ -90,8 +90,10 @@ Ein späterer Zug, der beide Seiten wörtlich nimmt, wird diese Differenz benenn
 ## Bereich
 
 Dieses Modul berührt die **kenogrammatische Schicht nicht** — kein Beweisterm hier zieht
-ein `Kenogram.*`-Modul. Das ist gemessen und beabsichtigt: die Zahl der Konstanten, die
-beide Stränge berühren, bleibt bei null, und zwar konstruktiv.
+ein `Kenogram.*`-Modul. Gemessen an der Importhülle: sie enthält kein
+`Kenogram.*`-Modul (V2-Achsenmessung, R4.1). Eine Konstante eines Moduls ausserhalb der
+Hülle kann in keinem Term vorkommen; die Abwesenheit ist damit erzwungen und nicht bloss
+gezählt.
 
 Kein `sorry`, kein `axiom`, kein `: True`-Feld.
 -/
