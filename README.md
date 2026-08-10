@@ -133,10 +133,10 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 | Kennzahl | Wert |
 |---|---:|
-| geprueft (AxiomGate) | 3532 Konstanten |
-| Axiom-Wachen | 619 ueber 86 Dateien |
-| Saetze gesamt | 888 |
-| Build-Jobs | 1321 |
+| geprueft (AxiomGate) | 3607 Konstanten |
+| Axiom-Wachen | 630 ueber 89 Dateien |
+| Saetze gesamt | 906 |
+| Build-Jobs | 1324 |
 | ausgewiesene Luecken | 0 (Whitelist leer) |
 
 Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
@@ -149,7 +149,7 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 154 rohe Treffer ueber den ganzen verfolgten Bestand, 111 in den
+eine andere Frage: 158 rohe Treffer ueber den ganzen verfolgten Bestand, 114 in den
 Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
@@ -253,8 +253,8 @@ Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 | `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
 
 **Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 888 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 888 + 10 = 898 ist die Tafelsumme. Der
+Widerspruch, sondern der Bereich: die 906 laufen ueber `Reformulation/` allein, die Tafel
+weist `Foreign/` mit seinen 10 Saetzen eigens aus; 906 + 10 = 916 ist die Tafelsumme. Der
 fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
 mitgezaehlt.
 

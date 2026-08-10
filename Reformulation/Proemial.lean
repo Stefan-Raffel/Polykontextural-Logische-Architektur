@@ -52,6 +52,7 @@ import Reformulation.Proemial.PairwiseMixture
 import Reformulation.Proemial.ContextureEscapeBound
 import Reformulation.Proemial.TowerAsymmetry
 import Reformulation.Proemial.TwoPlaceOccupancy
+import Reformulation.Proemial.ProemialCarrier
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1082,6 +1083,25 @@ Enthält:
   Vierzehn Wachen; zwei Sätze liegen unter `Classical.choice` (`[propext]` bzw.
   `[propext, Quot.sound]`), der Rest erbt es über `canonicalize`. **Kein Satz
   trägt einen §20-Anspruch**, keine Ledger-Zeile, keine Marke.
+
+- `Proemial.ProemialCarrier`: die **Verortung des §20-Materials an einer Stelle**
+  — ausdrücklich **kein Träger für §20**. `Carrier` konjungiert elf Aussagen, die
+  sämtlich schon im Bestand stehen: die gemeinsame Basis `figNe : RGS 2` für
+  `upActual` und `downActual`, ihren Tausch durch `swapOnFiber` (reversibel und
+  fixpunktfrei), die Ordnungslesart derselben zwei Belegungen, die Mehrdeutigkeit
+  des Stufenaufstiegs über `figNe`, den kenogrammatischen Abstieg als Retraktion
+  ohne Iso und die Pfeilkategorie-Seite. **Neu gebaut ist nichts**, und die
+  Konjunktion ist trivial, sobald die Teile stehen — die Sprachregel dafür steht
+  in `TowerAsymmetryProbe`: eine Verortung, kein Beweisfortschritt. Der Dateikopf
+  führt vier Gründe, warum die Konjunktion keine Trägerform ist: `Carrier` hat
+  keine Argumentstelle und fordert nichts an; das elfte Feld liegt auf einem
+  gemessen getrennten Träger (Importhülle von `ArrowAscent`: null
+  `Kenogram.*`-Module); das neunte braucht die Identifikation der RGS-Stufe mit
+  Günthers Relationsordnung, die derselbe Kopf ausschliesst; und die
+  Ordnungsseite ist importiert, was das Feld daneben (`invariant_const_two`)
+  ausspricht. **Keine Ledger-Zeile, keine Marke, keine Anhebung der
+  Ledger-Obergrenze** — §20 bleibt Quellenparagraph, `19 von 20` bleibt stehen.
+  Drei Wachen, Profil durchgängig `[propext, Classical.choice, Quot.sound]`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
