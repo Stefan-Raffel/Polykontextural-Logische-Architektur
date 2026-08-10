@@ -50,6 +50,7 @@ import Reformulation.Proemial.ElementaryCycle
 import Reformulation.Proemial.CompoundContexture
 import Reformulation.Proemial.PairwiseMixture
 import Reformulation.Proemial.ContextureEscapeBound
+import Reformulation.Proemial.TowerAsymmetry
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1046,6 +1047,22 @@ Enthält:
   Zeugnisse des Bestandes zueinander: jede lokal klassische Operation erhält
   beide Kontexturen, trägt also nie ein Zeugnis dieser Art. **Hinreichend, nicht
   notwendig** — das Fehlen eines Punktes ist kein Zeugnis für Erzeugbarkeit.
+
+- `Proemial.TowerAsymmetry`: der **Verbindungssatz der asymmetrischen
+  Diskontexturalität**, aus `Proemial.TowerAsymmetryProbe` gehoben (die Sonde
+  bleibt byte-unverändert als historischer Beleg). Über der kumulierten
+  Stufenskala `Tower := Σ n, RGS n` und dem kanonischen Schritt `step` bindet
+  `tower_asymmetric` die drei Merkmale, die Günthers asymmetrische
+  Diskontexturalität zugleich verlangt, in **einem** Satz: `step_noreturn`
+  (Richtung, geerbt aus `noreturn_of_strict_rank`), `step_preserves_substructure`
+  (die alte Kette bleibt Präfix, definitional) und `ascent_not_determined`
+  (über jedem `r : RGS n` mit `n ≥ 1` liegen zwei verschiedene Urbilder unter
+  `descent` — der einzige der drei mit eigenem Gehalt, und die Verallgemeinerung
+  von `Kenogram.fiber_nontrivial` auf alle Stufen ab 1). Konsum aus
+  `Kenogram.Descent` und `Proemial.IrreversibleAdvance`, kein Nachbau. Vier
+  Wachen, Profil durchgängig `[propext, Quot.sound]`. **Die Stufenachse ist die
+  Stellenzahl, nicht Günthers Relationsordnung; kein Satz dieser Datei trägt
+  einen §20-Anspruch, und „RGS-Stufe = Kontextur" bleibt Setzung.**
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
