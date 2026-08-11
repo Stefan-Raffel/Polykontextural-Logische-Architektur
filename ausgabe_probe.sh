@@ -4,9 +4,13 @@
 # -----------------------------------------------------------------------------
 # Zwischen Entwurf und Ausgabe gab es bis hierher KEINE Probe. Eine ausgelassene
 # Tafelzeile, ein nicht uebernommener Absatz, eine falsch gesetzte Ziffer fielen
-# niemandem auf, und zwar dauerhaft. Ausweg C bleibt — die HTML-Fassung ist
-# Bestand und wird von Hand gefuehrt; diese Probe ersetzt sie nicht, sie macht
-# sie pruefbar.
+# niemandem auf, und zwar dauerhaft.
+#
+# NACHGEFUEHRT AM 11. AUGUST 2026. Hier stand: "Ausweg C bleibt - die HTML-Fassung
+# ist Bestand und wird von Hand gefuehrt". Seit dem 6. August ist es umgekehrt:
+# die QUELLE ist der Entwurf, die HTML wird mit erzeuge_ausgabe.py erzeugt
+# (CLAUDE.md §1). Was von Ausweg C bleibt, ist die eine gepflegte Darstellung je
+# Sprache - sie ist jetzt der Entwurf. Diese Probe haelt Quelle gegen Erzeugnis.
 #
 #   ./ausgabe_probe.sh <entwurf> <ausgabe> [<entwurf2> <ausgabe2> …]
 #

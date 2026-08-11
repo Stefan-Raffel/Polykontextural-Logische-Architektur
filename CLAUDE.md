@@ -29,12 +29,27 @@ laeuft, steht in §3.
 
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
-### Die Papierfassungen: HTML ist Bestand, Markdown ist Entwurf
+### Die Papierfassungen: der Entwurf ist die Quelle, die HTML das Erzeugnis
 
-Die Papierfassungen `docs/de.html` und `docs/en.html` sind der **Bestand**, nicht ein
-Erzeugnis. Textaenderungen laufen dort. Markdown ist Entwurfsmedium: eine kuenftige Ausgabe
-darf in Markdown entworfen werden, der Entwurf wird nach dem Bau **datiert abgelegt und nicht
-gepflegt**.
+**Nachgefuehrt am 11. August 2026.** Bis hierher stand: *die Papierfassungen sind der
+Bestand, nicht ein Erzeugnis; Textaenderungen laufen dort; der Entwurf wird nach dem Bau
+datiert abgelegt und nicht gepflegt.* Das beschreibt die Lage seit dem 6. August nicht mehr.
+
+**Die Textaenderung laeuft in der QUELLE**, also in
+`KorpusRev2/Entwurf_<datum>_<fassung>_Teil{A,B}_..._{de,en}.md`. `docs/de.html` und
+`docs/en.html` werden daraus mit `./erzeuge_ausgabe.py <sprache> <ziel>` **erzeugt** und
+nicht von Hand geaendert. **Der Entwurf wird gepflegt**, nicht datiert abgelegt: er ist die
+Stelle, an der ein Wort geaendert wird.
+
+*Geeicht am Zug `1c59c42` (10. August):* ein Wort in Teil A der deutschen Quelle, dann
+Neuerzeugung. Die schaerfste Probe der Strecke ist die andere Sprache - `docs/en.html`
+wurde mitterzeugt und kam **byte-gleich** heraus. Aendert sie sich mit, ist etwas an der
+Strecke falsch und nicht am Text.
+
+*Was von Ausweg C bleibt:* es gibt weiterhin nur **eine** gepflegte Darstellung je Sprache.
+Sie ist jetzt der Entwurf und nicht die HTML. Die Divergenz zwischen den Sprachfassungen
+bleibt der Fall fuer `parity.sh`, die zwischen Quelle und Ausgabe der fuer
+`ausgabe_probe.sh`.
 
 Wer eine Papierfassung aendert, aendert beide oder begruendet, warum nicht, und faehrt
 `./docs/parity.sh`. Die Ausgabe gehoert in den Befund, auch wenn sie leer ist.
@@ -657,6 +672,29 @@ gewohnheitsmaessig wegdrueckt, ist schlechter als keine.
 
 *Heilung:* vor dem Vergleich Trennstriche **und** Leerraum tilgen; wer nur Leerraum tilgt,
 faengt die zweite Haelfte der Faelle nicht.
+
+**20 - Die Taktikwahl entscheidet ueber das Axiomprofil; `fin_cases` zieht
+`Classical.choice`.** Als Differential am selben Satz gemessen, beide Fassungen
+nebeneinander:
+
+```text
+fin_cases i                      ->  [propext, Classical.choice, Quot.sound]
+match i with | <0,_> | <1,_>     ->  [propext, Quot.sound]
+```
+
+Beleg: `Proemial/TwoPlaceOccupancy.lean`. `placeSwap_involutive` traegt `[propext]` und
+`comp_placeSwap_eq_iff` `[propext, Quot.sound]` - beide liegen unter der Erwartung, und sie
+liegen nur darunter, weil die Handzerlegung ueber die `Fin`-Konstruktoren gewaehlt wurde.
+
+**Das ist nicht der dritte Eintrag.** Dort zieht die **Quantifizierung ueber einen
+Funktionsraum** die Klassik; hier zieht sie eine **Taktik an einem Ziel ohne Quantor**. Zwei
+Ursachen, dieselbe Folge im Profil - und die zweite ist die unauffaelligere, weil am Satz
+nichts zu sehen ist.
+
+*Kein Rueckweg nach §13.3, und das ist keine Nachlaessigkeit.* `#guard_msgs` misst das
+Profil, das aus der **gewaehlten** Taktik folgt; **nichts misst, ob eine andere Taktik ein
+schlankeres ergaebe.** Eine Wache, die diesen Eintrag entbehrlich machte, ist nicht in
+Sicht. Der Eintrag steht ohne Verfallsdatum.
 
 *Und die Verschaerfung, die daran haengt.* Das Etikett **quellen-fest** heisst: an der
 Quelle geprueft, mit Seitenangabe, und die Pruefung ist benannt. Keine neue Regel - ein
