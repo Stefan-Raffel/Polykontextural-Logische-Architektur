@@ -22,10 +22,16 @@ Neu: <Datei>, <k> Saetze, <w> Wachen, <s> Sorries.
 Damit haengt jede Kennzahl an einem Commit-Hash statt an einer Uhrzeit. Ein Stichtag ohne
 Zustand ist nicht nachpruefbar; ein Hash ist es.
 
-**Wer eine Kennzahl aendert, fuehrt das README nach** - im selben Zug, auch ohne Auflage.
-Eine Auflage sagt nur noch, was *nicht* nachzufuehren ist. Betroffen sind die
-Kennzahlentafel, die Bereichstafel und die Struktur-Tafel; welche Zahl ueber welche Route
-laeuft, steht in §3.
+**Das README fuehrt keine Kennzahl mehr nach, weil es keine mehr traegt.** Die Auflage
+ist am 12. August 2026 entfallen (E3): beide Tafeln zeigen jetzt auf
+`docs/kennzahlen.md`, und das wird von `./kennzahlen.sh --markdown` erzeugt. **Wer eine
+Kennzahl aendert, erzeugt `docs/kennzahlen.md` neu** - im selben Zug, auch ohne Auflage.
+Welche Zahl ueber welche Route laeuft, steht in §3.
+
+*Grund:* eine Zahl in einer Commit-Nachricht ist durch die Konstruktion datiert und
+unveraenderlich; eine Zahl in einer README-Tafel traegt kein Datum und ist eine Behauptung
+ueber die Gegenwart. Sie war zweimal gemessen veraltet, ohne dass ein Bau, ein Lint oder
+eine Wache es meldete - der Ausfallmodus, gegen den keine Wache gebaut war.
 
 **Nicht committen ohne gruenen Build.** `git status` vor dem Commit leer pruefen.
 
@@ -157,13 +163,14 @@ Route.
 Zaehlt man ueber mehrere Targets, gilt dasselbe in der anderen Richtung: ihre Import-Huellen
 ueberlappen, und wer die Bauausgaben summiert, zaehlt Module doppelt. Siehe §12, Regel 4.
 
-Die aktuellen Werte stehen im README, nicht hier. Eine Kennzahl gehoert in diese Datei nur
-als Beleg fuer eine Regel, an einen Commit gebunden; nie als laufender Stand.
+Die aktuellen Werte stehen in `docs/kennzahlen.md`, nicht hier und seit E3 auch nicht
+mehr im README. Eine Kennzahl gehoert in diese Datei nur als Beleg fuer eine Regel, an
+einen Commit gebunden; nie als laufender Stand.
 
 ### Deklarationszahlen: Quell-Deklarationen zaehlen
 
 Drei Routen liefern drei Zahlen — fuer den Kenogram-Zweig etwa 238, 132 und 128. Verbindlich
-fuer README, Ledger und Befunde ist die dritte:
+fuer `docs/kennzahlen.md`, Ledger und Befunde ist die dritte:
 
 - **Umgebungskonstanten** — alles im `.olean`, inklusive `_proof_*`, `.match_*`, `._simp_*`.
 - **user-facing** — davon ohne `Lean.Name.isInternalDetail`.
@@ -181,7 +188,7 @@ Satzrouten-Zug in geweiteter Form:
 *Grund (29. Juli 2026):* die fruehere Route `^(theorem|lemma) ` war in beide Richtungen
 falsch. Sie verfehlte 13 `private`-Deklarationen und 6 Deklarationen mit Attribut auf der
 Deklarationszeile, und sie zaehlte 3 Zitate entfernter Aussagen in Memorial-Bloecken mit.
-Beleg am Commit dieses Zuges; die laufenden Werte stehen im README.
+Beleg am Commit dieses Zuges; die laufenden Werte stehen in `docs/kennzahlen.md`.
 
 **Keine uneingerueckte Zeile beginnt mit einem Deklarationswort.** Die Satzroute zaehlt
 Zeilenanfaenge; jede Zeile, die am linken Rand mit `theorem`, `lemma`, `def`, `abbrev` oder

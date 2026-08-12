@@ -131,18 +131,16 @@ Definitionen-Fassung - einschliesslich der Zeilen, die offen sind und es bleiben
 
 ## Stand
 
-| Kennzahl | Wert |
-|---|---:|
-| geprueft (AxiomGate) | 3622 Konstanten |
-| Axiom-Wachen | 638 ueber 91 Dateien |
-| Saetze gesamt | 912 |
-| Build-Jobs | 1326 |
-| ausgewiesene Luecken | 0 (Whitelist leer) |
+**Die Werte stehen in [`docs/kennzahlen.md`](docs/kennzahlen.md)**, erzeugt von
+`./kennzahlen.sh --markdown` und dort an den Commit gebunden, an dem sie gemessen wurden.
+Gefuehrt werden: gepruefte Konstanten des AxiomGate, Axiom-Wachen ueber Dateien, Saetze
+gesamt, Build-Jobs und die Zahl der ausgewiesenen Luecken.
 
-Kennzahlen gezaehlt am gruenen Build. **Erzeugt von `./kennzahlen.sh --bau`** — das Skript
-gibt jede Zahl mit ihrer Route aus und prueft Gleichungen zwischen ihnen mit; faellt eine, sind die
-Werte nicht zu verwenden. Von Hand abgeschriebene Zaehlkommandos gehoeren nicht mehr in
-Dokumente (`CLAUDE.md` §13).
+Hier steht kein Wert, und das ist der Zug vom 12. August 2026. Eine Zahl in einer
+README-Tafel traegt kein Datum; sie ist eine Behauptung ueber die Gegenwart und war zweimal
+gemessen veraltet, ohne dass ein Bau, ein Lint oder eine Wache es meldete. Das Skript gibt
+jede Zahl mit ihrer Route aus und prueft Gleichungen zwischen ihnen mit; faellt eine, sind
+die Werte nicht zu verwenden.
 
 Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kein
 `sorryAx`, die Whitelist ist leer, und jede neue Luecke bricht den Bau. Diese Zusicherung
@@ -238,25 +236,29 @@ Zahlen verschiedene Fragen beantworten. Was sie gemeinsam haben, ist der Commit.
 
 ## Struktur
 
-**Dateien** zaehlt die Dateien *im Verzeichnis*, ohne das gleichnamige Sammelmodul daneben
-(`Reformulation/Proemial.lean`, `F1.lean`, `PreC.lean`); jene tragen null Saetze. Ohne dieses
-Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
+Wie viele Dateien und Saetze auf welchen Bereich entfallen, steht in
+[`docs/kennzahlen.md`](docs/kennzahlen.md). Hier steht, **welche Bereiche es gibt und was
+sie enthalten** — das veraltet nicht.
 
-| Bereich | Dateien | Saetze | Gegenstand |
-|---|---:|---:|---|
-| `Proemial/` | 72 | 535 | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Kontextur-Zeugnis · Sonden |
-| `PathC/` | 18 | 102 | Weg C - iterative Doppelbeschreibung |
-| `Kenogram/` | 16 | 175 | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare, Verkettung unter Identifikation, Zahl der Mengenpartitionen, Kanonisierung und Umkehrung |
-| `F1/` | 20 | 20 | Belegungen, Faserungen, Cross-Chain-Anschluss |
-| `F3a`-`F3g/` | 38 | 63 | Stufen, Modaloperatoren, Uebergangsklassen |
-| `PreC/`, `Diagnostics/`, `MathlibExtensions/` | 16 | 17 | Vorbereitung, Messung, Zusatzlemmata |
-| `Foreign/` | 1 | 10 | fremd gestellter Fall (Peres-Mermin) |
+| Bereich | Gegenstand |
+|---|---|
+| `Proemial/` | Klon-Schranken und ihre Anwendungen · Stufenaufstieg und Paritaet · Zeit- und Stellen-Reihe · Transjunktion und ihre Setzung · die α+γ-Form · Kontextur-Zeugnis · Sonden |
+| `PathC/` | Weg C - iterative Doppelbeschreibung |
+| `Kenogram/` | Kenogrammatik: RGS, Normalform, Operationssemantik, Musterrelation, Besetzbarkeit, Wertvorrat, Stellen-Tausch, Abstieg, gemeinsame Abgeschlossenheit, Belegung zweier Stellen, Stufenschranke der Paare, Verkettung unter Identifikation, Zahl der Mengenpartitionen, Kanonisierung und Umkehrung |
+| `F1/` | Belegungen, Faserungen, Cross-Chain-Anschluss |
+| `F3a`-`F3g/` | Stufen, Modaloperatoren, Uebergangsklassen |
+| `PreC/`, `Diagnostics/`, `MathlibExtensions/` | Vorbereitung, Messung, Zusatzlemmata |
+| `Foreign/` | fremd gestellter Fall (Peres-Mermin) |
 
-**Die Summe dieser Tafel ist groesser als die Gesamtzahl oben**, und das ist kein
-Widerspruch, sondern der Bereich: die 912 laufen ueber `Reformulation/` allein, die Tafel
-weist `Foreign/` mit seinen 10 Saetzen eigens aus; 912 + 10 = 922 ist die Tafelsumme. Der
-fremd gestellte Fall liegt ausserhalb des Aggregats und wird darum in der Gesamtzahl nicht
-mitgezaehlt.
+**Die Bereichssumme ist groesser als die Gesamtzahl**, und das ist kein Widerspruch,
+sondern der Bereich: die Gesamtzahl laeuft ueber `Reformulation/` allein, die Aufstellung
+weist `Foreign/` eigens aus. Der fremd gestellte Fall liegt ausserhalb des Aggregats und
+wird darum in der Gesamtzahl nicht mitgezaehlt. **Die Gleichung prueft `kennzahlen.sh`
+mit**, und dort stehen beide Zahlen.
+
+Die Dateizahl je Bereich zaehlt die Dateien *im Verzeichnis*, ohne das gleichnamige
+Sammelmodul daneben (`Reformulation/Proemial.lean`, `F1.lean`, `PreC.lean`); jene tragen
+null Saetze. Ohne dieses Kriterium hat die Spalte zwei Routen mit zwei Ergebnissen.
 
 Zwei Module tragen die schaerfsten Aussagen des Korpus:
 
