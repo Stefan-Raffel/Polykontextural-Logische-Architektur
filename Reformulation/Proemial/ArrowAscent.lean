@@ -51,9 +51,19 @@ Diese Fassung ist gefallen, aus zwei unabhängigen Gründen:
 Umtausch** trägt.* Die Klassenbedingung wandert aus der Metasprache in die **Hypothese
 des Satzes** und ist damit allquantifiziert im System.
 
-**Warum diese Ersetzung keine Verschiebung ist:** die neue Hypothese ist Günthers
-symmetrische Umtauschrelation selbst — die Negationstafel, involutiv und fixpunktfrei
-(E&W Bild 3/4). Der Satz sagt in Satzform: **der Umtausch erzwingt die Ordnung.**
+**Warum diese Ersetzung keine Verschiebung ist, und in welchem Bereich:** im
+**zweiwertigen** Fall ist die Hypothese Günthers Negationstafel — `wahr ⇄ falsch`,
+involutiv und fixpunktfrei (E&W Bild 3/4); das ist die tragende Motivation, und
+`no_naming_two_valued` ist die gebaute Instanz. Der Satz sagt in Satzform:
+**der Umtausch erzwingt die Ordnung.**
+
+**Darüber hinaus gilt die Gleichsetzung nicht.** *Involutiv und fixpunktfrei* ist eine
+Bedingung **dieses Bestandes** und keine Forderung der Quelle. Günthers Negationssystem
+umfasst *„all possible permutations between the values"* (C&V S. 24), und seine
+Negatoren `N1` und `N2` sind dort Transpositionen auf drei Werten — jede lässt genau
+einen Wert fest. Ob er Fixpunkte ausschliesst, sagt er nicht; das Schweigen ist keine
+Erlaubnis. Was hier steht, ist die **Hypothese des Satzes**, nicht eine Aussage darüber,
+wie Günthers Negationstafel allgemein beschaffen ist.
 
 ## Deutungsgrenzen
 
