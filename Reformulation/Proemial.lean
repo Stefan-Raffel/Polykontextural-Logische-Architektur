@@ -53,6 +53,7 @@ import Reformulation.Proemial.ContextureEscapeBound
 import Reformulation.Proemial.TowerAsymmetry
 import Reformulation.Proemial.TwoPlaceOccupancy
 import Reformulation.Proemial.ProemialCarrier
+import Reformulation.Proemial.ReferenceReversal
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1102,6 +1103,22 @@ Enthält:
   ausspricht. **Keine Ledger-Zeile, keine Marke, keine Anhebung der
   Ledger-Obergrenze** — §20 bleibt Quellenparagraph, `19 von 20` bleibt stehen.
   Drei Wachen, Profil durchgängig `[propext, Classical.choice, Quot.sound]`.
+
+- `Proemial.ReferenceReversal`: die **kanonisierte Umkehrung der Stellenordnung**
+  und ihre Wirkung auf die Verweisrelation zwischen Stellen. Drei Sätze:
+  `revAt_involutive` (auf Normalformen selbstinvers), `refRel_revAt` (die
+  Verweisrelation geht in ihre gespiegelte Fassung über) und
+  `revAt_fixpoint_iff` (fest genau bei spiegelsymmetrischem Gleichheitsmuster).
+  **Kein Träger für §20, und zwar aus einem quellen-verifizierten Grund**: die
+  Relation verbindet zwei **Relata** — verweisende und verwiesene Stelle —,
+  während der Relator bei Günther das Verbindende und keines der verbundenen
+  Glieder ist (*Cognition and Volition* S. 19). Was das Modul baut, hat die Form,
+  die Günther auf S. 20 von der Proemialrelation abhebt. **Keine Ledger-Zeile,
+  keine Marke**, `19 von 20` bleibt stehen. Der tragende Schritt liegt im
+  Kenogram-Zweig: `Kenogram.ReverseCanonical.relabel_reverse_relabel` ist ein
+  neuer allgemeiner Satz über `relabel` und `reverse`, den der Bestand nicht
+  führte — eine **Erweiterung** der Kanonisierungs-Theorie, während die drei
+  Sätze dieses Moduls sie **verwenden**.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
