@@ -54,6 +54,7 @@ import Reformulation.Proemial.TowerAsymmetry
 import Reformulation.Proemial.TwoPlaceOccupancy
 import Reformulation.Proemial.ProemialCarrier
 import Reformulation.Proemial.ReferenceReversal
+import Reformulation.Proemial.DeuteroCollapse
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
