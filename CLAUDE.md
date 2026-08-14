@@ -28,6 +28,14 @@ ist am 12. August 2026 entfallen (E3): beide Tafeln zeigen jetzt auf
 Kennzahl aendert, erzeugt `docs/kennzahlen.md` neu** - im selben Zug, auch ohne Auflage.
 Welche Zahl ueber welche Route laeuft, steht in §3.
 
+**Im selben Zug heisst NICHT im selben Commit, und das ist keine Auslegung.** Die Datei
+nennt den Commit, den sie beschreibt; sie kann ihn erst nennen, wenn er ergangen ist. Ein
+Zug, der eine Kennzahl bewegt, endet darum in **zwei** Commits: erst der Bestand, dann die
+neu erzeugte Datei. Wer beides in einen Commit legt, traegt entweder die alten Zahlen oder
+einen Anker, den es noch nicht gibt. *Gemessen am Zug `5ce16b3` / `7b53aad` (14. August
+2026); eine Spezifikation hatte dort einen Commit verlangt, ohne diese Auflage
+mitzudenken.*
+
 *Grund:* eine Zahl in einer Commit-Nachricht ist durch die Konstruktion datiert und
 unveraenderlich; eine Zahl in einer README-Tafel traegt kein Datum und ist eine Behauptung
 ueber die Gegenwart. Sie war zweimal gemessen veraltet, ohne dass ein Bau, ein Lint oder
