@@ -4,7 +4,7 @@ import Reformulation.Proemial.A3CoarseningProbe
 /-!
 # GegenlaeufigkeitProbe — Beleg-Modul zum Gutachten der Gegenläufigkeits-Schranke
 
-STANDALONE, NICHT im Aggregat (wie `A1DescentProbe`/`A3CoarseningProbe`/`K3CouplingProbe`).
+STANDALONE, NICHT im Aggregat (wie `A1DescentProbe`/`K3CouplingProbe`).
 Begleit-Modul zu `Gutachten_Gegenlaeufigkeit_Final.md`: hebt den dort geführten
 Befund von der rechnerischen Stichprobe (n≤5) auf den Term. Importiert `descent`
 (A1DescentProbe) und `proto`/`deutero` (A3CoarseningProbe) unverändert.

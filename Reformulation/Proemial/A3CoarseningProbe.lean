@@ -3,7 +3,12 @@ import Reformulation.Kenogram.Basic
 /-!
 # A3CoarseningProbe — Anti-Deklarations-Sonde für den Vergröberungs-Turm
 
-STANDALONE, NICHT im Aggregat (wie `CartesianProbe`/`A1DescentProbe`/`K3CouplingProbe`).
+IN DER AGGREGATHÜLLE seit `a9a5712` (14. August 2026), weil
+`Proemial/DeuteroCollapse.lean` `deutero` konsumiert — der in `CLAUDE.md` §10
+genannte Auslöser. Bis dahin stand hier „STANDALONE, NICHT im Aggregat", wie es
+`CartesianProbe`/`A1DescentProbe`/`K3CouplingProbe` weiterhin führen. Die Wachen
+dieser Datei waren schon vorher über das Target `Probes` erzwungen; neu ist,
+dass sie unter dem AxiomGate steht.
 Diese Sonde steht *vor* dem proemialen Entwurf ρ und liefert kein ρ und keinen Teil
 von ρ. Sie prüft maschinell genau eine Frage — Horistês' untere Naht: ist die
 A3-Stufung (proto/deutero/trito) aus dem RGS-Material **ableitbar** (nicht zu

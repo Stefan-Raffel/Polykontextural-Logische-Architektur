@@ -6,7 +6,7 @@ import Reformulation.Proemial.A3CoarseningProbe -- proto, deutero
 # K4DiscontexturalityProbe — die kenogrammatische Nicht-Reduzierbarkeit, lokalisiert
 
 STANDALONE, NICHT im Aggregat (wie `CartesianProbe`/`A1DescentProbe`/`K3CouplingProbe`/
-`A3CoarseningProbe`/`GegenlaeufigkeitProbe`). AxiomGate unberührt. Diese Sonde wehrt die
+`GegenlaeufigkeitProbe`). AxiomGate unberührt. Diese Sonde wehrt die
 **Trivialität** ab: die bloße Nicht-Faktorisierbarkeit `¬∃f` am Zeugen (K4-2) wäre fast
 geschenkt — die Sonde **lokalisiert** die Nicht-Reduzierbarkeit an der Trito-Information
 `lastBlock` (Klassen-Größe der gestrichenen letzten Stelle).
