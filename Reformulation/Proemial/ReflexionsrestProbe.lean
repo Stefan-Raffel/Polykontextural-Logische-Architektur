@@ -3,7 +3,7 @@ import Reformulation.Proemial.TransjunctionCloneBound
 /-!
 # ReflexionsrestProbe — Satz A: der Reflexionsrest ist real (Intension ≠ Extension)
 
-STANDALONE, NICHT im Aggregat (wie `A1DescentProbe`/`TransjunctionCloneBound`). Erster
+STANDALONE, NICHT im Aggregat (wie `A1DescentProbe`). Erster
 term-fester Schritt des intensionalen Programms (vgl. `Proemieller_Kern_Intension_Extension_Vorschlag.md`):
 der proemielle **Kern** (proemielle Typinversion, Funktion/Totalität-Differenz) lebt nicht
 auf dem extensionalen RGS-Substrat (Liste = Totalität ihrer Stellen), sondern auf dem
