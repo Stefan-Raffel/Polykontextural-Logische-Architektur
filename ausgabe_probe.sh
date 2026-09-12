@@ -727,11 +727,13 @@ def fassungswoerter():
     # BESTEHENDEN Eintrag aendert, greift in eine eingefrorene Fassung ein und
     # begruendet es in der Commit-Nachricht.
     #
-    # Die sechs Werte sind an `99371ae`, `fc88fd0`, `bf5aba3` und `d3e301f` je
-    # Verzeichnis gleich gemessen; ihre Summe ist die fruehere 204. Die
+    # Die Werte von rev1 bis rev6 sind an `99371ae`, `fc88fd0`, `bf5aba3` und
+    # `d3e301f` je Verzeichnis gleich gemessen; ihre Summe ist die fruehere 204.
+    # rev7 kam mit der achten Ausgabe hinzu, als erster Eintrag nach der Umstellung. Die
     # Neueichung am gebrochenen Stand steht im Grundlinien-Befund.
     ARCHIV_ERWARTET = {
         'rev1': 14, 'rev2': 24, 'rev3': 78, 'rev4': 24, 'rev5': 30, 'rev6': 34,
+        'rev7': 38,   # archiviert mit der achten Ausgabe; gemessen beim Archivieren
     }
     archiv = {}
     dw = os.path.join(REPO, 'docs')

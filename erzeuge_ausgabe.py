@@ -40,16 +40,16 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 # `parity`, `figures` oder `doc_lint` es meldete. Keine Probe fuehrt die
 # Fassungsbezeichnung; die Heilung ist darum die Aufhebung der Mehrfachnennung und
 # nicht eine zehnte Groesse.
-FASSUNG = 'Rev7'
+FASSUNG = 'Rev8'
 
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
         untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in zwei Teilen',
-        datum='9. August 2026',
-        teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparat_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev6/de.html',
+        datum='12. September 2026',
+        teile=[f'{K}/Entwurf_2026-09-12_Rev8_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-09-12_Rev8_TeilB_Apparat_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev7/de.html',
         inhalt='Inhalt', teilA='Teil A · Die Gestalt', teilB='Teil B · Der Apparat',
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
@@ -60,10 +60,10 @@ SPRACHEN = {
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
         untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in two parts',
-        datum='9 August 2026',
-        teile=[f'{K}/Entwurf_2026-08-09_Rev7_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-08-09_Rev7_TeilB_Apparatus_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev6/en.html',
+        datum='12 September 2026',
+        teile=[f'{K}/Entwurf_2026-09-12_Rev8_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-09-12_Rev8_TeilB_Apparatus_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev7/en.html',
         inhalt='Contents', teilA='Part A · The Shape', teilB='Part B · The Apparatus',
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
@@ -257,7 +257,7 @@ def baue(sprache):
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (6, 5, 4, 3, 2, 1))
+                         for n in (7, 6, 5, 4, 3, 2, 1))
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>

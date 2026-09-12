@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Die mathematische Gestalt der Architektur — PKL Rev8</title>
-<meta name="description" content="Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev8, in zwei Teilen">
+<title>Die mathematische Gestalt der Architektur — PKL Rev7</title>
+<meta name="description" content="Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev7, in zwei Teilen">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL Rev8</a>
+    <a class="home" href="./">PKL Rev7</a>
     <div class="langswitch">
       <span aria-current="page">DE</span>
       <span class="sep">·</span>
@@ -25,8 +25,8 @@
 <main>
 
 <header class="doctitle">
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev8, in zwei Teilen</p>
-  <p class="dateline">12. September 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev7, in zwei Teilen</p>
+  <p class="dateline">9. August 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker</p>
 </header>
 
 <nav class="toc" aria-label="Inhalt">
@@ -63,7 +63,7 @@ Registereinträge. Wer wissen will, ob hier etwas übertrieben wird, findet in
 <strong>Teil B</strong> zu jeder Ziffer den Satz, sein Axiomprofil, seinen Geltungsbereich und
 seine Registerzeile — dazu die Zählrouten, den Prüfapparat und die Liste der
 Fehler, die dieses Projekt an sich selbst gefunden hat.</p>
-<p>Die Trennung hat einen Grund. In den ersten drei Fassungen stand neben jedem
+<p>Die Trennung hat einen Grund. In den drei vorigen Fassungen stand neben jedem
 Ergebnis sofort seine Buchhaltung, und der Leser hörte die Vorbehalte lauter als
 die Sätze. Hier steht die Sache; die Belege stehen geschlossen an einem Ort.</p>
 <p><strong>Die Ziffern in eckigen Klammern</strong> verweisen auf die Trägertafel in Teil B. Wo
@@ -74,44 +74,33 @@ und sie wird als das bezeichnet, was sie ist.</p>
 <p><strong>Sie sind ausgabeintern.</strong> Wie Fussnotennummern werden sie je Ausgabe neu
 vergeben; wer sich auf einen Satz beziehen will, nennt seinen Namen aus der
 Tafel und nicht seine Ziffer.</p>
-<p><strong>Deutung tritt in drei Gestalten auf</strong>, und ein Test scheidet sie: wie viele
-Quellenstellen tragen die Aussage, und trägt eine allein?</p>
-<ul>
-<li><strong>Zuordnung</strong> — ein Günther-Terminus wird an ein Formales geheftet.</li>
-<li><strong>Lesart</strong> — das Papier sagt über <em>genau eine</em> Stelle etwas, das sie nicht in
-diesen Worten sagt.</li>
-<li><strong>Zusammenschau</strong> — <em>zwei oder mehr</em> Stellen tragen die Aussage gemeinsam, und
-keine trägt sie allein.</li>
-</ul>
-<p>Wo eine Stelle ihre Gestalt nennt, ist sie bestimmt; wo sie nur <em>Deutung</em> sagt,
-ist die Gestalt nicht bestimmt, und das Fehlen der Angabe besagt nichts.</p>
-<h3>Was diese Ausgabe gegenüber der siebten ändert</h3>
-<p>Die siebte Ausgabe bleibt unter <code>docs/rev7/</code> erreichbar und wird nicht
-nachgeführt. Diese nimmt nichts von ihr zurück; sie gibt Gründe und Grenzen dazu,
-die der Bau schon trug, und sie ordnet ihre Quellen.</p>
-<p><strong>Die Deutung hat ihre drei Gestalten bekommen.</strong> Zuordnung, Lesart und
-Zusammenschau stehen jetzt im Vorspann. Kapitel 7 braucht zwei davon und hält sie
-auseinander; die übrigen Stellen, die <em>Deutung</em> sagen, sagen es weiter und sind
-nicht neu eingestuft.</p>
-<p><strong>Der Bewegungsvorrat hat seinen Grund.</strong> Kapitel 3 führte die drei
-Bewegungsweisen ein und sagte nicht, warum die dritte irreversibel ist. Jetzt
-steht der Grund daneben, in Günthers eigenen Worten und als Deutung markiert —
-neben der Form und nicht an ihrer Stelle.</p>
-<p><strong>Kapitel 7 liest den Trennsatz an der offenen Belegung.</strong> Der Satz stand bisher
-nur in der Tafel. Er schliesst die Stelle nicht, an der Günther offen lässt,
-welche Belegung zweier Kenogramme den Umtausch und welche die Ordnung trägt; er
-beweist, dass sie in seinem Rahmen nicht zu schliessen ist.</p>
-<p><strong>Die Tafel trägt einen Träger mehr, ohne Ziffer:</strong> dass es gleich viele Reihen
-in Normalform einer Länge gibt wie Mengenpartitionen ebenso vieler Plätze. Teil A
-zitiert ihn nicht; darum steht er in der Tafel, bekommt keine neue Ziffer, und die
-übrigen behalten ihre.</p>
-<p><strong>Die Quellen stehen als Verzeichnis</strong> am Anfang von Teil B, und jede
-Seitenangabe zählt nach der benutzten Datei; wo der Druck anders zählt, sagt es
-die Angabe.</p>
-<p><strong>Und die Stellen, die auf ihre eigene Ausgabe zeigten, nennen sie jetzt.</strong> Wo
-ein Satz <em>diese Fassung</em> sagte und eine frühere meinte, steht jetzt deren Nummer:
-ein Verweis, der mit dem Text in die nächste Ausgabe wandert, zeigt dort auf die
-falsche. Die Liste der Fehler führt den Fall (Teil B, §5).</p>
+<h3>Was diese Ausgabe gegenüber der sechsten ändert</h3>
+<p>Die sechste Ausgabe bleibt unter <code>docs/rev6/</code> erreichbar und wird nicht
+nachgeführt. Vier Dinge sind neu, und sie sind ungleich schwer.</p>
+<p><strong>Die Voraussetzung des Charakterisierungssatzes ist berichtigt.</strong> Bis hierher
+sagten drei Stellen, die Elementarkontexturen seien die zweielementigen Bereiche
+<strong>benachbarter</strong> Werte; die Definition, auf die der Satz sich stützt, kennt keine
+Nachbarschaft und läuft über <strong>je zwei</strong> Werte — bei vier Stufen über sechs Paare
+und nicht über drei. Die drei Stellen sind nachgeführt; die vierte, ein Zitat in
+der Fehlerliste, bleibt stehen, weil sie ein Ereignis beschreibt und keine
+Geltung behauptet. <strong>Der Absatz, der die Setzung begründet, brauchte dabei nichts
+zu ändern</strong> — er begründete sie schon über die weite Lesart, und eng war allein
+der Wortlaut darüber.</p>
+<p><strong>Kapitel 7 nennt die zweite Weise.</strong> Aus den lokalen Mitteln fällt man auf zwei
+bewiesene Weisen heraus: durch <strong>Mischung</strong> und durch das <strong>Verlassen einer
+Kontextur</strong>. Die zweite ist neu im Papier, und ihr Zeugnis nennt eine Menge und
+einen Punkt — ein Prüfer bekommt eine Zelle und kein Urteil. Was das Kapitel
+über die Schmalheit sagte, steht unverändert: es betraf die erste Weise, und die
+Voraussetzung der linearen Skala ist für beide dieselbe.</p>
+<p><strong>Die Tafel trägt zwölf Träger mehr.</strong> Sie geht von achtundvierzig auf sechzig;
+die neuen kommen aus sechs Modulen und betreffen die Wertblindheit der
+Normalform, die gemeinsame Invariante von Tausch und Abstieg, die Trennung auf
+der Wertschicht, die Stufenschranke der Paare, die Verkettung unter einer
+Identifikation und das zweite Zeugnis. <strong>Die Ziffern sind neu vergeben</strong> — sie
+gehören dem Träger und nicht der Fundstelle.</p>
+<p><strong>Und dieses Papier hat eine Widmung bekommen.</strong> Sie steht vor Kapitel 1, trägt
+keine Ziffer und nennt die Arbeit, ohne die dieses Papier nicht in dieser Form
+möglich gewesen wäre.</p>
 <p><strong>Die Gestalt in einem Satz.</strong> Eine Kombinatorik mit eingebauter Richtung trägt
 Logiken, die voneinander getrennt sind, ohne dass zwischen ihnen eine Abbildung
 fehlte; diese Richtung erscheint als Zeit und als Aufstieg wieder; der Abstand
@@ -662,25 +651,6 @@ Weisen, in denen etwas sich ändern kann, noch ohne dass gesagt wäre, <em>was</
 <p>Ihre Zusammensetzungen sind in genau einer Richtung glatt; einen kanonischen
 Tausch der Richtungen gibt es nicht, und das ist kein Bild, sondern bewiesen
 <a href="#t19">[19]</a>.</p>
-<p>Die dritte Bewegungsweise — die irreversible Setzung, der Schritt, der nicht
-zurückgenommen wird — ist irreversibel aus einem Grund, den die Quelle nennt. In
-einer heterarchischen Kreisordnung ist jeder Anfang eine Willkürwahl, und ist
-einer gewählt, so gibt es <em>„keinen originären Grund … zu entscheiden, ob der
-Kreis links- oder rechtsläufig durchlaufen werden soll“</em>; dort stösst Günther auf
-das logische Motiv der Kontingenz, und dort <em>„hakt der Wille ein, der zwar immer
-nur sich selbst, aber sich selbst in der negativen Kontingenz einer noch nicht
-durchgeführten Empirie sucht“</em>. Wo kein Grund über die Richtung entscheidet, ist
-keine Rückrechnung möglich: das ist der Grund der Irreversibilität, und es ist
-derselbe, aus dem die aufbauende Richtung aus Kapitel 1 — die, die wählt —
-überhaupt wählt.</p>
-<p><em>Hier steht Günther in seinen eigenen Worten, weil an der Stelle kein Satz hängt:
-ein Programm behauptet nichts über den Gegenstand. Die drei Bestimmungen —
-„Willkürwahl“, „negative Kontingenz“, „noch nicht durchgeführte Empirie“ — sind
-Termini und stehen darum im Zitat und nicht in Paraphrase. Die Stelle ist
-Deutung, und zwar Zuordnung des Grundes zur Form; die Form hängt nicht an ihr.
-Dass die drei Bewegungsweisen dieses Kapitels Günthers Dreiheit sind, bleibt
-ebenfalls Zuordnung aus dem Wortlaut und keine Messung (Als Wille, S. 4 der
-benutzten Datei; im Wortlaut an ihr geprüft).</em></p>
 <h3>Zwei Differentiale, getrennt durch die Kontexturzahl</h3>
 <p>Die Zeit zerfällt in zwei Aussagen, und was sie trennt, ist eine einzige harte
 Grösse: die Zahl der beteiligten Kontexturen.</p>
@@ -1391,55 +1361,6 @@ selbst und ausdrücklich: der Wechsel betrifft <strong>nicht zwei Relata, sonder
 — die beiden Vermögen Erkennen und Wollen werden vertauscht, und zugleich erfährt
 die Ordnung von Subjekt und Objekt eine Umkehrung. <strong>Was fehlt, ist damit genau
 der darstellbare Wechsel von Erkennen und Wollen selbst.</strong></p>
-<p><strong>Eine zweite Offenheit, an derselben Stelle und sachlich verschieden.</strong> Die
-fehlende Gegenrichtung betrifft die Kopplung der beiden Grundrelationen. Diese
-hier betrifft ihre Belegung: welche der beiden Relationen eine Wertbelegung
-zweier Kenogramme trägt.</p>
-<p><strong>Der Trennsatz.</strong> Seit dem 9. August trägt der Bau an dieser Stelle einen
-Klassifikationssatz, und er sagt mehr, als die offene Stelle verlangt: <strong>jedes
-Kriterienpaar, das die verschiedenwertigen Belegungen zweier Stellen
-ausschliessend und vollständig teilt und dabei unter Ordnungseinbettungen des
-Trägers stabil bleibt, ist das Ordnungspaar</strong> — in einer seiner beiden
-Benennungen und in keiner dritten Gestalt; bewiesen <a href="#t48">[48]</a>. Wer die beiden
-Belegungen trennen will, hat damit keine Wahl: er benennt die Ordnungsrelation
-um.</p>
-<p>Der Satz und die drei Aussagen, aus denen er seine Trennleistung bezieht, kommen
-<strong>ohne das Auswahlaxiom</strong> aus. Die Normalform trägt es; im Modul trägt kein Satz
-das Auswahlaxiom, der sie nicht nennt — gemessen am Axiom-Profil jedes Satzes des
-Moduls, bei grünem Gate-Lauf.</p>
-<p><strong>Und daraus folgt, was das Kapitel braucht.</strong> Der Satz lässt offen, <strong>welche</strong>
-der beiden Belegungen das symmetrische Umtauschverhältnis und welche die Ordnung
-trägt: seine Konklusion ist eine Disjunktion zweier Benennungen, die er nicht
-auflöst, und beide Zweige sind gleichberechtigt. Er schliesst die Stelle also
-nicht — er <strong>beweist, dass sie in diesem Rahmen nicht zu schliessen ist</strong>, und
-bestätigt damit genau die Offenheit, von der dieser Absatz ausging.</p>
-<p><strong>Seine Reichweite trägt er selbst</strong>, und sie gehört zur Aussage: zwei Stellen,
-und als Struktur auf dem Wertevorrat nichts weiter als eine lineare Ordnung. Mehr
-Stellen und mehr Struktur bleiben ausdrücklich draussen. Der Satz sagt <strong>nicht</strong>,
-dass es kein substantielles Wertkriterium gibt — er sagt, dass es in diesem
-Rahmen keines gibt. Ob die Schranke eine der Sache oder eine des Rahmens ist,
-entscheidet er nicht.</p>
-<p><strong>Was das mit Günther zu tun hat, steht daneben und nicht darin.</strong> Dass die zwei
-Stellen seine beiden Kenogramme mit ihrer Wertbelegung sind und die zwei Fälle
-das symmetrische Umtauschverhältnis und die Ordnung, sind Zuordnungen aus einer
-einzigen Stelle, und es sind seine eigenen Wörter: die zwei leeren Felder stehen
-für <strong>Kenogramme</strong>, die so gefüllt werden können, dass die <strong>Wertbelegung</strong> ein
-<em>symmetrisches Umtauschverhältnis</em> darstellt — oder so, dass die Relation den
-Charakter einer <em>Ordnung</em> annimmt (Zuordnung; <em>Cognition and Volition</em>, S. 22).</p>
-<p>Dass diese Belegung bei ihm <strong>offen</strong> bleibt und nicht bloss unerwähnt, sagt keine
-Stelle allein. An der Figur selbst gibt er die Disjunktion und keine Regel; auf
-S. 13 aber stellt er die Regel auf, an der sich das Schweigen als Absicht lesen
-lässt — er unterscheide die blosse Struktur eines symmetrischen
-Umtauschverhältnisses von ihren <em>zwei Aspekten möglicher Wertbelegung</em>, und wer
-eine bestimmte meine, müsse <strong>es ausdrücklich sagen</strong> (Zusammenschau; S. 22 und
-S. 13 — keine der beiden Stellen sagt es allein; der Beleg zu S. 13 ist einfach
-geprüft. Diese Angabe erscheint nur dort, wo ein Beleg einfach geprüft ist; ihr
-Fehlen an anderen Belegen besagt nichts.). Wo er keine nennt, ist nach seiner
-eigenen Regel keine gemeint.</p>
-<p><em>Nicht offen ist dagegen, was er anderswo selbst zuordnet: dass die symmetrische
-Umtauschrelation die Äquivalenz ist und die geordnete Relation die Implikation
-(quellen-fest; S. 32). Offen ist die Belegung der beiden Kenogramme, nicht die
-Zuordnung der beiden Aktualisierungen.</em></p>
 <p><strong>Der Rollentausch selbst</strong> ist nicht gebaut. An seiner Stelle steht ein
 Differential: über jedem Träger, dessen Wertevorrat einen fixpunktfreien Umtausch
 trägt — also über Günthers eigener Negationstafel — lassen sich die Relationen
@@ -1498,8 +1419,20 @@ ist, heisst so.</strong></p>
 Geltungsbereich und seine Registerzeile. Dort stehen auch die Zählrouten, der
 Prüfapparat und die Liste der Fehler, die dieses Projekt an sich selbst gefunden
 hat.</em></p>
-<p><em>Die Quellen der angeführten Stellen stehen als Verzeichnis am Anfang von
-Teil B; dort steht auch, wonach ihre Seiten gezählt sind.</em></p>
+<p><em>Quellen der angeführten Stellen: Günther, G. (1970), Die historische Kategorie
+des Neuen; Günther, G. (1937), Wahrheit, Wirklichkeit und Zeit; Günther, G.
+(1968), Many-Valued Designations and a Hierarchy of First Order Ontologies;
+Günther, G. (1971/1979), Cognition and Volition — Erkennen und Wollen. Ein Beitrag
+zu einer kybernetischen Theorie der Subjektivität. Die gekürzte Fassung erschien
+1971 in „Cybernetics Technique in Brain Research and the Educational Process“, ASC
+Fall Conference, Washington D.C., 119–135; <strong>zitiert wird der Volltext</strong>, erschienen
+in: Günther, Beiträge zu einer operationsfähigen Dialektik, Band 2, Felix Meiner
+Verlag, Hamburg 1979, S. 203–240 (die Titelseite der Vorlage druckt
+„opertionsfähigen&quot; und „Felix Meier&quot;). Übersetzung Helletsberger, Ditterich und
+Matzka (1985/86), Überarbeitung Kronthaler (September 2006). Ob die zitierten
+Stellen auch in der Kurzfassung stehen, ist nicht geprüft. Die begrifflichen
+Bestimmungen folgen der Definitionenfassung des Projekts, einer nicht
+veröffentlichten Arbeitsfassung der genannten Quellen.</em></p>
 
 
 <h1>Die mathematische Gestalt der Architektur — Teil B: Der Apparat</h1>
@@ -1558,38 +1491,13 @@ Englisch. Die Datei, ihre Prüfsumme und die Seite jeder zitierten Stelle sind i
 Korpus abgelegt; <strong>an diesen Stellen ist die englische Ausgabe die
 quellennähere</strong>, und beide Fassungen sagen es. Das ist der eine Punkt, an dem die
 stehende Regel <em>im Konfliktfall gilt die deutsche Fassung</em> nicht greift.</p>
-<p><strong>Die Quellen der angeführten Stellen</strong>, als Verzeichnis und nach dem Jahr
-geordnet. Jede Seitenangabe des Papiers zählt nach der benutzten Datei; wo der
-Druck anders zählt, steht es bei der Angabe.</p>
-<ul>
-<li>Günther, G. (1937), <em>Wahrheit, Wirklichkeit und Zeit</em>.</li>
-<li>Günther, G. (1968), <em>Many-Valued Designations and a Hierarchy of First Order
-Ontologies</em>.</li>
-<li>Günther, G. (1970), <em>Die historische Kategorie des Neuen</em>.</li>
-<li>Günther, G. (1971/1979), <em>Cognition and Volition — Erkennen und Wollen. Ein
-Beitrag zu einer kybernetischen Theorie der Subjektivität.</em> Die gekürzte
-Fassung erschien 1971 in „Cybernetics Technique in Brain Research and the
-Educational Process“, ASC Fall Conference, Washington D.C., 119–135; zitiert
-wird der Volltext, erschienen in: Günther, Beiträge zu einer
-operationsfähigen Dialektik, Band 2, Felix Meiner Verlag, Hamburg 1979,
-S. 203–240 (die Titelseite der Vorlage druckt „opertionsfähigen“ und „Felix
-Meier“). Übersetzung Helletsberger, Ditterich und Matzka (1985/86),
-Überarbeitung Kronthaler (September 2006). Ob die zitierten Stellen auch in der
-Kurzfassung stehen, ist nicht geprüft. Die Seitenangaben zählen nach der
-benutzten Datei des englischen Textes; der Druck zählt anders.</li>
-<li>Günther, G. (1977/78), „Als Wille verhält der Geist sich praktisch“,
-Hegel-Jahrbuch 1977/78, S. 55–59. Zitiert nach der Dateifassung (vordenker,
-Februar 2004); die Seitenangabe zählt nach ihr, der Druck lag nicht vor.</li>
-</ul>
-<p>Die begrifflichen Bestimmungen folgen der Definitionenfassung des Projekts, einer
-nicht veröffentlichten Arbeitsfassung der genannten Quellen.</p>
 <h2 id="b1">1 · Die Trägertafel</h2>
 <p>Zu jeder Ziffer aus Teil A der Satz, der sie trägt.</p>
 <p><strong>Die Spalte <em>Profil</em> ist gemessen und nicht getippt.</strong> Eine Probe des
 Repositoriums liest diese Tafel, löst jeden genannten Namen am Bestand auf, misst
 sein Axiomprofil und hält das Ergebnis gegen die Spalte; sie meldet jede
 Abweichung und jeden Namen, den sie nicht eindeutig auflösen kann. <strong>Zum Stand
-dieser Fassung: 65 Zeilen bestätigt, keine Abweichung, kein unaufgelöster Name.</strong>
+dieser Fassung: 64 Zeilen bestätigt, keine Abweichung, kein unaufgelöster Name.</strong>
 Vier Zeilen tragen statt eines Profils einen Verweis auf §1.7 — dort steht der
 Grund, und eine Prosa-Angabe ist kein maschinenlesbarer Anspruch.</p>
 <p>Was die Probe nicht prüft: ob der genannte Satz der richtige für die Behauptung
@@ -1689,12 +1597,6 @@ ist. Das bleibt Sache dessen, der die Ziffer setzt.</p>
   <td>Aggregat</td>
   <td><code>[propext, Quot.sound]</code> bzw. mit <code>Classical.choice</code></td>
 </tr>
-<tr>
-  <td>—</td>
-  <td><code>KPC.card_rgs_eq_card_finpartition</code> — gleich viele Reihen in Normalform einer Länge wie Mengenpartitionen ebenso vieler Plätze; die Bell-Zahl nennt der Satz nicht</td>
-  <td>Aggregat</td>
-  <td><code>[propext, Classical.choice, Quot.sound]</code></td>
-</tr>
 </tbody>
 </table>
 <p><strong>Zu <a href="#t4">[4]</a> — die Seite gehört zur Aussage.</strong> Das Lemma gilt für <strong>Präfixe</strong>. Für
@@ -1755,7 +1657,7 @@ Autorität steht.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Zu <a href="#t12">[12]</a> — die Aufwertung der vierten Fassung.</strong> Der Dateikopf des Trägers bezeichnet
+<p><strong>Zu <a href="#t12">[12]</a> — die Aufwertung dieser Fassung.</strong> Der Dateikopf des Trägers bezeichnet
 die Überlappung ausdrücklich als <strong>Kardinalitäts-Satz und nicht als Deutung</strong>.
 Die dritte Fassung führte sie an beiden Stellen, an denen sie vorkommt, als
 Bauverbot beziehungsweise als begründete Wahl — der Satz kam darin nicht vor.
@@ -1894,24 +1796,20 @@ Bestand sagt es dort.</p>
 referenzieren ihn im Beweisterm; keine baut ihn nach. Beides ist gemessen: der
 Konsum am Beweisterm, der Nicht-Nachbau an Darf-nicht-Routen. Die Zahl gilt am
 Anker dieser Ausgabe und wird je Ausgabe neu gemessen — in der fünften waren es
-sechs, in der sechsten und der siebten sieben, und in dieser sind es weiterhin
-sieben.</p>
+sechs, in der sechsten sieben, und in dieser sind es weiterhin sieben.</p>
 <p><strong>Ein Rangsatz der fünften Ausgabe fiel damals.</strong> Dort hiess es, <a href="#t24">[24]</a> sei <em>der
 meistkonsumierte Satz des Korpus</em>. Am Anker der sechsten Ausgabe gemessen stimmte
 das nicht: vier Hilfssätze lagen darüber, der höchste bei zehn.</p>
-<p><strong>Und der Satz, der an seine Stelle trat, fiel in der siebten Ausgabe selbst.</strong>
-Die sechste Ausgabe schrieb: unter den Trägern ihrer Tafel sei <a href="#t24">[24]</a> der
-meistkonsumierte, sieben gegen sechs beim nächsten. Am Anker der siebten Ausgabe
-standen <strong>drei</strong> Träger bei sieben — <a href="#t1">[1]</a>, <a href="#t24">[24]</a> und <a href="#t50">[50]</a> — und keiner darüber. Aus
-dem Rang war ein Gleichstand geworden, und was blieb, war die Liste.</p>
+<p><strong>Und der Satz, der an seine Stelle trat, fällt jetzt selbst.</strong> Die sechste
+Ausgabe schrieb: unter den Trägern dieser Tafel sei <a href="#t24">[24]</a> der meistkonsumierte,
+sieben gegen sechs beim nächsten. Am Anker dieser Ausgabe stehen <strong>drei</strong> Träger
+bei sieben — <a href="#t1">[1]</a>, <a href="#t24">[24]</a> und <a href="#t50">[50]</a> — und keiner darüber. Aus dem Rang ist ein
+Gleichstand geworden, und was bleibt, ist die Liste.</p>
 <p><strong>Der Unterschied zum ersten Fall ist der lehrreiche.</strong> Damals war der Bereich der
-Aussage zu gross; beim zweiten Mal war die Aussage an ihrem Anker richtig, und
-<strong>der Bestand hatte sich bewegt</strong> — <a href="#t50">[50]</a> war erst mit der siebten Ausgabe
-hinzugekommen, und <a href="#t1">[1]</a> um einen Konsumenten gestiegen. Eine Rangaussage über
-einen laufenden Bestand ist darum auch mit Route nur so lange wahr wie ihr Anker.</p>
-<p><strong>Und die Liste hat sich wieder bewegt.</strong> Am Anker dieser Ausgabe steht <a href="#t1">[1]</a> bei
-neun, <a href="#t24">[24]</a> und <a href="#t50">[50]</a> stehen bei sieben. Ein Rang wird daraus nicht geschrieben:
-der vorige Absatz sagt, warum.</p>
+Aussage zu gross; diesmal war die Aussage an ihrem Anker richtig, und <strong>der
+Bestand hat sich bewegt</strong> — <a href="#t50">[50]</a> ist erst mit dieser Ausgabe hinzugekommen, und
+<a href="#t1">[1]</a> ist um einen Konsumenten gestiegen. Eine Rangaussage über einen laufenden
+Bestand ist darum auch mit Route nur so lange wahr wie ihr Anker.</p>
 <h3>1.5 Der Aufstieg (Kapitel 6)</h3>
 <table>
 <thead>
@@ -2192,7 +2090,7 @@ und zwei Beweisargumente. <strong>Nicht die Sätze sind verschieden geschnitten,
 die Aufstiege: einer ist total, einer partiell</strong> — und dass der Aufstieg wählt,
 ist der Grund, aus dem er Argumente hat. Genau das ist die Bedingung, unter der
 eine Aussageform mehr ist als eine Schreibweise.</p>
-<p><strong>Zu <a href="#t52">[52]</a> — die zweite Aufwertung der vierten Fassung.</strong> Die dritte Fassung schrieb,
+<p><strong>Zu <a href="#t52">[52]</a> — die zweite Aufwertung dieser Fassung.</strong> Die dritte Fassung schrieb,
 eine Verbandsfassung der Charakterisierung „gibt es nicht&quot;. Der Bestand trägt
 mehr: der Term ist vorgezeigt und bewiesen, also ist eine Verbandsfassung nicht
 offen, sondern <strong>widerlegt</strong>. Der Träger ist auf einem eigenen induktiven Typ
@@ -2408,7 +2306,7 @@ allem Nachgeordneten — und sie tut es lautlos, weil die gesparte Zeile sichtba
 ist und das geerbte Axiom nur in einem Profil.</p>
 <h3>4.4 Wachenfreie Sätze im Aggregat</h3>
 <p>Eine Aussage über die Wachendichte hat einen bezifferbaren Vorbehalt, und er
-stand bis zur vierten Fassung nirgends.</p>
+stand bis zu dieser Fassung nirgends.</p>
 <p>Bei der Ordnung des Bestandes nach Gegenständen wurden <strong>115 Sätze in 32
 Aggregat-Modulen</strong> gefunden, <strong>deren Modul keine Wache trägt</strong> — die Einheit der
 Zählung ist das Modul und nicht der Satz —, verteilt auf drei Stränge; ausserhalb dieser drei trägt jedes Aggregat-Modul mit Sätzen mindestens
@@ -2577,7 +2475,7 @@ wird fortgeschrieben, nicht gekürzt. <strong>Ein guter Teil der Einträge stamm
 beiden Instanzen, und das gehört hierher und nicht in eine Fussnote:</strong> eine
 Ausgabe, die es verschweigt, behauptet eine Sorgfalt, die sie nicht hatte; eine,
 die es zeigt, belegt die Prüfschichten, die sie beschreibt.</p>
-<p>Aus der Arbeitsphase, die zur vierten Fassung führte:</p>
+<p>Aus der Arbeitsphase, die zu dieser Fassung führte:</p>
 <ul>
 <li>Eine Selbstauskunft trug fünf Revisionen lang „acht Träger mehrfach&quot;, wo fünf
 Träger acht überzählige Zeilen erzeugen — zwei Grössen mit demselben Wert, und
@@ -2651,8 +2549,8 @@ einer Anzeigeformel erschien unübersetzt in der ausgelieferten fünften Ausgabe
 <strong>keine der acht damaligen Grössen sah es, und gefunden hat es ein Leser.</strong>
 Geheilt mit einer neunten Grösse, die die Quelle gegen die Darstellung hält.</li>
 </ul>
-<p><strong>Und die aus der sechsten und der siebten Ausgabe. Sie sitzen dort, wo das
-Papier über sich selbst spricht — bis auf den einen, der von der Arbeitsweise handelt:</strong></p>
+<p><strong>Und die aus dieser Ausgabe. Sie sitzen dort, wo das Papier über sich selbst
+spricht — bis auf den einen, der von der Arbeitsweise handelt:</strong></p>
 <ul>
 <li><strong>Ein Absatz erklärte ein Zeichen und verlor dabei sein Beispiel.</strong> Die
 Erzeugungsstrecke entfernte jede Marke, die keine Figur benannte, ohne ein
@@ -2667,16 +2565,15 @@ stand in der fünften Ausgabe, während der Entwurf zu Teil A eine trug. Der Sat
 war nicht alt, sondern unrichtig — und er beschrieb das Werkzeug, das ihn
 widerlegte.</li>
 <li><strong>Ein Rangsatz hatte keine Route.</strong> „Der meistkonsumierte Satz des Korpus&quot; stand
-ohne Messung; am Anker der sechsten Ausgabe lagen vier Hilfssätze darüber. Der Satz
+ohne Messung; am Anker dieser Ausgabe liegen vier Hilfssätze darüber. Der Satz
 ist durch die gemessene Aussage ersetzt (§1.4).</li>
 <li><strong>Eine Rangaussage war an ihrem Anker richtig und ist es nicht geblieben.</strong> Die
 sechste Ausgabe ersetzte den gefallenen Rangsatz durch einen mit Route: unter
 den Trägern ihrer Tafel sei <a href="#t24">[24]</a> der meistkonsumierte, sieben gegen sechs. Am
-Anker der siebten Ausgabe standen <strong>drei</strong> Träger bei sieben. Der Fehler war diesmal
+Anker dieser Ausgabe stehen <strong>drei</strong> Träger bei sieben. Der Fehler ist diesmal
 nicht der Bereich, sondern die <strong>Haltbarkeit</strong>: eine Rangaussage über einen
-laufenden Bestand ist auch mit Route nur so lange wahr wie ihr Anker. Sie stand
-danach als Gleichstand mit Liste; die Liste hat sich seither wieder bewegt
-(§1.4).</li>
+laufenden Bestand ist auch mit Route nur so lange wahr wie ihr Anker. Sie steht
+jetzt als Gleichstand mit Liste.</li>
 <li><strong>Ein Rang-Verbot hat einen Sachfehler abgefangen, nicht Stil gepflegt.</strong> In
 einem Zug über die Wertblindheit der Kanonisierung sollte ein Satz als „erster
 negativer Kontakt&quot; der beiden Stränge geführt werden. Die Vorgabe verbot
@@ -2693,7 +2590,7 @@ Schwester des leeren Feldes mit beruhigender Beschriftung, dort ist der Bereich
 blind, hier zu klein, und beide Male sieht die Zahl richtig aus. Die andere ist
 eine Aussage, die an ihrem Anker <strong>richtig</strong> war und mit dem Bestand unwahr
 wurde — nicht ein Fehler der Messung, sondern der <strong>Haltbarkeit</strong>.</p>
-<p><strong>Nachgetragen nach der Auslieferung der siebten Ausgabe — eine Punktheilung an der
+<p><strong>Nachgetragen nach der Auslieferung dieser Ausgabe — eine Punktheilung an der
 laufenden Fassung, und die erste der Liste, die eine Aussage zurücknimmt statt
 eine Darstellung zu heilen:</strong></p>
 <ul>
@@ -2710,39 +2607,7 @@ des Kommutationssatzes ist unberührt; zurückgenommen ist eine
 Reichweitenangabe, und das Argument der Grenze wird dabei stärker: es steht
 jetzt auf weniger und trägt dasselbe.</li>
 </ul>
-<p><strong>Aus der Arbeit an der achten Ausgabe:</strong></p>
-<ul>
-<li><strong>Verschachtelte Auszeichnung stand als rohes Sternchen auf der Seite, seit der
-fünften Ausgabe, und keine Grösse sah es.</strong> Wo eine fette oder kursive Spanne in
-einer kursiven stand, liess der Wandler die Zeichen stehen — in der
-ausgelieferten siebten Ausgabe acht in der deutschen und vierzehn in der
-englischen Fassung. Geheilt wurde es an der laufenden siebten Ausgabe, und die
-Heilung schrieb den Schaden der sechsten zu; das Archiv zeigt ihn schon in der
-fünften, der ersten <strong>erzeugten</strong> Ausgabe, und dort und in der sechsten steht
-er bis heute. Seither sieht eine Grösse die fehlende fette Spanne und eine
-andere das stehengebliebene Zeichen; ein weggefallenes Kursiv sieht keine von
-beiden, und das steht im Kopf der Probe.</li>
-<li><strong>Die Ausgabe nannte sich selbst falsch, in beiden Sprachen, und der
-Sprachvergleich schwieg.</strong> Bei der Abnahme der siebten Ausgabe nannten Titel,
-Kopfleiste und Fusszeile die sechste; und die Kopfzeile von Teil B nannte die
-fünfte — in der veröffentlichten sechsten Ausgabe, deren Archiv sie bis heute
-trägt, und in der ersten Auslieferung der siebten. Der Vergleich der
-Sprachfassungen sah es nicht, weil beide denselben Fehler trugen: <strong>zwei gleiche
-Fehler sind kein Unterschied.</strong> Seither steht die Fassungsbezeichnung im
-Generator an einer Stelle, und eine Grösse prüft an benannten Möbelstücken der
-Seite, dass sie die laufende Nummer nennen.</li>
-<li><strong>Ein Verweis auf die eigene Ausgabe wanderte mit dem Text in die nächste und
-zeigte dort auf die falsche.</strong> Wo ein Satz <em>diese Fassung</em> sagte und eine
-frühere meinte, stimmte er nur in der Ausgabe, in der er geschrieben wurde. An
-zwei Stellen sagten die Sprachfassungen darum Verschiedenes — die englische
-nannte die vierte Fassung, die deutsche zeigte auf die laufende —, und der
-Sprachvergleich sah es nicht; und eine Gruppe dieser Liste führte drei Einträge
-der sechsten Ausgabe unter der Überschrift der siebten. <strong>Ein Verweis altert in
-der Gegenrichtung zu einer Nennung:</strong> die Nennung wird falsch, wenn die Ausgabe
-weiterläuft und der Text stehen bleibt; der Verweis, wenn der Text mitläuft.
-Seither nennen die Stellen mit geschichtlichem Inhalt ihre Ausgabe.</li>
-</ul>
-<h3>5.5 Was die vierte Fassung methodisch dazugelernt hat</h3>
+<h3>5.5 Was diese Fassung methodisch dazugelernt hat</h3>
 <p>Die dritte Fassung erklärte ihre Zurückhaltung mit einer einseitigen Beweislast:
 gegen Überziehung gebe es einen Apparat, gegen Unterziehung nichts, also wandere
 der Text nach unten. <strong>Diese Erklärung ist zur Hälfte widerlegt.</strong> Eine
@@ -2860,7 +2725,7 @@ genau das einen stehenden Fehler gefunden.</p>
 <p><strong>Und eine fünfte, aus der jüngsten Arbeitsphase:</strong> jede Messroute nennt die
 Grösse des Bereichs, den sie durchsucht hat. Eine Null ist eine Aussage über das
 Durchsuchte — und zweimal in einer Sitzung war sie eine Aussage über nichts.</p>
-<p><em>Fassung Rev8, Teil B · <strong>fortlaufender ENTWURF</strong> · Kennzahlen in
+<p><em>Fassung Rev7, Teil B · <strong>fortlaufender ENTWURF</strong> · Kennzahlen in
 <code>docs/kennzahlen.md</code>, mit Stand-Anker</em></p>
 <p><em>Dies ist die deutsche Fassung von Teil B. Wo beide Fassungen abweichen würden,
 gilt die deutsche — <strong>die Regel betrifft die Sprache und nicht die Richtigkeit:</strong>
@@ -2873,8 +2738,8 @@ Ausgabe aus Günthers eigenem Englisch zitiert und diese aus der deutschen
 </main>
 
 <footer class="pagefoot">
-  <p>PKL Rev8 · 12. September 2026</p>
-  <p><a href="./">Übersicht</a> · <a href="en.html">English version</a> · <a href="rev7/de.html">Fassung Rev7</a> · <a href="rev6/de.html">Fassung Rev6</a> · <a href="rev5/de.html">Fassung Rev5</a> · <a href="rev4/de.html">Fassung Rev4</a> · <a href="rev3/de.html">Fassung Rev3</a> · <a href="rev2/de.html">Fassung Rev2</a> · <a href="rev1/de.html">Fassung Rev1</a> ·
+  <p>PKL Rev7 · 9. August 2026</p>
+  <p><a href="./">Übersicht</a> · <a href="en.html">English version</a> · <a href="rev6/de.html">Fassung Rev6</a> · <a href="rev5/de.html">Fassung Rev5</a> · <a href="rev4/de.html">Fassung Rev4</a> · <a href="rev3/de.html">Fassung Rev3</a> · <a href="rev2/de.html">Fassung Rev2</a> · <a href="rev1/de.html">Fassung Rev1</a> ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
 
