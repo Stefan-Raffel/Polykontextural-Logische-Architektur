@@ -7,8 +7,8 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `673ddb8` (sauber).
-**MINDESTENS EINE GLEICHUNG FAELLT — diese Tafel ist nicht zu verwenden.**
+Stand: Commit `2878501` (sauber).
+Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
@@ -42,8 +42,8 @@ Stand: Commit `673ddb8` (sauber).
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
-| N1 roh | 161 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit |
-|   davon .lean | 114 | dieselbe Route, auf *.lean eingeschraenkt |
+| N1 roh | 161 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter |
+|   davon .lean | 114 | dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden |
 | Zeilen mit Vorkommen | 158 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
 | Code-Vorkommen | 25 | das Token im Code, Kommentare und Strings entfernt, ueber alle verfolgten .lean — NICHT selbstzaehlend |
 |   in Dateien | 8 | dieselbe Route, je Datei |
@@ -69,7 +69,7 @@ Stand: Commit `673ddb8` (sauber).
 | (A.1) laufender Bestand | 73 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 61 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
-| doc_lint Exit | 1 | 0 heisst: (C), (D) und (E) ohne Verstoss |
+| doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
 
 **Was hier nicht steht.** Zahlen, die ein Satz des Korpus *behauptet*, sind keine
 Kennzahlen — sie stehen in der Traegertafel des Papiers, mit dem Satz, der sie
