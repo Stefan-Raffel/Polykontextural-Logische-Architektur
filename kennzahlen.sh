@@ -310,8 +310,8 @@ PY
 N1=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1"{print $2}')
 N1LEAN=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1lean"{print $2}')
 N1ZEILEN=$(echo "$LUECKEN" | awk -F'\t' '$1=="zeilen"{print $2}')
-k "N1 roh" "$N1" "WORTvorkommen (\\bsorry\\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit"
-k "  davon .lean" "$N1LEAN" "dieselbe Route, auf *.lean eingeschraenkt"
+k "N1 roh" "$N1" "WORTvorkommen (\\bsorry\\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter"
+k "  davon .lean" "$N1LEAN" "dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden"
 k "Zeilen mit Vorkommen" "$N1ZEILEN" "ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9)"
 NCODE=$(echo "$LUECKEN" | awk -F'\t' '$1=="code"{print $2}')
 NCODEDAT=$(echo "$LUECKEN" | awk -F'\t' '$1=="codedateien"{print $2}')

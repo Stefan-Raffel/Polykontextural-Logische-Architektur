@@ -753,25 +753,30 @@ PY_ANKER
 # `docs/index.html` faellt unter das erste Glob und traegt null Ziffern — der
 # Schnitt kostet dort nichts, gemessen und nicht angenommen.
 #
-# BEREICH: der Lauf-ROOT und, wenn ROOT das Repo ist, zusaetzlich ein
-# geschwisterliches `KorpusRev2/`. Der Korpus ist kein Teil des Repos; ohne ihn
-# bewachte die Gruppe gerade den Ort NICHT, an dem eine Zitierung am ehesten
-# stuende — einen Befund. Seine Erreichbarkeit wird BERICHTET und nicht
-# vorausgesetzt: fehlt er, laeuft die Gruppe ueber das Repo allein und sagt es.
+# BEREICH: der Lauf-ROOT, also das Repo — und NICHT der Korpus. Das ist eine
+# ENTSCHEIDUNG und keine Verengung aus Bequemlichkeit (Grundlinie_Abnahme.md §2,
+# 12. September 2026):
+#
+#   EINE PROBE AM COMMIT PRUEFT, WAS IM COMMIT STEHT.
+#
+# Bis dahin lief die Gruppe zusaetzlich ueber ein geschwisterliches `KorpusRev2/`.
+# Das hatte einen Grund — dort stuende eine Zitierung am ehesten, in einem Befund —
+# und einen Preis, der erst im Grundlinien-Zug sichtbar wurde: der Korpus steht in
+# keinem Commit. Am 12. September trugen 13 Beratungsdokumente der Rev8-Runde
+# zusammen 42 Traegerziffern; der Lint war rot, ohne dass das Repo sich bewegt
+# hatte, und die am Commit verankerte Kennzahlentafel sagte "nicht zu verwenden".
+# Derselbe Commit lieferte an zwei Tagen zwei Tafeln — ein Reproduzierbarkeitsbruch,
+# und eine Probe, die der Bau nicht erfuellen kann, ist keine Pruefung.
+# Beratungsdokumente sind Arbeitsstand; dass sie Traegerziffern nennen, ist im
+# Arbeitszusammenhang richtig und war nie der Gegenstand dieser Regel.
+#
+# WER DEN BEREICH WIEDER WEITET, WEITET DIE ENTSCHEIDUNG, und nennt den Grund.
+# Soll der Korpus geprueft werden, dann in einer eigenen, NICHT brechenden Meldung
+# (Fund ja, Exit nein) — ob sie gebaut wird, entscheidet der Betreiber.
 ZIFFER_ROOTS=()
 ziffer_roots_bestimmen() {
   ZIFFER_ROOTS=("${ROOT}")
-  ZIFFER_KORPUS_LAGE="nicht gesucht (Lauf ueber Argument-Pfad)"
-  local self korpus
-  self="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  [ "${ROOT}" = "${self}" ] || return 0
-  korpus="$(dirname "${ROOT}")/KorpusRev2"
-  if [ -d "${korpus}" ] && ls -A "${korpus}" >/dev/null 2>&1; then
-    ZIFFER_ROOTS+=("${korpus}")
-    ZIFFER_KORPUS_LAGE="erreichbar: ${korpus}"
-  else
-    ZIFFER_KORPUS_LAGE="NICHT erreichbar — Bereich ist das Repo allein"
-  fi
+  ZIFFER_KORPUS_LAGE="der Lauf-ROOT allein; der Korpus ist NICHT im Bereich — eine Probe am Commit prueft, was im Commit steht"
 }
 
 # Die Dateizahl je Wurzel wird BERICHTET, und der Grund ist gemessen: der Korpus
@@ -915,7 +920,7 @@ ziffer_report() {
   n_mit="$(printf '%s' "${mit}" | grep -c . || true)"
   n_ohne="$(printf '%s' "${ohne}" | grep -c . || true)"
 
-  echo "  Korpus: ${ZIFFER_KORPUS_LAGE}"
+  echo "  Bereich: ${ZIFFER_KORPUS_LAGE}"
   echo "  Dateien je Wurzel: $(ziffer_bereich_zeile)"
 
   # --- Anker zuerst: eine gebrochene Probe ist ein Routenfehler, kein Bestandsfund.
@@ -1041,6 +1046,8 @@ echo "     Morphogramm-Notation — beides keine Verweisung."
 echo "     Schnitt: docs/*.html, docs/rev<n>/*.html, Entwurf_*.md — dort IST die Tafel;"
 echo "     dazu Papierausgabe_*.md: ein Ergebnisdokument haelt einen Stand seines Datums"
 echo "     fest, und seine Ziffern meinen die Tafel dieses Datums — wie seine Kennzahlen."
+echo "     Bereich: das Repo, nicht der Korpus — eine Probe am Commit prueft, was im Commit"
+echo "     steht (Entscheidung der Grundlinien-Abnahme, Grund im Skriptkopf der Gruppe)."
 printf '%s\n' "$BLOCK_E"
 echo
 

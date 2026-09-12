@@ -79,6 +79,11 @@
 #                       ersten ERZEUGTEN Ausgabe im Papier) — und README.md, das
 #                       Markdown ist. Ein legitimes Sternchen gehoert in eine
 #                       Code-Spanne; im Fliesstext bricht es, mit Absicht.
+#                       BRAUCHT DER TEXT JE EIN STERNCHEN AUSSERHALB EINER
+#                       CODE-SPANNE, IST DIE ROUTE ZU AENDERN UND NICHT DER TEXT:
+#                       die Zaehlroute misst den Bestand, nicht umgekehrt, und
+#                       der Schreibstil ist kein entbehrliches Bauteil
+#                       (Grundlinie_Abnahme.md §3).
 #                       UEBERDECKUNG, JE SCHADENSART GEMESSEN (Grundlinien-Zug,
 #                       Stand d3e301f: jeder Schaden einzeln eingesetzt, Ausgabe
 #                       erzeugt, die ganze Probe gefahren; Spalte 1-11 sind die

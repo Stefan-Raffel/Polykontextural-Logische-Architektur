@@ -642,6 +642,13 @@ denen die Ziffern am dichtesten stehen - gemessen 25 Verweisungen in den drei
 Rev4-Zugdokumenten. Sie bewacht den **laufenden** Bestand, und dort ist die Grundlinie
 null.
 
+**Und sie bewacht das Repo, nicht den Korpus** - entschieden in der Grundlinien-Abnahme
+(12. September 2026, §2): *eine Probe am Commit prueft, was im Commit steht.* Bis dahin lief
+die Gruppe auch ueber `KorpusRev2/`; 42 Traegerziffern in 13 Beratungsdokumenten machten
+den Lint rot, ohne dass sich das Repo bewegt hatte, und derselbe Commit lieferte an zwei
+Tagen zwei Kennzahlentafeln. Der Grund steht im Skriptkopf der Gruppe und in ihrer
+Reportzeile; wer den Bereich wieder weitet, weitet die Entscheidung.
+
 *Und ein Fund, der die Festlegung erst noetig machte:* die Traegertafel ist eine Erfindung
 der **vierten** Ausgabe. `docs/rev1|rev2|rev3` tragen je null Ziffern; vor Rev4 gab es
 nichts zu bewachen.
