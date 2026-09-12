@@ -49,7 +49,10 @@ import os, re, json, subprocess, collections
 entwurf = os.environ['PP_ENTWURF']; tmp = os.environ['PP_TMP']
 
 # Index der Bestandsnamen: Namensraum-Stapel plus Deklarationszeile.
-decl = re.compile(r'^((?:private|protected|nonrec)\s+)?(?:@\[[^\]]*\]\s*)?'
+# Das Attribut steht in Lean VOR der Sichtbarkeit (`@[simp] private theorem`); die
+# umgekehrte Reihenfolge ist ein Syntaxfehler. Bis zum Grundlinien-Zug fehlte die
+# vordere Gruppe, und die gueltige Form war fuer diesen Index unsichtbar (CLAUDE.md §3).
+decl = re.compile(r'^(?:@\[[^\]]*\]\s*)?((?:private|protected|nonrec)\s+)?(?:@\[[^\]]*\]\s*)?'
                   r'(theorem|lemma|def|abbrev|structure|inductive|instance)\s+([^\s({\[:⦃]+)')
 paths = subprocess.run(['git', 'ls-files', '*.lean'], capture_output=True, text=True).stdout.split()
 idx = {}

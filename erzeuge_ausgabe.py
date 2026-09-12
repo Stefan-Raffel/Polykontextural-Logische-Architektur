@@ -6,8 +6,8 @@
 
 Abgenommen als Erzeugungsstrecke am 6. August 2026, nachdem sie Teil A und
 Teil B gegen ihre Entwuerfe in allen acht Groessen gehalten hat, die
-`ausgabe_probe.sh` DAMALS fuehrte; inzwischen sind es elf (zehn je Sprachpaar,
-dazu die Fassungswoerter einmal). Die Zahl steht dort und nicht hier. Bis dahin galt
+`ausgabe_probe.sh` DAMALS fuehrte; wie viele es inzwischen sind, sagt ihr Kopf, und
+ihre Schlussmeldung zaehlt sie. Die Zahl steht dort und nicht hier. Bis dahin galt
 *benutzen ist nicht aufnehmen*; mit der fuenften Ausgabe stellt sie den Bestand
 her und steht darum hier, neben `figures.sh` und `ausgabe_probe.sh`.
 

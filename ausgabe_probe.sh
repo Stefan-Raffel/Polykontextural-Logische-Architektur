@@ -19,8 +19,10 @@
 # werden sie in der genannten Reihenfolge aneinandergehaengt:
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
-# ZEHN BRECHENDE GROESSEN je Sprachpaar, und eine elfte (die zehnte in der
-# Aufzaehlung) EINMAL ueber die laufenden Flaechen:
+# BRECHENDE GROESSEN je Sprachpaar (1-9, 11, 12) und einmal ueber die laufenden
+# Flaechen (10, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
+# Absicht nicht: sie war zweimal nachzuziehen, und die Schlussmeldung zaehlt die
+# gefahrenen Groessen selbst.
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
 #   2. Traegertafel   — Zahl der Zeilen und Menge der Ziffern
 #   3. Ziffern        — die MENGE der Ziffern des Dokuments, nicht die Zahl der
@@ -56,7 +58,7 @@
 #                       jede der drei Schadensklassen einzeln wieder eingesetzt,
 #                       Ausgabe daraus erzeugt, die ganze Probe gefahren.
 #                         Klasse 1  fett-in-kursiv            -> ✗ 456/455
-#                         Klasse 2  kursiv-in-kursiv          -> ALLE ELF GRUEN
+#                         Klasse 2  kursiv-in-kursiv          -> alle damaligen elf gruen
 #                         Klasse 3  kursiv-in-fett-in-kursiv  -> ✗ 446/445
 #                       SIE FAENGT ALSO ZWEI VON DREI. Klasse 2 traegt keine
 #                       fette Spanne im beschaedigten Bereich; die Ausgabe zeigte
@@ -64,9 +66,41 @@
 #                       Kursivauszeichnung selbst ist ungemessen und nicht
 #                       gebaut. Der Rest des blinden Flecks steht hier, damit er
 #                       nicht als geprueft gelesen wird.
-#                       DIE GROESSE, DIE ALLE DREI FAENGT, IST NICHT GEBAUT: die
-#                       Zahl der rohen Sternchen im dargestellten Text, Grundlinie
-#                       null. Gemessen 6, 2 und 6 gegen 0 am geheilten Stand.
+#                       Die Groesse, die alle drei faengt, ist die zwoelfte.
+#  12. Rohe Sternchen — die Zahl der Sternchen im DARGESTELLTEN Text der Ausgabe,
+#                       je Sprachpaar, und einmal an der Startseite. Grundlinie
+#                       null. Sie vergleicht nicht, sie prueft eine Eigenschaft der
+#                       Ausgabe, und braucht darum keine zweite Seite.
+#                       Vor dem Zaehlen entfallen script, style, pre, code, jedes
+#                       Element mit data-tex (Formelquelle) und die SVG-Figuren.
+#                       NICHT IM BEREICH: das Archiv — docs/rev5/ und docs/rev6/
+#                       tragen den Schaden eingefroren (8 deutsch, 14 englisch,
+#                       gemessen, nicht geheilt: der Schaden stand seit der
+#                       ersten ERZEUGTEN Ausgabe im Papier) — und README.md, das
+#                       Markdown ist. Ein legitimes Sternchen gehoert in eine
+#                       Code-Spanne; im Fliesstext bricht es, mit Absicht.
+#                       UEBERDECKUNG, JE SCHADENSART GEMESSEN (Grundlinien-Zug,
+#                       Stand d3e301f: jeder Schaden einzeln eingesetzt, Ausgabe
+#                       erzeugt, die ganze Probe gefahren; Spalte 1-11 sind die
+#                       Groessen ohne diese):
+#                         Schaden                        1-11           12
+#                         fett-in-kursiv                 ✗ Fett         6
+#                         kursiv-in-kursiv               alle gruen     2
+#                         kursiv-in-fett-in-kursiv       ✗ Fett         6
+#                         Fett weggefallen (Ausgabe)     ✗ Fett         0
+#                         Kursiv weggefallen (Ausgabe)   alle gruen     0  BLIND FUER BEIDE
+#                         Marke tief im Absatz (Ausg.)   alle gruen     0  BLIND FUER BEIDE
+#                         Sternchen in Code-Spanne       alle gruen     0  richtig
+#                         Sternchen escaped im Text      alle gruen     1  bricht mit Absicht
+#                         offenes Fett (Tippfehler)      ✗ Fett         2
+#                         offenes Kursiv (Tippfehler)    alle gruen     1
+#                       Daraus: 11 und 12 UEBERLAPPEN und ersetzen einander nicht.
+#                       Das weggefallene Fett faengt allein die elfte, das
+#                       kursiv-in-kursiv und das offene Kursiv allein die zwoelfte.
+#                       Eine Marke ohne Figur-Kopf laesst schon die Erzeugung
+#                       brechen (erzeuge_ausgabe.py); stuende eine trotzdem in der
+#                       Ausgabe, saehen sie die Absatz-Anfaenge nur, wenn sie unter
+#                       den ersten sechs Woertern steht.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -493,6 +527,40 @@ def fettauszeichnung(art, s):
     s = re.sub(r'(?m)^> ?', '', s)
     return [norm_text(x.group(1)) for x in re.finditer(r'\*\*(.+?)\*\*', s, re.S)]
 
+def rohe_sternchen(s):
+    """Rohe Sternchen im dargestellten Text einer HTML-Ausgabe (12. Groesse).
+
+    Gebaut nach Rev8-Merkliste 4.3. Bis dahin war sie eine Wegwerf-Messung: sie
+    trennte alle drei Schadensklassen der verschachtelten Auszeichnung vom
+    geheilten Stand (6, 2 und 6 gegen 0), die elfte Groesse nur zwei. Die Route
+    ist im Grundlinien-Zug neu festgelegt und gegen die bekannten Werte geeicht:
+    8 deutsch und 14 englisch am Stand vor der Heilung (`cf19481`), 0 und 0
+    danach (`ec0ff05`) und am Stand `d3e301f`, 0 an der Startseite an allen dreien."""
+    s = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', s)
+    s = re.sub(r'(?is)<svg\b.*?</svg>', ' ', s)
+    s = re.sub(r'(?is)<(pre|code)\b[^>]*>.*?</\1>', ' ', s)
+    s = re.sub(r'(?is)<(\w+)\b[^>]*data-tex="[^"]*"[^>]*>.*?</\1>', ' ', s)
+    s = re.sub(r'(?is)data-tex="[^"]*"', ' ', s)
+    t = htmlmod.unescape(re.sub(r'<[^>]+>', ' ', s))
+    return [re.sub(r'\s+', ' ', t[max(0, m.start() - 35):m.end() + 35]) for m in re.finditer(r'\*', t)]
+
+def sternchen_bericht(name, teile, zeigen=3):
+    GEFAHREN.add('Rohe Sternchen')
+    if any(art != 'html' for art, _ in teile):
+        print(f"  {name:22s} ·  nicht anwendbar — die Ausgabe ist kein HTML")
+        return True
+    fund = []
+    for art, s in teile:
+        fund += rohe_sternchen(s)
+    if not fund:
+        print(f"  {name:22s} ✓  0 im dargestellten Text")
+        return True
+    print(f"  {name:22s} ✗  {len(fund)} rohe(s) Sternchen im dargestellten Text")
+    for z in fund[:zeigen]:
+        print(f"      …{z}…")
+    if len(fund) > zeigen: print("      …")
+    return False
+
 def volltext(art, s):
     t = entferne_html(ohne_moebel(s)) if art == 'html' else s
     t = re.sub(r'```.*?```', ' ', t, flags=re.S)
@@ -500,7 +568,10 @@ def volltext(art, s):
     return [w for w in norm_text(t).split(' ') if w]
 
 # ------------------------------------------------------------- Vergleichen ---
+GEFAHREN = set()   # die Namen der gefahrenen Groessen — die Schlussmeldung zaehlt sie
+
 def mengen_bericht(name, a, b, zeigen=8):
+    GEFAHREN.add(name)
     nur_a, nur_b = sorted(set(a) - set(b)), sorted(set(b) - set(a))
     if not nur_a and not nur_b:
         print(f"  {name:22s} ✓  {len(set(a))} gleich")
@@ -509,6 +580,7 @@ def mengen_bericht(name, a, b, zeigen=8):
     return False
 
 def folgen_bericht(name, a, b, zeigen=6):
+    GEFAHREN.add(name)
     if a == b:
         print(f"  {name:22s} ✓  {len(a)} gleich, in gleicher Folge")
         return True
@@ -567,10 +639,12 @@ def fassungswoerter():
         ('docs/de.html',    r'class="home"[^>]*>PKL Rev(\d+)<'),
         ('docs/de.html',    r'Fassung PKL Rev(\d+),'),
         ('docs/de.html',    r'<p>PKL Rev(\d+) ·'),
+        ('docs/de.html',    r'Fassung Rev(\d+), Teil B'),
         ('docs/en.html',    r'<title>[^<]*PKL Rev(\d+)'),
         ('docs/en.html',    r'class="home"[^>]*>PKL Rev(\d+)<'),
         ('docs/en.html',    r'Edition PKL Rev(\d+),'),
         ('docs/en.html',    r'<p>PKL Rev(\d+) ·'),
+        ('docs/en.html',    r'Edition Rev(\d+), Part B'),
         ('docs/index.html', r'<title>PKL Rev(\d+)'),
         ('docs/index.html', r'class="home">PKL Rev(\d+)<'),
         ('docs/index.html', r'Fassung PKL Rev(\d+),? '),
@@ -579,6 +653,8 @@ def fassungswoerter():
         ('docs/index.html', r'English · edition Rev(\d+)<'),
         ('docs/index.html', r'<p>Fassung PKL Rev(\d+) ·'),
         ('docs/index.html', r'>Fassung Rev(\d+), deutsch<'),
+        ('docs/index.html', r'href="en.html">Rev(\d+) English<'),
+        ('docs/index.html', r'<strong>Rev(\d+)</strong> — laufend'),
         ('README.md',       r'Fassung PKL Rev(\d+)\*\*'),
         ('README.md',       r'edition Rev(\d+), in English'),
     ]
@@ -629,21 +705,48 @@ def fassungswoerter():
             fehler.append(f"docs/index.html: {glieder} Kettenglieder gegen {anker} Anker")
 
     # --- Klasse 3: das Archiv ist unangetastet -------------------------------
-    # Zaehlstand, gemessen an `99371ae`. Er steigt NUR, wenn eine Ausgabe
-    # archiviert wird; jede andere Bewegung ist ein Eingriff in eine
-    # eingefrorene Fassung. "Nicht angefasst" ohne Zahl ist eine Behauptung.
-    ARCHIV_ERWARTET = 204
-    archiv = 0
+    # Zaehlstand JE ARCHIVVERZEICHNIS, nicht als Summe. "Nicht angefasst" ohne
+    # Zahl ist eine Behauptung.
+    #
+    # Bis zum Grundlinien-Zug stand hier EINE Summe (204, gemessen an `99371ae`).
+    # Sie hatte Anker und Vorschrift, aber keinen Ausfallmodus: sie steigt beim
+    # Archivieren jeder Ausgabe, wurde also routinemaessig angefasst — und wer
+    # sie dabei auf den neuen Wert setzte, pruefte in diesem Moment NICHT, ob
+    # sich eine aeltere Fassung bewegt hatte. Die Routinehandlung lief durch
+    # dieselbe Zahl wie die Pruefung (Fassungswoerter_Abnahme.md §3).
+    #
+    # Jetzt: beim Archivieren kommt EIN Eintrag hinzu, und die bestehenden
+    # bleiben stehen. Ein Verzeichnis ohne Eintrag bricht, ein Eintrag ohne
+    # Verzeichnis bricht, und eine Bewegung in einem bestehenden Verzeichnis
+    # bricht auch dann, wenn im selben Zug archiviert wird. Wer einen
+    # BESTEHENDEN Eintrag aendert, greift in eine eingefrorene Fassung ein und
+    # begruendet es in der Commit-Nachricht.
+    #
+    # Die sechs Werte sind an `99371ae`, `fc88fd0`, `bf5aba3` und `d3e301f` je
+    # Verzeichnis gleich gemessen; ihre Summe ist die fruehere 204. Die
+    # Neueichung am gebrochenen Stand steht im Grundlinien-Befund.
+    ARCHIV_ERWARTET = {
+        'rev1': 14, 'rev2': 24, 'rev3': 78, 'rev4': 24, 'rev5': 30, 'rev6': 34,
+    }
+    archiv = {}
     dw = os.path.join(REPO, 'docs')
     for d in sorted(os.listdir(dw)):
         if not re.fullmatch(r'rev\d+', d) or not os.path.isdir(os.path.join(dw, d)):
             continue
+        n = 0
         for f in sorted(os.listdir(os.path.join(dw, d))):
             s3 = lies_datei(os.path.join(dw, d, f))
-            if s3: archiv += len(re.findall(r'[Rr]ev[0-9]', s3))
-    if archiv != ARCHIV_ERWARTET:
-        fehler.append(f"Archiv: {archiv} Fundstellen statt {ARCHIV_ERWARTET} — "
-                      "eine eingefrorene Fassung ist bewegt oder eine neue archiviert")
+            if s3: n += len(re.findall(r'[Rr]ev[0-9]', s3))
+        archiv[d] = n
+    for d in sorted(set(archiv) | set(ARCHIV_ERWARTET), key=lambda x: int(x[3:])):
+        if d not in ARCHIV_ERWARTET:
+            fehler.append(f"Archiv: docs/{d}/ ohne Zaehlstand ({archiv[d]} Fundstellen) — "
+                          "beim Archivieren ist EIN Eintrag hinzuzufuegen")
+        elif d not in archiv:
+            fehler.append(f"Archiv: docs/{d}/ fehlt — Zaehlstand {ARCHIV_ERWARTET[d]} ohne Verzeichnis")
+        elif archiv[d] != ARCHIV_ERWARTET[d]:
+            fehler.append(f"Archiv: docs/{d}/ {archiv[d]} Fundstellen statt {ARCHIV_ERWARTET[d]} — "
+                          "eine eingefrorene Fassung ist bewegt")
 
     if fehler:
         print(f"  {'Fassungswoerter':22s} ✗  laufend Rev{lauf}; {len(fehler)} Verstoss/Verstoesse")
@@ -651,7 +754,8 @@ def fassungswoerter():
             print(f"      {z[:110]}")
         if len(fehler) > 8: print("      …")
         return False
-    print(f"  {'Fassungswoerter':22s} ✓  laufend Rev{lauf}; Moebel, Ketten und Archiv ({archiv}) stimmen")
+    print(f"  {'Fassungswoerter':22s} ✓  laufend Rev{lauf}; Moebel, Ketten und Archiv "
+          f"({len(archiv)} Verzeichnisse, je Verzeichnis gleich; zusammen {sum(archiv.values())}) stimmen")
     return True
 
 rc = 0
@@ -692,6 +796,7 @@ for entwurf_spez, ausgabe_spez in paare:
                          [str(x) for x in sammle(a_teile, raenge)])
     ok &= folgen_bericht("Fettauszeichnung", sammle(e_teile, fettauszeichnung),
                          sammle(a_teile, fettauszeichnung))
+    ok &= sternchen_bericht("Rohe Sternchen", a_teile)
 
     we, wa = sammle(e_teile, volltext), sammle(a_teile, volltext)
     sm = difflib.SequenceMatcher(None, we, wa, autojunk=False)
@@ -703,13 +808,19 @@ for entwurf_spez, ausgabe_spez in paare:
         rc = 1
 
 print()
-print("── Fassungswoerter (einmal, ueber die laufenden Flaechen)")
+print("── Fassungswoerter und Startseite (einmal, ueber die laufenden Flaechen)")
 print("   " + "─" * 74)
+GEFAHREN.add('Fassungswoerter')
 if not fassungswoerter():
+    rc = 1
+_start = os.path.join(REPO, 'docs', 'index.html')
+if not os.path.exists(_start):
+    print(f"  {'Rohe Sternchen':22s} ✗  docs/index.html fehlt"); rc = 1
+elif not sternchen_bericht("Rohe Sternchen", [('html', open(_start, encoding='utf-8').read())]):
     rc = 1
 
 print()
-print("── " + ("alle elf brechenden Groessen gleich." if rc == 0 else
+print("── " + (f"alle {len(GEFAHREN)} brechenden Groessen gleich." if rc == 0 else
                "MINDESTENS EINE brechende Groesse weicht ab."))
 sys.exit(rc)
 PY

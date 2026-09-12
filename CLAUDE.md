@@ -191,7 +191,19 @@ Gemessen wird per Umgebungsabfrage (`env.constants` plus `findDeclarationRanges?
 Umgebung fuehrt Saetze, die niemand geschrieben hat, siehe Fallstrick 13. Seit dem
 Satzrouten-Zug in geweiteter Form:
 
-    grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '
+    grep -rhE '^(@\[[^]]*\] +)?((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) '
+
+*Zweite Weitung (Grundlinien-Zug, 12. September 2026):* die vordere Attributgruppe. Lean
+stellt das Attribut **vor** die Sichtbarkeit - `@[simp] private theorem` uebersetzt,
+`private @[simp] theorem` ist ein Syntaxfehler (am Werkzeug geprueft). Die Route erwartete
+die umgekehrte Reihenfolge; ihr hinterer Zweig passt nur auf ungueltigen Code, und die
+gueltige Form war blind. Gemeldet im Zweiten-Zeugnis-Zug, damals **null** Vorkommen im
+Bestand und zehn der Vergleichsform `@[attr] theorem`; am Stand `d3e301f` **null** und
+**elf**. Die geweitete Route liefert dort denselben Wert wie die alte (Darf-nicht-Fall),
+und an einer Probezeile `@[simp] private lemma` eins gegen null (Muss-Fall). **Der Bestand
+wurde nicht angepasst** - es gab nichts anzupassen, und nach der Praezedenz-Klausel misst
+die Route den Bestand und nicht umgekehrt. Dieselbe Weitung tragen die def-Route unten,
+`kennzahlen.sh` an allen vier Stellen und der Namensindex von `profil_probe.sh`.
 
 *Grund (29. Juli 2026):* die fruehere Route `^(theorem|lemma) ` war in beide Richtungen
 falsch. Sie verfehlte 13 `private`-Deklarationen und 6 Deklarationen mit Attribut auf der

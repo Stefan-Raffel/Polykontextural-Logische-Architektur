@@ -11,7 +11,10 @@ tragen.
 
 Alle Zahlen dieser Datei haengen an Commit und Zaehlroute; sie sind am gruenen Bau
 gemessen, nicht geschaetzt. Stand: Commit `f2aac24` zuzueglich dieses Zuges, gemessen am
-28. Juli 2026.
+28. Juli 2026. **Ausgenommen die Modulzahl des Aggregats:** sie ist eine Import-Huelle,
+waechst mit jedem Aggregat-Zug und steht darum seit dem Grundlinien-Zug nur noch in
+[`kennzahlen.md`](kennzahlen.md), Zeile *Aggregat*. Hier stand 103, der Stand vom 28. Juli,
+und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jemand meldete.
 
 ---
 
@@ -19,7 +22,7 @@ gemessen, nicht geschaetzt. Stand: Commit `f2aac24` zuzueglich dieses Zuges, gem
 
 | Target | Mitglieder | in `defaultTargets` | Bauzeit |
 |---|---:|:--:|---:|
-| `Reformulation` | 103 | ja | nicht kalt gemessen |
+| `Reformulation` | Huelle, siehe [`kennzahlen.md`](kennzahlen.md) | ja | nicht kalt gemessen |
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `Probes` | 16 | **ja** | 7,7 s |
@@ -44,7 +47,7 @@ repliziert.
 
 ## Zusicherung je Target
 
-### `Reformulation` — das Aggregat, 103 Module
+### `Reformulation` — das Aggregat
 
 *Gruen heisst:* der zertifizierte Bestand uebersetzt.
 
@@ -191,8 +194,8 @@ Axiom-Wachen halten.
 `Reformulation` nicht importiert und vom AxiomGate (Namensfilter `Reformulation.*`) nicht
 gefasst; es zieht 677 Jobs. Es laeuft ueber `lake build ForeignPeresMermin`. Seine 10
 Wachen sind darum geschrieben und pruefbar, aber vom Default-Bau nicht erzwungen — das ist
-die verbleibende Differenz zwischen geschriebenen (382) und erzwungenen (372) Wachen, und
-sie gehoert ausdruecklich dorthin.
+die verbleibende Differenz zwischen geschriebenen und erzwungenen Wachen (beide mit Route
+in [`kennzahlen.md`](kennzahlen.md)), und sie gehoert ausdruecklich dorthin.
 
 ---
 

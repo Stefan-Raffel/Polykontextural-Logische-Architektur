@@ -147,8 +147,10 @@ Was das AxiomGate zusichert, und was nicht. Das zertifizierte Aggregat zieht kei
 gilt fuer das Aggregat und fuer keinen anderen Bereich. Der Zweig `PathC` ist eingefroren,
 liegt ausserhalb der Default-Targets und traegt offene Stellen; ein Modul darin uebersetzt
 nicht. Wer im Baum nach `sorry` sucht, findet drei verschiedene Zahlen, und jede beantwortet
-eine andere Frage: 158 rohe Treffer ueber den ganzen verfolgten Bestand, 114 in den
-Lean-Quellen, 27 betroffene Deklarationen. Die dritte ist die tragende; was ein gruener
+eine andere Frage: die Wortvorkommen ueber den ganzen verfolgten Bestand, dieselben in den
+Lean-Quellen, und die betroffenen Deklarationen. Die dritte ist die tragende. Alle drei
+stehen mit ihrer Route in `docs/kennzahlen.md` und nicht hier - bis zum Grundlinien-Zug
+standen sie hier als Werte ohne Anker, und die dritte hatte kein Skript. Was ein gruener
 Bau je Target zusichert, steht in `docs/build-targets.md`.
 
 Die erste Zahl zaehlt sich selbst mit: bis zur dritten Fassung standen je drei ihrer Treffer
@@ -214,9 +216,10 @@ falsch: gemessen waren 140, weil die erklaerende Zeile mitzaehlt. Das Einsetzen 
 solche Zahl nachfuehrt, misst darum NACH dem Schreiben und nicht davor.
 
 Die Route ist genau anzugeben, weil zwei nahe Routen verschiedene Zahlen liefern: gezaehlt
-werden **Wortvorkommen** (140 / 97), nicht Zeilen mit mindestens einem Vorkommen (137 / 94).
-Die Differenz sind zwei Zeilen in `Reformulation/PathC/Classifying/ModelFunctor.lean` und
-eine in `Reformulation/F3f.lean`, die den Begriff zweimal tragen.
+werden **Wortvorkommen**, nicht Zeilen mit mindestens einem Vorkommen; `docs/kennzahlen.md`
+fuehrt beide nebeneinander. Am Stand `d3e301f` sind es drei Zeilen, die den Begriff zweimal
+tragen: zwei in `Reformulation/PathC/Classifying/ModelFunctor.lean` und eine in
+`Reformulation/F3f.lean`.
 
 Jede Zahl laeuft ueber einen Bereich, und es ist nicht fuer alle derselbe. Darum steht er
 dabei:
@@ -287,12 +290,12 @@ ist ein Verstoss. Die vier vormaligen Klasse-D-Luecken sind:
   `Proemial.belegung_specialization_cognitive` (ueber alle Belegungen quantifiziert,
   Zielhom ggf. leer); in ihrer Signatur nicht haltbar, Memorial-Vermerke im Code.
 
-Zusaetzlich frieren 568 `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
+Zusaetzlich frieren `#guard_msgs`-Wachen die gemessenen Axiom-Profile ein: aendert
 ein Satz sein Profil, bricht der Bau. `Classical.choice` ist auf wenige Dateien begrenzt
 und dort ausgewiesen.
 
-Zu lesen mit einer Einschraenkung: von den 568 geschriebenen Wachen erzwingt `lake build`
-**558** (in 75 Dateien). Die uebrigen 10 stehen in `Foreign/PeresMermin.lean`, das ueber
+Zu lesen mit einer Einschraenkung: nicht jede geschriebene Wache wird von `lake build`
+erzwungen. Die uebrigen stehen in `Foreign/PeresMermin.lean`, das ueber
 `lake build ForeignPeresMermin` laeuft, aber nicht ueber den Default-Bau. Der fremd
 gestellte Fall liegt ausserhalb des Aggregats; seine Wachen sind geschrieben und pruefbar,
 nur nicht vom Default-Bau erzwungen. Das gehoert ausdruecklich dorthin.
@@ -303,21 +306,22 @@ Modulen, die von keinem Target erfasst wurden und darum ueberhaupt nicht liefen
 `Proemial/AsymmetricDiscontexturalTransition.lean` 2). Seit C2 liegen sie im Target
 `Probes` und werden bei jedem Bau ausgefuehrt; beim Anschalten hielt jede von ihnen.
 
-568 ist die Zahl der geschriebenen Wachen - Route `grep -rE '#guard_msgs.*in #print axioms'`
-ueber `Reformulation/` und `Foreign/` -, 558 die der erzwungenen: dieselbe Route,
-eingeschraenkt auf die Import-Huelle der Default-Targets. Die Gleichung
-568 = 558 + 10 geht auf; die 10 sind unveraendert `Foreign/PeresMermin.lean`.
+Geschriebene, erzwungene und ausserhalb liegende Wachen stehen mit ihren Routen in
+`docs/kennzahlen.md`; das Skript prueft die Gleichung *geschrieben = erzwungen +
+ausserhalb* bei jedem Lauf und nennt die Dateien, in denen die Wachen ausserhalb liegen.
+Bis zum Grundlinien-Zug stand die Gleichung hier mit Werten und ohne Anker, und sie war
+veraltet, ohne dass ein Bau, ein Lint oder eine Wache es meldete.
 
-Die siebzehn juengsten stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
+Siebzehn stehen am alpha+gamma-Strang. Stufe 1 der Wachenspitze setzte vier:
 je eine in `AlphaGammaRelPullback`, `AlphaGammaTransport`, `AlphaGammaStratification` und
 `AlphaGammaRounding`, gesetzt auf den im jeweiligen Dateikopf benannten Kern. Stufe 2 setzte
 dreizehn weitere ueber alle neun Module des Strangs: acht auf Saetze, die der Doc-Index von
 `Reformulation/Proemial.lean` beim Namen fuehrt, und fuenf auf die Saetze, die die Begriffe
 ihrer Datei benennen - diese fuenf als Ermessensauswahl, im Wachen-Block als solche
-markiert. Damit tragen alle neun Module des Strangs mindestens eine Wache; 22 seiner
-43 Saetze liegen weiterhin ausserhalb jeder Wachen-Huelle.
+markiert. Damit tragen alle neun Module des Strangs mindestens eine Wache; nach Stufe 2
+lagen 22 seiner 43 Saetze ausserhalb jeder Wachen-Huelle.
 
-Die vierzehn juengsten stehen an den vier Sonden, die sich im Dateikopf gleichlautend als
+Vierzehn stehen an den vier Sonden, die sich im Dateikopf gleichlautend als
 *vor dem proemialen Entwurf ρ stehend* ausweisen: `A1DescentProbe` (4), `A3CoarseningProbe`
 (3), `K3CouplingProbe` (3), `ProemialInversionProbe` (4). Bis dahin trugen sie null Wachen;
 zehn ihrer Saetze standen unter einem blossen `#print axioms`, das druckt und nichts
@@ -330,7 +334,7 @@ Importbaum von `Reformulation`, und alle vier liegen ausserhalb davon - gemessen
 darunter). Die Wachen sichern damit das Profil, das Gate die `sorryAx`-Freiheit; fuer die
 vier Sonden gilt das erste und nicht das zweite.
 
-Die **29 juengsten** stammen aus einem Zug, der eine dritte Stufe unter der Unterscheidung
+**29** stammen aus einem Zug, der eine dritte Stufe unter der Unterscheidung
 *geschrieben/erzwungen* geschlossen hat: **gedruckt gegen gewacht.** Ein blosses
 `#print axioms` ohne `#guard_msgs` druckt ein Profil in die Bauausgabe und sichert nichts -
 aendert der Satz sein Profil, druckt es das neue und der Bau bleibt gruen. Gemessen am
@@ -343,11 +347,11 @@ aber im Beweisterm von `F3g.Quine` konsumiert und ausserhalb jeder Huelle.
 `Diagnostics/AxiomProbe.lean` und `Diagnostics/SwapSatzProbe.lean`; dort ist der nackte
 Aufruf die Bauform, weil ein Werkzeug, das Profile *anzeigen* soll, sie nicht einfrieren
 darf. Die Zahl 39 = 28 + 1 (anderes Kriterium, ohne Aufruf) + 11 (Werkzeuge) geht damit
-auf, wobei der 29. nicht unter den 39 steht - die Gleichung der Wachen lautet
+auf, wobei der 29. nicht unter den 39 steht - die Gleichung der Wachen lautete damals
 501 + 29 = 530.
 
 Nebenwirkung, gemessen statt gerechnet: die **Saetze in Aggregat-Modulen, die keine Wache
-tragen**, gehen von **71 in 23 Modulen** auf **66 in 22** zurueck.
+tragen**, gingen in jenem Zug von **71 in 23 Modulen** auf **66 in 22** zurueck.
 
 **Die Beschreibung ist genau zu nehmen, und zwar an dieser Stelle mehr als anderswo.**
 Gezaehlt werden Saetze, deren **Modul** keine einzige Wache traegt - nicht Saetze ohne

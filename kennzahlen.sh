@@ -6,9 +6,10 @@
 # Jede Zahl steht neben der Route, die sie erzeugt hat — wer sie nachrechnen
 # will, liest die Route hier und muss sie nicht aus CLAUDE.md rekonstruieren.
 #
-# GEPRUEFT WIRD IN GLEICHUNGEN, NICHT IN ZAHLEN (CLAUDE.md §12 Regel 2). Vier
+# GEPRUEFT WIRD IN GLEICHUNGEN, NICHT IN ZAHLEN (CLAUDE.md §12 Regel 2). Die
 # Gleichungen laufen mit; faellt eine, ist der Exit-Code 1 und die Zahlen sind
-# nicht zu verwenden.
+# nicht zu verwenden. Wie viele es sind, steht hier mit Absicht nicht: bis zum
+# Grundlinien-Zug stand "Vier", waehrend fuenf liefen.
 #
 # Die Wachen-Gleichung ist zugleich die eingebaute Gegenprobe auf eine
 # UNVERFOLGTE Datei: die grep-Routen sehen den Arbeitsbaum, die Huellenrechnung
@@ -19,7 +20,8 @@
 #
 # Aufruf:
 #   ./kennzahlen.sh            schnell — alles ausser Bau und Lint
-#   ./kennzahlen.sh --bau      zusaetzlich lake build (Jobs, Gate-Konstanten)
+#   ./kennzahlen.sh --bau      zusaetzlich lake build (Jobs, Gate-Konstanten) und die
+#                              betroffenen Deklarationen N3 (frische Elaboration)
 #   ./kennzahlen.sh --lint     zusaetzlich doc_lint.sh (Gruppensummen)
 #   ./kennzahlen.sh --alles    beides
 #   ./kennzahlen.sh --tsv      nur Name<TAB>Wert, fuer Weiterverarbeitung
@@ -93,12 +95,12 @@ UNTRACKED=$(git ls-files --others --exclude-standard '*.lean' | wc -l | tr -d ' 
 k "Module (.lean, verfolgt)" "$MODULE" "git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein"
 [ "$UNTRACKED" != 0 ] && k "Module unverfolgt" "$UNTRACKED" "WARNUNG: erst verfolgen, dann messen (CLAUDE.md §3)"
 
-SAETZE=$(grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) ' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
-SAETZE_SCHARF=$(grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) [^ ]+( *[({[⦃:]|$)' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
+SAETZE=$(grep -rhE '^(@\[[^]]*\] +)?((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) ' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
+SAETZE_SCHARF=$(grep -rhE '^(@\[[^]]*\] +)?((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) [^ ]+( *[({[⦃:]|$)' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
 k "Saetze gesamt" "$SAETZE" "geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3)"
 k "Saetze, verschaerfte Route" "$SAETZE_SCHARF" "Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen"
 
-DEFS=$(grep -rhE '^((private|protected|nonrec) +)?(@\[[^]]*\] +)?def ' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
+DEFS=$(grep -rhE '^(@\[[^]]*\] +)?((private|protected|nonrec) +)?(@\[[^]]*\] +)?def ' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
 k "def-Deklarationen" "$DEFS" "geweitete def-Route ueber Reformulation/"
 
 PINS=$(grep -rh '^-- STATEMENT-PIN' --include='*.lean' Reformulation/ | wc -l | tr -d ' ')
@@ -176,7 +178,7 @@ C = ruf - dflt
 D = set(mods) - dflt - ruf
 
 wache = re.compile(r'#guard_msgs.*in #print axioms')
-satz  = re.compile(r'^((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) ', re.M)
+satz  = re.compile(r'^(@\[[^]]*\] +)?((private|protected|nonrec) +)?(@\[[^]]*\] +)?(theorem|lemma) ', re.M)
 
 def zaehl(menge, rx):
     n = 0
@@ -209,6 +211,7 @@ print('\n'.join([
     f"eingefroren\t{len(frz - dflt)}",
     f"wachen_erzwungen\t{zaehl(dflt, wache)}",
     f"wachen_aussen\t{zaehl(set(mods) - dflt, wache)}",
+    f"wachen_aussen_dateien\t{','.join(sorted(mods[m] for m in set(mods) - dflt if zaehl({m}, wache))) or '—'}",
     f"saetze_aggregat\t{zaehl(A, satz)}",
     f"frei_module\t{frei_mod}",
     f"frei_saetze\t{frei_satz}",
@@ -230,7 +233,7 @@ k "kein Target" "$M_KEIN" "$(g keintarget_namen)"
 k "Gate-Huelle" "$M_GATE" "Huelle von Reformulation/AxiomGate.lean"
 k "Saetze im Aggregat" "$S_AGG" "Satzroute, auf die Aggregathuelle eingeschraenkt"
 k "Wachen erzwungen" "$W_ERZ" "Wachenroute, auf die Huelle der Default-Targets eingeschraenkt"
-k "Wachen ausserhalb" "$W_AUS" "geschrieben, aber von keinem Default-Target erfasst — sichern nichts"
+k "Wachen ausserhalb" "$W_AUS" "geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: $(g wachen_aussen_dateien)"
 k "wachenfreie Aggregat-Module" "$F_MOD" "Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul)"
 k "  darin Saetze" "$F_SATZ" "nachrichtlich; die tragende Zahl ist die Modulzahl darueber"
 
@@ -267,6 +270,41 @@ for f in alle:
     if f.endswith('.lean'):
         n1lean += t
 print(f"n1\t{n1}\nn1lean\t{n1lean}\nzeilen\t{z1}")
+
+# Code-Vorkommen: Kommentare (-- und /- -/, verschachtelt) und Strings entfernt,
+# dann das Token. KEINE selbstzaehlende Groesse - Prosa zaehlt hier nicht mit.
+# Geeicht an der Einfrier-Messung vom 29. Juli 2026 (25 in 8 Dateien, samt
+# Verteilung) und im Grundlinien-Zug am Stand d3e301f unveraendert reproduziert.
+def ohne_kommentar(s):
+    out, i, n, tiefe = [], 0, len(s), 0
+    while i < n:
+        if tiefe == 0 and s[i] == '"':
+            j = i + 1
+            while j < n and s[j] != '"':
+                j += 2 if s[j] == '\\' else 1
+            out.append('""'); i = j + 1; continue
+        if tiefe == 0 and s.startswith('--', i):
+            j = s.find('\n', i); i = n if j < 0 else j; continue
+        if s.startswith('/-', i):
+            tiefe += 1; i += 2; continue
+        if tiefe and s.startswith('-/', i):
+            tiefe -= 1; i += 2; continue
+        if tiefe:
+            i += 1; continue
+        out.append(s[i]); i += 1
+    return ''.join(out)
+tok = re.compile(r'(?<![\w.])sorry(?![\w.])')
+code, dateien = 0, []
+for f in alle:
+    if not f.endswith('.lean'):
+        continue
+    try:
+        k = len(tok.findall(ohne_kommentar(open(f, encoding='utf-8').read())))
+    except OSError:
+        continue
+    if k:
+        code += k; dateien.append(f)
+print(f"code\t{code}\ncodedateien\t{len(dateien)}\ncodeliste\t{','.join(dateien)}")
 PY
 )
 N1=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1"{print $2}')
@@ -275,6 +313,48 @@ N1ZEILEN=$(echo "$LUECKEN" | awk -F'\t' '$1=="zeilen"{print $2}')
 k "N1 roh" "$N1" "WORTvorkommen (\\bsorry\\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit"
 k "  davon .lean" "$N1LEAN" "dieselbe Route, auf *.lean eingeschraenkt"
 k "Zeilen mit Vorkommen" "$N1ZEILEN" "ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9)"
+NCODE=$(echo "$LUECKEN" | awk -F'\t' '$1=="code"{print $2}')
+NCODEDAT=$(echo "$LUECKEN" | awk -F'\t' '$1=="codedateien"{print $2}')
+CODELISTE=$(echo "$LUECKEN" | awk -F'\t' '$1=="codeliste"{print $2}')
+k "Code-Vorkommen" "$NCODE" "das Token im Code, Kommentare und Strings entfernt, ueber alle verfolgten .lean — NICHT selbstzaehlend"
+k "  in Dateien" "$NCODEDAT" "dieselbe Route, je Datei"
+
+# N3, die betroffenen Deklarationen - die tragende der drei Zahlen, und bis zum
+# Grundlinien-Zug ohne Skript. Route aus docs/build-targets.md (PathC):
+# je Datei frische Elaboration mit `lake env lean`, gezaehlt werden die
+# VERSCHIEDENEN Positionen der Warnung "declaration uses `sorry`". Frisch statt
+# Bauausgabe, weil ein Replay nur meldet, was er anfasst. Bereich: jede Datei mit
+# Code-Vorkommen. Die Gleichung prueft die Zahl dieser Dateien gegen die Zahl der
+# Dateien mit Warnung - so faellt eine Route auf, deren Suchtext nicht mehr passt:
+# im Grundlinien-Zug lieferte der erste Anlauf fuer alle acht Dateien null, weil
+# Lean 4.30 den Begriff in Backticks setzt und nicht in Hochkommas.
+if [ "$BAU" = 1 ]; then
+  N3OUT=$(CODELISTE="$CODELISTE" python3 - <<'PY'
+import os, re, subprocess
+dateien = [f for f in os.environ.get('CODELISTE', '').split(',') if f]
+pos, roh, mit, rot = set(), 0, set(), []
+for f in dateien:
+    if subprocess.run(['lake', 'build', f[:-5].replace('/', '.')], capture_output=True).returncode != 0:
+        rot.append(f); continue
+    e = subprocess.run(['lake', 'env', 'lean', f], capture_output=True, text=True)
+    w = [z for z in (e.stdout + e.stderr).splitlines() if 'declaration uses `sorry`' in z]
+    roh += len(w)
+    p = {m.group(1) for m in (re.match(r'^(\S+?:\d+:\d+)', z) for z in w) if m}
+    if p:
+        mit.add(f)
+    pos |= p
+print(f"n3\t{len(pos)}\nroh\t{roh}\nmit\t{len(mit)}\nrot\t{','.join(rot)}")
+PY
+)
+  n3() { echo "$N3OUT" | awk -F'\t' -v k="$1" '$1==k{print $2}'; }
+  if [ -n "$(n3 rot)" ]; then
+    k "betroffene Deklarationen (N3)" "ROT" "nicht elaborierbar: $(n3 rot)"; FEHLER=1
+  else
+    k "betroffene Deklarationen (N3)" "$(n3 n3)" "je Datei mit Code-Vorkommen: lake env lean, VERSCHIEDENE Positionen der Warnung"
+    k "  rohe Warnungen" "$(n3 roh)" "nachrichtlich — eine Deklaration kann mehrfach melden; nie als N3 lesen"
+  fi
+  gleichung "Luecken-Dateien" "$NCODEDAT" "$(n3 mit)"
+fi
 
 # --- Ablagen ----------------------------------------------------------------
 ueberschrift "ABLAGEN (CLAUDE.md — selbstzaehlend)"
