@@ -142,8 +142,9 @@ die Spec führt ihn selbst als offenen Posten (N1, O3), und er ist eine Quellenf
 ist gemessen und nicht vermutet**: `Fin.fintype` trägt selbst
 `[propext, Classical.choice, Quot.sound]`, und jeder Term, in dem `univ` über `Fin m`
 vorkommt, erbt es — `Finset.mem_univ` allein ist `[propext, Quot.sound]`, die Instanz ist
-es nicht. Damit ist der Vermerk im Kopf von `CompoundContexture` verschärft: es liegt nicht
-an der `Finset`-Gestalt über Funktionsräumen, sondern schon am Trägertyp.
+es nicht. Damit ist der Vermerk im Kopf von `CompoundContexture` verschärft, und dort steht
+der Nachtrag: es liegt nicht an der `Finset`-Gestalt über Funktionsräumen, sondern schon am
+Trägertyp.
 
 Das Differential steht im Modul selbst. Über alle neunzehn Sätze gemessen bleiben genau
 zwei choice-frei, und es sind genau die beiden, deren Beweisterm keine `Finset` berührt:

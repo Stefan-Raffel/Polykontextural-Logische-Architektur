@@ -275,6 +275,19 @@ Vermerk im Kopf von `ContextureOverlap`, dessen konkreter Satz die `Finset`-
 Entscheidung eigens meidet und darum `Classical`-frei bleibt: **in der
 `Finset`-Gestalt ist Choice in dieser Mathlib-Fassung nicht zu umgehen.**
 
+*Nachtrag (14. September 2026, gemessen beim Bau von `Proemial.SharedPlaceGrowth`,
+Stand `7031c9b`): die Ursache sitzt eine Ebene tiefer, als dieser Vermerk sie
+ansetzt.* Nicht die `Finset`-Gestalt über Funktionsräumen zieht Choice, sondern
+schon der **Trägertyp**: `Fin.fintype` trägt selbst
+`[propext, Classical.choice, Quot.sound]`, und jeder Term, in dem `univ` über
+`Fin m` vorkommt, erbt es. Gemessen am kleinstmöglichen Fall — die blosse
+Zugehörigkeit `a ∈ (univ : Finset (Fin m))` über `Finset.mem_univ` ist nicht
+`Classical`-frei, obwohl `Finset.mem_univ` allein `[propext, Quot.sound]` trägt.
+Der Satz oben bleibt richtig und seine drei Routen auch; falsch war, die
+Unumgehbarkeit an der **Gestalt** festzumachen statt am **Träger**. Die Folge für
+den Bau: wer Choice vermeiden will, sucht nicht nach einer schlankeren
+`Finset`-Route, sondern nach einem Satz, dessen Term `Finset` gar nicht berührt.
+
 Die beiden Zählsätze sind **nicht** axiomfrei, sondern erben `[propext,
 Quot.sound]` aus `IntervalBackbone.two_mul_intervalStart` — Hüllen-Lehre:
 Konsum erbt das Profil der Quelle und unterbietet es nie. -/
