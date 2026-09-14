@@ -55,6 +55,7 @@ import Reformulation.Proemial.TwoPlaceOccupancy
 import Reformulation.Proemial.ProemialCarrier
 import Reformulation.Proemial.ReferenceReversal
 import Reformulation.Proemial.DeuteroCollapse
+import Reformulation.Proemial.SharedPlaceGrowth
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1120,6 +1121,24 @@ Enthält:
   neuer allgemeiner Satz über `relabel` und `reverse`, den der Bestand nicht
   führte — eine **Erweiterung** der Kanonisierungs-Theorie, während die drei
   Sätze dieses Moduls sie **verwenden**.
+
+- `Proemial.SharedPlaceGrowth`: **Günthers Vermittlungsmass**, gebaut nach
+  `Spec_Vermittlungsmass.md` (ERTRAG). Gezählt werden die ungeordneten Paare
+  `(m-1)`-wertiger balancierter Subsysteme eines balancierten `m`-wertigen
+  Systems, die eine Belegung gemeinsam haben; `mediation_strictly_monotone` ist
+  die **Sättigungsprobe**, an der vier andere Masskandidaten gefallen sind:
+  `mediationCount m < mediationCount (m+1)` für alle `m ≥ 2`, bewiesen über eine
+  **Hebung** mit Zeugen und nicht über eine geschlossene Formel.
+  `mediation_le_pow` hält die Schranke `m^6`, `sharesPlace_iff_kriterium` löst
+  die Relation in eine Bedingung über den drei Bestandteilen auf und trägt die
+  Rechenform der Eichwerte (8/27/64/125 Subsysteme, 4/135/960/4250 Paare, als
+  `#guard_msgs`-Eichungen eingefroren). **Drei Marken im Kopf**: der Träger ist
+  **Setzung**, das Kriterium **quellenfest** nach Spec und Appendix-Befund (von
+  diesem Bau nicht an der Quelle nachgeprüft), die Anwendung des einen auf das
+  andere **Lesart**. **Keine Ledger-Zeile, keine Marke** — das Mass gehört zu §7
+  und der Verbundkontextur, nicht zur Proemialrelation; `19 von 20` bleibt
+  stehen. Acht Wachen; `Classical.choice` durchgängig ausser `lift_injective`,
+  und die Ursache ist gemessen: `Fin.fintype` trägt es selbst.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
