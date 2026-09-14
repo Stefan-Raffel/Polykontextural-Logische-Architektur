@@ -127,14 +127,31 @@ Wertmenge** liefert genau diese drei Zahlen, und die Differenz bei `m = 4` ist g
 die Gleichheit der Zahlen; **nicht** gemessen ist, dass diese Einschränkung die von der
 Spec gemeinte ist, und erst recht nicht, dass Günthers 216 diese ist.
 
-## Ein Fund an zwei fremden Dokumenten, ohne Entscheidung
+## Ein Fund an zwei fremden Dokumenten — gemeldet, dann entschieden
 
 Die Eichwerte-Tafel der Spec liest Günthers zwei durchgerechnete Zahlen als
 **Subsystem**-Zahlen (27 und 64). Der Appendix-Befund des Hermeneutes (§5, L6) und die
 N1-Messung des Mathematikers lesen dieselben Zahlen als seine zwei durchgerechneten Fälle
 der **Relation** — „(3, 64)". Auf der zweiten Lesart reproduziert dieses Mass Günthers 64
-nicht: `mediationCount 4 = 960`. Der Widerspruch wird hier gemeldet und nicht entschieden;
-die Spec führt ihn selbst als offenen Posten (N1, O3), und er ist eine Quellenfrage.
+nicht: `mediationCount 4 = 960`. So stand der Fund beim Bau: gemeldet und nicht
+entschieden, mit der Spec, die ihn selbst als offenen Posten führt (N1, O3).
+
+*Nachtrag (14. September 2026, nach der Begutachtung des Mathematikers §2): der Fund ist
+entschieden, und zwar gegen die beiden älteren Dokumente.* Die Klärung
+`Knoten_Begrenzung_Relation_Antwort_Hermeneutes.md` trennt die zwei Zahlen, und sie führt
+die Trennung als quellenfest: die „nur dreimal" (K3) gilt den **variablen-fixierten
+überbalancierten** Subsystemen der Tafel XII, also einem *anderen System*; die 64 (K1, K4)
+gilt der **kombinierten** Art — der Art dieses Moduls — und ist dort eine **obere Schranke
+in einem Grössenordnungs-Argument, keine Zählung**. Zwei Fälle derselben Grösse sind sie
+darum nicht, und **die Spec liest richtig**. Dass `mediationCount 4 = 960` die 64 nicht
+trifft, ist danach kein Mangel: die 64 gehört zu `card_subsystem` und nicht zum Mass. Die
+Klärung ist jünger als die beiden Dokumente; ihre Berichtigung steht aus und liegt
+ausserhalb dieses Repositoriums.
+
+*Und eine Marke, die dieselbe Klärung setzt und die A1 betrifft:* die Formel `m³` steht
+**nicht** im Text (K2, dort **erschlossen** und ausdrücklich nicht quellenfest).
+`card_subsystem` trifft mit ihr Günthers 27 und 64; quellenfest sind die zwei Zahlen, nicht
+ihr Bildungsgesetz.
 
 ## Axiomlage, gemessen
 
