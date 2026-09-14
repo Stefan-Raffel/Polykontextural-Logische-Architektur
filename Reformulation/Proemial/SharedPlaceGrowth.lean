@@ -35,11 +35,31 @@ quellenfeste Posten (Lille S. 24, 25, 27, 29, 33/34): die Definition der Vermitt
 die Wahl des Masses gegen den Funktionsreichtum. **Dieser Bau hat keine dieser Stellen an
 der Quelle nachgeschlagen** — er übernimmt sie aus Spec und Appendix-Befund. Das Etikett
 *quellenfest* gehört dort hin und nicht hierher (CLAUDE.md §8, zwanzigster Fallstrick).
+Quellenfest ist, **dass** es ein Kriterium gibt (S. 27), nicht **welches** — siehe die
+Marke darunter. Den Appendix hat inzwischen der Mathematiker am Original gelesen; dieser
+Bau weiterhin nicht.
 
-**ANWENDUNG — LESART.** Dass Günthers Kriterium der gegenseitigen Abhängigkeit auf *diese*
-Subsysteme anzuwenden ist und dass eine gemeinsame Stelle das vermittelnde Element ist,
-ist Lesart. Günther führt das Kriterium an variablen-fixierten Subsystemen vor; die
-Übertragung ist unbelegt und unbestritten.
+**ANWENDUNG — SETZUNG** *(bis zum Nachtrag unten: LESART)*. Dass Günthers Kriterium der
+gegenseitigen Abhängigkeit auf *diese* Subsysteme anzuwenden ist und dass eine gemeinsame
+Stelle das vermittelnde Element ist, ist gesetzt. Günther führt das Kriterium an
+variablen-fixierten Subsystemen vor; die Übertragung ist unbelegt und unbestritten.
+
+*Nachtrag (14. September 2026, auf Auftrag des Architekten): die Marke ist von LESART auf
+SETZUNG gehoben.* Der Lille-Appendix gibt neben dem gebauten Kandidaten — (B), die beiden
+teilen eine **Stelle** (S. 29) — drei weitere, alle textgestützt: (A) verschiedene
+**fixierte Variable** (S. 27), (C) die Konjunktion beider, (D) das Teilen einer
+**Diagonalstelle** (S. 29, Tafel X). Günthers durchgerechneter Fall an Tafel VIII
+unterscheidet (A) und (B) nicht. Eine Deutung mit drei Alternativen im Blick ist eine Wahl
+und keine Auslegung. Bei `m = 4` liefern (A), (B), (C), (D) 1536, 960, 864 und 264 Paare.
+**Bewiesen ist die strenge Monotonie für (B)**; für (A), (C) und (D) ist sie für
+`m = 2..5` gerechnet, ausserhalb des Korpus — vom Mathematiker und unabhängig davon beim
+Nachtrag, alle sechzehn Zahlen gleich. Die Hebung trüge (A) und (C) mit denselben
+Bauteilen, weil der Zeuge in beiden liegt und `lift` verschiedene fixierte Variable ebenso
+erhält wie `sharesPlace_lift` die gemeinsame Stelle; für (D) reicht `extend` nicht, weil es
+eine Diagonalstelle nicht auf eine Diagonalstelle hebt. Beides ist argumentiert und nicht
+gebaut. **Die Wahl von (B) ändert die Zahl; dass sie den Satz nicht ändert, ist gerechnet
+und nicht bewiesen.** Die Spec führt die Anwendung weiterhin als Lesart (§1 L1, A5); der
+Kopf folgt dem jüngeren Auftrag.
 
 ## Was dieses Modul NICHT leistet
 
@@ -56,7 +76,7 @@ Darum trägt auch **kein Deklarationsname die Sache „Vermittlung"**, wo er die
 kann — die Relation heisst `SharesPlace` und nicht `Mediates`. Dieselbe Zurückhaltung übt
 der Kopf von `CompoundContexture`, und aus demselben Grund. Die beiden Namen, die die Spec
 wörtlich vergibt (`mediationCount`, `mediation_strictly_monotone`), bleiben stehen: sie
-benennen das *Mass* und nicht die Sache, und die Marken oben sagen, was daran Lesart ist.
+benennen das *Mass* und nicht die Sache, und die Marken oben sagen, was daran gesetzt ist.
 
 ## Zwei Abweichungen vom Wortlaut der Spec, beide gemeldet
 
@@ -153,6 +173,17 @@ ausserhalb dieses Repositoriums.
 `card_subsystem` trifft mit ihr Günthers 27 und 64; quellenfest sind die zwei Zahlen, nicht
 ihr Bildungsgesetz.
 
+*Und zu Ende gebracht (14. September 2026, Auftrag des Mathematikers §5, F1 und F2):* die
+„nur dreimal" ist überhaupt **keine Relationen-Zahl**. Sie zählt **Stellen** — die Diagonale
+von S³(p,q) mit den Stellen 1, 5 und 9 —, und ihre Zahl ist `m`. Damit nennt Günther
+**keine** Zahl, an der sich ein Relationen-Mass eichen liesse: die drei zählt Stellen, die
+64 Subsysteme, und die Relationen-Zahl heisst bei ihm nur „relativ bescheiden" — wahr für
+alle vier Kandidaten, weil jeder eine Teilmenge derselben `(m³).choose 2` Paare zählt (für
+(B) als `mediation_le_pow` bewiesen, für die übrigen argumentiert). **Die Paar-Eichwerte
+4 / 135 / 960 / 4250 eichen darum den Bau gegen die Spec und nicht das Mass gegen Günther;**
+gegen Günther geeicht sind allein die Subsystem-Zahlen 27 und 64. F1 ist aus dem fünften
+Befund dieses Baus hervorgegangen; die Lesung am Original ist die des Mathematikers.
+
 ## Axiomlage, gemessen
 
 `Classical.choice` steht in siebzehn der neunzehn Sätze dieses Moduls, und **die Ursache
@@ -241,7 +272,8 @@ theorem mem_places {m : ℕ} (S : Subsystem m) (a : Fin m → Fin m) :
 /-! ## Teil 2 — die Relation und ihre Auflösung (D4) -/
 
 /-- **D4.** Zwei Subsysteme stehen in der Relation, wenn ihre Stellenmengen eine Stelle
-gemeinsam haben — die Lesart des vermittelnden Elements. Der Name sagt die Sache; „`Mediates`"
+gemeinsam haben — die gesetzte Fassung des vermittelnden Elements, eine von vier (Modulkopf,
+Marke ANWENDUNG). Der Name sagt die Sache; „`Mediates`"
 ist im Bestand anders besetzt (`ComplementaryMediation`), siehe Modulkopf. -/
 def SharesPlace {m : ℕ} (S T : Subsystem m) : Prop := (places S ∩ places T).Nonempty
 

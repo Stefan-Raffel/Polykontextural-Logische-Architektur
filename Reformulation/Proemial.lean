@@ -1126,7 +1126,8 @@ Enthält:
   `Spec_Vermittlungsmass.md` (ERTRAG). Gezählt werden die ungeordneten Paare
   `(m-1)`-wertiger balancierter Subsysteme eines balancierten `m`-wertigen
   Systems, die eine Belegung gemeinsam haben; `mediation_strictly_monotone` ist
-  die **Sättigungsprobe**, an der vier andere Masskandidaten gefallen sind:
+  die **Sättigungsprobe**, an der nach der Spec vier andere Masskandidaten
+  gefallen sind:
   `mediationCount m < mediationCount (m+1)` für alle `m ≥ 2`, bewiesen über eine
   **Hebung** mit Zeugen und nicht über eine geschlossene Formel.
   `mediation_le_pow` hält die Schranke `m^6`, `sharesPlace_iff_kriterium` löst
@@ -1135,10 +1136,14 @@ Enthält:
   `#guard_msgs`-Eichungen eingefroren). **Drei Marken im Kopf**: der Träger ist
   **Setzung**, das Kriterium **quellenfest** nach Spec und Appendix-Befund (von
   diesem Bau nicht an der Quelle nachgeprüft), die Anwendung des einen auf das
-  andere **Lesart**. **Keine Ledger-Zeile, keine Marke** — das Mass gehört zu §7
+  andere seit dem Nachtrag vom 14. September ebenfalls **Setzung** — der
+  Lille-Appendix gibt drei weitere Kandidaten; streng monoton sind alle vier für
+  `m = 2..5` gerechnet, bewiesen ist es für den gebauten. **Keine Ledger-Zeile,
+  keine Marke** — das Mass gehört zu §7
   und der Verbundkontextur, nicht zur Proemialrelation; `19 von 20` bleibt
-  stehen. Acht Wachen; `Classical.choice` durchgängig ausser `lift_injective`,
-  und die Ursache ist gemessen: `Fin.fintype` trägt es selbst.
+  stehen. Acht Wachen; `Classical.choice` in siebzehn der neunzehn Sätze —
+  choice-frei sind `lift_injective` und das private `wit_ne` —, und die Ursache
+  ist gemessen: `Fin.fintype` trägt es selbst.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
