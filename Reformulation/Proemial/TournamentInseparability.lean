@@ -36,10 +36,50 @@ Einsetzung trivial; die Substanz liegt in den zwei Gleichungen** — dass beide 
 Operationen schon in Tiefe eins aus transitiven entstehen. Wer den Zielsatz zitiert,
 zitiert eine Folgerung dieser zwei Rechnungen.
 
+## Was davon bei Günther steht — und was nicht
+
+*Nachgetragen am 16. September 2026 (Berichtigung `C2_steht_bei_Guenther_Berichtigung.md`).*
+Gelesen in *Cognition and Volition*, `KorpusRev1/c_and_v.pdf`, Prüfsumme wie im
+Quellenanker `Quellenanker_CognitionAndVolition.md`; für S. 24–28 ist die PDF-Seite gegen
+die gedruckte Kopfzeile geprüft und gleich.
+
+* **`kkd_eq` formalisiert eine Quellenaussage.** C&V S. 28: *„p KKD q = (p DKD q) KKK
+  (p KDD q)"*, dazu *„purely hierarchical orders of values can be used to produce the
+  cyclic arrangement"*. Die Tiefe-eins-Darstellung ist eine **Wiederentdeckung**, keine
+  eigene Rechnung.
+* **`transitive_iff` ist inhaltsgleich mit Günthers Kriterium**, C&V S. 28: zyklisch
+  *„when and only when the two values which are not immediate successors are connected
+  by a different functor"* als die beiden übrigen Zweiersysteme. Günther spricht von der
+  zyklischen Wertordnung, der Satz von der Transitivität des Turniers; auf drei Knoten
+  ist das dasselbe, im Wortlaut nicht.
+* **`ddk_eq` ist eine andere Zerlegung** als Günthers zweite Formel
+  *„p DDK q = (p DKK q) DDD (p KDK q)"* — unter jeder der zwei Wertzuordnungen unten.
+* **Der Zielsatz steht nicht bei Günther.** Die Erhaltung von Relationen ist kein Begriff
+  von C&V; `no_relation_separates` ist eine Folgerung in einem Begriff, den er nicht
+  gebraucht.
+
+**Die Konvention hängt an der Wertzuordnung.** Günther schreibt die Werte `1, 2, 3` mit
+`1` als positivem Wert; seine Konjunktion K wählt darum den **höchsten** Wert (Fig. 7–14).
+Hier ist K = `min` auf `0, 1, 2`. Welche Buchstaben einander entsprechen, entscheidet die
+Zuordnung der Werte, und es gibt zwei naheliegende — außerhalb des Korpus über alle acht
+Muster gerechnet (Python), nicht als Satz geführt:
+
+* **Spiegelung `x ↦ 3 − x`:** K bleibt Konjunktion. `KKK`, `KKD`, `DDK`, `DDD` behalten
+  ihre Namen, `KDD ↔ DKD` und `KDK ↔ DKK` tauschen (die Kontexturen `{0,1}` und `{1,2}`
+  wechseln die Stelle). `kkd_eq` ist darunter Günthers **erste** Formel mit denselben
+  Buchstaben.
+* **Verschiebung `x ↦ x + 1`:** K und D tauschen durchweg, `KKD ↔ DDK`. `kkd_eq` ist
+  darunter Günthers **zweite** Formel.
+
+Unter beiden Zuordnungen ist das zyklische Paar `{KKD, DDK}` dasselbe.
+
 ## Was dieses Modul NICHT sagt
 
-* **Nichts über Günther.** Die Zuordnung zyklisch/heterarchisch ist eine **Lesart**
-  (Rev8 IV.1). Kein Satz dieser Datei kennt sie; der Satz ist ein Satz über Turniere.
+* **Nicht, dass Günthers Präferenzmuster Turniere SIND — im Wort.** Die Gleichsetzung
+  heterarchisch/zyklisch ist **Günthers eigene** (*„heterarchical (or cyclic)"*, C&V
+  S. 27), und seine Präferenz je Zweiersystem zeichnet er als Pfeile (Fig. 15/16, *„The
+  arrows always point to the preferred number"*). Lesart bleibt das **Wort** „Turnier" und
+  jede Aussage für eine andere Wertezahl als drei; Günther rechnet nur mit drei Werten.
 * **Nicht die Klon-Schranke.** Dass Operationen aus `{min, max, neg}` nicht erzeugbar
   sind, ist eine andere Aussage und steht unabhängig (E1, `NonUniformCloneBound`).
   Nicht-Erzeugbarkeit und Nicht-Trennbarkeit sind verschiedene Aussagen; dieses Modul
@@ -51,7 +91,8 @@ zitiert eine Folgerung dieser zwei Rechnungen.
 ## Bauform und Axiomprofil
 
 `localOp d01 d12 d02` kodiert die Wahl je Kontextur als Bit, `true` = `max` (D),
-`false` = `min` (K), Reihenfolge `{0,1}`, `{1,2}`, `{0,2}`. Das ist die Bit-Konvention von
+`false` = `min` (K), Reihenfolge `{0,1}`, `{1,2}`, `{0,2}` — K = `min` in **dieser**
+Fassung, zur Übersetzung in Günthers Buchstaben siehe oben. Das ist die Bit-Konvention von
 `NonUniformCloneBound.ofChoices`; die Gleichheit beider Definitionen ist **hier nicht
 bewiesen**, weil das Modul die E-Reihe nicht importiert. Die eigene Definition hat einen
 gemessenen Grund: dieselbe Gleichung `kkd_eq` über `ofChoices` trägt `[propext]` (dort

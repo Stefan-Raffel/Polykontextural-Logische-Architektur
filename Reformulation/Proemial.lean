@@ -1155,9 +1155,16 @@ Enthält:
   `ddk_eq`) und die Einsetzung `preserves_comp`; **der Zielsatz ist als Einsetzung
   trivial, die Substanz liegt in den zwei Gleichungen**. Gegenprobe gegen einen leeren
   Schluss: `witnessRel_preserves_iff` (genau vier der acht erhalten die Zeugenrelation).
-  **Nichts über Günther** — zyklisch/heterarchisch ist Lesart (Rev8 IV.1); die
-  Klon-Schranke der E-Reihe ist eine andere Aussage und wird nicht importiert. **Keine
-  Ledger-Zeile**, `19 von 20` bleibt stehen. Acht Wachen; axiomfrei sind die zwei
+  **Was bei Günther steht** (nachgetragen am 16. September, am Original gelesen):
+  `kkd_eq` ist eine Formel von *Cognition and Volition* S. 28 — die Tiefe-eins-
+  Darstellung ist eine Wiederentdeckung —, `transitive_iff` ist inhaltsgleich mit seinem
+  Kriterium ebendort, `ddk_eq` ist eine andere Zerlegung als seine, und der Zielsatz steht
+  **nicht** bei ihm (Erhaltung ist kein Begriff von C&V). Heterarchisch = zyklisch ist
+  Günthers eigene Gleichsetzung (S. 27); Lesart bleibt das Wort „Turnier". Seine
+  Buchstaben meinen K = Konjunktion auf `1, 2, 3` mit `1` positiv; welche Namen den hiesigen
+  (K = `min` auf `0, 1, 2`) entsprechen, hängt an der Wertzuordnung und steht im
+  Modulkopf. Die Klon-Schranke der E-Reihe ist eine andere Aussage und wird nicht
+  importiert. **Keine Ledger-Zeile**, `19 von 20` bleibt stehen. Acht Wachen; axiomfrei sind die zwei
   Gleichungen, `transitive_iff`, `preserves_comp` und die punktweise Gegenprobe, der
   Zielsatz trägt `[Quot.sound]` (die Hebung der punktweisen Gleichung auf die
   Mitgliedschaft), die Mengen-Gegenprobe `[propext]`.
