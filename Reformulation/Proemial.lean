@@ -58,6 +58,7 @@ import Reformulation.Proemial.DeuteroCollapse
 import Reformulation.Proemial.SharedPlaceGrowth
 import Reformulation.Proemial.TournamentInseparability
 import Reformulation.Proemial.TournamentSplitThree
+import Reformulation.Proemial.LocalOpInseparability
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1182,6 +1183,23 @@ Enthält:
   am Original geprüft; Lesart bleibt das Wort „Turnier". **Nichts für andere
   Wertezahlen** (Q4b, nicht gebaut), **keine Ledger-Zeile** (Entscheid bei Custos).
   Vierzehn Wachen, kein Satz trägt `Classical.choice`.
+
+- `Proemial.LocalOpInseparability`: **C2 für alle m**, gebaut nach
+  `Spec_C2_fuer_alle_m.md` (ERTRAG). Zielsatz `preserves_all_of_basis`: erhält eine
+  Relation beliebiger Stelligkeit über `Fin m` die Operationen `min`, `max` und alle
+  Verschiebungen, so erhält sie jede lokal-klassische Operation; Korollar
+  `no_relation_separates_general` — keine Relation trennt die zyklischen von den
+  transitiven, für jedes `m`. Beweis ohne Klon-Begriff: das Mehrheitsgesetz
+  `comp_eq_maj`, die Transitivität der Basis über injektive Schlüsselfunktionen, Anfang
+  `base_eq` und Schritt `step_eq`, Induktion über eine Liste der Paare. **Bei `m = 3` sind
+  Günthers zwei Formeln von C&V S. 28 Anfang und Schritt** (unter `x ↦ 3 − x`); die
+  Verallgemeinerung ist unsere. `divergence_from_clone_basis` (A8): für `m ≥ 4` erhält die
+  Invariante `R m` der E-Reihe `min` und `max`, aber nicht alle Verschiebungen — die
+  Divergenz von Erzeugbarkeit und Nicht-Trennbarkeit als Satz. Importiert die E-Reihe
+  (konsumiert, ändert nicht); `TournamentInseparability` steht daneben, ohne Brücke.
+  **Keine Ledger-Zeile.** 29 Wachen, **kein Satz trägt `Classical.choice`** — die
+  Spec-Erwartung fiel: die Induktion zählt in `List.finRange` statt über `Fintype`, und
+  die Bit-Rechnung des Anfangs verlor den Choice, als `omega` nur noch atomare Ziele bekam.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
