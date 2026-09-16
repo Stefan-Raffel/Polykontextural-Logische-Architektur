@@ -57,6 +57,7 @@ import Reformulation.Proemial.ReferenceReversal
 import Reformulation.Proemial.DeuteroCollapse
 import Reformulation.Proemial.SharedPlaceGrowth
 import Reformulation.Proemial.TournamentInseparability
+import Reformulation.Proemial.TournamentSplitThree
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1168,6 +1169,19 @@ Enthält:
   Gleichungen, `transitive_iff`, `preserves_comp` und die punktweise Gegenprobe, der
   Zielsatz trägt `[Quot.sound]` (die Hebung der punktweisen Gleichung auf die
   Mitgliedschaft), die Mengen-Gegenprobe `[propext]`.
+
+- `Proemial.TournamentSplitThree`: **die Zählung 8 = 6 + 2 für drei Knoten**, Teil Q4a
+  von `Spec_Q4_Zaehlung.md` (BENENNUNG mit einem Brückensatz). Die Brücke
+  `tournament_eq_opTournament`: jedes Turnier auf `Fin 3` ist punktweise das Turnier einer
+  der acht lokal-klassischen Operationen aus `TournamentInseparability`. Darauf die
+  Zählung in Bijektions- und Iff-Form, ohne `Fintype.card`: `tournamentEquiv` (die Acht),
+  `transitiveEquiv` (die Sechs), `cyclic_iff` (die Zwei: genau die Turniere von `KKD` und
+  `DDK`), dazu `transitiveT_iff` — Günthers Kriterium (C&V S. 28) auf Turnieren,
+  transportiert aus `transitive_iff`. Die Zahlen selbst nur als `#eval`-Eichung.
+  Quellenstellen C&V S. 25 (*six hierarchical*) und S. 27 (*heterarchical (or cyclic)*),
+  am Original geprüft; Lesart bleibt das Wort „Turnier". **Nichts für andere
+  Wertezahlen** (Q4b, nicht gebaut), **keine Ledger-Zeile** (Entscheid bei Custos).
+  Vierzehn Wachen, kein Satz trägt `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
