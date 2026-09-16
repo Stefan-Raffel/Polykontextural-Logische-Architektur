@@ -410,6 +410,26 @@ sieht `Fin`-`min`/`max` nicht — erst mit `simp only [Fin.coe_min, Fin.coe_max]
 `ℕ` bringen, dann versteht `omega` `min`/`max` nativ und die Fallarbeit über
 `Nat.le_total` entfällt. (E3-Bau.)
 
+*Dritte Gestalt: ein Iff-Ziel mit Konjunktion.* Beide Seiten gemessen, am selben Satz
+`base_bits` in `Proemial/LocalOpInseparability.lean` (Anker `5896151`, beim
+C2-für-alle-m-Bau):
+
+```text
+split_ifs <;> omega  auf das ganze Iff        ->  [propext, Classical.choice, Quot.sound]
+constructor, je Richtung refine ⟨?_, ?_⟩,
+  dann split_ifs <;> omega  (atomare Ziele)   ->  [propext, Quot.sound]
+```
+
+Im Baum steht die zweite Fassung, gewacht; die erste steht nur in der Commit-Nachricht und
+ist am Stand `8fb050e` als Wegwerf-Probe mit denselben zwei Beweisen nachgemessen. Die
+Gestalt war von keiner der zwei ersten gedeckt und von der Spezifikation nicht
+vorhergesehen — gefunden hat sie die Profilmessung, und der Choice sass danach in Z und Z'
+des Moduls (A8 entstand erst nach der Heilung). Heilung wie oben: `omega` bekommt nur atomare Ziele.
+
+*Rückweg nach §13.3:* keiner in Sicht, aus demselben Grund wie beim zwanzigsten Eintrag —
+`#guard_msgs` misst das Profil der gewählten Taktik, nicht, ob eine andere ein schlankeres
+ergäbe.
+
 
 **8 - `ConstantInfo.value?` sieht keinen Beweisterm.** Fuer `thmInfo` liefert das Feld
 `none`; eine Route, die Konsumenten ueber `value?` sucht, ist fuer Saetze blind und meldet
