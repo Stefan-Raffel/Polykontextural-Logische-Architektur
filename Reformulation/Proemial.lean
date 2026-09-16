@@ -56,6 +56,7 @@ import Reformulation.Proemial.ProemialCarrier
 import Reformulation.Proemial.ReferenceReversal
 import Reformulation.Proemial.DeuteroCollapse
 import Reformulation.Proemial.SharedPlaceGrowth
+import Reformulation.Proemial.TournamentInseparability
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1144,6 +1145,22 @@ Enthält:
   stehen. Acht Wachen; `Classical.choice` in siebzehn der neunzehn Sätze —
   choice-frei sind `lift_injective` und das private `wit_ne` —, und die Ursache
   ist gemessen: `Fin.fintype` trägt es selbst.
+
+- `Proemial.TournamentInseparability`: **der Unmöglichkeitssatz C2**, gebaut nach
+  `Spec_C2_Unmoeglichkeitssatz.md` (ERTRAG). Von den acht lokal-klassischen Operationen
+  auf `Fin 3` haben sechs ein transitives Turnier und zwei ein zyklisches
+  (`transitive_iff`); `no_relation_separates`: erhält eine Relation **beliebiger
+  Stelligkeit** (`R : Set (ι → Fin 3)`) die sechs transitiven, so erhält sie alle acht.
+  Der Beweis braucht keinen Klon-Begriff — zwei Gleichungen in Tiefe eins (`kkd_eq`,
+  `ddk_eq`) und die Einsetzung `preserves_comp`; **der Zielsatz ist als Einsetzung
+  trivial, die Substanz liegt in den zwei Gleichungen**. Gegenprobe gegen einen leeren
+  Schluss: `witnessRel_preserves_iff` (genau vier der acht erhalten die Zeugenrelation).
+  **Nichts über Günther** — zyklisch/heterarchisch ist Lesart (Rev8 IV.1); die
+  Klon-Schranke der E-Reihe ist eine andere Aussage und wird nicht importiert. **Keine
+  Ledger-Zeile**, `19 von 20` bleibt stehen. Acht Wachen; axiomfrei sind die zwei
+  Gleichungen, `transitive_iff`, `preserves_comp` und die punktweise Gegenprobe, der
+  Zielsatz trägt `[Quot.sound]` (die Hebung der punktweisen Gleichung auf die
+  Mitgliedschaft), die Mengen-Gegenprobe `[propext]`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
