@@ -80,6 +80,17 @@ total, ohne Fallunterscheidung.
    `Proemial_V1_Stelligkeit2_Befund.md`. „Universaler Charakter" bleibt als
    Faser-Unterbestimmtheit formalisiert und ist kein Universalitäts-Metatheorem.
 
+   **Der Grund ist nicht nur, dass die Gleichsetzung unbelegt ist.** Die
+   Stellenzahl trägt ein Unten: `RGS 0` ist bewohnt und hat genau einen Punkt,
+   und `descent` ist nur auf Nachfolgerstufen typisiert. **Ob Günthers
+   Relationsordnung ein Unten hat, entscheidet die Quelle nicht**
+   (`Definitionen.md` §20, offene Stelle „Das Unten des Abstiegs"). Liest man
+   seine Heterarchie [T14] als zyklisch, so hätte sie keines — eine zyklische
+   Ordnung ist nicht wohlfundiert, die Stufenachse über `ℕ` ist es —, und die
+   Gleichsetzung wäre dann nicht bloss unbelegt, sondern unverträglich. **Diese
+   Lesung ist eine Deutung:** Günther nennt *heterarchical (or cyclic)* auf
+   S. 27 über Wert-Vorzugsordnungen, [T14] dagegen über zwei Pole.
+
 4. Kein `sorry`, kein `axiom`, kein `: True`-Feld, kein `native_decide`; kein
    Ledger-Zug.
 
