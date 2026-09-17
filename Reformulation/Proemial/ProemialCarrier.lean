@@ -59,7 +59,7 @@ Sie stehen hier, damit die Datei sie selbst fuehrt und niemand sie neu finden mu
 ## Grenze
 
 Nicht gebaut sind Erkennen/Wollen, die volle Vier-Relata-Simultaneitaet und eine
-Identifikation der RGS-Stufe mit Guenthers Relationsordnung. **Und A20-5 -- die
+Identifikation der RGS-Stufe mit Guenthers Relationsordnung. **Und A20-4 -- die
 wechselseitige Bedingung -- steht in keinem der elf Felder:** keines sagt, dass
 eines der anderen ein anderes bedingt.
 
