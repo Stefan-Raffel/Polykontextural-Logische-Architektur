@@ -28,6 +28,17 @@ Zeit-Dreiheit reversibel / irreversibel / Komplementarität: Z. 484–508.
 Systems): Z. 517–519. Härte-Ökonomie: einmal geeicht (Beiträge III, S. 160,
 druck-verifiziert), verlängerbar.
 
+**Quellenlage der drei Momente (Hermeneutes, 21.9.).** Die **Dreiheit** —
+Reversibilität, Irreversibilität, generelle Komplementarität — steht **einquellig** auf
+Lille S. 10; `gg_struk-min-theor-obj-geist.pdf` ist dieselbe Quelle (Verifikation, kein
+zweiter Zeuge). Die **Zuordnung** Umtausch ↦ reversibel ist dagegen **zweiinstanzlich**:
+Lille S. 10 („sie beschreiben ein reversibles System") und `cat` S. 9, anderes Werk
+(„a symmetrical exchange relation … it is reversible"). Der **Grund** steht quellenfest
+im selben Lille-Absatz, in zwei Hälften: (1) zwei Werte formen ein Umtauschverhältnis,
+also reversibel; (2) Irreversibilität verlangt mindestens drei Werte („mindestens zum
+dritten Intervall") — letzteres begründet, warum `NoReturn` nicht auf einem
+zweiwertigen Träger sitzt.
+
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Organik = Intervall IV" ist **Lesart der Hegel-Stufe**, nicht Satz
