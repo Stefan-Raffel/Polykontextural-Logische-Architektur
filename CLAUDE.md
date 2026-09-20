@@ -324,6 +324,27 @@ Iff-Form, nicht als Kardinalzahl-Behauptung.
 Rang-Ansprueche ("erstmals", "die einzige Stelle") werden der Quelle zugeschrieben, die sie
 erhebt, und nicht als Korpus-Aussage gefuehrt.
 
+**Die Haerte-Marken der Quellenarbeit, drei Stufen.** Beschlossen am 16. August 2026 im
+Abschnitt-9-Vorgang (`Buchung_Custos_Abschnitt9.md` B2):
+
+```text
+REFERAT                  nicht nachgerechnet
+REFERAT, GEGENGERECHNET  nachgerechnet und NICHT bestaetigt — schaerfer als
+                         "nicht gemessen", weil eine Messung vorliegt und
+                         dagegen steht
+GEMESSEN                 nachgerechnet, traegt
+```
+
+**Die Praezisierung ist Teil der Definition, nicht ein Zusatz:** `REFERAT, GEGENGERECHNET`
+heisst, dass **unter den geprueften Massen** die Aussage der Quelle nicht reproduziert. Es
+heisst **nicht**, dass die Aussage falsch ist. *Der Korpus soll sagen koennen, dass er
+nachgerechnet hat, ohne zu behaupten, dass der Autor sich geirrt hat.* Wer die Marke setzt,
+nennt die geprueften Masse.
+
+*Rueckweg nach §13.3:* die Marke entfaellt an einer Stelle, sobald ein Mass gefunden ist,
+unter dem die Aussage reproduziert - dann wird sie zu `GEMESSEN`. Sie entfaellt als
+Vokabular, wenn zwei Ausgaben lang keine Stelle sie mehr traegt (§13.2).
+
 ---
 
 ## 7 - Umgebung
@@ -345,11 +366,19 @@ entfernt.
 
 ---
 
-## 8 - Lean-Fallstricke (gemessen, nicht vermutet)
+## 8 - Fallstricke (gemessen, nicht vermutet)
 
 Jeder Eintrag ist an diesem Korpus aufgetreten und hat Zeit gekostet. Sie stehen hier, damit
-sie nicht ein zweites Mal gefunden werden muessen. Der neunte ist kein Lean-Fallstrick,
-sondern einer der Werkzeugkette; er steht hier, weil er dieselbe Sorte ist wie der achte.
+sie nicht ein zweites Mal gefunden werden muessen. **Nicht alle sind Lean-Faelle:** der
+neunte betrifft die Werkzeugkette, der zwoelfte die Shell, der zweiundzwanzigste das Messen
+ueberhaupt. Sie stehen hier, weil sie dieselbe Sorte sind - gemessen, an diesem Korpus, mit
+Anker.
+
+**Mehrere Eintraege sagen dasselbe in verschiedenen Abstaenden:** das Axiomprofil haengt an
+etwas, das im Satz nicht steht - an der **Zielgestalt** (7), an dem, **was `decide` sieht**
+(2), an einem **Baustein** (10), an der **Definition** (2, Zusatz), an der **Simp-Menge** und
+damit am **Import** (21). *Der Abstand waechst; beim letzten steht es in einer anderen
+Datei.*
 
 *Ohne Gesamtzahl, mit Absicht.* Hier stand bis `e97fdbe` eine Ordnungszahl ("Alle zehn").
 Sie war zweimal von Hand nachzuziehen und waere beim naechsten Eintrag ein drittes Mal
@@ -379,6 +408,13 @@ ueber `.val` geschrieben oder ueber `Nat`-Ungleichungen an `.val`. (Aus der E2-S
 **2 - `abbrev` statt `def` fuer alles, was `decide` sehen soll.** Bei `def P ... : Prop := ...`
 findet die Instanzensuche die `Decidable`-Instanz nicht und `decide` schlaegt fehl
 (*failed to synthesize Decidable*). `abbrev` ist reducible und loest es. (Vorab-Probe zu E2.)
+
+*Und dieselbe Frage — was `decide` zu sehen bekommt — entscheidet auch ueber das Profil.*
+Gemessen am C2-Bau (`7506857`): dieselbe Gleichung `kkd_eq` traegt `[propext]`, wenn `decide`
+ueber eine **`Prop`-Disjunktion** entscheidet, und ist **axiomfrei** ueber einer
+verschachtelten **`Bool`**-Fallunterscheidung. *Der Unterschied liegt nicht im `if`, sondern
+in dem, worueber entschieden wird; ein Minimalbeispiel mit `if`-Bedingungen zeigt ihn nicht
+(gemessen 21.9.).*
 
 **3 - Quantifizierung ueber Funktionsraeume zieht `Classical.choice`.** Gemessen am selben Satz:
 `forall c : Fin 6 -> Bool, ...` ergab `[propext, Classical.choice, Quot.sound]`, sechs explizite
@@ -509,6 +545,14 @@ geprueft. Heilung: bei kleinen Aufzaehlungstypen die `Fintype`-Instanz von Hand 
 Verwandt mit Fallstrick 3: nicht die Quantifikation selbst, sondern die Maschinerie hinter
 der bequemen Instanz steht im Profil.
 
+*Und die Verschaerfung, gemessen am 16. September (`7031c9b`, Vermittlungsmass):* **es ist
+nicht nur `deriving Fintype`.** `Fin.fintype` - die Standardinstanz aus Mathlib, die niemand
+schreibt und jeder benutzt - traegt `Classical.choice` ebenso; `Finset.mem_univ` traegt es
+nicht. *Damit betrifft der Eintrag nicht nur die selbst abgeleiteten Instanzen:* **wer ueber
+`Fin m` quantifiziert, hat die Maschinerie schon im Term**, ohne eine Zeile dafuer
+geschrieben zu haben. Heilung wie oben, und sie ist hier teurer: eine Handinstanz fuer
+`Fin m` zu schreiben lohnt nur, wo das Profil der Ertrag ist.
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
@@ -548,6 +592,16 @@ einer frueheren Messung; ohne ihn waere „die englischen Bereiche tragen kein S
 ein plausibler und falscher Befund geworden. Damit gilt §12 Regel 1 (Muss- und
 Darf-nicht-Fall) auch fuer Uebersichtsmessungen, nicht nur fuer Akzeptanzrouten. Es ist der
 achte Fallstrick in weiterer Gestalt: kein falsches Ergebnis, sondern ein leeres.
+
+*Zweite Gestalt, und sie ist lauter im Log als im Ergebnis.* **Ein ungequotetes
+Here-Dokument fuehrt Markdown-Backticks als Kommando aus.** Gemessen am Z4-Zug (17.9.2026,
+`8acd958`): `cat >> docs/journal.md <<EOF` **ohne** Quotes liess die Shell den Inhalt
+expandieren; die Backtick-Spannen wurden zur Kommandosubstitution, und `TowerAsymmetry`,
+`ProemialCarrier` und `RGS 0` verschwanden spurlos aus der Journalzeile. *`zsh` meldete
+"command not found" - aber der Commit war da schon ergangen, und das Log liest man erst
+danach.* Berichtigt in `3943075`. **Heilung: Here-Dokumente mit Daten immer `<<'EOF'`
+quoten**; wo eine Variable hinein muss, die Zeile per Python schreiben statt das Quoting
+aufzugeben. Und nach jedem Journal- oder Commit-Schreiben die Zeile einmal zuruecklesen.
 
 **13 - Eine Satzmenge „aus der Umgebung" enthaelt Saetze, die niemand geschrieben hat.**
 Eine Struktur mit einem `Prop`-Feld erzeugt eine Projektion, die die Umgebung als `thmInfo`
@@ -771,6 +825,78 @@ Der Commit a0fe668 ist der stehende Negativfall des Projekts. Jede Route gegen
 Darstellungsschaeden wird an ihm geeicht: sie muss dort anschlagen und an b3681b3 schweigen.
 Gemessen: `<p>` innerhalb `<figure>` liefert dort 20 und hier 0. Ein kaputtes Artefakt, das
 man behalten kann, ist wertvoller als jede Beschreibung des Schadens.
+
+**21 - Bei derselben Taktik entscheidet die verfuegbare Simp-Menge, also die Importe.**
+Als Differential am selben Satz gemessen, Zeichen fuer Zeichen identischer Beweistext:
+
+```text
+ohne  import Proemial.LocalOpInseparability  ->  [propext, Quot.sound]
+mit   demselben Import                       ->  [propext, Classical.choice, Quot.sound]
+```
+
+Beleg: `head_mem_transfer` in `Proemial/PatternInvariance.lean`. Der Traeger ist
+`Order.lt_add_one_iff` (ueber `SuccAddOrder`, mit `Classical.choice`): es steht mit dem
+groesseren Import in der Simp-Menge und greift **vor** dem axiomfreien `Nat.zero_lt_succ`.
+Beide beweisen dasselbe Ziel.
+
+**Das ist nicht der zwanzigste Eintrag.** Dort entscheidet die **Wahl** der Taktik, und die
+steht im Beweis. Hier ist die Taktik dieselbe und der Beweis unveraendert; es entscheidet,
+was in einer **anderen Datei** importiert wird. *Ein Satz kann sein Profil verlieren, weil
+jemand anders einen Import hinzufuegt.*
+
+**Merkmal im Beweisterm:** `*._simp_1`-Konstanten aus einer allgemeineren Hierarchie als das
+Ziel (`AddCancelCommMonoid`, `IsOrderedAddMonoid` bei einem Ziel ueber `Nat`).
+
+**Reichweite, gemessen** (`KorpusRev2/Erhebung_Simp_Reichweite_Impl.md`): von **1011** Saetzen
+verwenden **187** eine offene `simp`-Taktik; **99** gewachte Saetze tragen
+`Classical.choice`; der Schnitt ist **17**. Davon tragen **hoechstens zwoelf** es in der
+**Sache** (`canonicalize`, `marksFull`, `Finset.range`, `Fintype`-Instanzen,
+`List.idxOf?_eq_some_iff`) - dort hilft keine Taktik. **Mindestens vier** sind
+Taktik-Kandidaten; drei davon stehen in `PatternInvariance`, der vierte ist
+`mem_rgsList_iff` in `Kenogram/Basic`. *Beide Teilzahlen sind Grenzen, die Gesamtzahl 17 ist
+es nicht.*
+
+**Die Route, die die Gattung in einem Lauf entscheidet** - ohne Heilungsversuch: je Satz
+`ci.value? (allowOpaque := true) |>.getUsedConstants`, und je Konstante `Lean.collectAxioms`
+auf `Classical.choice`. **Traegt eine Definition oder ein Bestandssatz es, liegt es in der
+Sache; tragen nur `._simp_`-Konstanten es, ist es die Umgebung.** *Die Richtung "in der
+Sache" ist verlaesslich, die andere ist ein Verdacht:* `head_mem_transfer` fuehrt neben zwei
+`._simp_1`-Lemmas eine Instanz ohne Suffix und war dennoch heilbar.
+
+**Heilung:** `simp only` mit benannten Lemmas (plus `omega` fuer Laengenziele). Sie macht das
+Profil nicht *stabil*, sondern **ablesbar**: es haengt dann an den genannten Namen und an
+nichts sonst. *Eine offene Taktik laesst das Profil von der Umgebung abhaengen; fuer `omega`
+gilt Fallstrick 7.*
+
+*Rueckweg nach §13.3:* wie beim zwanzigsten **keiner in Sicht**. `#guard_msgs` misst das
+Profil, das aus der gegenwaertigen Importlage folgt; nichts misst, ob eine andere Lage ein
+schlankeres ergaebe. **Eine Wache, die diesen Eintrag entbehrlich machte, muesste jeden Satz
+unter zwei Importmengen bauen.**
+
+*Vermerk, kein Auftrag:* `mem_rgsList_iff` (`Kenogram/Basic`) ist der einzige
+Taktik-Kandidat ausserhalb von `PatternInvariance` und der billigste - genau ein simp-Lemma,
+sonst kein Traeger. **Bei Gelegenheit mitzunehmen, nicht eigens zu ziehen:** ein Zug an
+`Kenogram/Basic` baut den halben Bestand neu.
+
+**22 - Eine nicht importierte Konstante verhaelt sich beim Messen wie eine, die es nicht
+gibt.** `Fin.fintype` ist nur mit `import Mathlib.Data.Fintype.Basic` sichtbar. Mit
+`Mathlib.Data.Fin.Basic` meldet Lean **Unknown constant** - dieselbe Meldung wie bei einem
+Namen, den es nicht gibt.
+
+**Der Ausfallmodus ist nicht, dass die Messung falsch ist, sondern dass sie nicht
+stattfindet und der Messende daraus auf die Sache schliesst.** *Der Nullbefund sieht aus wie
+eine Widerlegung, und man haelt die eigene Erinnerung faelschlich fuer falsch.*
+
+Das ist Fallstrick 8/9 in dritter Gestalt: **nicht das leere Ergebnis und nicht das knapp zu
+kleine, sondern das leere, das man fuer ein entschiedenes haelt.**
+
+**Route:** vor jedem Schluss "existiert nicht" den Import pruefen - `#check` statt
+`#print axioms`, oder den Namen in Mathlib suchen.
+
+**Reichweite:** nicht erhoben. *Der Fall ist am 21. September bei einer Profilmessung
+aufgetreten; ein zweiter Fall desselben Tages betraf eine Suche in Prosa - im Katalog nach
+einem Namen gesucht, nichts gefunden, auf das Fehlen der Gattung geschlossen.* **Die Gattung
+ist nicht auf Lean beschraenkt.**
 
 ---
 
