@@ -5,9 +5,11 @@ import Mathlib.Data.List.Range
 /-!
 # Proemial.NegationCycle — Negationsfolgen, die jede Wertfolge genau einmal durchlaufen (Günthers Hamiltonkreise, Stufe 1)
 
-**BENENNUNG mit Zeugen-Sätzen und einem kleinen Ertrag.** Gebaut auf Anordnung des
+**BENENNUNG mit Zeugen-Sätzen und drei Erträgen.** Gebaut auf Anordnung des
 Architekten vom 21. September 2026 nach `KorpusRev2/Vorprobe_Hamiltonkreise_Impl.md`
-(Stufe 1 der dortigen Empfehlung). Bis zu diesem Modul trug das Repo zum Gegenstand nichts;
+(Stufe 1 der dortigen Empfehlung); am selben Tag auf seine zweite Anordnung ergänzt um die
+Emendation als Satz, `full_length` und `triadic_unique'`
+(`KorpusRev2/Antwort_Anmerkungen_NegationCycle_Impl.md`). Bis zu diesem Modul trug das Repo zum Gegenstand nichts;
 die Grenznotiz C des Ledgers sagt: „Zyklentheorie ist nicht gebaut und war nicht Auftrag."
 
 Der Träger ist der schmalste, der die Sache fasst: eine **Wertfolge** ist eine Liste über
@@ -24,10 +26,17 @@ Die Sätze:
   „auf sich selbst angewendet, annulliert ihre Negationswirkung").
 * `tafelVI4_full`, `tafelVI5_full`, `tafelVI5_eq_reverse` — dreiwertig: die zwei Folgen
   (4) und (5) sind Vollkreise, und die eine ist die andere rückwärts gelesen.
-* `triadic_unique` — **der kleine Ertrag**: unter allen Negationsfolgen der Länge sechs über
-  zwei Negatoren sind (4) und (5) die einzigen Vollkreise. Günther sagt es ohne Beweis
-  (IGN S. 43: „Die triadische Wertordnung besaß nur einen einzigen solchen Kreis, der je nach
-  der Wertordnung entweder im Uhrzeigersinn oder im Gegensinn durchlaufen werden konnte").
+* `full_length` — **Ertrag**: jeder Vollkreis über `m + 1` Werten hat genau `(m + 1)!`
+  Negatoren. Günther sagt es als Regel (1980 S. 20: „Ein n-wertiger Hamiltonkreis umfasst,
+  wenn er vollständig ist n! Negationsschritte"); hier folgt es aus den vier Feldern.
+  Hilfssatz `stations_length`.
+* `triadic_unique`, `triadic_unique'` — **Ertrag, der Beweis einer unbewiesenen
+  Quellenaussage**: dreiwertig sind (4) und (5) die einzigen Vollkreise. Günther sagt es ohne
+  Beweis (IGN S. 43: „Die triadische Wertordnung besaß nur einen einzigen solchen Kreis, der
+  je nach der Wertordnung entweder im Uhrzeigersinn oder im Gegensinn durchlaufen werden
+  konnte" — den Drehsinn nennt er also selbst; was hier hinzukommt, ist der Beweis).
+  `triadic_unique` läuft über die 64 Folgen der Länge sechs und ist choice-frei;
+  `triadic_unique'` lässt die Längenvoraussetzung fallen, über `full_length`.
 * `kreis1_full`, `kreis2_full`, `kreis3_full` — vierwertig: Günthers drei ausgeschriebene
   Beispielkreise sind Vollkreise; `kreis1_family` (10-9-5), `kreis2_family` (9-6-9),
   `kreis3_family` (6-12-6) — die Operatorhäufigkeiten, nach denen er die drei Familien
@@ -41,12 +50,19 @@ Die Sätze:
   8-8-8, durchläuft aber in der zweiten Hälfte noch einmal die erste — eine
   „Pseudoäquivalenz", ein „partieller Hamiltonkreis mit einem Bestand von nur zwölf
   Wertkolonnen".
+* `kreis2Gedruckt_not_closed`, `kreis2_emendation`, `kreis2_eq` — **Ertrag, die Emendation
+  als Satz**: die zweite Beispielfolge, wie sie gedruckt steht, kehrt nicht zurück; unter
+  allen neun Fortsetzungen um zwei Negatoren gibt **genau eine** einen Vollkreis, `·1·3`;
+  und `kreis2` ist diese Fortsetzung. Siehe unten, Textbefund 1.
 * `visits_every_arrangement` — der Anschluss an `List.Perm`: ein Vollkreis trifft jede
   Liste, die eine Permutation des Ausgangs ist.
 
-**Warum überwiegend Benennung:** die Zeugen-Sätze rechnen nach, was Günther ausschreibt;
-neuen Satzgehalt trägt allein `triadic_unique`, und der ist eine endliche Fallarbeit über
-64 Folgen.
+**Warum überwiegend Benennung:** die Zeugen-Sätze rechnen nach, was Günther ausschreibt.
+Neuen Satzgehalt tragen `full_length`, das Paar `triadic_unique` / `triadic_unique'` und
+`kreis2_emendation`; die zwei letzten sind endliche Fallarbeit (64 Folgen, neun
+Fortsetzungen). Die Skala FOLGERUNG / HEBUNG / ZUSAMMENSTELLUNG / UMBENENNUNG ist auf sie
+**nicht anwendbar**: sie misst das Verhältnis zum Bestand und setzt Verbrauch voraus, und
+diese Sätze verbrauchen keinen Bestandssatz. Was sie trägt, ist ihr Verhältnis zur Quelle.
 
 ## Quellenlage
 
@@ -64,14 +80,24 @@ Härte-Marke durchweg **GEMESSEN** (CLAUDE.md §6), gelesen an der Textschicht d
   `KorpusRev1/gg_heidegger-weltgeschichte-nichts.pdf`, S. 20: Tafel IV mit Negatorfolge
   und 25 Wertspalten; „alle überhaupt möglichen Permutationen einmal und nur einmal".
 
-**Drei Textbefunde, gemeldet und nicht geheilt** (Hermeneutes):
+**Drei Textbefunde, gemeldet und nicht geheilt** (Hermeneutes) — **der erste ist eine
+EMENDATION**, keine Lesart: eine Lesart wählt unter dem, was dasteht; eine Emendation setzt
+ein, was nicht dasteht.
 
 1. IGN S. 44 druckt den zweiten Kreis mit **22** Negatoren
-   (`1·2·3·1·3·2·1·3·1·2·3·1·3·2·1·3·1·2·3·1·3·2`); die Folge schliesst so nicht und verteilt
-   8-6-8. `kreis2` ist die um `·1·3` **ergänzte** Folge (dreimal `1·2·3·1·3·2·1·3`). Die
-   Ergänzung ist nicht meine Vermutung allein: Günther nennt an der Stelle die Verteilung
-   neun-sechs-neun, und die 25 Wertspalten von Tafel XII folgen der ergänzten Folge in 24
-   von 25 Spalten.
+   (`1·2·3·1·3·2·1·3·1·2·3·1·3·2·1·3·1·2·3·1·3·2`, hier `kreis2Gedruckt`); die Folge kehrt
+   so nicht zurück und verteilt 8-6-8. `kreis2` ist die um `·1·3` **emendierte** Folge
+   (dreimal `1·2·3·1·3·2·1·3`). Belege, in der Reihenfolge ihrer Stärke:
+   * **Sie ist erzwungen** (`kreis2_emendation`): keine andere Fortsetzung um zwei
+     Negatoren schliesst die gedruckte Folge zu einem Vollkreis. Ausserhalb gerechnet und
+     hier kein Satz: Fortsetzungen um null, einen, drei oder vier Negatoren geben keinen
+     Vollkreis, und das Einfügen zweier Negatoren an beliebiger Stelle gibt nur noch zwei
+     weitere, die mit `1·3` bzw. `3·1` beginnen — Tafel XII beginnt `1·2`.
+   * **Der Begriff verlangt `n! = 24`** (`full_length`; Günther 1980 S. 20, und IGN S. 41:
+     „24 Stationen"). Die drei anderen ausgeschriebenen Folgen des Textes haben 24.
+   * **Günthers Verteilung an der Stelle**, neun-sechs-neun — sie trägt die Länge schon in
+     sich (`9 + 6 + 9 = 24`) und ist darum kein von ihr unabhängiger Zeuge.
+   * **Tafel XII**: ihre 25 Wertspalten folgen der emendierten Folge in 24 von 25 Spalten.
 2. Tafel XII, Spalte 18, lautet in der Textschicht `2 3 □ 2`; die Folge verlangt `2 3 □ 1`.
 3. Tafel IV (1980), Spalte 17, lautet `1 4 2 1`; die Folge verlangt `1 4 2 3`.
 
@@ -111,11 +137,16 @@ Härte-Marke durchweg **GEMESSEN** (CLAUDE.md §6), gelesen an der Textschicht d
 
 ## Axiomprofil
 
-Gemessen und am Dateiende gewacht. Die Zeugen-Sätze und `triadic_unique` tragen `[propext]`
-— **ohne `Classical.choice`**: der Listen-Träger braucht `DecidableEq`, keine
-`Fintype`-Instanz. (Über `Equiv.Perm (Fin 4)` gemessen zieht derselbe Inhalt das volle
-Profil, siehe Vorprobe §3.) `negate_negate` trägt zusätzlich `Quot.sound` (`funext` unter
-`List.map`), `visits_every_arrangement` trägt, was `List.mem_permutations'` trägt.
+Gemessen und am Dateiende gewacht. Die Zeugen-Sätze, `triadic_unique` und
+`kreis2_emendation` tragen `[propext]` — **ohne `Classical.choice`**: der Listen-Träger
+braucht `DecidableEq`, keine `Fintype`-Instanz. (Über `Equiv.Perm (Fin 4)` gemessen zieht
+derselbe Inhalt das volle Profil, siehe Vorprobe §3.) `negate_negate` trägt zusätzlich
+`Quot.sound` (`funext` unter `List.map`), `visits_every_arrangement` trägt, was
+`List.mem_permutations'` trägt. **Zwei Sätze tragen das volle Profil**: `full_length` und
+mit ihm `triadic_unique'`. Das `Classical.choice` kommt aus Mathlibs Sätzen über
+`List.permutations` (`nodup_permutations`, `permutations_perm_permutations'`,
+`length_permutations`), nicht aus der Sache; darum bleibt die längenbeschränkte Fassung
+`triadic_unique` als die choice-freie daneben stehen.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
 `List.permutations'`.
 -/
@@ -185,6 +216,28 @@ theorem visits_every_arrangement {m : ℕ} {seq : List (Fin m)} (h : IsFullCycle
     {l : List (Fin (m + 1))} (hl : l.Perm (origin m)) : l ∈ stations seq (origin m) :=
   h.all_arrangements l (List.mem_permutations'.mpr hl)
 
+/-- Eine Negationsfolge hat so viele Stationen wie Negatoren. -/
+theorem stations_length {m : ℕ} (seq : List (Fin m)) (l : List (Fin (m + 1))) :
+    (stations seq l).length = seq.length := by
+  induction seq generalizing l with
+  | nil => rfl
+  | cons i is ih => simp [stations, ih]
+
+open List in
+/-- **Ein Vollkreis über `m + 1` Werten hat `(m + 1)!` Negatoren** — Günthers „n!
+Negationsschritte" (1980, S. 20). -/
+theorem full_length {m : ℕ} {seq : List (Fin m)} (h : IsFullCycle seq) :
+    seq.length = (m + 1).factorial := by
+  have hn : (origin m).permutations'.Nodup :=
+    ((permutations_perm_permutations' _).nodup_iff).mp
+      (nodup_permutations _ (nodup_finRange _))
+  have hp : (stations seq (origin m)).Perm (origin m).permutations' :=
+    (perm_ext_iff_of_nodup h.nodup hn).mpr fun l =>
+      ⟨h.only_arrangements l, h.all_arrangements l⟩
+  rw [← stations_length seq (origin m), hp.length_eq,
+    ← (permutations_perm_permutations' _).length_eq, length_permutations]
+  simp [origin]
+
 -- ============================================================
 -- Teil 2 — dreiwertig: Tafel VI (IGN S. 18)
 -- ============================================================
@@ -207,6 +260,13 @@ sechs sind (4) und (5) die einzigen Vollkreise. -/
 theorem triadic_unique : ∀ a b c d e f : Fin 2, IsFullCycle [a, b, c, d, e, f] →
     [a, b, c, d, e, f] = tafelVI4 ∨ [a, b, c, d, e, f] = tafelVI5 := by decide
 
+/-- Dasselbe ohne Längenvoraussetzung: **jeder** dreiwertige Vollkreis ist (4) oder (5). -/
+theorem triadic_unique' (seq : List (Fin 2)) (h : IsFullCycle seq) :
+    seq = tafelVI4 ∨ seq = tafelVI5 := by
+  have hl : seq.length = 6 := by rw [full_length h]; rfl
+  match seq, hl with
+  | [a, b, c, d, e, f], _ => exact triadic_unique a b c d e f h
+
 -- ============================================================
 -- Teil 3 — vierwertig: die drei Beispielkreise (IGN S. 44–45; 1980 Tafel IV)
 -- ============================================================
@@ -215,13 +275,18 @@ theorem triadic_unique : ∀ a b c d e f : Fin 2, IsFullCycle [a, b, c, d, e, f]
 def kreis1 : List (Fin 3) :=
   [0, 1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 2, 0, 1, 2, 1, 0, 1, 0, 1, 2, 1, 0, 2]
 
-/-- IGN S. 44, der zweite Kreis — **um `·1·3` ergänzt**, siehe Kopf, Textbefund 1. -/
+/-- IGN S. 44, der zweite Kreis — **um `·1·3` emendiert**, siehe Kopf, Textbefund 1, und
+`kreis2_emendation`. -/
 def kreis2 : List (Fin 3) :=
   [0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1, 0, 2]
 
 /-- IGN S. 45, der dritte Kreis; zugleich die Negatorfolge über Tafel IV (1980, S. 20). -/
 def kreis3 : List (Fin 3) :=
   [0, 1, 2, 1, 2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0, 1, 0, 1, 2, 1, 2, 1, 0, 1]
+
+/-- Der zweite Kreis, **wie er IGN S. 44 gedruckt steht**: 22 Negatoren. -/
+def kreis2Gedruckt : List (Fin 3) :=
+  [0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1]
 
 set_option maxRecDepth 100000 in
 theorem kreis1_full : IsFullCycle kreis1 := by decide
@@ -231,6 +296,20 @@ theorem kreis2_full : IsFullCycle kreis2 := by decide
 
 set_option maxRecDepth 100000 in
 theorem kreis3_full : IsFullCycle kreis3 := by decide
+
+/-- Die gedruckte Folge kehrt nicht zum Ausgang zurück. -/
+theorem kreis2Gedruckt_not_closed : endpoint kreis2Gedruckt (origin 3) ≠ origin 3 := by
+  decide
+
+set_option maxRecDepth 100000 in
+/-- **Die Emendation ist erzwungen.** Unter allen Fortsetzungen der gedruckten Folge um
+zwei Negatoren gibt genau `·1·3` einen Vollkreis. -/
+theorem kreis2_emendation :
+    ∀ a b : Fin 3, IsFullCycle (kreis2Gedruckt ++ [a, b]) ↔ (a = 0 ∧ b = 2) := by
+  decide
+
+/-- `kreis2` ist die emendierte Folge. -/
+theorem kreis2_eq : kreis2 = kreis2Gedruckt ++ [0, 2] := by decide
 
 /-- Familie 10-9-5. -/
 theorem kreis1_family : kreis1.count 0 = 10 ∧ kreis1.count 1 = 9 ∧ kreis1.count 2 = 5 := by
@@ -357,5 +436,23 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.pseudo_not_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms pseudo_not_full
+
+/-- info: 'Reformulation.Proemial.NegationCycle.stations_length' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_length
+
+/-- info: 'Reformulation.Proemial.NegationCycle.full_length' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms full_length
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2Gedruckt_not_closed' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2Gedruckt_not_closed
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_emendation' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2_emendation
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_eq' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2_eq
+
+/-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms triadic_unique'
 
 end Reformulation.Proemial.NegationCycle

@@ -1220,12 +1220,14 @@ Enthält:
   Strang trägt es schon in der gebauten Richtung (`relabel_isRGS`, `canonicalize_eq_iff`),
   nur `preserves_unary` ist axiomfrei.
 - `Proemial.NegationCycle`: **Negationsfolgen, die jede Wertfolge genau einmal durchlaufen**
-  (Günthers „Hamiltonkreise", Stufe 1; BENENNUNG mit Zeugen-Sätzen). Träger: Wertfolgen als
+  (Günthers „Hamiltonkreise", Stufe 1; BENENNUNG mit Zeugen-Sätzen und drei Erträgen). Träger: Wertfolgen als
   Listen über `Fin (m + 1)`, der Negator als **Werte**-Umtausch (`sw`, `negate`), das
   entscheidbare Prädikat `IsFullCycle` (kehrt zurück, keine Station doppelt, jede Station
   eine Anordnung aller Werte, jede Anordnung Station). Dreiwertig: `tafelVI4_full`,
-  `tafelVI5_full`, und der kleine Ertrag `triadic_unique` — (4) und (5) sind die einzigen
-  Vollkreise der Länge sechs (IGN S. 43, dort ohne Beweis). Vierwertig: Günthers drei
+  `tafelVI5_full`, und `triadic_unique` / `triadic_unique'` — (4) und (5) sind die einzigen
+  dreiwertigen Vollkreise (IGN S. 43, dort ohne Beweis; die gestrichene Fassung ohne
+  Längenvoraussetzung). Allgemein `full_length`: ein Vollkreis über `m + 1` Werten hat
+  `(m + 1)!` Negatoren (Günthers „n! Negationsschritte", 1980 S. 20). Vierwertig: Günthers drei
   Beispielkreise `kreis1_full`/`kreis2_full`/`kreis3_full` mit ihren Familien 10-9-5,
   9-6-9, 6-12-6; `kreis3` ist die Negatorfolge über Tafel IV (1980). Gegen-Drehsinn und
   Spiegelung `N₁ ↔ N₃` an den Beispielen. Günthers Gegenbeispiel (23): `pseudo_closes`,
@@ -1233,8 +1235,11 @@ Enthält:
   die Unmöglichkeit von 8-8-8 (ausserhalb nachgerechnet, Stufe 2 nicht gebaut); kein
   `§20`-Anspruch, keine Ledger-Zeile, nichts über die Zeit. Drei Textbefunde an Hermeneutes
   gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
-  Tafel IV). 22 Wachen, **durchweg ohne `Classical.choice`** (`[propext]`, zweimal mit
-  `Quot.sound`).
+  Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
+  unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
+  Vollkreis. 28 Wachen; **choice-frei bis auf zwei**: `full_length` und `triadic_unique'`
+  tragen das volle Profil aus Mathlibs Sätzen über `List.permutations`, alle anderen
+  `[propext]` (zweimal mit `Quot.sound`).
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
