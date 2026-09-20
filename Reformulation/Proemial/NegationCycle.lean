@@ -42,8 +42,14 @@ Die Sätze:
   `kreis3_family` (6-12-6) — die Operatorhäufigkeiten, nach denen er die drei Familien
   unterscheidet. `kreis3` ist zugleich die Negatorfolge über **Tafel IV** des Aufsatzes von
   1980.
-* `kreis1_reverse_full`, `kreis2_reverse_full`, `kreis3_reverse_full` — der Gegen-Drehsinn
-  ist wieder ein Vollkreis. `kreis1_mirror_full`, `kreis1_mirror_family` — die Spiegelung
+* `reverse_full` — **Ertrag, und die Schliessung einer benannten Lücke**: die Umkehrung
+  *jedes* Vollkreises ist ein Vollkreis. Günther rechnet „Drehsinn und Gegen-Drehsinn als
+  einen Kreis" (1980, S. 20) — bis zum 21. September stand das hier nur an den drei
+  Beispielen. Der Beweis geht über `fullStations_reverse`: die umgekehrte Folge durchläuft
+  dieselbe Stationenfolge rückwärts (Hilfssätze `endpoint_append`, `stations_append`,
+  `fullStations_append`, `endpoint_reverse`). `kreis1_reverse_full`,
+  `kreis2_reverse_full`, `kreis3_reverse_full` sind seither seine Folgerungen, nicht mehr
+  `decide`-Läufe. `kreis1_mirror_full`, `kreis1_mirror_family` — die Spiegelung
   `N₁ ↔ N₃` führt 10-9-5 in 5-9-10 über; Günther rechnet beide zur selben Familie.
 * `pseudo_closes`, `pseudo_family`, `pseudo_half`, `pseudo_not_full` — Günthers eigenes
   Gegenbeispiel, die Folge (23): `N₁·₂·₃` achtmal kehrt zurück und verteilt die Operatoren
@@ -132,8 +138,9 @@ ein, was nicht dasteht.
   entscheidet Custos mit Hermeneutes.
 * **Nichts über „Negativsprache", „Wörterbuch", „Totaläquivalenz".** Das sind Günthers
   Deutungen der Kreise; formalisiert sind die Kreise.
-* **Keine Drehsinn-Aussage im Allgemeinen.** Dass die Umkehrung *jedes* Vollkreises ein
-  Vollkreis ist, steht hier nur an den drei Beispielen.
+* **Keine Aussage über die Spiegelung im Allgemeinen.** Dass `N₁ ↔ N₃` *jeden* Vollkreis
+  in einen Vollkreis überführt, steht hier nur am ersten Beispiel. (Die Drehsinn-Aussage
+  war bis zum 21. September ebenso beschränkt und ist es seit `reverse_full` nicht mehr.)
 
 ## Axiomprofil
 
@@ -148,7 +155,9 @@ mit ihm `triadic_unique'`. Das `Classical.choice` kommt aus Mathlibs Sätzen üb
 `length_permutations`), nicht aus der Sache; darum bleibt die längenbeschränkte Fassung
 `triadic_unique` als die choice-freie daneben stehen.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
-`List.permutations'`.
+`List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
+Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
+**nicht** durch `decide` gehen.
 -/
 
 namespace Reformulation.Proemial.NegationCycle
@@ -239,6 +248,83 @@ theorem full_length {m : ℕ} {seq : List (Fin m)} (h : IsFullCycle seq) :
   simp [origin]
 
 -- ============================================================
+-- Teil 1b — der Gegen-Drehsinn: die Umkehrung eines Vollkreises
+-- ============================================================
+
+theorem endpoint_append {m : ℕ} (seq : List (Fin m)) (i : Fin m) (l : List (Fin (m + 1))) :
+    endpoint (seq ++ [i]) l = negate i (endpoint seq l) := by
+  induction seq generalizing l with
+  | nil => rfl
+  | cons j js ih => simpa [endpoint] using ih (negate j l)
+
+theorem stations_append {m : ℕ} (seq : List (Fin m)) (i : Fin m) (l : List (Fin (m + 1))) :
+    stations (seq ++ [i]) l = stations seq l ++ [endpoint seq l] := by
+  induction seq generalizing l with
+  | nil => rfl
+  | cons j js ih => simpa [stations, endpoint] using ih (negate j l)
+
+/-- Die **volle** Stationenfolge: die Stationen samt der zuletzt erreichten Wertfolge. -/
+def fullStations {m : ℕ} (seq : List (Fin m)) (l : List (Fin (m + 1))) :
+    List (List (Fin (m + 1))) :=
+  stations seq l ++ [endpoint seq l]
+
+theorem fullStations_cons {m : ℕ} (j : Fin m) (js : List (Fin m)) (l : List (Fin (m + 1))) :
+    fullStations (j :: js) l = l :: fullStations js (negate j l) := rfl
+
+theorem fullStations_append {m : ℕ} (seq : List (Fin m)) (i : Fin m) (l : List (Fin (m + 1))) :
+    fullStations (seq ++ [i]) l = fullStations seq l ++ [negate i (endpoint seq l)] := by
+  simp [fullStations, stations_append, endpoint_append]
+
+/-- Die umgekehrte Folge führt vom Ziel zum Ausgang zurück. -/
+theorem endpoint_reverse {m : ℕ} (seq : List (Fin m)) (l : List (Fin (m + 1))) :
+    endpoint seq.reverse (endpoint seq l) = l := by
+  induction seq generalizing l with
+  | nil => rfl
+  | cons j js ih =>
+    rw [List.reverse_cons, endpoint_append]
+    show negate j (endpoint js.reverse (endpoint js (negate j l))) = l
+    rw [ih (negate j l), negate_negate]
+
+/-- **Die umgekehrte Folge durchläuft dieselbe Stationenfolge rückwärts.** -/
+theorem fullStations_reverse {m : ℕ} (seq : List (Fin m)) (l : List (Fin (m + 1))) :
+    fullStations seq.reverse (endpoint seq l) = (fullStations seq l).reverse := by
+  induction seq generalizing l with
+  | nil => rfl
+  | cons j js ih =>
+    rw [List.reverse_cons]
+    show fullStations (js.reverse ++ [j]) (endpoint js (negate j l)) = _
+    rw [fullStations_append, ih (negate j l), endpoint_reverse, negate_negate,
+      fullStations_cons, List.reverse_cons]
+
+/-- **Die Umkehrung eines Vollkreises ist ein Vollkreis** — Günthers „Drehsinn und
+Gegen-Drehsinn", als Satz für jeden Kreis. -/
+theorem reverse_full {m : ℕ} {seq : List (Fin m)} (h : IsFullCycle seq) :
+    IsFullCycle seq.reverse := by
+  cases seq with
+  | nil => simpa using h
+  | cons j js =>
+    set seq := j :: js with hseq
+    have hc : endpoint seq (origin m) = origin m := h.closes
+    have hcl : endpoint seq.reverse (origin m) = origin m := by
+      have := endpoint_reverse seq (origin m); rwa [hc] at this
+    have hfs : fullStations seq.reverse (origin m) = (fullStations seq (origin m)).reverse := by
+      have := fullStations_reverse seq (origin m); rwa [hc] at this
+    obtain ⟨t, ht⟩ : ∃ t, stations seq (origin m) = origin m :: t :=
+      ⟨stations js (negate j (origin m)), rfl⟩
+    have key : stations seq.reverse (origin m) = origin m :: t.reverse := by
+      have e1 : fullStations seq.reverse (origin m)
+          = stations seq.reverse (origin m) ++ [origin m] := by rw [fullStations, hcl]
+      have e2 : (fullStations seq (origin m)).reverse
+          = (origin m :: t.reverse) ++ [origin m] := by rw [fullStations, hc, ht]; simp
+      rw [e1, e2] at hfs
+      exact List.append_cancel_right hfs
+    have hperm : (stations seq.reverse (origin m)).Perm (stations seq (origin m)) := by
+      rw [key, ht]; exact (List.perm_cons _).mpr (List.reverse_perm t)
+    exact ⟨hcl, hperm.nodup_iff.mpr h.nodup,
+      fun l hl => h.only_arrangements l (hperm.mem_iff.mp hl),
+      fun l hl => hperm.mem_iff.mpr (h.all_arrangements l hl)⟩
+
+-- ============================================================
 -- Teil 2 — dreiwertig: Tafel VI (IGN S. 18)
 -- ============================================================
 
@@ -323,14 +409,11 @@ theorem kreis2_family : kreis2.count 0 = 9 ∧ kreis2.count 1 = 6 ∧ kreis2.cou
 theorem kreis3_family : kreis3.count 0 = 6 ∧ kreis3.count 1 = 12 ∧ kreis3.count 2 = 6 := by
   decide
 
-set_option maxRecDepth 100000 in
-theorem kreis1_reverse_full : IsFullCycle kreis1.reverse := by decide
+theorem kreis1_reverse_full : IsFullCycle kreis1.reverse := reverse_full kreis1_full
 
-set_option maxRecDepth 100000 in
-theorem kreis2_reverse_full : IsFullCycle kreis2.reverse := by decide
+theorem kreis2_reverse_full : IsFullCycle kreis2.reverse := reverse_full kreis2_full
 
-set_option maxRecDepth 100000 in
-theorem kreis3_reverse_full : IsFullCycle kreis3.reverse := by decide
+theorem kreis3_reverse_full : IsFullCycle kreis3.reverse := reverse_full kreis3_full
 
 set_option maxRecDepth 100000 in
 /-- Die Spiegelung `N₁ ↔ N₃` eines Vollkreises, am ersten Beispiel. -/
@@ -380,6 +463,33 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 /-- info: 'Reformulation.Proemial.NegationCycle.visits_every_arrangement' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms visits_every_arrangement
 
+/-- info: 'Reformulation.Proemial.NegationCycle.stations_length' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_length
+
+/-- info: 'Reformulation.Proemial.NegationCycle.full_length' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms full_length
+
+/-- info: 'Reformulation.Proemial.NegationCycle.endpoint_append' does not depend on any axioms -/
+#guard_msgs in #print axioms endpoint_append
+
+/-- info: 'Reformulation.Proemial.NegationCycle.stations_append' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_append
+
+/-- info: 'Reformulation.Proemial.NegationCycle.fullStations_cons' does not depend on any axioms -/
+#guard_msgs in #print axioms fullStations_cons
+
+/-- info: 'Reformulation.Proemial.NegationCycle.fullStations_append' depends on axioms: [propext] -/
+#guard_msgs in #print axioms fullStations_append
+
+/-- info: 'Reformulation.Proemial.NegationCycle.endpoint_reverse' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms endpoint_reverse
+
+/-- info: 'Reformulation.Proemial.NegationCycle.fullStations_reverse' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms fullStations_reverse
+
+/-- info: 'Reformulation.Proemial.NegationCycle.reverse_full' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms reverse_full
+
 /-- info: 'Reformulation.Proemial.NegationCycle.tafelVI4_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms tafelVI4_full
 
@@ -392,6 +502,9 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 /-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique' depends on axioms: [propext] -/
 #guard_msgs in #print axioms triadic_unique
 
+/-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms triadic_unique'
+
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis1_full
 
@@ -400,6 +513,15 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis3_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis3_full
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2Gedruckt_not_closed' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2Gedruckt_not_closed
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_emendation' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2_emendation
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_eq' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis2_eq
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_family' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis1_family
@@ -410,13 +532,13 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis3_family' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis3_family
 
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis1_reverse_full' depends on axioms: [propext] -/
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis1_reverse_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms kreis1_reverse_full
 
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_reverse_full' depends on axioms: [propext] -/
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_reverse_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms kreis2_reverse_full
 
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis3_reverse_full' depends on axioms: [propext] -/
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis3_reverse_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms kreis3_reverse_full
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_mirror_full' depends on axioms: [propext] -/
@@ -436,23 +558,5 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.pseudo_not_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms pseudo_not_full
-
-/-- info: 'Reformulation.Proemial.NegationCycle.stations_length' depends on axioms: [propext] -/
-#guard_msgs in #print axioms stations_length
-
-/-- info: 'Reformulation.Proemial.NegationCycle.full_length' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in #print axioms full_length
-
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis2Gedruckt_not_closed' depends on axioms: [propext] -/
-#guard_msgs in #print axioms kreis2Gedruckt_not_closed
-
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_emendation' depends on axioms: [propext] -/
-#guard_msgs in #print axioms kreis2_emendation
-
-/-- info: 'Reformulation.Proemial.NegationCycle.kreis2_eq' depends on axioms: [propext] -/
-#guard_msgs in #print axioms kreis2_eq
-
-/-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in #print axioms triadic_unique'
 
 end Reformulation.Proemial.NegationCycle

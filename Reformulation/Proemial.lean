@@ -61,6 +61,7 @@ import Reformulation.Proemial.TournamentSplitThree
 import Reformulation.Proemial.LocalOpInseparability
 import Reformulation.Proemial.PatternInvariance
 import Reformulation.Proemial.NegationCycle
+import Reformulation.Proemial.NegationCycleTable
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1240,6 +1241,18 @@ Enthält:
   Vollkreis. 28 Wachen; **choice-frei bis auf zwei**: `full_length` und `triadic_unique'`
   tragen das volle Profil aus Mathlibs Sätzen über `List.permutations`, alle anderen
   `[propext]` (zweimal mit `Quot.sound`).
+- `Proemial.NegationCycleTable`: **die Tafel der vierwertigen Vollkreise — mindestens
+  vierundvierzig** (Stufe 2a nach `Spec_NegationCycle_Stufe2.md`). 44 ausgeschriebene
+  Negationsfolgen, davon **drei Günther-eigen und 41 gerechnet** (die Trennung steht in der
+  Definition: `alleKreise = guenthers ++ gerechnet`): jede ein Vollkreis
+  (`alleKreise_full`), keine zwei gleich (`alleKreise_nodup`), **keine die Umkehrung einer
+  anderen** (`alleKreise_no_reverse`) — also 44 Kreise, nicht 44 Folgen über 22 Kreisen.
+  Dazu die vier Verteilungen (`alleKreise_families`), **keine mit 8-8-8**
+  (`alleKreise_no_888`, an diesen 44 und nicht als Unmöglichkeitssatz), und die 88
+  gerichteten, deren zweite Hälfte `NegationCycle.reverse_full` konsumiert statt neu zu
+  entscheiden. **Nicht „genau 44"**: die Vollständigkeit ist Stufe 2b und ungebaut; ebenso
+  nicht Tafel XX. Kein `§20`-Anspruch, keine Ledger-Zeile. 10 Wachen, kein
+  `Classical.choice`; Bauzeit rund 13 s.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
