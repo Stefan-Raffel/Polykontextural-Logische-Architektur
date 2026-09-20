@@ -59,6 +59,7 @@ import Reformulation.Proemial.SharedPlaceGrowth
 import Reformulation.Proemial.TournamentInseparability
 import Reformulation.Proemial.TournamentSplitThree
 import Reformulation.Proemial.LocalOpInseparability
+import Reformulation.Proemial.PatternInvariance
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1200,6 +1201,23 @@ Enthält:
   **Keine Ledger-Zeile.** 29 Wachen, **kein Satz trägt `Classical.choice`** — die
   Spec-Erwartung fiel: die Induktion zählt in `List.finRange` statt über `Fintype`, und
   die Bit-Rechnung des Anfangs verlor den Choice, als `omega` nur noch atomare Ziele bekam.
+
+- `Proemial.PatternInvariance`: **die Kenogramme als Invarianten der Wert-Permutationen**,
+  gebaut nach `Spec_O4_Kenogramme_als_Invarianten.md` (FOLGERUNG). Zielsatz
+  `pattern_characterization`: eine Menge von Tupeln `Fin n → Fin m` ist **genau dann**
+  unter allen Wert-Permutationen invariant, wenn sie mit jedem Tupel dessen ganze
+  **Musterklasse** enthält. Lemma `orbit_of_same_pattern` — gleiches `canonicalize` gibt
+  eine Permutation, die das eine Tupel ins andere trägt; konstruiert, nicht über
+  Endlichkeit erschlossen: zwei vollständige `Nodup`-Listen (`marksFull`) geben die
+  Bijektion mit expliziter Umkehrung (`viaLists`), und die Markenpositionen
+  korrespondieren, weil das Muster sie bestimmt (`dedup_idxOf_congr`, Induktion über die
+  Muster-Form `Pat`). **Die Naht:** erste Datei, die `Preserves` (Klon-Strang) mit
+  `canonicalize` (Grund) in einem Satz verbindet — vierte ihrer Art, Präzedenz
+  `RelabelInvariance`. **Löst `A20-1` NICHT ein:** sie trifft den Ort (über Kenogrammen)
+  und nicht die Stelligkeit zwei. Keine Ledger-Zeile, kein `§20`-Träger; die vierte Grenze
+  des Papiers bleibt unberührt. 17 Wachen; **Choice ist hier keine Auswahlfrage** — der
+  Strang trägt es schon in der gebauten Richtung (`relabel_isRGS`, `canonicalize_eq_iff`),
+  nur `preserves_unary` ist axiomfrei.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
