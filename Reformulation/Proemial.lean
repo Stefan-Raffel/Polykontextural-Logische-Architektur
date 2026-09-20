@@ -60,6 +60,7 @@ import Reformulation.Proemial.TournamentInseparability
 import Reformulation.Proemial.TournamentSplitThree
 import Reformulation.Proemial.LocalOpInseparability
 import Reformulation.Proemial.PatternInvariance
+import Reformulation.Proemial.NegationCycle
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1218,6 +1219,22 @@ Enthält:
   des Papiers bleibt unberührt. 17 Wachen; **Choice ist hier keine Auswahlfrage** — der
   Strang trägt es schon in der gebauten Richtung (`relabel_isRGS`, `canonicalize_eq_iff`),
   nur `preserves_unary` ist axiomfrei.
+- `Proemial.NegationCycle`: **Negationsfolgen, die jede Wertfolge genau einmal durchlaufen**
+  (Günthers „Hamiltonkreise", Stufe 1; BENENNUNG mit Zeugen-Sätzen). Träger: Wertfolgen als
+  Listen über `Fin (m + 1)`, der Negator als **Werte**-Umtausch (`sw`, `negate`), das
+  entscheidbare Prädikat `IsFullCycle` (kehrt zurück, keine Station doppelt, jede Station
+  eine Anordnung aller Werte, jede Anordnung Station). Dreiwertig: `tafelVI4_full`,
+  `tafelVI5_full`, und der kleine Ertrag `triadic_unique` — (4) und (5) sind die einzigen
+  Vollkreise der Länge sechs (IGN S. 43, dort ohne Beweis). Vierwertig: Günthers drei
+  Beispielkreise `kreis1_full`/`kreis2_full`/`kreis3_full` mit ihren Familien 10-9-5,
+  9-6-9, 6-12-6; `kreis3` ist die Negatorfolge über Tafel IV (1980). Gegen-Drehsinn und
+  Spiegelung `N₁ ↔ N₃` an den Beispielen. Günthers Gegenbeispiel (23): `pseudo_closes`,
+  `pseudo_family` (8-8-8), `pseudo_half`, `pseudo_not_full`. **Nicht:** die 44, Tafel XX,
+  die Unmöglichkeit von 8-8-8 (ausserhalb nachgerechnet, Stufe 2 nicht gebaut); kein
+  `§20`-Anspruch, keine Ledger-Zeile, nichts über die Zeit. Drei Textbefunde an Hermeneutes
+  gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
+  Tafel IV). 22 Wachen, **durchweg ohne `Classical.choice`** (`[propext]`, zweimal mit
+  `Quot.sound`).
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
