@@ -62,6 +62,7 @@ import Reformulation.Proemial.LocalOpInseparability
 import Reformulation.Proemial.PatternInvariance
 import Reformulation.Proemial.NegationCycle
 import Reformulation.Proemial.NegationCycleTable
+import Reformulation.Proemial.NegationCycleSearch
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1253,6 +1254,20 @@ Enthält:
   entscheiden. **Nicht „genau 44"**: die Vollständigkeit ist Stufe 2b und ungebaut; ebenso
   nicht Tafel XX. Kein `§20`-Anspruch, keine Ledger-Zeile. 10 Wachen, kein
   `Classical.choice`; Bauzeit rund 13 s.
+- `Proemial.NegationCycleSearch`: **die Vollzähligkeit — es gibt genau vierundvierzig**
+  (Stufe 2b). Eine Suche über die 24 Wertfolgen, deren Zustand ein Index und eine
+  **Bitmaske** ist (die Kodierung ist die Bedingung der Machbarkeit: dieselbe Suche mit
+  Listen bricht im Kernel ab, mit der Maske läuft sie in 17,6 s). `search_complete` — der
+  Kern, Induktion über die Suchtiefe mit der Invariante „die Maske kodiert die besuchten
+  Stationen"; `alleB_complete` — jeder Vollkreis steht in der Ausgabe; `full_iff_mem` — der
+  Zielsatz in Iff-Form; `alleB_perm_gerichtet` — **die Suche und die Tafel aus 2a sind
+  dieselbe Liste**, bewiesen statt entschieden; `exactly_fortyfour` — Günthers Zahl: eine
+  Folge ist genau dann ein Vollkreis, wenn sie in der Tafel der 44 steht oder ihre
+  Umkehrung. Der Brückenkopf (`nb_0/1/2`, `ix_inj`) prüft die Index-Kodierung gegen
+  `negate`, über alle 24 Wertfolgen — sie ist nicht gesetzt. **Nicht** Tafel XX; kein
+  `§20`-Anspruch, keine Ledger-Zeile. 19 Wachen; `search_complete` und seine Konsumenten
+  tragen `Classical.choice` (Gattung Taktikwahl, benannt und nicht geheilt — die Heilung
+  aus Fallstrick 21 greift dort nicht), alle Hilfssätze sind choice-frei. Bauzeit rund 33 s.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
