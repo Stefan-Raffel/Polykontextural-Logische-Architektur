@@ -108,6 +108,20 @@ ein, was nicht dasteht.
 2. Tafel XII, Spalte 18, lautet in der Textschicht `2 3 □ 2`; die Folge verlangt `2 3 □ 1`.
 3. Tafel IV (1980), Spalte 17, lautet `1 4 2 1`; die Folge verlangt `1 4 2 3`.
 
+**Quelle der Emendation (Hermeneutes / Custos, 22.9.).** Der emendierte Kreis 2 steht nicht
+nur durch drei innere Zeugen (die 9-6-9-Verteilung, die Länge 24 aller übrigen Kreise,
+Tafel XII), sondern durch Günthers eigenen Druck: im *Janusgesicht der Dialektik* (1974)
+druckt er denselben Kreis vollständig, mit 24 Negatoren in der Verteilung 9-6-9. Diese
+Folge — `janus1974` — ist ein Vollkreis (`janus1974_full`) und ist genau die emendierte
+Folge, um einen Schritt rotiert (`janus1974_rotate`); die in IGN gedruckten 22 Negatoren
+stehen darin als zusammenhängendes Stück. **„Emendation" ist damit das richtige Wort: die
+Fassung trägt einen Druckfehler, nicht der Kreis.**
+
+**Druckvorlage.** Die drei Textbefunde sind Druckfehler der *Fassung*, deren Vorlage die
+*Hegeljahrbücher* 1979, S. 22–88, sind; ob schon der Originaldruck so aussah, ist am Bestand
+nicht zu entscheiden, und die Extraktion ist nicht die Ursache. Befund 2 steht unabhängig
+davon, wie man das strittige Kästchen liest.
+
 ## Lesart, im Kopf festgelegt und nicht stillschweigend
 
 * **Der Negator wirkt auf WERTE** (`sw` tauscht die Werte `i` und `i + 1`, wo immer sie
@@ -160,6 +174,8 @@ Mathlibs Sätzen über `List.permutations` (`nodup_permutations`,
 **entscheidbar** (`perms2_nodup`, axiomfrei), und `full_length2` braucht den Mathlib-Baustein
 nicht. Dasselbe Muster wie `full_length3` in `NegationCycleSearch` (Fallstrick 10, die
 Baustein-Gattung); gemessen bei der Abnahme der dortigen Heilung.
+
+`janus1974_full` und `janus1974_rotate` tragen `[propext]`, gemessen am 22.9.2026.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
 `List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
@@ -417,6 +433,21 @@ theorem kreis2_emendation :
 /-- `kreis2` ist die emendierte Folge. -/
 theorem kreis2_eq : kreis2 = kreis2Gedruckt ++ [0, 2] := by decide
 
+/-- **Günthers eigener Druck desselben Kreises**: *Das Janusgesicht der Dialektik*
+(Hegel-Jahrbuch 1974), S. 24 der vordenker-Fassung, `p ≡ N 3·1·2·3·1·3·2·1·3·…·3·2·1 p`,
+24 Negatoren. Zeuge der Emendation — er tritt neben `kreis2`, nicht an seine Stelle. -/
+def janus1974 : List (Fin 3) :=
+  [2, 0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1, 0, 2, 0, 1, 2, 0, 2, 1, 0]
+
+set_option maxRecDepth 100000 in
+/-- Der Druck von 1974 ist ein Vollkreis. -/
+theorem janus1974_full : IsFullCycle janus1974 := by decide
+
+/-- **Der Druck von 1974 ist die emendierte Folge, um einen Schritt rotiert** —
+`List.rotate 23` stellt das letzte Glied an den Anfang. Dieselbe Folge, nicht nur eine
+gleich lange. -/
+theorem janus1974_rotate : janus1974 = kreis2.rotate 23 := by decide
+
 /-- Familie 10-9-5. -/
 theorem kreis1_family : kreis1.count 0 = 10 ∧ kreis1.count 1 = 9 ∧ kreis1.count 2 = 5 := by
   decide
@@ -584,5 +615,11 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.pseudo_not_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms pseudo_not_full
+
+/-- info: 'Reformulation.Proemial.NegationCycle.janus1974_full' depends on axioms: [propext] -/
+#guard_msgs in #print axioms janus1974_full
+
+/-- info: 'Reformulation.Proemial.NegationCycle.janus1974_rotate' depends on axioms: [propext] -/
+#guard_msgs in #print axioms janus1974_rotate
 
 end Reformulation.Proemial.NegationCycle
