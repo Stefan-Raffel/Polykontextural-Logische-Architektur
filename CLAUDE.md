@@ -171,6 +171,19 @@ Route.
 Zaehlt man ueber mehrere Targets, gilt dasselbe in der anderen Richtung: ihre Import-Huellen
 ueberlappen, und wer die Bauausgaben summiert, zaehlt Module doppelt. Siehe §12, Regel 4.
 
+**Wachen erzeugen: `./wachen_namen.sh <Modul> [Datei]`.** Das Skript schreibt aus einer
+Lean-Datei die Messdatei - `import <Modul>` und je Satz eine Zeile
+`#print axioms <Modul>.<Satz>` - ueber dieselbe Satzroute wie `kennzahlen.sh`. Sein Zweck ist
+allein die **Namensliste**: die Namen laufen durch `python3` statt durch die Wortteilung der
+Shell (Fallstrick 12). Es misst nichts und prueft nichts. (Gebaut `fecaa25`.)
+
+**Der gruene Bau gehoert VOR den Messlauf, nicht daneben** - und zwar jedes Target, das die
+gemessene Datei baut. Ein `decide`, das in den Timeout laeuft, hinterlaesst ein axiomfreies
+Profil (Fallstrick 23); ein Messlauf ueber eine rote Datei schriebe eine Wache mit
+Phantom-Profil, und sie bliebe gruen. **Das Skript prueft den Bau nicht, mit Absicht:** ein
+Werkzeug, das seine eigene Voraussetzung prueft, wird ein anderes Werkzeug. Die Pruefung
+steht in der Handlungsfolge, also hier.
+
 Die aktuellen Werte stehen in `docs/kennzahlen.md`, nicht hier und seit E3 auch nicht
 mehr im README. Eine Kennzahl gehoert in diese Datei nur als Beleg fuer eine Regel, an
 einen Commit gebunden; nie als laufender Stand.
@@ -863,6 +876,18 @@ Sache; tragen nur `._simp_`-Konstanten es, ist es die Umgebung.** *Die Richtung 
 Sache" ist verlaesslich, die andere ist ein Verdacht:* `head_mem_transfer` fuehrt neben zwei
 `._simp_1`-Lemmas eine Instanz ohne Suffix und war dennoch heilbar.
 
+**Zwei Schritte darueber hinaus** (gemessen am 22. September, `NegationCycleSearch`,
+`a9ac518`). **(4) Die Kette abwaerts gehen**, Glied fuer Glied, bis eines keine erbende Quelle
+mehr hat, sondern eine eigene: an einem Zielsatz koennen mehrere Quellen verschiedener
+Gattung haengen - dort diese Gattung in `search_complete` und die Baustein-Gattung (10) ueber
+`full_length` in `alleB_complete`, zwei Module auseinander. *Die Route oben liest den
+Beweisterm; an importierten Saetzen geht das nur nach lokaler Neuelaboration unter anderem
+Namen.* **(5) Gegenfaktisch pruefen**: je eine Heilung zuruecknehmen und messen, ob der
+Zielsatz wieder Choice traegt. Die Route findet die Quellen; das Zuruecknehmen zeigt, dass es
+**alle** sind und jede **noetig** ist. *Wer nur die erste Quelle heilt, sieht den Zielsatz
+weiter mit Choice und schliesst, die Heilung greife nicht - so geschehen am 21. September,
+mit einer von fuenf geheilten Stellen.*
+
 **Heilung:** `simp only` mit benannten Lemmas (plus `omega` fuer Laengenziele). Sie macht das
 Profil nicht *stabil*, sondern **ablesbar**: es haengt dann an den genannten Namen und an
 nichts sonst. *Eine offene Taktik laesst das Profil von der Umgebung abhaengen; fuer `omega`
@@ -899,6 +924,54 @@ einem Namen gesucht, nichts gefunden, auf das Fehlen der Gattung geschlossen.* *
 ist nicht auf Lean beschraenkt.**
 
 ---
+
+**23 - Gewacht ist nicht bewiesen: ein `decide` im Timeout ist axiomfrei.** Gemessen am Bau
+von `NegationCycleTable` (21. September): `∀ s ∈ gerichtet, IsFullCycle s` per `decide`
+bricht mit "timeout at `whnf`" ab - und `#print axioms` meldet dennoch "does not depend on
+any axioms"; eine `#guard_msgs`-Wache darauf ist **gruen**.
+
+```text
+by decide im Timeout   Bau ROT;  "does not depend on any axioms";  Wache GRUEN
+sorry                  [propext, sorryAx]                 wie erwartet
+by decide +kernel      laeuft durch (10 s), [propext]     die Heartbeat-Grenze gilt dort nicht
+```
+
+Der Grund: `decide` erzeugt den wohlgeformten Term `of_decide_eq_true rfl`, nur seine
+Auswertung scheitert; `#print axioms` liest den **Term**, nicht den Bau. **Eine Wache misst
+den Term, der Bau misst die Auswertung** - wo beide auseinandergehen, gewinnt der Bau, und die
+Wache sieht es nicht.
+
+Das ist der sechzehnte eine Stufe weiter: dort sichert ein blosses `#print axioms` nichts,
+hier sichert auch die Wache nichts, solange der Bau nicht gruen ist. Zum fuenften (Timeout):
+die Heartbeat-Grenze nicht heraufsetzen, sondern `decide +kernel` pruefen oder einen Satz
+statt der Rechnung suchen (dort: `reverse_full`).
+
+**Reichweite:** leer, solange **jedes Target gebaut wird, das Wachen traegt** - `lake build`
+allein baut nur die Default-Targets; am 21. September alle fuenf uebrigen einzeln gebaut, alle
+gruen. **Route:** vor jedem Messlauf, aus dem Wachen entstehen, den Bau gruen sehen (§3,
+`wachen_namen.sh`). Beleg: `KorpusRev2/Vollzug_NegationCycle_Stufe2a_Impl.md` §6.
+
+*Rueckweg nach §13.3:* keiner in Sicht - eine Wache kann den Bau ihrer eigenen Datei nicht
+sehen.
+
+**24 - Ein `Finset` zahlt `Classical.choice` nur, wenn man ihn aus einer Liste MACHT.**
+Gemessen am 21. September, dieselbe Aussage auf drei Wegen
+(`KorpusRev2/Begutachtung_Spec2_Nachfuehrung_Impl.md`):
+
+```text
+reine Listen-Form                      l.length = 88         [propext]
+ueber List.toFinset                    l.toFinset.card = 88  [propext, Classical.choice, Quot.sound]
+Finset direkt:  <(l : Multiset _), h>  s.card = 88           [propext, Quot.sound]
+```
+
+Die Bausteine einzeln: `List.dedup` axiomfrei, `Finset.card` `[propext, Quot.sound]`,
+**`Multiset.toFinset` und `List.toFinset` mit `Classical.choice`**. Das Choice sitzt im
+Erzeuger, nicht in der Kardinalitaet. **Wer den `Finset` aus einer duplikatfreien Liste
+baut, zahlt nicht, und `card` ist dann definitional die Laenge** - der Kardinalitaetssatz ist
+der Laengensatz selbst, ohne Beweisschritt. `Quot.sound` bleibt: `Multiset` ist ein Quotient.
+
+Eine weitere Gestalt der Baustein-Gattung (10). **Reichweite:** nicht erhoben; der direkte Weg
+steht nicht im Bestand - `NegationCycleSearch` fuehrt die Listen-Form.
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
 
