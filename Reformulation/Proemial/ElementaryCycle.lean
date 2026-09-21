@@ -41,7 +41,8 @@ aufhört und der Korpusbegriff anfängt.
 Der einwertige Fall trägt hier keinen eigenen Satz. Er ist der Zweig, der die
 Dichotomie erschöpfend macht — als Bahn der Größe 1 und damit formal trivial;
 `Function.minimalPeriod_eq_one_iff_isFixedPt` steht wörtlich in Mathlib. Die
-Ledger-Zeile zum Selbstzyklus bleibt darum offen, nicht geschlossen.
+Ledger-Zeile zum Selbstzyklus (L14-1) ist darum **bewusst nicht gebaut** — trivial und
+Mathlib-schließbar.
 
 ## Axiom-Lage
 

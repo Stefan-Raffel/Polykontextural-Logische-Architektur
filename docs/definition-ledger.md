@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 20.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 21.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
@@ -219,7 +219,7 @@ beider Fehlexpansionen.
 | L12-10 | Stufengang (§12) | `CV.card_locallyClassical_lt` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Zahl der lokal klassischen Operationen wächst je Stufenschritt echt; Konsum von `SAsc.choose_two_succ`, Schranke `1 ≤ m` scharf. Wachstum je Schritt, **kein Grenzobjekt** und keine Aussage über einen Limes |
 | L13-1 | Designation (§13) | `TCB.T_rejective` | Theorem | Deutung | ja, `[propext]` | Rejektionswert als operative Bruchstelle |
 | L13-2 | Designation (§13) | — | Offen | Offen | — | keine ontologische Semantik von designierend/nicht-designierend |
-| L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Offen | — | Selbstzyklus ohne nicht-triviale Fassung; siehe Grenznotiz C |
+| L14-1 | Zyklus, Selbstzyklus (§14) | — | Offen | Bewusst nicht gebaut | — | trivial, Mathlib-schließbar: `Function.minimalPeriod_eq_one_iff_isFixedPt`; siehe Grenznotiz C |
 | L15-1 | Kategorie des Neuen (§15) | — | Offen | Offen | — | nicht formalisiert; laut `TCB`-Doc-String so nicht formalisierbar |
 | L16-1 | Morphogramm (§16) | `K.relabel` | Definition | Operationalisierung | ja, axiomfrei | Normalform einer Folge als RGS; Morphogramm-Bildung, kein Quotientstyp |
 | L16-2 | Morphogramm (§16) | `K.rgs_unique_of_pattern` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | gleiches Muster erzwingt gleiche Normalform |
