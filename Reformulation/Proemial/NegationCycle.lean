@@ -35,8 +35,9 @@ Die Sätze:
   Beweis (IGN S. 43: „Die triadische Wertordnung besaß nur einen einzigen solchen Kreis, der
   je nach der Wertordnung entweder im Uhrzeigersinn oder im Gegensinn durchlaufen werden
   konnte" — den Drehsinn nennt er also selbst; was hier hinzukommt, ist der Beweis).
-  `triadic_unique` läuft über die 64 Folgen der Länge sechs und ist choice-frei;
-  `triadic_unique'` lässt die Längenvoraussetzung fallen, über `full_length`.
+  `triadic_unique` läuft über die 64 Folgen der Länge sechs; `triadic_unique'` lässt die
+  Längenvoraussetzung fallen, über `full_length2` (Hilfssatz `perms2_nodup`). Beide sind
+  choice-frei.
 * `kreis1_full`, `kreis2_full`, `kreis3_full` — vierwertig: Günthers drei ausgeschriebene
   Beispielkreise sind Vollkreise; `kreis1_family` (10-9-5), `kreis2_family` (9-6-9),
   `kreis3_family` (6-12-6) — die Operatorhäufigkeiten, nach denen er die drei Familien
@@ -149,11 +150,16 @@ Gemessen und am Dateiende gewacht. Die Zeugen-Sätze, `triadic_unique` und
 braucht `DecidableEq`, keine `Fintype`-Instanz. (Über `Equiv.Perm (Fin 4)` gemessen zieht
 derselbe Inhalt das volle Profil, siehe Vorprobe §3.) `negate_negate` trägt zusätzlich
 `Quot.sound` (`funext` unter `List.map`), `visits_every_arrangement` trägt, was
-`List.mem_permutations'` trägt. **Zwei Sätze tragen das volle Profil**: `full_length` und
-mit ihm `triadic_unique'`. Das `Classical.choice` kommt aus Mathlibs Sätzen über
-`List.permutations` (`nodup_permutations`, `permutations_perm_permutations'`,
-`length_permutations`), nicht aus der Sache; darum bleibt die längenbeschränkte Fassung
-`triadic_unique` als die choice-freie daneben stehen.
+`List.mem_permutations'` trägt. **Ein Satz trägt das volle Profil: `full_length`**, und zu
+Recht — er ist der allgemeine Satz für jedes `m`, und sein `Classical.choice` kommt aus
+Mathlibs Sätzen über `List.permutations` (`nodup_permutations`,
+`permutations_perm_permutations'`, `length_permutations`), nicht aus der Sache.
+
+**Geheilt am 22.9.2026:** bis dahin trug auch `triadic_unique'` das volle Profil, weil es
+`full_length` verbrauchte. Für `m = 2` ist die Nodup-Eigenschaft der sechs Anordnungen
+**entscheidbar** (`perms2_nodup`, axiomfrei), und `full_length2` braucht den Mathlib-Baustein
+nicht. Dasselbe Muster wie `full_length3` in `NegationCycleSearch` (Fallstrick 10, die
+Baustein-Gattung); gemessen bei der Abnahme der dortigen Heilung.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
 `List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
@@ -346,10 +352,24 @@ sechs sind (4) und (5) die einzigen Vollkreise. -/
 theorem triadic_unique : ∀ a b c d e f : Fin 2, IsFullCycle [a, b, c, d, e, f] →
     [a, b, c, d, e, f] = tafelVI4 ∨ [a, b, c, d, e, f] = tafelVI5 := by decide
 
+/-- Die sechs Anordnungen dreier Werte sind paarweise verschieden — entscheidbar, und darum
+ohne den Mathlib-Baustein, der `full_length` das `Classical.choice` einträgt. -/
+theorem perms2_nodup : (origin 2).permutations'.Nodup := by decide
+
+/-- `full_length` für zwei Negatoren (drei Werte), ohne `Classical.choice`. -/
+theorem full_length2 {seq : List (Fin 2)} (h : IsFullCycle seq) : seq.length = 6 := by
+  have hp : (stations seq (origin 2)).Perm (origin 2).permutations' :=
+    (List.perm_ext_iff_of_nodup h.nodup perms2_nodup).mpr fun l =>
+      ⟨h.only_arrangements l, h.all_arrangements l⟩
+  have h1 := stations_length seq (origin 2)
+  have h2 : (origin 2).permutations'.length = 6 := by decide
+  have h3 := hp.length_eq
+  omega
+
 /-- Dasselbe ohne Längenvoraussetzung: **jeder** dreiwertige Vollkreis ist (4) oder (5). -/
 theorem triadic_unique' (seq : List (Fin 2)) (h : IsFullCycle seq) :
     seq = tafelVI4 ∨ seq = tafelVI5 := by
-  have hl : seq.length = 6 := by rw [full_length h]; rfl
+  have hl : seq.length = 6 := full_length2 h
   match seq, hl with
   | [a, b, c, d, e, f], _ => exact triadic_unique a b c d e f h
 
@@ -502,7 +522,13 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 /-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique' depends on axioms: [propext] -/
 #guard_msgs in #print axioms triadic_unique
 
-/-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycle.perms2_nodup' does not depend on any axioms -/
+#guard_msgs in #print axioms perms2_nodup
+
+/-- info: 'Reformulation.Proemial.NegationCycle.full_length2' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms full_length2
+
+/-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms triadic_unique'
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_full' depends on axioms: [propext] -/

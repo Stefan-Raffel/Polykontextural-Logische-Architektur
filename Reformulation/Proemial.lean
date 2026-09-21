@@ -1239,9 +1239,10 @@ Enthält:
   gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
-  Vollkreis. 28 Wachen; **choice-frei bis auf zwei**: `full_length` und `triadic_unique'`
-  tragen das volle Profil aus Mathlibs Sätzen über `List.permutations`, alle anderen
-  `[propext]` (zweimal mit `Quot.sound`).
+  Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer. 37 Wachen;
+  **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
+  Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
+  (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
 - `Proemial.NegationCycleTable`: **die Tafel der vierwertigen Vollkreise — mindestens
   vierundvierzig** (Stufe 2a nach `Spec_NegationCycle_Stufe2.md`). 44 ausgeschriebene
   Negationsfolgen, davon **drei Günther-eigen und 41 gerechnet** (die Trennung steht in der
