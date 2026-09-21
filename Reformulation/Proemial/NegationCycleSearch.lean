@@ -65,11 +65,29 @@ Index. Was die Suche für Nachbarschaft hält, ist damit gegen den Begriff gepr�
 
 ## Axiomprofil
 
-Gemessen und am Dateiende gewacht. Die `decide`-Sätze tragen `[propext]`. **`search_complete`
-und alles, was es konsumiert, trägt zusätzlich `Classical.choice`** — die Gattung ist
-Taktikwahl, nicht Sache: die Hilfssätze sind sämtlich choice-frei, und die Heilung aus
-Fallstrick 21 (`simp only` statt `simp`) greift hier **nicht**, gemessen. Der Posten ist
-benannt und nicht geheilt.
+Gemessen und am Dateiende gewacht. Die `decide`-Sätze tragen `[propext]`. **Die Kette
+`search_complete` → `alleB_complete` → … → `exactly_fortyfour` trägt `[propext, Quot.sound]`,
+kein `Classical.choice`.**
+
+**Geheilt am 22.9.2026** (Mathematiker, auf Anordnung des Architekten). Die erste Fassung
+trug Choice in der ganzen Kette und führte es als Taktikwahl, nicht heilbar. **Gemessen
+waren es zwei Quellen verschiedener Gattung**, und die Konstanten-Analyse des Beweisterms hat
+beide benannt:
+
+* `search_complete` — **Fallstrick 21**: an den **Längen**-Zielen zog offenes `simp` die
+  Lemmas `Nat.add_eq_right._simp_1` und `Nat.right_eq_add._simp_1` aus der durch
+  `Mathlib.Data.Nat.Bitwise` erweiterten Simp-Menge. Geheilt durch `simp only
+  [List.length_nil/cons] … ; omega` an fünf Stellen. *Die Heilung greift — nicht an den
+  Mitgliedschafts-, aber an den Längen-Zielen.*
+* `alleB_complete` — **Fallstrick 10, die Baustein-Gattung**: `NegationCycle.full_length`
+  zieht Choice über `List.nodup_permutations` und `List.nodup_finRange` aus Mathlib. Keine
+  Taktik heilt das. Geheilt durch `full_length3`: für `m = 3` ist die Nodup-Eigenschaft der 24
+  Permutationen **entscheidbar** (`perms3_nodup`, axiomfrei). `full_length` bleibt für
+  allgemeines `m` in `NegationCycle` unverändert stehen.
+
+Alle übrigen Glieder erbten nur. **Die Messroute** war die aus Fallstrick 21: den Beweis
+lokal neu elaborieren (an importierten Sätzen ist der Beweisterm nicht lesbar), die direkten
+Konstanten sammeln, je Konstante `collectAxioms`.
 
 **Bauzeit:** rund 40 s — die beiden Kernel-Auswertungen der Suche sind der Posten.
 -/
@@ -159,12 +177,12 @@ theorem search_complete : ∀ (n : ℕ) (cur : List (Fin 4)) (m : Nat) (seq : Li
   | zero =>
     intro cur m seq hcur hlen _ _ hend
     cases seq with
-    | nil => simp at hlen
+    | nil => simp only [List.length_nil] at hlen; omega
     | cons i rest =>
       have hr : rest = [] := by
         cases rest with
         | nil => rfl
-        | cons _ _ => simp at hlen
+        | cons _ _ => simp only [List.length_cons] at hlen; omega
       subst hr
       have h : ix (negate i cur) = 0 := by
         rw [show negate i cur = origin 3 from hend, ix_origin]
@@ -176,12 +194,12 @@ theorem search_complete : ∀ (n : ℕ) (cur : List (Fin 4)) (m : Nat) (seq : Li
   | succ n ih =>
     intro cur m seq hcur hlen hmask hnd hend
     cases seq with
-    | nil => simp at hlen
+    | nil => simp only [List.length_nil] at hlen; omega
     | cons i rest =>
-      have hrl : rest.length = n + 1 := by simpa using hlen
+      have hrl : rest.length = n + 1 := by simp only [List.length_cons] at hlen; omega
       set cur' := negate i cur with hcur'
       have hcm : cur' ∈ werte := negate_mem cur hcur i
-      have hrne : rest ≠ [] := by intro h; simp [h] at hrl
+      have hrne : rest ≠ [] := by intro h; subst h; simp only [List.length_nil] at hrl; omega
       have htail : stations rest cur' = cur' :: (stations rest cur').tail := by
         cases rest with
         | nil => exact absurd rfl hrne
@@ -222,12 +240,27 @@ theorem search_complete : ∀ (n : ℕ) (cur : List (Fin 4)) (m : Nat) (seq : Li
 
 
 
+/-- **Die Länge eines Vollkreises über drei Werten, choice-frei.** Die allgemeine Fassung
+`NegationCycle.full_length` gilt für jedes `m`, zieht aber `Classical.choice` über zwei
+Mathlib-Bausteine (`List.nodup_permutations`, `List.nodup_finRange`). Für `m = 3` ist die
+Nodup-Eigenschaft der 24 Permutationen **entscheidbar** — `permutations'` reduziert unter
+`decide` —, und damit entfällt der Baustein. Gemessen 22.9.2026. -/
+theorem perms3_nodup : (origin 3).permutations'.Nodup := by decide
+
+/-- `full_length` für drei Werte, ohne `Classical.choice`. -/
+theorem full_length3 {seq : List (Fin 3)} (h : IsFullCycle seq) : seq.length = 24 := by
+  have hp : (stations seq (origin 3)).Perm (origin 3).permutations' :=
+    (List.perm_ext_iff_of_nodup h.nodup perms3_nodup).mpr fun l =>
+      ⟨h.only_arrangements l, h.all_arrangements l⟩
+  have h1 := stations_length seq (origin 3)
+  have h2 : (origin 3).permutations'.length = 24 := by decide
+  have h3 := hp.length_eq
+  omega
+
 /-- **Der Zielsatz von Stufe 2b**: jeder Vollkreis steht in der Ausgabe der Suche. -/
 theorem alleB_complete : ∀ seq, IsFullCycle seq → seq ∈ alleB := by
   intro seq h
-  have hlen : seq.length = 24 := by
-    have := full_length h
-    simpa using this
+  have hlen : seq.length = 24 := full_length3 h
   have hst : stations seq (origin 3) = origin 3 :: (stations seq (origin 3)).tail := by
     cases seq with
     | nil => simp at hlen
@@ -328,10 +361,16 @@ theorem exactly_fortyfour (seq : List (Fin 3)) :
 /-- info: 'Reformulation.Proemial.NegationCycleSearch.stations_mem_werte' depends on axioms: [propext] -/
 #guard_msgs in #print axioms stations_mem_werte
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.search_complete' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.perms3_nodup' does not depend on any axioms -/
+#guard_msgs in #print axioms perms3_nodup
+
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.full_length3' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms full_length3
+
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.search_complete' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms search_complete
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_complete' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_complete' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms alleB_complete
 
 /-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_card' depends on axioms: [propext] -/
@@ -340,20 +379,16 @@ theorem exactly_fortyfour (seq : List (Fin 3)) :
 /-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_nodup' depends on axioms: [propext] -/
 #guard_msgs in #print axioms alleB_nodup
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_perm_gerichtet' depends on axioms: [propext,
- Classical.choice,
- Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_perm_gerichtet' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms alleB_perm_gerichtet
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_full' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.alleB_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms alleB_full
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.full_iff_mem' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.full_iff_mem' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms full_iff_mem
 
-/-- info: 'Reformulation.Proemial.NegationCycleSearch.exactly_fortyfour' depends on axioms: [propext,
- Classical.choice,
- Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegationCycleSearch.exactly_fortyfour' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms exactly_fortyfour
 
 end Reformulation.Proemial.NegationCycleSearch
