@@ -475,6 +475,19 @@ Gestalt war von keiner der zwei ersten gedeckt und von der Spezifikation nicht
 vorhergesehen — gefunden hat sie die Profilmessung, und der Choice sass danach in Z und Z'
 des Moduls (A8 entstand erst nach der Heilung). Heilung wie oben: `omega` bekommt nur atomare Ziele.
 
+*Präzisierung der dritten Gestalt: die Konjunktion allein genügt, das Iff ist nicht nötig*
+(gemessen 24. September, `KorpusRev2/Begutachtung_Spec_Wertzahl_Zerlegung_Impl.md`):
+
+```text
+(h : a = b) : a ≤ b ∧ b ≤ a := by omega                      ->  [propext, Classical.choice, Quot.sound]
+(h : a = b) : a ≤ b ∧ b ≤ a := by refine ⟨?_, ?_⟩ <;> omega  ->  [propext, Quot.sound]
+```
+
+Keine vierte Gestalt, weil die Heilung dieselbe ist; aber die Ursache ist enger gefasst,
+als die dritte Gestalt sie zeigte. Im Bau: `decomp_spec`, `decomp_uniq` in
+`Proemial/IntervalBackbone.lean` (`03de4b9`) zerlegen ihre Konjunktions-Ziele darum
+ausdrücklich, und der Modulkopf sagt, dass die Zerlegung eine Bedingung ist.
+
 *Rückweg nach §13.3:* keiner in Sicht, aus demselben Grund wie beim zwanzigsten Eintrag —
 `#guard_msgs` misst das Profil der gewählten Taktik, nicht, ob eine andere ein schlankeres
 ergäbe.
@@ -972,6 +985,25 @@ der Laengensatz selbst, ohne Beweisschritt. `Quot.sound` bleibt: `Multiset` ist 
 
 Eine weitere Gestalt der Baustein-Gattung (10). **Reichweite:** nicht erhoben; der direkte Weg
 steht nicht im Bestand - `NegationCycleSearch` fuehrt die Listen-Form.
+
+**25 - Ein Choice-Profil beweist keine Nicht-Existenz.** Es sagt, dass **dieser** Beweis
+das Auswahlaxiom braucht - nicht, dass keine Funktion existiert (`Classical.choice`
+**liefert** eine), und nicht, dass kein choice-freier Beweis existiert. Gemessen an einem
+Schluss, der es anders las (Gattungsfrage, 23. September): *"Buridan: NEIN, bewiesen - die
+Bodenprobe zeigt, dass Auswahl aus offenen Mengen Choice zieht, der formale Ausdruck
+dafuer, dass keine Funktion sie leistet."* Die Bodenprobe sagte das Gegenteil:
+`DirectionChoice` setzt die Wahl als Funktion, choice-frei; Choice tritt erst auf, wenn man
+sie aus der offenen Verzweigung gewinnen will. Richtig war: *nur nichtkonstruktiv
+ableitbar, gemessen an einem Bau* (`KorpusRev2/Begutachtung_Gattungsfrage_Impl.md` §1).
+
+Die Nachbarn: der **dreiundzwanzigste** (ein axiomfreies Profil beweist nicht, dass ein Satz
+bewiesen ist) ist die Spiegelung - ein Profil ist in keiner Richtung ein Urteil ueber die
+Sache. Und dass ein Profil an Taktik und Baustein haengt statt an der Aussage, zeigen der
+**zwanzigste**, der **einundzwanzigste** und der **vierundzwanzigste**. **Route:** vor
+jedem Schluss von einem Profil auf die Sache fragen, ob eine andere Taktik oder ein anderer
+Baustein dasselbe Ziel choice-frei erreicht; eine Nicht-Existenz braucht einen Satz.
+
+*Rueckweg nach §13.3:* keiner in Sicht - kein Werkzeug misst, was ein Profil nicht sagt.
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
 
