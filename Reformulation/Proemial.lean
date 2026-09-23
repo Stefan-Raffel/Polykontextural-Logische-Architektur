@@ -1268,7 +1268,12 @@ Enthält:
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
   Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer, und
-  `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. 40 Wachen;
+  `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. **Die Genese**
+  (Teil 5, 24.9.): `genese_resultat` / `genese_verschieden` — `N1.2.1` und `N2.1.2` geben
+  denselben Umtausch auf verschiedenen Wegen (HKN S. 25, Eichung); dahinter `braid`, die
+  Zopfrelation benachbarter Negatoren für jedes `m`, mit `comm_far` und `braid_fails_far`
+  für das „genau dort, wo ein Wert geteilt wird" (`sw_val` axiomfrei). Kein §11-Träger,
+  keine Definition der zweiten Negation (L07-4 offen). 46 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).

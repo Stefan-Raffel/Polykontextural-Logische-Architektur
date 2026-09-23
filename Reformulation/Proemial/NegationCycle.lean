@@ -64,6 +64,11 @@ Die Sätze:
 * `visits_every_arrangement` — der Anschluss an `List.Perm`: ein Vollkreis trifft jede
   Liste, die eine Permutation des Ausgangs ist.
 
+* `sw_val`, `braid`, `comm_far`, `braid_fails_far`, `genese_resultat`,
+  `genese_verschieden` — **die Genese** (Teil 5, 24.9.2026): Günthers zwei Wege zum
+  selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
+  jedes `m`. Siehe den Abschnitt „Die Genese" unten.
+
 **Warum überwiegend Benennung:** die Zeugen-Sätze rechnen nach, was Günther ausschreibt.
 Neuen Satzgehalt tragen `full_length`, das Paar `triadic_unique` / `triadic_unique'` und
 `kreis2_emendation`; die zwei letzten sind endliche Fallarbeit (64 Folgen, neun
@@ -158,6 +163,40 @@ davon, wie man das strittige Kästchen liest.
   in einen Vollkreis überführt, steht hier nur am ersten Beispiel. (Die Drehsinn-Aussage
   war bis zum 21. September ebenso beschränkt und ist es seit `reverse_full` nicht mehr.)
 
+## Die Genese (Teil 5)
+
+Gebaut auf Anordnung des Architekten vom 24.9.2026 nach `KorpusRev2/Spec_V_O1_O3.md`
+(Fassung 2, Mathematiker; Teil O3), begutachtet in
+`KorpusRev2/Begutachtung_Spec_V_O1_O3_Impl.md`. Quelle: **HKN** = *Die historische
+Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
+`KorpusRev1/HKN_1970_Volltext.txt`.
+
+* **K1 — Günthers Doppeldeutigkeit.** Der Umtausch der Werte 1 und 3 „kann … durch den
+  Operator N1.2.1, aber auch durch den Operator N2.1.2 aktiviert werden"; die Tafel „gibt das
+  'abstrakte' Resultat, das in beiden Fällen gleich ist", aber es „muss uns die Genese dieses
+  Resultats wichtig sein" — „die für die Dialektik erforderliche Doppeldeutigkeit einer
+  logischen Funktion". `genese_resultat` und `genese_verschieden` sind sein Beispiel:
+  dasselbe `endpoint`, verschiedene `stations`. Sie sind **Eichung**, nicht Folgerung —
+  zwei `decide` über festen Listen verbrauchen keinen Satz.
+* **K2 — formal die Zopfrelation.** `braid`: `N_i · N_(i+1) · N_i = N_(i+1) · N_i · N_(i+1)`
+  für jedes `m`. Skala **FOLGERUNG**: verbraucht `sw_val` und sagt, was kein Satz des
+  Bestandes sagt.
+* **K3 — „Doppel-" ist der Fall von drei Werten.** Die Zahl der Genesen des längsten
+  Elements (reduzierte Wörter) wächst: 2, 16, 768, 292 864 für 3, 4, 5, 6 Werte. Ausserhalb
+  Lean gerechnet (Mathematiker und impl. Instanz, unabhängig); **kein Satz hier**.
+* **K4 — genau dort, wo ein Wert geteilt wird.** Die Zopfrelation gilt für benachbarte
+  Negatoren (`braid`); entfernte vertauschen nur (`comm_far`, einseitig notiert als
+  `i + 2 ≤ j` — die andere Seite ist dieselbe Gleichung umgekehrt gelesen), und für sie
+  gilt der Zopf nicht (`braid_fails_far`). Günther nennt an seinem Beispiel den Wert 2
+  „vermittelnd zwischen 1 und 3" — dass das der **geteilte** Wert der Zopfrelation ist, ist
+  **LESART**.
+* **K5 — kein §11-Träger.** Günther nennt den *Wert* vermittelnd, nicht die Genese. Die
+  Genese ist hier Doppeldeutigkeit einer Funktion, nicht Vermittlung; Buchung, wenn Custos
+  bucht, an §7 (HKN S. 25). Die zweite Negation definiert dieses Modul nicht; L07-4 bleibt
+  offen.
+* **K6 — nicht geprüft:** ob die Zopfrelation dieselbe Vermittlung trägt wie das Kriterium
+  (B) in `SharedPlaceGrowth`. Bis dahin Wortgleichheit, keine Sachgleichheit.
+
 ## Axiomprofil
 
 Gemessen und am Dateiende gewacht. Die Zeugen-Sätze, `triadic_unique` und
@@ -182,6 +221,11 @@ gemessen am 22.9. bzw. 24.9.2026.
 `List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
 **nicht** durch `decide` gehen.
+Teil 5 (gemessen am 24.9.2026 nach grünem Bau): `sw_val` ist **axiomfrei**, `braid`
+und `comm_far` tragen `[propext, Quot.sound]`, `braid_fails_far`,
+`genese_resultat` und `genese_verschieden` tragen `[propext]`. Mit offenem
+`simp` statt `rw [if_pos …]` in `sw_val` zöge die Kette `Classical.choice`
+(Spec, Bau-Hinweis H1; Fallstrick 21) — die Taktik, nicht die Sache.
 -/
 
 namespace Reformulation.Proemial.NegationCycle
@@ -508,6 +552,63 @@ set_option maxRecDepth 100000 in
 theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 -- ============================================================
+-- Teil 5 — die Genese: zwei Wege, ein Umtausch (HKN S. 25)
+-- ============================================================
+
+/-- Der Negator auf der Ebene der Werte. Werkzeug für `braid` und `comm_far`; mit
+`rw [if_pos …]` / `rw [if_neg …]` bewiesen, nicht mit offenem `simp` (Fallstrick 21). -/
+theorem sw_val {m : ℕ} (i : Fin m) (v : Fin (m + 1)) :
+    (sw i v).val = if v.val = i.val then i.val + 1
+                   else if v.val = i.val + 1 then i.val else v.val := by
+  unfold sw
+  have hc : i.castSucc.val = i.val := Fin.val_castSucc i
+  have hs : i.succ.val = i.val + 1 := Fin.val_succ i
+  by_cases h1 : v.val = i.val
+  · have e1 : v = i.castSucc := Fin.ext (by rw [hc]; exact h1)
+    rw [if_pos e1, if_pos h1, hs]
+  · have e1 : v ≠ i.castSucc := fun h => h1 (by rw [h, hc])
+    rw [if_neg e1, if_neg h1]
+    by_cases h2 : v.val = i.val + 1
+    · have e2 : v = i.succ := Fin.ext (by rw [hs]; exact h2)
+      rw [if_pos e2, if_pos h2, hc]
+    · have e2 : v ≠ i.succ := fun h => h2 (by rw [h, hs])
+      rw [if_neg e2, if_neg h2]
+
+/-- **Die Zopfrelation**: benachbarte Negatoren, die einen Wert teilen, erreichen auf zwei
+Wegen dasselbe — `N_i · N_{i+1} · N_i = N_{i+1} · N_i · N_{i+1}`, für jedes `m`. -/
+theorem braid {m : ℕ} (i j : Fin m) (hij : j.val = i.val + 1) (v : Fin (m + 1)) :
+    sw i (sw j (sw i v)) = sw j (sw i (sw j v)) := by
+  apply Fin.ext
+  rw [sw_val, sw_val, sw_val, sw_val, sw_val, sw_val, hij]
+  split_ifs <;> omega
+
+/-- Entfernte Negatoren, die keinen Wert teilen, vertauschen nur. Einseitig notiert
+(`i + 2 ≤ j`); die andere Seite ist dieselbe Gleichung umgekehrt gelesen. -/
+theorem comm_far {m : ℕ} (i j : Fin m) (h : i.val + 2 ≤ j.val) (v : Fin (m + 1)) :
+    sw i (sw j v) = sw j (sw i v) := by
+  apply Fin.ext
+  rw [sw_val, sw_val, sw_val, sw_val]
+  split_ifs <;> omega
+
+/-- Für entfernte Negatoren gilt die Zopfrelation **nicht**: `N₁ · N₃ · N₁ ≠ N₃ · N₁ · N₃`,
+am Wert `0` von vier Werten. Mit `braid` und `comm_far` trägt das das „genau": der Zopf
+gilt genau dort, wo zwei Negatoren einen Wert teilen. -/
+theorem braid_fails_far :
+    sw (0 : Fin 3) (sw 2 (sw 0 0)) ≠ sw (2 : Fin 3) (sw 0 (sw 2 0)) := by decide
+
+/-- **Eichung an HKN S. 25**: `N1.2.1` und `N2.1.2` geben dasselbe „abstrakte Resultat",
+den Umtausch der Werte 1 und 3 … -/
+theorem genese_resultat :
+    endpoint ([0, 1, 0] : List (Fin 2)) (origin 2) =
+      endpoint ([1, 0, 1] : List (Fin 2)) (origin 2) := by decide
+
+/-- … auf zwei verschiedenen Wegen: die Zwischenstände sind Günthers „beiden echten
+zyklischen Wertfolgen 2, 3, 1 und 3, 1, 2". -/
+theorem genese_verschieden :
+    stations ([0, 1, 0] : List (Fin 2)) (origin 2) ≠
+      stations ([1, 0, 1] : List (Fin 2)) (origin 2) := by decide
+
+-- ============================================================
 -- Wachen
 -- ============================================================
 
@@ -630,5 +731,23 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.janus1974_contains_printed' depends on axioms: [propext] -/
 #guard_msgs in #print axioms janus1974_contains_printed
+
+/-- info: 'Reformulation.Proemial.NegationCycle.sw_val' does not depend on any axioms -/
+#guard_msgs in #print axioms sw_val
+
+/-- info: 'Reformulation.Proemial.NegationCycle.braid' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms braid
+
+/-- info: 'Reformulation.Proemial.NegationCycle.comm_far' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms comm_far
+
+/-- info: 'Reformulation.Proemial.NegationCycle.braid_fails_far' depends on axioms: [propext] -/
+#guard_msgs in #print axioms braid_fails_far
+
+/-- info: 'Reformulation.Proemial.NegationCycle.genese_resultat' depends on axioms: [propext] -/
+#guard_msgs in #print axioms genese_resultat
+
+/-- info: 'Reformulation.Proemial.NegationCycle.genese_verschieden' depends on axioms: [propext] -/
+#guard_msgs in #print axioms genese_verschieden
 
 end Reformulation.Proemial.NegationCycle
