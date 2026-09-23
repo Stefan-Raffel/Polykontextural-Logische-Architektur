@@ -548,7 +548,16 @@ Enthält:
   („ein 14-wertiges System formaler Logik", Z. 517–519) sowie `eighth_starts_at_36`
   („nicht weniger als 36 Werte und 8 ontologische Themen", **druck-verifiziert**,
   Beiträge III S. 160 — zweiter druck-gesiegelter Anker). Kür
-  `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **SUBSTRAT, KEIN
+  `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **Seit dem 24. September die
+  Umkehrung** (nach `Spec_Wertzahl_Zerlegung.md`): `decomp m = (a, r)` gibt zu jeder
+  Wertzahl ihre Themenzahl und den Überschuss über dem Intervall-Anfang, mit
+  `decomp_spec` (Gewährschein: `r ≤ a` und `m = intervalStart a + r`) und `decomp_uniq`
+  (**Eindeutigkeit** — es gibt keine zweite Zerlegung); dazu `step` und vier Eichwerte
+  (35/36 an Günthers Naht VII→VIII, 65/66 am zehnten Intervall — die letzten zwei machen
+  den 65/66-Befund vom 16. September zum Satz). **Sie löst `AT-1b` nicht ein**: der Satz
+  gilt an jeder Naht, und Günthers Name gehört nicht auf ihn (S5-5/S5-6); keine
+  Ledger-Zeile, keine Werte-Semantik. Mathlib trägt die Dreiecks-Zerlegung nicht
+  (`Nat.pair` ist die Quadrat-Schale). **SUBSTRAT, KEIN
   DIFFERENTIAL:** keine arme Klasse, keine Unmöglichkeits-Hälfte, keine
   Zeugen-Fassung — das Rückgrat zählt die Orte, es deutet sie nicht; die
   Stellen-Schichten importieren es (geteilte-Klassen-Ökonomie eine Stufe tiefer).
@@ -1239,7 +1248,8 @@ Enthält:
   gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
-  Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer. 37 Wachen;
+  Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer, und
+  `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. 39 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).

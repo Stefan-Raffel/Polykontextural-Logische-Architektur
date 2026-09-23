@@ -50,6 +50,32 @@ in den Stellen-Schichten, jede mit dieser Marke.
 (`intervalStart_strictMono`). Dazu das `private` Hilfslemma `succ_mul_succ_succ`
 (reine Aufspaltung des nichtlinearen Schritts; kein eigener Posten).
 
+**Seit dem 24. September die Umkehrung** (nach `KorpusRev2/Spec_Wertzahl_Zerlegung.md`,
+Fassung 2): `decomp` samt `decomp_succ`, `step`, `decomp_spec` (Gewährschein) und
+`decomp_uniq` (Eindeutigkeit), dazu vier Eichwerte. `intervalStart` geht von der Themenzahl
+zur Wertzahl, `decomp` zurück — **jede Wertzahl zerfällt in Themenzahl und Überschuss, und
+auf genau eine Weise.**
+
+## (4a) Die Umkehrung — was sie sagt und was nicht
+
+`decomp m = (a, r)` heisst: `m = intervalStart a + r` mit `r ≤ a`. Die Rekursion ist der
+Gang der Tafel — der Überschuss wächst je Wert um eins und fällt an der Naht auf null.
+
+* **Sie löst `AT-1b` nicht ein.** Der Satz gilt an **jeder** Naht und zeichnet die siebte in
+  nichts aus. Zwei Gründe, aus zwei Richtungen: gerechnet, weil die Aussage über **alle** `m`
+  quantifiziert; quellenfest, weil das erste Thema nach Lille S. 19 „in allen folgenden
+  Reflexionsstufen immer wieder" kehrt (Hermeneutes, S5-6).
+* **Kein Günther-Name auf dieser Rechnung.** Nicht „Ur-Designation", nicht „Einwertigkeit",
+  nicht „achte Stelle": Günthers Satz nennt das **Hinzukommende**, sein Name sitzt auf dem
+  **Entstehenden** (S5-5); `decomp` zählt das Hinzukommende. Die Namen sagen darum die Sache.
+* **Kein Rollenwechsel, keine Designation.** Dass eine Zahl designiert, weiss kein Satz des
+  Hauses; **Designation ≠ Denotation** gilt fort.
+* **Keine Ledger-Zeile, kein `§20`-Anspruch.**
+
+**Mathlib-Lage, gemessen:** die Dreiecks-Zerlegung steht dort **nicht**. `Nat.pair`/`unpair`
+sind die **Quadrat**-Schale (`Nat.sqrt`), „Triangle" ist Kategorien- und Graphentheorie. Die
+Analogie liegt dort, der Satz nicht — damit niemand ihn später sucht oder für zitierbar hält.
+
 ## (5) Bauform und Namen
 
 Projekt-import-frei, unterste Schicht des Stellen-Trakts. „Wertzahl", „Thema",
@@ -67,6 +93,14 @@ entlang der Beweis-Taktik:
 * **`[propext, Quot.sound]`** (`omega`-Route): `two_mul_intervalStart`,
   `intervalStart_succ`, `intervalEnd_succ_start`, `intervalEnd_sub_start`,
   `intervalStart_strictMono`.
+
+Die Umkehrung fügt sich ein: `decomp_succ` axiom-frei (`rfl`), `step`, `decomp_spec` und
+`decomp_uniq` `[propext, Quot.sound]`, die vier Eichwerte **axiom-frei**. Zwei Bau-Hinweise,
+beide gemessen und beide in den Beweisen sichtbar: die Eichungen tragen nur mit
+`decide +kernel` — mit `decide` schlägt schon `m = 35` an die Rekursionsgrenze, und die
+Grenze wird **nicht** heraufgesetzt (Fallstrick 5). Und **konjunktive Ziele werden vor
+`omega` zerlegt**: `a ≤ b ∧ b ≤ a := by omega` trägt `Classical.choice`, dasselbe Ziel
+zerlegt nicht (Fallstrick 7 in einer vierten Gestalt, gemessen 24. September).
 
 **Hüllen-Vorsicht, hier belegt statt behauptet:** das Paar `[propext, Quot.sound]`
 ist **Eigenschaft der `omega`-Hülle, nicht der Aussage** — nachgemessen an
@@ -190,6 +224,76 @@ theorem intervalStart_strictMono : StrictMono intervalStart := by
   omega
 
 -- ============================================================
+-- Teil 5b — Die Umkehrung: jede Wertzahl zerfällt, und auf genau eine Weise
+-- ============================================================
+
+/-- Die **Zerlegung einer Wertzahl**: `.1` ist die Themenzahl, `.2` der Überschuss über
+ihrem Intervall-Anfang. Die Rekursion ist der Gang der Tafel — der Überschuss wächst je
+Wert um eins und fällt an der Naht auf null, wo er die Themenzahl erreicht hat. -/
+def decomp : ℕ → ℕ × ℕ
+  | 0 => (0, 0)
+  | m + 1 =>
+      if (decomp m).2 < (decomp m).1 then ((decomp m).1, (decomp m).2 + 1)
+      else ((decomp m).1 + 1, 0)
+
+/-- Die Nachfolger-Gleichung, ausgeschrieben. Ohne sie steht das `if` unter einem `match`,
+das die Taktiken nicht sehen. -/
+theorem decomp_succ (m : ℕ) :
+    decomp (m + 1) =
+      if (decomp m).2 < (decomp m).1 then ((decomp m).1, (decomp m).2 + 1)
+      else ((decomp m).1 + 1, 0) := rfl
+
+/-- Der Intervall-Schritt in additiver Form — sie macht `omega` über der ℕ-Division
+arbeitsfähig. -/
+theorem step (a : ℕ) : intervalStart (a + 1) = intervalStart a + a + 1 := by
+  have h := intervalEnd_succ_start a
+  simp only [intervalEnd] at h
+  omega
+
+/-- **Der Gewährschein**: `decomp` leistet, was ihr Name sagt — der Überschuss bleibt unter
+der Themenzahl, und beide setzen die Wertzahl wieder zusammen. -/
+theorem decomp_spec (m : ℕ) :
+    (decomp m).2 ≤ (decomp m).1 ∧ m = intervalStart (decomp m).1 + (decomp m).2 := by
+  induction m with
+  | zero => exact ⟨le_refl 0, by decide⟩
+  | succ m ih =>
+    obtain ⟨hle, heq⟩ := ih
+    rw [decomp_succ]
+    by_cases h : (decomp m).2 < (decomp m).1
+    · simp only [h, if_true]
+      exact ⟨by omega, by omega⟩
+    · simp only [h, if_false]
+      have hs := step (decomp m).1
+      exact ⟨by omega, by omega⟩
+
+/-- **Die Eindeutigkeit**: es gibt keine zweite Zerlegung. Wer `m` anders als
+`intervalStart k + j` mit `j ≤ k` schreibt, schreibt dieselben Zahlen. -/
+theorem decomp_uniq (m k j : ℕ) (hjk : j ≤ k) (h : m = intervalStart k + j) :
+    (decomp m).1 = k ∧ (decomp m).2 = j := by
+  obtain ⟨hle, heq⟩ := decomp_spec m
+  rcases lt_trichotomy (decomp m).1 k with hlt | heqk | hgt
+  · have h1 : intervalStart (decomp m).1 + (decomp m).1 + 1 ≤ intervalStart k := by
+      rw [← step]; exact (intervalStart_strictMono.le_iff_le).mpr hlt
+    exact ⟨by omega, by omega⟩
+  · subst heqk
+    exact ⟨rfl, by omega⟩
+  · have h1 : intervalStart k + k + 1 ≤ intervalStart (decomp m).1 := by
+      rw [← step]; exact (intervalStart_strictMono.le_iff_le).mpr hgt
+    exact ⟨by omega, by omega⟩
+
+/-- Eichung: Günthers Naht VII → VIII. `35 = intervalStart 7 + 7 = 28 + 7`. -/
+theorem decomp_35 : decomp 35 = (7, 7) := by decide +kernel
+
+/-- Eichung: die erste Ontologie des achten Intervalls. -/
+theorem decomp_36 : decomp 36 = (8, 0) := by decide +kernel
+
+/-- Eichung: die obere Grenze des zehnten Intervalls. -/
+theorem decomp_65 : decomp 65 = (10, 10) := by decide +kernel
+
+/-- Eichung: `intervalStart 11 = 66` — die 66-wertige Logik beginnt ein Intervall. -/
+theorem decomp_66 : decomp 66 = (11, 0) := by decide +kernel
+
+-- ============================================================
 -- Teil 6 — Die `#guard_msgs`-Wachen (M6; Ist-gebunden)
 -- ============================================================
 
@@ -219,6 +323,30 @@ section
 
 /-- info: 'Reformulation.Proemial.IntervalBackbone.intervalStart_strictMono' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms intervalStart_strictMono
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_succ' does not depend on any axioms -/
+#guard_msgs in #print axioms decomp_succ
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.step' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms step
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_spec' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms decomp_spec
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_uniq' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms decomp_uniq
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_35' does not depend on any axioms -/
+#guard_msgs in #print axioms decomp_35
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_36' does not depend on any axioms -/
+#guard_msgs in #print axioms decomp_36
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_65' does not depend on any axioms -/
+#guard_msgs in #print axioms decomp_65
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_66' does not depend on any axioms -/
+#guard_msgs in #print axioms decomp_66
 
 end
 
