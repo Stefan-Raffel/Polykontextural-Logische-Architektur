@@ -304,7 +304,8 @@ Der Zyklusbegriff ist seit `e69fb16` an **einer** Stelle angeschlossen: die Elem
 ist als Zweierbahn einer Involution darstellbar (L02-6 bis L02-8). Eine allgemeine
 Zyklentheorie ist nicht gebaut und war nicht Auftrag.
 
-**Der Selbstzyklus bleibt offen, und zwar begründet.** Drei Fassungen wurden geprüft: als
+**Der Selbstzyklus ist bewusst nicht gebaut, und zwar begründet** — trivial und
+Mathlib-schließbar (`Function.minimalPeriod_eq_one_iff_isFixedPt`). Drei Fassungen wurden geprüft: als
 Minimalperiode 1 steht er wörtlich in Mathlib; als leerer Support verschwindet er; als
 Nicht-Kontextur sagt er `1 ≠ 2`. Wörtlich aus dem Befund:
 
@@ -328,7 +329,8 @@ Hüllen sind selbst gemeinsam abgeschlossen (`K.jointlyClosed_hull_pair`).
 
 *Und die Zuordnung ist Deutung:* dass `[0,0]` **der Selbstzyklus** aus
 `Definitionen.md` §2(a) und `[0,1]` **das Umtauschverhältnis** aus §2(b) sei, ist eine
-Lesart und trägt kein Satz. **L14-1 bleibt darum offen:** ein wertseitiger
+Lesart und trägt kein Satz. **L14-1 ist darum bewusst nicht gebaut** (so die Zeile seit
+Rev. 21; der Trägerstatus bleibt „Offen", Regel R4): ein wertseitiger
 Selbstzyklus-Begriff ist weiterhin nicht gebaut, und die kenogrammatische Lage ersetzt
 ihn nicht. Was der Nachtrag ändert, ist allein dies — der Selbstzyklus ist hier zum
 ersten Mal nicht der Fall ohne eigenen Satz, sondern eine von zwei ausgezeichneten
