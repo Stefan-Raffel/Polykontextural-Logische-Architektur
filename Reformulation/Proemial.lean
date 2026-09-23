@@ -65,6 +65,7 @@ import Reformulation.Proemial.NegationCycleTable
 import Reformulation.Proemial.NegationCycleSearch
 import Reformulation.Proemial.NegationCycleSymmetry
 import Reformulation.Proemial.NegationCycleGenerators
+import Reformulation.Proemial.NegationCycleSJT
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1336,6 +1337,16 @@ Enthält:
   Nicht konstruktiv (die Listen-Fassung ist sondiert, nicht gebaut), nicht die zweite
   Negation. Eigenes Modul, weil `Perm.Sign` nicht in der Hülle von `NegationCycle` liegt.
   3 Wachen.
+- `Proemial.NegationCycleSJT`: **die Steinhaus–Johnson–Trotter-Konstruktion der
+  Vollkreise** (SJT-Zug, Teil A, nach `Spec_SJT_Zug.md`). `sjt m`: der neue Wert fegt
+  abwechselnd durch den kleineren Kreis. Vollkreis bei zwei, drei und vier Werten
+  (`sjt1_full`, `sjt2_full`, `sjt3_full`); bei einem Wert gibt es keinen
+  (`no_full_at_one_value`). `reach_of_full`: aus einem Vollkreis folgt, für jedes `m`, dass
+  jede Anordnung Endpunkt eines Negatorworts ist — konstruktiv, als Anfangsstück. Eichung an
+  Günther: `sjt2_eq` (seine Folge (5)) und `sjt3_mirror_kreis2` — bei vier Werten ist die
+  SJT-Folge der gespiegelte **emendierte** zweite Kreis, ein Zeuge der Emendation von
+  ausserhalb des Textes. **Nicht:** der Vollkreis für jede Wertzahl (Teil B, nicht gebaut),
+  Hegels „Kreis von Kreisen", keine Ledger-Zeile. 8 Wachen, alle `[propext]`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
