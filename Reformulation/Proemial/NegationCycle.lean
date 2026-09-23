@@ -64,7 +64,7 @@ Die Sätze:
 * `visits_every_arrangement` — der Anschluss an `List.Perm`: ein Vollkreis trifft jede
   Liste, die eine Permutation des Ausgangs ist.
 
-* `sw_val`, `braid`, `comm_far`, `braid_fails_far`, `genese_resultat`,
+* `sw_val`, `braid`, `comm_far`, `braid_fails_far_all`, `braid_fails_far`, `genese_resultat`,
   `genese_verschieden` — **die Genese** (Teil 5, 24.9.2026): Günthers zwei Wege zum
   selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
   jedes `m`. Siehe den Abschnitt „Die Genese" unten.
@@ -187,7 +187,10 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
 * **K4 — genau dort, wo ein Wert geteilt wird.** Die Zopfrelation gilt für benachbarte
   Negatoren (`braid`); entfernte vertauschen nur (`comm_far`, einseitig notiert als
   `i + 2 ≤ j` — die andere Seite ist dieselbe Gleichung umgekehrt gelesen), und für sie
-  gilt der Zopf nicht (`braid_fails_far`). Günther nennt an seinem Beispiel den Wert 2
+  gilt der Zopf für **jedes** Paar nicht (`braid_fails_far_all`, Zeuge stets der Wert `i`;
+  nachgetragen am 25.9. nach der Abnahme — bis dahin stand das „jedes" nur an einem
+  Beispiel, `braid_fails_far`, das jetzt seine Eichung ist). Das „genau" hängt an Z2 und Z3,
+  allgemein; am Beispiel geeicht. Günther nennt an seinem Beispiel den Wert 2
   „vermittelnd zwischen 1 und 3" — dass das der **geteilte** Wert der Zopfrelation ist, ist
   **LESART**.
 * **K5 — kein §11-Träger.** Günther nennt den *Wert* vermittelnd, nicht die Genese. Die
@@ -222,7 +225,10 @@ gemessen am 22.9. bzw. 24.9.2026.
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
 **nicht** durch `decide` gehen.
 Teil 5 (gemessen am 24.9.2026 nach grünem Bau): `sw_val` ist **axiomfrei**, `braid`
-und `comm_far` tragen `[propext, Quot.sound]`, `braid_fails_far`,
+und `comm_far` tragen `[propext, Quot.sound]`, ebenso `braid_fails_far_all` (25.9.,
+Schritt für Schritt über `sw_val`: ein `split_ifs` über alle sechs verschachtelten `sw`
+läuft in den Heartbeat-Timeout und meldet sich dann als axiomfrei — Fallstrick 23);
+`braid_fails_far`,
 `genese_resultat` und `genese_verschieden` tragen `[propext]`. Mit offenem
 `simp` statt `rw [if_pos …]` in `sw_val` zöge die Kette `Classical.choice`
 (Spec, Bau-Hinweis H1; Fallstrick 21) — die Taktik, nicht die Sache.
@@ -591,10 +597,31 @@ theorem comm_far {m : ℕ} (i j : Fin m) (h : i.val + 2 ≤ j.val) (v : Fin (m +
   split_ifs <;> omega
 
 /-- Für entfernte Negatoren gilt die Zopfrelation **nicht**: `N₁ · N₃ · N₁ ≠ N₃ · N₁ · N₃`,
-am Wert `0` von vier Werten. Mit `braid` und `comm_far` trägt das das „genau": der Zopf
-gilt genau dort, wo zwei Negatoren einen Wert teilen. -/
+am Wert `0` von vier Werten — die Eichung von `braid_fails_far_all` an einem Fall. -/
 theorem braid_fails_far :
     sw (0 : Fin 3) (sw 2 (sw 0 0)) ≠ sw (2 : Fin 3) (sw 0 (sw 2 0)) := by decide
+
+/-- **Für jedes entfernte Paar** scheitert die Zopfrelation, für jedes `m`; Zeuge ist stets
+der Wert `i`. Schritt für Schritt über `sw_val` bewiesen — ein `split_ifs` über alle sechs
+verschachtelten `sw` läuft in den Heartbeat-Timeout (Fallstrick 23). -/
+theorem braid_fails_far_all {m : ℕ} (i j : Fin m) (h : i.val + 2 ≤ j.val) :
+    sw i (sw j (sw i i.castSucc)) ≠ sw j (sw i (sw j i.castSucc)) := by
+  intro heq
+  have hc : (i.castSucc).val = i.val := Fin.val_castSucc i
+  have l1 : (sw i i.castSucc).val = i.val + 1 := by
+    rw [sw_val]; split_ifs; omega
+  have l2 : (sw j (sw i i.castSucc)).val = i.val + 1 := by
+    rw [sw_val, l1]; split_ifs <;> omega
+  have l3 : (sw i (sw j (sw i i.castSucc))).val = i.val := by
+    rw [sw_val, l2]; split_ifs <;> omega
+  have r1 : (sw j i.castSucc).val = i.val := by
+    rw [sw_val, hc]; split_ifs <;> omega
+  have r2 : (sw i (sw j i.castSucc)).val = i.val + 1 := by
+    rw [sw_val, r1]; split_ifs <;> omega
+  have r3 : (sw j (sw i (sw j i.castSucc))).val = i.val + 1 := by
+    rw [sw_val, r2]; split_ifs <;> omega
+  have := congrArg Fin.val heq
+  omega
 
 /-- **Eichung an HKN S. 25**: `N1.2.1` und `N2.1.2` geben dasselbe „abstrakte Resultat",
 den Umtausch der Werte 1 und 3 … -/
@@ -743,6 +770,9 @@ theorem genese_verschieden :
 
 /-- info: 'Reformulation.Proemial.NegationCycle.braid_fails_far' depends on axioms: [propext] -/
 #guard_msgs in #print axioms braid_fails_far
+
+/-- info: 'Reformulation.Proemial.NegationCycle.braid_fails_far_all' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms braid_fails_far_all
 
 /-- info: 'Reformulation.Proemial.NegationCycle.genese_resultat' depends on axioms: [propext] -/
 #guard_msgs in #print axioms genese_resultat
