@@ -1,4 +1,5 @@
 import Reformulation.Proemial.IrreversibleAscent
+import Reformulation.Proemial.IntervalBackbone
 
 /-!
 # Reformulation.Proemial.ExhaustionTransition — der Erschöpfungs-Übergang (neunzehnte Schicht)
@@ -45,7 +46,32 @@ Nicht-Wiederkehr, Absorption (Benennung ist kein Satz).
 ## (3) Term-fest werden hiermit
 
 `exhausts_ne`, `no_exhaustion_in_periodic`, `collapse_exhausts`,
-`fixpoint_reached_of_strict_descent`, Kür `exhausted_stays`.
+`fixpoint_reached_of_strict_descent`, Kür `exhausted_stays`. Seit dem 24. September dazu
+`dstep`, `dstep_decomp`, `dstep_no_fixpoint` und `decomp_never_exhausts` (Teil 5b).
+
+## (3a) Die zweite Gestalt — und dass sie diese nicht ist
+
+Der Bestand trägt Günthers „Erschöpfung" seit dem 24. September zweimal: hier als
+`Exhausts` — eine Iteration erreicht einen **absorbierenden** Bestand und kehrt nicht
+wieder — und in `IntervalBackbone` als `Exhausted` — der Überschuss einer Wertzahl hat ihre
+Themenzahl erreicht, und danach **beginnt** ein neues Intervall (`exhausted_seam`).
+
+**Das Verhältnis ist ein Satz:** `decomp_never_exhausts` — der Gang von `decomp`, als
+Selbstabbildung `dstep` auf `ℕ × ℕ` gelesen (`dstep_decomp`), fällt **nie** unter
+`Exhausts`, weil sein Schritt keinen Fixpunkt hat (`dstep_no_fixpoint`) und `Exhausts`
+einen verlangt. **Die zwei Gestalten schliessen einander aus:** wo `Exhausted` greift, geht
+es weiter; wo `Exhausts` greift, geht es nicht weiter. Keine Dublette.
+
+*Lesart, nicht Satz* (Mathematiker, 23.9.): die zwei Gestalten sind die zwei Seiten der
+Quell-Spannung, die `exhausts_ne` zitiert — die Subjektivität geht „in ihren Grund, d.h. in
+das Sein zurück" (ein Ende: `Exhausts`), und das Erreichte beginnt als erste Ontologie des
+Nächsten (ein Anfang: `Exhausted`). Formal gemessen ist nur der Ausschluss; die Zuordnung
+zu Günthers zwei Seiten stützt sich auf die schon zitierten Zeilen, nicht auf eine neue
+Quellenlektüre.
+
+**Ort, gemessen:** keiner der zwei Moduln importierte den anderen. Der Satz steht hier, weil
+hier die Prosa steht, die er ablöst, und `IntervalBackbone` projekt-import-frei bleiben soll
+(sein Kopf sagt es); die neue Importzeile zieht ein Modul und einen Mathlib-Baustein nach.
 
 ## (4) Bauform und Stufen-Disziplin
 
@@ -77,7 +103,10 @@ Fallunterscheidung `by_cases f x = x` über einem beliebigen Träger `α` ohne
 `DecidableEq` inhärent (die Fixpunkt-Alternative ist klassisch). Der erwartete
 Spec-Bereich `propext`/`Quot.sound` ist damit für die drei anderen Kern-Sätze
 erreicht bzw. unterschritten (`no_exhaustion_in_periodic` axiom-frei — eine
-Verschärfung), nur beim Descent-Lemma überschritten.
+Verschärfung), nur beim Descent-Lemma überschritten. Teil 5b: `dstep_decomp` axiom-frei,
+`dstep_no_fixpoint` und `decomp_never_exhausts` `[propext, Quot.sound]` — der Fixpunkt-Beweis
+schliesst mit `dsimp only; omega`, weil ein offenes `simp at this` an derselben Stelle
+`Classical.choice` zieht (Fallstrick 21, gemessen vom Mathematiker am 23.9.).
 -/
 
 namespace Reformulation.Proemial.ExhaustionTransition
@@ -183,6 +212,30 @@ theorem exhausted_stays {α : Type*} {f : α → α} {x b : α} {n : ℕ}
   | zero => rfl
   | succ k ih => rw [Function.iterate_succ_apply', ih, hfix]
 
+-- ============================================================
+-- Teil 5b — Die zweite Gestalt: der Gang von `decomp` erschöpft sich nie
+-- ============================================================
+
+/-- Der Schritt von `IntervalBackbone.decomp`, als Selbstabbildung auf `ℕ × ℕ`: der
+Überschuss wächst, bis er die Themenzahl erreicht; dann beginnt das nächste Intervall. -/
+def dstep (p : ℕ × ℕ) : ℕ × ℕ := if p.2 < p.1 then (p.1, p.2 + 1) else (p.1 + 1, 0)
+
+/-- `dstep` ist genau der Schritt von `decomp`. -/
+theorem dstep_decomp (m : ℕ) :
+    dstep (IntervalBackbone.decomp m) = IntervalBackbone.decomp (m + 1) := by
+  rw [IntervalBackbone.decomp_succ]; rfl
+
+/-- `dstep` hat keinen Fixpunkt: an jeder Stelle geht es weiter. -/
+theorem dstep_no_fixpoint (p : ℕ × ℕ) : dstep p ≠ p := by
+  unfold dstep; split
+  · intro h; have := congrArg Prod.snd h; exact absurd this (by dsimp only; omega)
+  · intro h; have := congrArg Prod.fst h; exact absurd this (by dsimp only; omega)
+
+/-- **Der Gang von `decomp` fällt nie unter `Exhausts`.** Die zwei Gestalten von Günthers
+„Erschöpfung" im Bestand schliessen einander aus. -/
+theorem decomp_never_exhausts (x b : ℕ × ℕ) : ¬ Exhausts dstep x b :=
+  fun h => dstep_no_fixpoint b h.1
+
 end Reformulation.Proemial.ExhaustionTransition
 
 -- ============================================================
@@ -209,5 +262,14 @@ section
 
 /-- info: 'Reformulation.Proemial.ExhaustionTransition.exhausted_stays' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms exhausted_stays
+
+/-- info: 'Reformulation.Proemial.ExhaustionTransition.dstep_decomp' does not depend on any axioms -/
+#guard_msgs in #print axioms dstep_decomp
+
+/-- info: 'Reformulation.Proemial.ExhaustionTransition.dstep_no_fixpoint' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms dstep_no_fixpoint
+
+/-- info: 'Reformulation.Proemial.ExhaustionTransition.decomp_never_exhausts' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms decomp_never_exhausts
 
 end

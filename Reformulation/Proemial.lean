@@ -504,6 +504,13 @@ Enthält:
   `Classical.choice` (`by_cases` über beliebigem Träger ohne `DecidableEq`,
   gewöhnliche Notiz), die drei anderen bleiben im Bereich `propext`/`Quot.sound`
   (`no_exhaustion_in_periodic` sogar axiom-frei). 0 Sorries.
+  **Seit dem 24. September die zweite Gestalt:** `decomp_never_exhausts` — der Gang von
+  `IntervalBackbone.decomp` (als `dstep`, `dstep_decomp` axiom-frei) hat keinen Fixpunkt
+  (`dstep_no_fixpoint`) und fällt darum nie unter `Exhausts`; `Exhausts` und
+  `IntervalBackbone.Exhausted` schliessen einander aus (Ende gegen Anfang — die Zuordnung
+  zu Günthers zwei Seiten ist Lesart). Dafür importiert die Schicht jetzt auch
+  `IntervalBackbone`; 9 Sätze, 8 Wachen (`collapse_iterate_pos` ist durch
+  `collapse_exhausts` gedeckt).
 
 - `Proemial.RecurringGround`: der wiederkehrende Grund (zwanzigste Schicht) — die
   **erste Stelle** der achtfachen Thematik in Zeugen-Fassung. Grund als Fixpunkt
@@ -558,12 +565,14 @@ Enthält:
   gilt an jeder Naht, und Günthers Name gehört nicht auf ihn (S5-5/S5-6); keine
   Ledger-Zeile, keine Werte-Semantik. Mathlib trägt die Dreiecks-Zerlegung nicht
   (`Nat.pair` ist die Quadrat-Schale). Darauf **`Exhausted`**: der Überschuss hat die
-  Themenzahl erreicht — Günthers „Erschöpfung der nicht-designativen Reflexion" (Lille
-  S. 19); `exhausted_seam` ist der `else`-Zweig von `decomp_succ` als Satz,
+  Themenzahl erreicht — wörtlich Lille S. 9 („Ein Intervall endet dort, wo die Zahl der
+  designationsfreien Werte die Zahl der verfügbaren logischen Themen erreicht hat"); den
+  Namen gibt S. 19, die „Erschöpfung der nicht-designativen Reflexion", dort für den einen
+  Fall `Exhausted 35`. `exhausted_seam` ist der `else`-Zweig von `decomp_succ` als Satz,
   `not_exhausted_step` sein Gegenstück. Auch das löst `AT-1b` nicht ein (die
-  Designativität bleibt ausserhalb der Hausgrenze), und der Bestand trägt Günthers Wort
-  schon als `ExhaustionTransition.Exhausts` — das Verhältnis der beiden Gestalten ist
-  nicht entschieden. **SUBSTRAT, KEIN
+  Designativität bleibt ausserhalb der Hausgrenze). Der Bestand trägt Günthers Wort schon
+  als `ExhaustionTransition.Exhausts`; die zwei Gestalten **schliessen einander aus**
+  (`ExhaustionTransition.decomp_never_exhausts`). **SUBSTRAT, KEIN
   DIFFERENTIAL:** keine arme Klasse, keine Unmöglichkeits-Hälfte, keine
   Zeugen-Fassung — das Rückgrat zählt die Orte, es deutet sie nicht; die
   Stellen-Schichten importieren es (geteilte-Klassen-Ökonomie eine Stufe tiefer).

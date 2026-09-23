@@ -74,9 +74,16 @@ Gang der Tafel — der Überschuss wächst je Wert um eins und fällt an der Nah
 
 **Die Erschöpfung** (seit dem 24. September, Bauauftrag des Mathematikers auf Entscheid
 des Architekten vom 23.9.). `Exhausted m` heisst: der Überschuss hat die Themenzahl
-erreicht. Das ist Günthers „Erschöpfung der nicht-designativen Reflexion" (Lille S. 19) —
-nach Hermeneutes (H3) der einzige Übergang der achtfachen Thematik, dem er einen Begriff
-gibt. `exhausted_seam` **ist** der `else`-Zweig von `decomp_succ`, als Satz: an einer
+erreicht. **Quellenanker, wörtlich und allgemein, ist Lille S. 9:** *„Ein Intervall endet
+dort, wo die Zahl der designationsfreien Werte die Zahl der verfügbaren logischen Themen
+erreicht hat. Die nächste wertreichere Struktur repräsentiert dann wieder eine Ontologie und
+mit ihr beginnt das nächste Intervall."* Der erste Satz ist `Exhausted`, der zweite
+`exhausted_seam`. **Den Namen gibt S. 19**, und zwar einem einzigen Fall: die achte
+Thematik geht „aus der Erschöpfung der nicht-designativen Reflexion" hervor — das ist
+`Exhausted 35`. „Erschöpfung" steht in Lille genau einmal (gemessen); nach Hermeneutes (H3)
+ist es der einzige Übergang der achtfachen Thematik, dem Günther einen Begriff gibt. **Das
+Wort auf alle Nähte zu übertragen, ist unsere Wahl** — Günther spricht den allgemeinen
+Sachverhalt auf S. 9 ohne Namen aus. `exhausted_seam` **ist** der `else`-Zweig von `decomp_succ`, als Satz: an einer
 erschöpften Wertzahl beginnt das nächste Intervall. `not_exhausted_step` ist sein
 Gegenstück.
 
@@ -88,8 +95,8 @@ Gegenstück.
 * **Der Bestand trägt Günthers Wort schon einmal:** `ExhaustionTransition.Exhausts`
   (neunzehnte Schicht) fasst die Erschöpfung als Iteration, die einen Fixpunkt erreicht und
   nicht zurückkehrt; `Exhausted` hier fasst sie als Überschuss, der die Themenzahl erreicht.
-  Zwei Gestalten desselben Worts. **Wie sie sich zueinander verhalten, entscheidet dieses
-  Modul nicht.**
+  **Die zwei Gestalten schliessen einander aus** — `ExhaustionTransition.decomp_never_exhausts`:
+  der Gang von `decomp` hat keinen Fixpunkt und fällt darum nie unter `Exhausts`.
 
 **Mathlib-Lage, gemessen:** die Dreiecks-Zerlegung steht dort **nicht**. `Nat.pair`/`unpair`
 sind die **Quadrat**-Schale (`Nat.sqrt`), „Triangle" ist Kategorien- und Graphentheorie. Die
@@ -306,8 +313,10 @@ theorem decomp_uniq (m k j : ℕ) (hjk : j ≤ k) (h : m = intervalStart k + j) 
       rw [← step]; exact (intervalStart_strictMono.le_iff_le).mpr hgt
     exact ⟨by omega, by omega⟩
 
-/-- **Erschöpft** ist eine Wertzahl, deren Überschuss die Themenzahl erreicht hat — Günthers
-„Erschöpfung der nicht-designativen Reflexion" (Lille S. 19). -/
+/-- **Erschöpft** ist eine Wertzahl, deren Überschuss die Themenzahl erreicht hat: „Ein
+Intervall endet dort, wo die Zahl der designationsfreien Werte die Zahl der verfügbaren
+logischen Themen erreicht hat" (Lille S. 9). Den Namen gibt S. 19 — „Erschöpfung der
+nicht-designativen Reflexion" —, dort für den einen Fall `Exhausted 35`. -/
 def Exhausted (m : ℕ) : Prop := (decomp m).2 = (decomp m).1
 
 instance : DecidablePred Exhausted :=
