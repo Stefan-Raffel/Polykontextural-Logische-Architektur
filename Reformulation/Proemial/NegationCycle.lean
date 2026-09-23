@@ -114,8 +114,9 @@ Tafel XII), sondern durch Günthers eigenen Druck: im *Janusgesicht der Dialekti
 druckt er denselben Kreis vollständig, mit 24 Negatoren in der Verteilung 9-6-9. Diese
 Folge — `janus1974` — ist ein Vollkreis (`janus1974_full`) und ist genau die emendierte
 Folge, um einen Schritt rotiert (`janus1974_rotate`); die in IGN gedruckten 22 Negatoren
-stehen darin als zusammenhängendes Stück. **„Emendation" ist damit das richtige Wort: die
-Fassung trägt einen Druckfehler, nicht der Kreis.**
+stehen darin als zusammenhängendes Stück (`janus1974_contains_printed`).
+**„Emendation" ist damit das richtige Wort: die Fassung trägt einen Druckfehler, nicht
+der Kreis.**
 
 **Druckvorlage.** Die drei Textbefunde sind Druckfehler der *Fassung*, deren Vorlage die
 *Hegeljahrbücher* 1979, S. 22–88, sind; ob schon der Originaldruck so aussah, ist am Bestand
@@ -175,7 +176,8 @@ Mathlibs Sätzen über `List.permutations` (`nodup_permutations`,
 nicht. Dasselbe Muster wie `full_length3` in `NegationCycleSearch` (Fallstrick 10, die
 Baustein-Gattung); gemessen bei der Abnahme der dortigen Heilung.
 
-`janus1974_full` und `janus1974_rotate` tragen `[propext]`, gemessen am 22.9.2026.
+`janus1974_full`, `janus1974_rotate` und `janus1974_contains_printed` tragen `[propext]`,
+gemessen am 22.9. bzw. 24.9.2026.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
 `List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
@@ -448,6 +450,10 @@ theorem janus1974_full : IsFullCycle janus1974 := by decide
 gleich lange. -/
 theorem janus1974_rotate : janus1974 = kreis2.rotate 23 := by decide
 
+/-- **Die 22 gedruckten Negatoren stehen im Druck von 1974 als zusammenhängendes Stück** —
+umrahmt von dem einen Negator davor und dem einen danach. -/
+theorem janus1974_contains_printed : janus1974 = [2] ++ kreis2Gedruckt ++ [0] := by decide
+
 /-- Familie 10-9-5. -/
 theorem kreis1_family : kreis1.count 0 = 10 ∧ kreis1.count 1 = 9 ∧ kreis1.count 2 = 5 := by
   decide
@@ -621,5 +627,8 @@ theorem pseudo_not_full : ¬ IsFullCycle pseudo := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.janus1974_rotate' depends on axioms: [propext] -/
 #guard_msgs in #print axioms janus1974_rotate
+
+/-- info: 'Reformulation.Proemial.NegationCycle.janus1974_contains_printed' depends on axioms: [propext] -/
+#guard_msgs in #print axioms janus1974_contains_printed
 
 end Reformulation.Proemial.NegationCycle
