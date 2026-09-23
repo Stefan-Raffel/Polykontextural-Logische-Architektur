@@ -72,6 +72,25 @@ Gang der Tafel — der Überschuss wächst je Wert um eins und fällt an der Nah
   Hauses; **Designation ≠ Denotation** gilt fort.
 * **Keine Ledger-Zeile, kein `§20`-Anspruch.**
 
+**Die Erschöpfung** (seit dem 24. September, Bauauftrag des Mathematikers auf Entscheid
+des Architekten vom 23.9.). `Exhausted m` heisst: der Überschuss hat die Themenzahl
+erreicht. Das ist Günthers „Erschöpfung der nicht-designativen Reflexion" (Lille S. 19) —
+nach Hermeneutes (H3) der einzige Übergang der achtfachen Thematik, dem er einen Begriff
+gibt. `exhausted_seam` **ist** der `else`-Zweig von `decomp_succ`, als Satz: an einer
+erschöpften Wertzahl beginnt das nächste Intervall. `not_exhausted_step` ist sein
+Gegenstück.
+
+* **Es löst `AT-1b` nicht ein.** Günther setzt für das achte Thema zwei Bedingungen:
+  Erschöpfung — hier gebaut — und Designativität, eine Werte-Semantik ausserhalb der
+  Hausgrenze.
+* **Es gilt an jeder Naht** und zeichnet die siebte nicht aus.
+* **Der Name kommt von der Sache.** Kein „achte_stelle", kein „thanatos".
+* **Der Bestand trägt Günthers Wort schon einmal:** `ExhaustionTransition.Exhausts`
+  (neunzehnte Schicht) fasst die Erschöpfung als Iteration, die einen Fixpunkt erreicht und
+  nicht zurückkehrt; `Exhausted` hier fasst sie als Überschuss, der die Themenzahl erreicht.
+  Zwei Gestalten desselben Worts. **Wie sie sich zueinander verhalten, entscheidet dieses
+  Modul nicht.**
+
 **Mathlib-Lage, gemessen:** die Dreiecks-Zerlegung steht dort **nicht**. `Nat.pair`/`unpair`
 sind die **Quadrat**-Schale (`Nat.sqrt`), „Triangle" ist Kategorien- und Graphentheorie. Die
 Analogie liegt dort, der Satz nicht — damit niemand ihn später sucht oder für zitierbar hält.
@@ -85,8 +104,10 @@ Wiederholungs-Figur (benannte Posten). **Designation ≠ Denotation** gilt fort.
 
 ## (6) Sorry-Bilanz und Axiom-Ist
 
-**0 Sorries.** Axiom-Ist (erster grüner Build, v4.30.0-rc2), zweigeteilt exakt
-entlang der Beweis-Taktik:
+**0 Sorries.** Axiom-Ist (erster grüner Build, v4.30.0-rc2), bis zur Umkehrung zweigeteilt
+exakt entlang der Beweis-Taktik — seit `exhausted_seam` **drei** Klassen, nachgezählt am
+24. September über die 18 Wachen: 8 axiom-frei, 1 `[propext]`, 9 `[propext, Quot.sound]`.
+Die ursprünglichen acht:
 
 * **axiom-frei** (`decide`-Route): `tafel_IV`, `nature_closes_at_14`,
   `eighth_starts_at_36` — die drei Kern-Rechnungen der Tafel, kernel-ausgewertet.
@@ -101,6 +122,10 @@ beide gemessen und beide in den Beweisen sichtbar: die Eichungen tragen nur mit
 Grenze wird **nicht** heraufgesetzt (Fallstrick 5). Und **konjunktive Ziele werden vor
 `omega` zerlegt**: `a ≤ b ∧ b ≤ a := by omega` trägt `Classical.choice`, dasselbe Ziel
 zerlegt nicht (Fallstrick 7 in einer vierten Gestalt, gemessen 24. September).
+`exhausted_seam` trägt `[propext]` — die dritte Klasse —, `not_exhausted_step`
+`[propext, Quot.sound]`; beide schliessen mit offenem `simp`, im Modul gemessen wie in der
+Probe (Fallstrick 21: das Profil hängt damit an der Importlage). Die Eichungen `Exhausted 35`,
+`¬ Exhausted 34`, `Exhausted 65` stehen als `example` (beim Bau geprüft, kein eigener Satz).
 
 **Hüllen-Vorsicht, hier belegt statt behauptet:** das Paar `[propext, Quot.sound]`
 ist **Eigenschaft der `omega`-Hülle, nicht der Aussage** — nachgemessen an
@@ -281,6 +306,31 @@ theorem decomp_uniq (m k j : ℕ) (hjk : j ≤ k) (h : m = intervalStart k + j) 
       rw [← step]; exact (intervalStart_strictMono.le_iff_le).mpr hgt
     exact ⟨by omega, by omega⟩
 
+/-- **Erschöpft** ist eine Wertzahl, deren Überschuss die Themenzahl erreicht hat — Günthers
+„Erschöpfung der nicht-designativen Reflexion" (Lille S. 19). -/
+def Exhausted (m : ℕ) : Prop := (decomp m).2 = (decomp m).1
+
+instance : DecidablePred Exhausted :=
+  fun m => inferInstanceAs (Decidable ((decomp m).2 = (decomp m).1))
+
+/-- **Die Naht**: an einer erschöpften Wertzahl beginnt das nächste Intervall. Der
+`else`-Zweig von `decomp_succ`, als Satz. -/
+theorem exhausted_seam (m : ℕ) (h : Exhausted m) :
+    decomp (m + 1) = ((decomp m).1 + 1, 0) := by
+  rw [decomp_succ]; simp only [Exhausted] at h; rw [h]; simp
+
+/-- Ohne Erschöpfung wächst nur der Überschuss. -/
+theorem not_exhausted_step (m : ℕ) (h : ¬ Exhausted m) :
+    decomp (m + 1) = ((decomp m).1, (decomp m).2 + 1) := by
+  have := (decomp_spec m).1
+  rw [decomp_succ]; simp only [Exhausted] at h
+  have hlt : (decomp m).2 < (decomp m).1 := lt_of_le_of_ne this h
+  simp [hlt]
+
+example : Exhausted 35 := by decide +kernel
+example : ¬ Exhausted 34 := by decide +kernel
+example : Exhausted 65 := by decide +kernel
+
 /-- Eichung: Günthers Naht VII → VIII. `35 = intervalStart 7 + 7 = 28 + 7`. -/
 theorem decomp_35 : decomp 35 = (7, 7) := by decide +kernel
 
@@ -347,6 +397,12 @@ section
 
 /-- info: 'Reformulation.Proemial.IntervalBackbone.decomp_66' does not depend on any axioms -/
 #guard_msgs in #print axioms decomp_66
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.exhausted_seam' depends on axioms: [propext] -/
+#guard_msgs in #print axioms exhausted_seam
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.not_exhausted_step' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms not_exhausted_step
 
 end
 

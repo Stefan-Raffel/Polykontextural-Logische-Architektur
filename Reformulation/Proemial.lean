@@ -557,7 +557,13 @@ Enthält:
   den 65/66-Befund vom 16. September zum Satz). **Sie löst `AT-1b` nicht ein**: der Satz
   gilt an jeder Naht, und Günthers Name gehört nicht auf ihn (S5-5/S5-6); keine
   Ledger-Zeile, keine Werte-Semantik. Mathlib trägt die Dreiecks-Zerlegung nicht
-  (`Nat.pair` ist die Quadrat-Schale). **SUBSTRAT, KEIN
+  (`Nat.pair` ist die Quadrat-Schale). Darauf **`Exhausted`**: der Überschuss hat die
+  Themenzahl erreicht — Günthers „Erschöpfung der nicht-designativen Reflexion" (Lille
+  S. 19); `exhausted_seam` ist der `else`-Zweig von `decomp_succ` als Satz,
+  `not_exhausted_step` sein Gegenstück. Auch das löst `AT-1b` nicht ein (die
+  Designativität bleibt ausserhalb der Hausgrenze), und der Bestand trägt Günthers Wort
+  schon als `ExhaustionTransition.Exhausts` — das Verhältnis der beiden Gestalten ist
+  nicht entschieden. **SUBSTRAT, KEIN
   DIFFERENTIAL:** keine arme Klasse, keine Unmöglichkeits-Hälfte, keine
   Zeugen-Fassung — das Rückgrat zählt die Orte, es deutet sie nicht; die
   Stellen-Schichten importieren es (geteilte-Klassen-Ökonomie eine Stufe tiefer).
@@ -568,11 +574,15 @@ Enthält:
   Intervall" sind Namen — term-fest ist die ℕ-Arithmetik; keine Werte-Semantik,
   keine Ophiten-Namen, keine Ablösungs- oder Wiederkehr-Figur (benannte Posten);
   Designation ≠ Denotation gilt fort. **Projekt-import-frei** (einziger
-  Mathlib-Import: `Order.Monotone.Basic` für die Kür). Axiom-Ist je Kern-Satz
-  `#guard_msgs`-verwacht, taktik-scharf zweigeteilt: die drei `decide`-Sätze (`tafel_IV`,
-  `nature_closes_at_14`, `eighth_starts_at_36`) **axiom-frei**, die fünf
-  `omega`-Sätze `[propext, Quot.sound]` — nachgemessen als **Hüllen-Profil** der
-  `omega`-Taktik (`n + 0 = n` trägt dasselbe), nicht als Substanz.
+  Mathlib-Import: `Order.Monotone.Basic` für die Kür). Axiom-Ist je Satz
+  `#guard_msgs`-verwacht, **18 Sätze, 18 Wachen, nachgezählt am 24. September**, in drei
+  Klassen: **8 axiom-frei** — die drei `decide`-Sätze der Tafel (`tafel_IV`,
+  `nature_closes_at_14`, `eighth_starts_at_36`), `decomp_succ` (`rfl`) und die vier
+  Eichwerte (`decide +kernel`); **1 `[propext]`** — `exhausted_seam`; **9
+  `[propext, Quot.sound]`** — die fünf `omega`-Sätze des Rückgrats, nachgemessen als
+  **Hüllen-Profil** der `omega`-Taktik (`n + 0 = n` trägt dasselbe), nicht als Substanz,
+  dazu `step`, `decomp_spec`, `decomp_uniq` und `not_exhausted_step`. Die drei Eichungen
+  der Erschöpfung stehen als `example`.
   **Abweichung/Verschärfung:** Gauss-Brücke per Induktion statt per
   `Nat.two_mul_div_two_of_even` — die Mathlib-Route trüge `Classical.choice`
   herein und hätte es an alle vier Gesetze weitergereicht. 0 Sorries.
