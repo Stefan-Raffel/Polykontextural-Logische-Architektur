@@ -1268,7 +1268,7 @@ Enthält:
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
   Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer, und
-  `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. 39 Wachen;
+  `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. 40 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
