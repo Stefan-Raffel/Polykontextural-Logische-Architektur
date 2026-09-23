@@ -1278,8 +1278,12 @@ Enthält:
   denselben Umtausch auf verschiedenen Wegen (HKN S. 25, Eichung); dahinter `braid`, die
   Zopfrelation benachbarter Negatoren für jedes `m`, mit `comm_far` und
   `braid_fails_far_all` (für jedes entfernte Paar, 25.9.; `braid_fails_far` ist seine
-  Eichung) für das „genau dort, wo ein Wert geteilt wird" (`sw_val` axiomfrei). Kein
-  §11-Träger, keine Definition der zweiten Negation (L07-4 offen). **Der
+  Eichung) für das „genau dort, wo ein Wert geteilt wird" (`sw_val` axiomfrei). **Der
+  vermittelnde Wert** (25.9.): `track_mediates` — unter jedem Negatorwort durchläuft ein Wert
+  jeden Wert zwischen Anfang und Ende, in beide Richtungen, für jedes `m` (HKN S. 25, „der
+  Wert 2 spielt eine vermittelnde Rolle zwischen 1 und 3"; Lesart „vermittelnd =
+  durchlaufen", zwei weitere Lesarten genannt, nicht entschieden). Kein §11-Anspruch ohne
+  Custos, keine Definition der zweiten Negation (L07-4 offen). **Der
   kalkültheoretische Bereich** (Teil 6, 25.9.): Günthers vier Spalten aus HKN S. 24
   (`transklassisch3`) sind genau das Komplement der Doppelstrich-Zone (`klassisch3`) in den
   sechs Anordnungen — `transklassisch3_nodup`, `_disjoint`, `zone_exhausts`, `zone_count`,
@@ -1289,7 +1293,7 @@ Enthält:
   mit `Classical.choice` aus `nodup_finRange` und `nodup_permutations` wie `full_length`;
   `transklassisch_eq_three` ist die Brücke zu Teil 6, `transklassisch_four` (22) und
   `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv, löst V nicht
-  ein. 60 Wachen;
+  ein. 65 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).

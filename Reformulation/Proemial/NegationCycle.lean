@@ -64,6 +64,10 @@ Die Sätze:
 * `visits_every_arrangement` — der Anschluss an `List.Perm`: ein Vollkreis trifft jede
   Liste, die eine Permutation des Ausgangs ist.
 
+* `track`, `sw_step`, `track_last`, `track_between`, `track_between_down`,
+  `track_mediates` — **der vermittelnde Wert** (Teil 5, 25.9.2026): Unter jedem Negatorwort
+  durchläuft ein Wert jeden Wert zwischen Anfang und Ende (HKN S. 25, Lesart „vermittelnd =
+  durchlaufen").
 * `sw_val`, `braid`, `comm_far`, `braid_fails_far_all`, `braid_fails_far`, `genese_resultat`,
   `genese_verschieden` — **die Genese** (Teil 5, 24.9.2026): Günthers zwei Wege zum
   selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
@@ -205,13 +209,39 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   Beispiel, `braid_fails_far`, das jetzt seine Eichung ist). Das „genau" hängt an Z2 und Z3,
   allgemein; am Beispiel geeicht. Günther nennt an seinem Beispiel den Wert 2
   „vermittelnd zwischen 1 und 3" — dass das der **geteilte** Wert der Zopfrelation ist, ist
-  **LESART**.
+  **LESART**. Eine zweite Lesart, der Durchgang, ist als Satz gebaut (`track_mediates`, unten
+  K-V1–K-V5).
 * **K5 — kein §11-Träger.** Günther nennt den *Wert* vermittelnd, nicht die Genese. Die
-  Genese ist hier Doppeldeutigkeit einer Funktion, nicht Vermittlung; Buchung, wenn Custos
+  Genese ist hier Doppeldeutigkeit einer Funktion, nicht Vermittlung; den vermittelnden
+  *Wert* trägt `track_mediates` (K-V1–K-V5); Buchung, wenn Custos
   bucht, an §7 (HKN S. 25). Die zweite Negation definiert dieses Modul nicht; L07-4 bleibt
   offen.
 * **K6 — nicht geprüft:** ob die Zopfrelation dieselbe Vermittlung trägt wie das Kriterium
   (B) in `SharedPlaceGrowth`. Bis dahin Wortgleichheit, keine Sachgleichheit.
+
+**Der vermittelnde Wert** (Teil 5, gebaut am 25.9.2026 nach
+`KorpusRev2/Spec_Vermittlung_Durchgang.md`, Mathematiker; Probe in
+`KorpusRev2/Vermittlung_Durchgang_Probe_Impl.md`):
+
+* **K-V1 — die Quelle.** HKN S. 25: „In dieser ersten und einfachsten trans-klassischen
+  Negationstafel spielt nun der Wert 2 eine vermittelnde Rolle zwischen 1 und 3." Der
+  vermittelnde ist ein **Wert**, keine Operation.
+* **K-V2 — der Satz.** `track_mediates`: Unter jedem Negatorwort durchläuft ein Wert jeden
+  Wert zwischen Anfang und Ende, in beide Richtungen (`track_between`,
+  `track_between_down`), für jedes `m`. Er folgt daraus, dass Günthers Negatoren benachbarte
+  Werte tauschen (`sw_step`); einen Negator `1 ↔ 3` gibt es nicht. Bei drei Werten heisst
+  das: Der Umtausch von 1 und 3 geht auf keinem Weg ohne die 2. Die drei `example`-Eichungen
+  zeigen es an Günthers `N1.2.1` und `N2.1.2`.
+* **K-V3 — Lesart.** „vermittelnd = durchlaufen" ist **LESART** an HKN S. 25. Die Fassung für
+  `m ≥ 4` („alle Werte dazwischen vermitteln") setzt diese Lesart fort; Günthers Satz ist sie
+  nicht.
+* **K-V4 — zwei andere Lesarten** fallen bei drei Werten mit ihr zusammen: der geteilte Wert
+  (K4 oben) und die geteilte Stelle (`SharedPlaceGrowth`, Kriterium (B), Lille S. 29, dort
+  gesetzt; ein anderer Gegenstand: Tafelstellen, nicht Werte). Sie werden genannt, nicht
+  entschieden. Bei drei Werten ist die 2 der durchlaufene, der geteilte und, dem Wort nach,
+  der geteilte Tafelwert; danach gehen die drei auseinander.
+* **K-V5 — nicht die Hegelsche Vermittlung**, kein §11-Anspruch; ob und wie an §11 gebucht
+  wird, entscheidet Custos.
 
 ## Der kalkültheoretische Bereich der zweiten Negation (drei Werte) — Teil 6
 
@@ -313,7 +343,9 @@ und `comm_far` tragen `[propext, Quot.sound]`, ebenso `braid_fails_far_all` (25.
 Schritt für Schritt über `sw_val`: ein `split_ifs` über alle sechs verschachtelten `sw`
 läuft in den Heartbeat-Timeout und meldet sich dann als axiomfrei — Fallstrick 23);
 `braid_fails_far`,
-`genese_resultat` und `genese_verschieden` tragen `[propext]`. Mit offenem
+`genese_resultat` und `genese_verschieden` tragen `[propext]`. Der vermittelnde Wert
+(25.9.): `sw_step`, `track_between`, `track_between_down` und `track_mediates` tragen
+`[propext, Quot.sound]`, `track_last` trägt `[propext]`. Mit offenem
 `simp` statt `rw [if_pos …]` in `sw_val` zöge die Kette `Classical.choice`
 (Spec, Bau-Hinweis H1; Fallstrick 21) — die Taktik, nicht die Sache.
 Teil 6 (gemessen am 25.9.2026 nach grünem Bau): `transklassisch3_nodup`,
@@ -717,6 +749,86 @@ theorem braid_fails_far_all {m : ℕ} (i j : Fin m) (h : i.val + 2 ≤ j.val) :
   have := congrArg Fin.val heq
   omega
 
+/-- Der Weg eines Wertes unter einer Negationsfolge: die Werte, die `v` nacheinander annimmt;
+Anfang `v`, Ende das Bild von `v` unter dem ganzen Wort. -/
+def track {m : ℕ} : List (Fin m) → Fin (m + 1) → List (Fin (m + 1))
+  | [], v => [v]
+  | i :: is, v => v :: track is (sw i v)
+
+/-- Ein Negator bewegt einen Wert um höchstens eins: Günthers Negatoren tauschen benachbarte
+Werte, einen Negator `1 ↔ 3` gibt es nicht. -/
+theorem sw_step {m : ℕ} (i : Fin m) (v : Fin (m + 1)) :
+    (sw i v).val ≤ v.val + 1 ∧ v.val ≤ (sw i v).val + 1 := by
+  have h := sw_val i v
+  constructor
+  · rw [h]; split_ifs <;> omega
+  · rw [h]; split_ifs <;> omega
+
+/-- Der Weg endet am Bild von `v`. -/
+theorem track_last {m : ℕ} (w : List (Fin m)) (v : Fin (m + 1)) :
+    (track w v).getLast? = some (w.foldl (fun x i => sw i x) v) := by
+  induction w generalizing v with
+  | nil => rfl
+  | cons i is ih =>
+    simp only [track, List.foldl]
+    rw [List.getLast?_cons, ih]; rfl
+
+/-- Aufwärts: steigt ein Wert von `v` auf sein Bild, so nimmt er jeden Wert dazwischen an. -/
+theorem track_between {m : ℕ} (w : List (Fin m)) (v c : Fin (m + 1))
+    (h1 : v.val ≤ c.val) (h2 : c.val ≤ (w.foldl (fun x i => sw i x) v).val) :
+    c ∈ track w v := by
+  induction w generalizing v with
+  | nil =>
+    simp only [List.foldl] at h2
+    have : c = v := Fin.ext (by omega)
+    simp [track, this]
+  | cons i is ih =>
+    simp only [List.foldl] at h2
+    by_cases hc : c = v
+    · simp [track, hc]
+    · have hlt : v.val < c.val := lt_of_le_of_ne h1 (fun e => hc (Fin.ext e.symm))
+      have hs := (sw_step i v).1
+      have : (sw i v).val ≤ c.val := by omega
+      exact List.mem_cons_of_mem _ (ih (sw i v) this h2)
+
+/-- Abwärts: fällt ein Wert von `v` auf sein Bild, so nimmt er jeden Wert dazwischen an. -/
+theorem track_between_down {m : ℕ} (w : List (Fin m)) (v c : Fin (m + 1))
+    (h1 : c.val ≤ v.val) (h2 : (w.foldl (fun x i => sw i x) v).val ≤ c.val) :
+    c ∈ track w v := by
+  induction w generalizing v with
+  | nil =>
+    simp only [List.foldl] at h2
+    have : c = v := Fin.ext (by omega)
+    simp [track, this]
+  | cons i is ih =>
+    simp only [List.foldl] at h2
+    by_cases hc : c = v
+    · simp [track, hc]
+    · have hlt : c.val < v.val := lt_of_le_of_ne h1 (fun e => hc (Fin.ext e))
+      have hs := (sw_step i v).2
+      have : c.val ≤ (sw i v).val := by omega
+      exact List.mem_cons_of_mem _ (ih (sw i v) this h2)
+
+/-- **Der vermittelnde Wert wird durchlaufen** (HKN S. 25, Lesart „vermittelnd =
+durchlaufen"): unter jedem Negatorwort nimmt ein Wert jeden Wert zwischen Anfang und Ende an,
+in beide Richtungen, für jedes `m`. -/
+theorem track_mediates {m : ℕ} (w : List (Fin m)) (v c : Fin (m + 1))
+    (h : (v.val ≤ c.val ∧ c.val ≤ (w.foldl (fun x i => sw i x) v).val) ∨
+         ((w.foldl (fun x i => sw i x) v).val ≤ c.val ∧ c.val ≤ v.val)) :
+    c ∈ track w v := by
+  rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩
+  · exact track_between w v c h1 h2
+  · exact track_between_down w v c h2 h1
+
+/-- Eichung, Günthers `N1.2.1`: der Wert 1 läuft `1 → 2 → 3 → 3` (0-basiert). -/
+example : track ([0, 1, 0] : List (Fin 2)) 0 = [0, 1, 2, 2] := by decide
+
+/-- Eichung, Günthers `N2.1.2`: der Wert 1 läuft `1 → 1 → 2 → 3`. -/
+example : track ([1, 0, 1] : List (Fin 2)) 0 = [0, 0, 1, 2] := by decide
+
+/-- Eichung, der Rückweg unter `N1.2.1`: der Wert 3 läuft `3 → 3 → 2 → 1`, über die 2. -/
+example : track ([0, 1, 0] : List (Fin 2)) 2 = [2, 2, 1, 0] := by decide
+
 /-- **Eichung an HKN S. 25**: `N1.2.1` und `N2.1.2` geben dasselbe „abstrakte Resultat",
 den Umtausch der Werte 1 und 3 … -/
 theorem genese_resultat :
@@ -1037,5 +1149,20 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.transklassisch_two' depends on axioms: [propext] -/
 #guard_msgs in #print axioms transklassisch_two
+
+/-- info: 'Reformulation.Proemial.NegationCycle.sw_step' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms sw_step
+
+/-- info: 'Reformulation.Proemial.NegationCycle.track_last' depends on axioms: [propext] -/
+#guard_msgs in #print axioms track_last
+
+/-- info: 'Reformulation.Proemial.NegationCycle.track_between' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms track_between
+
+/-- info: 'Reformulation.Proemial.NegationCycle.track_between_down' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms track_between_down
+
+/-- info: 'Reformulation.Proemial.NegationCycle.track_mediates' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms track_mediates
 
 end Reformulation.Proemial.NegationCycle
