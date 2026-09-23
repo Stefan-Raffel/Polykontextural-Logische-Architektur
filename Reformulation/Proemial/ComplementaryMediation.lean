@@ -22,10 +22,17 @@ die transitive Hülle hinaus**.
 ## (1) Quellen
 
 Der Anker im Wortlaut: „Strukturen …, die Zweiwertigkeit und Dreiwertigkeit
-miteinander vermitteln" (Lille Z. 506–508, **Volltext-verifiziert**). Die
-Zeit-Dreiheit reversibel / irreversibel / Komplementarität: Z. 484–508.
-„Organik": Z. 512–513. Der Ort (Intervall IV als Abschnitt des 14-wertigen
-Systems): Z. 517–519. Härte-Ökonomie: einmal geeicht (Beiträge III, S. 160,
+miteinander vermitteln" (Lille S. 10, **Volltext-verifiziert**). Die Zeit-Dreiheit
+reversibel / irreversibel / Komplementarität: S. 10, der Satz „Dieser Platz ist durch
+die Zeit besetzt …". „Organik": S. 10, „… triadisch gegliedert in: Mechanik, Physik und
+Organik". Der Ort (Intervall IV als Abschnitt des 14-wertigen Systems): S. 10, „… ein
+14-wertiges System formaler Logik".
+
+**Ankerform: Seite und Wortlaut, nicht Zeile** (seit dem 24. September). Bis dahin
+standen hier Zeilen der Volltext-Datei (`KorpusRev1/Lille_1968_Volltext_seitenweise.txt`);
+sie hatten sich verschoben — der Anker stand bei Z. 454–455 statt 506–508, die
+Dreiheit bei 436–439 statt 484–508. In einer bewegten Datei ist die Seite mit dem
+Wortlaut der Anker, nicht die Zeile. Härte-Ökonomie: einmal geeicht (Beiträge III, S. 160,
 druck-verifiziert), verlängerbar.
 
 **Quellenlage der drei Momente (Hermeneutes, 21.9.).** Die **Dreiheit** —
@@ -42,8 +49,8 @@ zweiwertigen Träger sitzt.
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Organik = Intervall IV" ist **Lesart der Hegel-Stufe**, nicht Satz
-dieser Schicht: Günther meldet „ernsthafte Zweifel" (Z. 921–922) an und nennt die
-Zuordnung „nur relativ" (Z. 936–938); gesichert ist allein die Gliederung „je
+dieser Schicht: Günther meldet „ernsthafte Zweifel" (S. 17) an und nennt die
+Zuordnung „nur relativ" (S. 18); gesichert ist allein die Gliederung „je
 drei Intervalle".
 
 ## (3) Substrat-Erbe
@@ -88,7 +95,8 @@ Denotation** gilt fort.
 
 Kein Vorgriff auf die Hebdomas — eigenes Paket. Keine Werte-Semantik und keine
 Zeit-Semantik. Die U5-Figuren und die Vollkommene-Zahlen-Beobachtung (von
-Foerster, Z. 660–692) bleiben benannte Posten. Die Nonempty-Bedingung der
+Foerster; Exkurs über Intervalle und »vollkommene« Zahlen, S. 12–14) bleiben benannte
+Posten. Die Nonempty-Bedingung der
 Schnitt-Leere ist **Voraussetzungs-Ehrlichkeit, keine Setzung**: auf leerem
 Träger sind beide Prädikate leer wahr, und der Schnitt ist bewohnt.
 
@@ -227,7 +235,7 @@ theorem mediator_mediates : Mediates mediator := by
 -- Teil 4 — Orts-Sätze (M5)
 -- ============================================================
 
-/-- Der Ort aus dem Rückgrat (21.; Lille Z. 517–519): Intervall IV beginnt
+/-- Der Ort aus dem Rückgrat (21.; Lille S. 10, „14-wertiges System"): Intervall IV beginnt
     bei 10 … -/
 theorem interval_IV_start : intervalStart 4 = 10 := by decide
 
