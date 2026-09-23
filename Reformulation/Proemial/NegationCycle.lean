@@ -28,7 +28,8 @@ Die Sätze:
   (4) und (5) sind Vollkreise, und die eine ist die andere rückwärts gelesen.
 * `full_length` — **Ertrag**: jeder Vollkreis über `m + 1` Werten hat genau `(m + 1)!`
   Negatoren. Günther sagt es als Regel (1980 S. 20: „Ein n-wertiger Hamiltonkreis umfasst,
-  wenn er vollständig ist n! Negationsschritte"); hier folgt es aus den vier Feldern.
+  wenn er vollständig ist n! Negationsschritte"); hier folgt es aus den vier Feldern. Dass
+  es für jede Wertzahl ab zwei einen Vollkreis gibt, ist `NegationCycleSJT.full_exists`.
   Hilfssatz `stations_length`.
 * `triadic_unique`, `triadic_unique'` — **Ertrag, der Beweis einer unbewiesenen
   Quellenaussage**: dreiwertig sind (4) und (5) die einzigen Vollkreise. Günther sagt es ohne
@@ -311,8 +312,10 @@ Gebaut auf Anordnung des Architekten vom 25.9.2026 nach
   Negationsbereich sind zwei Gegenstände, und die Gleichsetzung wäre eine **ZUORDNUNG**.
 * **K5 — Bedingung (a) gilt.** Der kalkültheoretische Schatten, nicht die Hegelsche zweite
   Negation; V ist nicht eingelöst, L07-4 bleibt offen.
-* **K6 — nicht konstruktiv.** Dass jedes Element als Negatorwort gegeben ist, sagt dieser
-  Teil nicht (M4, nicht gebaut).
+* **K6 — nicht konstruktiv, hier.** Dass jedes Element als Negatorwort gegeben ist, sagt
+  dieser Teil nicht. Jedes Element ist eine Anordnung, und für jede Anordnung liefert
+  `NegationCycleSJT.reach_all` ein Negatorwort, choice-frei; das ist M4 in der
+  Listen-Fassung.
 
 ## Axiomprofil
 

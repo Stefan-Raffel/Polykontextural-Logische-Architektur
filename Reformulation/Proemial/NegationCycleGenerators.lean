@@ -26,10 +26,9 @@ hiesse Teil A, allen Konsumenten die Gruppentheorie nachzuladen.
   Bestandes, was Mathlib über `swap` sagt (**FOLGERUNG**). Den Satz der Voranalyse, der
   wörtlich Mathlibs Satz wäre, baut dieses Modul nicht; er wäre eine UMBENENNUNG.
 * **K4 — nicht konstruktiv.** Der Satz sagt, *dass* jede Permutation erzeugt wird, nicht
-  durch welches Wort. Das wäre die Listen-Fassung. Sie ist sondiert
-  (`KorpusRev2/Sondierung_SJT_Listenfassung_Impl.md`): Sie folgt allgemein und choice-frei
-  aus einem Vollkreis für jedes `m`, also aus Steinhaus–Johnson–Trotter. Hier ist sie nicht
-  gebaut.
+  durch welches Wort. Das leistet die Listen-Fassung: `NegationCycleSJT.reach_all`, für
+  jedes `m`, konstruktiv und choice-frei, aus dem Vollkreis `sjt_full` (Steinhaus–Johnson–
+  Trotter).
 * **K5 — nicht die zweite Negation.** Das Negationssystem ist die ganze Gruppe; Günthers
   zweite Negation ist ein Bereich darin (`NegationCycle`, Teil 6 und 7).
 

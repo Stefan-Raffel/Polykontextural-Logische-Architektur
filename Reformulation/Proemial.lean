@@ -1292,7 +1292,8 @@ Enthält:
   `(m + 2)! − 2` Elemente (Definitionen §7 als Satz, Günthers „ganz enorm", HKN S. 24),
   mit `Classical.choice` aus `nodup_finRange` und `nodup_permutations` wie `full_length`;
   `transklassisch_eq_three` ist die Brücke zu Teil 6, `transklassisch_four` (22) und
-  `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv, löst V nicht
+  `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv hier (das Wort
+  zu jedem Element liefert `NegationCycleSJT.reach_all`), löst V nicht
   ein. 65 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
@@ -1338,7 +1339,8 @@ Enthält:
   `m` — Definitionen §7 führte das als „gemessen bis m = 7". Der Beweis ist Mathlibs
   (`mclosure_swap_castSucc_succ`). Alle drei tragen `Classical.choice`, aus `Equiv.swap` und
   aus dem Submonoid-Abschluss; nicht heilbar, solange der Satz über den Abschluss spricht.
-  Nicht konstruktiv (die Listen-Fassung ist sondiert, nicht gebaut), nicht die zweite
+  Nicht konstruktiv (die Listen-Fassung steht choice-frei als
+  `NegationCycleSJT.reach_all`), nicht die zweite
   Negation. Eigenes Modul, weil `Perm.Sign` nicht in der Hülle von `NegationCycle` liegt.
   3 Wachen.
 - `Proemial.NegationCycleSJT`: **die Steinhaus–Johnson–Trotter-Konstruktion der
@@ -1349,8 +1351,13 @@ Enthält:
   jede Anordnung Endpunkt eines Negatorworts ist — konstruktiv, als Anfangsstück. Eichung an
   Günther: `sjt2_eq` (seine Folge (5)) und `sjt3_mirror_kreis2` — bei vier Werten ist die
   SJT-Folge der gespiegelte **emendierte** zweite Kreis, ein Zeuge der Emendation von
-  ausserhalb des Textes. **Nicht:** der Vollkreis für jede Wertzahl (Teil B, nicht gebaut),
-  Hegels „Kreis von Kreisen", keine Ledger-Zeile. 8 Wachen, alle `[propext]`.
+  ausserhalb des Textes. **Teil B** (Teil 2 des Moduls): `sjt_full` — die SJT-Folge ist
+  für jede Wertzahl ab zwei ein Vollkreis; daraus `full_exists` (Günthers stille
+  Voraussetzung; mit `no_full_at_one_value`: ein Vollkreis genau ab zwei Werten) und
+  `reach_all` (die Listen-Fassung von N-a für jedes `m`, konstruktiv). Der Beweis läuft auf
+  der Ebene der natürlichen Zahlen; sein Kern `stations_blocks` zeigt die Stationen des
+  grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",
+  keine Ledger-Zeile. 53 Wachen, kein `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
