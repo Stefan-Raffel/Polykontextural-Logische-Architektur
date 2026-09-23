@@ -11,8 +11,9 @@ Totaläquivalenzen der Negativität"). Dieses Modul zeigt die **untere Hälfte**
 es schreibt 44 Folgen aus und beweist von ihnen, dass sie Vollkreise und paarweise
 verschieden sind — auch als Kreise, nicht nur als Folgen.
 
-**Die obere Hälfte — dass es nicht mehr als 44 sind — ist nicht gebaut** und ist Stufe 2b
-der Spec. Der Kopf sagt darum **mindestens 44**, nie „genau 44".
+**Dieses Modul zeigt die untere Hälfte — mindestens 44.** Die obere steht seit `17f55b9`
+in `NegationCycleSearch` (`exactly_fortyfour`). Der Kopf sagt hier darum **mindestens 44**;
+„genau 44" steht dort.
 
 Die Sätze:
 
@@ -54,7 +55,7 @@ und sie stimmen mit seiner **Zahl** überein, nicht nachweislich mit seiner **Li
   kehren durchaus zum Ausgang zurück (12,6 % einer Stichprobe von 200 000), sie sind nur
   nicht vollständig.*
 * **Nicht Tafel XX** (IGN S. 50, die Kreiszahlen je Umfang) — ausserhalb nachgerechnet und
-  richtig, hier kein Satz; Stufe 2c, nicht empfohlen vor 2b.
+  richtig, hier kein Satz.
 * **Nicht, dass die 44 Folgen Günthers 44 sind.** Gleich ist die Zahl; über die Liste sagt
   die Quelle nichts.
 * **Kein `§20`-Anspruch, keine Ledger-Zeile.**

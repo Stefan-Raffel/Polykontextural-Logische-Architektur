@@ -58,7 +58,8 @@ Index. Was die Suche für Nachbarschaft hält, ist damit gegen den Begriff gepr�
   Drehsinn* die richtige Konvention, anders als hier.
 * **Nicht Günthers Unmöglichkeitssatz im Wortlaut.** Dass keine der 44 die Verteilung 8-8-8
   trägt, steht in `NegationCycleTable`; mit `exactly_fortyfour` folgt daraus jetzt zwar, dass
-  **kein** Vollkreis sie trägt — aber als Satz ausgeschrieben ist das hier nicht.
+  **kein** Vollkreis sie trägt — als Satz ausgeschrieben ist das nicht hier, sondern in
+  `NegationCycleSymmetry.no_888_all`.
 * **Nicht, dass die 44 Folgen Günthers 44 sind.** Gleich ist die Zahl; über seine Liste sagt
   die Quelle nichts.
 * **Kein `§20`-Anspruch, keine Ledger-Zeile.**

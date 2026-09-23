@@ -63,6 +63,7 @@ import Reformulation.Proemial.PatternInvariance
 import Reformulation.Proemial.NegationCycle
 import Reformulation.Proemial.NegationCycleTable
 import Reformulation.Proemial.NegationCycleSearch
+import Reformulation.Proemial.NegationCycleSymmetry
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1259,10 +1260,12 @@ Enthält:
   Längenvoraussetzung). Allgemein `full_length`: ein Vollkreis über `m + 1` Werten hat
   `(m + 1)!` Negatoren (Günthers „n! Negationsschritte", 1980 S. 20). Vierwertig: Günthers drei
   Beispielkreise `kreis1_full`/`kreis2_full`/`kreis3_full` mit ihren Familien 10-9-5,
-  9-6-9, 6-12-6; `kreis3` ist die Negatorfolge über Tafel IV (1980). Gegen-Drehsinn und
-  Spiegelung `N₁ ↔ N₃` an den Beispielen. Günthers Gegenbeispiel (23): `pseudo_closes`,
-  `pseudo_family` (8-8-8), `pseudo_half`, `pseudo_not_full`. **Nicht:** die 44, Tafel XX,
-  die Unmöglichkeit von 8-8-8 (ausserhalb nachgerechnet, Stufe 2 nicht gebaut); kein
+  9-6-9, 6-12-6; `kreis3` ist die Negatorfolge über Tafel IV (1980). Gegen-Drehsinn allgemein
+  (`reverse_full`, seit `8e1baac`), Spiegelung `N₁ ↔ N₃` an Kreis 1, allgemein bei vier Werten
+  in `NegationCycleSymmetry`. Günthers Gegenbeispiel (23): `pseudo_closes`,
+  `pseudo_family` (8-8-8), `pseudo_half`, `pseudo_not_full`. **Nicht hier:** die 44
+  (`NegationCycleTable`/`NegationCycleSearch`), die Unmöglichkeit von 8-8-8
+  (`NegationCycleSymmetry`), Tafel XX (nicht gebaut); kein
   `§20`-Anspruch, keine Ledger-Zeile, nichts über die Zeit. Drei Textbefunde an Hermeneutes
   gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
@@ -1289,9 +1292,9 @@ Enthält:
   (`alleKreise_full`), keine zwei gleich (`alleKreise_nodup`), **keine die Umkehrung einer
   anderen** (`alleKreise_no_reverse`) — also 44 Kreise, nicht 44 Folgen über 22 Kreisen.
   Dazu die vier Verteilungen (`alleKreise_families`), **keine mit 8-8-8**
-  (`alleKreise_no_888`, an diesen 44 und nicht als Unmöglichkeitssatz), und die 88
+  (`alleKreise_no_888`, an diesen 44; als Unmöglichkeitssatz in `NegationCycleSymmetry`), und die 88
   gerichteten, deren zweite Hälfte `NegationCycle.reverse_full` konsumiert statt neu zu
-  entscheiden. **Nicht „genau 44"**: die Vollständigkeit ist Stufe 2b und ungebaut; ebenso
+  entscheiden. **Nicht „genau 44" hier**: die Vollständigkeit steht in `NegationCycleSearch`;
   nicht Tafel XX. Kein `§20`-Anspruch, keine Ledger-Zeile. 10 Wachen, kein
   `Classical.choice`; Bauzeit rund 13 s.
 - `Proemial.NegationCycleSearch`: **die Vollzähligkeit — es gibt genau vierundvierzig**
@@ -1305,9 +1308,17 @@ Enthält:
   Folge ist genau dann ein Vollkreis, wenn sie in der Tafel der 44 steht oder ihre
   Umkehrung. Der Brückenkopf (`nb_0/1/2`, `ix_inj`) prüft die Index-Kodierung gegen
   `negate`, über alle 24 Wertfolgen — sie ist nicht gesetzt. **Nicht** Tafel XX; kein
-  `§20`-Anspruch, keine Ledger-Zeile. 19 Wachen; `search_complete` und seine Konsumenten
-  tragen `Classical.choice` (Gattung Taktikwahl, benannt und nicht geheilt — die Heilung
-  aus Fallstrick 21 greift dort nicht), alle Hilfssätze sind choice-frei. Bauzeit rund 33 s.
+  `§20`-Anspruch, keine Ledger-Zeile. 21 Wachen; die Kette `search_complete` → … →
+  `exactly_fortyfour` trägt `[propext, Quot.sound]`, **kein `Classical.choice`** (geheilt in
+  `636f916`; bis dahin stand hier „nicht geheilt"). Bauzeit rund 33 s.
+- `Proemial.NegationCycleSymmetry`: **Günthers Familienrede auf Sätzen** (Zug 1 nach
+  `Spec_Zug1_NegationCycleSymmetry.md`). `no_888_all`: kein vierwertiger Vollkreis verteilt
+  die Operatoren 8-8-8 — Günthers „niemals" (IGN S. 43) für jeden Vollkreis, aus
+  `exactly_fortyfour` und `alleKreise_no_888`. `mirror_all`: die Spiegelung `N₁ ↔ N₃` führt
+  jeden Vollkreis bei vier Werten in einen Vollkreis über (über die Tafel; `mirror_gerichtet`
+  ist die Eichung an den 88); für mehr Werte ungemessen. Mit `reverse_full` steht damit
+  Günthers Familie (10-9-5 und 5-9-10 „zur gleichen Familie") auf Sätzen. Nicht Tafel XX,
+  kein `§20`-Anspruch, keine Ledger-Zeile. 3 Wachen, kein `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/

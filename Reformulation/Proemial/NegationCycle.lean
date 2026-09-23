@@ -152,21 +152,22 @@ davon, wie man das strittige Kästchen liest.
 
 ## Was dieses Modul NICHT sagt
 
-* **Nicht die 44 und nicht Tafel XX.** Günthers Zahl der vierwertigen Vollkreise (IGN S. 41,
-  1980 S. 20) und die Kreiszahlen je Umfang (IGN S. 50) sind ausserhalb des Korpus
-  nachgerechnet und stimmen (Vorprobe §2); in den Korpus gehörten sie nur in Bijektions-
-  oder Iff-Form (CLAUDE.md §6), und die ist Stufe 2 und nicht gebaut.
-* **Nicht, dass kein Vollkreis 8-8-8 verteilt.** Günther sagt „niemals" (IGN S. 43); dieses
-  Modul zeigt an **einer** Folge, seiner eigenen, dass 8-8-8 scheitern *kann*. Die
-  Unmöglichkeit ist ausserhalb nachgezählt und hier kein Satz.
+* **Nicht die 44 und nicht Tafel XX — hier.** Günthers Zahl der vierwertigen Vollkreise
+  (IGN S. 41, 1980 S. 20) steht als Liste in `NegationCycleTable` (mindestens 44) und in
+  Iff-Form in `NegationCycleSearch` (genau 44, `exactly_fortyfour`). Die Kreiszahlen je
+  Umfang (IGN S. 50, Tafel XX) sind ausserhalb des Korpus nachgerechnet und nicht gebaut.
+* **Nicht, dass kein Vollkreis 8-8-8 verteilt — hier.** Günther sagt „niemals" (IGN S. 43);
+  dieses Modul zeigt an **einer** Folge, seiner eigenen, dass 8-8-8 scheitern *kann*. Die
+  Unmöglichkeit für jeden Vollkreis ist `NegationCycleSymmetry.no_888_all`.
 * **Nichts über Proemialrelation, Paragraph 20 oder die Zeit.** Günther selbst schreibt
   (IGN S. 58), wer sich mit der Rückkehr des Vollkreises zufriedengebe, habe „völlig das
   Zeitproblem ignoriert". Keine Ledger-Zeile; ob L14-1 (Zyklus) hier einen Träger findet,
   entscheidet Custos mit Hermeneutes.
 * **Nichts über „Negativsprache", „Wörterbuch", „Totaläquivalenz".** Das sind Günthers
   Deutungen der Kreise; formalisiert sind die Kreise.
-* **Keine Aussage über die Spiegelung im Allgemeinen.** Dass `N₁ ↔ N₃` *jeden* Vollkreis
-  in einen Vollkreis überführt, steht hier nur am ersten Beispiel. (Die Drehsinn-Aussage
+* **Die Spiegelung `N₁ ↔ N₃` hier nur am ersten Beispiel.** Dass sie *jeden* Vollkreis bei
+  vier Werten in einen Vollkreis überführt, ist `NegationCycleSymmetry.mirror_all`; für mehr
+  Werte ist es ungemessen. (Die Drehsinn-Aussage
   war bis zum 21. September ebenso beschränkt und ist es seit `reverse_full` nicht mehr.)
 
 ## Die Genese (Teil 5)
@@ -229,9 +230,13 @@ Bedingungen (a)–(d) nach `KorpusRev2/Prompt_Custos_O2_und_L07-4.md` und Regist
   **ZUORDNUNG**, nicht Günthers Wort. Seine sechste Spalte, `N2.1.2`, fällt auf dieselbe
   Anordnung wie `N1.2.1` — das ist die Zopfrelation (`braid`, `genese_resultat`), und darum
   hat der Bereich vier Elemente und nicht fünf. Hier berühren sich Teil 5 und Teil 6.
-* **(c) Nicht für mehr als drei Werte.** Für `m ≥ 4` sagt die Quelle nichts; dieser Teil
-  baut dort nichts. Die Fortsetzung wäre eine Extrapolation ohne Quellenstelle, und sie
-  hätte einen absehbaren Choice-Preis über `List.nodup_permutations` (Spec §7, ungemessen).
+* **(c) Nicht für mehr als drei Werte — in diesem Teil.** Für `m ≥ 4` spricht die Quelle:
+  die hinzukommenden Werte sind trans-klassisch (HKN S. 24: „Fügt man dann noch einen
+  vierten, fünften, sechsten usw. trans-klassischen Wert hinzu, dann erweitert sich jener
+  trans-klassische Strukturbereich ganz enorm"), die klassischen bleiben die ersten zwei,
+  und die Zone bleibt Ausgang und `N1` (**QUELLENNAH**). Dieser Teil baut nur drei Werte.
+  *Berichtigt am 25.9.2026: die Fassung aus `d61d85d` sagte, die Quelle schweige für
+  `m ≥ 4`; das war falsch.*
 * **(d) Auf der Kenogramm-Ebene unsichtbar.** Die Negation ändert das Morphogramm nie
   (`Kenogram.PatternInvariance`, 3a5ef78): alle sechs Anordnungen haben dasselbe Kenogramm.
   Verweis, kein Satz dieses Teils.
