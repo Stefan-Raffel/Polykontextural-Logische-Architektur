@@ -29,13 +29,15 @@ Johnson–Trotter" ist der Name der Konstruktion in der Mathematik, kein Günthe
   einen Vollkreis, so ist jede Anordnung Endpunkt eines Negatorworts, konstruktiv: Das Wort
   ist das Anfangsstück des Kreises bis zu ihrer Station (`mem_stations_endpoint`). Für jede
   Wertzahl steht sie seit Teil 2 als `reach_all`.
-* **K4 — Günthers Kreise als Eichung.** Bei drei Werten ist `sjt` Günthers Folge (5)
-  (`sjt2_eq`, IGN S. 18). Bei vier Werten ist die SJT-Folge Negator für Negator der
-  gespiegelte **emendierte** zweite Kreis (`sjt3_mirror_kreis2`). Das ist ein Zeuge der
-  Emendation von ausserhalb des Textes: Eine Konstruktion, die von Günther nichts weiss,
-  setzt dasselbe `·1·3` an dieselbe Stelle wie `kreis2_emendation` und `janus1974`. Es ist
-  einer von drei Kreisen (der erste und der dritte gehören anderen Familien an); ob Günther
-  so gebildet hat, ist eine Quellenfrage.
+* **K4 — die Konstruktion, die Günther nicht hatte.** `sjt_full` formalisiert nicht
+  Günthers Methode; es liefert, was ihm fehlte (Hermeneutes, 25.9.; Entscheid des
+  Architekten für Rev9). Die Konstruktion trifft bei drei und vier Werten seine eigenen
+  Kreise: Bei drei Werten ist `sjt` Günthers Folge (5) (`sjt2_eq`, IGN S. 18), bei vier
+  Werten Negator für Negator sein **emendierter** zweiter Kreis, gespiegelt
+  (`sjt3_mirror_kreis2`). Das ist ein Zeuge der Emendation von ausserhalb des Textes: Eine
+  Konstruktion, die von Günther nichts weiss, setzt dasselbe `·1·3` an dieselbe Stelle wie
+  `kreis2_emendation` und `janus1974`. Bei vier Werten ist es einer von drei Kreisen (der
+  erste und der dritte gehören anderen Familien an).
 * **K5 — Stellensicht und Wertsicht.** Die Negatoren wirken auf Werte; die Stationen sind
   darum die Inversen der Stationen, die dasselbe Indexwort als Stellentausch erzeugt. Weil
   jeder Negator seine eigene Umkehrung ist, ist ein Wort im einen Sinn genau dann ein
