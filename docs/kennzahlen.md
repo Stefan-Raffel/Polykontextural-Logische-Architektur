@@ -7,38 +7,38 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `87bf5d3` (sauber).
+Stand: Commit `c27329d` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 197 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1120 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1120 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
-| def-Deklarationen | 455 | geweitete def-Route ueber Reformulation/ |
+| Module (.lean, verfolgt) | 198 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Saetze gesamt | 1123 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 1123 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| def-Deklarationen | 456 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 109 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 842 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 102 | dieselbe Route, -l |
+| Wachen geschrieben | 845 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 103 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
-| Aggregat | 143 | Huelle der Wurzel Reformulation.lean |
+| Aggregat | 144 | Huelle der Wurzel Reformulation.lean |
 | mitgebaut | 19 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 34 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
-| Gate-Huelle | 144 | Huelle von Reformulation/AxiomGate.lean |
-| Saetze im Aggregat | 939 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 832 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Gate-Huelle | 145 | Huelle von Reformulation/AxiomGate.lean |
+| Saetze im Aggregat | 942 | Satzroute, auf die Aggregathuelle eingeschraenkt |
+| Wachen erzwungen | 835 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 197 gegen 197 |
-| Gleichung *Gate=Aggregat+1* | ✓ | 144 gegen 144 |
-| Gleichung *Wachen* | ✓ | 842 gegen 842 |
+| Gleichung *Partition* | ✓ | 198 gegen 198 |
+| Gleichung *Gate=Aggregat+1* | ✓ | 145 gegen 145 |
+| Gleichung *Wachen* | ✓ | 845 gegen 845 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -62,8 +62,8 @@ Alle mitlaufenden Gleichungen halten.
 | Referenzen im Bau | 97 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1345 | lake build ueber die Default-Targets |
-| geprueft (AxiomGate) | 4207 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
+| Build-Jobs | 1414 | lake build ueber die Default-Targets |
+| geprueft (AxiomGate) | 4212 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
 | (A.1) laufender Bestand | 84 | Superlativ, meldend |
