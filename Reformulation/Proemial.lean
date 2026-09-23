@@ -1274,7 +1274,11 @@ Enthält:
   Zopfrelation benachbarter Negatoren für jedes `m`, mit `comm_far` und
   `braid_fails_far_all` (für jedes entfernte Paar, 25.9.; `braid_fails_far` ist seine
   Eichung) für das „genau dort, wo ein Wert geteilt wird" (`sw_val` axiomfrei). Kein
-  §11-Träger, keine Definition der zweiten Negation (L07-4 offen). 47 Wachen;
+  §11-Träger, keine Definition der zweiten Negation (L07-4 offen). **Der
+  kalkültheoretische Bereich** (Teil 6, 25.9.): Günthers vier Spalten aus HKN S. 24
+  (`transklassisch3`) sind genau das Komplement der Doppelstrich-Zone (`klassisch3`) in den
+  sechs Anordnungen — `transklassisch3_nodup`, `_disjoint`, `zone_exhausts`, `zone_count`,
+  `transklassisch3_card`, alle `[propext]`; nur drei Werte, löst V nicht ein. 52 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).

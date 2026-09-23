@@ -69,6 +69,12 @@ Die Sätze:
   selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
   jedes `m`. Siehe den Abschnitt „Die Genese" unten.
 
+* `klassisch3`, `transklassisch3`, `transklassisch3_nodup`, `transklassisch3_disjoint`,
+  `zone_exhausts`, `zone_count`, `transklassisch3_card` — **der kalkültheoretische Bereich
+  der zweiten Negation bei drei Werten** (Teil 6, 25.9.2026): Günthers vier Spalten aus HKN
+  S. 24 sind genau das Komplement der Doppelstrich-Zone in den sechs Anordnungen. Siehe den
+  Abschnitt unten; **er löst V nicht ein.**
+
 **Warum überwiegend Benennung:** die Zeugen-Sätze rechnen nach, was Günther ausschreibt.
 Neuen Satzgehalt tragen `full_length`, das Paar `triadic_unique` / `triadic_unique'` und
 `kreis2_emendation`; die zwei letzten sind endliche Fallarbeit (64 Folgen, neun
@@ -200,6 +206,40 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
 * **K6 — nicht geprüft:** ob die Zopfrelation dieselbe Vermittlung trägt wie das Kriterium
   (B) in `SharedPlaceGrowth`. Bis dahin Wortgleichheit, keine Sachgleichheit.
 
+## Der kalkültheoretische Bereich der zweiten Negation (drei Werte) — Teil 6
+
+Gebaut auf Anordnung des Architekten vom 25.9.2026 nach `KorpusRev2/Spec_V_O2.md`
+(Fassung 2, Mathematiker), begutachtet in `KorpusRev2/Begutachtung_Spec_V_O2_Impl.md`;
+Bedingungen (a)–(d) nach `KorpusRev2/Prompt_Custos_O2_und_L07-4.md` und Register §24.
+
+* **(a) Nur der kalkültheoretische Schatten.** Günther: „was man unter dem Hegelschen
+  Terminus zweite Negation kalkültheoretisch allein verstehen kann" (HKN S. 23). Kein
+  Anspruch auf Hegels Vermittlung. **Dieser Teil löst V nicht ein** (Register §24): er baut
+  den Bereich, den Günther bei drei Werten selbst abgrenzt, nicht die Negation, die er
+  vermittelnd nennt. Keine Definition der zweiten Negation, kein Bezeichner dieses Namens;
+  L07-4 bleibt offen.
+* **(b) Günthers Auswahl, quellenfest.** HKN S. 24: die zweite Negation bezieht sich bei
+  drei Werten „auf die gesamte Wertstruktur, die außerhalb des klassischen
+  Negationsbereiches, der links oben durch Doppelstriche abgegrenzt ist, liegt". Seine vier
+  Spalten sind die **Eichung** (`transklassisch3`, Kürzel von links nach rechts gelesen,
+  Spalte für Spalte gemessen). Der Kern, der die Auswahl trägt, wörtlich: die N2-Tafel ist
+  „mit der vorangehenden Tafel strukturell identisch" (HKN S. 23–24), und im Tafelkopf steht
+  N2 unter „trans-klassisch" — strukturell wie die klassische Negation und doch
+  trans-klassisch. Dass N2 „die klassische Negation seiner Elementarkontextur" sei, ist
+  **ZUORDNUNG**, nicht Günthers Wort. Seine sechste Spalte, `N2.1.2`, fällt auf dieselbe
+  Anordnung wie `N1.2.1` — das ist die Zopfrelation (`braid`, `genese_resultat`), und darum
+  hat der Bereich vier Elemente und nicht fünf. Hier berühren sich Teil 5 und Teil 6.
+* **(c) Nicht für mehr als drei Werte.** Für `m ≥ 4` sagt die Quelle nichts; dieser Teil
+  baut dort nichts. Die Fortsetzung wäre eine Extrapolation ohne Quellenstelle, und sie
+  hätte einen absehbaren Choice-Preis über `List.nodup_permutations` (Spec §7, ungemessen).
+* **(d) Auf der Kenogramm-Ebene unsichtbar.** Die Negation ändert das Morphogramm nie
+  (`Kenogram.PatternInvariance`, 3a5ef78): alle sechs Anordnungen haben dasselbe Kenogramm.
+  Verweis, kein Satz dieses Teils.
+
+Skala **ZUSAMMENSTELLUNG**: fünf entschiedene Aussagen über eine feste Sechsermenge, kein
+Satz des Bestandes wird verbraucht. Der Wert liegt darin, dass es Günthers eigene Auswahl
+ist.
+
 ## Axiomprofil
 
 Gemessen und am Dateiende gewacht. Die Zeugen-Sätze, `triadic_unique` und
@@ -232,6 +272,12 @@ läuft in den Heartbeat-Timeout und meldet sich dann als axiomfrei — Fallstric
 `genese_resultat` und `genese_verschieden` tragen `[propext]`. Mit offenem
 `simp` statt `rw [if_pos …]` in `sw_val` zöge die Kette `Classical.choice`
 (Spec, Bau-Hinweis H1; Fallstrick 21) — die Taktik, nicht die Sache.
+Teil 6 (gemessen am 25.9.2026 nach grünem Bau): `transklassisch3_nodup`,
+`transklassisch3_disjoint`, `zone_exhausts`, `zone_count` und `transklassisch3_card`
+tragen `[propext]`. Auf Mathlibs `Equiv.Perm (Fin 3)` trug derselbe Inhalt das volle
+Profil (Optionen-Notiz vom 23.9., P2) — der Träger, nicht die Sache. Aus demselben Grund
+steht die Erschöpfung als Inklusion plus Längen: als `List.Perm` formuliert zöge sie
+`Classical.choice` (Spec, Bau-Hinweis; nachgemessen).
 -/
 
 namespace Reformulation.Proemial.NegationCycle
@@ -636,6 +682,47 @@ theorem genese_verschieden :
       stations ([1, 0, 1] : List (Fin 2)) (origin 2) := by decide
 
 -- ============================================================
+-- Teil 6 — der kalkültheoretische Bereich der zweiten Negation (drei Werte, HKN S. 24)
+-- ============================================================
+
+/-- Die Doppelstrich-Zone bei drei Werten: der Ausgang und die erste Negation `N1`
+(HKN S. 24; tml Tafel II). -/
+def klassisch3 : List (List (Fin 3)) := [origin 2, endpoint [0] (origin 2)]
+
+/-- Günthers vier trans-klassische Spalten (HKN S. 24) als Negatorwörter, Kürzel von links
+nach rechts gelesen: `N2`, `N2.1`, `N1.2`, `N1.2.1`. -/
+def transklassisch3 : List (List (Fin 3)) :=
+  [endpoint [1] (origin 2), endpoint [1, 0] (origin 2),
+   endpoint [0, 1] (origin 2), endpoint [0, 1, 0] (origin 2)]
+
+/-- Eichung: die Zone ist Günthers Ausgang `1 2 3` und seine Spalte `N1`, `2 1 3`. -/
+example : klassisch3 = [[0, 1, 2], [1, 0, 2]] := by decide
+
+/-- Eichung, Spalte für Spalte: `N2` = `1 3 2`, `N2.1` = `2 3 1`, `N1.2` = `3 1 2`,
+`N1.2.1` = `3 2 1` (Günther 1-basiert, hier 0-basiert). -/
+example : transklassisch3 = [[0, 2, 1], [1, 2, 0], [2, 0, 1], [2, 1, 0]] := by decide
+
+/-- Die vier sind verschieden. -/
+theorem transklassisch3_nodup : transklassisch3.Nodup := by decide
+
+/-- Keine der vier liegt in der Doppelstrich-Zone. -/
+theorem transklassisch3_disjoint : ∀ a ∈ transklassisch3, a ∉ klassisch3 := by decide
+
+/-- Zone und Bereich erschöpfen die sechs Anordnungen. Als Inklusion formuliert, nicht als
+`List.Perm`: dessen Entscheidung zöge `Classical.choice`. -/
+theorem zone_exhausts :
+    ∀ a ∈ (origin 2).permutations', a ∈ klassisch3 ∨ a ∈ transklassisch3 := by decide
+
+/-- … und zählen zusammen genau so viele wie die Anordnungen. -/
+theorem zone_count :
+    (origin 2).permutations'.length = klassisch3.length + transklassisch3.length := by decide
+
+/-- Definitionen §7 bei drei Werten: „`m!` Permutationen abzüglich des klassischen
+Bereichs". -/
+theorem transklassisch3_card :
+    transklassisch3.length = Nat.factorial 3 - klassisch3.length := by decide
+
+-- ============================================================
 -- Wachen
 -- ============================================================
 
@@ -779,5 +866,20 @@ theorem genese_verschieden :
 
 /-- info: 'Reformulation.Proemial.NegationCycle.genese_verschieden' depends on axioms: [propext] -/
 #guard_msgs in #print axioms genese_verschieden
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch3_nodup' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch3_nodup
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch3_disjoint' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch3_disjoint
+
+/-- info: 'Reformulation.Proemial.NegationCycle.zone_exhausts' depends on axioms: [propext] -/
+#guard_msgs in #print axioms zone_exhausts
+
+/-- info: 'Reformulation.Proemial.NegationCycle.zone_count' depends on axioms: [propext] -/
+#guard_msgs in #print axioms zone_count
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch3_card' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch3_card
 
 end Reformulation.Proemial.NegationCycle
