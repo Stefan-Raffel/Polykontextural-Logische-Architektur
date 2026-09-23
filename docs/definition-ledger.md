@@ -37,10 +37,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 111 |
-| Zeilen mit Träger | 97 |
-| verschiedene Trägernamen | 89 |
-| TS `Theorem` | 73 |
+| Zeilen gesamt | 112 |
+| Zeilen mit Träger | 98 |
+| verschiedene Trägernamen | 90 |
+| TS `Theorem` | 74 |
 | TS `Definition` | 23 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 14 |
@@ -48,7 +48,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 97 Zeilen bei 89
+`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 98 Zeilen bei 90
 Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
@@ -133,6 +133,7 @@ beider Fehlexpansionen.
 | `SAsc.` | `Reformulation.Proemial.StageAscent.` | Namensraum |
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 | `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
+| `NCyc.` | `Reformulation.Proemial.NegationCycle.` | Namensraum |
 
 ## Die Tabelle
 
@@ -185,7 +186,7 @@ beider Fehlexpansionen.
 | L07-1 | Erste Negation (§7) | `TCB.negFin` | Definition | Operationalisierung | keine (def) | Ordnungsumkehr auf `Fin 3`, Teil der Basissignatur |
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
-| L07-4 | Zweite Negation (§7) | — | Offen | Offen | — | keine Definition `SecondNegation`; nicht als Permutation zu bauen |
+| L07-4 | Zweite Negation (§7) | — | Offen | Offen | — | keine Definition `SecondNegation`; nicht als Permutation zu bauen — Grund, datiert: (i) 26.7.2026, der Anspruch auf die volle Hegelsche zweite Negation (§7-Grenze der Julifassung, das Original); (ii) 14.–16.9.2026, §7 „keine einzelne Operation, sondern eine MENGE von Negationsoperatoren“ (spätere Artikulation) |
 | L08-1 | Transjunktion (§8) | `TCB.T` | Definition | Operationalisierung | keine (def) | `if a = 0 ∧ b = 2 then 1 else max a b` |
 | L08-2 | Transjunktion (§8) | `TCB.T_rejective` | Theorem | Operationalisierung | ja, `[propext]` | rejektiver Kern `T 0 2 = 1` |
 | L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten |
@@ -207,6 +208,7 @@ beider Fehlexpansionen.
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
 | L11-4 | Vermittlung (§11) | `PC.freigabe_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-5 | Vermittlung (§11) | `RA.autoritaet_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
+| L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger) |
 | L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
 | L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
 | L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
@@ -302,7 +304,9 @@ die Klassenpflicht noch nicht; sie gilt für neu angelegte Felder und ist Phase-
 
 Der Zyklusbegriff ist seit `e69fb16` an **einer** Stelle angeschlossen: die Elementarkontextur
 ist als Zweierbahn einer Involution darstellbar (L02-6 bis L02-8). Eine allgemeine
-Zyklentheorie ist nicht gebaut und war nicht Auftrag.
+Zyklentheorie ist nicht gebaut und war nicht Auftrag. *Daneben:* ein Hamiltonkreis für jede
+Wertzahl ab zwei (`sjt_full`, `NegationCycleSJT`) — ein Kreis **durch die Anordnungen**, nicht
+der Zyklus einer Permutation; die Notiz meint den zweiten.
 
 **Der Selbstzyklus ist bewusst nicht gebaut, und zwar begründet** — trivial und
 Mathlib-schließbar (`Function.minimalPeriod_eq_one_iff_isFixedPt`). Drei Fassungen wurden geprüft: als

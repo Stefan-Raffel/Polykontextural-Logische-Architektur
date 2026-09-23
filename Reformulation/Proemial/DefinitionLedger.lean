@@ -178,6 +178,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L11-2" Reformulation.Proemial.StageAggregation.agg_lokal
 #ledger_theorem "L11-4" Reformulation.Proemial.PolicyCheck.freigabe_lokal
 #ledger_theorem "L11-5" Reformulation.Proemial.RAGAuthority.autoritaet_lokal
+#ledger_theorem "L11-6" Reformulation.Proemial.NegationCycle.track_mediates
 
 #ledger_theorem "L12-1" Reformulation.Proemial.GeneralCloneBound.locally_classical_in_clone_iff
 #ledger_def "L12-2" Reformulation.Proemial.StageAggregation.agg
