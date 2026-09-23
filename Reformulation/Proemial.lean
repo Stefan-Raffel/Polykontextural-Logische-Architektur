@@ -1281,7 +1281,13 @@ Enthält:
   kalkültheoretische Bereich** (Teil 6, 25.9.): Günthers vier Spalten aus HKN S. 24
   (`transklassisch3`) sind genau das Komplement der Doppelstrich-Zone (`klassisch3`) in den
   sechs Anordnungen — `transklassisch3_nodup`, `_disjoint`, `zone_exhausts`, `zone_count`,
-  `transklassisch3_card`, alle `[propext]`; nur drei Werte, löst V nicht ein. 52 Wachen;
+  `transklassisch3_card`, alle `[propext]`; nur drei Werte, löst V nicht ein. **Der Bereich
+  für jede Wertzahl** (Teil 7, 25.9.): `transklassisch_card` — bei `m + 2` Werten
+  `(m + 2)! − 2` Elemente (Definitionen §7 als Satz, Günthers „ganz enorm", HKN S. 24),
+  mit `Classical.choice` aus `nodup_finRange` und `nodup_permutations` wie `full_length`;
+  `transklassisch_eq_three` ist die Brücke zu Teil 6, `transklassisch_four` (22) und
+  `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv, löst V nicht
+  ein. 60 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).

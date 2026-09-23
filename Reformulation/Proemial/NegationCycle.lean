@@ -75,6 +75,12 @@ Die Sätze:
   S. 24 sind genau das Komplement der Doppelstrich-Zone in den sechs Anordnungen. Siehe den
   Abschnitt unten; **er löst V nicht ein.**
 
+* `klassisch`, `transklassisch`, `transklassisch_card`, `transklassisch_eq_three`,
+  `transklassisch_four`, `transklassisch_two` (Hilfssätze `sw_bij`, `negate_perm`,
+  `klassisch_sub`, `klassisch_nodup`) — **der Bereich für jede Wertzahl** (Teil 7,
+  25.9.2026): bei `m + 2` Werten `(m + 2)! − 2` Elemente; bei drei Werten dieselben vier wie
+  in Teil 6. Siehe den Abschnitt unten.
+
 **Warum überwiegend Benennung:** die Zeugen-Sätze rechnen nach, was Günther ausschreibt.
 Neuen Satzgehalt tragen `full_length`, das Paar `triadic_unique` / `triadic_unique'` und
 `kreis2_emendation`; die zwei letzten sind endliche Fallarbeit (64 Folgen, neun
@@ -234,7 +240,8 @@ Bedingungen (a)–(d) nach `KorpusRev2/Prompt_Custos_O2_und_L07-4.md` und Regist
   die hinzukommenden Werte sind trans-klassisch (HKN S. 24: „Fügt man dann noch einen
   vierten, fünften, sechsten usw. trans-klassischen Wert hinzu, dann erweitert sich jener
   trans-klassische Strukturbereich ganz enorm"), die klassischen bleiben die ersten zwei,
-  und die Zone bleibt Ausgang und `N1` (**QUELLENNAH**). Dieser Teil baut nur drei Werte.
+  und die Zone bleibt Ausgang und `N1` (**QUELLENNAH**). Dieser Teil baut nur drei Werte;
+  für jedes `m` steht der Bereich in Teil 7 (`transklassisch_card`).
   *Berichtigt am 25.9.2026: die Fassung aus `d61d85d` sagte, die Quelle schweige für
   `m ≥ 4`; das war falsch.*
 * **(d) Auf der Kenogramm-Ebene unsichtbar.** Die Negation ändert das Morphogramm nie
@@ -244,6 +251,38 @@ Bedingungen (a)–(d) nach `KorpusRev2/Prompt_Custos_O2_und_L07-4.md` und Regist
 Skala **ZUSAMMENSTELLUNG**: fünf entschiedene Aussagen über eine feste Sechsermenge, kein
 Satz des Bestandes wird verbraucht. Der Wert liegt darin, dass es Günthers eigene Auswahl
 ist.
+
+## Der kalkültheoretische Bereich für jede Wertzahl — Teil 7
+
+Gebaut auf Anordnung des Architekten vom 25.9.2026 nach
+`KorpusRev2/Spec_Zug2_Bereich_jedes_m.md` (Fassung 2, Mathematiker), begutachtet in
+`KorpusRev2/Begutachtung_Spec_Zug2_Impl.md`.
+
+* **K1 — die Zahl.** `transklassisch_card`: bei `m + 2` Werten hat der Bereich
+  `(m + 2)! − 2` Elemente. Das ist Definitionen §7 („bei `m` Werten also `m!` Permutationen
+  abzüglich des klassischen Bereichs") als Satz, und die Zahl zu Günthers „Fügt man dann
+  noch einen vierten, fünften, sechsten usw. trans-klassischen Wert hinzu, dann erweitert
+  sich jener trans-klassische Strukturbereich ganz enorm" (HKN S. 24). Skala **FOLGERUNG**.
+* **K2 — die Zone.** Sie bleibt Ausgang und `N1`, weil Günther die hinzukommenden Werte
+  trans-klassisch nennt: die klassischen bleiben die ersten zwei. **QUELLENNAH**, nicht
+  wörtlich für `m ≥ 4`.
+* **K3 — das Choice.** `transklassisch_card` trägt `Classical.choice` aus zwei
+  Mathlib-Bausteinen: `List.nodup_finRange` (über `negate_perm` in `klassisch_sub`) und
+  `List.nodup_permutations`, derselbe Preis wie bei `full_length`. Das offene `simp` in
+  `klassisch_nodup` ist eine dritte Quelle; es zu heilen änderte am Zielsatz nichts
+  (gemessen, Spec §4). Bei festem `m` ist alles choice-frei entschieden
+  (`transklassisch_eq_three`, `transklassisch_four`, `transklassisch_two`).
+* **K4 — die Brücke.** `transklassisch_eq_three`: bei drei Werten liefert die allgemeine
+  Definition genau Günthers vier aus Teil 6. Teil 7 ersetzt Teil 6 nicht: Teil 6 trägt
+  Günthers Auswahl Spalte für Spalte, Teil 7 die Zahl für jedes `m`.
+* **K4′ — zwei Werte.** `transklassisch_two`: bei zwei Werten ist der Bereich leer,
+  `2! − 2 = 0`, denn die klassische Logik hat nur die erste Negation. Dass das Günthers
+  Satz über die Verbundkontextur *ist*, sagt dieser Teil nicht: Verbundkontextur und
+  Negationsbereich sind zwei Gegenstände, und die Gleichsetzung wäre eine **ZUORDNUNG**.
+* **K5 — Bedingung (a) gilt.** Der kalkültheoretische Schatten, nicht die Hegelsche zweite
+  Negation; V ist nicht eingelöst, L07-4 bleibt offen.
+* **K6 — nicht konstruktiv.** Dass jedes Element als Negatorwort gegeben ist, sagt dieser
+  Teil nicht (M4, nicht gebaut).
 
 ## Axiomprofil
 
@@ -283,6 +322,10 @@ tragen `[propext]`. Auf Mathlibs `Equiv.Perm (Fin 3)` trug derselbe Inhalt das v
 Profil (Optionen-Notiz vom 23.9., P2) — der Träger, nicht die Sache. Aus demselben Grund
 steht die Erschöpfung als Inklusion plus Längen: als `List.Perm` formuliert zöge sie
 `Classical.choice` (Spec, Bau-Hinweis; nachgemessen).
+Teil 7 (gemessen am 25.9.2026 nach grünem Bau): `sw_bij`, `transklassisch_eq_three`,
+`transklassisch_four` und `transklassisch_two` tragen `[propext]`, `negate_perm`
+`[propext, Quot.sound]`; `klassisch_sub`, `klassisch_nodup` und `transklassisch_card` tragen
+`[propext, Classical.choice, Quot.sound]` — die Herkunft steht oben unter K3.
 -/
 
 namespace Reformulation.Proemial.NegationCycle
@@ -728,6 +771,90 @@ theorem transklassisch3_card :
     transklassisch3.length = Nat.factorial 3 - klassisch3.length := by decide
 
 -- ============================================================
+-- Teil 7 — der kalkültheoretische Bereich für jede Wertzahl (HKN S. 24, Definitionen §7)
+-- ============================================================
+
+/-- Die Doppelstrich-Zone bei `m + 2` Werten: der Ausgang und die erste Negation `N1`. Die
+hinzukommenden Werte sind trans-klassisch (HKN S. 24); die Zone bleibt darum dieselbe. -/
+def klassisch (m : ℕ) : List (List (Fin (m + 2))) :=
+  [origin (m + 1), endpoint [0] (origin (m + 1))]
+
+/-- Der trans-klassische Bereich bei `m + 2` Werten: die Anordnungen ausserhalb der Zone. -/
+def transklassisch (m : ℕ) : List (List (Fin (m + 2))) :=
+  (origin (m + 1)).permutations'.filter (fun a => a ∉ klassisch m)
+
+/-- Der Werte-Umtausch ist bijektiv. -/
+theorem sw_bij {m : ℕ} (i : Fin m) : Function.Bijective (sw i) :=
+  Function.Involutive.bijective (sw_sw i)
+
+/-- Ein Negator permutiert eine vollständige, duplikatfreie Liste. -/
+theorem negate_perm {m : ℕ} (i : Fin m) (l : List (Fin (m + 1))) (hl : l.Nodup)
+    (hall : ∀ v, v ∈ l) : (negate i l).Perm l := by
+  apply (List.perm_ext_iff_of_nodup (hl.map (sw_bij i).1) hl).mpr
+  intro v
+  constructor
+  · intro _; exact hall v
+  · intro _
+    exact List.mem_map.mpr ⟨sw i v, hall _, sw_sw i v⟩
+
+/-- Die Zone liegt in den Anordnungen. -/
+theorem klassisch_sub (m : ℕ) : ∀ a ∈ klassisch m, a ∈ (origin (m + 1)).permutations' := by
+  intro a ha
+  simp only [klassisch, List.mem_cons, List.not_mem_nil, or_false] at ha
+  rcases ha with rfl | rfl
+  · exact List.mem_permutations'.mpr (List.Perm.refl _)
+  · exact List.mem_permutations'.mpr
+      (negate_perm 0 _ (List.nodup_finRange _) (List.mem_finRange))
+
+/-- Der Ausgang ist nicht sein `N1`-Bild. -/
+theorem klassisch_nodup (m : ℕ) : (klassisch m).Nodup := by
+  simp only [klassisch, List.nodup_cons, List.mem_cons, List.not_mem_nil, or_false,
+    List.nodup_nil, and_true, not_false_eq_true]
+  intro h
+  have := congrArg List.head? h
+  simp [origin, endpoint, negate, List.finRange_succ, sw] at this
+
+/-- **Der trans-klassische Bereich hat bei `m + 2` Werten `(m + 2)! − 2` Elemente** —
+Definitionen §7 („`m!` Permutationen abzüglich des klassischen Bereichs") als Satz, und die
+Zahl zu Günthers „erweitert sich … ganz enorm" (HKN S. 24). -/
+theorem transklassisch_card (m : ℕ) :
+    (transklassisch m).length = (m + 2).factorial - 2 := by
+  have hn : (origin (m + 1)).permutations'.Nodup :=
+    ((List.permutations_perm_permutations' _).nodup_iff).mp
+      (List.nodup_permutations _ (List.nodup_finRange _))
+  have hlen : (origin (m + 1)).permutations'.length = (m + 2).factorial := by
+    rw [← (List.permutations_perm_permutations' _).length_eq, List.length_permutations]
+    simp [origin]
+  have hK : ((origin (m + 1)).permutations'.filter (fun a => a ∈ klassisch m)).length = 2 := by
+    have hp : ((origin (m + 1)).permutations'.filter (fun a => a ∈ klassisch m)).Perm
+        (klassisch m) :=
+      (List.perm_ext_iff_of_nodup (hn.filter _) (klassisch_nodup m)).mpr fun a => by
+        simp only [List.mem_filter, decide_eq_true_eq]
+        exact ⟨fun h => h.2, fun h => ⟨klassisch_sub m a h, h⟩⟩
+    rw [hp.length_eq]; rfl
+  have hsplit := List.length_eq_length_filter_add (l := (origin (m + 1)).permutations')
+    (fun a => decide (a ∈ klassisch m))
+  unfold transklassisch
+  have : ((origin (m + 1)).permutations'.filter (fun a => a ∉ klassisch m)) =
+      (origin (m + 1)).permutations'.filter (fun a => !decide (a ∈ klassisch m)) := by
+    congr 1; funext a; simp
+  rw [this]
+  simp only [hK, hlen] at hsplit
+  rw [hsplit, Nat.add_sub_cancel_left]
+
+/-- **Die Brücke zu Teil 6**: bei drei Werten liefert die allgemeine Definition genau
+Günthers vier Spalten aus HKN S. 24. -/
+theorem transklassisch_eq_three : ∀ a, a ∈ transklassisch 1 ↔ a ∈ transklassisch3 := by
+  intro a; constructor <;> intro h <;> revert a <;> decide
+
+/-- Eichung bei vier Werten: `4! − 2 = 22`. -/
+theorem transklassisch_four : (transklassisch 2).length = 22 := by decide
+
+/-- Eichung bei zwei Werten: der Bereich ist leer, `2! − 2 = 0` — es gibt nur die erste
+Negation. -/
+theorem transklassisch_two : transklassisch 0 = [] := by decide
+
+-- ============================================================
 -- Wachen
 -- ============================================================
 
@@ -886,5 +1013,29 @@ theorem transklassisch3_card :
 
 /-- info: 'Reformulation.Proemial.NegationCycle.transklassisch3_card' depends on axioms: [propext] -/
 #guard_msgs in #print axioms transklassisch3_card
+
+/-- info: 'Reformulation.Proemial.NegationCycle.sw_bij' depends on axioms: [propext] -/
+#guard_msgs in #print axioms sw_bij
+
+/-- info: 'Reformulation.Proemial.NegationCycle.negate_perm' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms negate_perm
+
+/-- info: 'Reformulation.Proemial.NegationCycle.klassisch_sub' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms klassisch_sub
+
+/-- info: 'Reformulation.Proemial.NegationCycle.klassisch_nodup' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms klassisch_nodup
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch_card' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms transklassisch_card
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch_eq_three' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch_eq_three
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch_four' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch_four
+
+/-- info: 'Reformulation.Proemial.NegationCycle.transklassisch_two' depends on axioms: [propext] -/
+#guard_msgs in #print axioms transklassisch_two
 
 end Reformulation.Proemial.NegationCycle
