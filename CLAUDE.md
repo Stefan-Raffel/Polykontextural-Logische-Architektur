@@ -579,6 +579,14 @@ nicht. *Damit betrifft der Eintrag nicht nur die selbst abgeleiteten Instanzen:*
 geschrieben zu haben. Heilung wie oben, und sie ist hier teurer: eine Handinstanz fuer
 `Fin m` zu schreiben lohnt nur, wo das Profil der Ertrag ist.
 
+*Und die zweite Verschaerfung, gemessen am 25. September (`6545ebd`, SJT-Zug Teil B):*
+**eine Familie, nicht ein Lemma.** `List.nodup_range`, `List.nodup_finRange` und
+`List.nodup_permutations` tragen alle `Classical.choice`; ein eigener Beweis ueber
+`List.range_succ` und `List.nodup_append` bleibt frei (`NegationCycleSJT.nodupRange`,
+`[propext, Quot.sound]`). **Der Baustein entscheidet, nicht die Aussage.** Vom selben
+Schlag: `Equiv.swap` und jede Aussage ueber Mitgliedschaft im Submonoid-Abschluss
+(`NegationCycleGenerators`, K2) - der Traeger bzw. das Objekt entscheidet das Profil.
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
