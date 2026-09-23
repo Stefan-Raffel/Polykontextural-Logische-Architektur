@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `63c2fb4` (sauber).
+Stand: Commit `4cb7695` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -15,13 +15,13 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **BESTAND** |  |  |
 | Module (.lean, verfolgt) | 196 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1096 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1096 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| Saetze gesamt | 1097 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 1097 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
 | def-Deklarationen | 451 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 109 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 818 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| Wachen geschrieben | 819 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
 | davon Dateien | 101 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
@@ -31,14 +31,14 @@ Alle mitlaufenden Gleichungen halten.
 | nur auf Ruf | 34 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 143 | Huelle von Reformulation/AxiomGate.lean |
-| Saetze im Aggregat | 915 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 808 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Saetze im Aggregat | 916 | Satzroute, auf die Aggregathuelle eingeschraenkt |
+| Wachen erzwungen | 809 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
 | Gleichung *Partition* | ✓ | 196 gegen 196 |
 | Gleichung *Gate=Aggregat+1* | ✓ | 143 gegen 143 |
-| Gleichung *Wachen* | ✓ | 818 gegen 818 |
+| Gleichung *Wachen* | ✓ | 819 gegen 819 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -52,10 +52,10 @@ Alle mitlaufenden Gleichungen halten.
 | Gleichung *Luecken-Dateien* | ✓ | 8 gegen 8 |
 |  |  |  |
 | **ABLAGEN (CLAUDE.md — selbstzaehlend)** |  |  |
-| Fallstricke (§8) | 24 | fett nummerierte Eintraege INNERHALB von §8 |
+| Fallstricke (§8) | 25 | fett nummerierte Eintraege INNERHALB von §8 |
 | Messregeln (§12) | 10 | dieselbe Route in §12 |
-| fett nummeriert, ganze Datei | 34 | die naive Route — sie mischt beide Ablagen |
-| Gleichung *Ablagen* | ✓ | 34 gegen 34 |
+| fett nummeriert, ganze Datei | 35 | die naive Route — sie mischt beide Ablagen |
+| Gleichung *Ablagen* | ✓ | 35 gegen 35 |
 |  |  |  |
 | **DEFINITION-LEDGER** |  |  |
 | Ledger-Zeilen | 111 | Zeilen-IDs in docs/definition-ledger.md |
@@ -63,7 +63,7 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **BAU (lake build)** |  |  |
 | Build-Jobs | 1344 | lake build ueber die Default-Targets |
-| geprueft (AxiomGate) | 4125 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
+| geprueft (AxiomGate) | 4126 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
 | (A.1) laufender Bestand | 84 | Superlativ, meldend |
