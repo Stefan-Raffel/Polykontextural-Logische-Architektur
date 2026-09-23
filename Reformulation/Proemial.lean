@@ -64,6 +64,7 @@ import Reformulation.Proemial.NegationCycle
 import Reformulation.Proemial.NegationCycleTable
 import Reformulation.Proemial.NegationCycleSearch
 import Reformulation.Proemial.NegationCycleSymmetry
+import Reformulation.Proemial.NegationCycleGenerators
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1325,6 +1326,16 @@ Enthält:
   ist die Eichung an den 88); für mehr Werte ungemessen. Mit `reverse_full` steht damit
   Günthers Familie (10-9-5 und 5-9-10 „zur gleichen Familie") auf Sätzen. Nicht Tafel XX,
   kein `§20`-Anspruch, keine Ledger-Zeile. 3 Wachen, kein `Classical.choice`.
+- `Proemial.NegationCycleGenerators`: **das Negationssystem ist der Inbegriff aller
+  Permutationen** (tml S. 10; Zug 3 nach `Spec_Zug3_Negationssystem.md`, Teil A). Die Brücke
+  `sw_eq_swap` / `negPerm_eq_swap`: Günthers Negator ist Mathlibs Nachbartransposition.
+  `negators_generate_all`: die Negatoren des Bestandes erzeugen jede Permutation, für jedes
+  `m` — Definitionen §7 führte das als „gemessen bis m = 7". Der Beweis ist Mathlibs
+  (`mclosure_swap_castSucc_succ`). Alle drei tragen `Classical.choice`, aus `Equiv.swap` und
+  aus dem Submonoid-Abschluss; nicht heilbar, solange der Satz über den Abschluss spricht.
+  Nicht konstruktiv (die Listen-Fassung ist sondiert, nicht gebaut), nicht die zweite
+  Negation. Eigenes Modul, weil `Perm.Sign` nicht in der Hülle von `NegationCycle` liegt.
+  3 Wachen.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
