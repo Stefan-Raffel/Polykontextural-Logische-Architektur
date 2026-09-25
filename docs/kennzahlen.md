@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `1b6114f` (sauber).
+Stand: Commit `cc6c3e5` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -27,8 +27,8 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
 | Aggregat | 146 | Huelle der Wurzel Reformulation.lean |
-| mitgebaut | 20 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
-| nur auf Ruf | 34 | nur ueber ein eigenes Target gebaut |
+| mitgebaut | 19 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
+| nur auf Ruf | 35 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 147 | Huelle von Reformulation/AxiomGate.lean |
 | Saetze im Aggregat | 1005 | Satzroute, auf die Aggregathuelle eingeschraenkt |
@@ -62,7 +62,7 @@ Alle mitlaufenden Gleichungen halten.
 | Referenzen im Bau | 98 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1592 | lake build ueber die Default-Targets |
+| Build-Jobs | 1416 | lake build ueber die Default-Targets |
 | geprueft (AxiomGate) | 4495 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
