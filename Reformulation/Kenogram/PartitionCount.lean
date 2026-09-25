@@ -3,7 +3,9 @@ import Reformulation.Kenogram.PairStageBound
 /-!
 # Reformulation.Kenogram.PartitionCount — die Zahl der Mengenpartitionen von `Fin n`
 
-**Ertrag, mit benannter Grenze.** Die Saetze dieses Moduls stehen so nicht in Mathlib;
+**Ertrag, mit benannter Grenze.** Die Saetze dieses Moduls stehen so nicht in Mathlib
+(Mathlib 83a5988, 2026-05-05: keine Deklaration zur Zahl der `Finpartition`s von `Fin n`;
+gesucht nach `Fintype.card (Finpartition …)` und nach einem Bell-Bezug);
 gewonnen sind sie aber nicht hier, sondern in der Berechnungs-Reihe ueber `RGS n`
 (`Kenogram/Basic.lean`, `Kenogram/Fillability.lean`, `Kenogram/PairStageBound.lean`). Dieses
 Modul **transportiert** sie laengs des Repraesentations-Theorems `rgs_equiv_partition` auf

@@ -43,7 +43,9 @@ open CategoryTheory Limits Reformulation.PathC
 -- HasInitial is NOT part of our ElementaryTopos definition (which only bundles
 -- HasFiniteLimits for LIMITS, not colimits). Every topos has an initial object
 -- (theorem of topos theory), but that derivation is not yet in Mathlib for our
--- ElementaryTopos typeclass. We add [HasInitial E] as a consumer hypothesis here.
+-- ElementaryTopos typeclass (Mathlib 83a5988, 2026-05-05: no derivation of `HasInitial` from
+-- finite limits, a subobject classifier and cartesian closedness; instance search fails).
+-- We add [HasInitial E] as a consumer hypothesis here.
 -- (Klasse-B/ζ finding: matches B-3/ζ in TermSemantics.lean.)
 variable {E : Type*} [Category E] [ElementaryTopos E] [HasInitial E]
 
