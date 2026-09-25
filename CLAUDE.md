@@ -308,6 +308,34 @@ Jedes neue Modul vermerkt im Doc-String, was es ist:
 
 Beides ist zulaessig. Die Verwechslung ist es nicht.
 
+### Die Ertrags-Skala (fuenf Stufen)
+
+*Aufgenommen auf Entscheid des Architekten (laut Prompt 26.9.2026, Sammel-Vollzug 5, Custos).*
+Sie verfeinert die Unterscheidung oben: **Ertrag** ist die erste Stufe, die uebrigen vier sind
+Gestalten der **Benennung** im weiteren Sinn.
+
+**Die Ertrags-Skala (fuenf Stufen).** Zu jedem neuen Satz: was traegt er ueber den
+Bestand hinaus? Nur die erste Stufe bringt Ertrag.
+
+- `FOLGERUNG` - steht in keinem verbrauchten Satz; verbindet oder folgert Neues. *Ertrag.*
+- `HEBUNG` - dieselbe Aussage in anderer Gestalt, gleichrangiger Traeger; der Beweis muss
+  etwas TUN.
+- `ZUSAMMENSTELLUNG` - eine Bruecke plus vorhandene Stuecke (Mathlib, eine Zaehlung); baut
+  aus MEHREREN, folgert nicht.
+- `INSTANZIIERUNG` - der allgemeine Satz am besonderen, ENGEREN Traeger; der Beweis SETZT
+  EIN (waehlt aus EINEM Spezialfall).
+- `UMBENENNUNG` - dieselbe Aussage, nur benannt; der Beweisterm IST ein Bestandssatz.
+
+Trennstriche: eine Hebung beweist etwas, eine Instanziierung setzt ein; eine
+Zusammenstellung baut aus mehreren, eine Instanziierung waehlt aus einem.
+
+**Die Route.** Um die Stufe zu bestimmen, der Reihe nach: (1) Beweisterm woertlich ein
+Bestandssatz -> UMBENENNUNG; (2) Typ des neuen Satzes eine Instanz des Typs eines
+verbrauchten -> INSTANZIIERUNG ⟦Route-Schritt VORGESCHLAGEN, noch nicht an einer Serie
+gemessen⟧; (3) Bruecke + vorhandene Stuecke, ohne zu folgern -> ZUSAMMENSTELLUNG; (4)
+dieselbe Aussage in anderer Gestalt, Beweis tut etwas -> HEBUNG; (5) sonst -> FOLGERUNG.
+Die Choice-Herkunft eines Profils misst separat Fallstrick 21/23/25 (andere Messung).
+
 ---
 
 ## 5 - Nicht bauen
