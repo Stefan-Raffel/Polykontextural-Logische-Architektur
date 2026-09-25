@@ -72,7 +72,7 @@ meldet das Ergebnis je Punkt.*
    umschreiben.** Ein Stempel kann mehrere Aussagen derselben Stelle decken (z.B.
    `Proemial/AlphaGammaSubstantial.lean`: Orte und fehlende Datei). Beim Bump werden ALLE
    neu gemessen; haelt eine nicht, gilt der Stempel fuer die ganze Stelle nicht mehr — melden.
-   Heute betroffen (siebzehn Zeilen; grep insgesamt 21 Treffer):
+   Heute betroffen (neunzehn Zeilen; grep insgesamt 23 Treffer):
    - Fehlen: vier Anker auf das Mathlib-TODO „Show that every topos is regular"
      (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
      Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
@@ -80,12 +80,16 @@ meldet das Ergebnis je Punkt.*
      `Kenogram/PartitionCount.lean` zweimal (Zahl der `Finpartition`s von `Fin n`; kein
      Satz zu `Nat.bell` als Partitionszahl); `Topos/Subobject/InitialMonoClass.lean`
      (`HasInitial` aus der Topos-Struktur); `Proemial/ExtensionalCollapse.lean` (topos-
-     internes Lawvere).
+     internes Lawvere); `Proemial/NegationCycleLength.lean` Kopf K5 (keine Inversionszahl,
+     kein Coxeter-System auf `Perm (Fin n)`, kein Satz „Länge = Inversionen"; derselbe Stempel
+     deckt das Vorhandensein von `CoxeterSystem.length` und `Equiv.Perm.signAux`).
    - Vorhandensein / TODO: `Kenogram/PartitionCount.lean` zweimal (Laufzeit-TODO an der
      `Finpartition`-`Fintype`-Instanz; Zaehl-TODO im Modulkopf von
      `Mathlib.Combinatorics.Enumerative.Bell`).
    - Inhalt: `Proemial/ExtensionalCollapse.lean` (`Subobject/Classifier/Defs` ohne
-     Fixpunktsatz).
+     Fixpunktsatz); `Proemial/NegationCycleLength.lean` Axiomprofil (vier `List`-Lemmata
+     tragen `Classical.choice`: `pairwise_lt_finRange`, `pairwise_lt_range`,
+     `filter_eq_nil_iff`, `nodup_finRange`).
    - Ort: `Kenogram/PartitionDescent.lean` (`Finpartition.card_mono`, `card_parts_le_card`);
      `Proemial/AlphaGammaSubstantial.lean` (`Functor.IsEquivalence`, die Counit-Instanz, dazu
      die fehlende Datei `Functor/IsEquivalence`); `Proemial/AlphaGammaSubstantialRefined.lean`

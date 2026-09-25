@@ -213,7 +213,10 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   Bestandes sagt.
 * **K3 — „Doppel-" ist der Fall von drei Werten.** Die Zahl der Genesen des längsten
   Elements (reduzierte Wörter) wächst: 2, 16, 768, 292 864 für 3, 4, 5, 6 Werte. Ausserhalb
-  Lean gerechnet (Mathematiker und impl. Instanz, unabhängig); **kein Satz hier**.
+  Lean gerechnet (Mathematiker und impl. Instanz, unabhängig); **kein Satz hier**. Die
+  ersten zwei stehen seit dem 25.9. als Satz in `Proemial/NegationCycleLength.lean`: bei drei
+  Werten sind `N1·2·1` und `N2·1·2` genau die kürzesten Wege zum Rücklauf
+  (`genesen_kuerzeste`), bei vier Werten sind es 16 (`rueckwaerts_vier`, gerechnet).
 * **K4 — genau dort, wo ein Wert geteilt wird.** Die Zopfrelation gilt für benachbarte
   Negatoren (`braid`); entfernte vertauschen nur (`comm_far`, einseitig notiert als
   `i + 2 ≤ j` — die andere Seite ist dieselbe Gleichung umgekehrt gelesen), und für sie

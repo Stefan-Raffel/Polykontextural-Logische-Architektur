@@ -66,6 +66,7 @@ import Reformulation.Proemial.NegationCycleSearch
 import Reformulation.Proemial.NegationCycleSymmetry
 import Reformulation.Proemial.NegationCycleGenerators
 import Reformulation.Proemial.NegationCycleSJT
+import Reformulation.Proemial.NegationCycleLength
 import Reformulation.Proemial.TimeMeasure
 
 /-!
@@ -1359,6 +1360,14 @@ Enthält:
   der Ebene der natürlichen Zahlen; sein Kern `stations_blocks` zeigt die Stationen des
   grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",
   keine Ledger-Zeile. 53 Wachen, kein `Classical.choice`.
+- `Proemial.NegationCycleLength`: **die kürzeste Zahl von Negatoren ist die
+  Inversionszahl** (nach der Sondierung zur minimalen Wortlänge; Frage aus IGN S. 36 f.,
+  „notwendig" als minimal gelesen). `inv_is_min_length`: für jede Wertzahl und jede
+  Anordnung gibt es ein Negatorwort der Länge `inv a`, und keines ist kürzer. Eichung:
+  `eich3`, `eich4` gegen die Suche; `genesen_kuerzeste` — bei drei Werten sind Günthers zwei
+  Genesen genau die kürzesten Wege zum Rücklauf; `rueckwaerts_vier` — bei vier Werten 16.
+  **Nicht:** Günthers These über die Definition „jeden Begriffs", keine Ledger-Zeile.
+  34 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
