@@ -1,10 +1,11 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 22.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 23.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
-Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
+Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
+und Negativsprache* (IGN, 1979); sie ist **nicht veröffentlicht**. Massgeblich
 sind die dort genannten Quellen und nicht die Fassung; dieser Ledger führt Träger und Grenzen,
 nicht den Wortlaut. Die Fassung zieht drei Texte zusammen, wählt aus und paraphrasiert, zählt
 die Paragraphen selbst und trägt in §3 einen dokumentierten Off-by-one gegenüber der Bauform
@@ -37,14 +38,14 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 112 |
-| Zeilen mit Träger | 98 |
-| verschiedene Trägernamen | 90 |
-| TS `Theorem` | 74 |
-| TS `Definition` | 23 |
+| Zeilen gesamt | 122 |
+| Zeilen mit Träger | 102 |
+| verschiedene Trägernamen | 94 |
+| TS `Theorem` | 77 |
+| TS `Definition` | 24 |
 | TS `Setzung` | 1 |
-| TS `Offen` | 14 |
-| Paragraphen von `Definitionen.md` | 19 von 20 |
+| TS `Offen` | 20 |
+| Paragraphen von `Definitionen.md` | 20 von 21 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
@@ -58,6 +59,15 @@ bestreiten die Deutungsgrenzen der Module, die an der Stelle arbeiten
 (`Kenogram/OccupancySeparation.lean`). Die Träger, die aus der Quellenstelle des §20
 hervorgegangen sind, stehen unter §16, wo die Wertbesetzungs-Linie liegt: L16-17 bis
 L16-19. Entschieden in der Abnahme zum Trennsatz-Zug (9. August 2026).
+
+*Seit Rev. 23: „20 von 21".* `Definitionen.md` führt seit dem 25.9.2026 einen §21 (Umtausch,
+Ordnung und die Relationalität des Zyklus, IGN 1979), und er hat zehn Zeilen, L21-1 bis
+L21-10. Die Zählregel ist dieselbe: Ein Paragraph gilt als vertreten, wenn er mindestens eine
+Zeile hat, auch eine mit Trägerstatus `Offen`. §20 bleibt der einzige Paragraph ohne Zeile, aus
+dem Grund oben. **Die Zahl sagt nichts darüber, wie viel getragen ist:** Von den zehn Zeilen
+des §21 haben vier einen Träger, drei davon mit TEILGETRAGEN in der Grenzspalte, und sechs sind
+offen. *R5 prüft weiterhin die Paragraphen 1 bis 19 und sieht §21 nicht; ob die Regel auf §21
+erweitert wird, ist ein eigener Zug.*
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
 einer Zeile". Die Acht ist die Differenz `Zeilen mit Träger − verschiedene Namen`, also die
@@ -134,6 +144,8 @@ beider Fehlexpansionen.
 | `SPar.` | `Reformulation.Proemial.StageParity.` | Namensraum |
 | `CV.` | `Reformulation.Proemial.ChoiceVectors.` | Namensraum |
 | `NCyc.` | `Reformulation.Proemial.NegationCycle.` | Namensraum |
+| `NSJT.` | `Reformulation.Proemial.NegationCycleSJT.` | Namensraum |
+| `NLen.` | `Reformulation.Proemial.NegationCycleLength.` | Namensraum |
 
 ## Die Tabelle
 
@@ -251,6 +263,16 @@ beider Fehlexpansionen.
 | L18-2 | Ontologie vs. Logik (§18) | `IB.intervalEnd_sub_start` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Themenzahl gleich Intervallbreite; kein Designationsbegriff |
 | L19-1 | Logisches Intervall (§19) | `IB.tafel_IV` | Theorem | Operationalisierung | ja, axiomfrei | beweist `(1,2),(3,5),(6,9),(10,14),…` — die Tafel aus §19 wörtlich |
 | L19-2 | Logisches Intervall (§19) | `IB.intervalEnd_succ_start` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Intervalle schließen lückenlos und überlappungsfrei an |
+| L21-1 | Umtausch und Ordnung (§21) | — | Offen | Offen | — | Umtausch »kann«, Ordnung »muss« (IGN S. 24 [I1]); kein Träger — eine Probe ist kein Bestand |
+| L21-2 | Negation nur zwischen Nachbarn (§21) | `NCyc.sw` | Definition | Operationalisierung | keine (def) | ZUORDNUNG: die Bauform folgt der Regel — `sw i` tauscht nur die Werte `i` und `i + 1`; Günthers „darf“ (S. 25 [I2], [I3]) ist normativ, kein Satz trägt es |
+| L21-3 | Ordnung als Zahlenverhältnis (§21) | — | Offen | Offen | — | Ordnung = eine Umtauschrelation zu zwei (S. 17 [I4], S. 34 [I5]); keine Lesart trägt |
+| L21-4 | Umtausch als primordiale Einheit (§21) | `NSJT.reach_all` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: jede Anordnung aller Werte ist Endpunkt eines Negatorworts, für jede Wertzahl; Reichweite Wertpermutationen, nicht „jedes System des Denkens“ (S. 34 [I6]) |
+| L21-5 | Relationalität des Zyklus (§21) | — | Offen | Offen | — | die dritte Konzeption neben Umtausch und Ordnung (S. 37 [I7]); ausdrücklich NICHT `NCyc.IsFullCycle` |
+| L21-6 | Der Katalog (8)–(13) (§21) | — | Offen | Offen | — | einundzwanzig gedruckte Einträge (S. 26 f. [I8]–[I10]); eine Probe ist kein Bestand |
+| L21-7 | Drehrichtungswechsel (§21) | `NCyc.tafelVI5_eq_reverse` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: mit der anderen Negation begonnen ist es derselbe Hamiltonkreis rückwärts. Günthers Aussage (S. 37 [I12]) gilt der TABULIERUNG — `K l` und `K r` tauschen die Plätze —, der Satz dem Kreis. H1: Günthers „Zahlenwerte“ (S. 37 [I11]) sind STELLEN entlang des Weges (O an 3, K an 2 und 4); `NLen.inv_is_min_length` gibt KÜRZESTE Zahlen (O 3, K 2) — bei drei Werten fallen sie für O und K zusammen (min(k, 6 − k)), begrifflich nicht |
+| L21-8 | Kreis ohne stabiles Sein (§21) | — | Offen | Offen | — | die Kreisrelation K „tritt sofort mit den Superskripten (K r und K l) auf“ (S. 27 [I14]); K ist im Bestand nicht gebaut |
+| L21-9 | Begriff und Zahl (§21) | `NLen.inv_is_min_length` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: die kürzeste Zahl von Negatoren zu jeder Anordnung ist die Inversionszahl, für jede Wertzahl — die ZAHL, nicht der Begriff (S. 37 [I15]); „notwendig“ als minimal ist LESART; Abnahme BEDINGT (Mathematiker, 26.9.: Messung ausstehend). H1: Günthers „Zahlenwerte“ (S. 37 [I11]) sind STELLEN entlang des Weges (O an 3, K an 2 und 4); `NLen.inv_is_min_length` gibt KÜRZESTE Zahlen (O 3, K 2) — bei drei Werten fallen sie für O und K zusammen (min(k, 6 − k)), begrifflich nicht |
+| L21-10 | Die dritte Relation (§21) | — | Offen | Offen | — | offene Stelle der Quelle: Umtausch und Ordnung als Prozesse, „ihrem Wesen nach unaufgeklärt“ (S. 25 [I16]). Im Register §33 als L21-o geführt; hier numerisch, weil die Zeilenroute und R3–R8 nur Ziffern kennen |
 
 ## Grenznotiz A — Verbundkontextur, zwei Zählfunktionen
 

@@ -225,3 +225,8 @@ end Reformulation.Proemial.DefinitionLedger
 
 #ledger_theorem "L19-1" Reformulation.Proemial.IntervalBackbone.tafel_IV
 #ledger_theorem "L19-2" Reformulation.Proemial.IntervalBackbone.intervalEnd_succ_start
+
+#ledger_def "L21-2" Reformulation.Proemial.NegationCycle.sw
+#ledger_theorem "L21-4" Reformulation.Proemial.NegationCycleSJT.reach_all
+#ledger_theorem "L21-7" Reformulation.Proemial.NegationCycle.tafelVI5_eq_reverse
+#ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
