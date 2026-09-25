@@ -249,7 +249,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L21-4" Reformulation.Proemial.NegationCycleSJT.reach_all
 #ledger_theorem "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_true
 #ledger_theorem "L21-7" Reformulation.Proemial.NegationCycleCatalog.drall_swap
-#ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
+#ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung1
 
 -- ============================================================
 -- Die Grenzspalte: Namen mit Kuerzel, nur Aufloesung (R9).
@@ -299,6 +299,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L16-22" Reformulation.Kenogram.concatWith_dropLast
 #ledger_mention "L16-23" Reformulation.Kenogram.rgs_equiv_partition
 #ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_two
+#ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_three
+#ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_four
+#ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_five
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_two
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_three
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_five
@@ -311,5 +314,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
 #ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.zahlenwerte
 #ledger_mention "L21-8" Reformulation.Proemial.NegationCycleCatalog.kat
+#ledger_mention "L21-8" Reformulation.Proemial.NegationCycleThreeCycle.three_iff_adj
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.katalog_general
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.stationen_abstand
-#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.stationen_zahl
