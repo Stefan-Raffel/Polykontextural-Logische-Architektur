@@ -44,7 +44,7 @@ Partitionsverbands in nutzbarer Form und sagt nichts ueber die Proemialrelation.
 Am 14. August 2026 in Mathlib nicht gefunden (`exact?`, Namenssuche
 `Finpartition.*card*`); nachgemessen an Mathlib 83a5988 (2026-05-05): keine strikte
 Fassung von `card_mono` (Suche nach strikter Blockzahl-Monotonie, `exact?` ohne Treffer). Die monotone Vorstufe steht dort als
-`Finpartition.card_mono` (`Mathlib.Order.Partition.Finpartition`), die
+`Finpartition.card_mono` (`Mathlib.Order.Partition.Finpartition`, Mathlib 83a5988), die
 Traegergroessen-Fassung als `Finpartition.card_parts_le_card` (ebd.) — sie
 ist dort aus `card_mono` in zwei Zeilen bewiesen. Ob eingereicht wird, ist nicht
 entschieden.

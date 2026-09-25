@@ -65,10 +65,12 @@ meldet das Ergebnis je Punkt.*
    - *Fehlen:* fehlt es an der neuen Revision noch?
    - *Vorhandensein / TODO:* steht es (das TODO, die Deklaration an diesem Ort) noch da?
    - *Inhalt:* trifft die Beschreibung noch zu?
+   - *Ort:* steht die Deklaration noch in dem genannten Modul (am Quelltext bzw. am
+     Modulindex der Umgebung messen — `#check` zeigt nur, dass es den Namen gibt)?
 
    *Unveraendert:* Stand auf die neue Revision. *Veraendert:* **melden, nicht selbst
    umschreiben.**
-   Heute betroffen (dreizehn Zeilen; grep insgesamt 17 Treffer):
+   Heute betroffen (siebzehn Zeilen; grep insgesamt 21 Treffer):
    - Fehlen: vier Anker auf das Mathlib-TODO „Show that every topos is regular"
      (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
      Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
@@ -82,6 +84,10 @@ meldet das Ergebnis je Punkt.*
      `Mathlib.Combinatorics.Enumerative.Bell`).
    - Inhalt: `Proemial/ExtensionalCollapse.lean` (`Subobject/Classifier/Defs` ohne
      Fixpunktsatz).
+   - Ort: `Kenogram/PartitionDescent.lean` (`Finpartition.card_mono`, `card_parts_le_card`);
+     `Proemial/AlphaGammaSubstantial.lean` (`Functor.IsEquivalence`, die Counit-Instanz, dazu
+     die fehlende Datei `Functor/IsEquivalence`); `Proemial/AlphaGammaSubstantialRefined.lean`
+     zweimal (`Adjunction.right_triangle_components`, `Iso.inv_hom_id_app`).
 
    Der grep trifft ausserdem, ohne dass es Aussagen dieser Art sind: den Stand im Kopf von
    `MathlibNameGuard` (nach gruenem Punkt 2 auf die neue Revision setzen),

@@ -30,6 +30,7 @@ Spec: F3_Spec.md. Prompt: F3_Prompt.md. FrÃ¼hjahr 2026.
 existiert nicht als eigenständige Datei. `CategoryTheory.Functor.IsEquivalence` liegt in
 `Mathlib.CategoryTheory.Equivalence`. `instance [L.IsEquivalence] : IsIso h.counit`
 liegt in `Mathlib.CategoryTheory.Adjunction.FullyFaithful`. Beide explizit importiert.
+(Orte und fehlende Datei: Mathlib 83a5988.)
 
 **B-2 — BC-API-Architektur-Mismatch:** `beckChevalleyFromData` operiert auf
 `ModalTwoCategoryWithPullbacks 𝒯` (einzelne Kategorie); für S ≠ K ist direktes
