@@ -66,6 +66,7 @@ import Reformulation.Proemial.NegationCycleSearch
 import Reformulation.Proemial.NegationCycleSymmetry
 import Reformulation.Proemial.NegationCycleGenerators
 import Reformulation.Proemial.NegationCycleSJT
+import Reformulation.Proemial.TimeMeasure
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1358,6 +1359,15 @@ Enthält:
   der Ebene der natürlichen Zahlen; sein Kern `stations_blocks` zeigt die Stationen des
   grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",
   keine Ledger-Zeile. 53 Wachen, kein `Classical.choice`.
+- `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
+  `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
+  `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
+  haben jede ihr Mass und kein gemeinsames, für jeden Träger — Günthers WWZ S. 3 („kein
+  gemeinsames, objektives (gegenständliches) Zeitmaß") in der Lesart der Gegenläufigkeit
+  (LESART); `reversible_no_measureZ` ist die Diagonale, `measure_noreturn` die Brücke Mass ⇒
+  Ordnung (verallgemeinert `noreturn_of_strict_rank` auf `ℤ`); Eichung auf `ℤ`. **Nicht:** die
+  Wahl selbst (WWZ S. 6), keine Wahlfunktion, keine Deckung, keine Zuordnung der Zeiten an
+  Umtausch und Ordnung, kein Paragraph, keine Ledger-Zeile. 5 Wachen, kein `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
