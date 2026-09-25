@@ -41,7 +41,10 @@ stand zuerst in `KorpusRev2/Evaluation_Traeger_1979_Impl.md`, Anhang A.
   Station `j + k` ist `min k (6 − k)`. Stelle und Zahl werden nicht gleichgesetzt; sie fallen
   auf den Stellen 1 bis 3 zusammen und trennen sich danach. Dass diese Zahl auch die kürzeste
   Wortlänge **zwischen** den Stationen ist, sagt erst `stationen_zahl`, zusammengesetzt aus
-  `rel_relates`, `zahlenwerte` und `stationen_abstand`.
+  `rel_relates`, `zahlenwerte` und `stationen_abstand`. **Günthers Zahl ist die Stelle:** Sein
+  „wieviel Umtauschvollzüge notwendig sind" (S. 36 f.) meint die Zählung auf dem alternierenden
+  Weg, die die Tabulierungen geben, nicht die kürzeste Zahl (Hermeneutes D1–D3; die frühere
+  Lesart Y5 ist gefallen).
 * **K5 — die Ordnung ist der verbotene Tausch, vermittelt.** `O` ist als Wertabbildung die
   Vertauschung von 1 und 3, die S. 25 als Negation ausschliesst („keinen rein logischen
   Vorgang"); hier wird sie in drei erlaubten Schritten erreicht. Dass Günther die beiden

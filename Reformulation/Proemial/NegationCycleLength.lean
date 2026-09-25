@@ -10,14 +10,20 @@ Architekten vom 25. September 2026 nach der Sondierung
 `KorpusRev2/Begutachtung_Sondierung_Minimale_Wortlaenge.md` (Mathematiker); die Frage aus
 `KorpusRev2/Prompt_Impl_Sondierung_Minimale_Wortlaenge.md`.
 
-* **K1 — Günthers Frage.** IGN 1979 (*Identität, Gegenidentität und Negativsprache*),
-  S. 36 f., Textschicht und Seitenbild geprüft: „Da alle anderen logischen Prozeduren sich
-  immer auf Umtauschrelationen reduzieren lassen müssen, kann man jeden Begriff dadurch
-  arithmetisch genau definieren, dass man angibt, wieviel Umtauschvollzüge notwendig sind, um
-  seinen inneren Aufbau zu verstehen." QUELLENFEST. **„Notwendig" heisst hier minimal:**
-  LESART, erzwungen durch „arithmetisch genau definieren" im selben Satz — eine genaue
-  Definition braucht eine eindeutige Zahl, und das ist die kleinste (Hermeneutes, Y5).
-* **K2 — die Antwort.** `inv a` zählt die Paare von Stellen in falscher Reihenfolge.
+* **K1 — Günthers Frage, und warum dieses Modul sie nicht beantwortet.** IGN 1979
+  (*Identität, Gegenidentität und Negativsprache*), S. 36 f., Textschicht und Seitenbild
+  geprüft: „Da alle anderen logischen Prozeduren sich immer auf Umtauschrelationen reduzieren
+  lassen müssen, kann man jeden Begriff dadurch arithmetisch genau definieren, dass man
+  angibt, wieviel Umtauschvollzüge notwendig sind, um seinen inneren Aufbau zu verstehen."
+  QUELLENFEST. Gebaut wurde das Modul unter der Lesart, „notwendig" heisse minimal
+  (Hermeneutes, Y5). **Diese Lesart ist gefallen** (Hermeneutes D1–D3, am Seitenbild): Der
+  „notwendig"-Satz, das Zwischenglied und die zwei Tabulierungen auf S. 37 stehen in einem
+  Absatz. Günthers Zahl ist die Zählung auf dem alternierenden Weg, und sie unterscheidet
+  `K l` (2) von `K r` (4), was die kürzeste Zahl nicht kann. Gebaut ist diese Zählung in
+  `NegationCycleCatalog` (`tabulierung1`, `tabulierung2`). `inv_is_min_length` bleibt ein Satz
+  über den Bestand — die kürzeste Zahl von Negatoren ist die Inversionszahl —, **ohne Anker an
+  S. 37**.
+* **K2 — der Satz.** `inv a` zählt die Paare von Stellen in falscher Reihenfolge.
   `inv_le_length`: jedes Negatorwort, das die Anordnung `a` vom Ausgang her erreicht, hat
   mindestens `inv a` Negatoren. `exists_word_inv`: es gibt eines genau dieser Länge.
   `inv_is_min_length`: beides, für jede Anordnung und **jede Wertzahl**. Gebaut ist die
