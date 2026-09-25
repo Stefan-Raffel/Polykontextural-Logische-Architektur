@@ -7,9 +7,12 @@ import Mathlib.Tactic.DeriveFintype
 
 ## (1) Quellen-fest
 
-Günther 1979 (*Identität, Gegenidentität und Negativsprache*): „Die Wahl ist im
-hierarchischen Sinn irreversibel, im heterarchischen Sinn vertauschbar." — die
-Drehrichtungs-Wahl in der Heterarchie.
+Günther 1979 (*Identität, Gegenidentität und Negativsprache*, S. 19 f., Textschicht und
+Seitenbild geprüft): „Es muss allerdings einschränkend hinzugefügt werden, dass diese
+Vertauschbarkeit von N₁ und N₂ nur innerhalb der heterarchischen Ordnung zulässig ist. Im
+Hierarchischen ist das Verhältnis der beiden Negationen irreversibel." — die
+Drehrichtungs-Wahl in der Heterarchie. (Bis zum 25. September stand hier ein Satz in
+Anführungszeichen, der bei Günther nicht steht.)
 
 Günther 1971 (*Erkennen und Wollen*): „Ein Wille, der nichts als sich selbst will,
 hätte nichts Konkretes, das ihn in Bewegung bringen könnte." — das Unit-Verbot:

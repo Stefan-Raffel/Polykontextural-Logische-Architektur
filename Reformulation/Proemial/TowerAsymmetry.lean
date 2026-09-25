@@ -128,7 +128,8 @@ erster Komponente. -/
 abbrev Tower : Type := Σ n : ℕ, RGS n
 
 /-- Der kanonische Aufstiegs-Schritt: hänge `0` an. Total (keine
-Fallunterscheidung), weil `extend _ 0` für jedes `r` zulässig ist. -/
+Fallunterscheidung), weil `extend _ 0` für jedes `r` zulässig ist. Die `0` ist unter den
+Konstanten die einzige zulässige — `extend` verlangt am leeren RGS `k = 0`. -/
 def step : Tower → Tower :=
   fun x => ⟨x.1 + 1, extend x.2 0 (Nat.zero_le _) (fun _ => rfl)⟩
 

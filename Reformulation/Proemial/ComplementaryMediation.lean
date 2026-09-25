@@ -46,6 +46,16 @@ also reversibel; (2) Irreversibilität verlangt mindestens drei Werte („mindes
 dritten Intervall") — letzteres begründet, warum `NoReturn` nicht auf einem
 zweiwertigen Träger sitzt.
 
+**IGN 1979** (*Identität, Gegenidentität und Negativsprache*, S. 25, Textschicht und
+Seitenbild geprüft), **quellenfest**: „Die Frage, um die es sich jetzt also dreht, ist die:
+was für eine Relation existiert zwischen der Umtauschrelation, die auf eine heterarchische
+Ordnung hin tendiert, und der Ordnungsrelation, die hierarchischen Sinn in sich trägt, wenn
+man von den Relationsgliedern, soweit wie möglich, absieht und nur den Prozesscharakter von
+Umtausch und Ordnung relationiert?" Unmittelbar davor nennt er die dritte, mit
+Relations*prozessen* befasste Relation „ihrem Wesen nach unaufgeklärt". Dass Günthers
+Programm von 1979 und die Bauform dieser Schicht (beide Zeitformen in einem Träger)
+dasselbe verlangen, ist **Zusammenschau**, kein Satz Günthers.
+
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Organik = Intervall IV" ist **Lesart der Hegel-Stufe**, nicht Satz

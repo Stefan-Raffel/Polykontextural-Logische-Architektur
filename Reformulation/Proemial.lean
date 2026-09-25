@@ -559,7 +559,7 @@ Enthält:
   („ein 14-wertiges System formaler Logik", Lille S. 10) sowie `eighth_starts_at_36`
   („nicht weniger als 36 Werte und 8 ontologische Themen", **druck-verifiziert**,
   Beiträge III S. 160 — zweiter druck-gesiegelter Anker). Kür
-  `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **Seit dem 24. September die
+  `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **Seit dem 23. September die
   Umkehrung** (nach `Spec_Wertzahl_Zerlegung.md`): `decomp m = (a, r)` gibt zu jeder
   Wertzahl ihre Themenzahl und den Überschuss über dem Intervall-Anfang, mit
   `decomp_spec` (Gewährschein: `r ≤ a` und `m = intervalStart a + r`) und `decomp_uniq`

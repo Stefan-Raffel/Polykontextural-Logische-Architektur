@@ -31,6 +31,13 @@ S. 10 („Mechanik, Physik und Organik"). Der Ort (Intervall II als Abschnitt de
 und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen der Volltext-Datei, verschoben). Härte-Ökonomie: einmal geeicht
 (Beiträge III, S. 160, druck-verifiziert), verlängerbar.
 
+**IGN 1979** (*Identität, Gegenidentität und Negativsprache*, S. 17, Textschicht und
+Seitenbild geprüft), **quellenfest**: „Nun kennen wir aus der klassischen Theorie bereits die
+Unterscheidung von symmetrischem Umtauschverhältnis und asymmetrischem
+Ordnungsverhältnis …". Günthers Paar heisst dort *symmetrisch / asymmetrisch*; dass
+`Reversible` das Umtauschverhältnis fasst, ist **Zuordnung** (getragen von Lille S. 10 und
+`cat` S. 9, siehe `ComplementaryMediation`), nicht Wortlaut von S. 17.
+
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Mechanik = Intervall II" ist **Lesart der Hegel-Stufe**, nicht

@@ -34,6 +34,14 @@ formaler Logik"). Ankerform: Seite und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen 
 Volltext-Datei, verschoben). Härte-Ökonomie: einmal geeicht
 (Beiträge III, S. 160, druck-verifiziert), verlängerbar.
 
+**IGN 1979** (*Identität, Gegenidentität und Negativsprache*, Textschicht und Seitenbild
+geprüft), **quellenfest**: die elementarste Ordnungsrelation ist „nichts weiter als die
+Beziehung von *einem* Umtauschverhältnis zu zwei solcher symmetrischen Relationen" (S. 17);
+das „Ordnungs- oder Rangverhältnis der Logik" kann „generell als Zahlenverhältnis zwischen
+*einer* Umtauschrelation und *zwei* Umtauschrelationen interpretiert werden" (S. 34). Dass
+`NoReturn` diese Ordnung fasst, ist **Zuordnung** (A20-6), nicht Wortlaut; Günther nennt das
+Ordnungsverhältnis dort *asymmetrisch*, nicht irreversibel.
+
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Physik = Intervall III" ist **Lesart der Hegel-Stufe**, nicht Satz

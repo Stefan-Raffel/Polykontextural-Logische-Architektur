@@ -53,7 +53,7 @@ in den Stellen-Schichten, jede mit dieser Marke.
 (`intervalStart_strictMono`). Dazu das `private` Hilfslemma `succ_mul_succ_succ`
 (reine Aufspaltung des nichtlinearen Schritts; kein eigener Posten).
 
-**Seit dem 24. September die Umkehrung** (nach `KorpusRev2/Spec_Wertzahl_Zerlegung.md`,
+**Seit dem 23. September die Umkehrung** (nach `KorpusRev2/Spec_Wertzahl_Zerlegung.md`,
 Fassung 2): `decomp` samt `decomp_succ`, `step`, `decomp_spec` (Gewährschein) und
 `decomp_uniq` (Eindeutigkeit), dazu vier Eichwerte. `intervalStart` geht von der Themenzahl
 zur Wertzahl, `decomp` zurück — **jede Wertzahl zerfällt in Themenzahl und Überschuss, und
@@ -131,7 +131,7 @@ beide gemessen und beide in den Beweisen sichtbar: die Eichungen tragen nur mit
 `decide +kernel` — mit `decide` schlägt schon `m = 35` an die Rekursionsgrenze, und die
 Grenze wird **nicht** heraufgesetzt (Fallstrick 5). Und **konjunktive Ziele werden vor
 `omega` zerlegt**: `a ≤ b ∧ b ≤ a := by omega` trägt `Classical.choice`, dasselbe Ziel
-zerlegt nicht (Fallstrick 7 in einer vierten Gestalt, gemessen 24. September).
+zerlegt nicht (Fallstrick 7 in einer vierten Gestalt, gemessen 23. September).
 `exhausted_seam` trägt `[propext]` — die dritte Klasse —, `not_exhausted_step`
 `[propext, Quot.sound]`; beide schliessen mit offenem `simp`, im Modul gemessen wie in der
 Probe (Fallstrick 21: das Profil hängt damit an der Importlage). Die Eichungen `Exhausted 35`,
