@@ -100,10 +100,15 @@ Paragraphen · R6 TS `Theorem` erzwingt ausgefüllte
 Wachenspalte ·
 R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in
 `Reformulation/Proemial/DefinitionLedger.lean` — und umgekehrt · R8 jede Zeilen-ID kommt in
-beiden Dateien genau einmal vor.
+beiden Dateien genau einmal vor · R9 jeder Name mit Kürzel in der Grenzspalte löst auf
+(Architekt, 25.9.2026). Geprüft wird nur die Auflösung, nicht die Art, denn in der
+Grenzspalte stehen auch Strukturen. Je Paar aus Zeilen-ID und Name steht ein
+`#ledger_mention` in der Referenzdatei, und umgekehrt. Ein Name ist ein Token in Backticks
+ohne Leerzeichen, dessen Präfix in der Kürzeltafel steht. Token mit `*` sind Muster, keine
+Namen; R9 meldet sie, verlangt sie aber nicht (heute eines: `KPS.card_rgs_*` in L16-23).
 
-R1 und R2 werden von `Reformulation/Proemial/DefinitionLedger.lean` beim Bau geprüft; R3 bis
-R8 sind Textprüfungen in `doc_lint.sh`.
+R1, R2 und die Auflösung in R9 werden von `Reformulation/Proemial/DefinitionLedger.lean` beim
+Bau geprüft; R3 bis R8 und der Abgleich in R9 sind Textprüfungen in `doc_lint.sh`.
 
 **Zur Lesart der Profile.** `[propext, Quot.sound]` ist bei omega-getragenen Beweisen
 Eigenschaft der Taktikhülle. `[propext, Classical.choice, Quot.sound]` ist bei den

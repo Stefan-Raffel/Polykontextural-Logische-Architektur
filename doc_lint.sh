@@ -44,7 +44,7 @@
 #   - Gruppen (A) und (B) MELDEN und beeinflussen den Exit-Code nicht. Ein
 #     Rang-Anspruch ist Ermessenssache und will gelesen, nicht erzwungen werden;
 #     ein brechender Lint wird umgangen, ein meldender wird gelesen.
-#   - Gruppe (C) BRICHT: mindestens ein Verstoß gegen R3 bis R8 setzt Exit 1.
+#   - Gruppe (C) BRICHT: mindestens ein Verstoß gegen R3 bis R9 setzt Exit 1.
 #     Dort ist nichts zu ermessen — ein Widerspruch zwischen der Ledger-Tabelle
 #     und der Referenzdatei, eine fehlende Referenz, eine doppelte Zeilen-ID
 #     sind objektiv falsch, und wer sie stehen lässt, veröffentlicht eine
@@ -405,6 +405,63 @@ ledger7_report() {
       if (v + 0 == 0) print "  (keine Verstöße in R7)"
       printf "  ── R7 %d Verstöße; %d abgeglichene Paare (Tabelle %d, Referenzdatei %d)\n", \
              v + 0, paare + 0, mdN + 0, leanN + 0
+      if (v + 0 > 0) exit 1
+    }
+  ' "${LEDGER}" "${LEDGER_LEAN}"
+}
+
+# --- (C) Regel R9: Namen der Grenzspalte gegen Referenzdatei -----------------
+# Architekt 25.9.2026 (Register §35). Jeder Name mit Kuerzel in der Grenzspalte des Ledgers
+# muss aufloesen; der Bau prueft die Aufloesung ueber "#ledger_mention" in
+# DefinitionLedger.lean, nur die Aufloesung, nicht die Art. R9 gleicht Tabelle und
+# Referenzdatei ab, in BEIDE Richtungen: kein Name der Grenzspalte ohne #ledger_mention, kein
+# #ledger_mention ohne Namen in der Tabelle. Ein Name ist ein Token in Backticks ohne
+# Leerzeichen, dessen Praefix bis zum ersten Punkt in der Kuerzeltafel steht. Token mit "*"
+# sind MUSTER, keine Namen; sie werden nicht gefordert, aber je Stueck gemeldet.
+ledger9_report() {
+  if [ ! -f "${LEDGER}" ] || [ ! -f "${LEDGER_LEAN}" ]; then
+    echo "  (Tabelle oder Referenzdatei liegt nicht in diesem Bereich — R9 nicht geprüft)"
+    return 0
+  fi
+  awk '
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    function bare(s) { gsub(/`/, "", s); return trim(s) }
+    NR == FNR {
+      if ($0 ~ /^\| `[A-Za-z]+\.` \|/) {
+        split($0, k, "|"); kz[bare(k[2])] = bare(k[3])
+      }
+      if ($0 ~ /^\| L[0-9][0-9]-[0-9]+ \|/) {
+        split($0, c, "|"); id = bare(c[2]); g = c[8]
+        while (match(g, /`[^` ]+`/)) {
+          tok = substr(g, RSTART + 1, RLENGTH - 2); g = substr(g, RSTART + RLENGTH)
+          p = index(tok, "."); pre = substr(tok, 1, p)
+          if (p < 2 || pre !~ /^[A-Za-z]+\.$/ || !(pre in kz) || p == length(tok)) continue
+          if (tok ~ /\*/) { printf "  %s  [R9] Muster, kein Name — nicht geprüft: %s\n", id, tok; mu++; continue }
+          key = id " " kz[pre] substr(tok, p + 1)
+          if (!(key in md)) { md[key] = 1; mdOrd[++mdN] = key }
+        }
+      }
+      next
+    }
+    /^#ledger_mention / {
+      id = $2; gsub(/"/, "", id); key = id " " $3
+      if (key in ln) { printf "  %s  [R9] #ledger_mention doppelt: %s\n", id, $3; v++ }
+      else { ln[key] = 1; lnOrd[++lnN] = key }
+    }
+    END {
+      for (i = 1; i <= mdN; i++) if (!(mdOrd[i] in ln)) {
+        q = index(mdOrd[i], " ")
+        printf "  %s  [R9] Name in der Grenzspalte ohne #ledger_mention: %s\n", \
+               substr(mdOrd[i], 1, q - 1), substr(mdOrd[i], q + 1); v++
+      }
+      for (i = 1; i <= lnN; i++) if (!(lnOrd[i] in md)) {
+        q = index(lnOrd[i], " ")
+        printf "  %s  [R9] #ledger_mention ohne Namen in der Grenzspalte (verwaist): %s\n", \
+               substr(lnOrd[i], 1, q - 1), substr(lnOrd[i], q + 1); v++
+      }
+      if (v + 0 == 0) print "  (keine Verstöße in R9)"
+      printf "  ── R9 %d Verstöße; %d Paare (Tabelle %d, Referenzdatei %d); %d Muster gemeldet\n", \
+             v + 0, (v + 0 == 0 ? mdN : 0), mdN + 0, lnN + 0, mu + 0
       if (v + 0 > 0) exit 1
     }
   ' "${LEDGER}" "${LEDGER_LEAN}"
@@ -975,6 +1032,7 @@ C_RC=0
 BLOCK_C1="$(ledger_report)"  || C_RC=1
 BLOCK_C2="$(ledger7_report)" || C_RC=1
 BLOCK_C3="$(ledger8_report)" || C_RC=1
+BLOCK_C4="$(ledger9_report)" || C_RC=1
 
 # Gruppe (D) ebenso vorab: sie bricht wie (C).
 D_RC=0
@@ -1027,7 +1085,7 @@ echo "     Trigger:  ZFC | Zermelo   (verengt — Nachschlag Teil 3)"
 echo "     Fallbehandlung: UNEMPFINDLICH (tolower; locale-abhaengig, siehe Kopf); Transliteration mitgefasst"
 printf '%s\n' "$BLOCK_B" | fmt
 echo
-echo "── Gruppe (C) LEDGER-REGELN R3–R8 — docs/definition-ledger.md ────────────────"
+echo "── Gruppe (C) LEDGER-REGELN R3–R9 — docs/definition-ledger.md ────────────────"
 echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
 echo "     Trägerspalte · R5 jeder Paragraph 1..Y vertreten, Y aus der Selbstauskunft,"
 echo "     ausser §20 (Quellenparagraph ohne beanspruchten formalen Träger), und X gleich"
@@ -1036,9 +1094,13 @@ echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der
 echo "     R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in"
 echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."
 echo "     R8 jede Zeilen-ID kommt in beiden Dateien genau einmal vor."
+echo "     R9 jeder Name mit Kürzel in der Grenzspalte hat genau ein #ledger_mention in"
+echo "     der Referenzdatei — und umgekehrt; der Bau prüft, dass er auflöst (nur die"
+echo "     Auflösung, nicht die Art). Token mit \"*\" sind Muster und werden gemeldet."
 printf '%s\n' "$BLOCK_C1"
 printf '%s\n' "$BLOCK_C2"
 printf '%s\n' "$BLOCK_C3"
+printf '%s\n' "$BLOCK_C4"
 echo
 echo "── Gruppe (D) GEDRUCKT GEGEN GEWACHT — \`#print axioms\` ohne \`#guard_msgs\` ─────"
 echo "     Ein gedrucktes Profil sichert nichts: aendert der Satz sein Profil, druckt es"

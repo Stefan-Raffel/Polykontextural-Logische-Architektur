@@ -24,6 +24,11 @@ Dass `Setzung` und `Theorem` an der Deklarationsart nicht zu unterscheiden sind,
 gemessen: die Projektion eines `True`-Feldes ist ein `theorem`. Unterschieden werden sie am
 Schluss des Typs — dasselbe Kriterium, an dem `CLAUDE.md` §10 haengt.
 
+- **R9 — die Namen der Grenzspalte loesen auf.** `#ledger_mention` verlangt nur, dass der Name
+  gegen die Aggregatumgebung aufloest, nicht seine Art: In der Grenzspalte stehen auch
+  Strukturen und Namen, die R1/R2 nicht fassen. Den Abgleich mit der Tabelle, in beiden
+  Richtungen, fuehrt `doc_lint.sh` (Architekt, 25.9.2026).
+
 ## Was nicht geprueft wird
 
 R3 (kein Zuordnungsstatus `Theorem`), R4 (Traegerstatus `Offen` erzwingt leere
@@ -95,7 +100,20 @@ syntax "#ledger_def " str ident : command
 /-- Ledger-Zeile mit Traegerstatus `Setzung` (Schluss `True`). -/
 syntax "#ledger_setzung " str ident : command
 
+/-- R9 fuer einen Namen der Grenzspalte: nur die Aufloesung, nicht die Art. In der Grenzspalte
+stehen auch Strukturen und Namen, die R1/R2 nicht fassen. -/
+private def mentionCheck (zeile : String) (i : Ident) : CommandElabM Unit := do
+  try
+    let _ ← liftCoreM <| realizeGlobalConstNoOverload i
+  catch _ =>
+    throwErrorAt i "Ledger {zeile}: `{i.getId}` aus der Grenzspalte loest nicht gegen die \
+      Aggregatumgebung auf (R9)"
+
+/-- Ein Name aus der Grenzspalte einer Ledger-Zeile (R9). -/
+syntax "#ledger_mention " str ident : command
+
 elab_rules : command
+  | `(#ledger_mention $z:str $i:ident) => mentionCheck z.getString i
   | `(#ledger_theorem $z:str $i:ident) => ledgerCheck z.getString i .thm
   | `(#ledger_def $z:str $i:ident) => ledgerCheck z.getString i .defn
   | `(#ledger_setzung $z:str $i:ident) => ledgerCheck z.getString i .setzung
@@ -231,3 +249,63 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_true
 #ledger_theorem "L21-7" Reformulation.Proemial.NegationCycleCatalog.drall_swap
 #ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
+
+-- ============================================================
+-- Die Grenzspalte: Namen mit Kuerzel, nur Aufloesung (R9).
+-- Eine Zeile je Paar aus Zeilen-ID und Name; der Abgleich mit der Tabelle, in beiden
+-- Richtungen, steht in doc_lint.sh.
+-- ============================================================
+#ledger_mention "L02-4" Reformulation.Proemial.NonUniformCloneBound.ActsAsMin
+#ledger_mention "L03-5" Reformulation.Proemial.RegimeThreshold.regime_threshold_at_four
+#ledger_mention "L05-7" Reformulation.Proemial.PairwiseMixture.pair_mixture_of_ne_min_ne_max
+#ledger_mention "L06-9" Reformulation.Kenogram.Unbounded.unbounded_not_fillable
+#ledger_mention "L06-9" Reformulation.Kenogram.Unbounded.marksLt_iff_fillable
+#ledger_mention "L06-10" Reformulation.Proemial.ChoiceVectors.locallyClassicalEquiv
+#ledger_mention "L06-10" Reformulation.Proemial.ChoiceVectors.clone_locallyClassical_eq
+#ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.contexture12
+#ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.mem_contexture03
+#ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.mem_contexture12
+#ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.avgDown_escapes
+#ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.avgDown
+#ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.avgDown_escapes
+#ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.locallyClassical_preserves_both
+#ledger_mention "L10-2" Reformulation.Proemial.TransjunctionCloneBound.test1_surjective
+#ledger_mention "L12-5" Reformulation.Proemial.StageAggregation.agg
+#ledger_mention "L12-10" Reformulation.Proemial.StageAscent.choose_two_succ
+#ledger_mention "L16-9" Reformulation.Kenogram.Fillability.exists_nonfillable
+#ledger_mention "L16-10" Reformulation.Kenogram.Unbounded.marksLeOne_iff_marksLt_two
+#ledger_mention "L16-12" Reformulation.Kenogram.Fiber.card_bool_fun_eq_two_mul
+#ledger_mention "L16-13" Reformulation.Kenogram.Fiber.witness_over_two
+#ledger_mention "L16-14" Reformulation.Proemial.RelabelInvariance.relabel_map_of_injective
+#ledger_mention "L16-16" Reformulation.Kenogram.jointlyClosed_hull_pair
+#ledger_mention "L16-17" Reformulation.Kenogram.OccupancySeparation.canonicalize_comp_swap
+#ledger_mention "L16-18" Reformulation.Kenogram.OccupancySeparation.FallingOccupancy
+#ledger_mention "L16-18" Reformulation.Kenogram.OccupancySeparation.occupancy_exclusive
+#ledger_mention "L16-18" Reformulation.Kenogram.OccupancySeparation.occupancy_total
+#ledger_mention "L16-18" Reformulation.Kenogram.OccupancySeparation.no_occupancy_of_eq
+#ledger_mention "L16-20" Reformulation.Kenogram.PairStageBound.no_injective_pair_four
+#ledger_mention "L16-20" Reformulation.Kenogram.PairStageBound.exists_injective_pair_two
+#ledger_mention "L16-20" Reformulation.Kenogram.PairStageBound.card_rgs_two
+#ledger_mention "L16-20" Reformulation.Kenogram.PairStageBound.card_rgs_three
+#ledger_mention "L16-20" Reformulation.Kenogram.PairStageBound.card_rgs_five
+#ledger_mention "L16-20" Reformulation.Kenogram.Fillability.card_rgs_four
+#ledger_mention "L16-21" Reformulation.Kenogram.concatWith_take_left
+#ledger_mention "L16-21" Reformulation.Kenogram.concatWith_pattern_right
+#ledger_mention "L16-21" Reformulation.Kenogram.concatWith_dropLast
+#ledger_mention "L16-21" Reformulation.Kenogram.concatWith_ambiguous_nonempty
+#ledger_mention "L16-22" Reformulation.Kenogram.concatWith_ambiguous_nonempty
+#ledger_mention "L16-22" Reformulation.Kenogram.concatWith_isRGS_length
+#ledger_mention "L16-22" Reformulation.Kenogram.concatWith_dropLast
+#ledger_mention "L16-23" Reformulation.Kenogram.rgs_equiv_partition
+#ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_two
+#ledger_mention "L21-5" Reformulation.Proemial.NegationCycle.IsFullCycle
+#ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_general
+#ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.kat
+#ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.kat
+#ledger_mention "L21-7" Reformulation.Proemial.NegationCycle.tafelVI5_eq_reverse
+#ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.tabulierung1
+#ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
+#ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.zahlenwerte
+#ledger_mention "L21-8" Reformulation.Proemial.NegationCycleCatalog.kat
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.stationen_abstand
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.stationen_zahl
