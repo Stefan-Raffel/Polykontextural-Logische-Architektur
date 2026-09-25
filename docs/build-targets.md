@@ -58,28 +58,38 @@ meldet das Ergebnis je Punkt.*
 3. `lake build MathlibExtensions` — nicht im Default-Bau.
 4. `lake build PathC` — eingefroren: nur bauen, nichts aendern; siehe Auftau-Bedingung 3
    im Abschnitt `PathC`.
-5. **Fehlens-Aussagen neu messen.** Aussagen, dass Mathlib etwas *fehlt*, tragen die alte
-   Mathlib-Revision als Stand. Finden:
-   `grep -rn '<alte Revision>' --exclude-dir=.lake --exclude=lake-manifest.json .`
-   (heute `83a5988`). Je Fund: Fehlt es an der neuen Revision noch? *Ja:* Stand auf die neue
-   Revision. *Nein:* die Aussage ist ueberholt — **melden, nicht selbst umschreiben.**
-   Heute betroffen (zwoelf Zeilen): vier Anker auf das Mathlib-TODO „Show that every topos is
-   regular" (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
-   Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
-   `Kenogram/PartitionDescent.lean` (strikte Fassung von `Finpartition.card_mono`);
-   `Kenogram/PartitionCount.lean` dreimal (Zahl der `Finpartition`s von `Fin n`; kein Satz
-   zu `Nat.bell` als Partitionszahl; das Laufzeit-TODO an der `Fintype`-Instanz — dieses
-   ist eine Aussage ueber ein VORHANDENES TODO: *Ja* heisst hier, es steht noch da);
-   `Topos/Subobject/InitialMonoClass.lean` (`HasInitial` aus der Topos-Struktur);
-   `Proemial/ExtensionalCollapse.lean` zweimal (topos-internes Lawvere; Inhalt von
-   `Subobject/Classifier/Defs`, gezaehlt, ohne Fixpunktsatz).
-   Der grep trifft ausserdem, ohne dass es Fehlens-Aussagen sind: den Stand im Kopf von
+5. **Gestempelte Aussagen ueber Mathlib neu messen.** Aussagen ueber Mathlibs Bestand, die
+   der Bau nicht prueft, tragen die alte Mathlib-Revision als Stand (Regel: CLAUDE.md §2).
+   Finden: `grep -rn '<alte Revision>' --exclude-dir=.lake --exclude=lake-manifest.json .`
+   (heute `83a5988`). Je Treffer nach seiner **Art** messen:
+   - *Fehlen:* fehlt es an der neuen Revision noch?
+   - *Vorhandensein / TODO:* steht es (das TODO, die Deklaration an diesem Ort) noch da?
+   - *Inhalt:* trifft die Beschreibung noch zu?
+
+   *Unveraendert:* Stand auf die neue Revision. *Veraendert:* **melden, nicht selbst
+   umschreiben.**
+   Heute betroffen (dreizehn Zeilen; grep insgesamt 17 Treffer):
+   - Fehlen: vier Anker auf das Mathlib-TODO „Show that every topos is regular"
+     (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
+     Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
+     `Kenogram/PartitionDescent.lean` (strikte Fassung von `Finpartition.card_mono`);
+     `Kenogram/PartitionCount.lean` zweimal (Zahl der `Finpartition`s von `Fin n`; kein
+     Satz zu `Nat.bell` als Partitionszahl); `Topos/Subobject/InitialMonoClass.lean`
+     (`HasInitial` aus der Topos-Struktur); `Proemial/ExtensionalCollapse.lean` (topos-
+     internes Lawvere).
+   - Vorhandensein / TODO: `Kenogram/PartitionCount.lean` zweimal (Laufzeit-TODO an der
+     `Finpartition`-`Fintype`-Instanz; Zaehl-TODO im Modulkopf von
+     `Mathlib.Combinatorics.Enumerative.Bell`).
+   - Inhalt: `Proemial/ExtensionalCollapse.lean` (`Subobject/Classifier/Defs` ohne
+     Fixpunktsatz).
+
+   Der grep trifft ausserdem, ohne dass es Aussagen dieser Art sind: den Stand im Kopf von
    `MathlibNameGuard` (nach gruenem Punkt 2 auf die neue Revision setzen),
    `docs/journal.md` (Historie, bleibt) und diese Liste selbst.
-   *Findet sich beim Bump eine Fehlens-Aussage OHNE Stand, die NACH der Regel in CLAUDE.md
-   (§2, seit 25. September 2026) geschrieben wurde: melden.* Das ist der Ausloeser fuer eine
-   feste Marke fuer Fehlens-Aussagen mit exakter doc_lint-Pruefung (Custos-Register §29).
-   Aeltere ungestempelte Aussagen sind Altbestand und loesen nicht aus.
+   *Findet sich beim Bump eine Aussage ueber Mathlibs Bestand OHNE Stand, die NACH der
+   erweiterten Regel in CLAUDE.md §2 geschrieben wurde: melden.* Das ist der Ausloeser fuer
+   eine feste Marke mit exakter doc_lint-Pruefung (Custos-Register §29). Aeltere
+   ungestempelte Aussagen sind Altbestand und loesen nicht aus.
 
 ---
 
