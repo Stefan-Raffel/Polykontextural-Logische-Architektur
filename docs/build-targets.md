@@ -52,7 +52,7 @@ repliziert.
 meldet das Ergebnis je Punkt.*
 
 1. `lake build` — Default-Bau gruen, AxiomGate gruen.
-2. `lake build MathlibNameGuard` — bewacht 13 Mathlib-Namen, auf die Kommentare zeigen.
+2. `lake build MathlibNameGuard` — bewacht 14 Mathlib-Namen, auf die Kommentare zeigen.
    *Rot heisst:* ein Name ist umbenannt oder entfernt; die verweisenden Kommentare (im Kopf
    der Wachdatei gelistet) nachfuehren.
 3. `lake build MathlibExtensions` — nicht im Default-Bau.
@@ -63,13 +63,16 @@ meldet das Ergebnis je Punkt.*
    `grep -rn '<alte Revision>' --exclude-dir=.lake --exclude=lake-manifest.json .`
    (heute `83a5988`). Je Fund: Fehlt es an der neuen Revision noch? *Ja:* Stand auf die neue
    Revision. *Nein:* die Aussage ist ueberholt — **melden, nicht selbst umschreiben.**
-   Heute betroffen (neun): vier Anker auf das Mathlib-TODO „Show that every topos is regular"
-   (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
+   Heute betroffen (zwoelf Zeilen): vier Anker auf das Mathlib-TODO „Show that every topos is
+   regular" (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
    Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
    `Kenogram/PartitionDescent.lean` (strikte Fassung von `Finpartition.card_mono`);
-   `Kenogram/PartitionCount.lean` (Zahl der `Finpartition`s von `Fin n`);
+   `Kenogram/PartitionCount.lean` dreimal (Zahl der `Finpartition`s von `Fin n`; kein Satz
+   zu `Nat.bell` als Partitionszahl; das Laufzeit-TODO an der `Fintype`-Instanz — dieses
+   ist eine Aussage ueber ein VORHANDENES TODO: *Ja* heisst hier, es steht noch da);
    `Topos/Subobject/InitialMonoClass.lean` (`HasInitial` aus der Topos-Struktur);
-   `Proemial/ExtensionalCollapse.lean` (topos-internes Lawvere).
+   `Proemial/ExtensionalCollapse.lean` zweimal (topos-internes Lawvere; Inhalt von
+   `Subobject/Classifier/Defs`, gezaehlt, ohne Fixpunktsatz).
    Der grep trifft ausserdem, ohne dass es Fehlens-Aussagen sind: den Stand im Kopf von
    `MathlibNameGuard` (nach gruenem Punkt 2 auf die neue Revision setzen),
    `docs/journal.md` (Historie, bleibt) und diese Liste selbst.
@@ -106,9 +109,9 @@ Die Datei traegt keinen Satz.
 *Nicht im Default-Bau; beim Mathlib-Bump fahren:* `lake build MathlibNameGuard`
 (Architekt-Entscheid C, 26. September 2026).
 
-*Gruen heisst:* die dreizehn Mathlib-Namen, auf die Kommentare im Bestand verweisen, loesen
+*Gruen heisst:* die vierzehn Mathlib-Namen, auf die Kommentare im Bestand verweisen, loesen
 an der gepinnten Mathlib-Revision noch auf — drei vom Elaborator erzeugte Instanznamen und
-zehn vom Autor vergebene. Die Datei nennt jeden Namen einmal als `example`; sie traegt keinen
+elf vom Autor vergebene. Die Datei nennt jeden Namen einmal als `example`; sie traegt keinen
 Satz. *Rot heisst:* ein Name hat sich geaendert, und die Verweise sind nachzufuehren (Tafeln
 im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 `lake build MathlibNameGuard` (`Unknown constant`), der Default-Bau bemerkt ihn nicht

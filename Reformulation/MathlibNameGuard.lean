@@ -5,6 +5,7 @@ import Mathlib.CategoryTheory.RegularCategory.Basic
 import Mathlib.CategoryTheory.FiberedCategory.Cartesian
 import Mathlib.CategoryTheory.Limits.Shapes.Diagonal
 import Mathlib.Order.Partition.Finpartition
+import Mathlib.CategoryTheory.Subobject.Classifier.Defs
 
 /-!
 # MathlibNameGuard — die Mathlib-Namen der Kommentar-Anker, beim Mathlib-Bump gebaut
@@ -43,6 +44,7 @@ loeschen, damit der Bau wieder gruen wird.
 | `CategoryTheory.Iso.inv_hom_id_app` | `Proemial/AlphaGammaSubstantialRefined.lean:30` |
 | `CategoryTheory.Limits.pullback.isIso_diagonal_iff` | `Proemial/AlphaGammaRelPullback.lean:34` |
 | `CategoryTheory.Functor.IsStronglyCartesian.of_iso` | `Proemial/CartesianProbe.lean:57` |
+| `CategoryTheory.Subobject.Classifier` | `Proemial/ExtensionalCollapse.lean:58` |
 
 Gemessen an Mathlib 83a5988 (2026-05-05). Eigenes Target `MathlibNameGuard`, nicht in
 `defaultTargets` (lakefile.toml); vom Aggregat nicht importiert, vom AxiomGate nicht gefasst.
@@ -65,5 +67,6 @@ example := @CategoryTheory.Adjunction.right_triangle_components
 example := @CategoryTheory.Iso.inv_hom_id_app
 example := @CategoryTheory.Limits.pullback.isIso_diagonal_iff
 example := @CategoryTheory.Functor.IsStronglyCartesian.of_iso
+example := @CategoryTheory.Subobject.Classifier
 
 end
