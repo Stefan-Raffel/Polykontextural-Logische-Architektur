@@ -5,8 +5,10 @@ import Mathlib.Order.Monotone.Basic
 
 Das **arithmetische Substrat** des Stellen-Trakts: die Anfangs-Wertzahlen der acht
 Intervalle der achtfachen Thematik sind die Dreieckszahlen *m = ½·n(n+1)*. Diese
-Schicht baut genau diese Arithmetik — die Formel, vier Gesetze (Gauss-Brücke,
-Stufung, Naht, Themen-Zahl), den Tafel-Satz und zwei Zitat-Anker.
+Schicht baut diese Arithmetik — die Formel, vier Gesetze (Gauss-Brücke, Stufung, Naht,
+Themen-Zahl), den Tafel-Satz und zwei Zitat-Anker —, dazu die Umkehrung `decomp` mit
+Gewährschein und Eindeutigkeit (03de4b9) und Günthers Erschöpfung `Exhausted` mit der Naht
+(d6f8429).
 
 **Projekt-import-frei:** die Schicht liegt unter allen Stellen-Schichten und
 importiert **einen einzigen** Mathlib-Baustein — `Mathlib.Order.Monotone.Basic`,
@@ -66,8 +68,9 @@ Gang der Tafel — der Überschuss wächst je Wert um eins und fällt an der Nah
 
 * **Sie löst `AT-1b` nicht ein.** Der Satz gilt an **jeder** Naht und zeichnet die siebte in
   nichts aus. Zwei Gründe, aus zwei Richtungen: gerechnet, weil die Aussage über **alle** `m`
-  quantifiziert; quellenfest, weil das erste Thema nach Lille S. 19 „in allen folgenden
-  Reflexionsstufen immer wieder" kehrt (Hermeneutes, S5-6).
+  quantifiziert; aus der Quelle: nach Lille S. 19 kehrt das erste Thema „in allen folgenden
+  Reflexionsstufen immer wieder" (Hermeneutes, S5-6) — der Wortlaut QUELLENFEST; dass er der
+  Allgemeinheit dieses Satzes entspricht, ZUORDNUNG.
 * **Kein Günther-Name auf dieser Rechnung.** Nicht „Ur-Designation", nicht „Einwertigkeit",
   nicht „achte Stelle": Günthers Satz nennt das **Hinzukommende**, sein Name sitzt auf dem
   **Entstehenden** (S5-5); `decomp` zählt das Hinzukommende. Die Namen sagen darum die Sache.
@@ -346,20 +349,25 @@ example : Exhausted 65 := by decide +kernel
 /-- Eichung: Günthers Naht VII → VIII. `35 = intervalStart 7 + 7 = 28 + 7`. -/
 theorem decomp_35 : decomp 35 = (7, 7) := by decide +kernel
 
-/-- Eichung: die erste Ontologie des achten Intervalls. -/
+/-- Eichung: die Ontologie, mit der das achte Intervall beginnt (bei Günther, Lille S. 19:
+die erste des objektiven Geistes). -/
 theorem decomp_36 : decomp 36 = (8, 0) := by decide +kernel
 
 /-- Eichung: die obere Grenze des zehnten Intervalls. -/
 theorem decomp_65 : decomp 65 = (10, 10) := by decide +kernel
 
-/-- Eichung: `intervalStart 11 = 66` — die 66-wertige Logik beginnt ein Intervall. -/
+/-- Eichung: `intervalStart 11 = 66` — der Ort von Günthers „66-wertiger Logik" (Janusgesicht,
+Fn. 9); im technischen Sinn von §18 (Überschuss 0) die Ontologie, mit der das elfte Intervall
+beginnt. -/
 theorem decomp_66 : decomp 66 = (11, 0) := by decide +kernel
 
 -- ============================================================
 -- Teil 6 — Die `#guard_msgs`-Wachen (M6; Ist-gebunden)
 -- ============================================================
 
--- Ist-Ausgabe des ersten grünen Builds (v4.30.0-rc2), pro Kern-Satz als Wache.
+-- Ist-Ausgabe, pro Kern-Satz als Wache. Die ersten acht (bis intervalStart_strictMono)
+-- stammen aus dem ersten grünen Build (v4.30.0-rc2, 0085d09); acht kamen mit decomp
+-- (03de4b9), zwei mit Exhausted (d6f8429).
 section
 
 /-- info: 'Reformulation.Proemial.IntervalBackbone.two_mul_intervalStart' depends on axioms: [propext, Quot.sound] -/
