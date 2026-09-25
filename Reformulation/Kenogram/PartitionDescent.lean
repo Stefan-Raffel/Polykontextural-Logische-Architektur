@@ -43,8 +43,8 @@ Partitionsverbands in nutzbarer Form und sagt nichts ueber die Proemialrelation.
 
 Am 14. August 2026 in Mathlib nicht gefunden (`exact?`, Namenssuche
 `Finpartition.*card*`). Die monotone Vorstufe steht dort als
-`Finpartition.card_mono` (`Order/Partition/Finpartition.lean:311`), die
-Traegergroessen-Fassung als `Finpartition.card_parts_le_card` (ebd. 773) — sie
+`Finpartition.card_mono` (`Mathlib.Order.Partition.Finpartition`), die
+Traegergroessen-Fassung als `Finpartition.card_parts_le_card` (ebd.) — sie
 ist dort aus `card_mono` in zwei Zeilen bewiesen. Ob eingereicht wird, ist nicht
 entschieden.
 

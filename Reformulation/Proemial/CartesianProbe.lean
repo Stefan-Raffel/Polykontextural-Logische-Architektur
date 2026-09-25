@@ -53,7 +53,8 @@ example {𝒮 𝒳 : Type} [Category 𝒮] [Category 𝒳] (p : 𝒳 ⥤ 𝒮)
     {R S : 𝒮} {a b : 𝒳} (f : R ⟶ S) (φ : a ⟶ b) [IsIso φ] [p.IsHomLift f φ] :
     p.IsCartesian f φ := inferInstance
 
--- Variante über ein Iso-Objekt `a ≅ b` (Mathlib `of_iso`, Cartesian.lean:342).
+-- Variante über ein Iso-Objekt `a ≅ b`
+-- (Mathlib-Instanz `CategoryTheory.Functor.IsStronglyCartesian.of_iso`).
 example {𝒮 𝒳 : Type} [Category 𝒮] [Category 𝒳] (p : 𝒳 ⥤ 𝒮)
     {R S : 𝒮} {a b : 𝒳} (f : R ⟶ S) (e : a ≅ b) [p.IsHomLift f e.hom] :
     p.IsStronglyCartesian f e.hom := inferInstance

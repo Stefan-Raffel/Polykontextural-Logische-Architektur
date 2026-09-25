@@ -23,9 +23,11 @@ Spec: F3_45_Sub_Spec.md. Prompt: F3_45_Sub_Prompt.md. Frühjahr 2026.
 
 **B-1 — right_triangle_components API-Form:** Bestätigt. Mathlib-Signatur:
 `adj.right_triangle_components Y : adj.unit.app (R.obj Y) ≫ R.map (adj.counit.app Y) = 𝟙 _`.
-(Aus `Mathlib.CategoryTheory.Adjunction.Basic` Zeile 118-119.)
+(Aus `Mathlib.CategoryTheory.Adjunction.Basic`, Feld
+`CategoryTheory.Adjunction.right_triangle_components`.)
 
-**B-2 — Iso.inv_hom_id_app Namespace:** In `Iso`-Namespace (NatIso.lean Zeile 65),
+**B-2 — Iso.inv_hom_id_app Namespace:** In `Iso`-Namespace
+(`CategoryTheory.Iso.inv_hom_id_app`, `Mathlib.CategoryTheory.NatIso`),
 erreichbar als `Iso.inv_hom_id_app α X` nach `open CategoryTheory`. Typ:
 `α.inv.app X ≫ α.hom.app X = 𝟙 (G.obj X)`.
 

@@ -31,8 +31,8 @@ mit `[HasPullback f f]`-Instanz-Anforderung, `pullback.diagonal_fst/snd`,
 Instanz `IsSplitMono (diagonal f)`.
 
 **B-2 — Mono/Iso-Verbindung direkt vorhanden:** `pullback.isIso_diagonal_iff :
-IsIso (diagonal f) ↔ Mono f` (Diagonal.lean Zeile 66). Kein eigener Hilfssatz
-nötig; der antizipierte Befund „Mathlib-Hilfssatz erforderlich" löst sich
+IsIso (diagonal f) ↔ Mono f` (`CategoryTheory.Limits.pullback.isIso_diagonal_iff`).
+Kein eigener Hilfssatz nötig; der antizipierte Befund „Mathlib-Hilfssatz erforderlich" löst sich
 positiv auf.
 
 **B-3 — BC.pullback_K-Operativität via letI:** `BC.pullback_K : HasPullbacks K`

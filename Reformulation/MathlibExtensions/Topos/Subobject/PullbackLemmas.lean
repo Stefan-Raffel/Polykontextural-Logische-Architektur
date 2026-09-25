@@ -42,7 +42,9 @@ Konsumenten-Hypothese `[PullbackISup E]`.
 Rechte Adjunkte erhalten Limites (Infima/Meets), aber KEINE Kolimites (Suprema/Joins).
 Damit `pullback_f` auch Joins erhält, benötigt es eine *weitere* rechts-Adjunktion
 `pullback_f ⊣ ∀_f` (abhängiges Produkt), die aus der LCCC-Struktur des Topos folgt.
-Diese ist in Mathlib noch nicht formalisiert (Mathlib Future Work, RegularCategory/Basic.lean:30).
+Diese ist in Mathlib noch nicht formalisiert (Mathlib Future Work,
+`Mathlib.CategoryTheory.RegularCategory.Basic`,
+Abschnitt "Future work": "Show that every topos is regular" (Stand Mathlib 83a5988, 2026-05-05)).
 
 ## Konsumenten-Hypothesen (K4-aktualisiert)
 
@@ -63,7 +65,9 @@ Diese ist in Mathlib noch nicht formalisiert (Mathlib Future Work, RegularCatego
 K3-stub-Stelle in diesem File. Beide Richtungen sind nun vollständig bewiesen.
 
 Der mathematische Inhalt der neuen Consumer-Hypothesen:
-- `[Regular E]`: jeder Topos ist regular (Mathlib Future Work, RegularCategory/Basic.lean:30)
+- `[Regular E]`: jeder Topos ist regular (Mathlib Future Work,
+  `Mathlib.CategoryTheory.RegularCategory.Basic`,
+  Abschnitt "Future work": "Show that every topos is regular" (Stand Mathlib 83a5988, 2026-05-05))
 - `[PullbackISup E]`: `pullback_f*` erhält Joins (aus LCCC / ∀_f-Adjunktion; Mathlib Future Work)
 -/
 
@@ -96,7 +100,9 @@ additionally be a left adjoint, i.e., there must exist a right adjoint `∀_f` (
 product functor from LCCC structure). In an elementary topos this holds (from `MonoidalClosed`),
 but is not yet formalized in Mathlib.
 
-Corresponds to: Mathlib Future Work "Show that every topos is regular" (RegularCategory/Basic.lean:30)
+Corresponds to: Mathlib Future Work in
+`Mathlib.CategoryTheory.RegularCategory.Basic`,
+section "Future work": "Show that every topos is regular" (as of Mathlib 83a5988, 2026-05-05)
 and the LCCC/Frobenius structure of elementary toposes. **Mathlib-PR-Kandidat** (Sub-Form-c). -/
 class PullbackISup (C : Type u) [Category.{v} C]
     [LocallySmall.{w} C] [WellPowered.{w} C] [HasImages C]

@@ -13,8 +13,9 @@ import Reformulation.PathC.ElementaryTopos
 # ElementaryTopos → Regular: erste K4-Niederlegung (Sub-Form a)
 
 Erste K4-Niederlegung mit Sub-Form-a-Charakter (Beitrags-Substanz). Substantielle
-methodologische Mathlib-Future-Work-Auflösung: `RegularCategory/Basic.lean:30` markiert
-"Show that every topos is regular" als offene Substanz.
+methodologische Mathlib-Future-Work-Auflösung: `Mathlib.CategoryTheory.RegularCategory.Basic`,
+Abschnitt "Future work": "Show that every topos is regular" (Stand Mathlib 83a5988, 2026-05-05)
+markiert das als offene Substanz.
 
 ## Was diese Datei leistet
 
@@ -42,7 +43,8 @@ methodologische Mathlib-Future-Work-Auflösung: `RegularCategory/Basic.lean:30` 
 ## Anschluss-Substanz
 
 - `StrongEpiCategory E` ist eine genuiner neuer Beweis (Sub-Form-a).
-- `HasStrongEpiMonoFactorisations E` folgt automatisch aus `Regular E` (RegularCategory/Basic.lean:154).
+- `HasStrongEpiMonoFactorisations E` folgt automatisch aus `Regular E` (Mathlib-Instanz
+  `CategoryTheory.Regular.hasStrongEpiMonoFactorisations`).
 - Nach `elementaryToposRegular`: die K3-Konsumenten-Hypothese `[HasStrongEpiMonoFactorisations E]`
   wird durch `[Regular E]` subsumiert — Konsumenten-Hypothesen-Reduktion für K4/C22.
 -/
@@ -112,8 +114,9 @@ adjoint and preserves colimits, in particular epimorphisms). The chain:
   `[MonoidalClosed E]` → locally cartesian closed → `f*` has right adjoint → `f*` preserves epis
 
 This is not yet formalized in Mathlib for abstract elementary toposes. It corresponds
-to part of the "Future work: Show that every topos is regular" note at
-`RegularCategory/Basic.lean:30`.
+to part of the Mathlib note in
+`Mathlib.CategoryTheory.RegularCategory.Basic`,
+section "Future work": "Show that every topos is regular" (as of Mathlib 83a5988, 2026-05-05).
 
 Methodologische Substanz: Mathlib-PR-Kandidat (Sub-Form-a Beitrags-Substanz). -/
 class RegularEpiStability (C : Type u) [Category.{v} C] : Prop where
@@ -136,7 +139,8 @@ The `hasCoequalizer_of_isKernelPair` condition: given `IsKernelPair f g₁ g₂`
 **Methodologische Substanz**: This is the K4 Sub-Form-a delivery. Once Mathlib
 formalizes `ElementaryTopos → HasCoequalizers` and `ElementaryTopos → RegularEpiStability`,
 the consumer hypotheses in this instance can be removed, fully resolving
-`RegularCategory/Basic.lean:30` ("Show that every topos is regular"). -/
+`Mathlib.CategoryTheory.RegularCategory.Basic`,
+section "Future work": "Show that every topos is regular" (as of Mathlib 83a5988, 2026-05-05). -/
 noncomputable instance elementaryToposRegular
     [ElementaryTopos E] [HasCoequalizers E] [RegularEpiStability E] : Regular E where
   hasCoequalizer_of_isKernelPair _h := inferInstance
