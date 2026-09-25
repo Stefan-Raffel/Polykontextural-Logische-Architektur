@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 21.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 22.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971); sie ist **nicht veröffentlicht**. Massgeblich
