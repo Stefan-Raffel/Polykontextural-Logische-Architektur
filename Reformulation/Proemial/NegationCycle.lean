@@ -196,6 +196,17 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   logischen Funktion". `genese_resultat` und `genese_verschieden` sind sein Beispiel:
   dasselbe `endpoint`, verschiedene `stations`. Sie sind **Eichung**, nicht Folgerung —
   zwei `decide` über festen Listen verbrauchen keinen Satz.
+  **Zweiter Anker: Metamorphose der Zahl, PDF-S. 9 (gedr. S. 8).** Dieselbe Figur — die
+  Umwandlung von 1,2,3 in ihren Rücklauf, einmal „zuerst … die klassische Negation N1", einmal
+  mit der Negation, „die vom dritten Wert zum zweiten zurückführt", und „weder Gewinn noch
+  Verlust" — und Günther nennt, worum es geht: „die Frage des Primats des Begriffs über den
+  Willen oder umgekehrt des Willens über den Begriff". Die Tafeln IIIa/IIIb (PDF-S. 6, gedr.
+  S. 5) sind die zwei Wege hin und zurück. **Gemessen:** Tafel IIIa, `N1 N2 N1 N2 N1 N2`, ist
+  Zeichen für Zeichen Günthers Folge (4) aus IGN S. 18 (`tafelVI4`), und sie zerfällt in die
+  zwei Genesen, `[0,1,0] ++ [1,0,1] = tafelVI4` (definitionsgleich, `example` in Teil 5); ihr
+  Vollkreis ist `tafelVI4_full`. Genese ↔ Primat-Frage ist **Günthers eigene Zuordnung**
+  (Themensatz vor der Rechnung). *Marken: die Rechnung GEMESSEN; Wortlaut und Tafeln
+  QUELLENFEST (am Bild, Hermeneutes 25.9.).*
 * **K2 — formal die Zopfrelation.** `braid`: `N_i · N_(i+1) · N_i = N_(i+1) · N_i · N_(i+1)`
   für jedes `m`. Skala **FOLGERUNG**: verbraucht `sw_val` und sagt, was kein Satz des
   Bestandes sagt.
@@ -226,7 +237,12 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
 
 * **K-V1 — die Quelle.** HKN S. 25: „In dieser ersten und einfachsten trans-klassischen
   Negationstafel spielt nun der Wert 2 eine vermittelnde Rolle zwischen 1 und 3." Der
-  vermittelnde ist ein **Wert**, keine Operation.
+  vermittelnde ist ein **Wert**, keine Operation. Günther nennt diese Wertbewegung auch in
+  der *Metamorphose der Zahl* „Vermittlung": auf PDF-S. 9 (gedr. S. 8) als „dieser relativ
+  einfache Fall von Wertbewegung, den Hegel ‹Vermittlung› nennt", und eine Seite früher
+  selbst — „einen Vermittlungsvorgang" (PDF-S. 8, gedr. S. 7). Das stützt die Lesart
+  „vermittelnd = durchlaufen"; ein neuer Anspruch ist es nicht (**LESART-VERSTÄRKUNG**, kein
+  Träger, kein Beleg für §11).
 * **K-V2 — der Satz.** `track_mediates`: Unter jedem Negatorwort durchläuft ein Wert jeden
   Wert zwischen Anfang und Ende, in beide Richtungen (`track_between`,
   `track_between_down`), für jedes `m`. Er folgt daraus, dass Günthers Negatoren benachbarte
@@ -843,6 +859,11 @@ zyklischen Wertfolgen 2, 3, 1 und 3, 1, 2". -/
 theorem genese_verschieden :
     stations ([0, 1, 0] : List (Fin 2)) (origin 2) ≠
       stations ([1, 0, 1] : List (Fin 2)) (origin 2) := by decide
+
+/-- Eichung an Metamorphose der Zahl, Tafel IIIa (PDF-S. 6, gedr. S. 5): die zwei Genesen
+hintereinander, hin über `N1.2.1` und zurück über `N2.1.2`, sind Zeichen für Zeichen Günthers
+Folge (4) aus IGN S. 18 — definitionsgleich; ihr Vollkreis ist `tafelVI4_full`. -/
+example : ([0, 1, 0] ++ [1, 0, 1] : List (Fin 2)) = tafelVI4 := rfl
 
 -- ============================================================
 -- Teil 6 — der kalkültheoretische Bereich der zweiten Negation (drei Werte, HKN S. 24)
