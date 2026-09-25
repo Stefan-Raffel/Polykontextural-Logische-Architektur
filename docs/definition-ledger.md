@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 23.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 24.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -39,12 +39,12 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 | | Wert |
 |---|---:|
 | Zeilen gesamt | 122 |
-| Zeilen mit Träger | 102 |
-| verschiedene Trägernamen | 94 |
-| TS `Theorem` | 77 |
+| Zeilen mit Träger | 103 |
+| verschiedene Trägernamen | 95 |
+| TS `Theorem` | 78 |
 | TS `Definition` | 24 |
 | TS `Setzung` | 1 |
-| TS `Offen` | 20 |
+| TS `Offen` | 19 |
 | Paragraphen von `Definitionen.md` | 20 von 21 |
 
 **Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
@@ -66,7 +66,8 @@ L21-10. Die Zählregel ist dieselbe: Ein Paragraph gilt als vertreten, wenn er m
 Zeile hat, auch eine mit Trägerstatus `Offen`. §20 bleibt der einzige Paragraph ohne Zeile, aus
 dem Grund oben. **Die Zahl sagt nichts darüber, wie viel getragen ist:** Von den zehn Zeilen
 des §21 haben vier einen Träger, drei davon mit TEILGETRAGEN in der Grenzspalte, und sechs sind
-offen. *R5 prüfte bis dahin die Paragraphen 1 bis 19 und sah §21 nicht. Seit dem Entscheid des
+offen. *Seit Rev. 24 (Katalog gebaut und abgenommen): fünf mit Träger, fünf offen; L21-6 hat einen
+Träger bekommen, die Zahl der vertretenen Paragraphen bleibt.* *R5 prüfte bis dahin die Paragraphen 1 bis 19 und sah §21 nicht. Seit dem Entscheid des
 Architekten vom 25.9.2026 liest R5 den Bereich aus dieser Selbstauskunft: jeder Paragraph
 von 1 bis Y ausser §20, und X muss die Zahl der vertretenen Paragraphen sein.*
 
@@ -148,6 +149,7 @@ beider Fehlexpansionen.
 | `NCyc.` | `Reformulation.Proemial.NegationCycle.` | Namensraum |
 | `NSJT.` | `Reformulation.Proemial.NegationCycleSJT.` | Namensraum |
 | `NLen.` | `Reformulation.Proemial.NegationCycleLength.` | Namensraum |
+| `NCat.` | `Reformulation.Proemial.NegationCycleCatalog.` | Namensraum |
 
 ## Die Tabelle
 
@@ -270,10 +272,10 @@ beider Fehlexpansionen.
 | L21-3 | Ordnung als Zahlenverhältnis (§21) | — | Offen | Offen | — | Ordnung = eine Umtauschrelation zu zwei (S. 17 [I4], S. 34 [I5]); keine Lesart trägt |
 | L21-4 | Umtausch als primordiale Einheit (§21) | `NSJT.reach_all` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: jede Anordnung aller Werte ist Endpunkt eines Negatorworts, für jede Wertzahl; Reichweite Wertpermutationen, nicht „jedes System des Denkens“ (S. 34 [I6]) |
 | L21-5 | Relationalität des Zyklus (§21) | — | Offen | Offen | — | die dritte Konzeption neben Umtausch und Ordnung (S. 37 [I7]); ausdrücklich NICHT `NCyc.IsFullCycle` |
-| L21-6 | Der Katalog (8)–(13) (§21) | — | Offen | Offen | — | einundzwanzig gedruckte Einträge (S. 26 f. [I8]–[I10]); eine Probe ist kein Bestand |
-| L21-7 | Drehrichtungswechsel (§21) | `NCyc.tafelVI5_eq_reverse` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: mit der anderen Negation begonnen ist es derselbe Hamiltonkreis rückwärts. Günthers Aussage (S. 37 [I12]) gilt der TABULIERUNG — `K l` und `K r` tauschen die Plätze —, der Satz dem Kreis. H1: Günthers „Zahlenwerte“ (S. 37 [I11]) sind STELLEN entlang des Weges (O an 3, K an 2 und 4); `NLen.inv_is_min_length` gibt KÜRZESTE Zahlen (O 3, K 2) — bei drei Werten fallen sie für O und K zusammen (min(k, 6 − k)), begrifflich nicht |
-| L21-8 | Kreis ohne stabiles Sein (§21) | — | Offen | Offen | — | die Kreisrelation K „tritt sofort mit den Superskripten (K r und K l) auf“ (S. 27 [I14]); K ist im Bestand nicht gebaut |
-| L21-9 | Begriff und Zahl (§21) | `NLen.inv_is_min_length` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: die kürzeste Zahl von Negatoren zu jeder Anordnung ist die Inversionszahl, für jede Wertzahl — die ZAHL, nicht der Begriff (S. 37 [I15]); „notwendig“ als minimal ist LESART; Abnahme BEDINGT (Mathematiker, 26.9.: Messung ausstehend). H1: Günthers „Zahlenwerte“ (S. 37 [I11]) sind STELLEN entlang des Weges (O an 3, K an 2 und 4); `NLen.inv_is_min_length` gibt KÜRZESTE Zahlen (O 3, K 2) — bei drei Werten fallen sie für O und K zusammen (min(k, 6 − k)), begrifflich nicht |
+| L21-6 | Der Katalog (8)–(13) (§21) | `NCat.katalog_true` | Theorem | Deutung | ja, `[propext]` | alle 21 gedruckten Einträge (S. 26 f. [I8]–[I10]). Daneben `NCat.katalog_general`: jede Station mit jedem Abstand. EICHUNG bei drei Werten; die Einordnung U/K/O/I (`NCat.kat`) ist unsere, nicht Günthers |
+| L21-7 | Drehrichtungswechsel (§21) | `NCyc.tafelVI5_eq_reverse` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: mit der anderen Negation begonnen ist es derselbe Hamiltonkreis rückwärts; Günthers Aussage (S. 37 [I12]) gilt der TABULIERUNG. Daneben `NCat.tabulierung1` und `NCat.tabulierung2`: die ART-Spalte beider Tabulierungen, wie gedruckt — `K l` und `K r` tauschen die Plätze. Die DRITTE Spalte („U“ in jeder Zeile) ist nicht abgebildet. H1: Günthers „Zahlenwerte“ (S. 37 [I11]) sind STELLEN entlang des Weges, getrennt von der Inversionszahl min(k, 6 − k) (`NCat.zahlenwerte`) |
+| L21-8 | Kreis ohne stabiles Sein (§21) | — | Offen | Offen | — | die Kreisrelation K „tritt sofort mit den Superskripten (K r und K l) auf“ (S. 27 [I14]). K ist bei drei Werten als Einordnung einer Wertabbildung gebaut (`NCat.kat`, `Kl`/`Kr`); „kein stabiles Sein“ trägt der Bestand nicht |
+| L21-9 | Begriff und Zahl (§21) | `NLen.inv_is_min_length` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: die kürzeste Zahl von Negatoren zu jeder Anordnung ist die Inversionszahl, für jede Wertzahl — die ZAHL, nicht der Begriff (S. 37 [I15]); „notwendig“ als minimal ist LESART; „jeden Begriff“ nicht. Daneben `NCat.stationen_abstand` (Hebung, jede Wertzahl: der Abstand zweier Anordnungen hängt nur von der Relation zwischen ihnen ab) und `NCat.stationen_zahl` (drei Werte: zwischen Station j und j + k ist er min(k, 6 − k)). Abnahme ERTEILT am Stand 7e5b969. H1 siehe L21-7 |
 | L21-10 | Die dritte Relation (§21) | — | Offen | Offen | — | offene Stelle der Quelle: Umtausch und Ordnung als Prozesse, „ihrem Wesen nach unaufgeklärt“ (S. 25 [I16]). Im Register §33 als L21-o geführt; hier numerisch, weil die Zeilenroute und R3–R8 nur Ziffern kennen |
 
 ## Grenznotiz A — Verbundkontextur, zwei Zählfunktionen
