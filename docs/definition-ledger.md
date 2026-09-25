@@ -105,7 +105,8 @@ beiden Dateien genau einmal vor · R9 jeder Name mit Kürzel in der Grenzspalte 
 Grenzspalte stehen auch Strukturen. Je Paar aus Zeilen-ID und Name steht ein
 `#ledger_mention` in der Referenzdatei, und umgekehrt. Ein Name ist ein Token in Backticks
 ohne Leerzeichen, dessen Präfix in der Kürzeltafel steht. Ein Token mit `*` ist ein Muster
-statt eines Namens und ein Verstoß; das einzige, das es gab, ist in L16-23 ausgeschrieben.
+statt eines Namens und ein Verstoß; ebenso ein Token mit führendem `_`, eine Kurzform ohne
+Kürzel. Beide Fälle, die es gab, sind in L16-23 ausgeschrieben.
 
 R1, R2 und die Auflösung in R9 werden von `Reformulation/Proemial/DefinitionLedger.lean` beim
 Bau geprüft; R3 bis R8 und der Abgleich in R9 sind Textprüfungen in `doc_lint.sh`.

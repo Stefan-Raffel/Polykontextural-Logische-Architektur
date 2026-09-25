@@ -418,7 +418,10 @@ ledger7_report() {
 # #ledger_mention ohne Namen in der Tabelle. Ein Name ist ein Token in Backticks ohne
 # Leerzeichen, dessen Praefix bis zum ersten Punkt in der Kuerzeltafel steht. Ein Token mit
 # "*" ist ein MUSTER statt eines Namens und seit dem 25.9.2026 ein Verstoss: bis dahin wurde
-# es nur gemeldet (das einzige, KPS.card_rgs_* in L16-23, ist ausgeschrieben).
+# es nur gemeldet (das einzige, KPS.card_rgs_* in L16-23, ist ausgeschrieben). Ebenso ein
+# Token mit fuehrendem "_": eine KURZFORM (etwa "_three" nach einem vollen Namen), die kein
+# Kuerzel traegt und darum sonst still durchginge; auch sie ist ein Verstoss (L16-23 ist
+# ausgeschrieben).
 ledger9_report() {
   if [ ! -f "${LEDGER}" ] || [ ! -f "${LEDGER_LEAN}" ]; then
     echo "  (Tabelle oder Referenzdatei liegt nicht in diesem Bereich — R9 nicht geprüft)"
@@ -435,6 +438,7 @@ ledger9_report() {
         split($0, c, "|"); id = bare(c[2]); g = c[8]
         while (match(g, /`[^` ]+`/)) {
           tok = substr(g, RSTART + 1, RLENGTH - 2); g = substr(g, RSTART + RLENGTH)
+          if (tok ~ /^_/) { printf "  %s  [R9] Kurzform statt Name: %s\n", id, tok; v++; continue }
           p = index(tok, "."); pre = substr(tok, 1, p)
           if (p < 2 || pre !~ /^[A-Za-z]+\.$/ || !(pre in kz) || p == length(tok)) continue
           if (tok ~ /\*/) { printf "  %s  [R9] Muster statt Name: %s\n", id, tok; v++; continue }
@@ -1098,7 +1102,7 @@ echo "     R8 jede Zeilen-ID kommt in beiden Dateien genau einmal vor."
 echo "     R9 jeder Name mit Kürzel in der Grenzspalte hat genau ein #ledger_mention in"
 echo "     der Referenzdatei — und umgekehrt; der Bau prüft, dass er auflöst (nur die"
 echo "     Auflösung, nicht die Art). Ein Token mit \"*\" ist ein Muster statt eines"
-echo "     Namens und ein Verstoß."
+echo "     Namens und ein Verstoß, ebenso ein Token mit führendem \"_\" (Kurzform)."
 printf '%s\n' "$BLOCK_C1"
 printf '%s\n' "$BLOCK_C2"
 printf '%s\n' "$BLOCK_C3"

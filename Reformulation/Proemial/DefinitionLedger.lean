@@ -28,7 +28,7 @@ Schluss des Typs — dasselbe Kriterium, an dem `CLAUDE.md` §10 haengt.
   gegen die Aggregatumgebung aufloest, nicht seine Art: In der Grenzspalte stehen auch
   Strukturen und Namen, die R1/R2 nicht fassen. Den Abgleich mit der Tabelle, in beiden
   Richtungen, fuehrt `doc_lint.sh` (Architekt, 25.9.2026); ein Muster mit `*` statt eines
-  Namens ist dort ein Verstoss.
+  Namens ist dort ein Verstoss, ebenso eine Kurzform mit fuehrendem `_`.
 
 ## Was nicht geprueft wird
 
