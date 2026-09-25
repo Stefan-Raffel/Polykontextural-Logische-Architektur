@@ -1270,7 +1270,8 @@ Enthält:
   `pseudo_family` (8-8-8), `pseudo_half`, `pseudo_not_full`. **Nicht hier:** die 44
   (`NegationCycleTable`/`NegationCycleSearch`), die Unmöglichkeit von 8-8-8
   (`NegationCycleSymmetry`), Tafel XX (nicht gebaut); kein
-  `§20`-Anspruch, keine Ledger-Zeile, nichts über die Zeit. Drei Textbefunde an Hermeneutes
+  `§20`-Anspruch, nichts über die Zeit; im Ledger L11-6 (`track_mediates`), L21-2 (`sw`) und
+  L21-7 (`tafelVI5_eq_reverse`). Drei Textbefunde an Hermeneutes
   gemeldet (zweiter Kreis mit 22 Negatoren gedruckt; je eine Spalte in Tafel XII und
   Tafel IV). **Die Emendation des zweiten Kreises ist ein Satz:** `kreis2_emendation` —
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
@@ -1361,14 +1362,15 @@ Enthält:
   `reach_all` (die Listen-Fassung von N-a für jedes `m`, konstruktiv). Der Beweis läuft auf
   der Ebene der natürlichen Zahlen; sein Kern `stations_blocks` zeigt die Stationen des
   grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",
-  keine Ledger-Zeile. 53 Wachen, kein `Classical.choice`.
+  im Ledger L21-4 (`reach_all`, teilgetragen). 53 Wachen, kein `Classical.choice`.
 - `Proemial.NegationCycleLength`: **die kürzeste Zahl von Negatoren ist die
   Inversionszahl** (nach der Sondierung zur minimalen Wortlänge; Frage aus IGN S. 36 f.,
   „notwendig" als minimal gelesen). `inv_is_min_length`: für jede Wertzahl und jede
   Anordnung gibt es ein Negatorwort der Länge `inv a`, und keines ist kürzer. Eichung:
   `eich3`, `eich4` gegen die Suche; `genesen_kuerzeste` — bei drei Werten sind Günthers zwei
   Genesen genau die kürzesten Wege zum Rücklauf; `rueckwaerts_vier` — bei vier Werten 16.
-  **Nicht:** Günthers These über die Definition „jeden Begriffs", keine Ledger-Zeile.
+  **Nicht:** Günthers These über die Definition „jeden Begriffs"; im Ledger L21-9
+  (teilgetragen).
   34 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein

@@ -46,7 +46,9 @@ Architekten vom 25. September 2026 nach der Sondierung
 `inv = 0` ist die Anordnung der Ausgang (`eq_origin_of_inv_zero`); Induktion über `inv`
 (`exists_word_inv`).
 
-**Nicht:** kein §20-Anspruch, keine Zuordnung „Begriff = Anordnung", keine Ledger-Zeile. Die
+**Nicht:** kein §20-Anspruch, keine Zuordnung „Begriff = Anordnung". *Im Ledger* trägt
+`inv_is_min_length` seit Rev. 23 die Zeile L21-9, als TEILGETRAGEN (die Zahl, nicht der
+Begriff). Die
 Ordnung als „Zahlenverhältnis zwischen einer Umtauschrelation und zwei" (IGN S. 34) ist nicht
 gebaut; Günthers Katalog (8)–(13) ebenfalls nicht (`KorpusRev2/Evaluation_Traeger_1979_Impl.md`).
 

@@ -74,7 +74,8 @@ Blocklemmata (`sweep_step`, `shifted_step`, `top_step`, `sweep_down`, `sweep_up`
 Injektivität der Einfügung `insertLast_inj`; `insertLast_perm`; `perm_decompose`), dann die
 Induktion über die Wertzahl `sjtN_props`.
 
-**Nicht:** Hegels „Kreis von Kreisen", Tafel XX, kein §20-Anspruch, keine Ledger-Zeile.
+**Nicht:** Hegels „Kreis von Kreisen", Tafel XX, kein §20-Anspruch. *Im Ledger* trägt
+`reach_all` seit Rev. 23 die Zeile L21-4, als TEILGETRAGEN (Wertpermutationen).
 
 ## Axiomprofil
 
