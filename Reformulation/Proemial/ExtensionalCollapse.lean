@@ -55,7 +55,9 @@ die modelltheoretische Fassung über alle Strukturen bleibt außerhalb (Abgrenzu
 `LawvereVorSonde`: γ ist ein Morphismus-Iso, kein Punkt-Pfeil auf ein Funktionsobjekt;
 topos-internes Lawvere fehlt in Mathlib (Stand fuer die Lawvere-Aussage: Mathlib 83a5988,
 2026-05-05, nur die Typen-Fassung `Function.exists_fixed_point_of_surjective`)
-(`CategoryTheory.Topos.Classifier` ist defs-only).
+(`CategoryTheory.Subobject.Classifier` in `Mathlib.CategoryTheory.Subobject.Classifier.Defs`
+traegt die Grundlagen — gezaehlt an Mathlib 83a5988: 1 Struktur, 1 Klasse, 22 `def`/`abbrev`,
+19 Lemmata und Saetze, 7 Instanzen —, aber keinen Fixpunktsatz).
 Die zwei Vor-Sonden bleiben als historische Belege (Hebungs-Muster); der Lawvere-Trakt bleibt
 Sonde in eigener Sprache (Funktionen und `Set`, nicht `Term`). Keine Tarski-Undefinierbarkeits-
 oder Gödel-artige Aussage wird geliefert oder behauptet.

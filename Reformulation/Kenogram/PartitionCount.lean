@@ -3,10 +3,11 @@ import Reformulation.Kenogram.PairStageBound
 /-!
 # Reformulation.Kenogram.PartitionCount — die Zahl der Mengenpartitionen von `Fin n`
 
-**Ertrag, mit benannter Grenze.** Die Saetze dieses Moduls stehen so nicht in Mathlib
-(Mathlib 83a5988, 2026-05-05: keine Deklaration zur Zahl der `Finpartition`s von `Fin n`;
-gesucht nach `Fintype.card (Finpartition …)` und nach einem Bell-Bezug);
-gewonnen sind sie aber nicht hier, sondern in der Berechnungs-Reihe ueber `RGS n`
+**Ertrag, mit benannter Grenze.** Keine Deklaration in Mathlib nennt die Anzahl der
+Partitionen von `Fin n`; fuer festes `n` ist sie ueber die `Fintype`-Instanz berechenbar
+(`n = 2` per `rfl`) (Mathlib 83a5988, 2026-05-05; gesucht nach `Fintype.card (Finpartition …)`
+und nach einem Bell-Bezug). Gewonnen sind die Saetze dieses Moduls aber nicht hier,
+sondern in der Berechnungs-Reihe ueber `RGS n`
 (`Kenogram/Basic.lean`, `Kenogram/Fillability.lean`, `Kenogram/PairStageBound.lean`). Dieses
 Modul **transportiert** sie laengs des Repraesentations-Theorems `rgs_equiv_partition` auf
 den Mathlib-Typ. Der PKL-Begriff, ohne den es die Zahlen nicht gaebe, ist die RGS-Normalform;
@@ -15,7 +16,9 @@ die Aussage selbst kaeme auch ohne ihn aus.
 ## Was diese Saetze nicht sagen
 
 Die Bell-Zahl kommt in ihnen nicht vor. Dass `Nat.bell n` die Partitionen einer `n`-Menge
-zaehlt, ist **nicht** bewiesen — weder hier noch in Mathlib, das diese Aussage in
+zaehlt, ist **nicht** bewiesen — weder hier noch in Mathlib (Mathlib 83a5988, 2026-05-05:
+kein Satz verbindet `Nat.bell` mit einer Partitionszahl; `Nat.bell` wird ausserhalb von
+`Bell.lean` nicht verwendet), das diese Aussage in
 `Combinatorics/Enumerative/Bell.lean` als offenen Posten fuehrt. Bewiesen ist allein, dass
 zwei Typen gleich viele Elemente haben, und fuer kleine `n`, wie viele.
 
@@ -36,7 +39,9 @@ dafuer waere eine gedoppelte Rechnung.
 Mathlib traegt fuer `Finpartition s` eine `Fintype`-Instanz
 (`Order/Partition/Finpartition.lean`), und sie laeuft ueber `s.powerset.powerset`: bei
 `n = 5` sind das `2 ^ (2 ^ 5) = 4294967296` Kandidaten. Die Instanz selbst fuehrt dazu einen
-TODO-Vermerk zur Laufzeit. Der Weg ueber `RGS` geht statt dessen ueber den Generator
+TODO-Vermerk zur Laufzeit (Mathlib 83a5988, 2026-05-05: „this instance takes
+double-exponential time to generate all partitions, find a faster way“).
+Der Weg ueber `RGS` geht statt dessen ueber den Generator
 `rgsList`. Beide Male ist dieselbe Zahl das Ergebnis; verschieden ist, was durchsucht wird.
 
 ## Was hier nicht steht
