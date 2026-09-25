@@ -27,8 +27,8 @@ Spec: F3_Spec.md. Prompt: F3_Prompt.md. FrÃ¼hjahr 2026.
 ## Klasse-B-Befunde
 
 **B-1 — Functor.IsEquivalence-Import:** `Mathlib.CategoryTheory.Functor.IsEquivalence`
-existiert nicht als eigenständige Datei. `Functor.IsEquivalence` liegt in
-`Mathlib.CategoryTheory.Equivalence` (Zeile 610). `instance [L.IsEquivalence] : IsIso h.counit`
+existiert nicht als eigenständige Datei. `CategoryTheory.Functor.IsEquivalence` liegt in
+`Mathlib.CategoryTheory.Equivalence`. `instance [L.IsEquivalence] : IsIso h.counit`
 liegt in `Mathlib.CategoryTheory.Adjunction.FullyFaithful`. Beide explizit importiert.
 
 **B-2 — BC-API-Architektur-Mismatch:** `beckChevalleyFromData` operiert auf
@@ -386,10 +386,11 @@ theorem adjunction_not_equivalence_substantial
   apply hσ
   -- haveI registriert PAS.L.IsEquivalence als lokale Typeclass-Instanz.
   haveI : PAS.L.IsEquivalence := hL
-  -- Mathlib instance [L.IsEquivalence] : IsIso h.counit (Adjunction.FullyFaithful Z. 255)
+  -- Mathlib-Instanz Adjunction.instIsIsoFunctorCounitOfIsEquivalence
+  -- ([L.IsEquivalence] : IsIso h.counit, anonym deklariert, Name vom Elaborator erzeugt)
   -- ergibt IsIso PAS.adj.counit.
   haveI : IsIso PAS.adj.counit := inferInstance
-  -- Mathlib instance isIso_app_of_isIso (NatIso Z. 165)
+  -- Mathlib-Instanz NatIso.isIso_app_of_isIso
   -- ergibt IsIso (PAS.adj.counit.app σ.k).
   exact inferInstance
 
