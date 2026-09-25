@@ -63,12 +63,20 @@ meldet das Ergebnis je Punkt.*
    `grep -rn '<alte Revision>' --exclude-dir=.lake --exclude=lake-manifest.json .`
    (heute `83a5988`). Je Fund: Fehlt es an der neuen Revision noch? *Ja:* Stand auf die neue
    Revision. *Nein:* die Aussage ist ueberholt — **melden, nicht selbst umschreiben.**
-   Heute betroffen: vier Anker auf das Mathlib-TODO „Show that every topos is regular"
-   (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal) und der
-   Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`).
+   Heute betroffen (neun): vier Anker auf das Mathlib-TODO „Show that every topos is regular"
+   (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
+   Doc-String von `PullbackISup` (PB45: rechter Adjungierter zu `Subobject.pullback`);
+   `Kenogram/PartitionDescent.lean` (strikte Fassung von `Finpartition.card_mono`);
+   `Kenogram/PartitionCount.lean` (Zahl der `Finpartition`s von `Fin n`);
+   `Topos/Subobject/InitialMonoClass.lean` (`HasInitial` aus der Topos-Struktur);
+   `Proemial/ExtensionalCollapse.lean` (topos-internes Lawvere).
    Der grep trifft ausserdem, ohne dass es Fehlens-Aussagen sind: den Stand im Kopf von
    `MathlibNameGuard` (nach gruenem Punkt 2 auf die neue Revision setzen),
    `docs/journal.md` (Historie, bleibt) und diese Liste selbst.
+   *Findet sich beim Bump eine Fehlens-Aussage OHNE Stand, die NACH der Regel in CLAUDE.md
+   (§2, seit 25. September 2026) geschrieben wurde: melden.* Das ist der Ausloeser fuer eine
+   feste Marke fuer Fehlens-Aussagen mit exakter doc_lint-Pruefung (Custos-Register §29).
+   Aeltere ungestempelte Aussagen sind Altbestand und loesen nicht aus.
 
 ---
 

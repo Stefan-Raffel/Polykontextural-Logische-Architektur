@@ -127,6 +127,9 @@ Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
 
 - `lake build` laeuft durch, AxiomGate gruen.
 - Wer den Mathlib-Pin aendert: Checkliste „Mathlib-Bump" in `docs/build-targets.md`.
+- Jede Aussage, dass Mathlib etwas FEHLT, traegt den Mathlib-Stand (Revision aus
+  `lake-manifest.json`) oder verweist auf eine Stelle, die ihn traegt. Ein Stand bescheinigt
+  eine Messung: er wird erst gesetzt, wenn an dieser Revision gemessen ist.
 - Fuer **jeden** neuen Satz `#print axioms` ausfuehren, das gemessene Profil verbatim in eine
   `#guard_msgs`-Wache einfrieren. Profile werden gemessen, nicht geschaetzt.
 - **Keine** Whitelist-Eintraege im AxiomGate. Die Whitelist ist seit der
