@@ -1363,9 +1363,11 @@ Enthält:
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
   haben jede ihr Mass und kein gemeinsames, für jeden Träger — Günthers WWZ S. 3 („kein
-  gemeinsames, objektives (gegenständliches) Zeitmaß") in der Lesart der Gegenläufigkeit
-  (LESART); `reversible_no_measureZ` ist die Diagonale, `measure_noreturn` die Brücke Mass ⇒
-  Ordnung (verallgemeinert `noreturn_of_strict_rank` auf `ℤ`); Eichung auf `ℤ`. **Nicht:** die
+  gemeinsames, objektives (gegenständliches) Zeitmaß"); dass jede Zeit ihr Mass hat, ist
+  QUELLENFEST („jene beiden Zeitmaße"), die Umkehrung als Rangumkehr ebenso, die Laufrichtung
+  „gegenläufig" LESART; `reversible_no_measureZ` ist die Diagonale (die Reversible-Lesart von
+  WWZ fällt am Wortlaut), `measure_noreturn` eine HEBUNG von `noreturn_of_strict_rank` auf `ℤ`;
+  Eichung auf `ℤ`. **Nicht:** die
   Wahl selbst (WWZ S. 6), keine Wahlfunktion, keine Deckung, keine Zuordnung der Zeiten an
   Umtausch und Ordnung, kein Paragraph, keine Ledger-Zeile. 5 Wachen, kein `Classical.choice`.
 

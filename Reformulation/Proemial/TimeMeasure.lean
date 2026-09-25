@@ -3,21 +3,33 @@ import Reformulation.Proemial.IrreversibleAdvance
 /-!
 # Proemial.TimeMeasure — das gegenständliche Zeitmass: zwei gegenläufige Zeiten haben kein gemeinsames
 
-**FOLGERUNG.** Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
+**FOLGERUNG** (`no_common_measure_inverse`), **HEBUNG** (`measure_noreturn`: dieselbe Aussage
+wie `noreturn_of_strict_rank`, über `ℤ` statt `ℕ`), sonst Korollar und Eichung. Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
 `KorpusRev2/Spec_TimeMeasure.md` (Mathematiker). Vorgänge: `Optionen_Willensproblem_Impl.md`,
 `Begutachtung_Optionen_Willensproblem.md`, `Antwort_Begutachtung_Optionen_Willensproblem_Impl.md`.
 
 * **K-M1 — die Quelle.** Günther, *Wahrheit, Wirklichkeit und Zeit* (1937), S. 3: „die
   transzendente Zeit und die Zeit der Erinnerung besitzen kein gemeinsames, objektives
-  (gegenständliches) Zeitmaß". `no_common_measure_inverse` ist dieser Satz, in der Lesart von
-  K-M2: zwei gegenläufige Zeiten haben jede ihr Mass und kein gemeinsames — für **jeden**
-  Träger, und der Satz verbraucht **beide** Zeiten.
-* **K-M2 — die Lesart.** Die zwei Zeiten sind **gegenläufig**: die eine kehrt um, was die
-  andere tut. **LESART** — sie liegt in den Wörtern Zukunft und Vergangenheit nahe, steht aber
-  nicht als Satz bei Günther; ob WWZ S. 3 die Richtungen nennt, ist eine Frage an Hermeneutes.
-  Die schwächere Lesart „Erinnerung ↦ reversibel" ist darin die **Diagonale**
-  (`reversible_no_measureZ`, `g = f`): unter ihr hätte eine Zeit gar kein Mass, und „kein
-  gemeinsames" folgte aus einer Zeit allein.
+  (gegenständliches) Zeitmaß". `no_common_measure_inverse` ist dieser Satz: zwei Zeiten, die
+  einander umkehren, haben jede ihr Mass und kein gemeinsames — für **jeden** Träger, und der
+  Satz verbraucht **beide** Zeiten. Dieselbe Seite nennt es einen „unverzeihlichen Verstoß",
+  „das Maß der transzendenten Zeit zugleich als Zeitmaß der Zeit der Erinnerung" zu nehmen:
+  genau das verbietet der Satz. *Zitate an der Textschicht geprüft; PDF-Seite = Fusszeile.*
+* **K-M2 — die Lesart, am Seitenbild geprüft** (Hermeneutes, 26.9.).
+  **Jede Zeit hat ihr Mass — QUELLENFEST:** Günther schreibt „jene beiden Zeitmaße", „das Maß
+  der transzendenten Zeit", „Zeitmaß der Zeit der Erinnerung", und die Analogie ist die
+  „Fruchtlosigkeit jedes Vergleichs von Traumzeit und «wachem» Zeiterleben". Verneint wird ein
+  *gemeinsames, objektives* Mass. **Die Lesart „Erinnerung ↦ reversibel" fällt damit am
+  Wortlaut:** unter ihr hätte eine Zeit gar kein Mass. Im Bestand bleibt sie als Diagonale
+  (`reversible_no_measureZ`, `g = f`) stehen, als Satz über Umtausch, nicht als Lesart von
+  WWZ S. 3.
+  **Die Umkehrung — QUELLENFEST als RANGUMKEHR:** „Einmal also ist sie von höherer Mächtigkeit
+  als das Bewusstsein … Das andere Mal ist sie der Erinnerung unterworfen und von niederer
+  metaphysischer Valenz als jedes Ich." **„Gegenläufig" als Aussage über die Laufrichtung der
+  zwei Zeiten bleibt LESART:** das Wort steht in WWZ nicht; gegenläufig sind dort die
+  *Denkbewegungen* („rückwärts … entgegen der «prima causa»" gegen die „Antizipation"). Die
+  Sätze gelten für jedes Paar, das einander umkehrt; welche Umkehrung Günthers ist, entscheidet
+  der Satz nicht.
 * **K-M3 — das Mass über `ℤ`, nicht über `ℕ`.** Ein strikt wachsender `ℕ`-Rang setzt ein
   Unten voraus: die Verschiebung auf `ℤ` hat keinen (M4, `no_nat_rank_on_int`, 21.9.). Mit
   einem `ℕ`-Mass entschiede die Definition über die Lage der Zeitachse — dieselbe Frage, an der
