@@ -75,7 +75,7 @@ Gang der Tafel — der Überschuss wächst je Wert um eins und fällt an der Nah
   Hauses; **Designation ≠ Denotation** gilt fort.
 * **Keine Ledger-Zeile, kein `§20`-Anspruch.**
 
-**Die Erschöpfung** (seit dem 24. September, Bauauftrag des Mathematikers auf Entscheid
+**Die Erschöpfung** (seit dem 23. September, Bauauftrag des Mathematikers auf Entscheid
 des Architekten vom 23.9.). `Exhausted m` heisst: der Überschuss hat die Themenzahl
 erreicht. **Quellenanker, wörtlich und allgemein, ist Lille S. 9:** *„Ein Intervall endet
 dort, wo die Zahl der designationsfreien Werte die Zahl der verfügbaren logischen Themen
@@ -116,7 +116,7 @@ Wiederholungs-Figur (benannte Posten). **Designation ≠ Denotation** gilt fort.
 
 **0 Sorries.** Axiom-Ist (erster grüner Build, v4.30.0-rc2), bis zur Umkehrung zweigeteilt
 exakt entlang der Beweis-Taktik — seit `exhausted_seam` **drei** Klassen, nachgezählt am
-24. September über die 18 Wachen: 8 axiom-frei, 1 `[propext]`, 9 `[propext, Quot.sound]`.
+23. September über die 18 Wachen: 8 axiom-frei, 1 `[propext]`, 9 `[propext, Quot.sound]`.
 Die ursprünglichen acht:
 
 * **axiom-frei** (`decide`-Route): `tafel_IV`, `nature_closes_at_14`,

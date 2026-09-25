@@ -508,7 +508,7 @@ Enthält:
   `Classical.choice` (`by_cases` über beliebigem Träger ohne `DecidableEq`,
   gewöhnliche Notiz), die drei anderen bleiben im Bereich `propext`/`Quot.sound`
   (`no_exhaustion_in_periodic` sogar axiom-frei). 0 Sorries.
-  **Seit dem 24. September die zweite Gestalt:** `decomp_never_exhausts` — der Gang von
+  **Seit dem 23. September die zweite Gestalt:** `decomp_never_exhausts` — der Gang von
   `IntervalBackbone.decomp` (als `dstep`, `dstep_decomp` axiom-frei) hat keinen Fixpunkt
   (`dstep_no_fixpoint`) und fällt darum nie unter `Exhausts`; `Exhausts` und
   `IntervalBackbone.Exhausted` schliessen einander aus (Ende gegen Anfang — die Zuordnung
@@ -588,7 +588,7 @@ Enthält:
   keine Ophiten-Namen, keine Ablösungs- oder Wiederkehr-Figur (benannte Posten);
   Designation ≠ Denotation gilt fort. **Projekt-import-frei** (einziger
   Mathlib-Import: `Order.Monotone.Basic` für die Kür). Axiom-Ist je Satz
-  `#guard_msgs`-verwacht, **18 Sätze, 18 Wachen, nachgezählt am 24. September**, in drei
+  `#guard_msgs`-verwacht, **18 Sätze, 18 Wachen, nachgezählt am 23. September**, in drei
   Klassen: **8 axiom-frei** — die drei `decide`-Sätze der Tafel (`tafel_IV`,
   `nature_closes_at_14`, `eighth_starts_at_36`), `decomp_succ` (`rfl`) und die vier
   Eichwerte (`decide +kernel`); **1 `[propext]`** — `exhausted_seam`; **9
@@ -1275,7 +1275,7 @@ Enthält:
   unter allen Fortsetzungen der gedruckten Folge um zwei Negatoren gibt genau `·1·3` einen
   Vollkreis. Dazu `reverse_full`: die Umkehrung jedes Vollkreises ist einer, und
   `janus1974` — Günthers eigener Druck von 1974 als Zeuge der Emendation. **Die Genese**
-  (Teil 5, 24.9.): `genese_resultat` / `genese_verschieden` — `N1.2.1` und `N2.1.2` geben
+  (Teil 5, 23.9.): `genese_resultat` / `genese_verschieden` — `N1.2.1` und `N2.1.2` geben
   denselben Umtausch auf verschiedenen Wegen (HKN S. 25, Eichung); dahinter `braid`, die
   Zopfrelation benachbarter Negatoren für jedes `m`, mit `comm_far` und
   `braid_fails_far_all` (für jedes entfernte Paar, 25.9.; `braid_fails_far` ist seine

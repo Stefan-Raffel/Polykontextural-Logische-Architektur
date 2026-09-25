@@ -34,9 +34,10 @@ und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen der Volltext-Datei, verschoben). H�
 **IGN 1979** (*Identität, Gegenidentität und Negativsprache*, S. 17, Textschicht und
 Seitenbild geprüft), **quellenfest**: „Nun kennen wir aus der klassischen Theorie bereits die
 Unterscheidung von symmetrischem Umtauschverhältnis und asymmetrischem
-Ordnungsverhältnis …". Günthers Paar heisst dort *symmetrisch / asymmetrisch*; dass
-`Reversible` das Umtauschverhältnis fasst, ist **Zuordnung** (getragen von Lille S. 10 und
-`cat` S. 9, siehe `ComplementaryMediation`), nicht Wortlaut von S. 17.
+Ordnungsverhältnis …". Dass `Reversible` das Umtauschverhältnis fasst, ist an S. 17
+**Zuordnung**, nicht Wortlaut. **Die Zuordnung reversibel ist quellenfest an Lille S. 10 und
+`cat` S. 9** (siehe `ComplementaryMediation`); IGN nennt dasselbe Paar *symmetrisch /
+asymmetrisch*.
 
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 

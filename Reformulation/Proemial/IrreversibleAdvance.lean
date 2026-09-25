@@ -39,8 +39,12 @@ geprüft), **quellenfest**: die elementarste Ordnungsrelation ist „nichts weit
 Beziehung von *einem* Umtauschverhältnis zu zwei solcher symmetrischen Relationen" (S. 17);
 das „Ordnungs- oder Rangverhältnis der Logik" kann „generell als Zahlenverhältnis zwischen
 *einer* Umtauschrelation und *zwei* Umtauschrelationen interpretiert werden" (S. 34). Dass
-`NoReturn` diese Ordnung fasst, ist **Zuordnung** (A20-6), nicht Wortlaut; Günther nennt das
-Ordnungsverhältnis dort *asymmetrisch*, nicht irreversibel.
+`NoReturn` diese Ordnung fasst, ist an IGN **Zuordnung** (A20-6), nicht Wortlaut; Günther
+nennt das Ordnungsverhältnis dort *asymmetrisch*, nicht irreversibel. **Die Zuordnung
+irreversibel ist quellenfest an Lille S. 10**, im Satz des Ankers oben („Um ein ontologisches
+Thema mit struktureller Asymmetrie (Irreversibilität) zu erhalten, müssen wir mindestens zum
+dritten Intervall …"); `cat` S. 9 trägt nur die reversible Hälfte (siehe
+`ComplementaryMediation`).
 
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
