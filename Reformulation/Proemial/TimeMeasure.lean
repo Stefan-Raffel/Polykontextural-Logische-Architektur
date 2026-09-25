@@ -4,7 +4,8 @@ import Reformulation.Proemial.IrreversibleAdvance
 # Proemial.TimeMeasure — das gegenständliche Zeitmass: zwei gegenläufige Zeiten haben kein gemeinsames
 
 **FOLGERUNG** (`no_common_measure_inverse`), **HEBUNG** (`measure_noreturn`: dieselbe Aussage
-wie `noreturn_of_strict_rank`, über `ℤ` statt `ℕ`), sonst Korollar und Eichung. Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
+wie `noreturn_of_strict_rank`, über `ℤ` statt `ℕ`), **INSTANZIIERUNG** (`reversible_no_measureZ`:
+der Hauptsatz an der Diagonale `g = f`; der Beweis setzt ein), sonst **EICHUNG**. Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
 `KorpusRev2/Spec_TimeMeasure.md` (Mathematiker). Vorgänge: `Optionen_Willensproblem_Impl.md`,
 `Begutachtung_Optionen_Willensproblem.md`, `Antwort_Begutachtung_Optionen_Willensproblem_Impl.md`.
 
