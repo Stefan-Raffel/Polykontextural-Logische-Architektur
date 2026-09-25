@@ -229,5 +229,5 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L21-2" Reformulation.Proemial.NegationCycle.sw
 #ledger_theorem "L21-4" Reformulation.Proemial.NegationCycleSJT.reach_all
 #ledger_theorem "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_true
-#ledger_theorem "L21-7" Reformulation.Proemial.NegationCycle.tafelVI5_eq_reverse
+#ledger_theorem "L21-7" Reformulation.Proemial.NegationCycleCatalog.drall_swap
 #ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
