@@ -416,8 +416,9 @@ ledger7_report() {
 # DefinitionLedger.lean, nur die Aufloesung, nicht die Art. R9 gleicht Tabelle und
 # Referenzdatei ab, in BEIDE Richtungen: kein Name der Grenzspalte ohne #ledger_mention, kein
 # #ledger_mention ohne Namen in der Tabelle. Ein Name ist ein Token in Backticks ohne
-# Leerzeichen, dessen Praefix bis zum ersten Punkt in der Kuerzeltafel steht. Token mit "*"
-# sind MUSTER, keine Namen; sie werden nicht gefordert, aber je Stueck gemeldet.
+# Leerzeichen, dessen Praefix bis zum ersten Punkt in der Kuerzeltafel steht. Ein Token mit
+# "*" ist ein MUSTER statt eines Namens und seit dem 25.9.2026 ein Verstoss: bis dahin wurde
+# es nur gemeldet (das einzige, KPS.card_rgs_* in L16-23, ist ausgeschrieben).
 ledger9_report() {
   if [ ! -f "${LEDGER}" ] || [ ! -f "${LEDGER_LEAN}" ]; then
     echo "  (Tabelle oder Referenzdatei liegt nicht in diesem Bereich — R9 nicht geprüft)"
@@ -436,7 +437,7 @@ ledger9_report() {
           tok = substr(g, RSTART + 1, RLENGTH - 2); g = substr(g, RSTART + RLENGTH)
           p = index(tok, "."); pre = substr(tok, 1, p)
           if (p < 2 || pre !~ /^[A-Za-z]+\.$/ || !(pre in kz) || p == length(tok)) continue
-          if (tok ~ /\*/) { printf "  %s  [R9] Muster, kein Name — nicht geprüft: %s\n", id, tok; mu++; continue }
+          if (tok ~ /\*/) { printf "  %s  [R9] Muster statt Name: %s\n", id, tok; v++; continue }
           key = id " " kz[pre] substr(tok, p + 1)
           if (!(key in md)) { md[key] = 1; mdOrd[++mdN] = key }
         }
@@ -460,8 +461,8 @@ ledger9_report() {
                substr(lnOrd[i], 1, q - 1), substr(lnOrd[i], q + 1); v++
       }
       if (v + 0 == 0) print "  (keine Verstöße in R9)"
-      printf "  ── R9 %d Verstöße; %d Paare (Tabelle %d, Referenzdatei %d); %d Muster gemeldet\n", \
-             v + 0, (v + 0 == 0 ? mdN : 0), mdN + 0, lnN + 0, mu + 0
+      printf "  ── R9 %d Verstöße; %d Paare (Tabelle %d, Referenzdatei %d)\n", \
+             v + 0, (v + 0 == 0 ? mdN : 0), mdN + 0, lnN + 0
       if (v + 0 > 0) exit 1
     }
   ' "${LEDGER}" "${LEDGER_LEAN}"
@@ -1096,7 +1097,8 @@ echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."
 echo "     R8 jede Zeilen-ID kommt in beiden Dateien genau einmal vor."
 echo "     R9 jeder Name mit Kürzel in der Grenzspalte hat genau ein #ledger_mention in"
 echo "     der Referenzdatei — und umgekehrt; der Bau prüft, dass er auflöst (nur die"
-echo "     Auflösung, nicht die Art). Token mit \"*\" sind Muster und werden gemeldet."
+echo "     Auflösung, nicht die Art). Ein Token mit \"*\" ist ein Muster statt eines"
+echo "     Namens und ein Verstoß."
 printf '%s\n' "$BLOCK_C1"
 printf '%s\n' "$BLOCK_C2"
 printf '%s\n' "$BLOCK_C3"

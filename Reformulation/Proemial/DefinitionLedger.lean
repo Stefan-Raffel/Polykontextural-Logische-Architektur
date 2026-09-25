@@ -27,7 +27,8 @@ Schluss des Typs — dasselbe Kriterium, an dem `CLAUDE.md` §10 haengt.
 - **R9 — die Namen der Grenzspalte loesen auf.** `#ledger_mention` verlangt nur, dass der Name
   gegen die Aggregatumgebung aufloest, nicht seine Art: In der Grenzspalte stehen auch
   Strukturen und Namen, die R1/R2 nicht fassen. Den Abgleich mit der Tabelle, in beiden
-  Richtungen, fuehrt `doc_lint.sh` (Architekt, 25.9.2026).
+  Richtungen, fuehrt `doc_lint.sh` (Architekt, 25.9.2026); ein Muster mit `*` statt eines
+  Namens ist dort ein Verstoss.
 
 ## Was nicht geprueft wird
 
@@ -298,6 +299,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L16-22" Reformulation.Kenogram.concatWith_dropLast
 #ledger_mention "L16-23" Reformulation.Kenogram.rgs_equiv_partition
 #ledger_mention "L16-23" Reformulation.Kenogram.PartitionCount.card_finpartition_fin_two
+#ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_two
+#ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_three
+#ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_five
 #ledger_mention "L21-5" Reformulation.Proemial.NegationCycle.IsFullCycle
 #ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_general
 #ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.kat
