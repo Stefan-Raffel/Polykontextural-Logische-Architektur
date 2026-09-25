@@ -18,8 +18,9 @@ die Aussage selbst kaeme auch ohne ihn aus.
 Die Bell-Zahl kommt in ihnen nicht vor. Dass `Nat.bell n` die Partitionen einer `n`-Menge
 zaehlt, ist **nicht** bewiesen — weder hier noch in Mathlib (Mathlib 83a5988, 2026-05-05:
 kein Satz verbindet `Nat.bell` mit einer Partitionszahl; `Nat.bell` wird ausserhalb von
-`Bell.lean` nicht verwendet), das diese Aussage in
-`Combinatorics/Enumerative/Bell.lean` als offenen Posten fuehrt. Bewiesen ist allein, dass
+`Bell.lean` nicht verwendet). Mathlib fuehrt die Zaehlung als offenen Posten an `Multiset.bell`
+(TODO im Modulkopf von `Mathlib.Combinatorics.Enumerative.Bell`: „Prove that it actually counts
+the number of partitions as indicated.“; Mathlib 83a5988). Bewiesen ist allein, dass
 zwei Typen gleich viele Elemente haben, und fuer kleine `n`, wie viele.
 
 ## Woher die Zahlen kommen
