@@ -523,6 +523,23 @@ als die dritte Gestalt sie zeigte. Im Bau: `decomp_spec`, `decomp_uniq` in
 `Proemial/IntervalBackbone.lean` (`03de4b9`) zerlegen ihre Konjunktions-Ziele darum
 ausdrücklich, und der Modulkopf sagt, dass die Zerlegung eine Bedingung ist.
 
+*Und die Hypothesen-Seite ist weiter, als die erste Gestalt sie nennt: auch eine
+**Implikation** als Hypothese zieht Choice — sobald `omega` sie **verwerten** muss.* Die
+negierte Konjunktion steht oben schon; neu ist allein die Implikation. Gemessen im
+NegationCycleLength-Zug (`KorpusRev2/Sondierung_Minimale_Wortlaenge_Impl.md`, Befund 1) und
+als Wegwerf-Probe am Stand `f0b4643` nachgemessen:
+
+```text
+(h : a = 0 → b = 1) (ha : a = 0) : b = 1  by omega        ->  [propext, Classical.choice, Quot.sound]
+dieselbe Lage, have hb := h ha; clear h; omega            ->  axiomfrei
+die Implikation liegt ungenutzt daneben                    ->  kein Choice (Profil des Rests)
+```
+
+Im Bau: `NegationCycleLength.sw_lt_iff` (`Proemial/NegationCycleLength.lean`, der Kommentar
+über `have hy := h1 hx1; clear h1 h2 h`), gewacht mit `[propext, Quot.sound]`. Heilung wie
+oben: die Implikation von Hand anwenden und vor `omega` entfernen — `omega` bekommt nur
+atomare Fakten.
+
 *Rückweg nach §13.3:* keiner in Sicht, aus demselben Grund wie beim zwanzigsten Eintrag —
 `#guard_msgs` misst das Profil der gewählten Taktik, nicht, ob eine andere ein schlankeres
 ergäbe.
