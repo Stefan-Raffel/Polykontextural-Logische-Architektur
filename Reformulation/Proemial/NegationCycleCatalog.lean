@@ -34,7 +34,8 @@ stand zuerst in `KorpusRev2/Evaluation_Traeger_1979_Impl.md`, Anhang A.
   mit Günthers Folgen (4) und (5) (`alt1_basis`, `alt2_basis`), im Bestand Vollkreise
   (`NegationCycle.IsFullCycle`). Sein `K` ist dagegen die **Kreisrelation** zwischen zwei
   Stationen, eine Wertabbildung (ein Dreierzyklus), **nicht** der Vollkreis. Beide heissen bei
-  Günther „Kreis" (Definitionen §21, Abschnitt 8).
+  Günther „Kreis" (Definitionen §21, Abschnitt 8). Wo die Kreisrelation im Vollkreis steht, für
+  jede Wertzahl, sagt `NegationCycleThreeCycle` (`three_iff_adj`, `abstand_zwei`).
 * **K4 — Stelle und Minimum.** Günthers „Zahlenwerte" sind die Stellen 1 bis 6 entlang des
   Weges. `zahlenwerte` sagt: Die Inversionszahl der Wertabbildung zwischen Station `j` und
   Station `j + k` ist `min k (6 − k)`. Stelle und Zahl werden nicht gleichgesetzt; sie fallen

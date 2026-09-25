@@ -418,9 +418,9 @@ Bedeutungen (Definitionen §21, Abschnitt 8). Die eine ist der **Hamiltonkreis**
 S. 26). Die andere ist die **Kreisrelation** `K` des Katalogs zwischen zwei Stationen, mit
 Links- und Rechtsdrall (S. 26 f., 27, 37). **Der Vollkreis ist der Hamiltonkreis** (*Marke:
 ZUORDNUNG*). Die Kreisrelation ist etwas anderes. Sie steht als Einordnung einer
-Wertabbildung (`Kl`, `Kr`, ein Dreierzyklus) bei drei Werten in `NegationCycleCatalog`, nicht
-als Begriff für jede Wertzahl; der Katalog steht auf dem Hamiltonkreis
-(`NegationCycleCatalog.alt1_basis`).
+Wertabbildung (`Kl`, `Kr`) bei drei Werten in `NegationCycleCatalog` und als Dreierzyklus
+(`IsThree`) für jede Wertzahl in `NegationCycleThreeCycle`; der Katalog steht auf dem
+Hamiltonkreis (`NegationCycleCatalog.alt1_basis`).
 
 Den Hamiltonkreis gibt es erst ab der zweiten Negation (IGN S. 29: „eine zweite Negation. Die
 aber gestattet nur einen Kreis"; die Seite zählt Kreise und kennt weder Drall noch `K`), also

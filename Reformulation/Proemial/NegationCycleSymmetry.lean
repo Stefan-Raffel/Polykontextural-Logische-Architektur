@@ -24,7 +24,9 @@ liegt hinter `NegationCycleSearch`, weil zwei seiner Sätze `exactly_fortyfour` 
   (Spiegelung, vier Werte) steht Günthers Familienrede auf Sätzen. IGN S. 43: „Wir haben
   dabei die Umkehrung der ersten Verteilung der Operatoren 10-9-5, also 5-9-10 zur gleichen
   Familie gerechnet." „Familie" ist Günthers Wort, darum steht es im Kopf und in keinem
-  Bezeichner.
+  Bezeichner. Die Familien selbst, nach der Häufigkeit der Operatoren, sind in
+  `NegationCycleThreeCycle` vollständig gezählt (`verteilungen_vollstaendig_all`); die
+  Spiegelung hier ist der Grund, warum 10-9-5 und 5-9-10 eine Familie sind.
 * **K4 — nicht:** Tafel XX, kein §20-Anspruch, keine Ledger-Zeile.
 
 ## Axiomprofil

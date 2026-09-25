@@ -68,6 +68,7 @@ import Reformulation.Proemial.NegationCycleGenerators
 import Reformulation.Proemial.NegationCycleSJT
 import Reformulation.Proemial.NegationCycleLength
 import Reformulation.Proemial.NegationCycleCatalog
+import Reformulation.Proemial.NegationCycleThreeCycle
 import Reformulation.Proemial.TimeMeasure
 
 /-!
@@ -1384,6 +1385,18 @@ Enthält:
   — der Abstand zweier Anordnungen hängt nur von der Relation zwischen ihnen ab (Hebung von
   `inv_is_min_length`). **Nicht:** der Katalog für `m` Werte, die Kreisrelation im
   Vollkreis, „jeden Begriff". 18 Wachen, kein `Classical.choice`.
+- `Proemial.NegationCycleThreeCycle`: **die Kreisrelation, wo sie im Vollkreis steht, und
+  Günthers drei Familien** (nach `Spec_N5_Kreisrelation.md`). Für jede Wertzahl: zwei
+  verschiedene aufeinanderfolgende Negatoren ergeben genau dann einen Dreierzyklus, wenn sie
+  Nachbarn sind (`three_iff_adj`; `IsThree` bei drei Werten an Günthers K geeicht,
+  `eich_three`); ab drei Werten folgen im Vollkreis nie zwei gleiche Negatoren aufeinander,
+  auch nicht über das Ende (`no_double`, `no_double_wrap`). Daraus bei drei Werten: im
+  Abstand 2 steht immer ein K (`abstand_zwei`) — der Grund für die Regel des Katalogs. Bei
+  vier Werten, für jeden Vollkreis: „überall K" ist genau die Verteilung 6-12-6
+  (`verteilung_6_12_6_iff_all`), und jeder Vollkreis gehört zu einer der drei Familien der
+  Tafel (18) (`verteilungen_vollstaendig_all`); nur Günthers dritter Kreis hat überall K
+  (`guenthers_drei`). **Nicht:** „kein stabiles Sein", K als Hamiltonkreis, warum 6-12-6.
+  33 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
