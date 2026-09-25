@@ -1366,9 +1366,10 @@ Enthält:
   grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",
   im Ledger L21-4 (`reach_all`, teilgetragen). 53 Wachen, kein `Classical.choice`.
 - `Proemial.NegationCycleLength`: **die kürzeste Zahl von Negatoren ist die
-  Inversionszahl** (nach der Sondierung zur minimalen Wortlänge). Ein Satz über den Bestand,
-  ohne Anker an IGN S. 37: die Lesart „notwendig = minimal" ist gefallen, Günthers Zahl ist die
-  Zählung auf dem Weg (`NegationCycleCatalog`). `inv_is_min_length`: für jede Wertzahl und jede
+  Inversionszahl** (nach der Sondierung zur minimalen Wortlänge). Anker am Programmsatz von
+  IGN S. 36 f. (die Zahl des „inneren Aufbaus"), nicht an Günthers Tafeln, die den Weg zählen
+  (`NegationCycleCatalog`); die Gleichheit ist unser Satz, die Lesart „notwendig = minimal"
+  bleibt gefallen. `inv_is_min_length`: für jede Wertzahl und jede
   Anordnung gibt es ein Negatorwort der Länge `inv a`, und keines ist kürzer. Eichung:
   `eich3`, `eich4` gegen die Suche; `genesen_kuerzeste` — bei drei Werten sind Günthers zwei
   Genesen genau die kürzesten Wege zum Rücklauf; `rueckwaerts_vier` — bei vier Werten 16.
@@ -1379,8 +1380,8 @@ Enthält:
   nach `Spec_N4_Katalog.md`, Fassung 3). Bei drei Werten, Eichung: alle 21 gedruckten Einträge
   (`katalog_true`), jede Station mit jedem Abstand (`katalog_general`), der Wechsel der
   Drehrichtung mit `N2` (`drall_swap`), die Art-Spalte beider Tabulierungen von S. 37
-  (`tabulierung1`, `tabulierung2`) — das ist Günthers Zahl der „notwendigen"
-  Umtauschvollzüge (S. 36 f.), die Zählung auf dem Weg; der Katalog steht auf den Folgen
+  (`tabulierung1`, `tabulierung2`) — Günthers Zahlen auf S. 37, die Zählung auf dem Weg, die
+  Ausführung seines Programmsatzes an einem Beispiel; der Katalog steht auf den Folgen
   (4)/(5) (`alt1_basis`, `alt2_basis`). Die Einordnung `kat` ist nicht Günthers. Günthers
   „Zahlenwerte" sind Stellen,
   die Inversionszahl der Relation ist `min k (6 − k)` (`zahlenwerte`), und das ist die kürzeste

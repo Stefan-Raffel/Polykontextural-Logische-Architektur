@@ -10,19 +10,23 @@ Architekten vom 25. September 2026 nach der Sondierung
 `KorpusRev2/Begutachtung_Sondierung_Minimale_Wortlaenge.md` (Mathematiker); die Frage aus
 `KorpusRev2/Prompt_Impl_Sondierung_Minimale_Wortlaenge.md`.
 
-* **K1 — Günthers Frage, und warum dieses Modul sie nicht beantwortet.** IGN 1979
-  (*Identität, Gegenidentität und Negativsprache*), S. 36 f., Textschicht und Seitenbild
-  geprüft: „Da alle anderen logischen Prozeduren sich immer auf Umtauschrelationen reduzieren
-  lassen müssen, kann man jeden Begriff dadurch arithmetisch genau definieren, dass man
-  angibt, wieviel Umtauschvollzüge notwendig sind, um seinen inneren Aufbau zu verstehen."
-  QUELLENFEST. Gebaut wurde das Modul unter der Lesart, „notwendig" heisse minimal
-  (Hermeneutes, Y5). **Diese Lesart ist gefallen** (Hermeneutes D1–D3, am Seitenbild): Der
-  „notwendig"-Satz, das Zwischenglied und die zwei Tabulierungen auf S. 37 stehen in einem
-  Absatz. Günthers Zahl ist die Zählung auf dem alternierenden Weg, und sie unterscheidet
-  `K l` (2) von `K r` (4), was die kürzeste Zahl nicht kann. Gebaut ist diese Zählung in
-  `NegationCycleCatalog` (`tabulierung1`, `tabulierung2`). `inv_is_min_length` bleibt ein Satz
-  über den Bestand — die kürzeste Zahl von Negatoren ist die Inversionszahl —, **ohne Anker an
-  S. 37**.
+* **K1 — der Anker: Günthers Programmsatz.** IGN 1979 (*Identität, Gegenidentität und
+  Negativsprache*), S. 36 f., Textschicht und Seitenbild geprüft: „Da alle anderen logischen
+  Prozeduren sich immer auf Umtauschrelationen reduzieren lassen müssen, kann man jeden
+  Begriff dadurch arithmetisch genau definieren, dass man angibt, wieviel Umtauschvollzüge
+  notwendig sind, um seinen inneren Aufbau zu verstehen." QUELLENFEST. `inv_is_min_length` hat
+  seinen Anker an **diesem Programmsatz**, nicht an Günthers Tafeln (Entscheid des Architekten
+  vom 25.9. nach Hermeneutes H1–H6). *Marken:* „Aufbau" meint bei Günther die Struktur einer
+  Anordnung (S. 13, 23, 42; „innerer Aufbau" steht nur auf S. 37), *QUELLENFEST* für den
+  Wortgebrauch; die Anwendung auf Wertanordnungen ist *ZUORDNUNG*, nahe. „Angeben … um zu
+  verstehen" ist Messung, nicht Herstellung. Die **Gleichheit** — die Zahl des Aufbaus (`inv`)
+  ist die Zahl der notwendigen Vollzüge (die kürzeste Wortlänge) — ist **unser Satz**, nicht
+  der Wortsinn von „notwendig": Die Lesart „notwendig heisst minimal" (Hermeneutes, Y5) bleibt
+  gefallen. Günthers **Zahlen** auf S. 37 zählen den Weg; sie sind die Ausführung an einem
+  Beispiel und stehen in `NegationCycleCatalog` (`tabulierung1`, `tabulierung2`). „Jeden
+  Begriff" ist nicht gebaut; gebaut sind Wertanordnungen. *Grenze:* Dass `K l` und `K r`
+  dieselbe Zahl bekommen, ist nach S. 27 kein Mangel — die Kreisrelation ist bei Günther kein
+  „begrifflich fixierbares Sein", die Unterscheidung des Dralls gehört der Bewegung.
 * **K2 — der Satz.** `inv a` zählt die Paare von Stellen in falscher Reihenfolge.
   `inv_le_length`: jedes Negatorwort, das die Anordnung `a` vom Ausgang her erreicht, hat
   mindestens `inv a` Negatoren. `exists_word_inv`: es gibt eines genau dieser Länge.
