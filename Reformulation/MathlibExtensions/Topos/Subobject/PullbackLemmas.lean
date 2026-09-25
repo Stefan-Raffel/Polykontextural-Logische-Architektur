@@ -37,7 +37,8 @@ Leichte Richtung: direkt aus Monotonie (`pullback_le_iSup_pullback`).
 Schwere Richtung: `(pullback f).obj (⊔_i s_i) ≤ ⊔_i (pullback f).obj (s_i)` via
 Konsumenten-Hypothese `[PullbackISup E]`.
 
-**Warum PullbackISup eine echte Consumer-Hypothese ist:**
+**Warum PullbackISup eine Hypothese des Bestands ist** (angenommene Klasse; mathematisch in
+jedem Topos erfüllt, in Mathlib nicht abgeleitet — s. Doc-String `PullbackISup`):
 `pullback_f : Sub(Y) → Sub(X)` ist rechts-adjungiert (zum ∃_f-Funktor), also rechter Adjunkt.
 Rechte Adjunkte erhalten Limites (Infima/Meets), aber KEINE Kolimites (Suprema/Joins).
 Damit `pullback_f` auch Joins erhält, benötigt es eine *weitere* rechts-Adjunktion
@@ -93,7 +94,8 @@ variable [WellPowered.{w} E] [Regular E]
 (the hard direction of `pullback_iSup`):
 `(Subobject.pullback f).obj (⨆ i, s i) ≤ ⨆ i, (Subobject.pullback f).obj (s i)`.
 
-**Why this is a genuine consumer hypothesis**: `Subobject.pullback f` is the right adjoint
+**Why this is a hypothesis of the repository** (an assumed class; true in every topos,
+not derived in Mathlib — see below): `Subobject.pullback f` is the right adjoint
 in the adjunction `∃_f ⊣ pullback_f`. Right adjoints preserve limits (meets/infima) but NOT
 colimits (joins/suprema) in general. For `pullback_f` to also preserve joins, it must
 additionally be a left adjoint, i.e., there must exist a right adjoint `∀_f` (the dependent
@@ -186,7 +188,9 @@ direkt aus Monotonie, via `pullback_le_iSup_pullback`.
 Schwere Richtung (`pullback_f(⊔_i s_i) ≤ ⊔_i pullback_f(s_i)`):
 via Konsumenten-Hypothese `PullbackISup.pullback_iSup_le`.
 
-**Mathematischer Hintergrund** (warum PullbackISup eine echte Hypothese ist):
+**Mathematischer Hintergrund** (warum PullbackISup eine Hypothese des Bestands ist —
+angenommene Klasse; in jedem Topos erfüllt, in Mathlib nicht abgeleitet, s. Doc-String
+`PullbackISup`):
 `pullback_f` ist rechts-adjungiert (`∃_f ⊣ pullback_f`), erhält daher Infima, aber nicht
 Suprema. Die Suprema-Erhaltung erfordert eine *weitere* Links-Adjungierung (`pullback_f ⊣ ∀_f`,
 abhängiges Produkt), die aus der LCCC-Struktur des Topos folgt — aber in Mathlib noch nicht
