@@ -49,6 +49,16 @@ Sondierung `KorpusRev2/Sondierung_N5_Kreisrelation_Impl.md` samt Nachtrag.
   `alleB_perm_gerichtet` wie `NegationCycleSymmetry.mirror_all`. „Familie" ist Günthers Wort
   und steht darum im Kopf und in keinem Bezeichner (wie in `NegationCycleSymmetry`, K3); die
   Sätze heissen nach dem Gezählten, der Verteilung.
+* **K6a — Günthers Zählsatz (S. 49), bewiesen.** „Ein Index dieser Tatsache ist das Faktum,
+  dass in vierwertigen Vollkreisen N2 gelegentlich zwölf Mal auftreten muss, während die
+  Operatoren N1 und N3 niemals öfter als zehn Mal benötigt werden und andererseits N2 niemals
+  weniger als sechs Mal seine Umtauschfunktion ausüben kann, während N1 und N3 gelegentlich
+  nur fünf Mal beansprucht werden" (S. 49, am Seitenbild). Die Schranken gelten für jeden
+  vierwertigen Vollkreis (`zaehlsatz_all`, FOLGERUNG aus dem Familiensatz); erreicht werden sie
+  von Günthers eigenen Kreisen (`zaehlsatz_erreicht`, EICHUNG). *Was der Satz nicht sagt:* das
+  „mehr zu leisten" liegt in den Schranken — N2 hat die höhere Unter- und Obergrenze —, nicht
+  in jedem einzelnen Kreis: im zweiten Kreis (9-6-9) kommt N2 seltener vor als N1 und N3
+  (`n2_nicht_je_kreis`).
 * **K7 — Nicht:** Günthers „kein stabiles Sein" (Definitionen §21, Abschnitt 8); K ist nicht
   der Hamiltonkreis (der Katalog steht auf dem Hamiltonkreis, K ist eine Relation zwischen
   Stationen); keine Beziehung der 16 Kreise „überall K" zu `rueckwaerts_vier`; warum gerade
@@ -187,14 +197,16 @@ section Zwei
 variable {m : ℕ}
 
 /-- `endpoint` über einer zusammengesetzten Folge (der allgemeine Fall zu
-`NegationCycle.endpoint_append`, der nur `seq ++ [i]` kennt). -/
+`NegationCycle.endpoint_append`, der nur `seq ++ [i]` kennt). Die ℕ-Fassung steht in
+`NegationCycleSJT` (`endpointN_append`), die Brücke dort ist `endpoint_val`. -/
 theorem endpoint_append_list : ∀ (u r : List (Fin m)) (l : List (Fin (m + 1))),
     endpoint (u ++ r) l = endpoint r (endpoint u l)
   | [], _, _ => rfl
   | i :: is, r, l => endpoint_append_list is r (negate i l)
 
 /-- `stations` über einer zusammengesetzten Folge (der allgemeine Fall zu
-`NegationCycle.stations_append`). -/
+`NegationCycle.stations_append`). Die ℕ-Fassung steht in `NegationCycleSJT`
+(`stationsN_append`), die Brücke dort ist `stations_val`. -/
 theorem stations_append_list : ∀ (u r : List (Fin m)) (l : List (Fin (m + 1))),
     stations (u ++ r) l = stations u l ++ stations r (endpoint u l)
   | [], _, _ => rfl
@@ -408,6 +420,35 @@ theorem gleich_nur_aussen_all (seq : List (Fin 3)) (h : IsFullCycle seq) :
     seq.count 0 ≠ seq.count 1 ∧ seq.count 1 ≠ seq.count 2 :=
   gleich_nur_aussen seq (mem_gerichtet seq h)
 
+
+/-- **Günthers Zählsatz** (IGN S. 49): in jedem vierwertigen Vollkreis kommen `N1` und `N3`
+mindestens fünf- und höchstens zehnmal vor, `N2` mindestens sechs- und höchstens zwölfmal. -/
+theorem zaehlsatz_all (seq : List (Fin 3)) (h : IsFullCycle seq) :
+    5 ≤ seq.count 0 ∧ seq.count 0 ≤ 10 ∧ 5 ≤ seq.count 2 ∧ seq.count 2 ≤ 10 ∧
+      6 ≤ seq.count 1 ∧ seq.count 1 ≤ 12 := by
+  rcases verteilungen_vollstaendig_all seq h with e | e | e | e <;>
+  · simp only [vert, Prod.mk.injEq] at e
+    obtain ⟨h0, h1, h2⟩ := e
+    rw [h0, h1, h2]
+    decide
+
+/-- Eichung: die Schranken werden erreicht, von Günthers eigenen Kreisen — `N1` zehnmal und
+`N3` fünfmal im ersten, gespiegelt umgekehrt; `N2` sechsmal im zweiten, zwölfmal im dritten. -/
+theorem zaehlsatz_erreicht :
+    IsFullCycle kreis1 ∧ kreis1.count 0 = 10 ∧ kreis1.count 2 = 5 ∧
+    IsFullCycle (kreis1.map Fin.rev) ∧ (kreis1.map Fin.rev).count 0 = 5 ∧
+      (kreis1.map Fin.rev).count 2 = 10 ∧
+    IsFullCycle kreis2 ∧ kreis2.count 1 = 6 ∧
+    IsFullCycle kreis3 ∧ kreis3.count 1 = 12 :=
+  ⟨kreis1_full, by decide, by decide, kreis1_mirror_full, by decide, by decide,
+    kreis2_full, by decide, kreis3_full, by decide⟩
+
+/-- Eichung: „mehr zu leisten" heisst nicht „in jedem Kreis öfter" — im zweiten Kreis kommt `N2`
+seltener vor als `N1` und `N3`. -/
+theorem n2_nicht_je_kreis :
+    IsFullCycle kreis2 ∧ kreis2.count 1 < kreis2.count 0 ∧ kreis2.count 1 < kreis2.count 2 :=
+  ⟨kreis2_full, by decide, by decide⟩
+
 -- ============================================================
 -- Wachen
 -- ============================================================
@@ -510,5 +551,14 @@ theorem gleich_nur_aussen_all (seq : List (Fin 3)) (h : IsFullCycle seq) :
 
 /-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.gleich_nur_aussen_all' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms gleich_nur_aussen_all
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.zaehlsatz_all' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms zaehlsatz_all
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.zaehlsatz_erreicht' depends on axioms: [propext] -/
+#guard_msgs in #print axioms zaehlsatz_erreicht
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.n2_nicht_je_kreis' depends on axioms: [propext] -/
+#guard_msgs in #print axioms n2_nicht_je_kreis
 
 end Reformulation.Proemial.NegationCycleThreeCycle

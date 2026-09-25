@@ -1395,8 +1395,11 @@ Enthält:
   vier Werten, für jeden Vollkreis: „überall K" ist genau die Verteilung 6-12-6
   (`verteilung_6_12_6_iff_all`), und jeder Vollkreis gehört zu einer der drei Familien der
   Tafel (18) (`verteilungen_vollstaendig_all`); nur Günthers dritter Kreis hat überall K
-  (`guenthers_drei`). **Nicht:** „kein stabiles Sein", K als Hamiltonkreis, warum 6-12-6.
-  33 Wachen, kein `Classical.choice`.
+  (`guenthers_drei`). Günthers Zählsatz von S. 49 — N1 und N3 zwischen fünf- und zehnmal, N2
+  zwischen sechs- und zwölfmal — für jeden Vollkreis (`zaehlsatz_all`), mit seinen eigenen
+  Kreisen als Zeugen (`zaehlsatz_erreicht`); das „mehr" von N2 liegt in den Schranken, nicht in
+  jedem Kreis (`n2_nicht_je_kreis`). **Nicht:** „kein stabiles Sein", K als Hamiltonkreis,
+  warum 6-12-6. 36 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
