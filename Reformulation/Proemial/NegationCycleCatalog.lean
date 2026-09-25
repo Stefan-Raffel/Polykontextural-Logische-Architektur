@@ -4,8 +4,9 @@ import Reformulation.Proemial.NegationCycleLength
 # Proemial.NegationCycleCatalog — Günthers Katalog (8)–(13) als Satz
 
 **EICHUNG** bei drei Werten (Teil 1 und Teil 3); dazu ein Satz für jede Wertzahl
-(`stationen_abstand`, Teil 2), dessen Stufe offen ist: **HEBUNG oder ZUSAMMENSTELLUNG**, zu
-entscheiden in der Abnahme (Spec Fassung 3, Z6). Gebaut auf Anordnung des Architekten vom
+(`stationen_abstand`, Teil 2), eine **HEBUNG**: `inv_is_min_length`, über die Brücke
+`endpoint_eq_map`/`map_eq_iff` vom Ausgang auf jede Anordnung als Bezugspunkt getragen
+(entschieden in der Abnahme, `KorpusRev2/Abnahme_N4_Katalog.md` §2). Gebaut auf Anordnung des Architekten vom
 25. September 2026 nach `KorpusRev2/Spec_N4_Katalog.md` (Fassung 3, Mathematiker) und den
 Vorab-Proben P1–P8 (`KorpusRev2/Begutachtung_Spec_N4_Katalog_Impl.md`). Die Katalog-Probe
 stand zuerst in `KorpusRev2/Evaluation_Traeger_1979_Impl.md`, Anhang A.

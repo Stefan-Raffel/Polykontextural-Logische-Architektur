@@ -1381,8 +1381,8 @@ Enthält:
   `alt2_basis`). Die Einordnung `kat` ist nicht Günthers. Günthers „Zahlenwerte" sind Stellen,
   die Inversionszahl der Relation ist `min k (6 − k)` (`zahlenwerte`), und das ist die kürzeste
   Wortlänge zwischen zwei Stationen (`stationen_zahl`). Für jede Wertzahl: `stationen_abstand`
-  — der Abstand zweier Anordnungen hängt nur von der Relation zwischen ihnen ab (Stufe offen:
-  Hebung oder Zusammenstellung). **Nicht:** der Katalog für `m` Werte, die Kreisrelation im
+  — der Abstand zweier Anordnungen hängt nur von der Relation zwischen ihnen ab (Hebung von
+  `inv_is_min_length`). **Nicht:** der Katalog für `m` Werte, die Kreisrelation im
   Vollkreis, „jeden Begriff". 18 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
