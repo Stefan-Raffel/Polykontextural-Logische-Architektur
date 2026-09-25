@@ -5,7 +5,7 @@ import Reformulation.Proemial.IntervalBackbone
 # Reformulation.Proemial.ExhaustionTransition — der Erschöpfungs-Übergang (neunzehnte Schicht)
 
 Die achte Stelle der achtfachen Form in Zeugen-Fassung: der Erschöpfungs-Übergang
-(die „Erschöpfung der nicht-designativen Reflexion", Lille Z. 1024 ff.; der Tod
+(die „Erschöpfung der nicht-designativen Reflexion", Lille S. 19; der Tod
 als Rückgabe der Reflexivität, 1957) — die Erschöpfung als
 vierteiliges Merkmal, ihre Unmöglichkeit im Maßstab-Grenzfall (derselbe wie bei
 der sechzehnten Schicht, per Import term-identisch), der Phasenwechsel als
@@ -18,7 +18,9 @@ Erschöpfung (19.) am *selben* Maßstab-Grenzfall gemessen werden.
 
 ## (1) Quellen
 
-Günther, Lille (Strukturelle Minimalbedingungen…), Z. 1018–1032; Beiträge III —
+Günther, Lille (Strukturelle Minimalbedingungen…), S. 19 („die achte Thematik, die aus
+der Erschöpfung der nicht-designativen Reflexion … hervorgeht"; Ankerform Seite und
+Wortlaut seit Sammel-Vollzug 6); Beiträge III —
 S. 160 (druck-verifiziert; Doppel-Abgleich 13. Juli: Vorprüfung + volles Hermeneutes-Siegel) — der Wiedereintritt des
 Designativen; kategoriale Inhomogenität 7→8 (Phasenwechsel statt Stufung).
 **Aufstufung (Autopsie 13. Juli):** Die *achtfache Thematik* samt
@@ -126,7 +128,7 @@ def Exhausts {α : Type*} (f : α → α) (x b : α) : Prop :=
 /-- Die strukturelle Nicht-Identität: der erreichte Bestand ist nie der verlassene
     Anfang (x ≠ b folgt aus der Erschöpfung). Projekt-Deutung der achten Stelle —
     KEIN Günther-Zitat: der Lille-Wortlaut sagt „Die Subjektivität geht, wie Hegel
-    sagen würde, in ihren Grund, d.h. in das Sein zurück" (Z. 1027–1028) und
+    sagen würde, in ihren Grund, d.h. in das Sein zurück" (S. 19) und
     zugleich, dass das Erreichte „die erste Ontologie des objektiven Geistes" ist —
     das Lemma formalisiert die zweite Seite dieser Quell-Spannung (das Erreichte
     ist Neues, nicht das erste Intervall), nicht einen Satz Günthers. -/

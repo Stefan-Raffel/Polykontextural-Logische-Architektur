@@ -22,17 +22,20 @@ sie importiert das Substrat `IntervalBackbone` (21.) und die Ketten-Spitze
 ## (1) Quellen
 
 Der Anker im Wortlaut: „Im zweiten Intervall tritt die Zeit ausschließlich in
-ihrer reversiblen Form auf" (Lille Z. 486–487, **Volltext-verifiziert**). Die
+ihrer reversiblen Form auf" (Lille S. 10, **Volltext-verifiziert**). Die
 Zeit-Dreiheit reversibel / irreversibel / Komplementarität als Rolle der drei
-Mittelstellen: Z. 484–486. „Mechanik": Z. 512–513. Der Ort (Intervall II als
-Abschnitt des 14-wertigen Systems): Z. 517–519. Härte-Ökonomie: einmal geeicht
+Mittelstellen: S. 10 („als Moment der Reversibilität, zweitens als Moment der
+Irreversibilität und drittens schließlich als generelle Komplementarität"). „Mechanik":
+S. 10 („Mechanik, Physik und Organik"). Der Ort (Intervall II als Abschnitt des
+14-wertigen Systems): S. 10 („ein 14-wertiges System formaler Logik"). Ankerform: Seite
+und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen der Volltext-Datei, verschoben). Härte-Ökonomie: einmal geeicht
 (Beiträge III, S. 160, druck-verifiziert), verlängerbar.
 
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Mechanik = Intervall II" ist **Lesart der Hegel-Stufe**, nicht
-Satz dieser Schicht: Günther selbst meldet „ernsthafte Zweifel" (Z. 921–922) an
-und nennt die Zuordnung „nur relativ" (Z. 936–938); gesichert ist allein die
+Satz dieser Schicht: Günther selbst meldet „ernsthafte Zweifel" (Lille S. 17) an
+und nennt die Zuordnung „nur relativ" (Lille S. 18); gesichert ist allein die
 Gliederung „je drei Intervalle". Term-fest wird hier keine Zuordnung, sondern
 das Umtausch-Merkmal und seine Lage in der armen Klasse.
 
@@ -161,7 +164,7 @@ theorem collapse_not_reversible : ¬ Reversible collapse := by
   show ¬ ∀ x : Fin 2, collapse (collapse x) = x
   decide
 
-/-- Der Ort aus dem Rückgrat (21.; Lille Z. 517–519): Intervall II beginnt bei 3 … -/
+/-- Der Ort aus dem Rückgrat (21.; Lille S. 10, „14-wertiges System"): Intervall II beginnt bei 3 … -/
 theorem interval_II_start : intervalStart 2 = 3 := by decide
 
 /-- … und endet bei 5 — erster Stellen-Konsum des Substrats. -/

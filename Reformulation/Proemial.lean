@@ -486,7 +486,7 @@ Enthält:
 
 - `Proemial.ExhaustionTransition`: der Erschöpfungs-Übergang (neunzehnte Schicht) —
   die achte Stelle der achtfachen Form in Zeugen-Fassung („Die Subjektivität geht, wie
-  Hegel sagen würde, in ihren Grund, d.h. in das Sein zurück", Lille Z. 1018–1032, —
+  Hegel sagen würde, in ihren Grund, d.h. in das Sein zurück", Lille S. 19, —
   S. 160 (druck-verifiziert; Doppel-Abgleich 13. Juli); der Tod als Rückgabe der Reflexivität, 1957). Erste Schicht-zu-Schicht-Abhängigkeit unter den
   Niederlegungs-Schichten: die arme Klasse `PointwisePeriodic` wird aus der
   sechzehnten (`IrreversibleAscent`) **term-identisch** importiert, nicht dupliziert
@@ -546,17 +546,17 @@ Enthält:
 - `Proemial.IntervalBackbone`: das Intervall-Rückgrat (einundzwanzigste Schicht) —
   das **arithmetische Substrat des Stellen-Trakts**. Die Anfangs-Wertzahlen der
   acht Intervalle der achtfachen Thematik sind die Dreieckszahlen: `intervalStart n
-  := n * (n + 1) / 2`, `intervalEnd n := intervalStart n + n` (Lille Z. 530,
-  544–547). Die Gauss-Brücke `two_mul_intervalStart` zähmt die ℕ-Division ein für
+  := n * (n + 1) / 2`, `intervalEnd n := intervalStart n + n` (Lille S. 10, „Die Formel hat
+  die Gestalt"; Endwert m + n S. 11). Die Gauss-Brücke `two_mul_intervalStart` zähmt die ℕ-Division ein für
   alle Mal (danach ist jede Rückgrat-Aussage linear); darauf die drei Struktur-
   Gesetze: `intervalStart_succ` (Stufung — jedes Intervall beginnt um seine eigene
   Themen-Zahl höher), `intervalEnd_succ_start` (**Naht** — die Intervalle schließen
   lückenlos und überlappungsfrei aneinander: das Werte-Kontinuum der achtfachen
   Thematik als Theorem), `intervalEnd_sub_start` (Themen-Gesetz — Intervall-Nummer
   = Themen-Zahl = Abschnitts-Länge, die Selbstbezüglichkeit der Formel). Dazu
-  `tafel_IV` (die acht Intervalle I–VIII, Lille Z. 407 ff.; BCL-Report 3.0, 1965 —
+  `tafel_IV` (die acht Intervalle I–VIII, Lille S. 8 f., „TAFEL IV"; BCL-Report 3.0, 1965 —
   Titel-Falle in Fn. 2/5 notiert) und die zwei Zitat-Anker `nature_closes_at_14`
-  („ein 14-wertiges System formaler Logik", Z. 517–519) sowie `eighth_starts_at_36`
+  („ein 14-wertiges System formaler Logik", Lille S. 10) sowie `eighth_starts_at_36`
   („nicht weniger als 36 Werte und 8 ontologische Themen", **druck-verifiziert**,
   Beiträge III S. 160 — zweiter druck-gesiegelter Anker). Kür
   `intervalStart_strictMono` (wohlgeordnete Orts-Folge). **Seit dem 24. September die
@@ -580,8 +580,8 @@ Enthält:
   DIFFERENTIAL:** keine arme Klasse, keine Unmöglichkeits-Hälfte, keine
   Zeugen-Fassung — das Rückgrat zählt die Orte, es deutet sie nicht; die
   Stellen-Schichten importieren es (geteilte-Klassen-Ökonomie eine Stufe tiefer).
-  **Hegel-Relativitäts-Marke:** Günthers „ernsthafte Zweifel" (Z. 921–922) und
-  „nur relativ" (Z. 936–938) treffen die inhaltliche Zuordnung der Triaden zu den
+  **Hegel-Relativitäts-Marke:** Günthers „ernsthafte Zweifel" (Lille S. 17) und
+  „nur relativ" (Lille S. 18) treffen die inhaltliche Zuordnung der Triaden zu den
   Intervallen, **nicht** diese Formel-Arithmetik; die Zuordnungen (Mechanik = II
   usw.) kommen in den Stellen-Schichten, jede mit dieser Marke. „Wertzahl/Thema/
   Intervall" sind Namen — term-fest ist die ℕ-Arithmetik; keine Werte-Semantik,
@@ -602,7 +602,7 @@ Enthält:
 
 - `Proemial.ReversibleExchange`: der reversible Umtausch (zweiundzwanzigste
   Schicht) — die **erste Mittelstelle**: „Im zweiten Intervall tritt die Zeit
-  ausschließlich in ihrer reversiblen Form auf" (Lille Z. 486–487,
+  ausschließlich in ihrer reversiblen Form auf" (Lille S. 10,
   Volltext-verifiziert) wird als Involution gefasst (`Reversible f := ∀ x,
   f (f x) = x`). Die **Brücke** `reversible_pointwise_periodic` (reversibel →
   punktweise periodisch, Periode 2) legt Stelle 2 beweisbar in die arme Klasse,
@@ -615,7 +615,7 @@ Enthält:
   `swap_reversible` (20.) und `collapse_not_reversible` (19.) — die Trennung
   St.2 ↔ St.8 in beiden Richtungen — sowie der Rückgrat-Ort `interval_II_start`
   (= 3) / `interval_II_end` (= 5) als erster Stellen-Konsum des Substrats (21.,
-  Z. 517–519); Kür `reversible_bijective` (der Umtausch verliert nichts).
+  Lille S. 10); Kür `reversible_bijective` (der Umtausch verliert nichts).
   **Erste Schicht auf beiden Strängen** (belegt am Import-Graph dieser
   Lieferung: Substrat `IntervalBackbone` + Kette `RecurringGround`); die Kette
   wird 16→19→20→22, alles term-identisch konsumiert, nichts dupliziert.
@@ -623,7 +623,7 @@ Enthält:
   Apparat** — die Stelle *liegt in* einer bestehenden armen Klasse, das ist ihr
   Befund, kein Differential-Ersatz. **Hegel-Relativitäts-Marke:** „Mechanik =
   Intervall II" ist Lesart der Hegel-Stufe, nicht Satz — Günthers „ernsthafte
-  Zweifel" (Z. 921–922), „nur relativ" (Z. 936–938); gesichert nur „je drei
+  Zweifel" (Lille S. 17), „nur relativ" (Lille S. 18); gesichert nur „je drei
   Intervalle". Involution ↔ „Umtausch" ist Deutung, Fin-2-Träger Modellwahl,
   „zweiwertig" Themen-Rede (keine Werte-Semantik); Designation ≠ Denotation gilt
   fort; kein St.3/St.4-Vorgriff. Axiom-Ist je Satz `#guard_msgs`-verwacht:
@@ -640,7 +640,7 @@ Enthält:
 - `Proemial.IrreversibleAdvance`: der irreversible Fortgang (dreiundzwanzigste
   Schicht) — die **zweite Mittelstelle**: das dritte Intervall, die irreversible
   Zeit („müssen wir mindestens zum dritten Intervall übergehen … zum ersten Mal
-  eine dreiwertige Thematik", Lille Z. 493–496, Volltext-verifiziert), gefasst
+  eine dreiwertige Thematik", Lille S. 10, Volltext-verifiziert), gefasst
   als **Rückkehrfreiheit** (`NoReturn f := ∀ x n, 0 < n → f^[n] x ≠ x` — echt
   stärker als `FixpointFree`, dessen n=1-Fall sie ist). Die
   **Natur-Nachbar-Trennung** steht in beiden Fassungen: `noreturn_not_periodic`
@@ -658,11 +658,11 @@ Enthält:
   16. führt `Nat.succ` bereits für ihr Differential) sowie die geteilten
   Gegen-Zeugen `swap_not_noreturn` (Periode 2) und `collapse_not_noreturn`
   (Grund bei 1). Orts-Sätze `interval_III_start` (= 6) / `interval_III_end`
-  (= 9), Substrat-Abruf aus der 21. (Z. 517–519). Kette 16→19→20→22→23, ein
+  (= 9), Substrat-Abruf aus der 21. (Lille S. 10). Kette 16→19→20→22→23, ein
   Import, alles term-identisch konsumiert, kein Mathlib-Import über die
   transitive Hülle hinaus. **Hegel-Relativitäts-Marke:** „Physik = Intervall
-  III" ist Lesart der Hegel-Stufe, nicht Satz („ernsthafte Zweifel" Z. 921–922,
-  „nur relativ" Z. 936–938). **Symmetrie-Bruch-Marke:** Günthers Bruch betrifft
+  III" ist Lesart der Hegel-Stufe, nicht Satz („ernsthafte Zweifel" Lille S. 17,
+  „nur relativ" Lille S. 18). **Symmetrie-Bruch-Marke:** Günthers Bruch betrifft
   wörtlich Position/Negation der **Werte-Struktur** — Werte-Semantik, außerhalb
   dieses Baus; die Verbindung zur term-gebauten St.2/St.3-Trennung ist Deutung.
   `NoReturn` ↔ irreversibel ist Deutung, „dreiwertig" Themen-Rede, „kommt
@@ -685,7 +685,7 @@ Enthält:
 - `Proemial.ComplementaryMediation`: die komplementäre Vermittlung
   (vierundzwanzigste Schicht) — die **Schluss-Stelle der Natur**: das vierte
   Intervall, die Komplementarität als „Vermittlung" („Strukturen …, die
-  Zweiwertigkeit und Dreiwertigkeit miteinander vermitteln", Lille Z. 506–508,
+  Zweiwertigkeit und Dreiwertigkeit miteinander vermitteln", Lille S. 10,
   Volltext-verifiziert), gefasst als **Koexistenz** (`Mediates f` — ein Träger
   mit einem wiederkehrenden UND einem nie zurückkehrenden Punkt). Die
   **Schnitt-Leere** `reversible_noreturn_empty` verschärft die Trennung der 23.
@@ -703,7 +703,7 @@ Enthält:
   hat einen Zeugen in genau ihrer Klasse. Kette 16→19→20→22→23→24, ein Import,
   kein Mathlib-Import über die transitive Hülle hinaus. **Hegel-Relativitäts-
   Marke:** „Organik = Intervall IV" ist Lesart der Hegel-Stufe, nicht Satz
-  („ernsthafte Zweifel" Z. 921–922, „nur relativ" Z. 936–938).
+  („ernsthafte Zweifel" Lille S. 17, „nur relativ" Lille S. 18).
   **Vermittlungs-Marke:** Günthers „vermitteln" betrifft wörtlich die
   **Werte-Struktur** (Zweiwertigkeit und Dreiwertigkeit) — Werte-Semantik,
   außerhalb dieses Baus; die Koexistenz-Lesart ist Deutung; **der Quanten-Sinn
@@ -725,7 +725,7 @@ Enthält:
 
 - `Proemial.ContentReflexivity`: die Reflexivität der Inhalte (fünfundzwanzigste
   Schicht) — die **erste Geist-Stelle**: das fünfte Intervall, die „Reflexivität
-  der Bewusstseinsinhalte" (Lille Z. 605–607, bestätigt Z. 804,
+  der Bewusstseinsinhalte" (Lille S. 15,
   Volltext-verifiziert), gefasst als **Hebung** (`reflect f := Set.image f` —
   derselbe Prozess auf seinen Inhalten; Mengen von Zuständen werden selbst
   Zustände). Das **Iterations-Gesetz** `reflect_iterate` (die gehobene Iteration
@@ -742,9 +742,9 @@ Enthält:
   achtet die Inhalts-Ordnung). Kette 16→19→20→22→23→24→25, ein Import, kein
   Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3,
   erstmals im Vollzug):** lokale Hegel-Relativitäts-Fassung (die Stufen-Zuordnung
-  ist „eine vorläufige", Z. 811–816), Substrat-Erbe (das Rückgrat zählt, diese
+  ist „eine vorläufige", Lille S. 15), Substrat-Erbe (das Rückgrat zählt, diese
   Schicht deutet), Monas-Struktur-Marke (ein positiver Wert, alle anderen seine
-  Reflexionen, Z. 1015–1017 — Günthers Wort, jede Werte-Formalisierung außerhalb
+  Reflexionen, Lille S. 19 — Günthers Wort, jede Werte-Formalisierung außerhalb
   dieses Baus). **Verzichts-Marke:** der Hegel-Hintergrund (Enzyklopädie,
   Paragraph 387 folgend) ist benannt, nicht beigezogen. **Grenze:** Bewusstsein
   wird nicht formalisiert; Reflexivität als Hebung ist Deutung, „der leere Inhalt
@@ -764,7 +764,7 @@ Enthält:
 
 - `Proemial.MediationProcess`: der Vermittlungsprozess (sechsundzwanzigste
   Schicht) — die **zweite Geist-Stelle**: das sechste Intervall, „der
-  Subjektivität als Vermittlungsprozess gewidmet" (Lille Z. 805–806,
+  Subjektivität als Vermittlungsprozess gewidmet" (Lille S. 15,
   Volltext-verifiziert). **Bauform-Entscheid: kein eigenes Merkmal** — die Stufe
   verortet `Mediates` (24.) auf dem `reflect`-Träger (25.); das Merkmal ist ganz
   Anschluss (die Bauform-These an ihrer reinsten Stelle, kein Definitions-Defizit;
@@ -785,8 +785,8 @@ Enthält:
   Reflexion des Reversiblen vermittelt NICHT — die Vermittlung entsteht in der
   Reflexion genau des Irreversiblen). Kette 16→19→20→22→23→24→25→26, ein Import,
   kein Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3):**
-  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Z. 811–816),
-  Substrat-Erbe, Monas-Struktur-Marke (Z. 1015–1017, Günthers Wort;
+  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Lille S. 15),
+  Substrat-Erbe, Monas-Struktur-Marke (Lille S. 19, Günthers Wort;
   Werte-Formalisierung außerhalb). **Verzichts-Marke:** Hegel-Hintergrund benannt,
   nicht beigezogen. **Grenze:** Subjektivität wird nicht formalisiert;
   Vermittlungsprozess als gehobene Koexistenz ist Deutung, „die Vermittlung
@@ -803,7 +803,7 @@ Enthält:
 - `Proemial.SelfDetermination`: das Subjekt für sich (siebenundzwanzigste
   Schicht) — die **letzte Stelle** der achtfachen Thematik: das siebte Intervall,
   „der sich in sich bestimmende Geist … das Subjekt für sich, das sich ganz in
-  seine private Einsamkeit zurückgezogen hat" (Lille Z. 807–810,
+  seine private Einsamkeit zurückgezogen hat" (Lille S. 15,
   Volltext-verifiziert). **Bauform-Entscheid: kein eigenes Merkmal** — die Stufe
   wendet die Hebung `reflect` (25.) auf sich selbst an, `reflect (reflect f)` auf
   `Set (Set α)` (zweiter Merkmals-freier Fall nach der 26.; R1-Ist-geprüft am
@@ -824,8 +824,8 @@ Enthält:
   der Umtausch erbt sich durch beide Hebungen (Doppel-Konsum von
   `reflect_reversible`). Kette 16→19→20→22→23→24→25→26→27, ein Import, kein
   Mathlib-Import über die transitive Hülle hinaus. **Marken-Trias (W1-F3):**
-  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Z. 811–816),
-  Substrat-Erbe, Monas-Struktur-Marke (Z. 1015–1017, Günthers Wort;
+  lokale Hegel-Relativitäts-Fassung („eine vorläufige", Lille S. 15),
+  Substrat-Erbe, Monas-Struktur-Marke (Lille S. 19, Günthers Wort;
   Werte-Formalisierung außerhalb). **Verzichts-Marke:** Hegel-Hintergrund benannt,
   nicht beigezogen. **Grenze:** Geist und Subjekt werden nicht formalisiert; „für
   sich" als zweite Stufe ist Deutung, „die Einsamkeit steht still" markierte

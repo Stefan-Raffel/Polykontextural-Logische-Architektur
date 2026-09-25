@@ -24,19 +24,20 @@ Nichts wird dupliziert; **kein Mathlib-Import über die transitive Hülle hinaus
 ## (1) Quellen
 
 Der Anker: Intervall VI ist „der **Subjektivität als Vermittlungsprozess**
-gewidmet" (Lille Z. 805–806; **Volltext-verifiziert**; die Zeilen-Marken stehen
-unter der A2-Lokator-Klausel). Härte-Ökonomie: einmal geeicht (Beiträge III,
+gewidmet" (Lille S. 15; **Volltext-verifiziert**; die Ankerform ist Seite und Wortlaut (Sammel-Vollzug 6; bis dahin standen hier Zeilen der
+Volltext-Datei, die sich verschoben hatten)). Härte-Ökonomie: einmal geeicht (Beiträge III,
 S. 160), verlängerbar.
 
 ## (2) MARKEN-TRIAS (Pflicht, W1-F3)
 
 **Lokale Hegel-Relativitäts-Fassung:** die Intervall-Zuordnung der Stufen ist
-„eine vorläufige" (Lille Z. 811–816) — Lesart der Hegel-Stufe, nicht Satz dieser
+„eine vorläufige" (Lille S. 15) — Lesart der Hegel-Stufe, nicht Satz dieser
 Schicht.
 **Substrat-Erbe:** der Ort (`interval_VI_start`, `interval_VI_end`) kommt aus dem
 Rückgrat (21.) — das Rückgrat zählt die Orte, diese Schicht deutet.
 **Monas-Struktur-Marke:** die Ein-Positiv-Struktur (ein positiver Wert, alle
-anderen seine Reflexionen, Lille Z. 1015–1017) ist Günthers Wort; jede
+anderen seine Reflexionen; Lille S. 19: „nur ein einziger positiv ist
+und alle andern seine (negativen) Reflexionen darstellen") ist Günthers Wort; jede
 Werte-Formalisierung bleibt außerhalb dieses Baus.
 
 ## (3) VERZICHTS-MARKE (W1-F1)

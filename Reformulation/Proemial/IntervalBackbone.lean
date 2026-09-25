@@ -17,12 +17,15 @@ importieren (geteilte-Klassen-Ökonomie eine Stufe tiefer).
 
 ## (1) Quellen
 
-Formel und Größen-Semantik wörtlich-gebunden: *m = ½·n(n+1)* (Lille Z. 530);
-*n* = Intervall-Nummer = Zahl der ontologischen Themen, End-Wertzahl = *m+n*
-(Z. 544–547). Tafel IV: Z. 407 ff., erläutert Z. 436–455; Herkunft BCL-Report 3.0,
+Formel und Größen-Semantik wörtlich-gebunden: *m = ½·n(n+1)* (Lille S. 10, „Die Formel hat die
+Gestalt"); *n* = Intervall-Nummer = Zahl der ontologischen Themen, End-Wertzahl = *m+n*
+(S. 11, „so ergibt sich die gesuchte Wertzahl aus m + n"). Tafel IV: S. 8 f. („TAFEL IV"),
+erläutert S. 9 („Die folgende Tafel IV veranschaulicht die ansteigende Skala der logischen
+Systeme"). Ankerform: Seite und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen der
+Volltext-Datei, verschoben); Herkunft BCL-Report 3.0,
 „Cybernetics and Transclassical Logic", 1965 (Fn. 2/5) — **Titel-Falle:** NICHT zu
 verwechseln mit „Cybernetic Ontology and Transjunctional Operations", 1962 (Fn. 6).
-„ein 14-wertiges System formaler Logik" (Z. 517–519). „nicht weniger als 36 Werte
+„ein 14-wertiges System formaler Logik" (Lille S. 10). „nicht weniger als 36 Werte
 und 8 ontologische Themen" — Marke: **druck-verifiziert (Beiträge III, S. 160;
 Doppel-Abgleich 13. Juli)**. Alles Übrige Volltext-verifiziert (Härte-Ökonomie:
 einmal geeicht, S. 160, verlängerbar).
@@ -37,7 +40,7 @@ Stellen-Schichten, die dieses Substrat importieren.
 
 ## (3) HEGEL-RELATIVITÄTS-MARKE
 
-Günthers „ernsthafte Zweifel" (Z. 921–922) und „nur relativ" (Z. 936–938) treffen
+Günthers „ernsthafte Zweifel" (Lille S. 17) und „nur relativ" (Lille S. 18) treffen
 die **inhaltliche Zuordnung** der Hegel-Triaden zu den Intervallen — **nicht** die
 hier gebaute Formel-Arithmetik. Die Zuordnungen selbst (Mechanik = II usw.) kommen
 in den Stellen-Schichten, jede mit dieser Marke.
@@ -161,11 +164,11 @@ namespace Reformulation.Proemial.IntervalBackbone
 -- Teil 1 — Die Definitionen (M1)
 -- ============================================================
 
-/-- Anfangs-Wertzahl des n-ten Intervalls: m = n(n+1)/2 (Lille Z. 530, 544–547;
+/-- Anfangs-Wertzahl des n-ten Intervalls: m = n(n+1)/2 (Lille S. 10, End-Wertzahl S. 11;
     n = Intervall-Nummer = Zahl der ontologischen Themen). -/
 def intervalStart (n : ℕ) : ℕ := n * (n + 1) / 2
 
-/-- End-Wertzahl des n-ten Intervalls: m + n (Lille Z. 544–547). -/
+/-- End-Wertzahl des n-ten Intervalls: m + n (Lille S. 11). -/
 def intervalEnd (n : ℕ) : ℕ := intervalStart n + n
 
 -- ============================================================
@@ -225,7 +228,7 @@ theorem intervalEnd_sub_start (n : ℕ) : intervalEnd n - intervalStart n = n :=
 -- Teil 4 — Tafel IV und die Zitat-Anker (M4)
 -- ============================================================
 
-/-- TAFEL IV (Lille Z. 407 ff., erläutert Z. 436–455; Herkunft: BCL-Report 3.0,
+/-- TAFEL IV (Lille S. 8 f., erläutert S. 9; Herkunft: BCL-Report 3.0,
     „Cybernetics and Transclassical Logic", 1965 — Fn. 2/5; NICHT zu verwechseln
     mit „Cybernetic Ontology and Transjunctional Operations", 1962, Fn. 6):
     die acht Intervalle I–VIII mit Anfangs- und End-Wertzahl. -/
@@ -234,7 +237,7 @@ theorem tafel_IV :
       = [(1,2),(3,5),(6,9),(10,14),(15,20),(21,27),(28,35),(36,44)] := by
   decide
 
-/-- „ein 14-wertiges System formaler Logik" (Lille Z. 517–519): die
+/-- „ein 14-wertiges System formaler Logik" (Lille S. 10): die
     Natur-Theorie schließt am Ende des vierten Intervalls. -/
 theorem nature_closes_at_14 : intervalEnd 4 = 14 := by decide
 

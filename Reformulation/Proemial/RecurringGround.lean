@@ -19,7 +19,7 @@ transitiv `PointwisePeriodic` **term-identisch** — nichts wird dupliziert.
 Der Anker-Satz im vollen Wortlaut: „Das erste Thema ist selbstverständlich das
 reflexionslose Sein des ersten Intervalls, das in allen folgenden
 Reflexionsstufen immer wiederkehrt." — Marke: **druck-verifiziert (Beiträge III,
-S. 160 = vordenker Z. 1018–1032; Doppel-Abgleich 13. Juli, Mathematiker-
+S. 160 = vordenker-Fassung Lille S. 19; Doppel-Abgleich 13. Juli, Mathematiker-
 Vorprüfung + volles Hermeneutes-Siegel)** — erste Schicht mit druck-verifiziertem
 Anker in der Quellen-Rubrik. Kontext derselben Seite: die achte Thematik fügt die
 „Ur-Designation, die Einwertigkeit" hinzu; „Die Subjektivität geht, wie Hegel

@@ -25,17 +25,20 @@ transitive Hülle hinaus**.
 
 Der Anker im Wortlaut: „müssen wir mindestens zum dritten Intervall übergehen …
 zum ersten Mal eine dreiwertige Thematik … die vollkommene Symmetrie von
-Position und Negation … aufgehoben" (Lille Z. 493–496, **Volltext-verifiziert**).
+Position und Negation … aufgehoben" (Lille S. 10, **Volltext-verifiziert**).
 Die Zeit-Dreiheit reversibel / irreversibel / Komplementarität als Rolle der drei
-Mittelstellen: Z. 484–486. „Physik": Z. 512–513. Der Ort (Intervall III als
-Abschnitt des 14-wertigen Systems): Z. 517–519. Härte-Ökonomie: einmal geeicht
+Mittelstellen: S. 10 („als Moment der Reversibilität, zweitens als Moment der
+Irreversibilität"). „Physik": S. 10 („Mechanik, Physik und Organik"). Der Ort
+(Intervall III als Abschnitt des 14-wertigen Systems): S. 10 („ein 14-wertiges System
+formaler Logik"). Ankerform: Seite und Wortlaut (Sammel-Vollzug 6; zuvor Zeilen der
+Volltext-Datei, verschoben). Härte-Ökonomie: einmal geeicht
 (Beiträge III, S. 160, druck-verifiziert), verlängerbar.
 
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
 Die Zuordnung „Physik = Intervall III" ist **Lesart der Hegel-Stufe**, nicht Satz
-dieser Schicht: Günther meldet „ernsthafte Zweifel" (Z. 921–922) an und nennt die
-Zuordnung „nur relativ" (Z. 936–938); gesichert ist allein die Gliederung „je
+dieser Schicht: Günther meldet „ernsthafte Zweifel" (Lille S. 17) an und nennt die
+Zuordnung „nur relativ" (Lille S. 18); gesichert ist allein die Gliederung „je
 drei Intervalle".
 
 ## (3) Substrat-Erbe
@@ -225,7 +228,7 @@ theorem swap_not_noreturn : ¬ NoReturn swap :=
 theorem collapse_not_noreturn : ¬ NoReturn collapse :=
   fun h => h 1 1 (by decide) (by decide)
 
-/-- Der Ort aus dem Rückgrat (21.; Lille Z. 517–519): Intervall III beginnt
+/-- Der Ort aus dem Rückgrat (21.; Lille S. 10, „14-wertiges System"): Intervall III beginnt
     bei 6 … -/
 theorem interval_III_start : intervalStart 3 = 6 := by decide
 
