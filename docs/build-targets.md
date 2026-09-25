@@ -25,6 +25,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `Reformulation` | Huelle, siehe [`kennzahlen.md`](kennzahlen.md) | ja | nicht kalt gemessen |
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
+| `MathlibNameGuard` | 1 | ja | 1,3 s (nur das Modul, Mathlib-Nachbau nicht gemessen) |
 | `Probes` | 16 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
@@ -65,6 +66,16 @@ ist leer. Das Gate meldet die Zahl der geprueften Konstanten in einer Zeile des 
 *Gruen heisst:* die Traegerspalte von `docs/definition-ledger.md` stimmt mit der
 Aggregatumgebung ueberein (R1), und der Traegerstatus passt zur Deklarationsart (R2).
 Die Datei traegt keinen Satz.
+
+### `MathlibNameGuard` — 1 Modul
+
+*Gruen heisst:* drei vom Elaborator erzeugte Mathlib-Instanznamen, auf die Kommentare im
+Bestand verweisen, loesen an der gepinnten Mathlib-Revision noch auf. Die Datei nennt jeden
+Namen einmal als `example`; sie traegt keinen Satz. *Rot heisst:* ein Name hat sich
+geaendert, und die Verweise sind nachzufuehren (Tafel im Dateikopf). Gegenprobe am
+25. September 2026: ein verfaelschter Name bricht den Bau (`Unknown identifier`). Das
+Target zieht `Mathlib.CategoryTheory.Sites.LeftExact` in den Default-Bau; `lake build`
+stieg dadurch von 1416 auf 1592 Jobs.
 
 ### `Probes` — 16 Sonden und Zeugenregister
 
