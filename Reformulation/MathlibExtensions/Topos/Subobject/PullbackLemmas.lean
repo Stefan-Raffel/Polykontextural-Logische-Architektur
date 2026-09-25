@@ -42,12 +42,8 @@ Konsumenten-Hypothese `[PullbackISup E]`.
 Rechte Adjunkte erhalten Limites (Infima/Meets), aber KEINE Kolimites (Suprema/Joins).
 Damit `pullback_f` auch Joins erhält, benötigt es eine *weitere* rechts-Adjunktion
 `pullback_f ⊣ ∀_f` (abhängiges Produkt), die aus der LCCC-Struktur des Topos folgt.
-Diese ist in Mathlib noch nicht formalisiert (gemessen an Mathlib 83a5988, 2026-05-05:
-auf Subobjekt-Ebene nur `CategoryTheory.Subobject.existsPullbackAdj` (∃_f ⊣ pullback_f), kein
-rechter Adjungierter zu `Subobject.pullback f`; auf Over-Ebene nur die Hypothesenklasse
-`CategoryTheory.ExponentiableMorphism` ohne Instanz für einen Topos; gesucht nach
-`ExponentiableMorphism`, `IsExponentiable`, `LocallyCartesianClosed`, `pushforward`,
-`IsLeftAdjoint`/`⊣` an `Over.pullback`, `Subobject.pullback`, `MonoOver.pullback`).
+Diese ist in Mathlib noch nicht formalisiert — Messung und Einordnung (Mathlib-Lücke, keine
+Zusatzannahme) im Doc-String der Klasse `PullbackISup`.
 
 ## Konsumenten-Hypothesen (K4-aktualisiert)
 
@@ -71,7 +67,8 @@ Der mathematische Inhalt der neuen Consumer-Hypothesen:
 - `[Regular E]`: jeder Topos ist regular (Mathlib Future Work,
   `Mathlib.CategoryTheory.RegularCategory.Basic`,
   Abschnitt "Future work": "Show that every topos is regular" (Stand Mathlib 83a5988, 2026-05-05))
-- `[PullbackISup E]`: `pullback_f*` erhält Joins (aus LCCC / ∀_f-Adjunktion; Mathlib Future Work)
+- `[PullbackISup E]`: `pullback_f*` erhält Joins (∀_f-Adjunktion; Mathlib-Lücke, Messung im
+  Doc-String der Klasse `PullbackISup`)
 -/
 
 namespace Reformulation.MathlibExtensions.Topos
@@ -103,10 +100,22 @@ additionally be a left adjoint, i.e., there must exist a right adjoint `∀_f` (
 product functor from LCCC structure). In an elementary topos this holds (from `MonoidalClosed`),
 but is not yet formalized in Mathlib.
 
-Corresponds to: Mathlib Future Work in
-`Mathlib.CategoryTheory.RegularCategory.Basic`,
-section "Future work": "Show that every topos is regular" (as of Mathlib 83a5988, 2026-05-05)
-and the LCCC/Frobenius structure of elementary toposes. **Mathlib-PR-Kandidat** (Sub-Form-c). -/
+**Einordnung (Custos, 26.9.2026):** PullbackISup ist eine MATHLIB-LÜCKE, keine mathematische
+Zusatzannahme: in jedem Elementartopos hat pullback_f auf Unterobjekten einen rechten
+Adjungierten (∀_f) und erhält darum Suprema (Standard der Topostheorie; im Bestand NICHT
+bewiesen).
+
+**The absence, measured** (Mathlib 83a5988, 2026-05-05; measured 2026-09-25). The module
+header and the list of consumer hypotheses refer here.
+- Subobject level: only `CategoryTheory.Subobject.existsPullbackAdj` (`∃_f ⊣ pullback_f`);
+  no right adjoint to `Subobject.pullback f`, no lemma that it preserves joins.
+- Over level: `CategoryTheory.ExponentiableMorphism` (`pullback ⊣ pushforward`) exists only
+  as an ASSUMABLE class; it is not derived for `ElementaryTopos` (instance search fails).
+- Searched for: `ExponentiableMorphism`, `IsExponentiable`, `LocallyCartesianClosed`,
+  `pushforward`, `IsLeftAdjoint`/`⊣` at `Over.pullback`, `Subobject.pullback`,
+  `MonoOver.pullback`, join preservation of `Subobject.pullback`.
+
+**Mathlib-PR-Kandidat** (Sub-Form-c). -/
 class PullbackISup (C : Type u) [Category.{v} C]
     [LocallySmall.{w} C] [WellPowered.{w} C] [HasImages C]
     [HasCoproducts.{w} C] [HasWidePullbacks.{w} C] [InitialMonoClass C] : Prop where
