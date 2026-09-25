@@ -126,6 +126,7 @@ Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
 ## 2 - Vor jeder Lieferung
 
 - `lake build` laeuft durch, AxiomGate gruen.
+- Wer den Mathlib-Pin aendert: Checkliste „Mathlib-Bump" in `docs/build-targets.md`.
 - Fuer **jeden** neuen Satz `#print axioms` ausfuehren, das gemessene Profil verbatim in eine
   `#guard_msgs`-Wache einfrieren. Profile werden gemessen, nicht geschaetzt.
 - **Keine** Whitelist-Eintraege im AxiomGate. Die Whitelist ist seit der
