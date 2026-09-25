@@ -249,7 +249,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L21-4" Reformulation.Proemial.NegationCycleSJT.reach_all
 #ledger_theorem "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_true
 #ledger_theorem "L21-7" Reformulation.Proemial.NegationCycleCatalog.drall_swap
-#ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung1
+#ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
 
 -- ============================================================
 -- Die Grenzspalte: Namen mit Kuerzel, nur Aufloesung (R9).
@@ -305,6 +305,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_two
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_three
 #ledger_mention "L16-23" Reformulation.Kenogram.PairStageBound.card_rgs_five
+#ledger_mention "L21-2" Reformulation.Proemial.NegationCycleThreeCycle.three_iff_adj
 #ledger_mention "L21-5" Reformulation.Proemial.NegationCycle.IsFullCycle
 #ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_general
 #ledger_mention "L21-6" Reformulation.Proemial.NegationCycleCatalog.kat
@@ -315,7 +316,6 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L21-7" Reformulation.Proemial.NegationCycleCatalog.zahlenwerte
 #ledger_mention "L21-8" Reformulation.Proemial.NegationCycleCatalog.kat
 #ledger_mention "L21-8" Reformulation.Proemial.NegationCycleThreeCycle.three_iff_adj
+#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung1
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.katalog_general
-#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
-#ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.stationen_abstand

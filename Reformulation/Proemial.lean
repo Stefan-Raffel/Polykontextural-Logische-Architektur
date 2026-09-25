@@ -1373,8 +1373,8 @@ Enthält:
   Anordnung gibt es ein Negatorwort der Länge `inv a`, und keines ist kürzer. Eichung:
   `eich3`, `eich4` gegen die Suche; `genesen_kuerzeste` — bei drei Werten sind Günthers zwei
   Genesen genau die kürzesten Wege zum Rücklauf; `rueckwaerts_vier` — bei vier Werten 16.
-  **Nicht:** Günthers These über die Definition „jeden Begriffs"; im Ledger L21-9 nur
-  daneben (Träger ist seit Rev. 26 die Tabulierung).
+  **Nicht:** Günthers These über die Definition „jeden Begriffs"; im Ledger Träger von L21-9
+  (seit Rev. 27, Anker am Programmsatz).
   34 Wachen, kein `Classical.choice`.
 - `Proemial.NegationCycleCatalog`: **Günthers Katalog (8)–(13) als Satz** (IGN S. 26 f., 37;
   nach `Spec_N4_Katalog.md`, Fassung 3). Bei drei Werten, Eichung: alle 21 gedruckten Einträge
