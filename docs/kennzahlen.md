@@ -7,14 +7,14 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `50fa4f0` (sauber).
+Stand: Commit `1b6114f` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 200 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Module (.lean, verfolgt) | 201 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
 | Saetze gesamt | 1186 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
 | Saetze, verschaerfte Route | 1186 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
 | def-Deklarationen | 471 | geweitete def-Route ueber Reformulation/ |
@@ -27,7 +27,7 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
 | Aggregat | 146 | Huelle der Wurzel Reformulation.lean |
-| mitgebaut | 19 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
+| mitgebaut | 20 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 34 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 147 | Huelle von Reformulation/AxiomGate.lean |
@@ -36,7 +36,7 @@ Alle mitlaufenden Gleichungen halten.
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 200 gegen 200 |
+| Gleichung *Partition* | ✓ | 201 gegen 201 |
 | Gleichung *Gate=Aggregat+1* | ✓ | 147 gegen 147 |
 | Gleichung *Wachen* | ✓ | 908 gegen 908 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
@@ -62,7 +62,7 @@ Alle mitlaufenden Gleichungen halten.
 | Referenzen im Bau | 98 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1416 | lake build ueber die Default-Targets |
+| Build-Jobs | 1592 | lake build ueber die Default-Targets |
 | geprueft (AxiomGate) | 4495 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
