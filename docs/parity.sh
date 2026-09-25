@@ -162,6 +162,35 @@ if q_en['„'] > 0:
     melde("B8", f"en traegt {q_en['„']} deutsche Anfuehrung(en) „ — englische Fassung, "
                 f"deutsche Form")
 
+# --- B9  Absatzzahl je Abschnitt ---------------------------------------------
+# Eingefuehrt Sammel-Vollzug 8 (A1-Befund: Teil B §5.5 hatte de 4, en 5 Absaetze;
+# B1-B8 sahen es nicht, weil der fehlende Absatz keine Struktur traegt). Gezaehlt
+# werden <p> je Abschnitt zwischen zwei Ueberschriften (h1-h4), AUSSERHALB von
+# Listen und Tabellen — die zaehlen B2/B4, und eine lockere Liste wickelt jedes
+# Element in <p>. Kein Fliesstext-Vergleich: nur die Zahl der Absaetze.
+def abschnitte(t):
+    t = re.sub(r'<svg\b.*?</svg>', ' ', t, flags=re.S)
+    t = re.sub(r'<table\b.*?</table>', ' ', t, flags=re.S)
+    alt = None
+    while alt != t:                       # innerste Listen zuerst, bis nichts mehr steht
+        alt = t
+        t = re.sub(r'<(ul|ol)\b(?:(?!<(?:ul|ol)\b).)*?</\1>', ' ', t, flags=re.S)
+    teile = re.split(r'(<h[1-4]\b[^>]*>.*?</h[1-4]>)', t, flags=re.S)
+    out, kopf = [], '(vor der ersten Ueberschrift)'
+    for i, x in enumerate(teile):
+        if i % 2 == 1:
+            kopf = html.unescape(re.sub(r'<[^>]+>', '', x)).strip()
+        else:
+            out.append((kopf, len(re.findall(r'<p\b', x))))
+    return out
+a_de, a_en = abschnitte(RDE), abschnitte(REN)
+if len(a_de) != len(a_en):
+    melde("B9", f"Abschnittszahl ungleich: de {len(a_de)} · en {len(a_en)} — Absatzvergleich "
+                f"nur bis zum kuerzeren")
+for (kd, nd), (ke, ne) in zip(a_de, a_en):
+    if nd != ne:
+        melde("B9", f"Absaetze ungleich: de {nd} · en {ne}  —  „{kd[:60]}“ / \"{ke[:60]}\"")
+
 # --- Ausgabe ------------------------------------------------------------------
 print("=" * 78)
 print("  parity — Paritaetsprobe de gegen en")
@@ -170,6 +199,7 @@ print(f"  en: {en_p}")
 print("=" * 78)
 print("  B1 Ueberschriftenfolge · B2 Tabellen · B3 Figuren · B4 Kaesten und Listen")
 print("  B5 <code>-Inhalte · B6 num/tablewrap · B7 Ziffernfolgen · B8 Anfuehrungen")
+print("  B9 Absatzzahl je Abschnitt")
 print()
 if befunde:
     for b in befunde: print("  " + b)
