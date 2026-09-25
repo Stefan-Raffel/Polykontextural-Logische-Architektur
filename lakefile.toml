@@ -1,6 +1,6 @@
 name = "reformulation"
 version = "0.2.0"
-defaultTargets = ["Reformulation", "AxiomGate", "DefinitionLedger", "Probes", "F1Coalgebraic", "MathlibNameGuard"]
+defaultTargets = ["Reformulation", "AxiomGate", "DefinitionLedger", "Probes", "F1Coalgebraic"]
 
 [[require]]
 name = "mathlib"
@@ -25,10 +25,10 @@ roots = ["Reformulation.AxiomGate"]
 name = "DefinitionLedger"
 roots = ["Reformulation.Proemial.DefinitionLedger"]
 
-# Mathlib-Namenswache (Custos GEN, SV7) — eigenes Target, NICHT vom Aggregat importiert
-# und vom AxiomGate nicht gefasst. Die Datei traegt keinen Satz; sie nennt drei vom
-# Elaborator erzeugte Mathlib-Instanznamen, auf die Kommentare verweisen, damit ein
-# Mathlib-Wechsel, der sie umbenennt, den Bau bricht. Laeuft ueber defaultTargets.
+# Mathlib-Namenswache (Custos GEN, SV7; Architekt-Entscheid C 26.9.) — eigenes Target,
+# NICHT in defaultTargets, NICHT vom Aggregat importiert, vom AxiomGate nicht gefasst. Die
+# Datei traegt keinen Satz; sie nennt die Mathlib-Namen, auf die Kommentare verweisen.
+# Beim Mathlib-Bump fahren: `lake build MathlibNameGuard`.
 [[lean_lib]]
 name = "MathlibNameGuard"
 roots = ["Reformulation.MathlibNameGuard"]
