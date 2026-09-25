@@ -133,6 +133,16 @@ Rev1-Stand unabhaengig fest; ein Fast-Forward ruehrt Tags nicht an.
   Bau prueft (Deklarationsnamen im Code und in `MathlibNameGuard`), braucht keinen Stand.
   Ein Stand bescheinigt eine Messung: er wird erst gesetzt, wenn an dieser Revision gemessen
   ist. Gemessen wird genau; hingeschrieben wird nur, was die Aussage traegt.
+- **Eine Kennung (Hash, Anker, Belegnummer) wird eingetragen, NACHDEM das, was sie
+  bezeichnet, existiert.** Die Schwester der Regel davor: Ein Stand bescheinigt eine Messung,
+  eine Kennung bescheinigt ein Ding. Eine Kennung, die vor ihrem Gegenstand eingetragen wird,
+  ist keine Ungenauigkeit, sondern eine Angabe ohne Gegenstand. *Anlass (25.9.2026):* Eine
+  Messnotiz trug die Hashes eines Folgezugs, bevor die Commits ergangen waren. Beide waren
+  erfunden, und die bauende Instanz fand es selbst beim Zuruecklesen
+  (`KorpusRev2/Messung_Abnahmebedingung_Length_Catalog_Impl.md`, berichtigt auf `f711ee6`,
+  `73ae620`). *Rueckweg nach §13.3:* keiner in Sicht. Kein Werkzeug prueft, ob eine Kennung
+  in einer Notiz ausserhalb des Repo auf etwas zeigt, das zur Zeit des Schreibens schon
+  bestand.
 - Fuer **jeden** neuen Satz `#print axioms` ausfuehren, das gemessene Profil verbatim in eine
   `#guard_msgs`-Wache einfrieren. Profile werden gemessen, nicht geschaetzt.
 - **Keine** Whitelist-Eintraege im AxiomGate. Die Whitelist ist seit der
