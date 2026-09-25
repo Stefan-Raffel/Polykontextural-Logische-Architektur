@@ -28,7 +28,7 @@ die Zeit besetzt …". „Organik": S. 10, „… triadisch gegliedert in: Mecha
 Organik". Der Ort (Intervall IV als Abschnitt des 14-wertigen Systems): S. 10, „… ein
 14-wertiges System formaler Logik".
 
-**Ankerform: Seite und Wortlaut, nicht Zeile** (seit dem 24. September). Bis dahin
+**Ankerform: Seite und Wortlaut, nicht Zeile** (seit dem 23. September). Bis dahin
 standen hier Zeilen der Volltext-Datei (`KorpusRev1/Lille_1968_Volltext_seitenweise.txt`);
 sie hatten sich verschoben — der Anker stand bei Z. 454–455 statt 506–508, die
 Dreiheit bei 436–439 statt 484–508. In einer bewegten Datei ist die Seite mit dem

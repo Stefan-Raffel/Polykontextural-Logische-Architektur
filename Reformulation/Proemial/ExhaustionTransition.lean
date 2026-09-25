@@ -48,12 +48,12 @@ Nicht-Wiederkehr, Absorption (Benennung ist kein Satz).
 ## (3) Term-fest werden hiermit
 
 `exhausts_ne`, `no_exhaustion_in_periodic`, `collapse_exhausts`,
-`fixpoint_reached_of_strict_descent`, Kür `exhausted_stays`. Seit dem 24. September dazu
+`fixpoint_reached_of_strict_descent`, Kür `exhausted_stays`. Seit dem 23. September dazu
 `dstep`, `dstep_decomp`, `dstep_no_fixpoint` und `decomp_never_exhausts` (Teil 5b).
 
 ## (3a) Die zweite Gestalt — und dass sie diese nicht ist
 
-Der Bestand trägt Günthers „Erschöpfung" seit dem 24. September zweimal: hier als
+Der Bestand trägt Günthers „Erschöpfung" seit dem 23. September zweimal: hier als
 `Exhausts` — eine Iteration erreicht einen **absorbierenden** Bestand und kehrt nicht
 wieder — und in `IntervalBackbone` als `Exhausted` — der Überschuss einer Wertzahl hat ihre
 Themenzahl erreicht, und danach **beginnt** ein neues Intervall (`exhausted_seam`).

@@ -70,7 +70,7 @@ Die Sätze:
   durchläuft ein Wert jeden Wert zwischen Anfang und Ende (HKN S. 25, Lesart „vermittelnd =
   durchlaufen").
 * `sw_val`, `braid`, `comm_far`, `braid_fails_far_all`, `braid_fails_far`, `genese_resultat`,
-  `genese_verschieden` — **die Genese** (Teil 5, 24.9.2026): Günthers zwei Wege zum
+  `genese_verschieden` — **die Genese** (Teil 5, 23.9.2026): Günthers zwei Wege zum
   selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
   jedes `m`. Siehe den Abschnitt „Die Genese" unten.
 
@@ -183,7 +183,8 @@ davon, wie man das strittige Kästchen liest.
 
 ## Die Genese (Teil 5)
 
-Gebaut auf Anordnung des Architekten vom 24.9.2026 nach `KorpusRev2/Spec_V_O1_O3.md`
+Gebaut auf Anordnung des Architekten vom 23.9.2026 (Sitzungsnachricht 13:15 +0200, mit der Spec
+als Anhang) nach `KorpusRev2/Spec_V_O1_O3.md`
 (Fassung 2, Mathematiker; Teil O3), begutachtet in
 `KorpusRev2/Begutachtung_Spec_V_O1_O3_Impl.md`. Quelle: **HKN** = *Die historische
 Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
@@ -352,12 +353,12 @@ nicht. Dasselbe Muster wie `full_length3` in `NegationCycleSearch` (Fallstrick 1
 Baustein-Gattung); gemessen bei der Abnahme der dortigen Heilung.
 
 `janus1974_full`, `janus1974_rotate` und `janus1974_contains_printed` tragen `[propext]`,
-gemessen am 22.9. bzw. 24.9.2026.
+gemessen am 22.9. bzw. 23.9.2026.
 `List.permutations` reduziert unter `decide` nicht; darum die strukturelle Fassung
 `List.permutations'`. Die Umkehr-Sätze (`fullStations_reverse`, `reverse_full` und ihre
 Hilfssätze) tragen `[propext, Quot.sound]` und sind damit die ersten Sätze des Moduls, die
 **nicht** durch `decide` gehen.
-Teil 5 (gemessen am 24.9.2026 nach grünem Bau): `sw_val` ist **axiomfrei**, `braid`
+Teil 5 (gemessen am 23.9.2026 nach grünem Bau): `sw_val` ist **axiomfrei**, `braid`
 und `comm_far` tragen `[propext, Quot.sound]`, ebenso `braid_fails_far_all` (25.9.,
 Schritt für Schritt über `sw_val`: ein `split_ifs` über alle sechs verschachtelten `sw`
 läuft in den Heartbeat-Timeout und meldet sich dann als axiomfrei — Fallstrick 23);

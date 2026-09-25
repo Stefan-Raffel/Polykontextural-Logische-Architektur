@@ -511,7 +511,7 @@ vorhergesehen — gefunden hat sie die Profilmessung, und der Choice sass danach
 des Moduls (A8 entstand erst nach der Heilung). Heilung wie oben: `omega` bekommt nur atomare Ziele.
 
 *Präzisierung der dritten Gestalt: die Konjunktion allein genügt, das Iff ist nicht nötig*
-(gemessen 24. September, `KorpusRev2/Begutachtung_Spec_Wertzahl_Zerlegung_Impl.md`):
+(gemessen 23. September, `KorpusRev2/Begutachtung_Spec_Wertzahl_Zerlegung_Impl.md`):
 
 ```text
 (h : a = b) : a ≤ b ∧ b ≤ a := by omega                      ->  [propext, Classical.choice, Quot.sound]

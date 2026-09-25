@@ -41,10 +41,15 @@ das „Ordnungs- oder Rangverhältnis der Logik" kann „generell als Zahlenverh
 *einer* Umtauschrelation und *zwei* Umtauschrelationen interpretiert werden" (S. 34). Dass
 `NoReturn` diese Ordnung fasst, ist an IGN **Zuordnung** (A20-6), nicht Wortlaut; Günther
 nennt das Ordnungsverhältnis dort *asymmetrisch*, nicht irreversibel. **Die Zuordnung
-irreversibel ist quellenfest an Lille S. 10**, im Satz des Ankers oben („Um ein ontologisches
-Thema mit struktureller Asymmetrie (Irreversibilität) zu erhalten, müssen wir mindestens zum
-dritten Intervall …"); `cat` S. 9 trägt nur die reversible Hälfte (siehe
-`ComplementaryMediation`).
+Ordnung ↦ irreversibel ist mehrfach belegt:** Lille S. 10 im Satz des Ankers oben („Um ein
+ontologisches Thema mit struktureller Asymmetrie (Irreversibilität) zu erhalten …", am
+Seitenbild geprüft); `ident` S. 20 („Im Hierarchischen ist das Verhältnis der beiden Negationen
+irreversibel.", am Seitenbild geprüft, siehe `DirectionChoice`); Vorwort Beiträge Bd. III
+S. VIII („ihm fehlt die totale Reversibilität", am Seitenbild gelesen,
+`Berichtigung_P6_Reversibilitaet_Hermeneutes.md`); dazu `lzee` S. 18 und S. 23 als
+**Verweis ohne Zitat** — nur im Wortlaut der Arbeitskopie gelesen, nicht am Bild, und in
+Datei-Zählung (`Kopf_Ergaenzung_Befunde_Hermeneutes.md`). `cat` S. 9 trägt nur die reversible
+Hälfte (siehe `ComplementaryMediation`).
 
 ## (2) HEGEL-RELATIVITÄTS-MARKE
 
