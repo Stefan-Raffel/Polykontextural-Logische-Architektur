@@ -410,7 +410,15 @@ def endpoint {m : ℕ} : List (Fin m) → List (Fin (m + 1)) → List (Fin (m + 
 def origin (m : ℕ) : List (Fin (m + 1)) := List.finRange (m + 1)
 
 /-- Eine Negationsfolge ist ein **Vollkreis**, wenn sie zum Ausgang zurückkehrt und dabei
-jede Anordnung aller Werte einmal und nur einmal durchläuft. -/
+jede Anordnung aller Werte einmal und nur einmal durchläuft.
+
+*„Vollkreis" ist der Begriff des Bestandes, nicht Günthers „Kreis".* Für Günther gestattet
+erst die zweite Negation einen Kreis (IGN S. 29: „eine zweite Negation. Die aber gestattet
+nur einen Kreis"; im Katalog S. 26 f. ist `U` der Umtausch, `K` braucht zwei Negatoren).
+Günthers Kreis ist demnach der Vollkreis ab zwei Negatoren, `2 ≤ m`. Bei zwei Werten
+(`m = 1`) ist der Vollkreis `N1·N1` (`NegationCycleSJT.sjt1_full`), Günthers zweifacher
+Umtausch. *Marke: ZUORDNUNG.* Einen eigenen Namen für den Kreis gibt es nicht, weil er keinen
+Satz trüge; er würde die Aussage von S. 29 durch Definition wahr machen. -/
 structure IsFullCycle {m : ℕ} (seq : List (Fin m)) : Prop where
   /-- Die Folge kehrt zum Ausgang zurück. -/
   closes : endpoint seq (origin m) = origin m

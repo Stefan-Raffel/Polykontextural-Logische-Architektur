@@ -1355,7 +1355,9 @@ Enthält:
   SJT-Folge der gespiegelte **emendierte** zweite Kreis, ein Zeuge der Emendation von
   ausserhalb des Textes. **Teil B** (Teil 2 des Moduls): `sjt_full` — die SJT-Folge ist
   für jede Wertzahl ab zwei ein Vollkreis; daraus `full_exists` (Günthers stille
-  Voraussetzung; mit `no_full_at_one_value`: ein Vollkreis genau ab zwei Werten) und
+  Voraussetzung, für seine Kreise ab drei Werten; mit `no_full_at_one_value`: ein
+  `IsFullCycle` genau ab zwei Werten — bei zwei Werten ist das Günthers zweifacher Umtausch,
+  kein Kreis, siehe den Vermerk an `IsFullCycle`) und
   `reach_all` (die Listen-Fassung von N-a für jedes `m`, konstruktiv). Der Beweis läuft auf
   der Ebene der natürlichen Zahlen; sein Kern `stations_blocks` zeigt die Stationen des
   grossen Kreises als Einfügungen in die des kleinen. **Nicht:** Hegels „Kreis von Kreisen",

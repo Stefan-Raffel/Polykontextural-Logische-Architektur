@@ -58,7 +58,11 @@ Johnson–Trotter" ist der Name der Konstruktion in der Mathematik, kein Günthe
   Kreises sind die des kleinen, mit dem neuen Wert an der letzten Stelle in allen Höhen,
   abwechselnd ab- und aufsteigend (`planN`). Streicht man die letzte Stelle und
   standardisiert die Werte, bleibt der kleinere Kreis. Ob das Günthers „enthält" (IGN S. 45,
-  „Kreis von Kreisen") ist, bleibt eine Frage an Hermeneutes.
+  „Kreis von Kreisen") ist, bleibt eine Frage an Hermeneutes. IGN S. 29 nennt dazu eine
+  Bedingung: „Kreisen von Kreisen" seien „nur dann produzierbar, wenn man mindestens noch
+  eine dritte Negation – und damit ein Minimum von Vierwertigkeit – einführt". Sie gilt für
+  Günthers Kreis ab zwei Negatoren (Vermerk an `IsFullCycle`) und entscheidet zwischen den
+  Lesarten nicht (`KorpusRev2/Antwort_B7_S29_Impl.md` §3).
 
 **Wie der Beweis läuft.** Er wird ganz auf der Ebene der natürlichen Zahlen geführt (`swN`,
 `stationsN`, `endpointN`, `insertLast`), wo `omega` arbeitet. `Fin` erscheint nur in der
