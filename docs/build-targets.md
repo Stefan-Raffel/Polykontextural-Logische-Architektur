@@ -69,7 +69,9 @@ meldet das Ergebnis je Punkt.*
      Modulindex der Umgebung messen — `#check` zeigt nur, dass es den Namen gibt)?
 
    *Unveraendert:* Stand auf die neue Revision. *Veraendert:* **melden, nicht selbst
-   umschreiben.**
+   umschreiben.** Ein Stempel kann mehrere Aussagen derselben Stelle decken (z.B.
+   `Proemial/AlphaGammaSubstantial.lean`: Orte und fehlende Datei). Beim Bump werden ALLE
+   neu gemessen; haelt eine nicht, gilt der Stempel fuer die ganze Stelle nicht mehr — melden.
    Heute betroffen (siebzehn Zeilen; grep insgesamt 21 Treffer):
    - Fehlen: vier Anker auf das Mathlib-TODO „Show that every topos is regular"
      (`Topos/Regular.lean` dreimal, `Topos/Subobject/PullbackLemmas.lean` einmal); der
