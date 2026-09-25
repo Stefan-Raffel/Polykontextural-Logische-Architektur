@@ -310,7 +310,7 @@ Beides ist zulaessig. Die Verwechslung ist es nicht.
 
 ### Die Ertrags-Skala (fuenf Stufen)
 
-*Aufgenommen auf Entscheid des Architekten (laut Prompt 26.9.2026, Sammel-Vollzug 5, Custos).*
+*Aufgenommen auf Entscheid des Architekten vom 25.9.2026 (Sammel-Vollzug 5, Custos).*
 Sie verfeinert die Unterscheidung oben: **Ertrag** ist die erste Stufe, die uebrigen vier sind
 Gestalten der **Benennung** im weiteren Sinn.
 
