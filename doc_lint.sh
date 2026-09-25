@@ -279,6 +279,10 @@ ledger_report() {
   fi
   awk -F'|' '
     function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    # R5 liest ihren Bereich aus der Selbstauskunft: "| Paragraphen von `Definitionen.md` | X von Y |".
+    /^\| Paragraphen von `Definitionen\.md` \| [0-9]+ von [0-9]+ \|/ {
+      split(trim($3), xy, / von /); sx = xy[1] + 0; sy = xy[2] + 0; yseen++
+    }
     /^\| L[0-9][0-9]-[0-9]+ \|/ {
       id = trim($2); traeger = trim($4); ts = trim($5); zs = trim($6); wache = trim($7)
       par[substr(id, 1, 3)] = 1
@@ -294,21 +298,31 @@ ledger_report() {
       }
     }
     END {
-      # Die Obergrenze 19 ist die STATUSLAGE und keine vergessene Zahl.
-      # `Definitionen.md` fuehrt zwanzig Paragraphen; §20 (Proemialrelation) ist ein
-      # Quellenparagraph, fuer den der Korpus keinen formalen Traeger beansprucht - eine
-      # Ledger-Zeile dort wiese ihren Traeger als Traeger des Begriffs aus. Entschieden in
-      # der Abnahme zum Trennsatz-Zug (9. August 2026); die Begruendung steht in
-      # docs/definition-ledger.md unter "Warum 19 von 20". Wer die Grenze hebt, hebt damit
-      # die Statusentscheidung - das ist ein eigener Zug und kein Nachziehen.
-      k = 0
-      for (i = 1; i <= 19; i++) {
+      # R5 (Entscheid des Architekten, 25.9.2026, Variante Y): der Bereich ist 1..Y, Y aus
+      # der Selbstauskunft des Ledgers, nicht eine feste Zahl - ein neuer Paragraph hebt Y,
+      # und R5 verlangt ihn ab dann von selbst. Vertreten heisst wie bisher: mindestens eine
+      # Zeile, gleich welcher Traegerstatus. Die EINZIGE feste Zahl ist die Ausnahme §20
+      # (Proemialrelation): ein Quellenparagraph, fuer den der Korpus keinen formalen
+      # Traeger beansprucht - entschieden in der Abnahme zum Trennsatz-Zug (9. August 2026),
+      # Begruendung in docs/definition-ledger.md unter "Warum 19 von 20". Dazu die Gleichung
+      # X = Zahl der vertretenen Paragraphen (CLAUDE.md §12 Regel 2): die Selbstauskunft wird
+      # damit selbst geprueft.
+      k = 0; np = 0
+      for (q in par) np++
+      if (yseen != 1) {
+        printf "  [R5] Selbstauskunft \"Paragraphen von Definitionen.md | X von Y\" %d-mal gefunden, erwartet einmal\n", yseen + 0; r5++
+      }
+      for (i = 1; i <= sy; i++) {
+        if (i == 20) continue
         p = sprintf("L%02d", i)
         if (p in par) { k++ } else { printf "  §%d  [R5] Paragraph nicht vertreten\n", i; r5++ }
       }
+      if (sx != np) {
+        printf "  [R5] Selbstauskunft nennt %d vertretene Paragraphen, die Tabelle hat %d\n", sx, np; r5++
+      }
       if (r3 + r4 + r5 + r6 == 0) print "  (keine Verstöße in R3–R6)"
-      printf "  ── %d Zeilen geprüft; R3 %d, R4 %d, R5 %d, R6 %d; Paragraphen %d von 19\n", \
-             n + 0, r3 + 0, r4 + 0, r5 + 0, r6 + 0, k
+      printf "  ── %d Zeilen geprüft; R3 %d, R4 %d, R5 %d, R6 %d; Paragraphen %d von %d verlangt (Bereich 1..%d ohne §20), %d vertreten\n", \
+             n + 0, r3 + 0, r4 + 0, r5 + 0, r6 + 0, k, (sy >= 20 ? sy - 1 : sy), sy, np
       if (r3 + r4 + r5 + r6 > 0) exit 1
     }
   ' "${LEDGER}"
@@ -1015,9 +1029,9 @@ printf '%s\n' "$BLOCK_B" | fmt
 echo
 echo "── Gruppe (C) LEDGER-REGELN R3–R8 — docs/definition-ledger.md ────────────────"
 echo "     R3 kein Zuordnungsstatus \"Theorem\" · R4 Trägerstatus \"Offen\" erzwingt leere"
-echo "     Trägerspalte · R5 alle 19 Paragraphen vertreten (die 19 ist die Statuslage,"
-echo "     nicht eine vergessene Obergrenze: §20 ist ein Quellenparagraph ohne"
-echo "     beanspruchten formalen Träger) · R6 Trägerstatus \"Theorem\""
+echo "     Trägerspalte · R5 jeder Paragraph 1..Y vertreten, Y aus der Selbstauskunft,"
+echo "     ausser §20 (Quellenparagraph ohne beanspruchten formalen Träger), und X gleich"
+echo "     der Zahl der vertretenen Paragraphen · R6 Trägerstatus \"Theorem\""
 echo "     erzwingt ausgefüllte Wachenspalte.  (R1/R2 prüft der Bau, nicht der Lint.)"
 echo "     R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in"
 echo "     Reformulation/Proemial/DefinitionLedger.lean — und umgekehrt."

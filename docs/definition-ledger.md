@@ -66,8 +66,9 @@ L21-10. Die Zählregel ist dieselbe: Ein Paragraph gilt als vertreten, wenn er m
 Zeile hat, auch eine mit Trägerstatus `Offen`. §20 bleibt der einzige Paragraph ohne Zeile, aus
 dem Grund oben. **Die Zahl sagt nichts darüber, wie viel getragen ist:** Von den zehn Zeilen
 des §21 haben vier einen Träger, drei davon mit TEILGETRAGEN in der Grenzspalte, und sechs sind
-offen. *R5 prüft weiterhin die Paragraphen 1 bis 19 und sieht §21 nicht; ob die Regel auf §21
-erweitert wird, ist ein eigener Zug.*
+offen. *R5 prüfte bis dahin die Paragraphen 1 bis 19 und sah §21 nicht. Seit dem Entscheid des
+Architekten vom 25.9.2026 liest R5 den Bereich aus dieser Selbstauskunft: jeder Paragraph
+von 1 bis Y ausser §20, und X muss die Zahl der vertretenen Paragraphen sein.*
 
 *Berichtigung (Ledger Rev. 9):* bis Rev. 8 stand hier „Acht Träger erscheinen in mehr als
 einer Zeile". Die Acht ist die Differenz `Zeilen mit Träger − verschiedene Namen`, also die
@@ -92,8 +93,9 @@ je Trägername.
 
 **Prüfregeln:** R1 Träger löst gegen die Aggregatumgebung auf · R2 TS stimmt mit der
 Deklarationsart überein · R3 kein ZS `Theorem` · R4 TS `Offen` erzwingt leere Trägerspalte ·
-R5 alle 19 Paragraphen vertreten (die 19 ist die Statuslage, nicht eine vergessene
-Obergrenze — siehe „Warum 19 von 20" oben) · R6 TS `Theorem` erzwingt ausgefüllte
+R5 jeder Paragraph 1 bis Y ist vertreten, mit Y aus der Selbstauskunft („X von Y"), ausser
+§20 (die Statuslage — siehe „Warum 19 von 20" oben), und X ist die Zahl der vertretenen
+Paragraphen · R6 TS `Theorem` erzwingt ausgefüllte
 Wachenspalte ·
 R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in
 `Reformulation/Proemial/DefinitionLedger.lean` — und umgekehrt · R8 jede Zeilen-ID kommt in
