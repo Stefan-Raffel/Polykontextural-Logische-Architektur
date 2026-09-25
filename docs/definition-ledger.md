@@ -326,9 +326,11 @@ die Klassenpflicht noch nicht; sie gilt für neu angelegte Felder und ist Phase-
 
 Der Zyklusbegriff ist seit `e69fb16` an **einer** Stelle angeschlossen: die Elementarkontextur
 ist als Zweierbahn einer Involution darstellbar (L02-6 bis L02-8). Eine allgemeine
-Zyklentheorie ist nicht gebaut und war nicht Auftrag. *Daneben:* ein Hamiltonkreis für jede
+Zyklentheorie ist nicht gebaut und war nicht Auftrag. *Daneben:* ein Vollkreis für jede
 Wertzahl ab zwei (`sjt_full`, `NegationCycleSJT`) — ein Kreis **durch die Anordnungen**, nicht
-der Zyklus einer Permutation; die Notiz meint den zweiten.
+der Zyklus einer Permutation; die Notiz meint den zweiten. Günthers Hamiltonkreis ist der
+Vollkreis erst ab drei Werten (Vermerk an `NCyc.IsFullCycle`); bei zwei Werten ist er der
+zweifache Umtausch.
 
 **Der Selbstzyklus ist bewusst nicht gebaut, und zwar begründet** — trivial und
 Mathlib-schließbar (`Function.minimalPeriod_eq_one_iff_isFixedPt`). Drei Fassungen wurden geprüft: als

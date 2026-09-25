@@ -61,7 +61,7 @@ Johnson–Trotter" ist der Name der Konstruktion in der Mathematik, kein Günthe
   „Kreis von Kreisen") ist, bleibt eine Frage an Hermeneutes. IGN S. 29 nennt dazu eine
   Bedingung: „Kreisen von Kreisen" seien „nur dann produzierbar, wenn man mindestens noch
   eine dritte Negation – und damit ein Minimum von Vierwertigkeit – einführt". Sie gilt für
-  Günthers Kreis ab zwei Negatoren (Vermerk an `IsFullCycle`) und entscheidet zwischen den
+  Günthers Hamiltonkreis ab zwei Negatoren (Vermerk an `IsFullCycle`) und entscheidet zwischen den
   Lesarten nicht (`KorpusRev2/Antwort_B7_S29_Impl.md` §3).
 
 **Wie der Beweis läuft.** Er wird ganz auf der Ebene der natürlichen Zahlen geführt (`swN`,
