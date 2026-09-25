@@ -50,7 +50,8 @@ Architekten vom 25. September 2026 nach der Sondierung
 `inv_is_min_length` seit Rev. 23 die Zeile L21-9, als TEILGETRAGEN (die Zahl, nicht der
 Begriff). Die
 Ordnung als „Zahlenverhältnis zwischen einer Umtauschrelation und zwei" (IGN S. 34) ist nicht
-gebaut; Günthers Katalog (8)–(13) ebenfalls nicht (`KorpusRev2/Evaluation_Traeger_1979_Impl.md`).
+gebaut. Günthers Katalog (8)–(13) steht seit dem 25.9. in `NegationCycleCatalog`, dort auch die
+Verbindung seiner „Zahlenwerte" zu `inv` (`zahlenwerte`, `stationen_zahl`).
 
 ## Axiomprofil
 

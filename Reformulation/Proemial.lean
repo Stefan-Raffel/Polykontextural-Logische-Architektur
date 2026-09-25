@@ -67,6 +67,7 @@ import Reformulation.Proemial.NegationCycleSymmetry
 import Reformulation.Proemial.NegationCycleGenerators
 import Reformulation.Proemial.NegationCycleSJT
 import Reformulation.Proemial.NegationCycleLength
+import Reformulation.Proemial.NegationCycleCatalog
 import Reformulation.Proemial.TimeMeasure
 
 /-!
@@ -1372,6 +1373,17 @@ Enthält:
   **Nicht:** Günthers These über die Definition „jeden Begriffs"; im Ledger L21-9
   (teilgetragen).
   34 Wachen, kein `Classical.choice`.
+- `Proemial.NegationCycleCatalog`: **Günthers Katalog (8)–(13) als Satz** (IGN S. 26 f., 37;
+  nach `Spec_N4_Katalog.md`, Fassung 3). Bei drei Werten, Eichung: alle 21 gedruckten Einträge
+  (`katalog_true`), jede Station mit jedem Abstand (`katalog_general`), der Wechsel der
+  Drehrichtung mit `N2` (`drall_swap`), die Art-Spalte beider Tabulierungen von S. 37
+  (`tabulierung1`, `tabulierung2`); der Katalog steht auf den Folgen (4)/(5) (`alt1_basis`,
+  `alt2_basis`). Die Einordnung `kat` ist nicht Günthers. Günthers „Zahlenwerte" sind Stellen,
+  die Inversionszahl der Relation ist `min k (6 − k)` (`zahlenwerte`), und das ist die kürzeste
+  Wortlänge zwischen zwei Stationen (`stationen_zahl`). Für jede Wertzahl: `stationen_abstand`
+  — der Abstand zweier Anordnungen hängt nur von der Relation zwischen ihnen ab (Stufe offen:
+  Hebung oder Zusammenstellung). **Nicht:** der Katalog für `m` Werte, die Kreisrelation im
+  Vollkreis, „jeden Begriff". 18 Wachen, kein `Classical.choice`.
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
