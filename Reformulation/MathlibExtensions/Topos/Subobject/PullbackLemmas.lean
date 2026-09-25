@@ -42,9 +42,12 @@ Konsumenten-Hypothese `[PullbackISup E]`.
 Rechte Adjunkte erhalten Limites (Infima/Meets), aber KEINE Kolimites (Suprema/Joins).
 Damit `pullback_f` auch Joins erhält, benötigt es eine *weitere* rechts-Adjunktion
 `pullback_f ⊣ ∀_f` (abhängiges Produkt), die aus der LCCC-Struktur des Topos folgt.
-Diese ist in Mathlib noch nicht formalisiert (Mathlib Future Work,
-`Mathlib.CategoryTheory.RegularCategory.Basic`,
-Abschnitt "Future work": "Show that every topos is regular" (Stand Mathlib 83a5988, 2026-05-05)).
+Diese ist in Mathlib noch nicht formalisiert (gemessen an Mathlib 83a5988, 2026-05-05:
+auf Subobjekt-Ebene nur `CategoryTheory.Subobject.existsPullbackAdj` (∃_f ⊣ pullback_f), kein
+rechter Adjungierter zu `Subobject.pullback f`; auf Over-Ebene nur die Hypothesenklasse
+`CategoryTheory.ExponentiableMorphism` ohne Instanz für einen Topos; gesucht nach
+`ExponentiableMorphism`, `IsExponentiable`, `LocallyCartesianClosed`, `pushforward`,
+`IsLeftAdjoint`/`⊣` an `Over.pullback`, `Subobject.pullback`, `MonoOver.pullback`).
 
 ## Konsumenten-Hypothesen (K4-aktualisiert)
 
