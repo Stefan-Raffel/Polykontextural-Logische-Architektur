@@ -197,8 +197,8 @@ theorem reflect_reflect_succ_mediates :
 
 /-- Der Ort aus dem Rückgrat: Intervall VII beginnt bei 28 — einer von zwei
     vollkommenen Zahlen unter den Intervall-Anfängen der Acht (die andere ist
-    6 = `intervalStart 3`, Stelle III — je die dritte Stelle ihrer Triade;
-    von-Foerster-Beobachtung; benannter Posten, nicht gebaut). -/
+    6 = `intervalStart 3`, Stelle III; von-Foerster-Beobachtung; benannter Posten,
+    nicht gebaut). -/
 theorem interval_VII_start : intervalStart 7 = 28 := by decide
 
 /-- … und endet bei 35 — Substrat-Abruf. -/

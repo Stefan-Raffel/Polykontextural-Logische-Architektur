@@ -63,6 +63,10 @@ Selbstabbildung `dstep` auf `ℕ × ℕ` gelesen (`dstep_decomp`), fällt **nie*
 `Exhausts`, weil sein Schritt keinen Fixpunkt hat (`dstep_no_fixpoint`) und `Exhausts`
 einen verlangt. **Die zwei Gestalten schliessen einander aus:** wo `Exhausted` greift, geht
 es weiter; wo `Exhausts` greift, geht es nicht weiter. Keine Dublette.
+*Marke:* **UMBENENNUNG** (über die Definition) — der Beweisterm ist `dstep_no_fixpoint`,
+angewandt auf `.1` von `Exhausts`; die Folgerung sitzt in `dstep_no_fixpoint`. Der
+Ausschluss ist damit, wie die Klammer `RecurringGround.exhausts_ground`, **definitorisch**:
+beide lesen `.1` derselben Definition.
 
 *Lesart, nicht Satz* (Mathematiker, 23.9.): die zwei Gestalten sind die zwei Seiten der
 Quell-Spannung, die `exhausts_ne` zitiert — die Subjektivität geht „in ihren Grund, d.h. in

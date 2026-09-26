@@ -514,7 +514,8 @@ Enthält:
   (`no_exhaustion_in_periodic` sogar axiom-frei). 0 Sorries.
   **Seit dem 23. September die zweite Gestalt:** `decomp_never_exhausts` — der Gang von
   `IntervalBackbone.decomp` (als `dstep`, `dstep_decomp` axiom-frei) hat keinen Fixpunkt
-  (`dstep_no_fixpoint`) und fällt darum nie unter `Exhausts`; `Exhausts` und
+  (`dstep_no_fixpoint`) und fällt darum nie unter `Exhausts` (UMBENENNUNG über die
+  Definition: die Folgerung sitzt in `dstep_no_fixpoint`); `Exhausts` und
   `IntervalBackbone.Exhausted` schliessen einander aus (Ende gegen Anfang — die Zuordnung
   zu Günthers zwei Seiten ist Lesart). Dafür importiert die Schicht jetzt auch
   `IntervalBackbone`; 9 Sätze, 8 Wachen (`collapse_iterate_pos` ist durch
