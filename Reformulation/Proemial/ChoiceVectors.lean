@@ -10,6 +10,14 @@ sie **nichts weiter** ist als diese Wahl. Mit `Classical.choice` hat der Name ni
 wo das Axiom auftritt, sagt es der Abschnitt „Zum Axiom-Profil" unten, gemessen und mit
 Herkunft.
 
+**Anker an Günther (1962).** *Cybernetic Ontology and Transjunctional Operations*, S. 37, am
+Seitenbild: „We select our value-sequences with the stipulation that they shall represent only
+compounds of the morphograms `[1]` and `[4]`. This limits us to exactly eight sequences."
+*QUELLENFEST.* Zwei Morphogramme an drei Plätzen, also zwei Wahlen je Elementarkontextur: das
+sind die Wahlvektoren dieser Datei bei drei Werten — *ZUORDNUNG, nah*; an Günthers Tafel XIII
+Spalte für Spalte entschieden in `LocalOpOrbits.tafel_XIII`. (Die Turnier-Module führen
+daneben C&V S. 25–28.)
+
 ## Was bewiesen ist
 
 * **R0 `card_pairs`** — der Traeger der Wahl hat `C(m,2)` Stellen: so viele geordnete Paare

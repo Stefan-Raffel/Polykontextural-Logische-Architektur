@@ -586,7 +586,9 @@ theorem eich4 : ∀ a ∈ (origin 3).permutations', inv a = minLen 3 6 a := by d
 
 /-- **Bei drei Werten sind die kürzesten Worte zum Rücklauf genau Günthers zwei Genesen**
 `N1·2·1` und `N2·1·2` (HKN S. 25):  kein Wort zum Rücklauf ist kürzer als drei, und unter den
-Worten der Länge drei erreichen genau diese zwei ihn. -/
+Worten der Länge drei erreichen genau diese zwei ihn. Dass die zwei dasselbe leisten, liest
+Günther schon 1962 an einer Tafel ab: „ηR =Def η1.2.1 = η2.1.2" (Cybernetic Ontology S. 34; die
+Gleichheit ist sein Befund, die Definition betrifft nur das Zeichen ηR). -/
 theorem genesen_kuerzeste :
     (∀ w : List (Fin 2), endpoint w (origin 2) = [2, 1, 0] → 3 ≤ w.length) ∧
     (∀ a b c : Fin 2, endpoint [a, b, c] (origin 2) = [2, 1, 0] ↔

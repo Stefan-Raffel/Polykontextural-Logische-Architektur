@@ -44,6 +44,14 @@ Quellenanker; PDF-Seite = Druckseite für S. 24–28):
 * S. 28: das Kriterium, das `transitiveT_iff` auf Turnieren trägt (siehe den Kopf von
   `TournamentInseparability`).
 
+*Cybernetic Ontology and Transjunctional Operations* (1962), am Seitenbild:
+* S. 39: „`[4,4,1]` as well as `[1,1,4]` have specific properties which set them apart from the
+  other value-sequences" — die Aussonderung, *QUELLENFEST*. Getragen durch
+  `LocalOpOrbits` (*EICHUNG*): die zwei ausgesonderten Folgen sind DDK und KKD, eine eigene
+  Bahn unter Umbenennung (`bahn_zyklisch`), und die übrigen sechs sind genau die transitiven
+  (`sechs_iff_transitive`). Günther nennt die zwei 1962 **nicht** zyklisch; das Wort ist
+  unseres, die Gleichsetzung heterarchisch = zyklisch steht bei ihm erst in C&V (S. 27).
+
 ## Was dieses Modul NICHT sagt
 
 * **Nicht, dass Günthers Präferenzmuster Turniere SIND — im Wort.** Günther legt je

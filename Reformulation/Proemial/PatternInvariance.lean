@@ -30,6 +30,14 @@ Grenze des Papiers — *eine Kopplung ist kein Grund* — bleibt unberührt.**
 Kenogramme Musterklassen *sind*, ist die Definitionswahl dieses Baus
 (`rgs_equiv_partition`, `canonicalize_eq_iff`) und keine Quellenaussage.
 
+**Vermerk (1962).** Günther trennt in *Cybernetic Ontology and Transjunctional Operations*
+selbst zwei Ebenen: Der Reflektor ℜ operiert auf **Morphogrammen** („If "ℜ" operates on a
+morphogram, it is placed before it", S. 34), die Negationen η auf **Werten** („the operator of
+reflection will always be written in index form after "η"", S. 34), und ℜ ist „completely
+indifferent to the actual value-occupancy" (S. 37). Dieselbe Unterscheidung macht diese Datei
+zwischen den Wertpermutationen und den unter ihnen invarianten Musterklassen. *ZUORDNUNG, nah*
+— ein Vermerk, kein Satz über Günther.
+
 ## Axiomprofil — keine Choice-Freiheit, und das ist gemessen
 
 Der Strang trägt `Classical.choice` schon in der **gebauten** Richtung: `relabel_isRGS`

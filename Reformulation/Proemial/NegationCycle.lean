@@ -208,6 +208,14 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   Vollkreis ist `tafelVI4_full`. Genese ↔ Primat-Frage ist **Günthers eigene Zuordnung**
   (Themensatz vor der Rechnung). *Marken: die Rechnung GEMESSEN; Wortlaut und Tafeln
   QUELLENFEST (am Bild, Hermeneutes 25.9.).*
+  **Dritter Anker: Cybernetic Ontology (1962), S. 34, am Seitenbild.** „If the whole standard
+  sequence of values is reversed we omit all numerical suffixes and add only … R. Thus we may
+  write on the basis of Table_XI: ηR =Def η1.2.1 = η2.1.2". *Die Marke ist getrennt:*
+  „ηR =Def η1.2.1" ist die Definition eines **Zeichens** (Notation); „= η2.1.2" ist die
+  **Gleichheit** der zwei Genesen, an Tafel XI abgelesen, *QUELLENFEST* als Günthers Befund.
+  `genese_resultat` trägt genau diese Gleichheit, nicht die Definition. Es ist der früheste der
+  **bisher gefundenen** Orte (neben HKN 1970 S. 25, den Metamorphose-Tafeln und IGN 1979),
+  nicht notwendig der früheste bei Günther.
 * **K2 — formal die Zopfrelation.** `braid`: `N_i · N_(i+1) · N_i = N_(i+1) · N_i · N_(i+1)`
   für jedes `m`. Skala **FOLGERUNG**: verbraucht `sw_val` und sagt, was kein Satz des
   Bestandes sagt.
