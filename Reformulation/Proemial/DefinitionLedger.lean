@@ -198,6 +198,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L11-4" Reformulation.Proemial.PolicyCheck.freigabe_lokal
 #ledger_theorem "L11-5" Reformulation.Proemial.RAGAuthority.autoritaet_lokal
 #ledger_theorem "L11-6" Reformulation.Proemial.NegationCycle.track_mediates
+#ledger_theorem "L11-7" Reformulation.Proemial.NegatorContexture.mediated_swap
 
 #ledger_theorem "L12-1" Reformulation.Proemial.GeneralCloneBound.locally_classical_in_clone_iff
 #ledger_def "L12-2" Reformulation.Proemial.StageAggregation.agg
@@ -273,6 +274,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.avgDown_escapes
 #ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.locallyClassical_preserves_both
 #ledger_mention "L10-2" Reformulation.Proemial.TransjunctionCloneBound.test1_surjective
+#ledger_mention "L11-6" Reformulation.Proemial.NegatorContexture.mediated_swap
+#ledger_mention "L11-7" Reformulation.Proemial.NegatorContexture.mediated_swap_is_O
 #ledger_mention "L12-5" Reformulation.Proemial.StageAggregation.agg
 #ledger_mention "L12-10" Reformulation.Proemial.StageAscent.choose_two_succ
 #ledger_mention "L16-9" Reformulation.Kenogram.Fillability.exists_nonfillable

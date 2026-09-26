@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 29.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 30.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -38,10 +38,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 127 |
-| Zeilen mit Träger | 105 |
-| verschiedene Trägernamen | 96 |
-| TS `Theorem` | 79 |
+| Zeilen gesamt | 128 |
+| Zeilen mit Träger | 106 |
+| verschiedene Trägernamen | 97 |
+| TS `Theorem` | 80 |
 | TS `Definition` | 25 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 22 |
@@ -50,7 +50,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 **Sechs** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone`,
 `TCB.T_rejective` und `NCyc.sw` (je 2×; `NCyc.sw` seit Rev. 28, L21-2 und L21-14). Das sind
-**neun** überzählige Zeilen, daher 105 Zeilen mit Träger bei 96 Namen. *(Bis Rev. 27 standen
+**neun** überzählige Zeilen, daher 106 Zeilen mit Träger bei 97 Namen. *(Bis Rev. 27 standen
 hier fünf Träger, acht überzählige Zeilen und „98 Zeilen bei 90 Namen"; die beiden letzten
 Zahlen waren seit Rev. 23 nicht nachgeführt.)* Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
@@ -160,6 +160,7 @@ beider Fehlexpansionen.
 | `NLen.` | `Reformulation.Proemial.NegationCycleLength.` | Namensraum |
 | `NCat.` | `Reformulation.Proemial.NegationCycleCatalog.` | Namensraum |
 | `NTC.` | `Reformulation.Proemial.NegationCycleThreeCycle.` | Namensraum |
+| `NCtx.` | `Reformulation.Proemial.NegatorContexture.` | Namensraum |
 
 ## Die Tabelle
 
@@ -234,7 +235,8 @@ beider Fehlexpansionen.
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
 | L11-4 | Vermittlung (§11) | `PC.freigabe_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-5 | Vermittlung (§11) | `RA.autoritaet_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
-| L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger) |
+| L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger); trägt mit `NCtx.mediated_swap` (L11-7) **einen** Günther-Begriff von zwei Seiten: den Vermittler (der Wert 2, HKN S. 25) und das Vermittelte (das Verhältnis 1 ↔ 3, IGN S. 17–19) |
+| L11-7 | Vermittlung (§11) | `NCtx.mediated_swap` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Definitionen §11, Fassung C (IGN 1979, S. 17–19): das Umtauschverhältnis der Werte 1 und 3 ist vermittelt, weil nur Nachbarn der Ordnung unmittelbar tauschen („richtungsorientierte Ordinalzahlen“; „P ist weder unmittelbarer Vorgänger noch unmittelbarer Nachfolger von N 2“). Günthers Fall sind drei Werte; „für jede Wertzahl“ ist **unsere** Verallgemeinerung, die Stufe bleibt FOLGERUNG (dünn). Daneben `NCtx.mediated_swap_is_O` (bei drei Werten Günthers O des Katalogs). Mit L11-6 **ein** Günther-Begriff von zwei Seiten |
 | L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
 | L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
 | L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
