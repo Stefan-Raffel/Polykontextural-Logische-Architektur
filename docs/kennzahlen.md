@@ -7,38 +7,38 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `6a87e8a` (sauber).
+Stand: Commit `70f8a6e` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 204 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1274 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1274 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
-| def-Deklarationen | 490 | geweitete def-Route ueber Reformulation/ |
+| Module (.lean, verfolgt) | 205 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Saetze gesamt | 1278 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 1278 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| def-Deklarationen | 497 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 109 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 996 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 108 | dieselbe Route, -l |
+| Wachen geschrieben | 1000 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 109 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
-| Aggregat | 149 | Huelle der Wurzel Reformulation.lean |
+| Aggregat | 150 | Huelle der Wurzel Reformulation.lean |
 | mitgebaut | 19 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 35 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
-| Gate-Huelle | 150 | Huelle von Reformulation/AxiomGate.lean |
-| Saetze im Aggregat | 1093 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 986 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Gate-Huelle | 151 | Huelle von Reformulation/AxiomGate.lean |
+| Saetze im Aggregat | 1097 | Satzroute, auf die Aggregathuelle eingeschraenkt |
+| Wachen erzwungen | 990 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 204 gegen 204 |
-| Gleichung *Gate=Aggregat+1* | ✓ | 150 gegen 150 |
-| Gleichung *Wachen* | ✓ | 996 gegen 996 |
+| Gleichung *Partition* | ✓ | 205 gegen 205 |
+| Gleichung *Gate=Aggregat+1* | ✓ | 151 gegen 151 |
+| Gleichung *Wachen* | ✓ | 1000 gegen 1000 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -59,11 +59,11 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **DEFINITION-LEDGER** |  |  |
 | Ledger-Zeilen | 127 | Zeilen-IDs in docs/definition-ledger.md |
-| Referenzen im Bau | 169 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
+| Referenzen im Bau | 170 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1419 | lake build ueber die Default-Targets |
-| geprueft (AxiomGate) | 4859 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
+| Build-Jobs | 1420 | lake build ueber die Default-Targets |
+| geprueft (AxiomGate) | 4871 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
 | (A.1) laufender Bestand | 90 | Superlativ, meldend |
