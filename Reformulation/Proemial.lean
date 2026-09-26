@@ -58,6 +58,7 @@ import Reformulation.Proemial.DeuteroCollapse
 import Reformulation.Proemial.SharedPlaceGrowth
 import Reformulation.Proemial.TournamentInseparability
 import Reformulation.Proemial.TournamentSplitThree
+import Reformulation.Proemial.LocalOpOrbits
 import Reformulation.Proemial.LocalOpInseparability
 import Reformulation.Proemial.PatternInvariance
 import Reformulation.Proemial.NegationCycle
@@ -1223,6 +1224,14 @@ Enthält:
   Wertezahlen** (Q4b, nicht gebaut), **keine Ledger-Zeile** (Entscheid bei Custos).
   Vierzehn Wachen, kein Satz trägt `Classical.choice`.
 
+- `Proemial.LocalOpOrbits`: **Günthers Tafel XIII (1962): acht Folgen, zwei Bahnen** (nach
+  `Prompt_Impl_TafelXIII_Anker.md`; Cyb. Ontology S. 37, 39). `tafel_XIII`: Günthers acht
+  gedruckte Wertfolgen sind die acht lokal klassischen Operationen. Unter Umbenennung der
+  Werte durch die Negatoren zerfällt die Tafel in die Bahn von `[4,4,4]` mit sechs Folgen
+  (`bahn_max`) und die Bahn `{[4,4,1], [1,1,4]}` (`bahn_zyklisch`) — die zwei, die Günther
+  aussondert. `sechs_iff_transitive`: die sechs sind genau die mit transitivem Turnier.
+  EICHUNG und ein Brückensatz; „zyklisch" ist unser Wort, nicht Günthers von 1962. 4 Wachen,
+  kein `Classical.choice`.
 - `Proemial.LocalOpInseparability`: **C2 für alle m**, gebaut nach
   `Spec_C2_fuer_alle_m.md` (ERTRAG). Zielsatz `preserves_all_of_basis`: erhält eine
   Relation beliebiger Stelligkeit über `Fin m` die Operationen `min`, `max` und alle
