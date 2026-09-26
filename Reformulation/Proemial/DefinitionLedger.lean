@@ -250,6 +250,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_theorem "L21-6" Reformulation.Proemial.NegationCycleCatalog.katalog_true
 #ledger_theorem "L21-7" Reformulation.Proemial.NegationCycleCatalog.drall_swap
 #ledger_theorem "L21-9" Reformulation.Proemial.NegationCycleLength.inv_is_min_length
+#ledger_theorem "L21-13" Reformulation.Proemial.NegationCycle.genese_verschieden
+#ledger_def "L21-14" Reformulation.Proemial.NegationCycle.sw
 
 -- ============================================================
 -- Die Grenzspalte: Namen mit Kuerzel, nur Aufloesung (R9).
@@ -319,3 +321,4 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung1
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.katalog_general
+#ledger_mention "L21-13" Reformulation.Proemial.NegationCycle.genese_resultat

@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 27.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 28.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -38,19 +38,21 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 122 |
-| Zeilen mit Träger | 103 |
-| verschiedene Trägernamen | 95 |
-| TS `Theorem` | 78 |
-| TS `Definition` | 24 |
+| Zeilen gesamt | 127 |
+| Zeilen mit Träger | 105 |
+| verschiedene Trägernamen | 96 |
+| TS `Theorem` | 79 |
+| TS `Definition` | 25 |
 | TS `Setzung` | 1 |
-| TS `Offen` | 19 |
+| TS `Offen` | 22 |
 | Paragraphen von `Definitionen.md` | 20 von 21 |
 
-**Fünf** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
-`GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone` und
-`TCB.T_rejective` (je 2×). Das sind **acht** überzählige Zeilen, daher 98 Zeilen bei 90
-Namen. Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
+**Sechs** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
+`GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone`,
+`TCB.T_rejective` und `NCyc.sw` (je 2×; `NCyc.sw` seit Rev. 28, L21-2 und L21-14). Das sind
+**neun** überzählige Zeilen, daher 105 Zeilen mit Träger bei 96 Namen. *(Bis Rev. 27 standen
+hier fünf Träger, acht überzählige Zeilen und „98 Zeilen bei 90 Namen"; die beiden letzten
+Zahlen waren seit Rev. 23 nicht nachgeführt.)* Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
 **Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
 keinen formalen Träger beansprucht.** Das ist die Statuslage und keine Lücke, die zu füllen
@@ -67,7 +69,8 @@ Zeile hat, auch eine mit Trägerstatus `Offen`. §20 bleibt der einzige Paragrap
 dem Grund oben. **Die Zahl sagt nichts darüber, wie viel getragen ist:** Von den zehn Zeilen
 des §21 haben vier einen Träger, drei davon mit TEILGETRAGEN in der Grenzspalte, und sechs sind
 offen. *Seit Rev. 24 (Katalog gebaut und abgenommen): fünf mit Träger, fünf offen; L21-6 hat einen
-Träger bekommen, die Zahl der vertretenen Paragraphen bleibt.* *R5 prüfte bis dahin die Paragraphen 1 bis 19 und sah §21 nicht. Seit dem Entscheid des
+Träger bekommen, die Zahl der vertretenen Paragraphen bleibt.* *Seit Rev. 28 (§21 Abschnitt 10, IGN S. 53 f.): 15 Zeilen, 7 mit Träger,
+8 offen.* *R5 prüfte bis dahin die Paragraphen 1 bis 19 und sah §21 nicht. Seit dem Entscheid des
 Architekten vom 25.9.2026 liest R5 den Bereich aus dieser Selbstauskunft: jeder Paragraph
 von 1 bis Y ausser §20, und X muss die Zahl der vertretenen Paragraphen sein.*
 
@@ -284,6 +287,11 @@ beider Fehlexpansionen.
 | L21-8 | Kreis ohne stabiles Sein (§21) | — | Offen | Offen | — | die Kreisrelation K „tritt sofort mit den Superskripten (K r und K l) auf“ (S. 27 [I14]). K ist bei drei Werten als Einordnung gebaut (`NCat.kat`) und steht seit N5 im Vollkreis an seiner Stelle: K genau dort, wo zwei Negatoren einen Wert teilen. Daneben `NTC.three_iff_adj`. „Kein stabiles Sein“ trägt der Bestand nicht |
 | L21-9 | Begriff und Zahl (§21) | `NLen.inv_is_min_length` | Theorem | Deutung | ja, `[propext, Quot.sound]` | TEILGETRAGEN: der Anspruch ist Günthers Programmsatz (S. 37 [I15]) — „wieviel Umtauschvollzüge notwendig sind, um seinen inneren Aufbau zu verstehen“. „Aufbau“ nach Günthers Gebrauch (Struktur einer Anordnung, S. 13, 23, 42); die Anwendung auf Wertanordnungen ist ZUORDNUNG. Die Gleichheit (Zahl des Aufbaus = kürzeste Zahl der Vollzüge) ist unser Satz, nicht der Wortsinn von „notwendig“ (Y5 bleibt gefallen). „Jeden Begriff“ nicht. Günthers Zahlen auf S. 37 (die Tafeln, [I11]) zählen den Weg: daneben `NCat.tabulierung1`, `NCat.tabulierung2` und `NCat.katalog_general` (die Ausführung) |
 | L21-10 | Die dritte Relation (§21) | — | Offen | Offen | — | offene Stelle der Quelle: Umtausch und Ordnung als Prozesse, „ihrem Wesen nach unaufgeklärt“ (S. 25 [I16]). Im Register §33 als L21-o geführt; hier numerisch, weil die Zeilenroute und R3–R8 nur Ziffern kennen |
+| L21-11 | Rangverhältnis von Denken und Wollen (§21) | — | Offen | Offen | — | kein symmetrisches Umtauschverhältnis, sondern ein Rangverhältnis, „in dem der Wille das transzendentale Prius besitzt“ (S. 53 [I23]); kein Träger |
+| L21-12 | Das neutrale Medium, bejahend (§21) | — | Offen | Offen | — | „in gleicher Weise adaptabel an Willensstrukturen wie an logische Notwendigkeit“ (S. 53 [I24]); zuvor verneinend bestimmt (S. 36 [I25]); kein Träger |
+| L21-13 | Ununterscheidbarkeit im Zahlenreich (§21) | `NCyc.genese_verschieden` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: „In den Regeln und Maximen des Zahl[en]reiches sind Notwendigkeit und Freiheit ununterscheidbar“ (S. 53 f. [I26]). Getragen sind die Zahl-Schicht und die syntaktische Seite: die zwei Genesen des Rücklaufs, verschieden als Weg. Daneben `NCyc.genese_resultat` (dasselbe Resultat). Das KRITERIUM — die Sprache, an den Werten und der Designierung ([I27]–[I30]) — ist nicht getragen. Die Gestalt der Kette ist Günthers, die Anwendung unsere |
+| L21-14 | Folge der Zahlen = Folge der Negationen (§21) | `NCyc.sw` | Definition | Operationalisierung | keine (def) | ZUORDNUNG: die Bauform folgt der Bedingung — der Negator `N n` tauscht den Wert n mit seinem Nachfolger, und mit jedem Wert kommt ein Negator hinzu (S. 54 [I31]; vgl. S. 37 „N1 gleich 1↔2“). „Ontologisches Zugehörigkeitsverhältnis“ ist Günthers Wort, kein Satz trägt es |
+| L21-15 | Zahl und Wille (§21) | — | Offen | Offen | — | die Relation zwischen einer gedeuteten Zahl und dem Willen, „was gemacht werden kann, bzw. was gemacht werden soll“ (S. 54 [I31]); kein Träger |
 
 ## Grenznotiz A — Verbundkontextur, zwei Zählfunktionen
 
