@@ -4,8 +4,19 @@ import Reformulation.Proemial.NegationCycleSearch
 /-!
 # Proemial.NegationCycleThreeCycle — die Kreisrelation, wo sie im Vollkreis steht, und Günthers drei Familien
 
-**FOLGERUNG** (Teil 1 bis 3 und die gehobenen Sätze von Teil 4) und **EICHUNG** (`eich_three`,
-`gegenprobe_katalog` und die Listenfassungen von Teil 4). Gebaut auf Anordnung des Architekten
+**Stufen, je Satz am Beweis bestimmt** (26.9.2026; ersetzt die modulweite Marke „FOLGERUNG
+(Teil 1 bis 3 und die gehobenen Sätze von Teil 4)"):
+- `three_iff_adj` — FOLGERUNG — Dreierzyklus genau bei Nachbar-Negatoren, für jedes `m`.
+- `no_double` — FOLGERUNG — kein Doppelnegator im Vollkreis ab zwei Negatoren.
+- `no_double_wrap` — FOLGERUNG — dasselbe über das Ende; verbraucht `no_double` im Randfall.
+- `abstand_zwei`, `abstand_zwei_wrap` — ZUSAMMENSTELLUNG — `three_of_ne2` und
+  `no_double(_wrap)` bei zwei Negatoren.
+- `verteilung_6_12_6_iff_all`, `verteilungen_vollstaendig_all` (Günthers Familiensatz),
+  `gleich_nur_aussen_all` — ZUSAMMENSTELLUNG — die entschiedene Listenfassung über
+  `gerichtet` angewandt auf `mem_gerichtet`.
+- `zaehlsatz_all` — FOLGERUNG — die Schranken aus den vier Verteilungen.
+- **EICHUNG**: `eich_three`, `gegenprobe_katalog` und die Listenfassungen von Teil 4.
+Die übrigen Sätze sind nicht einzeln bestimmt. Gebaut auf Anordnung des Architekten
 vom 25. September 2026 nach `KorpusRev2/Spec_N5_Kreisrelation.md` (Mathematiker) und der
 Sondierung `KorpusRev2/Sondierung_N5_Kreisrelation_Impl.md` samt Nachtrag.
 

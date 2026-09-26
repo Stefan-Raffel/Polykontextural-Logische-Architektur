@@ -3,7 +3,15 @@ import Reformulation.Proemial.NegationCycle
 /-!
 # Proemial.NegationCycleSJT — die Steinhaus–Johnson–Trotter-Konstruktion der Vollkreise
 
-**FOLGERUNG und EICHUNG.** Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
+**Stufen, je Satz am Beweis bestimmt** (26.9.2026; ersetzt die modulweite Marke „FOLGERUNG und
+EICHUNG"):
+- `sjt_full` — FOLGERUNG — die SJT-Folge ist für jede Wertzahl ab zwei ein Vollkreis.
+- `full_exists` — UMBENENNUNG — der Beweisterm ist `⟨_, sjt_full m⟩`.
+- `reach_all` — **ohne Stufe** — `reach_of_full` an `sjt_full`; INSTANZIIERUNG oder
+  ZUSAMMENSTELLUNG, am Wortlaut nicht eindeutig (gemeldet).
+Die übrigen Sätze sind nicht einzeln bestimmt.
+
+Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
 `KorpusRev2/Spec_SJT_Zug.md` (Mathematiker), Teil A. Sondiert in
 `KorpusRev2/Sondierung_SJT_Listenfassung_Impl.md`, begutachtet in
 `KorpusRev2/Begutachtung_Spec_SJT_Zug_Impl.md`. **Teil B**, der Beweis für jede Wertzahl ab

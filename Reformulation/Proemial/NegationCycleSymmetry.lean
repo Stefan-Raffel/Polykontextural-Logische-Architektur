@@ -3,7 +3,15 @@ import Reformulation.Proemial.NegationCycleSearch
 /-!
 # Proemial.NegationCycleSymmetry — Günthers Familienrede auf Sätzen
 
-**FOLGERUNG.** Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
+**Stufen, je Satz am Beweis bestimmt** (26.9.2026; die modulweite Marke „FOLGERUNG" traf
+keinen der drei Sätze):
+- `no_888_all` — ZUSAMMENSTELLUNG — `exactly_fortyfour` und `alleKreise_no_888`, dazu die
+  Umkehrung.
+- `mirror_gerichtet` — EICHUNG — die 88 gerichteten Kreise.
+- `mirror_all` — ZUSAMMENSTELLUNG — `full_iff_mem`, `alleB_perm_gerichtet` und
+  `mirror_gerichtet`.
+
+Gebaut auf Anordnung des Architekten vom 25. September 2026 nach
 `KorpusRev2/Spec_Zug1_NegationCycleSymmetry.md` (Fassung 2, Mathematiker), Teil A; die
 Sätze stammen aus `KorpusRev2/Mut_Bauoptionen_Rueckschau_Impl.md` (M2, M3). Das Modul
 liegt hinter `NegationCycleSearch`, weil zwei seiner Sätze `exactly_fortyfour` und

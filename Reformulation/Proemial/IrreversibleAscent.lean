@@ -53,7 +53,10 @@ Term-Eigenschaft der künftigen Stufen-Hebung (Kandidaten: Präfixlänge,
 Dual zur vierzehnten Schicht (`IntransitivityDifferential`): Zyklus↔strikte
 Ordnung / Aufstieg↔Periodik — die Kontextur-Zahl trennt die zwei
 Zeit-Differentiale, die Beweis-Idee verbindet sie. Die Kenogramm-Anwendung (16b,
-F3-abhängig) und die Inversion 1976 (4b) sind eigene Züge.
+F3-abhängig) und die Inversion 1976 (4b) sind eigene Züge. *Quelle der „1976":* Günther,
+„Idee, Zeit und Materie", zuerst Hegel-Jahrbuch 1976, S. 168–186; die Stelle (Umkehr des
+Verhältnisses von Reflexion und Handlung) S. 19 der vordenker-Ausgabe 2005. Keine Datierung
+von C&V; „(4b)" ist der Planposten 4b von AP4.
 
 ## (6) Sorry-Bilanz und Axiom-Stand
 
