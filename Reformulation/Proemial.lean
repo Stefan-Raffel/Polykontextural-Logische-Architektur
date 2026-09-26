@@ -1298,7 +1298,8 @@ Enthält:
   vermittelnde Wert** (25.9.): `track_mediates` — unter jedem Negatorwort durchläuft ein Wert
   jeden Wert zwischen Anfang und Ende, in beide Richtungen, für jedes `m` (HKN S. 25, „der
   Wert 2 spielt eine vermittelnde Rolle zwischen 1 und 3"; Lesart „vermittelnd =
-  durchlaufen", zwei weitere Lesarten genannt, nicht entschieden). Kein §11-Anspruch ohne
+  durchlaufen", zwei weitere Lesarten genannt, nicht entschieden; das Vermittelte dazu,
+  das Verhältnis 1 ↔ 3, trägt `NegatorContexture.mediated_swap`, IGN S. 17–19). Kein §11-Anspruch ohne
   Custos, keine Definition der zweiten Negation (L07-4 offen). **Der
   kalkültheoretische Bereich** (Teil 6, 25.9.): Günthers vier Spalten aus HKN S. 24
   (`transklassisch3`) sind genau das Komplement der Doppelstrich-Zone (`klassisch3`) in den
@@ -1423,7 +1424,10 @@ Enthält:
   keinen Wert teilen (`disjoint_iff_comm`, als Mengenform `E_inter_empty_iff_comm`); für jede
   Wertzahl. `mediated_swap`: `N_{i+1} N_{i+2} N_{i+1}` tauscht `i` und `i+2`, der vermittelte
   Umtausch der nicht benachbarten Zweiermenge, bei drei Werten Günthers O
-  (`mediated_swap_is_O`); „vermittelt" (IGN S. 17) als LESART. Verbindet `NegationCycle` und
+  (`mediated_swap_is_O`). Der Grund der Bauform (nur Nachbarn der Ordnung tauschen
+  unmittelbar) und „vermittelt" für 1 ↔ 3 bei drei Werten sind QUELLENFEST (IGN S. 17 f., 19,
+  am Bild); die Allgemeinheit für jedes `m` ist unsere; die Verbundkontextur nur nahe
+  (ZUORDNUNG), nicht gleichgesetzt. Verbindet `NegationCycle` und
   `ContextureOverlap`, die einander nicht importierten. Drei dünne FOLGERUNGEN, sonst
   ZUSAMMENSTELLUNG, EICHUNG, INSTANZIIERUNG. **Nicht:** kein Verbund-Objekt, keine Vollkreise
   als „Durchlauf des Verbunds", keine Kenogramme. 10 Wachen; nur `isElemContexture_E` trägt

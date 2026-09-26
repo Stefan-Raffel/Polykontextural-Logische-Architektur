@@ -21,9 +21,30 @@ zwei Stränge, die einander nicht importierten: die Negatoren (`NegationCycle`,
   alle anderen Werte, für jede Wertzahl (`mediated_swap`). Die nicht benachbarte Zweiermenge
   `{i, i + 2}` hat keinen eigenen Negator; ihr Umtausch geht über den gemeinsamen Wert
   `i + 1`. Bei drei Werten ist er Günthers Relationsart O des Katalogs (`mediated_swap_is_O`,
-  IGN S. 26 f.). Dass dies das „vermittelt" von IGN S. 17 f. ist („das zwischen P und N 2 ist
-  durch die andern beiden vermittelt"), ist **LESART**; ob Günthers Vermittlung der
-  Verbundkontextur (Definitionen §3) dieselbe ist, ist offen (Hermeneutes).
+  IGN S. 26 f.; EICHUNG).
+  - *Grund der Bauform — QUELLENFEST* (IGN S. 17 f., am Seitenbild, Hermeneutes U1): „…das
+    zwischen P und N 2 ist durch die andern beiden vermittelt, weil wir P und N als
+    richtungsorientierte Ordinalzahlen behandeln. P ist weder unmittelbarer Vorgänger noch
+    unmittelbarer Nachfolger von N 2." Unmittelbar tauschen nur Nachbarn der Ordnung; dass
+    `N_{i+1}` genau `i` und `i + 1` tauscht, ist Günthers Grund, nicht unsere Setzung. Die
+    Stelle markiert er im dritten Kreis der Tafel VI mit drei Querstrichen (S. 18).
+  - *„vermittelt" — QUELLENFEST für den Umtausch 1 ↔ 3 bei drei Werten* (IGN S. 17; S. 19:
+    „eine erste Vorstellung der Vermittlung. Dass das Umtauschverhältnis zwischen P und N 2,
+    also zwischen den Werten 1 und 3 kein unmittelbares, sondern ein vermitteltes ist…").
+    Für jede Wertzahl ist es Günthers Gestalt, von uns verallgemeinert, nicht Günthers Satz
+    über `m` Werte; die Stufe bleibt FOLGERUNG (dünn).
+  - *Die zweite Negation — QUELLENFEST in IGN* (S. 19, Hermeneutes U2): „Es ist also zu der
+    klassischen Logik erst ein neuer Wert (N 2) hinzugetreten. Immerhin liefert uns schon
+    diese elementare Erweiterung eine erste Vorstellung der Vermittlung." Ohne Hegel. Im
+    Bestand ist `N1·N2·N1` bei drei Werten der Rücklauf (`NegationCycleLength.genesen_kuerzeste`)
+    und eines der vier Elemente von `NegationCycle.transklassisch3`.
+  - *Ein Begriff von zwei Seiten* (Hermeneutes U4): `NegationCycle.track_mediates` trägt den
+    **Vermittler** (den Wert, der durchlaufen wird; HKN S. 25), `mediated_swap` das
+    **Vermittelte** (das Verhältnis 1 ↔ 3; IGN S. 17–19).
+  - *Die Verbundkontextur — ZUORDNUNG, NAHE* (Hermeneutes U3): dasselbe Wort („Verbundkontextur
+    bedeutet Vermittlung", cat S. 25/26) und dieselbe Schwelle, das dreiwertige System als
+    erster Fall. Aber „Verbundkontextur" kommt in IGN nicht vor, und Günther setzt die zwei
+    nirgends gleich. Genannt ist die Nähe, nicht die Gleichheit.
 * **K3 — die Stufen, je Satz am Beweis bestimmt** (CLAUDE.md §4):
   - `overlap_iff` — FOLGERUNG (dünn) — die Arithmetik des Schnitts zweier Paare.
   - `overlap_iff_three` — ZUSAMMENSTELLUNG — `overlap_iff` und `three_iff_adj`.
@@ -113,7 +134,9 @@ theorem disjoint_iff_comm (i j : Fin m) (hij : i ≠ j) :
 
 /-- **B4 — der vermittelte Umtausch:** `N_{i+1} N_{i+2} N_{i+1}` tauscht die Werte `i` und
 `i + 2` und lässt alle anderen, für jede Wertzahl. Die nicht benachbarte Zweiermenge
-`{i, i + 2}` hat keinen eigenen Negator; ihr Umtausch geht über den gemeinsamen Wert `i + 1`. -/
+`{i, i + 2}` hat keinen eigenen Negator; ihr Umtausch geht über den gemeinsamen Wert `i + 1`.
+Günthers Grund dafür, dass nur Nachbarn unmittelbar tauschen, steht IGN S. 17 f. (QUELLENFEST,
+siehe K2); „vermittelt" für 1 ↔ 3 bei drei Werten ebenda und S. 19. -/
 theorem mediated_swap (i j : Fin m) (hj : j.val = i.val + 1) (v : Fin (m + 1)) :
     (sw i (sw j (sw i v))).val =
       if v.val = i.val then i.val + 2 else if v.val = i.val + 2 then i.val else v.val := by

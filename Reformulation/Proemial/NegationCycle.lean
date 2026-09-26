@@ -260,7 +260,10 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   `track_between_down`), für jedes `m`. Er folgt daraus, dass Günthers Negatoren benachbarte
   Werte tauschen (`sw_step`); einen Negator `1 ↔ 3` gibt es nicht. Bei drei Werten heisst
   das: Der Umtausch von 1 und 3 geht auf keinem Weg ohne die 2. Die drei `example`-Eichungen
-  zeigen es an Günthers `N1.2.1` und `N2.1.2`.
+  zeigen es an Günthers `N1.2.1` und `N2.1.2`. *Verweis (26.9.):* Das Vermittelte zu diesem
+  Vermittler, das Verhältnis 1 ↔ 3, trägt `NegatorContexture.mediated_swap` (für jedes `m`), mit
+  Günthers Grund und Wort am Seitenbild (IGN S. 17–19). Nach Hermeneutes (U4) ist es ein
+  Begriff von zwei Seiten: HKN S. 25 nennt den Wert, IGN S. 17–19 das Verhältnis.
 * **K-V3 — Lesart.** „vermittelnd = durchlaufen" ist **LESART** an HKN S. 25. Die Fassung für
   `m ≥ 4` („alle Werte dazwischen vermitteln") setzt diese Lesart fort; Günthers Satz ist sie
   nicht.
