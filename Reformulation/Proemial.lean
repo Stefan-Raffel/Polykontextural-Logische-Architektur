@@ -70,6 +70,7 @@ import Reformulation.Proemial.NegationCycleSJT
 import Reformulation.Proemial.NegationCycleLength
 import Reformulation.Proemial.NegationCycleCatalog
 import Reformulation.Proemial.NegationCycleThreeCycle
+import Reformulation.Proemial.NegatorContexture
 import Reformulation.Proemial.TimeMeasure
 
 /-!
@@ -1414,6 +1415,19 @@ Enthält:
   Kreisen als Zeugen (`zaehlsatz_erreicht`); das „mehr" von N2 liegt in den Schranken, nicht in
   jedem Kreis (`n2_nicht_je_kreis`). **Nicht:** „kein stabiles Sein", K als Hamiltonkreis,
   warum 6-12-6. 36 Wachen, kein `Classical.choice`.
+- `Proemial.NegatorContexture`: **die Negatoren und ihre Elementarkontexturen** (nach
+  `Antwort_Verbund_und_Kreise_Mathematiker.md`, Fassung 2, als Spec). Der Umtauschbereich des
+  Negators `N_{i+1}` ist das Wertpaar `{i, i+1}`, eine Elementarkontextur
+  (`isElemContexture_E`). Zwei verschiedene Negatoren ergeben genau dann die Kreisrelation,
+  wenn ihre Paare überlappen (`overlap_iff_three`), und vertauschen genau dann, wenn die Paare
+  keinen Wert teilen (`disjoint_iff_comm`, als Mengenform `E_inter_empty_iff_comm`); für jede
+  Wertzahl. `mediated_swap`: `N_{i+1} N_{i+2} N_{i+1}` tauscht `i` und `i+2`, der vermittelte
+  Umtausch der nicht benachbarten Zweiermenge, bei drei Werten Günthers O
+  (`mediated_swap_is_O`); „vermittelt" (IGN S. 17) als LESART. Verbindet `NegationCycle` und
+  `ContextureOverlap`, die einander nicht importierten. Drei dünne FOLGERUNGEN, sonst
+  ZUSAMMENSTELLUNG, EICHUNG, INSTANZIIERUNG. **Nicht:** kein Verbund-Objekt, keine Vollkreise
+  als „Durchlauf des Verbunds", keine Kenogramme. 10 Wachen; nur `isElemContexture_E` trägt
+  `Classical.choice` (aus `Finset.card_pair`).
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten
