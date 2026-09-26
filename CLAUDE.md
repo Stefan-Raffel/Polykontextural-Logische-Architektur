@@ -649,6 +649,14 @@ geschrieben zu haben. Heilung wie oben, und sie ist hier teurer: eine Handinstan
 Schlag: `Equiv.swap` und jede Aussage ueber Mitgliedschaft im Submonoid-Abschluss
 (`NegationCycleGenerators`, K2) - der Traeger bzw. das Objekt entscheidet das Profil.
 
+*Beleg, keine neue Regel (26. September, NegatorContexture, `0008c4d`, abgenommen am
+`58dfc2f`):* **nicht `Finset` als Traeger zahlt, sondern einzelne Mathlib-Saetze darueber.**
+Gemessen (Mathlib 83a5988): `Finset.card_pair` und `Finset.disjoint_left` tragen
+`Classical.choice`, `Finset.mem_inter` nicht. Dieselbe Aussage ueber zwei Wertpaare ist in der
+Schnittform `E i ∩ E j = ∅` frei (`E_inter_empty_iff_comm`, `[propext, Quot.sound]`) und war
+in der Form `Disjoint (E i) (E j)` es nicht. Fundstelle: Kopf K4 von
+`Proemial/NegatorContexture.lean`, `KorpusRev2/Meldung_NegatorContexture_Impl.md`.
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
