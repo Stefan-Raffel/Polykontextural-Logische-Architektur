@@ -322,3 +322,4 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.tabulierung2
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.katalog_general
 #ledger_mention "L21-13" Reformulation.Proemial.NegationCycle.genese_resultat
+#ledger_mention "L21-13" Reformulation.Proemial.NegationCycleLength.genesen_kuerzeste

@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 28.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 29.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -289,7 +289,7 @@ beider Fehlexpansionen.
 | L21-10 | Die dritte Relation (§21) | — | Offen | Offen | — | offene Stelle der Quelle: Umtausch und Ordnung als Prozesse, „ihrem Wesen nach unaufgeklärt“ (S. 25 [I16]). Im Register §33 als L21-o geführt; hier numerisch, weil die Zeilenroute und R3–R8 nur Ziffern kennen |
 | L21-11 | Rangverhältnis von Denken und Wollen (§21) | — | Offen | Offen | — | kein symmetrisches Umtauschverhältnis, sondern ein Rangverhältnis, „in dem der Wille das transzendentale Prius besitzt“ (S. 53 [I23]); kein Träger |
 | L21-12 | Das neutrale Medium, bejahend (§21) | — | Offen | Offen | — | „in gleicher Weise adaptabel an Willensstrukturen wie an logische Notwendigkeit“ (S. 53 [I24]); zuvor verneinend bestimmt (S. 36 [I25]); kein Träger |
-| L21-13 | Ununterscheidbarkeit im Zahlenreich (§21) | `NCyc.genese_verschieden` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: „In den Regeln und Maximen des Zahl[en]reiches sind Notwendigkeit und Freiheit ununterscheidbar“ (S. 53 f. [I26]). Getragen sind die Zahl-Schicht und die syntaktische Seite: die zwei Genesen des Rücklaufs, verschieden als Weg. Daneben `NCyc.genese_resultat` (dasselbe Resultat). Das KRITERIUM — die Sprache, an den Werten und der Designierung ([I27]–[I30]) — ist nicht getragen. Die Gestalt der Kette ist Günthers, die Anwendung unsere |
+| L21-13 | Ununterscheidbarkeit im Zahlenreich (§21) | `NCyc.genese_verschieden` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: „In den Regeln und Maximen des Zahl[en]reiches sind Notwendigkeit und Freiheit ununterscheidbar“ (S. 53 f. [I26]). Getragen sind die Zahl-Schicht und die syntaktische Seite: die zwei Genesen des Rücklaufs, verschieden als Weg. Daneben `NCyc.genese_resultat` (dasselbe Resultat) und `NLen.genesen_kuerzeste` (dieselbe Zahl, Länge 3). Das KRITERIUM — die Sprache, an den Werten und der Designierung ([I27]–[I30]) — ist nicht getragen. Die Gestalt der Kette ist Günthers, die Anwendung unsere |
 | L21-14 | Folge der Zahlen = Folge der Negationen (§21) | `NCyc.sw` | Definition | Operationalisierung | keine (def) | ZUORDNUNG: die Bauform folgt der Bedingung — der Negator `N n` tauscht den Wert n mit seinem Nachfolger, und mit jedem Wert kommt ein Negator hinzu (S. 54 [I31]; vgl. S. 37 „N1 gleich 1↔2“). „Ontologisches Zugehörigkeitsverhältnis“ ist Günthers Wort, kein Satz trägt es |
 | L21-15 | Zahl und Wille (§21) | — | Offen | Offen | — | die Relation zwischen einer gedeuteten Zahl und dem Willen, „was gemacht werden kann, bzw. was gemacht werden soll“ (S. 54 [I31]); kein Träger |
 
