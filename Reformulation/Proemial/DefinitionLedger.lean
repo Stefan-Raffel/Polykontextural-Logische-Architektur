@@ -260,6 +260,7 @@ end Reformulation.Proemial.DefinitionLedger
 -- Richtungen, steht in doc_lint.sh.
 -- ============================================================
 #ledger_mention "L02-4" Reformulation.Proemial.NonUniformCloneBound.ActsAsMin
+#ledger_mention "L03-3" Reformulation.Proemial.CompoundContexture.verbund_eq_pairs_iff
 #ledger_mention "L03-5" Reformulation.Proemial.RegimeThreshold.regime_threshold_at_four
 #ledger_mention "L05-7" Reformulation.Proemial.PairwiseMixture.pair_mixture_of_ne_min_ne_max
 #ledger_mention "L06-9" Reformulation.Kenogram.Unbounded.unbounded_not_fillable
@@ -276,6 +277,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L10-2" Reformulation.Proemial.TransjunctionCloneBound.test1_surjective
 #ledger_mention "L11-6" Reformulation.Proemial.NegatorContexture.mediated_swap
 #ledger_mention "L11-7" Reformulation.Proemial.NegatorContexture.mediated_swap_is_O
+#ledger_mention "L11-7" Reformulation.Proemial.NegatorContexture.mediated_elem
+#ledger_mention "L11-7" Reformulation.Proemial.NegatorContexture.isElemContexture_Em
 #ledger_mention "L12-5" Reformulation.Proemial.StageAggregation.agg
 #ledger_mention "L12-10" Reformulation.Proemial.StageAscent.choose_two_succ
 #ledger_mention "L16-9" Reformulation.Kenogram.Fillability.exists_nonfillable

@@ -325,7 +325,7 @@ ledger_report() {
       # Zeile, gleich welcher Traegerstatus. Die EINZIGE feste Zahl ist die Ausnahme §20
       # (Proemialrelation): ein Quellenparagraph, fuer den der Korpus keinen formalen
       # Traeger beansprucht - entschieden in der Abnahme zum Trennsatz-Zug (9. August 2026),
-      # Begruendung in docs/definition-ledger.md unter "Warum 19 von 20". Dazu die Gleichung
+      # Begruendung in docs/definition-ledger.md unter "Warum ein Paragraph ohne Traeger bleibt"; dazu die Gleichung
       # X = Zahl der vertretenen Paragraphen (CLAUDE.md §12 Regel 2): die Selbstauskunft wird
       # damit selbst geprueft.
       k = 0; np = 0

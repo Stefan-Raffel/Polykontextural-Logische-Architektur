@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 30.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 31.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -54,7 +54,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 hier fünf Träger, acht überzählige Zeilen und „98 Zeilen bei 90 Namen"; die beiden letzten
 Zahlen waren seit Rev. 23 nicht nachgeführt.)* Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
-**Warum „19 von 20": §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
+**Warum ein Paragraph ohne Träger bleibt: §20 (Proemialrelation) ist ein Quellenparagraph, für den der Korpus
 keinen formalen Träger beansprucht.** Das ist die Statuslage und keine Lücke, die zu füllen
 wäre — eine Zeile dort wiese ihren Träger als Träger des Begriffs aus, und genau das
 bestreiten die Deutungsgrenzen der Module, die an der Stelle arbeiten
@@ -98,7 +98,7 @@ je Trägername.
 **Prüfregeln:** R1 Träger löst gegen die Aggregatumgebung auf · R2 TS stimmt mit der
 Deklarationsart überein · R3 kein ZS `Theorem` · R4 TS `Offen` erzwingt leere Trägerspalte ·
 R5 jeder Paragraph 1 bis Y ist vertreten, mit Y aus der Selbstauskunft („X von Y"), ausser
-§20 (die Statuslage — siehe „Warum 19 von 20" oben), und X ist die Zahl der vertretenen
+§20 (die Statuslage — siehe „Warum ein Paragraph ohne Träger bleibt" oben), und X ist die Zahl der vertretenen
 Paragraphen · R6 TS `Theorem` erzwingt ausgefüllte
 Wachenspalte ·
 R7 jede Trägerzeile der Tabelle hat genau eine passende Referenz in
@@ -183,7 +183,7 @@ beider Fehlexpansionen.
 | L02-8 | Elementarkontextur (§2) | `EC.exists_involutive_orb_eq` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | jede Elementarkontextur ist Zweierbahn einer Involution; Existenz, **nicht** Eindeutigkeit — siehe Grenznotiz C |
 | L03-1 | Verbundkontextur (§3) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | trägt Nicht-Erzeugbarkeit, nicht Vermittlung |
 | L03-2 | Verbundkontextur (§3) | `CC.overlap_or_third_touches` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Zusammenschluss als Berührungsstruktur: überlappend oder über eine dritte Elementarkontextur. **Grenze:** Berührung, nicht Günthers Vermittlung — die zweite Negation ist nicht getragen. Existenz, nicht Eindeutigkeit |
-| L03-3 | Verbundkontextur (§3) | `CC.zaehlungen_nirgends_gleich` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | die zwei Zählungen der Grenznotiz A stimmen nirgends überein, richtungstreu. **Grenze:** strikte Ungleichung auf der Verbundfolge; der Stirling-Zusatz bleibt gerechnet |
+| L03-3 | Verbundkontextur (§3) | `CC.zaehlungen_nirgends_gleich` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | die zwei Zählungen der Grenznotiz A stimmen nirgends überein, richtungstreu. **Grenze:** strikte Ungleichung auf der Verbundfolge; der Stirling-Zusatz bleibt gerechnet. Der Satz bleibt **wahr**, vergleicht aber `k + 2` (den früheren Index von §3), nicht Günthers Zahl. Unter Günthers **zweiter** Lesung von HKN S. 26 (die Folge als Zahl der Elementarkontexturen) stimmen die Zählungen **genau einmal** überein, bei drei Werten. Daneben `CC.verbund_eq_pairs_iff`. (Definitionen §3 führt seit dem 27.9. Günthers m(m−1)/2 ab 3 und diesen Befund.) |
 | L03-4 | Verbundkontextur (§3) | `CC.two_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | Mindestdreiwertigkeit als Satz: mehrere Elementarkontexturen gibt es genau ab `m = 3`. **Grenze:** dass dies Günthers Begründung über den unvermittelten zweiten Wert ist, bleibt Deutung |
 | L03-5 | Verbundkontextur (§3) | `CC.disjoint_elem_contextures_iff` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | die Schwelle: disjunkte Elementarkontexturen genau ab `m = 4`; gibt `RT.regime_threshold_at_four` seinen begrifflichen Rahmen, ohne gemeinsamen Satz |
 | L03-6 | Verbundkontextur (§3) | `PM.w_differs_on_disjoint` | Theorem | Operationalisierung | ja, `[propext, Classical.choice, Quot.sound]` | am Bestandszeugen `w` liegt die Mischung auf zwei disjunkten Elementarkontexturen. **Grenze:** Verortung am gewählten Zeugen; die Disjunktheit ist Zeugen- und nicht Gattungseigenschaft — Gegenbeispiel in der Grenznotiz des Moduls |
@@ -236,7 +236,7 @@ beider Fehlexpansionen.
 | L11-4 | Vermittlung (§11) | `PC.freigabe_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-5 | Vermittlung (§11) | `RA.autoritaet_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger); trägt mit `NCtx.mediated_swap` (L11-7) **einen** Günther-Begriff von zwei Seiten: den Vermittler (der Wert 2, HKN S. 25) und das Vermittelte (das Verhältnis 1 ↔ 3, IGN S. 17–19) |
-| L11-7 | Vermittlung (§11) | `NCtx.mediated_swap` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Definitionen §11, Fassung C (IGN 1979, S. 17–19): das Umtauschverhältnis der Werte 1 und 3 ist vermittelt, weil nur Nachbarn der Ordnung unmittelbar tauschen („richtungsorientierte Ordinalzahlen“; „P ist weder unmittelbarer Vorgänger noch unmittelbarer Nachfolger von N 2“). Günthers Fall sind drei Werte; „für jede Wertzahl“ ist **unsere** Verallgemeinerung, die Stufe bleibt FOLGERUNG (dünn). Daneben `NCtx.mediated_swap_is_O` (bei drei Werten Günthers O des Katalogs). Mit L11-6 **ein** Günther-Begriff von zwei Seiten |
+| L11-7 | Vermittlung (§11) | `NCtx.mediated_swap` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Definitionen §11, Fassung C (IGN 1979, S. 17–19): das Umtauschverhältnis der Werte 1 und 3 ist vermittelt, weil nur Nachbarn der Ordnung unmittelbar tauschen („richtungsorientierte Ordinalzahlen“; „P ist weder unmittelbarer Vorgänger noch unmittelbarer Nachfolger von N 2“). Günthers Fall sind drei Werte; „für jede Wertzahl“ ist **unsere** Verallgemeinerung, die Stufe bleibt FOLGERUNG (dünn). Daneben `NCtx.mediated_swap_is_O` (bei drei Werten Günthers O des Katalogs). Mit L11-6 **ein** Günther-Begriff von zwei Seiten. Zweiter Anker tml 1971 S. 11: das „vermittelte" Umtauschverhältnis 1 ↔ 3 als eine der drei Elementarkontexturen der einfachsten Verbundkontextur (QUELLENFEST am Wortlaut, Definitionen §11). Dritter Anker C&V S. 27: der vermittelnde Negator (im Wortlaut gelesen, nicht am Seitenbild). Daneben auch `NCtx.mediated_elem` und `NCtx.isElemContexture_Em` |
 | L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
 | L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
 | L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
