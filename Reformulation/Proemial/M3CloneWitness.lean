@@ -3,8 +3,8 @@ import Reformulation.Proemial.NonUniformCloneBound
 /-!
 # Proemial.M3CloneWitness — die M3-Grenze als Satz
 
-Diese Datei überführt die letzte handgerechnete tragende Aussage der Architektur in einen
-Satz: auf dem kleinsten flachen Verband `M3` existiert ein expliziter Term über der Basis
+Diese Datei überführt eine handgerechnete tragende Aussage der Architektur — die M3-Grenze
+der E3-Charakterisierung — in einen Satz: auf dem kleinsten flachen Verband `M3` existiert ein expliziter Term über der Basis
 `{∧, ∨, ¬}`, der auf jedem **vergleichbaren** Paar klassisch wirkt und global weder
 Infimum noch Supremum ist (`m3_mixed_term_exists`). Damit steht die Grenze der
 E3-Charakterisierung (linear gestufte Träger) auf demselben Grund wie die

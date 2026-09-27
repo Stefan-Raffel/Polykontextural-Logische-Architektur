@@ -148,10 +148,21 @@ TRIGGER_RE='zfc|zermelo'
 #     Einwortig `letzte` ist gemessen und verworfen:  116 Zeilen im Bereich, ueberwiegend
 #     Positionsangaben.  `die letzte ` liefert 34, davon rund dreissig "die letzte Stelle"
 #     (Stellen-Tausch, Abstieg) — darum `[^s]` hinter dem Leerzeichen.  So:  8 Zeilen, darunter
-#     zwei echte Rang-Ansprueche ("die letzte handgerechnete tragende Aussage der
-#     Architektur", Proemial.lean und M3CloneWitness.lean), und beide Muss-Faelle des
-#     Konzepts.  Der Preis:  jedes "die letzte s…" entkommt.  Englisch `the last` ist
-#     verworfen (47, fast alles "the last place").  `zum ersten mal` stand schon da.
+#     (gemessen am 27.9., a70e737) zwei echte Rang-Ansprueche ("die letzte handgerechnete
+#     tragende Aussage der Architektur", Proemial.lean und M3CloneWitness.lean — im Folgezug
+#     ohne Rang geheilt:  die Menge, ueber die "die letzte" sprach, war nie bestimmt), und
+#     beide Muss-Faelle des Konzepts.  Der Preis:  jedes "die letzte s…" entkommt.  Englisch
+#     `the last` ist verworfen (47, fast alles "the last place").  `zum ersten mal` stand schon da.
+#
+#     WAS DIESE GRUPPE NICHT FAENGT (27.9.2026).  Ein leerer Lauf heisst "kein Signalwort
+#     gefunden", nicht "keine Rang- oder Prioritaetsbehauptung":
+#       G1  ZEILENWEISE — eine Wendung ueber einen Zeilenumbruch findet kein Muster ("als
+#           erster Fall" stand im Kopf von NegatorContexture unbemerkt, bis eine Neufassung
+#           sie auf eine Zeile zog).
+#       G2  MEHRWORTIGE MUSTER lassen Varianten durch — "die letzte [^s]" faengt weder "die
+#           letzte s…" noch "der/das letzte …"; so gewollt, gegen 116 Positionsangaben.
+#       G3  KEIN SIGNALWORT, KEIN TREFFER — "bewiesen ist es hier" (Rev9-Konzept, Review des
+#           Mathematikers R1) ist eine Prioritaetsbehauptung ohne Superlativ.
 SUPERLATIV_RE='erstmals|erstmalig|zum ersten mal|als erste[rs]?|einzige[rns]?|die letzte [^s]|seit f-1|seit f1|for the first time|the first to|the only|never before|no other'
 
 # --- Dateiliste -------------------------------------------------------------

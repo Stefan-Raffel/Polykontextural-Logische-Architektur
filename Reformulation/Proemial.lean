@@ -281,7 +281,7 @@ Enthält:
   Zeuge `tM3 = (x ∧ y) ∨ ((x ∨ y) ∧ (¬x ∧ ¬y))`, Widerlegungspunkte
   `fM3 bot a1 = a1 ≠ bot` und `fM3 bot top = bot ≠ top`. Damit steht die Grenze der
   E3-Charakterisierung auf demselben Grund wie die Charakterisierung selbst; sie war
-  die letzte handgerechnete tragende Aussage der Architektur. Die LEICHTE Hälfte des
+  eine handgerechnete tragende Aussage der Architektur. Die LEICHTE Hälfte des
   Differentials (Existenz mit explizitem Zeugen); die schwere steht seit
   `GeneralCloneBound`. Träger ist ein EIGENER induktiver Typ, nicht `Fin 5`: eine
   zweite `L.Structure (Fin 5)`-Instanz neben der globalen `strucM` erzeugte im
