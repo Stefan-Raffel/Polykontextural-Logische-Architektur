@@ -656,6 +656,11 @@ Gemessen (Mathlib 83a5988): `Finset.card_pair` und `Finset.disjoint_left` tragen
 Schnittform `E i ∩ E j = ∅` frei (`E_inter_empty_iff_comm`, `[propext, Quot.sound]`) und war
 in der Form `Disjoint (E i) (E j)` es nicht. Fundstelle: Kopf K4 von
 `Proemial/NegatorContexture.lean`, `KorpusRev2/Meldung_NegatorContexture_Impl.md`.
+*Wendung (27. September, `f6e7ba7`):* seit diesem Zug traegt `NegatorContexture` **kein**
+Choice mehr - `E` kommt aus der duplikatfreien Liste (Fallstrick 24), und
+`isElemContexture_E` gilt per `rfl`. Der Beleg oben bleibt als Geschichte richtig: die Route
+ueber `Finset.card_pair` traegt am Stand 83a5988 weiterhin `Classical.choice` (nachgemessen
+27.9.); K4 fuehrt die Messung als Geschichte.
 
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
@@ -1063,6 +1068,16 @@ der Laengensatz selbst, ohne Beweisschritt. `Quot.sound` bleibt: `Multiset` ist 
 
 Eine weitere Gestalt der Baustein-Gattung (10). **Reichweite:** nicht erhoben; der direkte Weg
 steht nicht im Bestand - `NegationCycleSearch` fuehrt die Listen-Form.
+
+*Beleg, keine neue Regel (27. September, `NegatorContexture`, `f6e7ba7`):* der direkte Weg steht
+jetzt im Bestand. `E i` und `Em i j` sind `⟨↑[a, b], nodup⟩`; `isElemContexture_E` und
+`isElemContexture_Em` gelten per `rfl` und tragen `[propext, Quot.sound]` - ueber
+`Finset.card_pair` am Literal `{a, b}` traegt dieselbe Aussage `Classical.choice` (Mathlib
+83a5988, nachgemessen 27.9.). Die Mitgliedschaft (`mem_E`, `mem_Em`) ist im Bestand ueber
+`Multiset.mem_coe` und `rw` bewiesen; ein offenes `simp` liefert dort **dasselbe** Profil
+(gemessen 27.9., Wegwerf-Probe) - der Preis liegt am Erzeuger, nicht an der Mitgliedschaft.
+Fundstelle: Kopf K4 und K6 von `Proemial/NegatorContexture.lean`,
+`KorpusRev2/Vorproben_Spec_Ein_Zug_Impl.md`.
 
 **25 - Ein Choice-Profil beweist keine Nicht-Existenz.** Es sagt, dass **dieser** Beweis
 das Auswahlaxiom braucht - nicht, dass keine Funktion existiert (`Classical.choice`
