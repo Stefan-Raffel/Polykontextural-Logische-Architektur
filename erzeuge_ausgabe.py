@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""erzeuge_ausgabe.py — die Papierausgabe aus den beiden Entwuerfen einer Sprache.
+"""erzeuge_ausgabe.py — die Papierausgabe aus den Entwuerfen einer Sprache (Teil A, B und C).
 
     ./erzeuge_ausgabe.py de docs/de.html
     ./erzeuge_ausgabe.py en docs/en.html
@@ -40,17 +40,20 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 # `parity`, `figures` oder `doc_lint` es meldete. Keine Probe fuehrt die
 # Fassungsbezeichnung; die Heilung ist darum die Aufhebung der Mehrfachnennung und
 # nicht eine zehnte Groesse.
-FASSUNG = 'Rev8'
+FASSUNG = 'Rev9'
 
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in zwei Teilen',
-        datum='12. September 2026',
-        teile=[f'{K}/Entwurf_2026-09-12_Rev8_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-09-12_Rev8_TeilB_Apparat_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev7/de.html',
+        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in drei Teilen',
+        datum='27. September 2026',
+        teile=[f'{K}/Entwurf_2026-09-27_Rev9_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-09-27_Rev9_TeilB_Apparat_de.md',
+               f'{K}/Entwurf_2026-09-27_Rev9_TeilC_Grenze_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev8/de.html',
+        abb_suffix='',
         inhalt='Inhalt', teilA='Teil A · Die Gestalt', teilB='Teil B · Der Apparat',
+        teilC='Teil C · Die Grenze',
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
         kennzahlen='Kennzahlen des Prüfapparats',
@@ -59,12 +62,15 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in two parts',
-        datum='12 September 2026',
-        teile=[f'{K}/Entwurf_2026-09-12_Rev8_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-09-12_Rev8_TeilB_Apparatus_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev7/en.html',
+        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in three parts',
+        datum='27 September 2026',
+        teile=[f'{K}/Entwurf_2026-09-27_Rev9_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-09-27_Rev9_TeilB_Apparatus_en.md',
+               f'{K}/Entwurf_2026-09-27_Rev9_TeilC_Limit_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev8/en.html',
+        abb_suffix='_EN',
         inhalt='Contents', teilA='Part A · The Shape', teilB='Part B · The Apparatus',
+        teilC='Part C · The Limit',
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
         kennzahlen='Figures of the checking apparatus',
@@ -77,6 +83,62 @@ SPRACHEN = {
 def figuren_aus(pfad):
     s = open(pfad, encoding='utf-8').read()
     return re.findall(r'(?is)<figure class="fig.*?</figure>', s)
+
+
+# DIE FIGUREN DER NEUNTEN AUSGABE, in Lesereihenfolge (die Nummer ist die Stelle in
+# dieser Liste). ('abb', Name) ist eine neue Figur aus docs/abb/, von den Skripten in
+# figuren/ erzeugt; ('alt', n) ist Figur n der vorigen Ausgabe derselben Sprache. Die
+# Nummer, die die Seite zeigt, kommt aus der MARKE des Entwurfs und nicht aus der
+# Quellfigur: bis Rev8 wurde die Nummer der Quellfigur uebernommen, und das ging nur,
+# solange keine Figur vor eine bestehende trat.
+FIGUREN = [('alt', 1),
+           ('abb', 'Abb_Achse_Zwei_Konstruktionen'), ('abb', 'Abb_Sechseck_Drei_Werte'),
+           ('abb', 'Abb_Negationssystem_Oktaeder'),
+           ('alt', 2), ('alt', 3), ('alt', 4), ('alt', 5), ('alt', 6), ('alt', 7), ('alt', 8)]
+
+# Die Alt-Texte der neuen Figuren, wortgleich aus der Uebergabe des Verfassers (§2).
+ALT = {
+    ('Abb_Achse_Zwei_Konstruktionen', 'de'): 'Links eine Treppe aus Blöcken, eine Reihe je Designationstyp mit 1 bis 4 Blöcken, daneben die Summen 1, 3, 6, 10. Rechts vollständige Graphen mit 3, 4 und 5 Punkten und 3, 6, 10 Paaren. Darunter die Identität und die zwei Folgen nebeneinander; die Folge der Verbundkontexturen beginnt erst bei 3.',
+    ('Abb_Achse_Zwei_Konstruktionen', 'en'): 'Left, a staircase of blocks, one row per designation type with 1 to 4 blocks, with the sums 1, 3, 6, 10. Right, complete graphs on 3, 4 and 5 points with 3, 6, 10 pairs. Below, the identity and the two sequences side by side; the sequence of compound contextures starts only at 3.',
+    ('Abb_Sechseck_Drei_Werte', 'de'): 'Ein Sechseck, oben die Anordnung 1 2 3, unten 3 2 1. Die Kanten wechseln zwischen zwei Farben für N₁ und N₂. Pfeile laufen rechts herum über 2 1 3 und 3 1 2 und links herum über 1 3 2 und 2 3 1 nach unten. Rechts Günthers Notation: ein N mit hochgestelltem 2.1.2 und tiefgestelltem 1.2.1, dahinter p, darunter die Spalte 3, 2, 1.',
+    ('Abb_Sechseck_Drei_Werte', 'en'): 'A hexagon, the arrangement 1 2 3 at the top, 3 2 1 at the bottom. The edges alternate between two colours for N₁ and N₂. Arrows run down the right side via 2 1 3 and 3 1 2 and down the left via 1 3 2 and 2 3 1. On the right, Günther\'s notation: an N with 2.1.2 as superscript and 1.2.1 as subscript, followed by p, above the column 3, 2, 1.',
+    ('Abb_Negationssystem_Oktaeder', 'de'): 'Links ein abgestumpftes Oktaeder aus Quadraten und Sechsecken, die Kanten in drei Farben für N₁, N₂, N₃, der Ausgang p markiert. Rechts dasselbe Netz flach ausgebreitet, darauf ein geschlossener Weg über alle 24 Ecken; die letzten zwei Schritte gestrichelt.',
+    ('Abb_Negationssystem_Oktaeder', 'en'): 'Left, a truncated octahedron of squares and hexagons, the edges in three colours for N₁, N₂, N₃, the starting point p marked. Right, the same network laid out flat, with a closed path through all 24 vertices; the last two steps dashed.',
+}
+
+
+def neue_figur(name, sprache, suffix):
+    """Eine Matplotlib-SVG aus docs/abb/ als Figur der Seite. Die Datei ist ein
+    eigenes Dokument; eingebettet waere dreierlei falsch: (1) der Kopf (XML-
+    Deklaration, DOCTYPE, Metadaten mit Zeitstempel), (2) der <style>-Block mit dem
+    Selektor `*` — er traefe die ganze Seite —, (3) die IDs `figure_1`, `axes_1` …,
+    die in JEDER solchen Datei gleich lauten und auf einer Seite doppelt staenden.
+    Die zwei Strichregeln des Blocks gehen als erbende Attribute an die Wurzel; die
+    IDs bekommen ein Praefix je Figur, mitsamt allen Verweisen darauf."""
+    s = open(os.path.join(REPO, 'docs', 'abb', name + suffix + '.svg'), encoding='utf-8').read()
+    s = s[s.index('<svg'):]
+    s = re.sub(r'(?is)<metadata>.*?</metadata>\s*', '', s)
+    s = re.sub(r'(?is)<style[^>]*>.*?</style>\s*', '', s)
+    s = re.sub(r'(?is)<defs>\s*</defs>\s*', '', s)
+    px = name.split('_')[1].lower() + '-'
+    s = re.sub(r'\bid="([^"]+)"', lambda m: f'id="{px}{m.group(1)}"', s)
+    s = re.sub(r'(href=")#([^"]+)"', lambda m: f'{m.group(1)}#{px}{m.group(2)}"', s)
+    s = re.sub(r'url\(#([^)]+)\)', lambda m: f'url(#{px}{m.group(1)})', s)
+    kopf = re.match(r'(?is)<svg\b[^>]*>', s).group(0)
+    neu = re.sub(r'\s(width|height)="[^"]*"', '', kopf)
+    neu = neu.replace('xmlns:c2pa="http://c2pa.org/manifest"', '')
+    alt = ALT[(name, sprache)].replace('"', '&quot;')
+    neu = neu[:-1].rstrip() + (f' role="img" aria-label="{alt}"'
+                               ' stroke-linejoin="round" stroke-linecap="butt">')
+    s = neu + s[len(kopf):]
+    return (f'<figure class="fig wide">\n<div class="fig-scroll">\n{s.strip()}\n</div>\n'
+            f'<figcaption></figcaption>\n</figure>')
+
+
+def figuren_der_ausgabe(c, sprache):
+    alt = figuren_aus(c['quelle_figuren'])
+    return [neue_figur(q, sprache, c['abb_suffix']) if art == 'abb' else alt[q - 1]
+            for art, q in FIGUREN]
 
 
 # --- Formeln -----------------------------------------------------------------
@@ -163,9 +225,8 @@ def wandle_teil(md_text, figuren, caption_wort):
             neu = u.group(1).strip().rstrip('*').strip()
             neu = mistune.create_markdown(escape=False)(neu)
             neu = re.sub(r'(?is)^\s*<p>|</p>\s*$', '', neu).strip()
-            nummer = re.search(r'(?is)<span class="fignum">(.*?)</span>', fig)
-            cap = (f'<figcaption><span class="fignum">{nummer.group(1)}</span> — {neu}</figcaption>'
-                   if nummer else f'<figcaption>{neu}</figcaption>')
+            wort = 'Figure' if caption_wort == 'Caption' else 'Figur'
+            cap = f'<figcaption><span class="fignum">{wort} {k.group(1)}</span> — {neu}</figcaption>'
             fig = re.sub(r'(?is)<figcaption.*?</figcaption>', lambda _: cap, fig)
         platz.append(fig)
         return f'\n\nFIGURPLATZ{len(platz) - 1}ENDE\n\n'
@@ -241,23 +302,24 @@ def titel_und_kapitel(html):
 
 def baue(sprache):
     c = SPRACHEN[sprache]
-    figs = figuren_aus(c['quelle_figuren'])
+    figs = figuren_der_ausgabe(c, sprache)
+    praefixe = 'abc'
     teile = []
     for i, pfad in enumerate(c['teile']):
         h = wandle_teil(open(pfad, encoding='utf-8').read(), figs, c['caption'])
-        h = anker_setzen(h, 'a' if i == 0 else 'b')
+        h = anker_setzen(h, praefixe[i])
         teile.append(h)
 
     tocs = []
     for i, h in enumerate(teile):
         _, ers, kap = titel_und_kapitel(h)
-        p = 'a' if i == 0 else 'b'
+        p = praefixe[i]
         zeilen = [f'    <li><a href="#{p}0">{ers}</a></li>']
         zeilen += [f'    <li><a href="#{p}{n}">{k}</a></li>' for n, k in enumerate(kap, 1)]
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (7, 6, 5, 4, 3, 2, 1))
+                         for n in (8, 7, 6, 5, 4, 3, 2, 1))
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>
@@ -299,11 +361,17 @@ def baue(sprache):
   <ol>
 {tocs[1]}
   </ol>
+  <p><strong>{c['teilC']}</strong></p>
+  <ol>
+{tocs[2]}
+  </ol>
 </nav>
 
 {teile[0]}
 
 {teile[1]}
+
+{teile[2]}
 
 </main>
 

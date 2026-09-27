@@ -21,7 +21,7 @@ a translation of it:
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
 
-- Working paper, edition Rev8, in English: `docs/en.html` (Part A the shape, Part B the apparatus)
+- Working paper, edition Rev9, in English: `docs/en.html` (Part A the shape, Part B the apparatus, Part C the limit)
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
 - What a green build assures, per target: `docs/build-targets.md`
 - Current figures with their counting routes: the German section below
@@ -61,8 +61,8 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
 
-**Arbeitspapier zur Fassung PKL Rev8** (deutsch und englisch, zwei Teile in einem Dokument,
-acht Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
+**Arbeitspapier zur Fassung PKL Rev9** (deutsch und englisch, drei Teile in einem Dokument,
+mit Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
 und im Bestand unter `docs/de.html` und `docs/en.html`.
 
 Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf

@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PKL Rev8 — Polykontexturale Logik in Lean 4 und Mathlib</title>
-<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev8 in zwei Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
+<title>PKL Rev9 — Polykontexturale Logik in Lean 4 und Mathlib</title>
+<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev9 in drei Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span class="home">PKL Rev8</span>
+    <span class="home">PKL Rev9</span>
     <div class="langswitch">
       <a href="de.html" hreflang="de">DE</a>
       <span class="sep">·</span>
@@ -26,30 +26,55 @@
 
 <header class="doctitle">
   <h1>Die mathematische Gestalt der Architektur</h1>
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev8, in zwei Teilen</p>
-  <p class="dateline">12. September 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev8</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev9, in drei Teilen</p>
+  <p class="dateline">27. September 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev9</p>
 </header>
 
 <p class="lede">Das Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard
-Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev8, deutsch;
-die englische Übersetzung liegt vor. <strong>Sie hat zwei Teile in einem Dokument:</strong> Teil A
-stellt die Gestalt dar, Teil B liefert Trägertafel, Axiomprofile, Zählrouten und Prüfapparat; die
+Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev9, deutsch;
+die englische Übersetzung liegt vor. <strong>Sie hat drei Teile in einem Dokument:</strong> Teil A
+stellt die Gestalt dar, Teil B liefert Trägertafel, Axiomprofile, Zählrouten und Prüfapparat, Teil C
+führt die vermessenen Grenzen des Baus zusammen; die
 Ziffern in Teil A verweisen anklickbar auf ihre Zeile in Teil B. Die früheren Fassungen bleiben
 unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt; die
 <a href="#fassungen">Tafel der Fassungen</a> führt sie mit Stand und Adresse.</p>
 
 <ul class="cards">
 <li><a class="card" href="de.html" hreflang="de">
-  <span class="kicker">Deutsch · Fassung Rev8</span>
+  <span class="kicker">Deutsch · Fassung Rev9</span>
   <span class="cardtitle">Die mathematische Gestalt der Architektur</span>
-  <span class="cardsub">Zwei Teile, sieben plus sechs Abschnitte, acht Figuren, Anhang mit den Zählrouten. Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
+  <span class="cardsub">Drei Teile — die Gestalt, der Apparat, die Grenze —, Anhang mit den Zählrouten. Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
 </a></li>
 <li><a class="card" href="en.html" hreflang="en">
-  <span class="kicker">English · edition Rev8</span>
+  <span class="kicker">English · edition Rev9</span>
   <span class="cardtitle">The Mathematical Shape of the Architecture</span>
-  <span class="cardsub">Translation of the German edition; two parts, seven plus six sections, eight figures, appendix with the counting routes. Figures in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
+  <span class="cardsub">Translation of the German edition; three parts — the shape, the apparatus, the limit —, appendix with the counting routes. Figures in <a href="kennzahlen.md">kennzahlen.md</a>.</span>
 </a></li>
 </ul>
+
+<h2 id="tueren">Vier Türen</h2>
+
+<p>Der Grundriss, in den alle führen, ist die <a href="de.html#a2">achtfache Thematik</a>.</p>
+
+<h3>Tür 1 — Der Esel</h3>
+<p class="doorfor"><em>für den, der noch nie von Günther gehört hat</em></p>
+<p>Ein Tier, das fressen muss, und eine Umwelt, die ihm keine Weisung gibt, von der sein Wille seine Befehle nehmen könnte. Günther liest daran ab, was eine Wahl an der Welt ändert: vorher eine Ordnung, dann ein Umtausch, neutral gegen Subjekt und Objekt, danach die Ordnung, die das Tier mit seiner Wahl stiftet. Und er sagt, wo die Grenzen liegen, an die ein Denkender stößt: nicht in einem Jenseits, sondern hier. <em>„Dieses empirische Universum selbst ist ‚poly-kontextural‘, und wir begegnen diesem Phänomen an jedem Tag unseres Lebens.“</em> <a href="de.html#a6">→ Buridan</a></p>
+<p lang="en">An animal that has to eat, and an environment that gives it no directive from which its will could take its orders. From this Günther reads off what a choice changes in the world: first an order, then an exchange that is neutral between subject and object, then the order the animal founds by choosing. And he says where the limits a thinking being runs into lie: not in a beyond, but here. <em>"This empirical universe itself is 'poly-contextural', and we meet this phenomenon every day of our lives."</em> (our translation) <a href="en.html#a6" hreflang="en">→ Buridan</a></p>
+
+<h3>Tür 2 — Günthers Pläne, unter Prüfung</h3>
+<p class="doorfor"><em>für den philosophisch oder mathematisch Interessierten</em></p>
+<p>Günther hat zwei Pläne: die achtfache Thematik des objektiven Geistes und die Verbundkontexturen, <em>„ein mehrmaliges, relativ unabhängiges Auftreten der klassischen Logik an verschiedenen ontologischen ›Weltstellen‹“</em>. Hier stehen sie unter Prüfung. 1962 sondert er zwei Folgen aus, weil sie sich nicht auf die einfache Weise definieren lassen, und es sind genau die zwei, deren Turnier nicht transitiv ist: zwei Kriterien, eine Menge. Für seine Kreise bei vier Werten konnte er die Anzahl nicht angeben, weil er, wie er schreibt, <em>„keinen Zugang zu einem Komputer hatte“</em>. Es sind 44 — ohne Drehsinn gezählt, 88 mit —, die Hamiltonkreise des abgestumpften Oktaeders, und die Zahl ist hier formal geprüft, ohne Auswahlaxiom. <a href="de.html#a1">→ Teil A</a></p>
+<p lang="en">Günther has two plans: the eightfold thematic of objective spirit, and the compound contextures, <em>"a repeated, relatively independent occurrence of classical logic at different ontological 'world-places'"</em> (our translation). Here they are put to the test. In 1962 he singles out two sequences because they cannot be defined in the simple way, and they are exactly the two whose tournament is not transitive: two criteria, one set. For his cycles on four values he could not give the number, because, as he writes, he <em>"had no access to a computer"</em> (our translation). There are 44 — counted without direction, 88 with —, the Hamiltonian cycles of the truncated octahedron, and the number is formally checked here, without the axiom of choice. <a href="en.html#a1" hreflang="en">→ Part A</a></p>
+
+<h3>Tür 3 — Das Papier, das sich selbst berichtigt</h3>
+<p class="doorfor"><em>für den <code>#print axioms</code>-Kenner</em></p>
+<p>Was die vorige Ausgabe falsch hatte, steht in dieser berichtigt, mit Anker. Heute wird eine weitere Aussageklasse bewacht: die Angaben über den eigenen Apparat. Und über das Auswahlaxiom wird nicht gezählt, sondern erklärt: Wo eine Paarmenge es kostete, zahlte nicht die Sache, sondern der Baustein; aus einer Liste gebaut, kostet sie es nicht. <a href="de.html#b5">→ Teil B</a></p>
+<p lang="en">What the previous edition got wrong is corrected in this one, with an anchor. Today one more class of statements is guarded: the statements about our own apparatus. And the axiom of choice is not counted but explained: where a set of pairs cost it, it was not the matter that paid but the building block; built from a list, it costs nothing of the kind. <a href="en.html#b5" hreflang="en">→ Part B</a></p>
+
+<h3>Tür 4 — Wie man eine maschinell gebaute Formalisierung ehrlich hält</h3>
+<p class="doorfor"><em>für den, der mit KI baut</em></p>
+<p>Die Arbeit ist nach Rollen geteilt: eine baut und meldet, andere spezifizieren den Wortlaut, begutachten, nehmen ab und schreiben den Text. Nicht wer tippt, macht den Unterschied, sondern dass Wortlaut, Beweis und Abnahme bei verschiedenen Rollen liegen. Dazu eingefrorene Axiomprofile als Wachen, ein Durchgang, dessen Auftrag das Brechen ist, und Schreibregeln aus eigenen Fehlern. Und ein Satz für den, der Freigaben baut: Eine Politik über eine lineare Skala von vier oder mehr Stufen, die auf jedem Stufenpaar wie das Minimum oder wie das Maximum wirkt, aber nicht auf allen gleich, ist aus lokalen Prüfern nicht zusammensetzbar; bei drei Stufen ist sie es teilweise. Keine Sicherheits- oder Rechtsgarantie, aber eine Grenze, die man kennen sollte. <a href="de.html#b0">→ Teil B</a></p>
+<p lang="en">The work is divided by roles: one builds and reports, others specify the wording, review, accept and write the text. What makes the difference is not who types, but that wording, proof and acceptance lie with different roles. Add frozen axiom profiles as guards, a pass whose brief is to break things, and writing rules drawn from our own mistakes. And one theorem for those who build permission systems: a policy over a linear scale of four or more levels that acts like the minimum or like the maximum on every pair of levels, but not the same on all, cannot be composed from local checkers; with three levels it partly can. No safety or legal guarantee, but a limit worth knowing. <a href="en.html#b0" hreflang="en">→ Part B</a></p>
 
 <h2 id="fassungen">Die Fassungen</h2>
 
@@ -57,8 +82,10 @@ unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt; die
 <table>
 <thead><tr><th>Fassung</th><th>Sprache</th><th>Stand</th><th>Adresse</th></tr></thead>
 <tbody>
-<tr><td><strong>Rev8</strong> — laufend</td><td>deutsch</td><td>12. September 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
-<tr><td><strong>Rev8</strong> — laufend</td><td>englisch</td><td>übersetzt 12. September 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td><strong>Rev9</strong> — laufend</td><td>deutsch</td><td>27. September 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
+<tr><td><strong>Rev9</strong> — laufend</td><td>englisch</td><td>übersetzt 27. September 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td>Rev8 — frühere Fassung</td><td>deutsch</td><td>12. September 2026, Commit <code>402fa65</code></td><td><a href="rev8/de.html">rev8/de.html</a></td></tr>
+<tr><td>Rev8 — frühere Fassung</td><td>englisch</td><td>übersetzt 12. September 2026, Kennzahlen Commit <code>402fa65</code></td><td><a href="rev8/en.html">rev8/en.html</a></td></tr>
 <tr><td>Rev7 — frühere Fassung</td><td>deutsch</td><td>9. August 2026, Commit <code>bf5aba3</code></td><td><a href="rev7/de.html">rev7/de.html</a></td></tr>
 <tr><td>Rev7 — frühere Fassung</td><td>englisch</td><td>übersetzt 9. August 2026, Kennzahlen Commit <code>bf5aba3</code></td><td><a href="rev7/en.html">rev7/en.html</a></td></tr>
 <tr><td>Rev6 — frühere Fassung</td><td>deutsch</td><td>8. August 2026, Commit <code>e0f7893</code></td><td><a href="rev6/de.html">rev6/de.html</a></td></tr>
@@ -77,7 +104,7 @@ unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt; die
 </table>
 </div>
 
-<p>Rev7, Rev6, Rev5, Rev4, Rev3, Rev2 und Rev1 werden <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an <code>bf5aba3</code>, <code>e0f7893</code>, <code>fb0630b</code>, <code>24f7fe8</code>, <code>56fe9a0</code>, <code>e5ef3d7</code> beziehungsweise <code>e89ab47</code> und tragen ihren Stand; wer sie einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
+<p>Rev8, Rev7, Rev6, Rev5, Rev4, Rev3, Rev2 und Rev1 werden <strong>nicht nachgeführt</strong>. Ihre Zahlen hängen an <code>402fa65</code>, <code>bf5aba3</code>, <code>e0f7893</code>, <code>fb0630b</code>, <code>24f7fe8</code>, <code>56fe9a0</code>, <code>e5ef3d7</code> beziehungsweise <code>e89ab47</code> und tragen ihren Stand; wer sie einzeln nachführte, erzeugte eine Fassung, die es nie gab.</p>
 
 <h2 id="schaufenster">Woran man es sieht: eine Politik, die sich nicht zusammensetzen lässt</h2>
 
@@ -119,7 +146,7 @@ bis <em>privilegiert</em> — <code>PolicyCheck.freigabe</code>.</p>
 Retrievalgarantie. Bewiesen ist, was aus lokalen, kontextur-blinden Prüfern nicht
 zusammensetzbar ist."</em> Er setzt ausserdem eine <strong>lineare Stufenskala</strong> voraus —
 mehrere Rollen oder Perspektiven ohne Stufung genügen nicht. Wo die Schranke beisst und wo
-sie fällt, steht im Arbeitspapier: <a href="de.html#a7">Kapitel 7 — Reichweite und Grenze</a>.</p>
+sie fällt, steht im Arbeitspapier: <a href="de.html#a10">Kapitel 7 — Reichweite und Grenze</a>.</p>
 
 <h2 id="etiketten">Zwei Achsen je Aussage</h2>
 
@@ -131,11 +158,13 @@ etwas anderes als in einem Zweig, den nur ein eigener Aufruf baut.</p>
 <table>
 <thead><tr><th>Erste Achse — die Art</th><th>Zweite Achse — der Bereich</th></tr></thead>
 <tbody>
-<tr><td><strong>bewiesen</strong> — maschinell verifiziertes Theorem</td><td><strong>Aggregat</strong> — in der Hülle der fünf Default-Targets; das AxiomGate prüft es bei jedem Bau</td></tr>
-<tr><td><strong>gemessen</strong> — maschinell gezählte Kenngrösse</td><td><strong>Rufe-Target</strong> — ausserhalb davon, von mindestens einem Rufe-Target erreicht; kein Gate, keine Lückenfreiheitszusage</td></tr>
-<tr><td><strong>gerechnet</strong> — exakte Rechnung ausserhalb des Korpus</td><td><strong>von keinem Target erfasst</strong> — im Baum, von keiner Hülle erreicht; kein Bau fasst es an</td></tr>
-<tr><td><strong>gesetzt</strong> — ausdrückliche Prämisse</td><td rowspan="4">Quer dazu, und ausdrücklich kein Hüllenwert: <strong>eingefroren</strong> — der Zweig <code>PathC/</code>, mit ausdrücklichen Auftaubedingungen stillgelegt. Ein eingefrorenes Modul kann trotzdem gebaut werden; zwei von achtzehn werden über ein Rufe-Target erreicht.</td></tr>
-<tr><td><strong>quellen-fest</strong> — wörtlich bei Günther, mit Fundstelle</td></tr>
+<tr><td><strong>bewiesen</strong> — maschinell verifiziertes Theorem</td><td><strong>Aggregat</strong> — in der Import-Hülle der Wurzel <code>Reformulation</code>; das AxiomGate prüft es bei jedem Bau</td></tr>
+<tr><td><strong>gemessen</strong> — maschinell gezählte Kenngrösse</td><td><strong>mitgebaut</strong> — über ein anderes der fünf Default-Targets erreicht; gebaut, seine Wachen laufen mit, kein Gate</td></tr>
+<tr><td><strong>gerechnet</strong> — exakte Rechnung ausserhalb des Korpus</td><td><strong>Rufe-Target</strong> — ausserhalb der Default-Targets, von mindestens einem Rufe-Target erreicht; kein Gate, keine Lückenfreiheitszusage</td></tr>
+<tr><td><strong>gesetzt</strong> — ausdrückliche Prämisse</td><td><strong>von keinem Target erfasst</strong> — im Baum, von keiner Hülle erreicht; kein Bau fasst es an</td></tr>
+<tr><td><strong>quellenfest</strong> — wörtlich bei Günther, mit Fundstelle</td><td rowspan="5">Quer dazu, und ausdrücklich kein Hüllenwert: <strong>eingefroren</strong> — der Zweig <code>PathC/</code>, mit ausdrücklichen Auftaubedingungen stillgelegt. Ein eingefrorenes Modul kann trotzdem gebaut werden; zwei von achtzehn werden über ein Rufe-Target erreicht.</td></tr>
+<tr><td><strong>Lehrbuch</strong> — bekannte Mathematik, hier geprüft, nicht neu</td></tr>
+<tr><td><strong>Eichung</strong> — ein Satz des Bestands trifft eine Tafel oder Folge, die Günther selbst gibt</td></tr>
 <tr><td><strong>Deutung</strong> — Zuordnung von Formalem zu Begrifflichem</td></tr>
 <tr><td><strong>Programm</strong> — benannt, nicht gebaut</td></tr>
 </tbody>
@@ -148,26 +177,10 @@ bauen dort grün.</p>
 
 <h2 id="stand">Der Stand</h2>
 
-<div class="tablewrap stand">
-<table>
-<thead><tr><th>Kenngrösse</th><th class="num">Wert</th><th>Bereich, über den sie läuft</th></tr></thead>
-<tbody>
-<tr><td>geprüfte Konstanten (AxiomGate)</td><td class="num"><strong>3255</strong></td><td>Importbaum von <code>Reformulation</code>, namensgefiltert</td></tr>
-<tr><td>Axiom-Wachen, geschrieben</td><td class="num"><strong>487</strong> / 60 Dateien</td><td><code>Reformulation/</code> und <code>Foreign/</code></td></tr>
-<tr><td>Axiom-Wachen, erzwungen</td><td class="num"><strong>477</strong> / 59 Dateien</td><td>Import-Hülle der fünf Default-Targets</td></tr>
-<tr><td>Sätze</td><td class="num"><strong>791</strong></td><td><code>Reformulation/</code> allein, geweitete Route</td></tr>
-<tr><td>Ledger</td><td class="num"><strong>91</strong> Zeilen / 75 mit Träger</td><td><code>docs/definition-ledger.md</code>, Revision 10</td></tr>
-<tr><td>Build-Jobs</td><td class="num"><strong>1307</strong></td><td>die fünf Default-Targets zusammen</td></tr>
-<tr><th>ausgewiesene Lücken</th><td class="num"><strong>0</strong></td><td>Whitelist leer</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Gemessen am Commit <code>24f7fe8</code>. Jede Zahl läuft über einen Bereich, und es ist nicht
-für alle derselbe — darum steht er dabei. Die Zählrouten stehen im
-<a href="de.html#b6">Anhang der laufenden Fassung</a>; ein Bauzug macht jede ausgestellte Zahl
-still veraltet, weshalb sie ihren Stand mitführt. Kenngrössen, die hier nicht stehen, führt
-derselbe Anhang mit ihrer Route und ihrem eigenen Anker.</p>
+<p>Die Kennzahlen des Bestands stehen mit Route und Stand-Anker in
+<a href="kennzahlen.md">kennzahlen.md</a>; das Skript <code>kennzahlen.sh</code> erzeugt die Datei.
+Die Startseite wiederholt sie nicht: eine zweite Darstellung altert, ohne dass eine Probe es
+meldet. Die Zählrouten stehen im <a href="de.html#b6">Anhang der laufenden Fassung</a>.</p>
 
 <h2 id="quellcode">Der Quellcode</h2>
 
@@ -192,8 +205,9 @@ Ziffer des Papiers trägt, steht in der
 </main>
 
 <footer class="pagefoot">
-  <p>Fassung PKL Rev8 · 12. September 2026</p>
-  <p><a href="de.html">Fassung Rev8, deutsch</a> · <a href="en.html">Rev8 English</a> ·
+  <p>Fassung PKL Rev9 · 27. September 2026</p>
+  <p><a href="de.html">Fassung Rev9, deutsch</a> · <a href="en.html">Rev9 English</a> ·
+  <a href="rev8/de.html">Rev8 deutsch</a> · <a href="rev8/en.html">Rev8 English</a> ·
   <a href="rev7/de.html">Rev7 deutsch</a> · <a href="rev7/en.html">Rev7 English</a> ·
   <a href="rev6/de.html">Rev6 deutsch</a> · <a href="rev6/en.html">Rev6 English</a> ·
   <a href="rev5/de.html">Rev5 deutsch</a> · <a href="rev5/en.html">Rev5 English</a> ·
