@@ -142,7 +142,17 @@ TRIGGER_RE='zfc|zermelo'
 #
 #     Klein geschrieben, siehe BETRIEBSART oben — `zum ersten mal`, `seit f-1`,
 #     `seit f1` sind KEINE Tippfehler.
-SUPERLATIV_RE='erstmals|erstmalig|zum ersten mal|als erste[rs]?|einzige[rns]?|seit f-1|seit f1|for the first time|the first to|the only|never before|no other'
+#
+#     [27.9.2026, Custos C-5:  "die Ränge in beide Richtungen fangen"]  `die letzte [^s]`.
+#     Anlass:  "die letzte unbewachte Aussageklasse" (Rev9-Konzept, Rev1) rutschte durch.
+#     Einwortig `letzte` ist gemessen und verworfen:  116 Zeilen im Bereich, ueberwiegend
+#     Positionsangaben.  `die letzte ` liefert 34, davon rund dreissig "die letzte Stelle"
+#     (Stellen-Tausch, Abstieg) — darum `[^s]` hinter dem Leerzeichen.  So:  8 Zeilen, darunter
+#     zwei echte Rang-Ansprueche ("die letzte handgerechnete tragende Aussage der
+#     Architektur", Proemial.lean und M3CloneWitness.lean), und beide Muss-Faelle des
+#     Konzepts.  Der Preis:  jedes "die letzte s…" entkommt.  Englisch `the last` ist
+#     verworfen (47, fast alles "the last place").  `zum ersten mal` stand schon da.
+SUPERLATIV_RE='erstmals|erstmalig|zum ersten mal|als erste[rs]?|einzige[rns]?|die letzte [^s]|seit f-1|seit f1|for the first time|the first to|the only|never before|no other'
 
 # --- Dateiliste -------------------------------------------------------------
 # Markdown + Lean-Modul-Docs + HTML; vendored/Meta-Verzeichnisse ausgeschlossen.
@@ -1068,7 +1078,7 @@ echo "==========================================================================
 echo
 echo "── Gruppe (A) SUPERLATIV — Rang-Ansprüche ────────────────────────────────────"
 echo "     deutsch:   erstmals | erstmalig | zum ersten Mal | als erste(r/s) | einzige(r/n/s)"
-echo "                seit F-1 | seit F1"
+echo "                die letzte (ausser vor s…) | seit F-1 | seit F1"
 echo "     englisch:  for the first time | the first to | the only | never before | no other"
 echo "     Fallbehandlung: UNEMPFINDLICH (tolower; locale-abhaengig, siehe Kopf)"
 echo
