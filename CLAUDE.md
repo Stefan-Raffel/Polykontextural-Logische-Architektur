@@ -662,6 +662,16 @@ Choice mehr - `E` kommt aus der duplikatfreien Liste (Fallstrick 24), und
 ueber `Finset.card_pair` traegt am Stand 83a5988 weiterhin `Classical.choice` (nachgemessen
 27.9.); K4 fuehrt die Messung als Geschichte.
 
+*Beleg, keine neue Regel (27. September, `LocalOpOrbits.cyclic_letter_swap`):* der Weg ueber
+den vorhandenen Satz `TournamentSplitThree.not_cyclic_neg` zog `Classical.choice` - aus dem
+**klassischen** `not_not` (`Classical.not_not`), nicht aus `simpa`. Mit `Decidable.not_not`
+(axiomfrei) ist derselbe Weg `[propext]`, mit und ohne `simpa`; im Bestand steht der Satz mit
+`decide` und ist axiomfrei. Gemessen am 27.9. (Mathlib 83a5988), Wegwerf-Probe mit
+Quelltext in `KorpusRev2/Meldung_Prosa_B1_Datierung_Impl.md`; der Befund zuerst in
+`KorpusRev2/Meldung_Ledger_Sammelzug_59_Impl.md` §2. *Die erste Zuschreibung ("aus
+`simpa`") wurde dreimal weitergegeben, bevor sie gemessen wurde - darum steht der Beleg
+hier mit den drei Messpunkten und nicht mit der Vermutung.*
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
