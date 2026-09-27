@@ -22,7 +22,7 @@ steht in `Proemial.TowerAsymmetryProbe`:
 
 **Kein §20-Anspruch, keine Ledger-Zeile, keine Marke.** §20 bleibt
 Quellenparagraph ohne beanspruchten formalen Traeger; die Ledger-Obergrenze
-bleibt bei `19 von 20`, und diese Datei ruehrt sie nicht an.
+blieb (Stand Ledger Rev. 20, `104f314`) bei `19 von 20`, und diese Datei ruehrt sie nicht an.
 
 ## Vier Gruende, warum die Konjunktion kein Traeger ist
 

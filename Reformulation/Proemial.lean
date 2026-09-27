@@ -1148,7 +1148,8 @@ Enthält:
   Günthers Relationsordnung, die derselbe Kopf ausschliesst; und die
   Ordnungsseite ist importiert, was das Feld daneben (`invariant_const_two`)
   ausspricht. **Keine Ledger-Zeile, keine Marke, keine Anhebung der
-  Ledger-Obergrenze** — §20 bleibt Quellenparagraph, `19 von 20` bleibt stehen.
+  Ledger-Obergrenze** — §20 bleibt Quellenparagraph; Stand Ledger Rev. 20 (`104f314`):
+  `19 von 20` blieb stehen.
   Drei Wachen, Profil durchgängig `[propext, Classical.choice, Quot.sound]`.
 
 - `Proemial.ReferenceReversal`: die **kanonisierte Umkehrung der Stellenordnung**
@@ -1161,7 +1162,7 @@ Enthält:
   während der Relator bei Günther das Verbindende und keines der verbundenen
   Glieder ist (*Cognition and Volition* S. 19). Was das Modul baut, hat die Form,
   die Günther auf S. 20 von der Proemialrelation abhebt. **Keine Ledger-Zeile,
-  keine Marke**, `19 von 20` bleibt stehen. Der tragende Schritt liegt im
+  keine Marke**; Stand Ledger Rev. 20 (`4ac2f82`): `19 von 20` blieb stehen. Der tragende Schritt liegt im
   Kenogram-Zweig: `Kenogram.ReverseCanonical.relabel_reverse_relabel` ist ein
   neuer allgemeiner Satz über `relabel` und `reverse`, den der Bestand nicht
   führte — eine **Erweiterung** der Kanonisierungs-Theorie, während die drei
@@ -1185,8 +1186,8 @@ Enthält:
   Lille-Appendix gibt drei weitere Kandidaten; streng monoton sind alle vier für
   `m = 2..5` gerechnet, bewiesen ist es für den gebauten. **Keine Ledger-Zeile,
   keine Marke** — das Mass gehört zu §7
-  und der Verbundkontextur, nicht zur Proemialrelation; `19 von 20` bleibt
-  stehen. Acht Wachen; `Classical.choice` in siebzehn der neunzehn Sätze —
+  und der Verbundkontextur, nicht zur Proemialrelation; Stand Ledger Rev. 20 (`7031c9b`):
+  `19 von 20` blieb stehen. Acht Wachen; `Classical.choice` in siebzehn der neunzehn Sätze —
   choice-frei sind `lift_injective` und das private `wit_ne` —, und die Ursache
   ist gemessen: `Fin.fintype` trägt es selbst.
 
@@ -1208,7 +1209,7 @@ Enthält:
   Buchstaben meinen K = Konjunktion auf `1, 2, 3` mit `1` positiv; welche Namen den hiesigen
   (K = `min` auf `0, 1, 2`) entsprechen, hängt an der Wertzuordnung und steht im
   Modulkopf. Die Klon-Schranke der E-Reihe ist eine andere Aussage und wird nicht
-  importiert. **Keine Ledger-Zeile**, `19 von 20` bleibt stehen. Acht Wachen; axiomfrei sind die zwei
+  importiert. **Keine Ledger-Zeile**; Stand Ledger Rev. 20 (`7506857`): `19 von 20` blieb stehen. Acht Wachen; axiomfrei sind die zwei
   Gleichungen, `transitive_iff`, `preserves_comp` und die punktweise Gegenprobe, der
   Zielsatz trägt `[Quot.sound]` (die Hebung der punktweisen Gleichung auf die
   Mitgliedschaft), die Mengen-Gegenprobe `[propext]`.

@@ -70,7 +70,7 @@ Kopf folgt dem jüngeren Auftrag.
 - **Kein Anspruch, dass Günther diese Zählung meint.** Er zählt an drei Tafeln drei
   verschiedene Arten.
 - **Keine Ledger-Zeile für §20.** Das Mass gehört zu §7 / der Verbundkontextur, nicht zur
-  Proemialrelation; `19 von 20` bleibt stehen.
+  Proemialrelation; Stand Ledger Rev. 20 (`7031c9b`): `19 von 20` blieb stehen.
 
 Darum trägt auch **kein Deklarationsname die Sache „Vermittlung"**, wo er die Sache sagen
 kann — die Relation heisst `SharesPlace` und nicht `Mediates`. Dieselbe Zurückhaltung übt
