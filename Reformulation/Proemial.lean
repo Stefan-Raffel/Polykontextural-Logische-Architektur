@@ -1232,8 +1232,12 @@ Enthält:
   Werte durch die Negatoren zerfällt die Tafel in die Bahn von `[4,4,4]` mit sechs Folgen
   (`bahn_max`) und die Bahn `{[4,4,1], [1,1,4]}` (`bahn_zyklisch`) — die zwei, die Günther
   aussondert. `sechs_iff_transitive`: die sechs sind genau die mit transitivem Turnier.
-  EICHUNG und ein Brückensatz; „zyklisch" ist unser Wort, nicht Günthers von 1962. 4 Wachen,
-  kein `Classical.choice`.
+  EICHUNG und ein Brückensatz; „zyklisch" ist unser Wort, nicht Günthers von 1962. Seit dem
+  27.9. (`Spec_Rev9_Bau_O1_O2_O3.md`, O2): `tafel_cyclic_pair` (ZUSAMMENSTELLUNG) — die zwei
+  Spalten sind `DDK`, `KKD`, und genau diese sind nicht transitiv; `cyclic_letter_swap`
+  (Bit-Fassung `not_cyclic_neg`) und `cyclic_mirror` — das Paar hängt nicht an der Konvention
+  der Buchstaben; `cyclic_not_swap23` — wohl aber an der Stellenfolge. 8 Wachen, kein
+  `Classical.choice`.
 - `Proemial.LocalOpInseparability`: **C2 für alle m**, gebaut nach
   `Spec_C2_fuer_alle_m.md` (ERTRAG). Zielsatz `preserves_all_of_basis`: erhält eine
   Relation beliebiger Stelligkeit über `Fin m` die Operationen `min`, `max` und alle

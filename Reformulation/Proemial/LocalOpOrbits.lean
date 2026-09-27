@@ -40,11 +40,44 @@ Gebaut auf Anordnung des Architekten vom 26. September 2026 (Register §41, N3) 
   „Monoform" (S. 39) ist eine andere Einteilung und nicht gebaut. Kein Anspruch an einen
   Paragraphen von `Definitionen.md`, keine Ledger-Zeile.
 
+## Das zyklische Paar über zwei Schriften (27.9.)
+
+Gebaut auf Anordnung des Architekten vom 27. September 2026 nach
+`KorpusRev2/Spec_Rev9_Bau_O1_O2_O3.md` (Mathematiker), O2; Vorproben in
+`KorpusRev2/Vorproben_Spec_Rev9_Bau_Impl.md`.
+
+* **K7 — die Quellen.** Cyb. Ontology (1962) S. 39: Günther sondert `[4,4,1]` und `[1,1,4]`
+  aus. C&V S. 27: zwei Implikationen, KKD und DDK, sind *„heterarchical (or cyclic)"*. Bei
+  Günther ist K das **Maximum** (Hermeneutes, 13.9.); das zyklische **Paar** hängt davon
+  nicht ab, die Zuordnung **innerhalb** des Paares schon
+  (`KorpusRev2/C2_steht_bei_Guenther_Berichtigung.md` §2, 16.9.).
+* **K8 — dieselben Objekte.** `tafel_cyclic_pair` — **ZUSAMMENSTELLUNG**: Günthers zwei
+  gedruckte Spalten von 1962 **sind** die Folgen von `DDK` und `KKD`, und genau diese zwei
+  Operationen haben ein nicht-transitives Turnier. Schwestern: die zwei Spalten stehen in
+  `tafel_XIII`, die Teilung in `TournamentInseparability.transitive_iff`; der Satz sagt beides
+  über dieselben Bits.
+* **K9 — zwei Invarianzen.** `cyclic_letter_swap` — **EICHUNG**: unter dem Kippen **aller**
+  Bits (K ↔ D, die Konvention der Buchstaben) geht das zyklische Paar in sich über; die zwei
+  tauschen. **Der Gehalt stand zuerst auf Bit-Ebene:** `TournamentSplitThree.not_cyclic_neg`
+  (16.9.). Dieser Satz ist dieselbe Aussage in der Sprache der Operationen. Er ist mit
+  `decide` bewiesen und nicht über `not_cyclic_neg`: der Weg über den Bit-Satz zog
+  `Classical.choice` (gemessen in den Vorproben). `cyclic_mirror` — **EICHUNG**: unter der
+  Spiegelung der ersten zwei Stellen bleibt jede der zwei.
+* **K10 — die Einschränkung.** `cyclic_not_swap23` — **EICHUNG**: nicht jede Reihenfolge der
+  drei Wertpaare lässt das Paar fest; der Tausch der zweiten und dritten Stelle macht aus
+  `(1,1,0)` das transitive `(1,0,1)`. „Dasselbe Paar in Cyb. Ontology und C&V" gilt darum
+  unter der Konvention der Buchstaben und der Spiegelung der Stellenfolge, **nicht** unter
+  jeder denkbaren Stellenfolge.
+* **K11 — Nicht:** „Günthers KKD ist unser KKD" — die Zuordnung innerhalb des Paares hängt
+  an der Konvention. Nicht „konventionsunabhängig" ohne den Nachsatz von K10.
+
 ## Axiomprofil
 
 Gemessen am grünen Bau, verbatim in den Wachen am Dateiende. **Kein Satz trägt
-`Classical.choice`.** `tafel_XIII` und `bahn_zyklisch` tragen `[propext]`, `bahn_max` und
-`sechs_iff_transitive` `[propext, Quot.sound]`. Alle vier sind entschieden (`decide`).
+`Classical.choice`.** `tafel_XIII`, `bahn_zyklisch` und `tafel_cyclic_pair` tragen
+`[propext]`, `bahn_max` und `sechs_iff_transitive` `[propext, Quot.sound]`;
+`cyclic_letter_swap`, `cyclic_mirror` und `cyclic_not_swap23` sind axiomfrei. Alle sind
+entschieden (`decide`).
 -/
 
 namespace Reformulation.Proemial.LocalOpOrbits
@@ -119,6 +152,34 @@ theorem sechs_iff_transitive :
       seqOf (localOp d01 d12 d02) ∈ sechs ↔ TransitiveOp (localOp d01 d12 d02) := by
   decide
 
+/-- **Das zyklische Paar, dieselben Objekte** (K8): Günthers Spalten `[4,4,1]` und `[1,1,4]`
+von 1962 sind die Folgen von `DDK` und `KKD`, und genau diese zwei lokal klassischen
+Operationen haben ein nicht-transitives Turnier. -/
+theorem tafel_cyclic_pair :
+    seqOf DDK = [1,2,1,2,2,3,1,3,3] ∧ seqOf KKD = [1,1,3,1,2,2,3,2,3] ∧
+    (∀ d01 d12 d02 : Bool, ¬ TransitiveOp (localOp d01 d12 d02) ↔
+      ((d01, d12, d02) = (true, true, false) ∨ (d01, d12, d02) = (false, false, true))) := by
+  refine ⟨by decide, by decide, ?_⟩
+  intro d01 d12 d02
+  cases d01 <;> cases d12 <;> cases d02 <;> decide
+
+/-- **Die Konvention der Buchstaben** (K9): das Kippen aller drei Bits (K ↔ D) erhält die
+Zyklizität. Bit-Fassung: `TournamentSplitThree.not_cyclic_neg`. -/
+theorem cyclic_letter_swap : ∀ a b c : Bool,
+    (¬ TransitiveOp (localOp a b c) ↔ ¬ TransitiveOp (localOp (!a) (!b) (!c))) := by
+  decide
+
+/-- **Die Spiegelung der ersten zwei Stellen** (K9) erhält die Zyklizität. -/
+theorem cyclic_mirror : ∀ a b c : Bool,
+    (¬ TransitiveOp (localOp a b c) ↔ ¬ TransitiveOp (localOp b a c)) := by
+  decide
+
+/-- **Die Einschränkung** (K10): der Tausch der zweiten und dritten Stelle führt aus dem
+Paar heraus — `(1,1,0)` ist zyklisch, `(1,0,1)` transitiv. -/
+theorem cyclic_not_swap23 :
+    ¬ TransitiveOp (localOp true true false) ∧ TransitiveOp (localOp true false true) := by
+  decide
+
 -- ============================================================
 -- Wachen
 -- ============================================================
@@ -134,5 +195,17 @@ theorem sechs_iff_transitive :
 
 /-- info: 'Reformulation.Proemial.LocalOpOrbits.sechs_iff_transitive' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms sechs_iff_transitive
+
+/-- info: 'Reformulation.Proemial.LocalOpOrbits.tafel_cyclic_pair' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafel_cyclic_pair
+
+/-- info: 'Reformulation.Proemial.LocalOpOrbits.cyclic_letter_swap' does not depend on any axioms -/
+#guard_msgs in #print axioms cyclic_letter_swap
+
+/-- info: 'Reformulation.Proemial.LocalOpOrbits.cyclic_mirror' does not depend on any axioms -/
+#guard_msgs in #print axioms cyclic_mirror
+
+/-- info: 'Reformulation.Proemial.LocalOpOrbits.cyclic_not_swap23' does not depend on any axioms -/
+#guard_msgs in #print axioms cyclic_not_swap23
 
 end Reformulation.Proemial.LocalOpOrbits

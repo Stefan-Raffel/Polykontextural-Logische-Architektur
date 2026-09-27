@@ -38,6 +38,29 @@ Vier Zielsätze, in zwei Gruppen.
 - `zaehlungen_nirgends_gleich` — die beiden Zählungen der Grenznotiz A stimmen an
   **keiner** Stelle überein, und zwar richtungstreu: die Korpuszählung liegt stets
   echt über Günthers Zählung. Bisher stand das dort als Rechnung; jetzt als Satz.
+  *Vermerk 27.9.:* `guentherZaehlung` liest die **frühere** Fassung von §3 („beträgt n");
+  unter Günthers Wortlaut von HKN S. 26 gilt der folgende Satz.
+- `verbund_eq_pairs_iff` — **FOLGERUNG (dünn).** Die Zahl der Elementarkontexturen eines
+  Verbunds ist nach HKN S. 26 seine Wertzahl; sie ist genau dann die Zahl aller seiner
+  Wertpaare, wenn er der dreiwertige ist. Gebaut auf Anordnung des Architekten vom
+  27. September 2026 nach `KorpusRev2/Spec_Rev9_Bau_O1_O2_O3.md` (Mathematiker), O1.
+
+  * **K1 — die Stelle.** HKN S. 26, am Seitenbild (Custos, 26.9.): *„Die nächst höheren
+    Verbundkontexturen werden durch die Wertzahlen 6, 10, 15, 21, 28, … angezeigt, d.h.,
+    ihre Folge ist berechenbar durch die Formel m(m−1)/2."* Zwei Absätze weiter: *„Die obige
+    Formel gibt also an, wie viele Elementarkontexturen jeweilig zusammenkommen müssen."*
+    Günther liest dieselbe Folge **zweimal**: als Wertzahlen der Verbunde und als Zahl ihrer
+    Elementarkontexturen. *QUELLENFEST.*
+  * **K2 — welche Lesung.** Der Satz stellt die **zweite** Lesung (die Zahl der
+    Elementarkontexturen ist die Wertzahl `w`) gegen die Zahl aller Wertpaare `w(w−1)/2`
+    (`korpusZaehlung`). Unter der ersten Lesung allein gibt es keinen Vergleich.
+  * **K3 — der Befund.** Genau einmal gleich, bei drei Werten. Ab sechs Werten nimmt der
+    Zusammenschluss des Bestands mehr Paare, als Günthers Verbund Elementarkontexturen hat
+    (6 gegen 15, 10 gegen 45, …). Das ist die Unterscheidung *Zusammenschluss /
+    Verbundkontextur* als Satz.
+  * **K4 — Nicht:** welche `w` Elementarkontexturen Günther meint. Dass `w = m(m−1)/2` die
+    Zahl der Paare eines `m`-wertigen Systems ist, ist eine arithmetische Koinzidenz und
+    keine Lesung; sie steht hier nicht, solange keine Quelle sie sagt.
 
 ## Deutungsgrenzen — beide markiert, beide bleiben
 
@@ -208,7 +231,11 @@ sichtbarem Versatz. -/
 def verbundWertzahl (k : ℕ) : ℕ := intervalStart (k + 2)
 
 /-- **Günthers Zählung** (`Definitionen.md` §3: die Anzahl der zusammenkommenden
-Elementarkontexturen „beträgt `n`"). -/
+Elementarkontexturen „beträgt `n`").
+
+*Vermerk 27.9.:* Lesung der früheren Fassung von §3. HKN S. 26 zählt die
+Elementarkontexturen als Wertzahl — siehe `verbund_eq_pairs_iff`. Die Definition bleibt;
+über eine Umbenennung entscheidet Custos. -/
 def guentherZaehlung (k : ℕ) : ℕ := k + 2
 
 /-- **Korpuszählung**: die Wert-Zweiermengen der `k`-ten Verbundkontextur. -/
@@ -227,7 +254,11 @@ theorem guentherZaehlung_lt_verbundWertzahl (k : ℕ) :
 richtungstreu: die Korpuszählung liegt stets echt über Günthers Zählung.
 
 Stärker als das „stimmen an keiner Stelle überein" der Grenznotiz A, die die Sache
-bisher nur gerechnet führte. -/
+bisher nur gerechnet führte.
+
+*Vermerk 27.9.:* Der Satz vergleicht `k + 2` und nicht Günthers Zahl nach HKN S. 26. Unter
+dieser Lesung stimmen die Zählungen genau einmal überein, bei drei Werten
+(`verbund_eq_pairs_iff`). -/
 theorem zaehlungen_nirgends_gleich (k : ℕ) :
     guentherZaehlung k < korpusZaehlung k := by
   have hv : guentherZaehlung k < verbundWertzahl k :=
@@ -239,6 +270,35 @@ theorem zaehlungen_nirgends_gleich (k : ℕ) :
     rw [Nat.le_div_iff_mul_le (by omega : 0 < 2)]
     exact Nat.mul_le_mul_left _ (by omega)
   omega
+
+/-- Ab dem zweiten Verbund hat er mindestens sechs Werte. Hilfssatz für
+`verbund_eq_pairs_iff`, ohne eigene Stufe. -/
+theorem six_le (k : ℕ) (hk : 1 ≤ k) : 6 ≤ verbundWertzahl k := by
+  have h := two_mul_intervalStart (k + 2)
+  have hm : (k + 2) * (k + 3) ≥ 3 * 4 := Nat.mul_le_mul (by omega) (by omega)
+  simp only [verbundWertzahl]
+  have : (k + 2) * (k + 2 + 1) = (k + 2) * (k + 3) := rfl
+  omega
+
+/-- **Günthers zweite Lesung von HKN S. 26 gegen die Zahl aller Wertpaare.** Die Zahl der
+Elementarkontexturen eines Verbunds ist nach Günther seine Wertzahl; sie ist genau dann die
+Zahl aller seiner Wertpaare, wenn er der dreiwertige ist (`k = 0`). Ab dem zweiten Verbund
+nimmt der Zusammenschluss mehr Paare, als Günthers Verbund Elementarkontexturen hat.
+
+Beweis ohne Paritätslemma: aus `w = w(w−1)/2` und `w ≥ 6` folgt über Division mit Rest
+`5w ≤ w(w−1) ≤ 2w + 1`, ein Widerspruch. -/
+theorem verbund_eq_pairs_iff (k : ℕ) : verbundWertzahl k = korpusZaehlung k ↔ k = 0 := by
+  constructor
+  · intro h
+    by_contra hk
+    have h6 := six_le k (by omega)
+    have hd := Nat.div_add_mod (verbundWertzahl k * (verbundWertzahl k - 1)) 2
+    have hmod := Nat.mod_lt (verbundWertzahl k * (verbundWertzahl k - 1)) (by omega : 2 > 0)
+    simp only [korpusZaehlung, Nat.choose_two_right] at h
+    have : verbundWertzahl k * 5 ≤ verbundWertzahl k * (verbundWertzahl k - 1) :=
+      Nat.mul_le_mul_left _ (by omega)
+    omega
+  · rintro rfl; decide
 
 /-! ## Teil 3 — Statement-Pins
 
@@ -262,6 +322,8 @@ example (m : ℕ) :
       ↔ 4 ≤ m := disjoint_elem_contextures_iff m
 -- STATEMENT-PIN
 example (k : ℕ) : guentherZaehlung k < korpusZaehlung k := zaehlungen_nirgends_gleich k
+-- STATEMENT-PIN
+example (k : ℕ) : verbundWertzahl k = korpusZaehlung k ↔ k = 0 := verbund_eq_pairs_iff k
 
 /-! ## Teil 4 — die Axiom-Wachen (Ist-gebunden)
 
@@ -288,7 +350,7 @@ Unumgehbarkeit an der **Gestalt** festzumachen statt am **Träger**. Die Folge f
 den Bau: wer Choice vermeiden will, sucht nicht nach einer schlankeren
 `Finset`-Route, sondern nach einem Satz, dessen Term `Finset` gar nicht berührt.
 
-Die beiden Zählsätze sind **nicht** axiomfrei, sondern erben `[propext,
+Die Zählsätze (seit dem 27.9. drei, mit `verbund_eq_pairs_iff`) sind **nicht** axiomfrei, sondern erben `[propext,
 Quot.sound]` aus `IntervalBackbone.two_mul_intervalStart` — Hüllen-Lehre:
 Konsum erbt das Profil der Quelle und unterbietet es nie. -/
 
@@ -318,5 +380,11 @@ info: 'Reformulation.Proemial.CompoundContexture.disjoint_elem_contextures_iff' 
 
 /-- info: 'Reformulation.Proemial.CompoundContexture.zaehlungen_nirgends_gleich' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms zaehlungen_nirgends_gleich
+
+/-- info: 'Reformulation.Proemial.CompoundContexture.verbund_eq_pairs_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms verbund_eq_pairs_iff
+
+/-- info: 'Reformulation.Proemial.CompoundContexture.six_le' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms six_le
 
 end Reformulation.Proemial.CompoundContexture
