@@ -234,6 +234,10 @@ def wandle_teil(md_text, figuren, caption_wort):
     text = re.sub(r'⟦(.*?)⟧', marke, text, flags=re.S)
     text, formeln = formeln_setzen(text)
     html = mistune.create_markdown(escape=False, plugins=['table'])(text)
+    # Ausdruecklicher Anker an einer Ueberschrift: `## Titel {#id}` (seit dem C.3-Folgezug, 27.9.;
+    # erster Fall #buridan). [^<]* statt .*?: der Anker darf keine Tag-Grenze ueberspringen -
+    # der erste Probelauf mit .*? setzte die id auf eine fruehere Ueberschrift und verlor #a0.
+    html = re.sub(r'(?i)<(h[1-6])>([^<]*?)\s*\{#([A-Za-z][\w-]*)\}\s*</\1>', r'<\1 id="\3">\2</\1>', html)
 
     # Raenge: erstes h1 bleibt, jedes weitere h1 -> h2, h2 -> h3, h3 -> h4.
     for hoch, tief in ((5, 6), (4, 5), (3, 4), (2, 3)):
@@ -279,6 +283,8 @@ def anker_setzen(html, praefix):
 
     def h(m):
         tag, attr = m.group(1), m.group(2) or ''
+        if 'id=' in attr:          # ausdruecklicher Anker {#id}: nicht ueberschreiben, nicht zaehlen
+            return m.group(0)
         if tag == 'h3' and erstes_h3[0]:
             erstes_h3[0] = False
             return f'<h3 id="{praefix}0"{attr}>'

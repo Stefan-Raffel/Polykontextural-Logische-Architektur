@@ -216,7 +216,8 @@ def ueberschriften(art, s):
             zaun = not zaun; continue
         if zaun:
             continue
-        m = re.match(r'^#{1,6}\s+(.*)$', z)
+        # ein ausdruecklicher Anker `{#id}` am Zeilenende ist kein Ueberschriftentext
+        m = re.match(r'^#{1,6}\s+(.*?)(?:\s*\{#[A-Za-z][\w-]*\})?\s*$', z)
         if m:
             aus.append(norm_text(m.group(1)))
     return aus
