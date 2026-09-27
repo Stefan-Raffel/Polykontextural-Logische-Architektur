@@ -1430,12 +1430,17 @@ Enthält:
   Umtausch der nicht benachbarten Zweiermenge, bei drei Werten Günthers O
   (`mediated_swap_is_O`). Der Grund der Bauform (nur Nachbarn der Ordnung tauschen
   unmittelbar) und „vermittelt" für 1 ↔ 3 bei drei Werten sind QUELLENFEST (IGN S. 17 f., 19,
-  am Bild); die Allgemeinheit für jedes `m` ist unsere; die Verbundkontextur nur nahe
-  (ZUORDNUNG), nicht gleichgesetzt. Verbindet `NegationCycle` und
+  am Bild); die Allgemeinheit für jedes `m` ist unsere. Die Verbundkontextur: tml 1971 S. 11
+  zählt das „vermittelte" Umtauschverhältnis 1 ↔ 3 zu den drei Elementarkontexturen des
+  einfachsten Verbunds (QUELLENFEST nach Hermeneutes R2, an der Textschicht; Custos C-2); in
+  IGN und HKN steht die Gleichsetzung nicht. Verbindet `NegationCycle` und
   `ContextureOverlap`, die einander nicht importierten. Drei dünne FOLGERUNGEN, sonst
   ZUSAMMENSTELLUNG, EICHUNG, INSTANZIIERUNG. **Nicht:** kein Verbund-Objekt, keine Vollkreise
-  als „Durchlauf des Verbunds", keine Kenogramme. 10 Wachen; nur `isElemContexture_E` trägt
-  `Classical.choice` (aus `Finset.card_pair`).
+  als „Durchlauf des Verbunds", keine Kenogramme. Seit dem 27.9. (`Spec_Ein_Zug_O3_E_Koepfe.md`):
+  die vermittelte Elementarkontextur `{i, i+2}` (`isElemContexture_Em`, INSTANZIIERUNG), und
+  `mediated_swap` tauscht genau dieses Paar (`mediated_elem`, ZUSAMMENSTELLUNG); `E` und `Em`
+  direkt aus der duplikatfreien Liste gebaut (Fallstrick 24). 13 Wachen; kein Satz trägt
+  `Classical.choice` (bis 27.9. trug es `isElemContexture_E`, aus `Finset.card_pair`).
 - `Proemial.TimeMeasure`: **das gegenständliche Zeitmass** (nach `Spec_TimeMeasure.md`).
   `IsMeasureZ` — ein Rang in `ℤ`, der mit jedem Schritt strikt wächst (über `ℤ`, weil ein
   `ℕ`-Rang ein Unten voraussetzte, M4). `no_common_measure_inverse`: zwei gegenläufige Zeiten

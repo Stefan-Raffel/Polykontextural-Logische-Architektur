@@ -19,8 +19,9 @@ Gebaut auf Anordnung des Architekten vom 26. September 2026 (Register §41, N3) 
 * **K2 — die Tafel ist der Bestand.** `tafel_XIII`: jede der acht Spalten ist, Wert für Wert,
   eine der acht lokal klassischen Operationen `localOp` aus `TournamentInseparability`. Die
   Stellen der Etikette `[a,b,c]` sind die Elementarkontexturen {1,2}, {2,3}, {1,3} (im Bestand
-  `{0,1}`, `{1,2}`, `{0,2}`), Günthers `[4]` ist D (`max`), `[1]` ist K (`min`). Die
-  Zuordnung der Stellen ist an den Spalten abgelesen, nicht gesetzt.
+  `{0,1}`, `{1,2}`, `{0,2}`). Günthers `[4]` heisst im Bestand D (`max`), `[1]` heisst K
+  (`min`) — Namen des Bestands. Günther schreibt 1962 keine Buchstaben; in C&V heisst bei ihm
+  das Maximum K (K7). Die Zuordnung der Stellen ist an den Spalten abgelesen, nicht gesetzt.
 * **K3 — zwei Bahnen unter Umbenennung der Werte.** Konjugiert man eine Operation mit einem
   Negator, `x, y ↦ N (o (N x) (N y))` (die Umbenennung der Werte durch `N1`, `N2`), so bleibt
   man in der Tafel. Die Tafel zerfällt dabei in genau zwei Bahnen: die von `[4,4,4]` mit

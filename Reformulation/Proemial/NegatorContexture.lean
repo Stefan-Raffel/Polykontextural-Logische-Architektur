@@ -41,10 +41,16 @@ zwei Stränge, die einander nicht importierten: die Negatoren (`NegationCycle`,
   - *Ein Begriff von zwei Seiten* (Hermeneutes U4): `NegationCycle.track_mediates` trägt den
     **Vermittler** (den Wert, der durchlaufen wird; HKN S. 25), `mediated_swap` das
     **Vermittelte** (das Verhältnis 1 ↔ 3; IGN S. 17–19).
-  - *Die Verbundkontextur — ZUORDNUNG, NAHE* (Hermeneutes U3): dasselbe Wort („Verbundkontextur
-    bedeutet Vermittlung", cat S. 25/26) und dieselbe Schwelle, das dreiwertige System als
-    erster Fall. Aber „Verbundkontextur" kommt in IGN nicht vor, und Günther setzt die zwei
-    nirgends gleich. Genannt ist die Nähe, nicht die Gleichheit.
+  - *Die Verbundkontextur* (Stand 27.9.): dasselbe Wort („Verbundkontextur bedeutet
+    Vermittlung", HKN S. 25/26) und dieselbe Schwelle, das dreiwertige System als erster Fall.
+    In IGN kommt „Verbundkontextur" nicht vor, und in IGN und HKN steht die Gleichsetzung
+    nicht. **tml 1971 S. 11 setzt die zwei gleich:** „Zu den Umtauschverhältnissen von 1⟷2
+    und 2⟷3 tritt jetzt noch ein ‚vermitteltes' Umtauschverhältnis der Werte 1⟷3. …
+    dann besteht die einfachste Form einer Verbund-Kontextur also aus drei
+    Elementarkontexturen." QUELLENFEST nach Hermeneutes (R2, 26.9.), an der Textschicht
+    gelesen, nicht am Seitenbild; gebucht von Custos (C-2). Der Kopf gibt diese Buchung
+    wieder und setzt nicht selbst gleich. *Bis 27.9. stand hier „ZUORDNUNG, NAHE" (U3) mit
+    „nirgends gleich" — überholt durch R2.*
 * **K3 — die Stufen, je Satz am Beweis bestimmt** (CLAUDE.md §4):
   - `overlap_iff` — FOLGERUNG (dünn) — die Arithmetik des Schnitts zweier Paare.
   - `overlap_iff_three` — ZUSAMMENSTELLUNG — `overlap_iff` und `three_iff_adj`.
@@ -52,22 +58,45 @@ zwei Stränge, die einander nicht importierten: die Negatoren (`NegationCycle`,
   - `disjoint_iff_comm` — ZUSAMMENSTELLUNG — `overlap_iff`, `comm_far`, `adj_not_comm`.
   - `mediated_swap` — FOLGERUNG (dünn) — die Konjugation einer Transposition, für jedes `m`.
   - `mediated_swap_is_O` — EICHUNG — an Günthers Katalog.
-  - `isElemContexture_E` — INSTANZIIERUNG — `Finset.card_pair` am Paar.
+  - `isElemContexture_E` — INSTANZIIERUNG — am Paar; seit 27.9. per `rfl` über die Liste.
   - `E_inter_nonempty_iff_three`, `E_inter_empty_iff_comm` — ZUSAMMENSTELLUNG — die Hauptsätze
     über `mem_E` in die `Finset`-Sprache übersetzt. `mem_E` ist der Hilfssatz dazu.
   Keine Entdeckung: der Wert der Sätze ist, dass sie die zwei Stränge verbinden.
-* **K4 — das Profil, gemessen.** Die Hauptsätze über das Prädikat `InE` sind choice-frei, und
-  von den `Finset`-Korollaren auch `mem_E`, `E_inter_nonempty_iff_three` und
-  `E_inter_empty_iff_comm`. Nur `isElemContexture_E` trägt `Classical.choice`, aus
-  `Finset.card_pair` (gemessen, Mathlib 83a5988). Die erste Fassung des B3-Korollars über
+* **K4 — das Profil, gemessen.** **Seit dem 27.9. trägt kein Satz des Moduls
+  `Classical.choice`.** `E` und `Em` werden direkt aus der duplikatfreien Liste gebaut
+  (`⟨↑[a, b], nodup⟩`, nicht über `toFinset`, Fallstrick 24); ihre Kardinalität ist dann
+  definitional die Listenlänge, und `isElemContexture_E`, `isElemContexture_Em` gelten per
+  `rfl`. *Geschichte, als Messung stehen gelassen (Fundort für CLAUDE.md, Fallstrick 10):*
+  bis zum 27.9. war `E` das `Finset`-Literal `{i.castSucc, i.succ}`, und `isElemContexture_E`
+  trug `Classical.choice`, aus `Finset.card_pair` (gemessen, Mathlib 83a5988); alle übrigen
+  Sätze waren frei. Die erste Fassung des B3-Korollars über
   `Disjoint (E i) (E j)` trug es ebenfalls, aus `Finset.disjoint_left`; die Fassung mit
   `E i ∩ E j = ∅` (die Form von `CompoundContexture`, und CLAUDE.md §5 verbietet `Disjoint` auf
   Kontextur-Trägermengen) ist frei. Das Choice gehört also nicht der Sache, sondern einzelnen
   Mengensätzen der Sprache, in der die Kontextur-Seite gebaut ist.
 * **K5 — nicht:** kein Verbund-Objekt (der Verbund wäre die Familie der Paare mit ihrem
   Überlappungsgraphen, eine Benennung); keine Aussage über Vollkreise als „Durchlauf des
-  Verbunds"; Werte und Wertabbildungen, nicht Kenogramme (A20-1 unberührt); keine
-  Ledger-Zeile.
+  Verbunds"; Werte und Wertabbildungen, nicht Kenogramme (A20-1 unberührt). Eine eigene
+  Ledger-Zeile hat das Modul nicht angelegt; seit Ledger Rev. 30 trägt `mediated_swap` L11-7.
+* **K6 — die vermittelte Elementarkontextur (27.9.).** Gebaut auf Anordnung des Architekten
+  vom 27. September 2026 nach `KorpusRev2/Spec_Ein_Zug_O3_E_Koepfe.md` (Mathematiker,
+  Fassung 2), Teil 1 und 2.
+  - *Die Quelle* (tml 1971, Hermeneutes H-2, am Seitenbild): „Tafel II stellt die
+    Negationsstruktur dar, die dem einfachsten Fall einer Verbund-Kontextur zugrunde liegt."
+    S. 11 im Wortlaut (Custos C-2): „Stipulieren wir jetzt, dass eine Elementarkontextur durch
+    ein symmetrisches Umtauschverhältnis zweier beliebiger Werte konstituiert wird, dann
+    besteht die einfachste Form einer Verbund-Kontextur also aus drei Elementarkontexturen."
+    Zitiert, nicht gedeutet.
+  - *Was die Sätze sagen:* das Wertpaar `{i, i + 2}` (`Em`), das keinen eigenen Negator hat,
+    ist eine Elementarkontextur im Sinn des Bestands (`isElemContexture_Em`, INSTANZIIERUNG;
+    `mem_Em` ist der Hilfssatz), und der vermittelte Umtausch `mediated_swap` tauscht genau
+    seine zwei Werte und hält alle anderen fest (`mediated_elem`, ZUSAMMENSTELLUNG aus
+    `mediated_swap` und `mem_Em`).
+  - *Der Nächste in der Sache, nicht verbraucht:* `ElementaryCycle.isElemContexture_orb_iff`
+    — `{i, i + 2}` ist die Zweierbahn von `i` unter der Involution `mediated_swap`.
+  - *Nicht:* „Elementarkontextur" ohne Umfang. Im Bestand ist es der Zweierzyklus
+    (`card = 2`); der Selbstzyklus der Definitionen (§2) ist hier nicht gemeint. Der Kopf
+    setzt die zwei Vermittlungen nicht selbst gleich (K2).
 -/
 
 namespace Reformulation.Proemial.NegatorContexture
@@ -153,17 +182,28 @@ theorem mediated_swap_is_O :
 -- Teil 2 — die Korollare, in der Sprache der Kontextur-Seite (Finset)
 -- ============================================================
 
-/-- Der Umtauschbereich des Negators `N_{i+1}` als Wertmenge. -/
-def E (i : Fin m) : Finset (Fin (m + 1)) := {i.castSucc, i.succ}
+/-- Der Umtauschbereich des Negators `N_{i+1}` als Wertmenge — direkt aus der duplikatfreien
+Liste gebaut, nicht über `toFinset` (Fallstrick 24; K4). -/
+def E (i : Fin m) : Finset (Fin (m + 1)) :=
+  ⟨([i.castSucc, i.succ] : Multiset (Fin (m + 1))),
+    List.nodup_cons.mpr ⟨fun h => Fin.ne_of_lt Fin.castSucc_lt_succ (List.mem_singleton.mp h),
+      List.nodup_cons.mpr ⟨List.not_mem_nil, List.nodup_nil⟩⟩⟩
 
 theorem mem_E (i : Fin m) (v : Fin (m + 1)) : v ∈ E i ↔ InE i v := by
-  simp only [E, Finset.mem_insert, Finset.mem_singleton, InE, Fin.ext_iff, Fin.val_castSucc,
-    Fin.val_succ]
+  show v ∈ ([i.castSucc, i.succ] : Multiset (Fin (m + 1))) ↔ _
+  rw [Multiset.mem_coe, List.mem_cons, List.mem_singleton]
+  unfold InE
+  constructor
+  · rintro (h | h)
+    · exact Or.inl (by rw [h, Fin.val_castSucc])
+    · exact Or.inr (by rw [h, Fin.val_succ])
+  · rintro (h | h)
+    · exact Or.inl (Fin.ext (by rw [Fin.val_castSucc]; exact h))
+    · exact Or.inr (Fin.ext (by rw [Fin.val_succ]; exact h))
 
-/-- **B1:** der Umtauschbereich eines Negators ist eine Elementarkontextur. -/
-theorem isElemContexture_E (i : Fin m) : IsElemContexture (E i) := by
-  unfold IsElemContexture E
-  exact Finset.card_pair (Fin.ne_of_lt Fin.castSucc_lt_succ)
+/-- **B1:** der Umtauschbereich eines Negators ist eine Elementarkontextur — die Kardinalität
+ist definitional die Listenlänge. -/
+theorem isElemContexture_E (i : Fin m) : IsElemContexture (E i) := rfl
 
 /-- B2 in der Sprache der Kontextur-Seite. -/
 theorem E_inter_nonempty_iff_three (i j : Fin m) (hij : i ≠ j) :
@@ -193,6 +233,55 @@ theorem E_inter_empty_iff_comm (i j : Fin m) (hij : i ≠ j) :
     exact ⟨fun hv => absurd ⟨v, hv⟩ h, fun hv => absurd hv (Finset.notMem_empty v)⟩
 
 -- ============================================================
+-- Teil 3 — die vermittelte Elementarkontextur (K6)
+-- ============================================================
+
+/-- Das nicht benachbarte Wertpaar `{i, i + 2}` (für `j = i + 1`), direkt aus der
+duplikatfreien Liste gebaut. -/
+def Em (i j : Fin m) (hj : j.val = i.val + 1) : Finset (Fin (m + 1)) :=
+  ⟨([i.castSucc, j.succ] : Multiset (Fin (m + 1))),
+    List.nodup_cons.mpr ⟨fun h => by
+        have := congrArg Fin.val (List.mem_singleton.mp h)
+        rw [Fin.val_castSucc, Fin.val_succ] at this
+        omega,
+      List.nodup_cons.mpr ⟨List.not_mem_nil, List.nodup_nil⟩⟩⟩
+
+/-- **Die vermittelte Elementarkontextur:** `{i, i + 2}` ist eine Elementarkontextur im Sinn
+des Bestands (`card = 2`), obwohl kein Negator dieses Paar tauscht. -/
+theorem isElemContexture_Em (i j : Fin m) (hj : j.val = i.val + 1) :
+    IsElemContexture (Em i j hj) := rfl
+
+/-- Mitgliedschaft in `Em`, ohne offenes `simp`. -/
+theorem mem_Em (i j : Fin m) (hj : j.val = i.val + 1) (v : Fin (m + 1)) :
+    v ∈ Em i j hj ↔ v = i.castSucc ∨ v = j.succ := by
+  show v ∈ ([i.castSucc, j.succ] : Multiset (Fin (m + 1))) ↔ _
+  rw [Multiset.mem_coe, List.mem_cons, List.mem_singleton]
+
+/-- **Der vermittelte Umtausch tauscht genau dieses Paar:** auf `Em` bildet `mediated_swap`
+jeden Wert auf den anderen des Paares ab, ausserhalb hält er jeden Wert fest. -/
+theorem mediated_elem (i j : Fin m) (hj : j.val = i.val + 1) (v : Fin (m + 1)) :
+    (v ∈ Em i j hj → sw i (sw j (sw i v)) ∈ Em i j hj ∧ sw i (sw j (sw i v)) ≠ v) ∧
+    (v ∉ Em i j hj → sw i (sw j (sw i v)) = v) := by
+  have hs := mediated_swap i j hj v
+  have hv1 : v = i.castSucc ↔ v.val = i.val := ⟨fun h => by rw [h, Fin.val_castSucc],
+    fun h => Fin.ext (by rw [Fin.val_castSucc]; exact h)⟩
+  have hv2 : ∀ w : Fin (m + 1), w = j.succ ↔ w.val = i.val + 2 := fun w =>
+    ⟨fun h => by rw [h, Fin.val_succ, hj], fun h => Fin.ext (by rw [Fin.val_succ]; omega)⟩
+  rw [mem_Em, mem_Em, hv1, hv2, hv2]
+  have hw1 : sw i (sw j (sw i v)) = i.castSucc ↔ (sw i (sw j (sw i v))).val = i.val :=
+    ⟨fun h => by rw [h, Fin.val_castSucc], fun h => Fin.ext (by rw [Fin.val_castSucc]; exact h)⟩
+  rw [hw1]
+  refine ⟨fun hv => ⟨?_, ?_⟩, fun hv => Fin.ext ?_⟩
+  · rcases hv with h | h
+    · rw [if_pos h] at hs; exact Or.inr hs
+    · rw [if_neg (by omega), if_pos h] at hs; exact Or.inl hs
+  · intro he; rw [he] at hs
+    rcases hv with h | h
+    · rw [if_pos h] at hs; omega
+    · rw [if_neg (by omega), if_pos h] at hs; omega
+  · rw [if_neg (fun h => hv (Or.inl h)), if_neg (fun h => hv (Or.inr h))] at hs; exact hs
+
+-- ============================================================
 -- Wachen
 -- ============================================================
 
@@ -217,7 +306,7 @@ theorem E_inter_empty_iff_comm (i j : Fin m) (hij : i ≠ j) :
 /-- info: 'Reformulation.Proemial.NegatorContexture.mem_E' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms mem_E
 
-/-- info: 'Reformulation.Proemial.NegatorContexture.isElemContexture_E' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'Reformulation.Proemial.NegatorContexture.isElemContexture_E' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms isElemContexture_E
 
 /-- info: 'Reformulation.Proemial.NegatorContexture.E_inter_nonempty_iff_three' depends on axioms: [propext, Quot.sound] -/
@@ -225,5 +314,14 @@ theorem E_inter_empty_iff_comm (i j : Fin m) (hij : i ≠ j) :
 
 /-- info: 'Reformulation.Proemial.NegatorContexture.E_inter_empty_iff_comm' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms E_inter_empty_iff_comm
+
+/-- info: 'Reformulation.Proemial.NegatorContexture.isElemContexture_Em' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms isElemContexture_Em
+
+/-- info: 'Reformulation.Proemial.NegatorContexture.mem_Em' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms mem_Em
+
+/-- info: 'Reformulation.Proemial.NegatorContexture.mediated_elem' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms mediated_elem
 
 end Reformulation.Proemial.NegatorContexture
