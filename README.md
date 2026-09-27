@@ -81,9 +81,9 @@ Drei Saetze fuer den eiligen Leser, in der Reihenfolge Entwurf, Pruefung, Grenze
 **Die Entwurfsregel.** Wer eine Stufenskala so bauen will, dass jede gemischte Politik eine
 eigene, nicht wegkompilierbare Vermittlungsinstanz erzwingt, braucht **mindestens vier
 Stufen**: ab vier ist jede echt gemischte, lokal klassische Politik unkomponierbar
-(`GeneralCloneBound.locally_classical_in_clone_iff`), darunter nicht - bei drei Stufen ist
-die Haelfte der Mischungen sehr wohl aus lokalen Pruefern zusammensetzbar
-(`NonUniformCloneBound.four_of_eight_generatable`).
+(`GeneralCloneBound.locally_classical_in_clone_iff`), darunter nicht - bei drei Stufen sind
+vier der acht Wahlmuster aus lokalen Pruefern zusammensetzbar, neben Minimum und Maximum zwei
+der sechs Mischungen (`NonUniformCloneBound.four_of_eight_generatable`).
 
 **Und die zweite Bedingung ist die schwierigere.** *Lokal klassisch* heisst: die Politik
 wirkt auf **jedem** Stufenpaar wie das Minimum oder wie das Maximum - auch auf den nicht
