@@ -1386,6 +1386,43 @@ Auflage wird dabei nicht stillschweigend geweitet, sondern ihr Fehlgriff benannt
 **genannte** Grund der Vorgabe sein, nicht ein unterstellter. Wo die Vorgabe ihren Grund
 nicht nennt, gilt ihr Wortlaut, und die Nachfrage ist der Zug.
 
+**11 - Vor jeder Buchung einer Zahlenuebereinstimmung mit der Quelle wird angegeben, was der
+Traeger erzwingt. Faellt die Zahl auch ohne die Quelle heraus, ist sie kein Indiz, sondern
+Arithmetik.** Die Antwort nennt **einen Satz oder eine Identitaet** - nicht "folgt
+offensichtlich". Sonst laesst sich die Regel mit einem Wort erfuellen, ohne dass etwas
+geprueft wird. Die Regel steht hier aus demselben Grund wie die neunte und die zehnte: die
+unterlassene Frage meldet sich nicht, und eine Uebereinstimmung sieht ohne sie wie ein Fund
+aus.
+
+*Gebucht auf Entscheid des Architekten vom 27. September 2026*, nach dem Vorschlag von
+Horistes (`KorpusRev2/offene_CLAUDE_Posten.md` P3, seit dem 10. August), mit dem Zusatz der
+bauenden Instanz (die Antwort nennt einen Satz oder eine Identitaet).
+
+Anlaesse, alle gemessen:
+
+- **Dreimal an einem Tag gefallen** (10. August): zwei Minimale, erzeugt von `RGS(2)`
+  (erzwungen durch `B(0) = B(1) = 1 < B(2) = 2`); zwei Zeugenpaare, die `RGS(2)` sind
+  (erzwungen durch die Abstiegsfaser ueber `[0]`); `6 + 2` mit zyklischer Zweierbahn
+  (erzwungen durch die Orientierungen des Dreiecks).
+- **Die Achse des Rev9-Konzepts** (26. September): Guenthers zwei Folgen fallen zusammen,
+  weil `1 + 2 + ... + k = C(k+1, 2)`; im Bestand ist die Verbundfolge per Definition die
+  Ontologienfolge, um zwei versetzt (`CompoundContexture.verbundWertzahl k :=
+  intervalStart (k + 2)`). Befund ist nicht die Uebereinstimmung, sondern dass Guenther seine
+  zwei Plaene an zwei verschiedene Konstruktionen haengt.
+- **Der Gegenfall, in dem die Uebereinstimmung traegt:** P-1962. Guenthers zwei Folgen von
+  1962 und die zwei nicht-transitiven Operationen sind **dieselben Objekte** - erzwungen
+  durch dieselben Wahl-Bits (`LocalOpOrbits.tafel_cyclic_pair`). Die Regel verbietet keine
+  Uebereinstimmung; sie verlangt, dass ihr Grund dasteht.
+
+*Route:* bei jeder Zahl, die mit einer Quelle uebereinstimmt, vor der Buchung die Frage
+"was erzwingt sie?" beantworten, mit Satzname oder ausgeschriebener Identitaet, im Befund.
+
+*Rueckweg nach §13.3:* teilweise maschinell. Ein Skript kann die Frage stellen; beantworten
+kann sie nur, wer den Traeger kennt. Eine Zeile in `kennzahlen.sh`, die nach der Begruendung
+fragt, waere eine Auflage und keine Messung - darum steht die Regel hier und nicht im
+Skript. Sie erledigt sich, wenn zwei Ausgaben lang keine Buchung eine Zahlenuebereinstimmung
+ohne Traegerangabe fuehrt (§13.2).
+
 ### Die Kontaktzahl: eine Messgroesse und ihr Bereich
 
 Die Kontaktzahl misst, ob ein Beweisterm im Aggregat **beide Straenge** beruehrt - den
