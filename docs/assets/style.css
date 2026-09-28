@@ -441,6 +441,23 @@ footer.pagefoot p { margin: 0 0 0.4rem; }
   color: var(--ink-soft);
 }
 
+.gestalt {
+  margin: 2.2rem 0 0;
+}
+
+.gestalt h2 { margin-bottom: 0.3rem; }
+
+.gestalt .gestalt-note {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.gestalt .gestalt-en {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));

@@ -723,16 +723,30 @@ bare_report() {
 #
 # ZWEI VERSTOSSARTEN, beide brechend:
 #   F1  ein `href="#x"` ohne `id="x"` in derselben Datei;
-#   F2  ein `id` zweimal vergeben — dann ist unbestimmt, wohin der Verweis geht.
+#   F2  ein `id` zweimal vergeben — dann ist unbestimmt, wohin der Verweis geht;
+#   F3  ein relativer Verweis auf eine ANDERE Datei (`href="de.html#a4"`,
+#       `href="kennzahlen.md"`), deren Ziel fehlt: die Datei gibt es nicht, oder
+#       die Datei ist .html und traegt die id nicht. Nachgetragen im Zug zur
+#       Startseite (28.9.): F1 sah nur Verweise innerhalb einer Datei, und die
+#       Startseite verweist fast nur in andere (Janus, Auftrag Startseite §4).
+#       Ein Verweis auf ein Verzeichnis (`./`, `../`) loest auf, wenn dort eine
+#       index.html steht. Nicht im Bereich: absolute Adressen (http, https,
+#       mailto).
+#       BRECHEND NUR AUF DEN LAUFENDEN FLAECHEN (docs/*.html). Im Archiv
+#       (docs/revN/) BERICHTET F3 nur, als Zahl: gemessen am 28.9. (2d43b34)
+#       tragen rev4 bis rev8 80 tote Dateiverweise — sie wurden aus docs/ in ihr
+#       Verzeichnis kopiert, ohne die relativen Verweise umzuschreiben;
+#       assets/style.css liefert dort 404, am Abruf von GitHub Pages bestaetigt.
+#       Das Archiv ist eingefroren; gemeldet, nicht geheilt.
 anker_report() {
-  local rc=0 n_dateien=0 n_refs=0 n_ids=0 v1=0 v2=0 ausgabe=""
+  local rc=0 n_dateien=0 n_refs=0 n_ids=0 n_fremd=0 v1=0 v2=0 v3=0 v3a=0 ausgabe=""
   local datei
   while IFS= read -r datei; do
     [ -f "$datei" ] || continue
     n_dateien=$((n_dateien + 1))
     local bericht
     bericht="$(python3 - "$datei" <<'PY_ANKER'
-import re, sys
+import re, sys, os
 p = sys.argv[1]
 s = open(p, encoding='utf-8', errors='replace').read()
 ids = re.findall(r'\bid="([^"]+)"', s)
@@ -740,7 +754,24 @@ refs = re.findall(r'\bhref="#([^"]+)"', s)
 gesetzt = set(ids)
 offen = sorted({r for r in refs if r not in gesetzt})
 doppelt = sorted({i for i in gesetzt if ids.count(i) > 1})
-print(f"ZAHL\t{len(set(refs))}\t{len(gesetzt)}\t{len(offen)}\t{len(doppelt)}")
+fremd = sorted({h for h in re.findall(r'\bhref="([^"#][^"]*)"', s)
+                if not re.match(r'[a-z][a-z0-9+.-]*:', h)})
+tot = []
+for h in fremd:
+    datei, _, frag = h.partition('#')
+    ziel = os.path.normpath(os.path.join(os.path.dirname(p), datei))
+    if os.path.isdir(ziel):
+        ziel = os.path.join(ziel, 'index.html')
+    if not os.path.isfile(ziel):
+        tot.append(h); continue
+    if frag and ziel.endswith('.html'):
+        t = open(ziel, encoding='utf-8', errors='replace').read()
+        if not re.search(r'\bid="' + re.escape(frag) + '"', t):
+            tot.append(h)
+print(f"ZAHL\t{len(set(refs))}\t{len(gesetzt)}\t{len(offen)}\t{len(doppelt)}\t{len(fremd)}")
+archiv = re.search(r'/docs/rev\d+/', p) is not None
+for x in tot:
+    print(f"{'F3A' if archiv else 'F3'}\t{x}")
 for x in offen:
     print(f"F1\t{x}")
 for x in doppelt:
@@ -748,9 +779,10 @@ for x in doppelt:
 PY_ANKER
 )"
     local zahl
-    zahl="$(printf '%s\n' "$bericht" | awk -F'\t' '$1=="ZAHL"{print $2" "$3}')"
+    zahl="$(printf '%s\n' "$bericht" | awk -F'\t' '$1=="ZAHL"{print $2" "$3" "$6}')"
     n_refs=$((n_refs + $(echo "$zahl" | cut -d' ' -f1)))
     n_ids=$((n_ids + $(echo "$zahl" | cut -d' ' -f2)))
+    n_fremd=$((n_fremd + $(echo "$zahl" | cut -d' ' -f3)))
     local zeile
     while IFS= read -r zeile; do
       case "$zeile" in
@@ -758,6 +790,9 @@ PY_ANKER
              ausgabe="${ausgabe}  ${datei}: Verweis auf #$(printf '%s' "$zeile" | cut -f2) ohne Anker"$'\n' ;;
         F2*) v2=$((v2 + 1)); rc=1
              ausgabe="${ausgabe}  ${datei}: Anker $(printf '%s' "$zeile" | cut -f2) zweimal vergeben"$'\n' ;;
+        F3A*) v3a=$((v3a + 1)) ;;
+        F3*) v3=$((v3 + 1)); rc=1
+             ausgabe="${ausgabe}  ${datei}: Verweis $(printf '%s' "$zeile" | cut -f2) ohne Ziel"$'\n' ;;
       esac
     done <<< "$bericht"
   done <<< "$(find -L "${ROOT}/docs" -name '*.html' -type f 2>/dev/null | sort)"
@@ -769,8 +804,9 @@ PY_ANKER
   else
     echo "  (jeder Verweis loest auf, kein Anker doppelt)"
   fi
-  printf "  ── (F) %d Verstöße (F1 %d, F2 %d); %d Dateien, %d Verweise, %d Anker\n" \
-         "$((v1 + v2))" "${v1}" "${v2}" "${n_dateien}" "${n_refs}" "${n_ids}"
+  printf "  ── (F) %d Verstöße (F1 %d, F2 %d, F3 %d); %d Dateien, %d Verweise, %d Anker, %d Dateiverweise\n" \
+         "$((v1 + v2 + v3))" "${v1}" "${v2}" "${v3}" "${n_dateien}" "${n_refs}" "${n_ids}" "${n_fremd}"
+  printf "     F3 im Archiv (berichtend, eingefroren): %d tote Dateiverweise\n" "${v3a}"
   return "${rc}"
 }
 
@@ -1159,7 +1195,9 @@ echo "     Ein href=\"#x\" ohne id=\"x\" fuehrt ins Leere, und zwar still: der B
 echo "     meldet nichts, und keine andere Probe sieht es. Grundlinie null, gemessen"
 echo "     ueber ALLE Fassungen unter docs/ — die laufenden und die archivierten."
 echo "     F1: Verweis ohne Anker.  F2: Anker zweimal vergeben (Ziel unbestimmt)."
-echo "     Kein Archivschnitt: die eingefrorenen Fassungen sind selbst sauber."
+echo "     F3: Verweis in eine andere Datei ohne Ziel (Datei fehlt oder id fehlt);"
+echo "         brechend auf den laufenden Flaechen, im Archiv nur gezaehlt."
+echo "     F1/F2 ohne Archivschnitt: die eingefrorenen Fassungen sind dort sauber."
 printf '%s\n' "$BLOCK_F"
 echo
 

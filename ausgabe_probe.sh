@@ -20,7 +20,7 @@
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
 # BRECHENDE GROESSEN je Sprachpaar (1-9, 11, 12) und einmal ueber die laufenden
-# Flaechen (10, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
+# Flaechen (10 und 13, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
 # Absicht nicht: sie war zweimal nachzuziehen, und die Schlussmeldung zaehlt die
 # gefahrenen Groessen selbst.
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
@@ -106,6 +106,14 @@
 #                       brechen (erzeuge_ausgabe.py); stuende eine trotzdem in der
 #                       Ausgabe, saehen sie die Absatz-Anfaenge nur, wenn sie unter
 #                       den ersten sechs Woertern steht.
+#  13. Gestaltsatz    — EINMAL: der Satz "Die Gestalt in einem Satz" steht auf der
+#                       Startseite (p.gestalt-de, p.gestalt-en) und im Vorspann
+#                       von Teil A (de.html, en.html) in DERSELBEN Fassung
+#                       (Janus, Antwort_Startseite_Vorpruefung_Janus.md §2).
+#                       Verglichen wird der Text ohne Auszeichnung und ohne Links,
+#                       Weissraum zusammengezogen; die Startseite traegt Links je
+#                       Glied, das Papier keine. Fehlt eine Stelle oder steht sie
+#                       doppelt, bricht die Groesse ebenso.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -573,6 +581,40 @@ def volltext(art, s):
     t = re.sub(r'⟦[^⟧]*⟧', ' ', t)
     return [w for w in norm_text(t).split(' ') if w]
 
+def gestaltsatz():
+    """Groesse 13: Startseite = Vorspann von Teil A, je Sprache, als Text."""
+    def text(x):
+        x = re.sub(r'<[^>]+>', '', x)
+        return re.sub(r'\s+', ' ', htmlmod.unescape(x)).strip()
+    def lies(pf):
+        try:
+            return open(os.path.join(REPO, pf), encoding='utf-8').read()
+        except OSError:
+            return ''
+    start = lies('docs/index.html')
+    ok = True
+    for sp, datei, kopf in (('de', 'docs/de.html', 'Die Gestalt in einem Satz.'),
+                            ('en', 'docs/en.html', 'The shape in one sentence.')):
+        papier = lies(datei)
+        p = re.findall(r'<p><strong>' + re.escape(kopf) + r'</strong>(.*?)</p>', papier, re.S)
+        q = re.findall(r'<p class="gestalt-' + sp + r'"[^>]*>(.*?)</p>', start, re.S)
+        if len(p) != 1 or len(q) != 1:
+            print(f"  {'Gestaltsatz ' + sp:22s} ✗  {datei}: {len(p)} Stelle(n), "
+                  f"docs/index.html: {len(q)} Stelle(n); verlangt je eine")
+            ok = False; continue
+        tp, tq = text(p[0]), text(q[0])
+        if tp == tq:
+            print(f"  {'Gestaltsatz ' + sp:22s} ✓  Startseite = {datei}, {len(tp.split())} Woerter")
+            continue
+        wp, wq = tp.split(), tq.split()
+        i = 0
+        while i < min(len(wp), len(wq)) and wp[i] == wq[i]:
+            i += 1
+        print(f"  {'Gestaltsatz ' + sp:22s} ✗  weicht ab ab Wort {i + 1}: "
+              f"Papier …{' '.join(wp[i:i + 6])}…  Startseite …{' '.join(wq[i:i + 6])}…")
+        ok = False
+    return ok
+
 # ------------------------------------------------------------- Vergleichen ---
 GEFAHREN = set()   # die Namen der gefahrenen Groessen — die Schlussmeldung zaehlt sie
 
@@ -826,6 +868,10 @@ _start = os.path.join(REPO, 'docs', 'index.html')
 if not os.path.exists(_start):
     print(f"  {'Rohe Sternchen':22s} ✗  docs/index.html fehlt"); rc = 1
 elif not sternchen_bericht("Rohe Sternchen", [('html', open(_start, encoding='utf-8').read())]):
+    rc = 1
+
+GEFAHREN.add('Gestaltsatz')
+if not gestaltsatz():
     rc = 1
 
 print()
