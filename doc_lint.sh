@@ -732,14 +732,14 @@ bare_report() {
 #       Ein Verweis auf ein Verzeichnis (`./`, `../`) loest auf, wenn dort eine
 #       index.html steht. Nicht im Bereich: absolute Adressen (http, https,
 #       mailto).
-#       BRECHEND NUR AUF DEN LAUFENDEN FLAECHEN (docs/*.html). Im Archiv
-#       (docs/revN/) BERICHTET F3 nur, als Zahl: gemessen am 28.9. (2d43b34)
-#       tragen rev4 bis rev8 80 tote Dateiverweise — sie wurden aus docs/ in ihr
-#       Verzeichnis kopiert, ohne die relativen Verweise umzuschreiben;
-#       assets/style.css liefert dort 404, am Abruf von GitHub Pages bestaetigt.
-#       Das Archiv ist eingefroren; gemeldet, nicht geheilt.
+#       BRECHEND UEBERALL, auch im Archiv (docs/revN/). Bis zum 28.9. zaehlte F3
+#       das Archiv nur: rev4 bis rev8 trugen 80 tote Dateiverweise — aus docs/ in
+#       ihr Verzeichnis kopiert, ohne die relativen Verweise umzuschreiben;
+#       assets/style.css lieferte dort 404. Geheilt nach der Regel "Einfrierung"
+#       (Custos_Rev10_Register §2, Z6): nur href-Werte, fehlende Ziele am Commit
+#       der Fassung wiederhergestellt, der Text byte-gleich. Seitdem Grundlinie null.
 anker_report() {
-  local rc=0 n_dateien=0 n_refs=0 n_ids=0 n_fremd=0 v1=0 v2=0 v3=0 v3a=0 ausgabe=""
+  local rc=0 n_dateien=0 n_refs=0 n_ids=0 n_fremd=0 v1=0 v2=0 v3=0 ausgabe=""
   local datei
   while IFS= read -r datei; do
     [ -f "$datei" ] || continue
@@ -769,9 +769,8 @@ for h in fremd:
         if not re.search(r'\bid="' + re.escape(frag) + '"', t):
             tot.append(h)
 print(f"ZAHL\t{len(set(refs))}\t{len(gesetzt)}\t{len(offen)}\t{len(doppelt)}\t{len(fremd)}")
-archiv = re.search(r'/docs/rev\d+/', p) is not None
 for x in tot:
-    print(f"{'F3A' if archiv else 'F3'}\t{x}")
+    print(f"F3\t{x}")
 for x in offen:
     print(f"F1\t{x}")
 for x in doppelt:
@@ -790,7 +789,6 @@ PY_ANKER
              ausgabe="${ausgabe}  ${datei}: Verweis auf #$(printf '%s' "$zeile" | cut -f2) ohne Anker"$'\n' ;;
         F2*) v2=$((v2 + 1)); rc=1
              ausgabe="${ausgabe}  ${datei}: Anker $(printf '%s' "$zeile" | cut -f2) zweimal vergeben"$'\n' ;;
-        F3A*) v3a=$((v3a + 1)) ;;
         F3*) v3=$((v3 + 1)); rc=1
              ausgabe="${ausgabe}  ${datei}: Verweis $(printf '%s' "$zeile" | cut -f2) ohne Ziel"$'\n' ;;
       esac
@@ -806,7 +804,6 @@ PY_ANKER
   fi
   printf "  ── (F) %d Verstöße (F1 %d, F2 %d, F3 %d); %d Dateien, %d Verweise, %d Anker, %d Dateiverweise\n" \
          "$((v1 + v2 + v3))" "${v1}" "${v2}" "${v3}" "${n_dateien}" "${n_refs}" "${n_ids}" "${n_fremd}"
-  printf "     F3 im Archiv (berichtend, eingefroren): %d tote Dateiverweise\n" "${v3a}"
   return "${rc}"
 }
 
@@ -1195,9 +1192,9 @@ echo "     Ein href=\"#x\" ohne id=\"x\" fuehrt ins Leere, und zwar still: der B
 echo "     meldet nichts, und keine andere Probe sieht es. Grundlinie null, gemessen"
 echo "     ueber ALLE Fassungen unter docs/ — die laufenden und die archivierten."
 echo "     F1: Verweis ohne Anker.  F2: Anker zweimal vergeben (Ziel unbestimmt)."
-echo "     F3: Verweis in eine andere Datei ohne Ziel (Datei fehlt oder id fehlt);"
-echo "         brechend auf den laufenden Flaechen, im Archiv nur gezaehlt."
-echo "     F1/F2 ohne Archivschnitt: die eingefrorenen Fassungen sind dort sauber."
+echo "     F3: Verweis in eine andere Datei ohne Ziel (Datei fehlt oder id fehlt)."
+echo "     Kein Archivschnitt: die eingefrorenen Fassungen sind selbst sauber (F3 seit"
+echo "     der Heilung der Verweise, Regel Einfrierung)."
 printf '%s\n' "$BLOCK_F"
 echo
 

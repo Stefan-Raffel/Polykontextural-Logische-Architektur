@@ -1,0 +1,493 @@
+/* ---------------------------------------------------------------------------
+   PKL Rev1 — Arbeitspapier-Seiten
+   Nuechternes Papier-Layout, hell und dunkel, ohne externe Ressourcen.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg:        #fbfaf8;
+  --panel:     #ffffff;
+  --ink:       #16181b;
+  --ink-soft:  #3d4148;
+  --muted:     #6b7078;
+  --rule:      #d9d5cf;
+  --rule-soft: #e8e5e0;
+  --link:      #2f5d8a;
+  --link-hi:   #1c3d5e;
+  --mark:      #8a6d3b;
+
+  /* Flaechenwerte der Figuren (entsprechen black!3 .. black!35) */
+  --f03: #f4f2ef;
+  --f05: #efedea;
+  --f08: #e7e4df;
+  --f12: #dedad3;
+  --f16: #d4cfc7;
+  --f20: #c9c3ba;
+  --f35: #a49c90;
+  --stroke: #55585d;
+
+  --measure: 43rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #14161a;
+    --panel:     #1a1d22;
+    --ink:       #e6e3de;
+    --ink-soft:  #c3c0ba;
+    --muted:     #9096a0;
+    --rule:      #3a3f47;
+    --rule-soft: #2b2f35;
+    --link:      #8fb6dd;
+    --link-hi:   #b7d2ee;
+    --mark:      #d7b87e;
+
+    --f03: #22262c;
+    --f05: #262a31;
+    --f08: #2c313a;
+    --f12: #343a44;
+    --f16: #3d444f;
+    --f20: #464e5a;
+    --f35: #6a7481;
+    --stroke: #9aa1ab;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman",
+    serif, "Apple Symbols", "Segoe UI Symbol";
+  font-size: 18px;
+  line-height: 1.62;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Kopfleiste ---------------------------------------------------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(8px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.topbar-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0.6rem 1.4rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.topbar a { color: var(--muted); text-decoration: none; }
+.topbar a:hover { color: var(--link-hi); text-decoration: underline; }
+.topbar .home { font-weight: 600; color: var(--ink-soft); }
+
+.langswitch { display: flex; gap: 0.55rem; align-items: baseline; }
+.langswitch .sep { color: var(--rule); }
+.langswitch [aria-current="page"] {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: default;
+}
+
+/* --- Rahmen -------------------------------------------------------------- */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 3rem 1.4rem 6rem;
+}
+
+/* .wide steht unten im Figuren-Abschnitt: die Regel muss die margin-Kurzform
+   von `figure.fig` ueberbieten, sonst faellt der Ausbruch auf margin-left: 0
+   zurueck und das Transform schiebt die Figur aus dem Fenster. */
+
+/* --- Titelkopf ----------------------------------------------------------- */
+
+.doctitle { margin: 1rem 0 3.2rem; }
+
+.doctitle h1 {
+  font-size: 2.05rem;
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.4rem;
+}
+
+.doctitle .subtitle {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.1rem;
+  font-style: italic;
+}
+
+.doctitle .dateline {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 0.5rem 0;
+}
+
+/* --- Ueberschriften ------------------------------------------------------ */
+
+h2 {
+  font-size: 1.42rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.008em;
+  margin: 3.6rem 0 1.1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+h2:first-of-type { margin-top: 2.4rem; }
+
+h3 {
+  font-size: 1.09rem;
+  font-weight: 700;
+  margin: 2.3rem 0 0.7rem;
+}
+
+h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 1.8rem 0 0.5rem;
+}
+
+p { margin: 0 0 1.05rem; }
+
+a { color: var(--link); text-underline-offset: 0.16em; text-decoration-thickness: 0.06em; }
+a:hover { color: var(--link-hi); }
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* Etikett wie **bewiesen** / **proved** im Fliesstext */
+.tag {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  color: var(--mark);
+  white-space: nowrap;
+}
+
+/* --- Listen -------------------------------------------------------------- */
+
+ul, ol { margin: 0 0 1.15rem; padding-left: 1.35rem; }
+li { margin-bottom: 0.45rem; }
+li > ul, li > ol { margin-top: 0.45rem; }
+
+ol.rules { padding-left: 1.5rem; }
+ol.rules > li { margin-bottom: 0.8rem; }
+
+/* --- Zitate / Kaesten ---------------------------------------------------- */
+
+blockquote {
+  margin: 1.6rem 0;
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+
+blockquote.retraction { font-style: italic; }
+
+.theorem {
+  margin: 1.8rem 0;
+  padding: 1.05rem 1.2rem;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--stroke);
+  border-radius: 3px;
+  font-size: 0.97rem;
+}
+
+.theorem p:last-child { margin-bottom: 0; }
+.theorem .label { font-weight: 700; }
+
+.callout {
+  margin: 1.8rem 0;
+  padding: 1.05rem 1.2rem;
+  background: var(--f03);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font-size: 0.95rem;
+}
+
+.callout p:last-child { margin-bottom: 0; }
+
+/* --- Code ---------------------------------------------------------------- */
+
+code, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85em;
+  background: var(--f05);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  padding: 0.08em 0.32em;
+}
+
+pre {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.05rem;
+  background: var(--f03);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.82rem;
+}
+
+/* --- Tabellen ------------------------------------------------------------ */
+
+.tablewrap { overflow-x: auto; margin: 1.7rem 0; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 30rem;
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1.5px solid var(--ink-soft);
+  vertical-align: bottom;
+}
+
+tbody td, tbody th {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  text-align: left;
+  font-weight: 400;
+}
+
+tbody th { font-weight: 700; }
+
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: 1.5px solid var(--ink-soft); }
+
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+table.routes code { font-size: 0.78rem; white-space: nowrap; }
+
+/* --- Figuren ------------------------------------------------------------- */
+
+figure.fig { margin: 2.4rem 0; }
+
+.fig-scroll { overflow-x: auto; padding-bottom: 0.3rem; }
+
+figure.fig svg {
+  display: block;
+  width: 100%;
+  min-width: 36rem;   /* darunter wird die Beschriftung unlesbar; dann lieber scrollen */
+  height: auto;
+}
+
+figure.fig figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+figure.fig figcaption .fignum { font-weight: 700; color: var(--ink-soft); }
+
+/* Ausbruch aus der Satzbreite: etwas breiter als die Textspalte, aber nie
+   breiter als das Fenster (3rem Reserve fuer die Scrollleiste). */
+.wide, figure.fig.wide {
+  width: min(50rem, calc(100vw - 3rem));
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* SVG-Grundwerte */
+.fig svg text { fill: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Symbols", "Segoe UI Symbol"; }
+.fig svg .box { stroke: var(--stroke); stroke-width: 1; }
+.fig svg .ln  { stroke: var(--stroke); stroke-width: 1.1; fill: none; }
+.fig svg .ln-thin { stroke: var(--rule); stroke-width: 1; fill: none; }
+.fig svg .dash { stroke-dasharray: 5 4; }
+.fig svg .t   { font-size: 13px; }
+.fig svg .ts  { font-size: 11.5px; }
+.fig svg .txs { font-size: 10px; }
+.fig svg .b   { font-weight: 700; }
+.fig svg .i   { font-style: italic; }
+.fig svg .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+/* .mut auf <text> wie auf <g>; die Gruppen-Variante braucht hoehere Spezifitaet
+   als die Grundregel `.fig svg text`, sonst gewinnt --ink am Kindelement. */
+.fig svg text.mut,
+.fig svg .mut text,
+.fig svg text .mut { fill: var(--muted); }
+
+/* --- Formelzeile --------------------------------------------------------- */
+
+.formula {
+  margin: 1.9rem 0;
+  text-align: center;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+}
+
+.formula .name { font-weight: 700; }
+
+/* --- Inhaltsverzeichnis -------------------------------------------------- */
+
+nav.toc {
+  margin: 0 0 3rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--panel);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.86rem;
+}
+
+nav.toc h2 {
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: none;
+  margin: 0 0 0.65rem;
+  padding: 0;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc li { margin-bottom: 0.32rem; }
+nav.toc a { text-decoration: none; color: var(--ink-soft); }
+nav.toc a:hover { color: var(--link-hi); text-decoration: underline; }
+
+/* --- Fusszeile ----------------------------------------------------------- */
+
+footer.pagefoot {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1.6rem 1.4rem 3.5rem;
+  border-top: 1px solid var(--rule-soft);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+footer.pagefoot a { color: var(--muted); }
+footer.pagefoot p { margin: 0 0 0.4rem; }
+
+.sources {
+  margin-top: 2.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* --- Landing ------------------------------------------------------------- */
+
+.lede {
+  font-size: 1.06rem;
+  color: var(--ink-soft);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 2.2rem 0 2.8rem;
+  padding: 0;
+  list-style: none;
+}
+
+.cards li { margin: 0; }
+
+.card {
+  display: block;
+  height: 100%;
+  padding: 1.15rem 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover { border-color: var(--stroke); transform: translateY(-1px); }
+
+.card .kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.card .cardtitle {
+  font-size: 1.06rem;
+  font-weight: 600;
+  line-height: 1.3;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.card .cardsub {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  display: block;
+}
+
+.stand {
+  margin: 2.4rem 0;
+}
+
+@media (max-width: 40rem) {
+  body { font-size: 17px; }
+  main { padding-top: 2rem; }
+  .doctitle h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.28rem; }
+}
+
+@media print {
+  .topbar, nav.toc { display: none; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  main { max-width: none; }
+  a { color: #000; text-decoration: none; }
+}
