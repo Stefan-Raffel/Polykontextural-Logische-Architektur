@@ -16,6 +16,13 @@ import Reformulation.Proemial.NegationCycleSearch
   `gerichtet` angewandt auf `mem_gerichtet`.
 - `zaehlsatz_all` — FOLGERUNG — die Schranken aus den vier Verteilungen.
 - **EICHUNG**: `eich_three`, `gegenprobe_katalog` und die Listenfassungen von Teil 4.
+- `beruehrung_n2_len` — FOLGERUNG — die Gleichung für jedes zyklische Negatorwort ohne zwei
+  gleiche Nachbarn (Teil 5, 29.9.2026).
+- `beruehrung_n2_eq` — FOLGERUNG — dieselbe für jeden vierwertigen Vollkreis, über `no_double`,
+  `no_double_wrap` und `full_length3`.
+- `beruehrung_le`, `beruehrung_eq_zero_iff`, `beruehrung_eq_zero_iff_family` — ZUSAMMENSTELLUNG —
+  `beruehrung_n2_eq` mit `zaehlsatz_all` bzw. `zwoelf_iff_all` und `verteilung_6_12_6_iff_all`.
+- **EICHUNG**: `beruehrung_guenther`, `beruehrung_scheinzyklus`.
 Die übrigen Sätze sind nicht einzeln bestimmt. Gebaut auf Anordnung des Architekten
 vom 25. September 2026 nach `KorpusRev2/Spec_N5_Kreisrelation.md` (Mathematiker) und der
 Sondierung `KorpusRev2/Sondierung_N5_Kreisrelation_Impl.md` samt Nachtrag.
@@ -69,7 +76,39 @@ Sondierung `KorpusRev2/Sondierung_N5_Kreisrelation_Impl.md` samt Nachtrag.
   von Günthers eigenen Kreisen (`zaehlsatz_erreicht`, EICHUNG). *Was der Satz nicht sagt:* das
   „mehr zu leisten" liegt in den Schranken — N2 hat die höhere Unter- und Obergrenze —, nicht
   in jedem einzelnen Kreis: im zweiten Kreis (9-6-9) kommt N2 seltener vor als N1 und N3
-  (`n2_nicht_je_kreis`).
+  (`n2_nicht_je_kreis`). Was das „mehr zu leisten" mit den Berührungen von `N1` und `N3` zu tun
+  hat, rechnet K6b.
+* **K6b — das Verbindungsglied gezählt (Teil 5, 29.9.2026).** Gebaut nach
+  `KorpusRev2/Spec_Verbindungsglied_Beruehrung.md` (Mathematiker, Fassung 2, Baufreigabe des
+  Architekten) und den Vorproben der Instanz.
+  *Die Quelle, seitengenau am Seitenbild (29.9.):* IGN S. 48, erster Absatz — der Scheinzyklus
+  `p ≡ N1·3·1·3 p` (IX) ist abgelehnt, „weil durch Fehlen des vermittelnden N2 nur ein Schein
+  einer vierwertigen Systematik entsteht. In Wirklichkeit stehen 2 zweiwertige Systeme von N1 und
+  N3 zusammenhanglos nebeneinander." S. 49, erster Absatz — „N2 hat als logisches
+  Verbindungsglied mehr zu leisten als die andern beiden Operatoren. Ein Index dieser Tatsache ist
+  das Faktum …" (der Zählsatz, K6a). Und Günthers Grund, im selben Absatz unmittelbar davor: „dass
+  N1 und N2 im Umtauschverhältnis stehen und also näher aneinander gebunden sind und dass für N2
+  und N3 andererseits die gleiche enge Bindung existiert. N1 und N3 aber stehen nicht im
+  Verhältnis einer solchen rein logischen oder arithmetischen Nachbarschaft." — *QUELLENFEST*;
+  Günther spricht dort über die Operatoren.
+  *Die Gleichung:* In jedem vierwertigen Vollkreis ist die Zahl der Stellen, an denen `N1` und
+  `N3` unmittelbar aufeinander folgen, plus zweimal die Zahl der `N2`, gleich 24
+  (`beruehrung_n2_eq`). Günthers Zählsatz über `N2` und die Zahl der unmittelbaren Berührungen
+  der zwei Systeme sind damit dieselbe Aussage: je mehr Verbindungsglied, desto weniger
+  unmittelbare Berührung; höchstens zwölf (`beruehrung_le`), keine genau bei zwölf `N2`, also in
+  der dritten Familie (`beruehrung_eq_zero_iff`, `beruehrung_eq_zero_iff_family`). Günthers
+  Kreise haben sechs, zwölf und keine (`beruehrung_guenther`); der Scheinzyklus (IX) ist der
+  Grenzfall ohne `N2`, jeder seiner vier Übergänge eine Berührung (`beruehrung_scheinzyklus`).
+  *Der Grund:* ein Doppelzählen über die Übergänge (`beruehrung_n2_len`, für jedes zyklische Wort
+  ohne zwei gleiche Nachbarn, unabhängig von der Zahl 44): jeder Übergang enthält genau ein `N2`
+  oder ist eine Berührung, und jedes `N2` steht an zwei Übergängen. Keine Entdeckung.
+  *Marken:* Die Gleichung ist FOLGERUNG. Dass Zählsatz und Verbindungsglied zusammengehören, sagt
+  Günther selbst („Index dieser Tatsache") — *QUELLENFEST*; unsere ist die Gleichung, die es
+  rechnet. „Berührung" für eine unmittelbare Folge `N1`/`N3` ist *ZUORDNUNG*: Günther sagt
+  „zusammenhanglos", nicht „Berührung".
+  *Nicht:* keine Zuordnung zu Ich und Du; nicht, welches der drei Komplementpaare der vier Werte
+  Günther meint; die Gleichung spricht über Operatoren, nicht über Werte, die zwischen den zwei
+  Systemen wechseln; nur Negatorwörter bei vier Werten.
 * **K7 — Nicht:** Günthers „kein stabiles Sein" (Definitionen §21, Abschnitt 8); K ist nicht
   der Hamiltonkreis (der Katalog steht auf dem Hamiltonkreis, K ist eine Relation zwischen
   Stationen); keine Beziehung der 16 Kreise „überall K" zu `rueckwaerts_vier`; warum gerade
@@ -83,6 +122,11 @@ Gemessen am grünen Bau, verbatim in den Wachen am Dateiende. **Kein Satz trägt
 Listenfassungen von Teil 4 (`decide +kernel` über `gerichtet`) tragen `[propext]`, die
 gehobenen `[propext, Quot.sound]`. `IsThree` ist über Wertabbildungen definiert, nicht über
 `Equiv.Perm` (Fallstrick 10: `Equiv.swap` und der Submonoid-Abschluss tragen Choice).
+In Teil 5 ist `kette_of_no_double` axiomfrei; `beruehrung_paar`, `count_n2_cons`, `kette_snoc`,
+`beruehrung_guenther` und `beruehrung_scheinzyklus` tragen `[propext]`, die übrigen
+`[propext, Quot.sound]`. Nicht verwendet: Mathlibs `List.isChain_append` — er trägt selbst
+`Classical.choice` (gemessen 29.9.); an seiner Stelle `kette_snoc`. Und `omega` bekommt in
+`beruehrung_eq_zero_iff` zwei atomare Ziele statt des Iff (Fallstrick 24).
 -/
 
 namespace Reformulation.Proemial.NegationCycleThreeCycle
@@ -461,6 +505,182 @@ theorem n2_nicht_je_kreis :
   ⟨kreis2_full, by decide, by decide⟩
 
 -- ============================================================
+-- Teil 5 — das Verbindungsglied gezählt:  Berührungen + 2 · #N2 = Länge
+-- ============================================================
+
+/-- **Die Berührungen eines Negatorworts:** die Zahl der zyklischen Nachbarpaare, an denen `N1`
+und `N3` unmittelbar aufeinander folgen. Dieselbe Paarbildung wie `hasFar`, gezählt statt
+festgestellt. -/
+def beruehrungen : List (Fin 3) → ℕ
+  | [] => 0
+  | s@(x :: _) => (((s ++ [x]).zip ((s ++ [x]).drop 1)).filter (fun p => far p.1 p.2)).length
+
+/-- Indikator „das Paar ist entfernt" (`N1`/`N3`), als eigener Name, damit `omega` ihn als Atom
+sieht. -/
+def farInd (a b : Fin 3) : ℕ := if far a b then 1 else 0
+
+/-- Indikator „der Negator ist `N2`", in der Form, die `List.count_cons` liefert. -/
+def n2Ind (a : Fin 3) : ℕ := if a == 1 then 1 else 0
+
+/-- Die Berührungen einer Liste, nicht zyklisch gelesen. -/
+def linBeruehrungen : List (Fin 3) → ℕ
+  | a :: b :: r => farInd a b + linBeruehrungen (b :: r)
+  | _ => 0
+
+/-- **Der Kern, je Übergang:** zwei verschiedene Negatoren sind entweder entfernt, oder genau
+einer von beiden ist `N2`. -/
+theorem beruehrung_paar (a b : Fin 3) (h : a ≠ b) : farInd a b + n2Ind a + n2Ind b = 1 := by
+  revert a b; decide
+
+/-- Die Zählung der `N2` an einem vorangestellten Glied. -/
+theorem count_n2_cons (b : Fin 3) (l : List (Fin 3)) :
+    (b :: l).count 1 = l.count 1 + n2Ind b := by
+  rw [List.count_cons]; rfl
+
+/-- **Doppelzählen auf einer Kette** ohne zwei gleiche Nachbarn, mit ausdrücklichem letztem
+Glied `z`: die Berührungen plus zweimal die `N2` sind die Zahl der Übergänge plus die zwei
+Randglieder, soweit sie `N2` sind. -/
+theorem beruehrung_kette (z : Fin 3) : ∀ (r : List (Fin 3)) (a : Fin 3),
+    List.IsChain (· ≠ ·) (a :: r ++ [z]) →
+    linBeruehrungen (a :: r ++ [z]) + 2 * (a :: r ++ [z]).count 1 =
+      (a :: r).length + n2Ind a + n2Ind z
+  | [], a, h => by
+    have hp := beruehrung_paar a z (List.isChain_cons_cons.1 h).1
+    show farInd a z + 0 + 2 * ([a, z].count 1) = 1 + n2Ind a + n2Ind z
+    rw [count_n2_cons, count_n2_cons, List.count_nil]
+    omega
+  | b :: r, a, h => by
+    have h2 := List.isChain_cons_cons.1 (show List.IsChain (· ≠ ·) (a :: b :: (r ++ [z])) from h)
+    have hp := beruehrung_paar a b h2.1
+    have ih := beruehrung_kette z r b h2.2
+    show farInd a b + linBeruehrungen (b :: r ++ [z]) + 2 * (a :: (b :: r ++ [z])).count 1 =
+      (b :: r).length + 1 + n2Ind a + n2Ind z
+    rw [count_n2_cons]
+    have hl : (b :: r).length = r.length + 1 := rfl
+    rw [hl] at ih ⊢
+    have ih' : linBeruehrungen (b :: r ++ [z]) + 2 * (b :: r ++ [z]).count 1 =
+        r.length + 1 + n2Ind b + n2Ind z := ih
+    omega
+
+/-- Aus der Form von `no_double` — kein Doppelnegator an irgendeiner Stelle — folgt die Kette. -/
+theorem kette_of_no_double : ∀ l : List (Fin 3),
+    (∀ (u v : List (Fin 3)) (i : Fin 3), l ≠ u ++ i :: i :: v) → List.IsChain (· ≠ ·) l
+  | [], _ => List.isChain_nil
+  | [_], _ => List.isChain_singleton _
+  | a :: b :: r, h => by
+    refine List.isChain_cons_cons.2 ⟨fun hab => h [] r a (by rw [hab]; rfl), ?_⟩
+    exact kette_of_no_double (b :: r) fun u v i he => h (a :: u) v i (by rw [he]; rfl)
+
+/-- Die Paarliste von `beruehrungen` (die von `hasFar`), als Kette gezählt. -/
+theorem beruehrungen_paarliste : ∀ l : List (Fin 3),
+    ((l.zip (l.drop 1)).filter (fun p => far p.1 p.2)).length = linBeruehrungen l
+  | [] => rfl
+  | [_] => rfl
+  | a :: b :: r => by
+    have ih := beruehrungen_paarliste (b :: r)
+    show ((List.zip (a :: b :: r) (b :: r)).filter (fun p => far p.1 p.2)).length =
+      farInd a b + linBeruehrungen (b :: r)
+    rw [List.zip_cons_cons, List.filter_cons]
+    have hz : (b :: r).drop 1 = r := rfl
+    rw [hz] at ih
+    unfold farInd
+    split <;> simp only [List.length_cons, *] <;> omega
+
+/-- Ein Glied hinten anhängen, ohne `List.isChain_append` — Mathlibs Satz trägt
+`Classical.choice` (gemessen, Vorprobe 29.9.; Fallstrick 10 an einem neuen Baustein). -/
+theorem kette_snoc (z : Fin 3) : ∀ (r : List (Fin 3)) (a : Fin 3),
+    List.IsChain (· ≠ ·) (a :: r) → (a :: r).getLast (List.cons_ne_nil a r) ≠ z →
+    List.IsChain (· ≠ ·) (a :: r ++ [z])
+  | [], a, _, hl => List.isChain_cons_cons.2 ⟨hl, List.isChain_singleton _⟩
+  | b :: r, a, h, hl => by
+    have h2 := List.isChain_cons_cons.1 h
+    have hl' : (b :: r).getLast (List.cons_ne_nil b r) ≠ z := by
+      rwa [List.getLast_cons_cons] at hl
+    exact List.isChain_cons_cons.2 ⟨h2.1, kette_snoc z r b h2.2 hl'⟩
+
+/-- **Z0 — die Gleichung, allgemein.** Für jedes zyklische Wort über drei Negatoren, in dem nie
+zwei gleiche aufeinander folgen (auch nicht über das Ende): Länge = Berührungen + 2 · #N2.
+Ein Doppelzählen über die Übergänge; es hängt nicht an der Zahl 44. -/
+theorem beruehrung_n2_len (x : Fin 3) (t : List (Fin 3))
+    (h : List.IsChain (· ≠ ·) (x :: t ++ [x])) :
+    (x :: t).length = beruehrungen (x :: t) + 2 * (x :: t).count 1 := by
+  have hk := beruehrung_kette x t x h
+  have hb : beruehrungen (x :: t) = linBeruehrungen (x :: t ++ [x]) :=
+    beruehrungen_paarliste (x :: t ++ [x])
+  have hc : (x :: t ++ [x]).count 1 = (x :: t).count 1 + n2Ind x := by
+    rw [List.count_append, List.count_singleton]; rfl
+  rw [hb]
+  omega
+
+/-- **Z1 — Berührungen plus zweimal `N2` gleich 24**, für jeden vierwertigen Vollkreis. Die
+Kette kommt aus `no_double` und `no_double_wrap`, die Länge aus `full_length3`. -/
+theorem beruehrung_n2_eq (w : List (Fin 3)) (h : IsFullCycle w) :
+    beruehrungen w + 2 * w.count 1 = 24 := by
+  have hlen : w.length = 24 := full_length3 h
+  obtain ⟨x, t, rfl⟩ : ∃ x t, w = x :: t := by
+    cases w with
+    | nil => simp at hlen
+    | cons x t => exact ⟨x, t, rfl⟩
+  have hc : List.IsChain (· ≠ ·) (x :: t) :=
+    kette_of_no_double _ (no_double (by omega) h)
+  have ht : t ≠ [] := by intro e; subst e; simp at hlen
+  have hlast : t.getLast ht ≠ x := by
+    intro hl
+    apply no_double_wrap (by omega) h (t.dropLast) x
+    conv_lhs => rw [← List.dropLast_append_getLast ht]
+    rw [hl]
+  have hcyc : List.IsChain (· ≠ ·) (x :: t ++ [x]) :=
+    kette_snoc x t x hc (by rw [List.getLast_cons ht]; exact hlast)
+  have := beruehrung_n2_len x t hcyc
+  omega
+
+/-- **Z2:** in jedem vierwertigen Vollkreis berühren sich `N1` und `N3` höchstens zwölfmal — aus
+Z1 und Günthers Zählsatz. -/
+theorem beruehrung_le (w : List (Fin 3)) (h : IsFullCycle w) : beruehrungen w ≤ 12 := by
+  have h1 := beruehrung_n2_eq w h
+  have h2 := (zaehlsatz_all w h).2.2.2.2.1
+  omega
+
+/-- **Z3, erste Hälfte:** keine Berührung genau bei zwölf `N2`. Zwei Richtungen mit atomaren
+Zielen — `omega` auf dem Iff-Ziel zog `Classical.choice` (Vorprobe 29.9.). -/
+theorem beruehrung_eq_zero_iff (w : List (Fin 3)) (h : IsFullCycle w) :
+    beruehrungen w = 0 ↔ w.count 1 = 12 := by
+  have h1 := beruehrung_n2_eq w h
+  exact ⟨fun _ => by omega, fun _ => by omega⟩
+
+/-- **Z3, zweite Hälfte:** keine Berührung genau in Günthers dritter Familie, 6-12-6 — über
+`verteilung_6_12_6_iff_all` und `zwoelf_iff_all`, ohne Brücke zu `hasFar`. -/
+theorem beruehrung_eq_zero_iff_family (w : List (Fin 3)) (h : IsFullCycle w) :
+    beruehrungen w = 0 ↔ vert w = (6, 12, 6) := by
+  have hb : (vert w == (6, 12, 6)) = (w.count 1 == 12) :=
+    (verteilung_6_12_6_iff_all w h).trans (zwoelf_iff_all w h)
+  rw [beruehrung_eq_zero_iff w h]
+  constructor
+  · intro hc
+    have : (vert w == (6, 12, 6)) = true := by rw [hb, hc]; rfl
+    exact beq_iff_eq.1 this
+  · intro hv
+    have : (w.count 1 == 12) = true := by rw [← hb, hv]; rfl
+    exact beq_iff_eq.1 this
+
+/-- **E1 — Eichung an Günthers Kreisen:** der erste hat sechs Berührungen, der zweite zwölf, der
+dritte keine. -/
+theorem beruehrung_guenther :
+    beruehrungen kreis1 = 6 ∧ beruehrungen kreis2 = 12 ∧ beruehrungen kreis3 = 0 := by decide
+
+/-- **E2 — der Scheinzyklus** `N1·3·1·3`, mit dem IGN S. 48 beginnt: ohne zwei gleiche Nachbarn
+und ganz ohne `N2`, darum ist jeder seiner vier Übergänge eine Berührung — der Grenzfall von Z0
+an Günthers eigenem Beispiel. -/
+theorem beruehrung_scheinzyklus :
+    List.IsChain (· ≠ ·) ([0, 2, 0, 2] ++ [0] : List (Fin 3)) ∧
+    beruehrungen [0, 2, 0, 2] = 4 ∧ ([0, 2, 0, 2] : List (Fin 3)).count 1 = 0 := by
+  refine ⟨?_, by decide, by decide⟩
+  show List.IsChain (· ≠ ·) ([0, 2, 0, 2, 0] : List (Fin 3))
+  exact List.isChain_cons_cons.2 ⟨by decide, List.isChain_cons_cons.2 ⟨by decide,
+    List.isChain_cons_cons.2 ⟨by decide, List.isChain_cons_cons.2 ⟨by decide,
+    List.isChain_singleton _⟩⟩⟩⟩
+
+-- ============================================================
 -- Wachen
 -- ============================================================
 
@@ -571,5 +791,44 @@ theorem n2_nicht_je_kreis :
 
 /-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.n2_nicht_je_kreis' depends on axioms: [propext] -/
 #guard_msgs in #print axioms n2_nicht_je_kreis
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_paar' depends on axioms: [propext] -/
+#guard_msgs in #print axioms beruehrung_paar
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.count_n2_cons' depends on axioms: [propext] -/
+#guard_msgs in #print axioms count_n2_cons
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_kette' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_kette
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.kette_of_no_double' does not depend on any axioms -/
+#guard_msgs in #print axioms kette_of_no_double
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrungen_paarliste' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrungen_paarliste
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.kette_snoc' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kette_snoc
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_n2_len' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_n2_len
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_n2_eq' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_n2_eq
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_le' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_le
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_eq_zero_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_eq_zero_iff
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_eq_zero_iff_family' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms beruehrung_eq_zero_iff_family
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_guenther' depends on axioms: [propext] -/
+#guard_msgs in #print axioms beruehrung_guenther
+
+/-- info: 'Reformulation.Proemial.NegationCycleThreeCycle.beruehrung_scheinzyklus' depends on axioms: [propext] -/
+#guard_msgs in #print axioms beruehrung_scheinzyklus
 
 end Reformulation.Proemial.NegationCycleThreeCycle

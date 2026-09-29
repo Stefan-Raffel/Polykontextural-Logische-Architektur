@@ -1419,8 +1419,12 @@ Enthält:
   (`guenthers_drei`). Günthers Zählsatz von S. 49 — N1 und N3 zwischen fünf- und zehnmal, N2
   zwischen sechs- und zwölfmal — für jeden Vollkreis (`zaehlsatz_all`), mit seinen eigenen
   Kreisen als Zeugen (`zaehlsatz_erreicht`); das „mehr" von N2 liegt in den Schranken, nicht in
-  jedem Kreis (`n2_nicht_je_kreis`). **Nicht:** „kein stabiles Sein", K als Hamiltonkreis,
-  warum 6-12-6. 36 Wachen, kein `Classical.choice`.
+  jedem Kreis (`n2_nicht_je_kreis`). Teil 5 (29.9., nach `Spec_Verbindungsglied_Beruehrung.md`):
+  das Verbindungsglied gezählt — Berührungen von N1 und N3 plus zweimal N2 gleich 24 in jedem
+  Vollkreis (`beruehrung_n2_eq`), allgemein als Doppelzählen für jedes Wort ohne zwei gleiche
+  Nachbarn (`beruehrung_n2_len`); Günthers Kreise 6, 12, 0 (`beruehrung_guenther`).
+  **Nicht:** „kein stabiles Sein", K als Hamiltonkreis, warum 6-12-6, Ich und Du.
+  49 Wachen, kein `Classical.choice`.
 - `Proemial.NegatorContexture`: **die Negatoren und ihre Elementarkontexturen** (nach
   `Antwort_Verbund_und_Kreise_Mathematiker.md`, Fassung 2, als Spec). Der Umtauschbereich des
   Negators `N_{i+1}` ist das Wertpaar `{i, i+1}`, eine Elementarkontextur
