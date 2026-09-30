@@ -57,7 +57,9 @@ in den Stellen-Schichten, jede mit dieser Marke.
 
 **Seit dem 23. September die Umkehrung** (nach `KorpusRev2/Spec_Wertzahl_Zerlegung.md`,
 Fassung 2): `decomp` samt `decomp_succ`, `step`, `decomp_spec` (Gewährschein) und
-`decomp_uniq` (Eindeutigkeit), dazu vier Eichwerte. `intervalStart` geht von der Themenzahl
+`decomp_uniq` (Eindeutigkeit), dazu vier Eichwerte. **Seit dem 30. September** zwei weitere
+Eichsätze an Lilles ersten Tafeln (`lille_tafeln`, `lille_erschoepft`; siehe (4b)).
+`intervalStart` geht von der Themenzahl
 zur Wertzahl, `decomp` zurück — **jede Wertzahl zerfällt in Themenzahl und Überschuss, und
 auf genau eine Weise.**
 
@@ -108,6 +110,47 @@ Gegenstück.
 sind die **Quadrat**-Schale (`Nat.sqrt`), „Triangle" ist Kategorien- und Graphentheorie. Die
 Analogie liegt dort, der Satz nicht — damit niemand ihn später sucht oder für zitierbar hält.
 
+## (4b) Lilles erste Tafeln — die Eichung dort, wo Günther die Rechnung einführt
+
+(Seit dem 30. September, nach `KorpusRev2/Spec_Lille_Tafeln_Eichung.md`, Fassung 2, Mathematiker,
+Baufreigabe des Architekten, und den Vorproben der Instanz.) **Seitenangaben nach der vordenker-
+Edition 2005 (Frühjahr-Edition), nicht nach den Actes 1968** — so zitiert das Haus Lille
+(Custos, ZW1). Alle Stellen am Seitenbild gelesen, 30.9.
+
+`lille_tafeln` eicht `decomp` an den Wertzahlen 1 bis 6 und 24, `lille_erschoepft` die
+Erschöpfung an 2 und 5 (nicht an 3 und 4):
+
+* **m = 1 → (1, 0).** S. 4: *„Dieses Sein ist einwertig!"*
+* **m = 2 → (1, 1), erschöpft.** S. 4: *„Der positive Wert ist immer zugleich der designierende.
+  Und der designationsfreie Wert ist der Index der Subjektivität, die sich aus dem Bild dieses
+  Seins ausgeschlossen hat."*
+* **m = 3 → (2, 0).** S. 5, Tafel I (Spaltenkopf „zwei Designationstypen": 1, 2;
+  „designationsfreie Werte": 0): ein dreiwertiges System kann *„nur als Ontologie und nicht als
+  Logik betrachtet werden."*
+* **m = 4 → (2, 1).** Der vierte Wert wird auf **S. 5 unten** eingeführt; auf **S. 6** stehen
+  Tafel II (Spaltenkopf „Designationssysteme": 1, 2; designationsfrei: 1) und die zwei Sätze
+  über ihn: *„Daraus ergibt sich unzweideutig, dass der vierte Wert nicht-designierenden
+  Charakter hat."* — *„Der vierte Wert indiziert in unserem Fall den ontisch-epistemologischen
+  Ort, von dem aus ein denkendes Subjekt eine dreiwertige Seinstheorie entwickeln kann."*
+  **Das ist die Designations-Vier**, Günthers eigener Grund dafür, dass das denkende Subjekt
+  erst bei vier Werten beginnt (QUELLENFEST). Sie ist nicht die Rejektions-Vier (Janus 1974) und
+  nicht die Klon-Vier (ohne Günther-Anker); die drei bleiben getrennt (Register ZW10).
+* **m = 5 → (2, 2), erschöpft.** S. 6: *„Wir müssen zu einem fünfwertigen System übergehen und
+  damit die einwertige Nicht-Designation zu einer zweiwertigen erweitern."*
+* **m = 6 → (3, 0).** S. 4–7 sagen über sechs Werte **nichts**. Dass sechs Werte eine
+  Ontologie sind, ist **Rechnung nach Günthers Regel von S. 7** (die Designationstypen 1 + 2 + 3
+  absorbieren alle sechs Werte), nicht seine Aussage.
+* **m = 24 → (6, 3).** S. 7, Tafel III (Spaltenkopf „Hierarchie der Designationssysteme":
+  1, 2, 3, 4, 5, 6; designationsfrei: 3): das anvisierte Thema ist *„ein dreiwertiges Sein"*.
+  Günther rechnet hier die Zerlegung selbst; die Stelle steht darum auch bei `decomp_spec` und
+  `decomp_uniq`.
+
+**Was die Eichung zeigt, als Rechnung:** die klassische Logik (2) erschöpft das erste
+Intervall, die fünfwertige Logik (5) das zweite. **Nicht im Kopf und nicht behauptet:** dass
+Günthers „Wahlfreiheit, dreiwertiges Sein sowohl durch eine vierwertige wie durch eine
+fünfwertige Logik zu denken" (S. 7) die Wahl zwischen dem ersten und dem letzten Schritt dieses
+Intervalls *ist* — das wäre ZUORDNUNG. Nichts über Ich und Du.
+
 ## (5) Bauform und Namen
 
 Projekt-import-frei, unterste Schicht des Stellen-Trakts. „Wertzahl", „Thema",
@@ -119,7 +162,9 @@ Wiederholungs-Figur (benannte Posten). **Designation ≠ Denotation** gilt fort.
 
 **0 Sorries.** Axiom-Ist (erster grüner Build, v4.30.0-rc2), bis zur Umkehrung zweigeteilt
 exakt entlang der Beweis-Taktik — seit `exhausted_seam` **drei** Klassen, nachgezählt am
-23. September über die 18 Wachen: 8 axiom-frei, 1 `[propext]`, 9 `[propext, Quot.sound]`.
+23. September über die 18 Wachen: 8 axiom-frei, 1 `[propext]`, 9 `[propext, Quot.sound]`;
+seit dem 30. September 20 Wachen, **10 axiom-frei** (`lille_tafeln` und `lille_erschoepft`
+kommen hinzu, `decide +kernel`, wie die übrigen Eichwerte).
 Die ursprünglichen acht:
 
 * **axiom-frei** (`decide`-Route): `tafel_IV`, `nature_closes_at_14`,
@@ -289,7 +334,12 @@ theorem step (a : ℕ) : intervalStart (a + 1) = intervalStart a + a + 1 := by
   omega
 
 /-- **Der Gewährschein**: `decomp` leistet, was ihr Name sagt — der Überschuss bleibt unter
-der Themenzahl, und beide setzen die Wertzahl wieder zusammen. -/
+der Themenzahl, und beide setzen die Wertzahl wieder zusammen.
+
+**Nächste Quellenstelle:** Lille S. 7 (Edition 2005) rechnet die Zerlegung von 24 selbst —
+*„dass ein 24-wertiges System 21 Werte für Designationszwecke absorbiert, die sich in 6
+verschiedene Designationstypen aufteilen … Es bleibt also ein Überschuss von drei Werten"*:
+`24 = intervalStart 6 + 3` (QUELLENFEST der Wortlaut; geeicht in `lille_tafeln`). -/
 theorem decomp_spec (m : ℕ) :
     (decomp m).2 ≤ (decomp m).1 ∧ m = intervalStart (decomp m).1 + (decomp m).2 := by
   induction m with
@@ -305,7 +355,12 @@ theorem decomp_spec (m : ℕ) :
       exact ⟨by omega, by omega⟩
 
 /-- **Die Eindeutigkeit**: es gibt keine zweite Zerlegung. Wer `m` anders als
-`intervalStart k + j` mit `j ≤ k` schreibt, schreibt dieselben Zahlen. -/
+`intervalStart k + j` mit `j ≤ k` schreibt, schreibt dieselben Zahlen.
+
+**Nächste Quellenstelle:** Lille S. 7 (Edition 2005), an derselben Rechnung: *„Denn der
+nächste Designationsmodus würde 7 Werte erfordern, was die Gesamtzahl der vorhandenen Werte um
+4 übertrifft."* Der Wortlaut ist QUELLENFEST; dass er die Maximalität ausspricht, die dieser
+Satz trägt, ist ZUORDNUNG (nah). -/
 theorem decomp_uniq (m k j : ℕ) (hjk : j ≤ k) (h : m = intervalStart k + j) :
     (decomp m).1 = k ∧ (decomp m).2 = j := by
   obtain ⟨hle, heq⟩ := decomp_spec m
@@ -361,13 +416,31 @@ Fn. 9); im technischen Sinn von §18 (Überschuss 0) die Ontologie, mit der das 
 beginnt. -/
 theorem decomp_66 : decomp 66 = (11, 0) := by decide +kernel
 
+/-- **Eichung an Lilles ersten Tafeln** (Edition 2005, S. 4–7; Kopf (4b)): ein Wert — das
+einwertige Sein (S. 4); zwei — die klassische Logik mit einem designationsfreien Wert (S. 4);
+drei — Tafel I, nur Ontologie (S. 5); vier — Tafel II, der erste nicht-designierende Wert
+(S. 6); fünf — die zweiwertige Nicht-Designation (S. 6); sechs — Ontologie nach Günthers
+Regel von S. 7 (Rechnung, nicht seine Aussage); vierundzwanzig — Tafel III, 21 absorbiert und
+3 frei (S. 7). -/
+theorem lille_tafeln :
+    decomp 1 = (1, 0) ∧ decomp 2 = (1, 1) ∧ decomp 3 = (2, 0) ∧ decomp 4 = (2, 1) ∧
+      decomp 5 = (2, 2) ∧ decomp 6 = (3, 0) ∧ decomp 24 = (6, 3) := by
+  decide +kernel
+
+/-- **Eichung der Erschöpfung an Lilles ersten Tafeln:** die klassische Logik (2) und die
+fünfwertige (5) erschöpfen ihr Intervall, drei und vier nicht. Rechnung am Bestand; dass
+Günthers „Wahlfreiheit" zwischen vier und fünf (S. 7) die Wahl zwischen erstem und letztem
+Schritt des Intervalls *ist*, sagt dieser Satz nicht. -/
+theorem lille_erschoepft : Exhausted 2 ∧ Exhausted 5 ∧ ¬ Exhausted 3 ∧ ¬ Exhausted 4 := by
+  decide +kernel
+
 -- ============================================================
 -- Teil 6 — Die `#guard_msgs`-Wachen (M6; Ist-gebunden)
 -- ============================================================
 
 -- Ist-Ausgabe, pro Kern-Satz als Wache. Die ersten acht (bis intervalStart_strictMono)
 -- stammen aus dem ersten grünen Build (v4.30.0-rc2, 0085d09); acht kamen mit decomp
--- (03de4b9), zwei mit Exhausted (d6f8429).
+-- (03de4b9), zwei mit Exhausted (d6f8429), zwei mit Lilles Tafeln (30.9.).
 section
 
 /-- info: 'Reformulation.Proemial.IntervalBackbone.two_mul_intervalStart' depends on axioms: [propext, Quot.sound] -/
@@ -423,6 +496,12 @@ section
 
 /-- info: 'Reformulation.Proemial.IntervalBackbone.not_exhausted_step' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms not_exhausted_step
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.lille_tafeln' does not depend on any axioms -/
+#guard_msgs in #print axioms lille_tafeln
+
+/-- info: 'Reformulation.Proemial.IntervalBackbone.lille_erschoepft' does not depend on any axioms -/
+#guard_msgs in #print axioms lille_erschoepft
 
 end
 

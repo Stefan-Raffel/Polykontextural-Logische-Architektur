@@ -569,7 +569,10 @@ Enthält:
   Umkehrung** (nach `Spec_Wertzahl_Zerlegung.md`): `decomp m = (a, r)` gibt zu jeder
   Wertzahl ihre Themenzahl und den Überschuss über dem Intervall-Anfang, mit
   `decomp_spec` (Gewährschein: `r ≤ a` und `m = intervalStart a + r`) und `decomp_uniq`
-  (**Eindeutigkeit** — es gibt keine zweite Zerlegung); dazu `step` und vier Eichwerte
+  (**Eindeutigkeit** — es gibt keine zweite Zerlegung); dazu `step` und vier Eichwerte,
+  seit dem 30. September zwei weitere an Lilles ersten Tafeln (`lille_tafeln`: die Wertzahlen
+  1–6 und 24, darunter `decomp 4 = (2, 1)`, die Designations-Vier; `lille_erschoepft`: 2 und 5
+  erschöpfen ihr Intervall, Lille S. 4–7, Edition 2005)
   (35/36 an Günthers Naht VII→VIII, 65/66 am zehnten Intervall — die letzten zwei machen
   den 65/66-Befund vom 16. September zum Satz). **Sie löst `AT-1b` nicht ein**: der Satz
   gilt an jeder Naht, und Günthers Name gehört nicht auf ihn (S5-5/S5-6); keine
@@ -594,7 +597,9 @@ Enthält:
   keine Ophiten-Namen, keine Ablösungs- oder Wiederkehr-Figur (benannte Posten);
   Designation ≠ Denotation gilt fort. **Projekt-import-frei** (einziger
   Mathlib-Import: `Order.Monotone.Basic` für die Kür). Axiom-Ist je Satz
-  `#guard_msgs`-verwacht, **18 Sätze, 18 Wachen, nachgezählt am 23. September**, in drei
+  `#guard_msgs`-verwacht, **18 Sätze, 18 Wachen, nachgezählt am 23. September** (seit dem
+  30. September 20 und 20, beide neuen axiom-frei; dazu der private Hilfssatz
+  `succ_mul_succ_succ`, ungewacht nach Hausregel ZV3), in drei
   Klassen: **8 axiom-frei** — die drei `decide`-Sätze der Tafel (`tafel_IV`,
   `nature_closes_at_14`, `eighth_starts_at_36`), `decomp_succ` (`rfl`) und die vier
   Eichwerte (`decide +kernel`); **1 `[propext]`** — `exhausted_seam`; **9
