@@ -236,10 +236,17 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   **LESART**. Eine zweite Lesart, der Durchgang, ist als Satz gebaut (`track_mediates`, unten
   K-V1–K-V5).
 * **K5 — kein §11-Träger.** Günther nennt den *Wert* vermittelnd, nicht die Genese. Die
-  Genese ist hier Doppeldeutigkeit einer Funktion, nicht Vermittlung; den vermittelnden
-  *Wert* trägt `track_mediates` (K-V1–K-V5); Buchung, wenn Custos
-  bucht, an §7 (HKN S. 25). Die zweite Negation definiert dieses Modul nicht; L07-4 bleibt
-  offen.
+  Genese ist bei Günther die Doppeldeutigkeit einer Funktion — ein Resultat, zwei Wege: „Wir
+  begegnen hier also wieder der für die Dialektik erforderlichen Doppeldeutigkeit einer
+  logischen Funktion." —, und er bindet sie an die Vermittlung: „Da die Hegelsche Logik aber das Problem der Zeit einbezieht (und die
+  Vermittlung ist wesentlich ein Problem der Kombination von Zeit und zeitloser Logik) muss uns
+  die Genese dieses Resultats wichtig sein." (HKN S. 25, am Bild: Hermeneutes, 30.9.; im Druck
+  „Genese" gesperrt). Im Bestand trägt sie keinen §11-Anspruch; den vermittelnden *Wert* trägt
+  `track_mediates` (K-V1–K-V5); Buchung, wenn Custos bucht, an §7 (HKN S. 25). Die zweite
+  Negation definiert dieses Modul nicht; L07-4 bleibt offen.
+  *Nachgeführt am 30.9.2026 (Rev10-Register ZM15 C2).* Zuvor stand hier: „Die Genese ist hier
+  Doppeldeutigkeit einer Funktion, nicht Vermittlung". Das „nicht Vermittlung" stand gegen
+  Günthers Wortlaut, der die Genese im selben Satz mit der Vermittlung begründet.
 * **K6 — nicht geprüft:** ob die Zopfrelation dieselbe Vermittlung trägt wie das Kriterium
   (B) in `SharedPlaceGrowth`. Bis dahin Wortgleichheit, keine Sachgleichheit.
 
