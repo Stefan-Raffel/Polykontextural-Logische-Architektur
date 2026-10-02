@@ -35,7 +35,8 @@ Der Kollaps-Satz `no_extensional_separation` (instanz-quantifiziert über alle d
 invarianten Klassifikationen), die Diskriminator-Trennung `discriminator_separates` samt
 Nicht-Invarianz `discriminator_not_invariant` (der Preis des Überschusses), die Zeugen-
 Ungleichheit `witness_ne`, die Schere-N in Schicht-Form `extension_without_intension`, die
-Kür `evalAt_separates_semantic`.
+Kür `evalAt_separates_semantic`. Seit dem 2.10.2026 dazu `higher_sees_only_table` (B1,
+Abschnitt (7)).
 
 ## (4) Bauform und Stufen-Disziplin
 
@@ -67,6 +68,40 @@ oder Gödel-artige Aussage wird geliefert oder behauptet.
 `propext`/`Quot.sound`, kein `Classical` erwartet, plus das Erbe von `T_not_in_clone`). Dies
 ist die erste Schicht unter der `#guard_msgs`-Wache (Plan Rev4 §1): ab dem gesetzten Ist
 bricht jede Axiom-Drift den Build.
+
+## (7) B1 — eine Funktion höherer Ordnung sieht von ihrem Argument nur die Tafel (2.10.2026)
+
+Gebaut auf Anordnung des Architekten vom 2.10.2026 nach `KorpusRev2/Spec_B1_Higher_Sees_Only_Table.md`
+(Fassung 2, Mathematiker; Rev10-Register R10-2 b, B1); Vorproben in
+`KorpusRev2/Vorproben_Spec_B1_Impl.md`.
+
+* **K1 — der Satz, ohne Deutung.** `higher_sees_only_table`: Jede Funktion
+  `F : (X → Y) → Z` gibt zwei Funktionen mit derselben Tafel denselben Wert.
+  **ZUSAMMENSTELLUNG** (`congrArg`, `funext`); in Mathlib 83a5988 kein benannter Satz dafür
+  (`exact?` am Ziel ohne Treffer, gemessen 2.10.).
+* **K2 — das Profil, und was es sagt.** `[Quot.sound]`, über `funext`. Das Profil zeigt, dass
+  **dieser** Beweis `funext` braucht. Dass der Satz ohne `funext` nicht beweisbar wäre, und
+  dass sich auch ohne `funext` kein `F` definieren liesse, das zwei gleich-tafelige Funktionen
+  trennt, ist bekannte Metatheorie — **hier nicht gemessen** (Fallstrick 25: ein Profil
+  beweist keine Nicht-Existenz).
+* **K3 — der Gegensatz, den das Modul jetzt ganz führt.** Für **Terme** ist „eine
+  Klassifikation sieht nur die Tafel" eine **Annahme** (`DenotationInvariant`), und es gibt
+  Klassifikationen, die sie verletzen (`discriminator_not_invariant`): eine Darstellung lässt
+  sich anders befragen als durch Auswerten. Für **Funktionen** gilt dieselbe Eigenschaft für
+  **jedes** `F`, ohne Annahme: eine Funktion lässt sich nur durch Anwenden befragen. Mehr als
+  die Tafel gibt es nur an Darstellungen — Terme hier, Negatorwörter in
+  `NegationCycle` (`genese_strich`).
+* **K4 — daneben, aus Mathlib.** `Set.ext`: zwei Mengen mit denselben Gliedern sind gleich,
+  `[propext, Quot.sound]` (Mathlib 83a5988, gemessen 2.10.). Für Prädikate ist das die
+  Lean-Fassung dessen, dass eine Klasse ihre Glieder ist. Nicht wiederholt (Regel 9).
+* **K5 — Marken, und was nicht.** Der Satz ist Mathematik **ohne** Günther (Rev10 C.1,
+  Schritt 3). Dass er mit Günthers Unterscheidung zu tun hat, ist **ZUORDNUNG** und als
+  **Richtung** geführt, nicht als Anker (Register F10-13): Günthers Grund gegen die Tradition
+  ist die „vor-gegebene Synthese" (C&V S. 19 / E&W S. 25), nicht die Extension; sein
+  Gleichheitszeichen `R_i = x_i` (E&W S. 26) entscheidet nicht zwischen „als es selbst" und
+  „als seine Tafel" — diese Alternative stellt der Bestand. Werkmeisters Satz (von Günther
+  zitiert, *Idee und Grundriss*, Anm. 28) läuft entlang derselben Linie und ist kein Anker
+  für B1. Kein Wort „Relator" in einem Satznamen; kein Anspruch über Günther.
 -/
 
 open FirstOrder Language
@@ -131,6 +166,13 @@ theorem no_extensional_separation {β : Type*} (F : L.Term (Fin 2) → β)
     (hF : DenotationInvariant F) : F s = F t :=
   hF s t witness_equiv
 
+/-- **B1 — eine Funktion höherer Ordnung sieht von ihrem Argument nur die Tafel.** Was für
+Terme die Annahme `DenotationInvariant` ist, gilt für Funktionen von selbst, für jedes `F`.
+ZUSAMMENSTELLUNG (`congrArg`, `funext`); Kopf, Abschnitt (7). -/
+theorem higher_sees_only_table {X Y Z : Type*} (F : (X → Y) → Z) (f g : X → Y)
+    (h : ∀ x, f x = g x) : F f = F g :=
+  congrArg F (funext h)
+
 -- ============================================================
 -- Teil 4 — Der Preis des Überschusses und die Schere-N (M4/M5)
 -- ============================================================
@@ -185,6 +227,21 @@ theorem evalAt_separates_semantic :
 
 /-- info: 'Reformulation.Proemial.ExtensionalCollapse.discriminator_not_invariant' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms discriminator_not_invariant
+
+/-- info: 'Reformulation.Proemial.ExtensionalCollapse.higher_sees_only_table' depends on axioms: [Quot.sound] -/
+#guard_msgs in #print axioms higher_sees_only_table
+
+-- Nachgetragen am 2.10.2026 (B1-Zug, Spec A1:  Satzmenge = Wachenmenge im Modul):  die drei
+-- öffentlichen Sätze, die bis dahin ungewacht waren.
+
+/-- info: 'Reformulation.Proemial.ExtensionalCollapse.witness_equiv' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms witness_equiv
+
+/-- info: 'Reformulation.Proemial.ExtensionalCollapse.discriminator_separates' depends on axioms: [propext] -/
+#guard_msgs in #print axioms discriminator_separates
+
+/-- info: 'Reformulation.Proemial.ExtensionalCollapse.evalAt_invariant' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms evalAt_invariant
 
 /-- info: 'Reformulation.Proemial.ExtensionalCollapse.extension_without_intension' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms extension_without_intension

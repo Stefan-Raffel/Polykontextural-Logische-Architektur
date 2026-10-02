@@ -483,7 +483,11 @@ Enthält:
   Zeugen-Paar). E&W-Marke: bewiesen ist die *formale* Term-Intensionalität (Konstruktor-
   Verschiedenheit — von `propext` nicht einebnbar; der `witness_ne`-Beweis selbst zieht
   `propext`, minimal); die *intensionale* E&W-Stufe wird NICHT eingelöst (V2). Kollaps
-  struktur-relativ (`Fin 3`).
+  struktur-relativ (`Fin 3`). **B1** (2.10.2026): `higher_sees_only_table` — eine Funktion
+  höherer Ordnung gibt zwei Funktionen mit derselben Tafel denselben Wert, für jedes `F`
+  (`[Quot.sound]`, ZUSAMMENSTELLUNG aus `congrArg` und `funext`); was für Terme die Annahme
+  `DenotationInvariant` ist, gilt für Funktionen von selbst. Bezug zu Günther als Richtung,
+  nicht als Anker.
   2b (γ-Anbindung) vertagt (Typ-Spalt-Befund `LawvereVorSonde`). Erste Schicht unter der
   `#guard_msgs`-Wache (Plan Rev4 §1): Axiom-Ist `propext` (`witness_ne`) bzw.
   `propext, Quot.sound` (übrige Kern-Sätze), kein `Classical`, je Kern-Satz Ist-gebunden
