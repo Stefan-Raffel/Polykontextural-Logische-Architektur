@@ -39,6 +39,10 @@ Die Sätze:
   `triadic_unique` läuft über die 64 Folgen der Länge sechs; `triadic_unique'` lässt die
   Längenvoraussetzung fallen, über `full_length2` (Hilfssatz `perms2_nodup`). Beide sind
   choice-frei.
+* `tafelVI_genesen`, `tafelVI5_eq_mirror`, `tafelVI_stations_reverse`,
+  `tafelVI_ununterscheidbar` — **ein Kreis, zwei Drehsinne** (Teil 2, 2.10.2026): was aus
+  jedem Drehsinn folgt, und dass die zwei Folgen einander spiegeln. Siehe den Abschnitt
+  „Ein Kreis, zwei Drehsinne" unten.
 * `kreis1_full`, `kreis2_full`, `kreis3_full` — vierwertig: Günthers drei ausgeschriebene
   Beispielkreise sind Vollkreise; `kreis1_family` (10-9-5), `kreis2_family` (9-6-9),
   `kreis3_family` (6-12-6) — die Operatorhäufigkeiten, nach denen er die drei Familien
@@ -184,9 +188,51 @@ davon, wie man das strittige Kästchen liest.
   vier Werten in einen Vollkreis überführt, ist `NegationCycleSymmetry.mirror_all`; für mehr
   Werte ist es ungemessen. (Die Drehsinn-Aussage
   war bis zum 21. September ebenso beschränkt und ist es seit `reverse_full` nicht mehr.)
-  *Nachsatz (2.10.2026):* Für **Vollkreise** gilt das weiter. Für die **kürzesten Wege zum
+  *Nachsatz (2.10.2026):* Für **Vollkreise** gilt das weiter; **auf drei Werten** fallen
+  Spiegelung und Umkehrung des Kreises zusammen (`tafelVI5_eq_reverse`, `tafelVI5_eq_mirror`). Für die **kürzesten Wege zum
   Rücklauf** ist die Spiegelung seit dem Zug „Der Strich und der Spiegel" für jedes `m`
   bewiesen (`endpoint_map_rev`; `NegationCycleLength.ruecklauf_map_rev`, `kuerzeste_spiegel`).
+
+## Ein Kreis, zwei Drehsinne (Teil 2)
+
+Gebaut am 2.10.2026 nach `KorpusRev2/Spec_Zwei_Kreise_Drei_Werte.md` (Fassung 2, Mathematiker);
+Vorproben in `KorpusRev2/Vorproben_Spec_Zwei_Kreise_Drei_Werte_Impl.md`.
+
+* **K-K1 — die Quelle, im Wortlaut.** Günther, *Martin Heidegger und die Weltgeschichte des
+  Nichts* (HWN, 1980; Winter-Edition 2005, PDF-Seite = Fusszeile), an den zwei Folgen (4) und
+  (5) der Tafel VI (IGN S. 18; oben Teil 2):
+  - S. 20: „p = N 1.2.1.2.1.2 p" und „p = N 2.1.2.1.2.1 p", „ein sogenannter Hamiltonkreis …, der
+    wie jeder Kreis entweder im Uhrzeigersinne oder im Gegensinne durchlaufen werden kann"
+    (Textschicht). Wie IGN S. 43 („nur einen einzigen solchen Kreis"): **ein** Kreis, zwei
+    Drehsinne, zwei Folgen.
+  - S. 22: die zwei dreiwertigen Ausdrücke sind nicht mehr „unterschiedliche Ausdrucksweise
+    eines identischen Sachverhalts"; jedes p hat „eine Reflexionsgeschicbte [sic] hinter sich,
+    … die in seine Definition eingehen muss" (am Bild, 2.10.: Druckfehler der Edition, die
+    Stelle kursiv).
+  - S. 26: „Die beiden Negationsfolgen sind einander völlig ebenbürtig", „keine theoretische
+    Instanz im ganzen Universum" (Textschicht). S. 26 f.: „Andererseits aber lässt sich die
+    Identität von p nur dann feststellen, wenn es entschieden ist, dass p im Sinne der ersten
+    oder der zweiten Gleichung gedeutet werden soll. … ganz untheoretischen Handlungsvollzug."
+    (S. 27 am Bild: Hermeneutes, 26.9.; der Satz beginnt auf S. 26).
+* **K-K2 — was die Sätze sagen, ohne Deutung.** Auf drei Werten gibt es genau zwei volle
+  Folgen, einen Kreis in zwei Drehsinnen (`triadic_unique'`). Jede ist die zwei Genesen des
+  Rücklaufs hintereinander, in einer der zwei Reihenfolgen (`tafelVI_genesen`). Die Folge im
+  Gegensinn ist die gespiegelte und die umgekehrte (`tafelVI5_eq_mirror`,
+  `tafelVI5_eq_reverse`) und durchläuft dieselben Stationen in umgekehrter Reihenfolge
+  (`tafelVI_stations_reverse`). Kein Kriterium, das die Spiegelung respektiert, trennt die zwei
+  (`tafelVI_ununterscheidbar`).
+* **K-K3 — Stufen.** `tafelVI_genesen`, `tafelVI5_eq_mirror` EICHUNG; `tafelVI_stations_reverse`
+  INSTANZIIERUNG von `fullStations_reverse`; `tafelVI_ununterscheidbar` ZUSAMMENSTELLUNG
+  (aus `tafelVI5_eq_mirror`).
+* **K-K4 — der Bezug zur Genese.** Die zwei Folgen bestehen aus genau den zwei Wörtern, die
+  `genese_resultat` und `genese_strich` (Teil 5) behandeln; `genese_spiegel` führt das eine in
+  das andere über, und damit die eine Folge in die andere.
+* **K-K5 — nicht.** Kein Satz über eine Wahl, eine Freiheit oder einen Drehsinn der Zeit, und
+  keiner darüber, welche Folge gilt. Dass Günther an diesen Folgen die Freiheit des Willens
+  zeigt (HWN S. 26 f.), steht hier als Quellenhinweis. Dass die Wahl des Drehsinns die Wahl
+  ist, welche Genese zuerst kommt, ist die Rechnung (`tafelVI_genesen`); dass die so gewonnene
+  Ordnung der Stationen die gerichtete Relation von 1970 sei, ist **LESART** und steht in
+  `KorpusRev2/Faden_Proemialrelation.md`, nicht hier.
 
 ## Die Genese (Teil 5)
 
@@ -680,6 +726,38 @@ theorem triadic_unique' (seq : List (Fin 2)) (h : IsFullCycle seq) :
   have hl : seq.length = 6 := full_length2 h
   match seq, hl with
   | [a, b, c, d, e, f], _ => exact triadic_unique a b c d e f h
+
+/-! ### Ein Kreis, zwei Drehsinne (Teil 2, 2.10.2026)
+
+Was aus jedem der zwei Drehsinne folgt, und dass die Folgen einander spiegeln. Kopf:
+„Ein Kreis, zwei Drehsinne" oben. -/
+
+/-- **Jede der zwei Folgen ist die zwei Genesen hintereinander**, in einer der zwei
+Reihenfolgen: (4) erst `N1.2.1`, dann `N2.1.2`; (5) umgekehrt. Hebt das `example` in Teil 5
+zum Satz und ergänzt die zweite Gleichung. -/
+theorem tafelVI_genesen :
+    tafelVI4 = ([0, 1, 0] ++ [1, 0, 1] : List (Fin 2)) ∧
+      tafelVI5 = ([1, 0, 1] ++ [0, 1, 0] : List (Fin 2)) :=
+  ⟨rfl, rfl⟩
+
+/-- **Die Folge im Gegensinn ist die gespiegelte Folge** (`N₁ ↔ N₂`). Zusammen mit
+`tafelVI5_eq_reverse`: auf drei Werten fallen Spiegelung und Umkehrung zusammen, weil die
+Folgen abwechseln. -/
+theorem tafelVI5_eq_mirror : tafelVI5 = tafelVI4.map Fin.rev := by decide
+
+/-- **Dieselben Stationen in umgekehrter Reihenfolge:** die Folge im Gegensinn durchläuft,
+vom Ausgang bis zur Rückkehr, die Wertfolgen der Folge (4) rückwärts. Ein Fall von
+`fullStations_reverse`. -/
+theorem tafelVI_stations_reverse :
+    fullStations tafelVI5 (origin 2) = (fullStations tafelVI4 (origin 2)).reverse := by
+  have h := fullStations_reverse tafelVI4 (origin 2)
+  rw [← tafelVI5_eq_reverse, tafelVI4_full.closes] at h
+  exact h
+
+/-- **Kein Kriterium, das die Spiegelung respektiert, trennt die zwei Folgen.** -/
+theorem tafelVI_ununterscheidbar {α : Type*} (f : List (Fin 2) → α)
+    (hf : ∀ w, f (w.map Fin.rev) = f w) : f tafelVI4 = f tafelVI5 := by
+  rw [← hf tafelVI4, ← tafelVI5_eq_mirror]
 
 -- ============================================================
 -- Teil 3 — vierwertig: die drei Beispielkreise (IGN S. 44–45; 1980 Tafel IV)
@@ -1234,6 +1312,18 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms triadic_unique'
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_genesen' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelVI_genesen
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelVI5_eq_mirror' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelVI5_eq_mirror
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_stations_reverse' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms tafelVI_stations_reverse
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_ununterscheidbar' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelVI_ununterscheidbar
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis1_full

@@ -1331,7 +1331,11 @@ Enthält:
   `transklassisch_eq_three` ist die Brücke zu Teil 6, `transklassisch_four` (22) und
   `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv hier (das Wort
   zu jedem Element liefert `NegationCycleSJT.reach_all`), löst V nicht
-  ein. 71 Wachen;
+  ein. **Ein Kreis, zwei Drehsinne** (Teil 2, 2.10.): `tafelVI_genesen` (jede der zwei
+  dreiwertigen Folgen ist die zwei Genesen hintereinander), `tafelVI5_eq_mirror` (Gegensinn =
+  Spiegelung), `tafelVI_stations_reverse` (dieselben Stationen rückwärts),
+  `tafelVI_ununterscheidbar` (kein spiegel-invariantes Kriterium trennt sie); HWN S. 20–27
+  als Quelle, Wahl und Freiheit nicht als Satz. 75 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
