@@ -73,6 +73,10 @@ Die Sätze:
   `genese_verschieden` — **die Genese** (Teil 5, 23.9.2026): Günthers zwei Wege zum
   selben Umtausch (HKN S. 25) als Eichung, und dahinter die Zopfrelation der Negatoren für
   jedes `m`. Siehe den Abschnitt „Die Genese" unten.
+* `sw_rev_conj`, `endpoint_reverse_values`, `origin_map_rev`, `endpoint_map_rev`,
+  `genese_strich`, `genese_spiegel` — **der Strich und der Spiegel** (Teil 5, 2.10.2026):
+  Günthers Merkmal an den zwei Genesen und die Umkehr der Werte, die die eine in die andere
+  überführt. Siehe den Abschnitt „Der Strich und der Spiegel" unten.
 
 * `klassisch3`, `transklassisch3`, `transklassisch3_nodup`, `transklassisch3_disjoint`,
   `zone_exhausts`, `zone_count`, `transklassisch3_card` — **der kalkültheoretische Bereich
@@ -180,6 +184,9 @@ davon, wie man das strittige Kästchen liest.
   vier Werten in einen Vollkreis überführt, ist `NegationCycleSymmetry.mirror_all`; für mehr
   Werte ist es ungemessen. (Die Drehsinn-Aussage
   war bis zum 21. September ebenso beschränkt und ist es seit `reverse_full` nicht mehr.)
+  *Nachsatz (2.10.2026):* Für **Vollkreise** gilt das weiter. Für die **kürzesten Wege zum
+  Rücklauf** ist die Spiegelung seit dem Zug „Der Strich und der Spiegel" für jedes `m`
+  bewiesen (`endpoint_map_rev`; `NegationCycleLength.ruecklauf_map_rev`, `kuerzeste_spiegel`).
 
 ## Die Genese (Teil 5)
 
@@ -193,8 +200,8 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
 * **K1 — Günthers Doppeldeutigkeit.** Der Umtausch der Werte 1 und 3 „kann … durch den
   Operator N1.2.1, aber auch durch den Operator N2.1.2 aktiviert werden"; die Tafel „gibt das
   'abstrakte' Resultat, das in beiden Fällen gleich ist", aber es „muss uns die Genese dieses
-  Resultats wichtig sein" — „die für die Dialektik erforderliche Doppeldeutigkeit einer
-  logischen Funktion". `genese_resultat` und `genese_verschieden` sind sein Beispiel:
+  Resultats wichtig sein" — „Wir begegnen hier also wieder der für die Dialektik
+  erforderlichen Doppeldeutigkeit einer logischen Funktion." `genese_resultat` und `genese_verschieden` sind sein Beispiel:
   dasselbe `endpoint`, verschiedene `stations`. Sie sind **Eichung**, nicht Folgerung —
   zwei `decide` über festen Listen verbrauchen keinen Satz.
   **Zweiter Anker: Metamorphose der Zahl, PDF-S. 9 (gedr. S. 8).** Dieselbe Figur — die
@@ -249,6 +256,48 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   Günthers Wortlaut, der die Genese im selben Satz mit der Vermittlung begründet.
 * **K6 — nicht geprüft:** ob die Zopfrelation dieselbe Vermittlung trägt wie das Kriterium
   (B) in `SharedPlaceGrowth`. Bis dahin Wortgleichheit, keine Sachgleichheit.
+
+**Der Strich und der Spiegel** (Teil 5, gebaut am 2.10.2026 nach
+`KorpusRev2/Spec_Genese_Strich_und_Spiegel.md`, Fassung 2, Mathematiker; Vorproben in
+`KorpusRev2/Vorproben_Spec_Genese_Strich_Spiegel_Impl.md`):
+
+* **K-S1 — die Quelle, im Wortlaut.** HKN S. 24 f. (Textschicht `KorpusRev1/HKN_1970_Volltext.txt`;
+  am Bild: Hermeneutes, 30.9.): Günther setzt in der zweiten Tafel den Horizontalstrich dort,
+  wo ein Wert gegen die Wertfolge unverändert bleibt, „die durch den letzten
+  Operationsnegator verneint wird" (gedruckt „l e t z t e n", gesperrt); „Je nachdem, welche
+  Negationsoperation man bevorzugt, bleibt ein anderer Wert konstant. D.h., in dem ersten der
+  beiden Fälle befindet sich unser Horizontalstrich in der obersten, im zweiten aber in der
+  untersten Position." Die zwei Wege bindet Günther selbst an „die Frage des Primats des
+  Begriffs über den Willen oder umgekehrt des Willens über den Begriff" (Metamorphose der
+  Zahl, PDF-S. 9; oben, Zweiter Anker) — **seine** Zuordnung. *Gegenstimme:* cyb 1962, S. 34,
+  „ηR =Def η1.2.1 = η2.1.2" (oben, Dritter Anker) setzt die zwei gleich, am Resultat.
+* **K-S2 — was die Sätze sagen, ohne Deutung.** Die Umkehr der Werte — das gemeinsame Resultat
+  der zwei Genesen — konjugiert jeden Negator in sein Spiegelbild, `N_j ↦ N_{m+1−j}`
+  (`sw_rev_conj`; `m` ist die Zahl der Negatoren), und führt darum jedes Wort zum Rücklauf in
+  ein gespiegeltes Wort zum Rücklauf über, für jede Wertzahl (`endpoint_map_rev`;
+  `NegationCycleLength.ruecklauf_map_rev`), die kürzesten in die kürzesten
+  (`NegationCycleLength.kuerzeste_spiegel`). Bei drei Werten ist das die Vertauschung von
+  `N1.2.1` und `N2.1.2` (`genese_spiegel`). Günthers Merkmal, der unter dem letzten Negator
+  festgehaltene Wert, steht bei `N1.2.1` oben und bei `N2.1.2` unten (`genese_strich`) und
+  wandert unter der Spiegelung von oben nach unten (`genese_spiegel`).
+* **K-S3 — die Stufen, je Satz am Beweis bestimmt** (CLAUDE.md §4):
+  - `sw_rev_conj` — FOLGERUNG (dünn) — Lehrbuch (`w₀ s_i w₀ = s_{n−i}` in der symmetrischen
+    Gruppe); im Bestand und in Mathlib (83a5988) nicht als Satz über `sw` vorhanden.
+  - `endpoint_reverse_values`, `origin_map_rev` — FOLGERUNG (dünn) — Hilfssätze für den
+    Rücklauf; `endpoint_reverse` oben ist eine andere Sache (Umkehr des Wortes).
+  - `endpoint_map_rev` — FOLGERUNG (dünn) — Induktion aus `sw_rev_conj`.
+  - `genese_strich`, `genese_spiegel` — EICHUNG an HKN S. 24 f.
+  - *Dass das Resultat die Genesen vertauscht, ist die Rechnung.* Dass es damit „auf seine
+    eigenen Entstehungswege wirkt" oder Günthers Primat-Frage berührt, ist **LESART** und steht
+    hier nicht als Satz; sie gehört in `KorpusRev2/Faden_Proemialrelation.md`.
+* **K-S4 — die Stellung im Bestand.** `ExtensionalCollapse` trennt zwei gleich-tafelige Terme
+  durch ein syntaktisches Merkmal und sagt selbst, das sei keine Einlösung einer
+  intensionalen Stufe. `genese_strich` hält ein Merkmal fest, das **Günther** an zwei
+  Wegen mit demselben Resultat sieht — nicht mehr.
+* **K-S5 — nicht.** Kein Anspruch über eine Wahl. Dass Günther den Negator unter die Formen
+  des Relators rechnet (E&W S. 24: „Der Relator kann natürlich viele Formen annehmen. Er kann
+  ein Negationsoperator sein."), steht bei ihm; die Konjugation als Operation auf Negatoren
+  so zu lesen, wäre unsere Zuordnung und steht hier nicht.
 
 **Der vermittelnde Wert** (Teil 5, gebaut am 25.9.2026 nach
 `KorpusRev2/Spec_Vermittlung_Durchgang.md`, Mathematiker; Probe in
@@ -384,7 +433,10 @@ und `comm_far` tragen `[propext, Quot.sound]`, ebenso `braid_fails_far_all` (25.
 Schritt für Schritt über `sw_val`: ein `split_ifs` über alle sechs verschachtelten `sw`
 läuft in den Heartbeat-Timeout und meldet sich dann als axiomfrei — Fallstrick 23);
 `braid_fails_far`,
-`genese_resultat` und `genese_verschieden` tragen `[propext]`. Der vermittelnde Wert
+`genese_resultat` und `genese_verschieden` tragen `[propext]`. Der Strich und der Spiegel
+(2.10.2026): `sw_rev_conj`, `origin_map_rev` und `endpoint_map_rev` tragen
+`[propext, Quot.sound]`, `endpoint_reverse_values`, `genese_strich` und `genese_spiegel`
+`[propext]`; `origin_map_rev` mit `simp only` über benannte Lemmas (Fallstrick 21). Der vermittelnde Wert
 (25.9.): `sw_step`, `track_between`, `track_between_down` und `track_mediates` tragen
 `[propext, Quot.sound]`, `track_last` trägt `[propext]`. Mit offenem
 `simp` statt `rw [if_pos …]` in `sw_val` zöge die Kette `Classical.choice`
@@ -899,6 +951,95 @@ theorem genese_verschieden :
     stations ([0, 1, 0] : List (Fin 2)) (origin 2) ≠
       stations ([1, 0, 1] : List (Fin 2)) (origin 2) := by decide
 
+/-! ### Der Strich und der Spiegel (Teil 5, 2.10.2026)
+
+Günthers Merkmal an den zwei Genesen (HKN S. 25: welcher Wert unter dem **letzten** Negator
+stehen bleibt) und die Umkehr der Werte, die die eine Genese in die andere überführt. Kopf:
+„Der Strich und der Spiegel" oben. -/
+
+/-- **Die Umkehr der Werte konjugiert die Negatoren:** `Fin.rev ∘ N_{i+1} ∘ Fin.rev = N_{m−i}`
+— gespiegelt wird der Index, für jede Wertzahl. Über `sw_val`, ohne offenes `simp`. -/
+theorem sw_rev_conj {m : ℕ} (i : Fin m) (v : Fin (m + 1)) :
+    Fin.rev (sw i (Fin.rev v)) = sw (Fin.rev i) v := by
+  apply Fin.ext
+  rw [Fin.val_rev, sw_val, sw_val, Fin.val_rev, Fin.val_rev]
+  have hv := v.isLt
+  have hi := i.isLt
+  split_ifs <;> omega
+
+/-- Ein Negatorwort wirkt auf die umgekehrte Wertfolge, wie es auf die Wertfolge wirkt, nur
+umgekehrt: `endpoint` vertauscht mit der Umkehr der **Wertfolge**. (`endpoint_reverse` oben
+spricht von der Umkehr des **Wortes**.) -/
+theorem endpoint_reverse_values {m : ℕ} :
+    ∀ (w : List (Fin m)) (l : List (Fin (m + 1))),
+      endpoint w l.reverse = (endpoint w l).reverse
+  | [], _ => rfl
+  | i :: is, l => by
+    show endpoint is (negate i l.reverse) = (endpoint is (negate i l)).reverse
+    rw [show negate i l.reverse = (negate i l).reverse from List.map_reverse ..]
+    exact endpoint_reverse_values is _
+
+/-- Die Umkehr der Werte, angewandt auf den Ausgang, ist der Rücklauf. -/
+theorem origin_map_rev {m : ℕ} : (origin m).map Fin.rev = (origin m).reverse := by
+  apply List.ext_getElem
+  · rw [List.length_map, List.length_reverse]
+  · intro n h1 h2
+    simp only [origin, List.getElem_map, List.getElem_reverse, List.getElem_finRange,
+      List.length_finRange]
+    apply Fin.ext
+    simp only [Fin.cast_mk, Fin.val_rev, Nat.reduceSubDiff, Nat.add_one_sub_one]
+
+/-- **Das gespiegelte Wort wirkt wie das Wort, eingefasst in die Umkehr der Werte.** -/
+theorem endpoint_map_rev {m : ℕ} :
+    ∀ (w : List (Fin m)) (l : List (Fin (m + 1))),
+      endpoint (w.map Fin.rev) l = (endpoint w (l.map Fin.rev)).map Fin.rev
+  | [], l => by
+    show l = (l.map Fin.rev).map Fin.rev
+    rw [List.map_map]
+    conv_lhs => rw [← List.map_id l]
+    congr 1
+    funext v
+    exact (Fin.rev_rev v).symm
+  | i :: is, l => by
+    show endpoint (is.map Fin.rev) (negate (Fin.rev i) l) =
+      (endpoint is (negate i (l.map Fin.rev))).map Fin.rev
+    rw [endpoint_map_rev is]
+    congr 2
+    simp only [negate, List.map_map]
+    congr 1
+    funext v
+    show Fin.rev (sw (Fin.rev i) v) = sw i (Fin.rev v)
+    rw [← sw_rev_conj, Fin.rev_rev]
+
+/-- **Eichung an HKN S. 24 f., Günthers Strich.** Die Station vor dem letzten Negator und
+das Resultat: bei `N1.2.1` stimmen sie genau an der **obersten** Stelle überein, bei `N2.1.2`
+genau an der **untersten**; an den anderen zwei Stellen ändert sich der Wert. Die Stationen
+sind Günthers „3, 1, 2" und „2, 3, 1" (0-basiert). -/
+theorem genese_strich :
+    (stations ([0, 1, 0] : List (Fin 2)) (origin 2)).getLast? = some [2, 0, 1] ∧
+    (stations ([1, 0, 1] : List (Fin 2)) (origin 2)).getLast? = some [1, 2, 0] ∧
+    (stations ([0, 1, 0] : List (Fin 2)) (origin 2)).getLast?.map
+        (fun s => List.zipWith (fun a b => decide (a = b)) s
+          (endpoint ([0, 1, 0] : List (Fin 2)) (origin 2))) = some [true, false, false] ∧
+    (stations ([1, 0, 1] : List (Fin 2)) (origin 2)).getLast?.map
+        (fun s => List.zipWith (fun a b => decide (a = b)) s
+          (endpoint ([1, 0, 1] : List (Fin 2)) (origin 2))) = some [false, false, true] := by
+  decide
+
+/-- **Eichung: der Spiegel.** Die Spiegelung der Negatoren führt `N1.2.1` in `N2.1.2` über;
+das gemeinsame Resultat ist die Umkehr der Werte; und Günthers Strich wandert dabei von oben
+nach unten — das Muster der festgehaltenen Stelle kehrt sich um. -/
+theorem genese_spiegel :
+    ([0, 1, 0] : List (Fin 2)).map Fin.rev = [1, 0, 1] ∧
+    endpoint ([0, 1, 0] : List (Fin 2)) (origin 2) = (origin 2).map Fin.rev ∧
+    (stations (([0, 1, 0] : List (Fin 2)).map Fin.rev) (origin 2)).getLast?.map
+        (fun s => List.zipWith (fun a b => decide (a = b)) s
+          (endpoint (([0, 1, 0] : List (Fin 2)).map Fin.rev) (origin 2))) =
+      ((stations ([0, 1, 0] : List (Fin 2)) (origin 2)).getLast?.map
+        (fun s => List.zipWith (fun a b => decide (a = b)) s
+          (endpoint ([0, 1, 0] : List (Fin 2)) (origin 2)))).map List.reverse := by
+  decide
+
 /-- Eichung an Metamorphose der Zahl, Tafel IIIa (PDF-S. 6, gedr. S. 5): die zwei Genesen
 hintereinander, hin über `N1.2.1` und zurück über `N2.1.2`, sind Zeichen für Zeichen Günthers
 Folge (4) aus IGN S. 18 — definitionsgleich; ihr Vollkreis ist `tafelVI4_full`. -/
@@ -1173,6 +1314,24 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.genese_verschieden' depends on axioms: [propext] -/
 #guard_msgs in #print axioms genese_verschieden
+
+/-- info: 'Reformulation.Proemial.NegationCycle.sw_rev_conj' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms sw_rev_conj
+
+/-- info: 'Reformulation.Proemial.NegationCycle.endpoint_reverse_values' depends on axioms: [propext] -/
+#guard_msgs in #print axioms endpoint_reverse_values
+
+/-- info: 'Reformulation.Proemial.NegationCycle.origin_map_rev' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms origin_map_rev
+
+/-- info: 'Reformulation.Proemial.NegationCycle.endpoint_map_rev' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms endpoint_map_rev
+
+/-- info: 'Reformulation.Proemial.NegationCycle.genese_strich' depends on axioms: [propext] -/
+#guard_msgs in #print axioms genese_strich
+
+/-- info: 'Reformulation.Proemial.NegationCycle.genese_spiegel' depends on axioms: [propext] -/
+#guard_msgs in #print axioms genese_spiegel
 
 /-- info: 'Reformulation.Proemial.NegationCycle.transklassisch3_nodup' depends on axioms: [propext] -/
 #guard_msgs in #print axioms transklassisch3_nodup

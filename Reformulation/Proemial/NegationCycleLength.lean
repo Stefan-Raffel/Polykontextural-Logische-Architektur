@@ -3,8 +3,9 @@ import Reformulation.Proemial.NegationCycleSJT
 /-!
 # Proemial.NegationCycleLength — die kürzeste Zahl von Negatoren: die Inversionszahl
 
-**FOLGERUNG** (`inv_le_length`, `exists_word_inv`, `inv_is_min_length`), sonst **EICHUNG**
-(`eich3`, `eich4`, `genesen_kuerzeste`, `rueckwaerts_vier`). Gebaut auf Anordnung des
+**FOLGERUNG** (`inv_le_length`, `exists_word_inv`, `inv_is_min_length`; dünn:
+`ruecklauf_map_rev`), **ZUSAMMENSTELLUNG** (`kuerzeste_spiegel`: `ruecklauf_map_rev` und
+`List.length_map`), sonst **EICHUNG** (`eich3`, `eich4`, `genesen_kuerzeste`, `rueckwaerts_vier`). Gebaut auf Anordnung des
 Architekten vom 25. September 2026 nach der Sondierung
 `KorpusRev2/Sondierung_Minimale_Wortlaenge_Impl.md` und ihrer Begutachtung
 `KorpusRev2/Begutachtung_Sondierung_Minimale_Wortlaenge.md` (Mathematiker); die Frage aus
@@ -39,12 +40,18 @@ Architekten vom 25. September 2026 nach der Sondierung
   Beweis an der Eichung entschieden (`eich3`, `eich4`).
 * **K4 — die Genesen sind die kürzesten Wege.** Bei drei Werten erreichen den Rücklauf
   kein Wort kürzer als drei und unter den Worten der Länge drei genau `N1·2·1` und `N2·1·2`
-  (`genesen_kuerzeste`) — Günthers zwei „Genesen" (HKN S. 25; Metamorphose der Zahl, PDF-S. 9;
+  (`genesen_kuerzeste`) — Günthers zwei Wege, „in zwei Versionen" (HKN S. 25; Metamorphose der Zahl, PDF-S. 9;
   `NegationCycle.genese_resultat`, Teil 5) sind also **alle** kürzesten Wege, nicht zwei unter vielen. Bei vier Werten sind es
   16 (`rueckwaerts_vier`): dieselbe Menge wie die reduzierten Wörter des längsten Elements,
   die Definitionen §7 als „16 bei vier Werten" führt (Mathematiker, Begutachtung §2) — per
   Definition, und weil der Rücklauf seine eigene Umkehrung ist, gilt das in Wert- und
   Stellensicht zugleich. ZUORDNUNG der Zahl, gerechnet.
+  *Der Spiegel (2.10.2026):* Für jede Wertzahl führt die Spiegelung der Negatoren
+  (`N_j ↦ N_{m+1−j}`) jedes Wort zum Rücklauf in ein Wort zum Rücklauf über
+  (`ruecklauf_map_rev`), die kürzesten in die kürzesten (`kuerzeste_spiegel`, als
+  Genau-dann-wenn). Bei drei Werten vertauscht sie Günthers zwei Wege
+  (`NegationCycle.genese_spiegel`). Die Konjugation selbst und Günthers Strich stehen in
+  `NegationCycle`, Abschnitt „Der Strich und der Spiegel".
 * **K5 — Mathlib.** Keine Inversionszahl, kein Coxeter-System auf `Perm (Fin n)`, kein Satz
   „Länge = Inversionen"; vorhanden sind die abstrakte `CoxeterSystem.length` und die Parität
   in `Equiv.Perm.signAux` (Mathlib 83a5988). Daher FOLGERUNG, keine Umbenennung.
@@ -67,7 +74,8 @@ Verbindung seiner „Zahlenwerte" zu `inv` (`zahlenwerte`, `stationen_zahl`).
 
 Gemessen am grünen Bau, verbatim in den Wachen am Dateiende. **Kein Satz trägt
 `Classical.choice`.** Die drei Hauptsätze `inv_le_length`, `exists_word_inv` und
-`inv_is_min_length` tragen `[propext, Quot.sound]`, ebenso `genesen_kuerzeste`;
+`inv_is_min_length` tragen `[propext, Quot.sound]`, ebenso `genesen_kuerzeste`,
+`ruecklauf_map_rev` und `kuerzeste_spiegel` (2.10.2026);
 `rueckwaerts_vier` trägt `[propext]`; `eich3` und `eich4` sind axiomfrei.
 
 Die Choice-Freiheit ist eine Bedingung des Baus, keine Gabe der Aussage. Gemieden sind:
@@ -598,6 +606,37 @@ theorem genesen_kuerzeste :
   rw [hw] at this
   exact this
 
+/-- **Der Spiegel der Genesen, für jede Wertzahl.** Wer den Rücklauf erreicht, erreicht ihn
+auch mit dem gespiegelten Wort (`N_{i+1} ↦ N_{m−i}`): das Resultat, die Umkehr der Werte,
+führt jeden Weg zu sich in einen gespiegelten Weg zu sich über. -/
+theorem ruecklauf_map_rev (w : List (Fin m))
+    (h : endpoint w (origin m) = (origin m).reverse) :
+    endpoint (w.map Fin.rev) (origin m) = (origin m).reverse := by
+  rw [endpoint_map_rev, origin_map_rev, endpoint_reverse_values, h, List.reverse_reverse,
+    origin_map_rev]
+
+/-- **Die Spiegelung permutiert die kürzesten Wege zum Rücklauf**, für jede Wertzahl:
+ein Wort erreicht den Rücklauf in der kürzesten Länge (`inv`, nach `inv_is_min_length`)
+genau dann, wenn sein Spiegelbild es tut. Bei drei Werten sind das Günthers zwei Wege
+(`genesen_kuerzeste`), und die Spiegelung vertauscht sie (`NegationCycle.genese_spiegel`). -/
+theorem kuerzeste_spiegel (w : List (Fin m)) :
+    (endpoint w (origin m) = (origin m).reverse ∧ w.length = inv (origin m).reverse) ↔
+      (endpoint (w.map Fin.rev) (origin m) = (origin m).reverse ∧
+        (w.map Fin.rev).length = inv (origin m).reverse) := by
+  have hrr : (w.map Fin.rev).map Fin.rev = w := by
+    rw [List.map_map]
+    conv_rhs => rw [← List.map_id w]
+    congr 1
+    funext v
+    exact Fin.rev_rev v
+  constructor
+  · intro h
+    exact ⟨ruecklauf_map_rev w h.1, by rw [List.length_map]; exact h.2⟩
+  · intro h
+    have h1 := ruecklauf_map_rev (w.map Fin.rev) h.1
+    rw [hrr] at h1
+    exact ⟨h1, by rw [← h.2, List.length_map]⟩
+
 /-- Eichung:  bei vier Werten gibt es 16 kürzeste Worte zum Rücklauf (Länge 6) und keines
 kürzer. -/
 theorem rueckwaerts_vier :
@@ -707,6 +746,12 @@ theorem rueckwaerts_vier :
 
 /-- info: 'Reformulation.Proemial.NegationCycleLength.genesen_kuerzeste' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms genesen_kuerzeste
+
+/-- info: 'Reformulation.Proemial.NegationCycleLength.ruecklauf_map_rev' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ruecklauf_map_rev
+
+/-- info: 'Reformulation.Proemial.NegationCycleLength.kuerzeste_spiegel' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms kuerzeste_spiegel
 
 /-- info: 'Reformulation.Proemial.NegationCycleLength.rueckwaerts_vier' depends on axioms: [propext] -/
 #guard_msgs in #print axioms rueckwaerts_vier

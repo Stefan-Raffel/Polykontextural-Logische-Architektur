@@ -1309,7 +1309,13 @@ Enthält:
   jeden Wert zwischen Anfang und Ende, in beide Richtungen, für jedes `m` (HKN S. 25, „der
   Wert 2 spielt eine vermittelnde Rolle zwischen 1 und 3"; Lesart „vermittelnd =
   durchlaufen", zwei weitere Lesarten genannt, nicht entschieden; das Vermittelte dazu,
-  das Verhältnis 1 ↔ 3, trägt `NegatorContexture.mediated_swap`, IGN S. 17–19). Kein §11-Anspruch ohne
+  das Verhältnis 1 ↔ 3, trägt `NegatorContexture.mediated_swap`, IGN S. 17–19). **Der Strich
+  und der Spiegel** (2.10.): `genese_strich` — unter dem letzten Negator bleibt bei `N1.2.1`
+  die oberste, bei `N2.1.2` die unterste Stelle fest (Günthers Horizontalstrich, HKN S. 24 f.,
+  Eichung); `sw_rev_conj` — die Umkehr der Werte, das gemeinsame Resultat, konjugiert `N_j`
+  in `N_{m+1−j}`, für jedes `m`; `endpoint_map_rev` für Wörter (mit den Hilfssätzen
+  `endpoint_reverse_values`, `origin_map_rev`); `genese_spiegel` — sie vertauscht die zwei
+  Genesen, und der Strich wandert von oben nach unten. Kein §11-Anspruch ohne
   Custos, keine Definition der zweiten Negation (L07-4 offen). **Der
   kalkültheoretische Bereich** (Teil 6, 25.9.): Günthers vier Spalten aus HKN S. 24
   (`transklassisch3`) sind genau das Komplement der Doppelstrich-Zone (`klassisch3`) in den
@@ -1321,7 +1327,7 @@ Enthält:
   `transklassisch_eq_three` ist die Brücke zu Teil 6, `transklassisch_four` (22) und
   `transklassisch_two` (leer) die choice-freien Eichungen. Nicht konstruktiv hier (das Wort
   zu jedem Element liefert `NegationCycleSJT.reach_all`), löst V nicht
-  ein. 65 Wachen;
+  ein. 71 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
@@ -1395,9 +1401,11 @@ Enthält:
   Anordnung gibt es ein Negatorwort der Länge `inv a`, und keines ist kürzer. Eichung:
   `eich3`, `eich4` gegen die Suche; `genesen_kuerzeste` — bei drei Werten sind Günthers zwei
   Genesen genau die kürzesten Wege zum Rücklauf; `rueckwaerts_vier` — bei vier Werten 16.
+  `ruecklauf_map_rev`, `kuerzeste_spiegel` (2.10.) — für jede Wertzahl führt die Spiegelung
+  der Negatoren die (kürzesten) Wege zum Rücklauf ineinander über.
   **Nicht:** Günthers These über die Definition „jeden Begriffs"; im Ledger Träger von L21-9
   (seit Rev. 27, Anker am Programmsatz).
-  34 Wachen, kein `Classical.choice`.
+  36 Wachen, kein `Classical.choice`.
 - `Proemial.NegationCycleCatalog`: **Günthers Katalog (8)–(13) als Satz** (IGN S. 26 f., 37;
   nach `Spec_N4_Katalog.md`, Fassung 3). Bei drei Werten, Eichung: alle 21 gedruckten Einträge
   (`katalog_true`), jede Station mit jedem Abstand (`katalog_general`), der Wechsel der
