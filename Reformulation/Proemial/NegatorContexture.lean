@@ -38,9 +38,12 @@ zwei Stränge, die einander nicht importierten: die Negatoren (`NegationCycle`,
     diese elementare Erweiterung eine erste Vorstellung der Vermittlung." Ohne Hegel. Im
     Bestand ist `N1·N2·N1` bei drei Werten der Rücklauf (`NegationCycleLength.genesen_kuerzeste`)
     und eines der vier Elemente von `NegationCycle.transklassisch3`.
-  - *Ein Begriff von zwei Seiten* (Hermeneutes U4): `NegationCycle.track_mediates` trägt den
-    **Vermittler** (den Wert, der durchlaufen wird; HKN S. 25), `mediated_swap` das
-    **Vermittelte** (das Verhältnis 1 ↔ 3; IGN S. 17–19).
+  - *Dieselben Werte in verschiedenen Rollen, nicht ein Gegenstand* (Hermeneutes, 30.9.;
+    Rev10-Register ZH6): `NegationCycle.track_mediates` trägt den **Vermittler**, einen
+    **Wert** (die 2, der durchlaufen wird; HKN S. 25), `mediated_swap` das **Vermittelte**,
+    einen **Werte-Umtausch** (1 ↔ 3; IGN S. 17–19); in BdM 1963 (Tafel VII) vermittelt ein
+    **System**. *Nachgeführt am 2.10.2026 (Ledger Rev. 32, L11-6/L11-7); zuvor: „Ein Begriff
+    von zwei Seiten (Hermeneutes U4)".*
   - *Die Verbundkontextur* (Stand 27.9.): dasselbe Wort („Verbundkontextur bedeutet
     Vermittlung", HKN S. 25/26) und dieselbe Schwelle, das dreiwertige System als erster Fall.
     In IGN kommt „Verbundkontextur" nicht vor, und in IGN und HKN steht die Gleichsetzung

@@ -178,6 +178,7 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L07-1" Reformulation.Proemial.TransjunctionCloneBound.negFin
 #ledger_theorem "L07-2" Reformulation.Proemial.TransjunctionCloneBound.T_not_in_clone
 #ledger_theorem "L07-3" Reformulation.Proemial.GeneralCloneBound.locally_classical_in_clone_iff
+#ledger_theorem "L07-5" Reformulation.Proemial.NegationCycle.genese_strich
 
 #ledger_def "L08-1" Reformulation.Proemial.TransjunctionCloneBound.T
 #ledger_theorem "L08-2" Reformulation.Proemial.TransjunctionCloneBound.T_rejective
@@ -267,6 +268,10 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L06-9" Reformulation.Kenogram.Unbounded.marksLt_iff_fillable
 #ledger_mention "L06-10" Reformulation.Proemial.ChoiceVectors.locallyClassicalEquiv
 #ledger_mention "L06-10" Reformulation.Proemial.ChoiceVectors.clone_locallyClassical_eq
+#ledger_mention "L07-5" Reformulation.Proemial.NegationCycle.genese_resultat
+#ledger_mention "L07-5" Reformulation.Proemial.NegationCycle.genese_verschieden
+#ledger_mention "L07-5" Reformulation.Proemial.NegationCycle.genese_spiegel
+#ledger_mention "L07-5" Reformulation.Proemial.NegationCycle.sw_rev_conj
 #ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.contexture12
 #ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.mem_contexture03
 #ledger_mention "L08-6" Reformulation.Proemial.ContextureEscapeBound.mem_contexture12
@@ -329,3 +334,4 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L21-9" Reformulation.Proemial.NegationCycleCatalog.katalog_general
 #ledger_mention "L21-13" Reformulation.Proemial.NegationCycle.genese_resultat
 #ledger_mention "L21-13" Reformulation.Proemial.NegationCycleLength.genesen_kuerzeste
+#ledger_mention "L21-13" Reformulation.Proemial.NegationCycle.genese_strich

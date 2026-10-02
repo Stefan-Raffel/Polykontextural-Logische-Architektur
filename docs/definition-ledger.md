@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 31.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 32.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -38,10 +38,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 128 |
-| Zeilen mit Träger | 106 |
-| verschiedene Trägernamen | 97 |
-| TS `Theorem` | 80 |
+| Zeilen gesamt | 129 |
+| Zeilen mit Träger | 107 |
+| verschiedene Trägernamen | 98 |
+| TS `Theorem` | 81 |
 | TS `Definition` | 25 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 22 |
@@ -50,7 +50,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 **Sechs** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone`,
 `TCB.T_rejective` und `NCyc.sw` (je 2×; `NCyc.sw` seit Rev. 28, L21-2 und L21-14). Das sind
-**neun** überzählige Zeilen, daher 106 Zeilen mit Träger bei 97 Namen. *(Bis Rev. 27 standen
+**neun** überzählige Zeilen, daher 107 Zeilen mit Träger bei 98 Namen. *(Bis Rev. 27 standen
 hier fünf Träger, acht überzählige Zeilen und „98 Zeilen bei 90 Namen"; die beiden letzten
 Zahlen waren seit Rev. 23 nicht nachgeführt.)* Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
@@ -214,6 +214,7 @@ beider Fehlexpansionen.
 | L07-2 | Zweite Negation (§7) | `TCB.T_not_in_clone` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Proxy, kein globaler Operator |
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
 | L07-4 | Zweite Negation (§7) | — | Offen | Offen | — | keine Definition `SecondNegation`; nicht als Permutation zu bauen — Grund, datiert: (i) 26.7.2026, der Anspruch auf die volle Hegelsche zweite Negation (§7-Grenze der Julifassung, das Original); (ii) 14.–16.9.2026, §7 „keine einzelne Operation, sondern eine MENGE von Negationsoperatoren“ (spätere Artikulation) |
+| L07-5 | Die Genese (§7) | `NCyc.genese_strich` | Theorem | Deutung | ja, `[propext]` | Günthers Anspruch (HKN S. 25): „das abstrakte Resultat … in beiden Fällen gleich“ — **eins** im Resultat, **zwei** in der Genese; Günther unterscheidet die zwei Genesen am Festhalten unter dem **letzten** Negator (der Horizontalstrich oben bzw. unten) und bindet die Genese an Zeit und Vermittlung. Günthers Satz QUELLENFEST (HKN S. 25, deutsche Spalte, am Bild: Hermeneutes, 30.9.); zweiter Anker derselben Figur: Metamorphose der Zahl, PDF-S. 9 (gedr. S. 8), wie im Kopf von NegationCycle. Dass der Träger **Günthers** Strich ist: ZUORDNUNG (unsere). Dass das gemeinsame Resultat die eine Genese in die andere überführt (`NCyc.genese_spiegel`, `NCyc.sw_rev_conj`): unsere RECHNUNG — Günther sagt es nicht. Die Bindung an Zeit und Vermittlung: quellenfest, im Bestand NICHT getragen. „Doppel-“ ist Günthers Fall mit drei Werten. Daneben `NCyc.genese_resultat` (dasselbe Resultat) und `NCyc.genese_verschieden` (verschiedene Wege). Kein §20-Anspruch |
 | L08-1 | Transjunktion (§8) | `TCB.T` | Definition | Operationalisierung | keine (def) | `if a = 0 ∧ b = 2 then 1 else max a b` |
 | L08-2 | Transjunktion (§8) | `TCB.T_rejective` | Theorem | Operationalisierung | ja, `[propext]` | rejektiver Kern `T 0 2 = 1` |
 | L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten |
@@ -235,8 +236,8 @@ beider Fehlexpansionen.
 | L11-3 | Unmittelbarkeit (§11) | — | Offen | Offen | — | kein Träger |
 | L11-4 | Vermittlung (§11) | `PC.freigabe_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
 | L11-5 | Vermittlung (§11) | `RA.autoritaet_lokal` | Theorem | Deutung | ja, `[propext]` | lokal klassisch bei globaler Nicht-Erzeugbarkeit |
-| L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger); trägt mit `NCtx.mediated_swap` (L11-7) **einen** Günther-Begriff von zwei Seiten: den Vermittler (der Wert 2, HKN S. 25) und das Vermittelte (das Verhältnis 1 ↔ 3, IGN S. 17–19) |
-| L11-7 | Vermittlung (§11) | `NCtx.mediated_swap` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Definitionen §11, Fassung C (IGN 1979, S. 17–19): das Umtauschverhältnis der Werte 1 und 3 ist vermittelt, weil nur Nachbarn der Ordnung unmittelbar tauschen („richtungsorientierte Ordinalzahlen“; „P ist weder unmittelbarer Vorgänger noch unmittelbarer Nachfolger von N 2“). Günthers Fall sind drei Werte; „für jede Wertzahl“ ist **unsere** Verallgemeinerung, die Stufe bleibt FOLGERUNG (dünn). Daneben `NCtx.mediated_swap_is_O` (bei drei Werten Günthers O des Katalogs). Mit L11-6 **ein** Günther-Begriff von zwei Seiten. Zweiter Anker tml 1971 S. 11: das „vermittelte" Umtauschverhältnis 1 ↔ 3 als eine der drei Elementarkontexturen der einfachsten Verbundkontextur (QUELLENFEST am Wortlaut, Definitionen §11). Dritter Anker C&V S. 27: der vermittelnde Negator (im Wortlaut gelesen, nicht am Seitenbild). Daneben auch `NCtx.mediated_elem` und `NCtx.isElemContexture_Em` |
+| L11-6 | Vermittlung (§11) | `NCyc.track_mediates` | Theorem | Deutung | ja, `[propext, Quot.sound]` | eigener Quellenanker HKN S. 25 (der **Wert** 2 „spielt eine vermittelnde Rolle zwischen 1 und 3“); Lesart vermittelnd = durchlaufen; über **Werte** — getrennt von `SharedPlaceGrowth` (Lille S. 29, Kriterium (B), über **Tafelstellen**, nicht im Ledger); trägt mit `NCtx.mediated_swap` (L11-7) **dieselben Werte in verschiedenen Rollen**: als Vermittler einen **Wert** (die 2, HKN S. 25), als das Vermittelte einen **Werte-Umtausch** (1 ↔ 3, IGN S. 17–19); in BdM 1963 (Tafel VII) vermittelt ein **System**. Nicht ein Gegenstand (Hermeneutes, 30.9.). *Nachgeführt Rev. 32 (2.10.2026, Rev10-Register ZH6); zuvor: „trägt mit … (L11-7) **einen** Günther-Begriff von zwei Seiten: den Vermittler (der Wert 2, HKN S. 25) und das Vermittelte (das Verhältnis 1 ↔ 3, IGN S. 17–19)“* |
+| L11-7 | Vermittlung (§11) | `NCtx.mediated_swap` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Definitionen §11, Fassung C (IGN 1979, S. 17–19): das Umtauschverhältnis der Werte 1 und 3 ist vermittelt, weil nur Nachbarn der Ordnung unmittelbar tauschen („richtungsorientierte Ordinalzahlen“; „P ist weder unmittelbarer Vorgänger noch unmittelbarer Nachfolger von N 2“). Günthers Fall sind drei Werte; „für jede Wertzahl“ ist **unsere** Verallgemeinerung, die Stufe bleibt FOLGERUNG (dünn). Daneben `NCtx.mediated_swap_is_O` (bei drei Werten Günthers O des Katalogs). Mit L11-6: dieselben Werte in verschiedenen Rollen, nicht ein Gegenstand (siehe dort) *(nachgeführt Rev. 32, 2.10.2026; zuvor: „Mit L11-6 **ein** Günther-Begriff von zwei Seiten.“)*. Zweiter Anker tml 1971 S. 11: das „vermittelte" Umtauschverhältnis 1 ↔ 3 als eine der drei Elementarkontexturen der einfachsten Verbundkontextur (QUELLENFEST am Wortlaut, Definitionen §11). Dritter Anker C&V S. 27: der vermittelnde Negator (im Wortlaut gelesen, nicht am Seitenbild). Daneben auch `NCtx.mediated_elem` und `NCtx.isElemContexture_Em` |
 | L12-1 | Stufengang (§12) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Satz über Klonzugehörigkeit; Stufengang ist die Zuordnung |
 | L12-2 | Stufengang (§12) | `SA.agg` | Definition | Deutung | keine (def) | vier lineare Autorisierungsstufen |
 | L12-3 | Stufengang (§12) | `RT.regime_threshold_at_four` | Theorem | Deutung | ja, `[propext, Quot.sound]` | Ein-Satz-Modul; Übergang drei zu vier Werten |
@@ -291,7 +292,7 @@ beider Fehlexpansionen.
 | L21-10 | Die dritte Relation (§21) | — | Offen | Offen | — | offene Stelle der Quelle: Umtausch und Ordnung als Prozesse, „ihrem Wesen nach unaufgeklärt“ (S. 25 [I16]). Im Register §33 als L21-o geführt; hier numerisch, weil die Zeilenroute und R3–R8 nur Ziffern kennen |
 | L21-11 | Rangverhältnis von Denken und Wollen (§21) | — | Offen | Offen | — | kein symmetrisches Umtauschverhältnis, sondern ein Rangverhältnis, „in dem der Wille das transzendentale Prius besitzt“ (S. 53 [I23]); kein Träger |
 | L21-12 | Das neutrale Medium, bejahend (§21) | — | Offen | Offen | — | „in gleicher Weise adaptabel an Willensstrukturen wie an logische Notwendigkeit“ (S. 53 [I24]); zuvor verneinend bestimmt (S. 36 [I25]); kein Träger |
-| L21-13 | Ununterscheidbarkeit im Zahlenreich (§21) | `NCyc.genese_verschieden` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: „In den Regeln und Maximen des Zahl[en]reiches sind Notwendigkeit und Freiheit ununterscheidbar“ (S. 53 f. [I26]). Getragen sind die Zahl-Schicht und die syntaktische Seite: die zwei Genesen des Rücklaufs, verschieden als Weg. Daneben `NCyc.genese_resultat` (dasselbe Resultat) und `NLen.genesen_kuerzeste` (dieselbe Zahl, Länge 3). Das KRITERIUM — die Sprache, an den Werten und der Designierung ([I27]–[I30]) — ist nicht getragen. Die Gestalt der Kette ist Günthers, die Anwendung unsere |
+| L21-13 | Ununterscheidbarkeit im Zahlenreich (§21) | `NCyc.genese_verschieden` | Theorem | Deutung | ja, `[propext]` | TEILGETRAGEN: „In den Regeln und Maximen des Zahl[en]reiches sind Notwendigkeit und Freiheit ununterscheidbar“ (S. 53 f. [I26]). Getragen sind die Zahl-Schicht und die syntaktische Seite: die zwei Genesen des Rücklaufs, verschieden als Weg. Daneben `NCyc.genese_resultat` (dasselbe Resultat) und `NLen.genesen_kuerzeste` (dieselbe Zahl, Länge 3). Die zwei Genesen sind am letzten Schritt unterscheidbar (`NCyc.genese_strich`) — verschieden als Weg, gleich im Resultat; die Figur selbst führt L07-5 *(ergänzt Rev. 32, 2.10.2026)*. Das KRITERIUM — die Sprache, an den Werten und der Designierung ([I27]–[I30]) — ist nicht getragen. Die Gestalt der Kette ist Günthers, die Anwendung unsere |
 | L21-14 | Folge der Zahlen = Folge der Negationen (§21) | `NCyc.sw` | Definition | Operationalisierung | keine (def) | ZUORDNUNG: die Bauform folgt der Bedingung — der Negator `N n` tauscht den Wert n mit seinem Nachfolger, und mit jedem Wert kommt ein Negator hinzu (S. 54 [I31]; vgl. S. 37 „N1 gleich 1↔2“). „Ontologisches Zugehörigkeitsverhältnis“ ist Günthers Wort, kein Satz trägt es |
 | L21-15 | Zahl und Wille (§21) | — | Offen | Offen | — | die Relation zwischen einer gedeuteten Zahl und dem Willen, „was gemacht werden kann, bzw. was gemacht werden soll“ (S. 54 [I31]); kein Träger |
 
