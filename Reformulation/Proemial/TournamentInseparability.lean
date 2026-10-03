@@ -67,7 +67,10 @@ Muster gerechnet (Python), nicht als Satz geführt:
 * **Spiegelung `x ↦ 3 − x`:** K bleibt Konjunktion. `KKK`, `KKD`, `DDK`, `DDD` behalten
   ihre Namen, `KDD ↔ DKD` und `KDK ↔ DKK` tauschen (die Kontexturen `{0,1}` und `{1,2}`
   wechseln die Stelle). `kkd_eq` ist darunter Günthers **erste** Formel mit denselben
-  Buchstaben.
+  Buchstaben. *Nachgeführt am 3. Oktober 2026:* diese Zuordnung steht seitdem als Satz im
+  Bestand — `Pfalzgraf.Faserung.guenther_acht_localOp` (Spiegelung `Fin.rev`, Günthers acht
+  Tafeln aus C&V Fig. 7–14 gegen `localOp`, Zelle für Zelle). Die Verschiebung unten bleibt
+  ausserhalb des Korpus gerechnet.
 * **Verschiebung `x ↦ x + 1`:** K und D tauschen durchweg, `KKD ↔ DDK`. `kkd_eq` ist
   darunter Günthers **zweite** Formel.
 

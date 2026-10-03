@@ -45,8 +45,9 @@ Kein Klon-Begriff; Erhaltung wird nur durch Einsetzung übertragen (`preserves_c
   Schritt** — unter der Wertzuordnung `x ↦ 3 − x`: der Anfang zum Paar `(0,2)` ist
   `KKD = min(KDD, DKD)` (Günthers erste Formel, im C2-Modul `kkd_eq`), der Schritt für `DDK`
   ist `DDK = max(KDK, DKK)` (seine zweite). Die Muster der Verschiebungen sind am Dateiende
-  gegen `KDD`/`DKD` geeicht; die Buchstaben-Zuordnung zu Günther ist außerhalb des Korpus
-  gerechnet (siehe Kopf von `TournamentInseparability`).
+  gegen `KDD`/`DKD` geeicht; die Buchstaben-Zuordnung zu Günther unter `x ↦ 3 − x` steht
+  seit dem 3. Oktober 2026 als Satz im Bestand (`Pfalzgraf.Faserung.guenther_acht_localOp`;
+  vorher ausserhalb des Korpus gerechnet, siehe Kopf von `TournamentInseparability`).
 * **Die Verallgemeinerung auf beliebiges `m` ist unsere.** Günther rechnet nur mit drei
   Werten; die Induktion, die Verschiebungen für `m > 3` und die Divergenz stehen nicht bei
   ihm.
