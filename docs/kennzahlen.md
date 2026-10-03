@@ -7,38 +7,38 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `ac0d70c` (sauber).
+Stand: Commit `519c53a` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 208 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1360 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1360 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
-| def-Deklarationen | 556 | geweitete def-Route ueber Reformulation/ |
+| Module (.lean, verfolgt) | 209 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Saetze gesamt | 1390 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 1390 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| def-Deklarationen | 579 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 110 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 1085 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 112 | dieselbe Route, -l |
+| Wachen geschrieben | 1115 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 113 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
-| Aggregat | 153 | Huelle der Wurzel Reformulation.lean |
+| Aggregat | 154 | Huelle der Wurzel Reformulation.lean |
 | mitgebaut | 19 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 35 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
-| Gate-Huelle | 154 | Huelle von Reformulation/AxiomGate.lean |
-| Saetze im Aggregat | 1179 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 1075 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Gate-Huelle | 155 | Huelle von Reformulation/AxiomGate.lean |
+| Saetze im Aggregat | 1209 | Satzroute, auf die Aggregathuelle eingeschraenkt |
+| Wachen erzwungen | 1105 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
 | wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 208 gegen 208 |
-| Gleichung *Gate=Aggregat+1* | ✓ | 154 gegen 154 |
-| Gleichung *Wachen* | ✓ | 1085 gegen 1085 |
+| Gleichung *Partition* | ✓ | 209 gegen 209 |
+| Gleichung *Gate=Aggregat+1* | ✓ | 155 gegen 155 |
+| Gleichung *Wachen* | ✓ | 1115 gegen 1115 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -62,11 +62,11 @@ Alle mitlaufenden Gleichungen halten.
 | Referenzen im Bau | 185 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1423 | lake build ueber die Default-Targets |
-| geprueft (AxiomGate) | 5289 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
+| Build-Jobs | 1424 | lake build ueber die Default-Targets |
+| geprueft (AxiomGate) | 5494 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 103 | Superlativ, meldend |
+| (A.1) laufender Bestand | 104 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 98 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
