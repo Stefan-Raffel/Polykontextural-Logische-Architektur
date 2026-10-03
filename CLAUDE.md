@@ -672,6 +672,22 @@ Quelltext in `KorpusRev2/Meldung_Prosa_B1_Datierung_Impl.md`; der Befund zuerst 
 `simpa`") wurde dreimal weitergegeben, bevor sie gemessen wurde - darum steht der Beleg
 hier mit den drei Messpunkten und nicht mit der Vermutung.*
 
+*Beleg, keine neue Regel (3. Oktober, Rangsatz in `Proemial/IntransitivityDifferential.lean`
+Teil 5, Custos KC3):* drei weitere **einzelne Mathlib-Saetze** mit `Classical.choice`,
+gemessen an Mathlib 83a5988. `Finset.eq_empty_of_forall_notMem` traegt es, `Finset.ext` und
+`Finset.notMem_empty` nicht. **`Finset.decidableEq`** traegt es: eine Fallunterscheidung
+ueber die Gleichheit zweier Mengen (`by_cases` wie `Decidable.em`) zieht es in den Satz,
+gefunden zwei Stufen tief im Hilfsterm `._f` ueber `getUsedConstants` und `collectAxioms`
+(Route aus dem einundzwanzigsten Eintrag). Die Fallunterscheidung ueber die
+**Kardinalitaeten** (`Nat.decEq`) mit `Finset.eq_of_subset_of_card_le` ist frei.
+**`Finite.wellFounded_of_trans_of_irrefl`** traegt es, also auch jeder Rangbeweis ueber
+Wohlfundiertheit. Und dieselbe Verschaerfung wie am 16. September: der choice-freie
+Rangsatz, an `V = Fin k` eingesetzt, traegt es ueber `Fin.fintype` wieder
+(`gestuft G ↔ zyklenfrei` als Wegwerf-Fassung, `[propext, Classical.choice, Quot.sound]`).
+Darum beweist `Kaehr/Kopplung.geschlossen_ungestuft` seine Instanz direkt. Fundstelle: Kopf
+§(6) von `Proemial/IntransitivityDifferential.lean`, Kopf K5 von `Kaehr/Kopplung.lean`,
+`KorpusRev2/Vorproben_Spec_A_Kaehr_Kopplung_Impl.md` §4.
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
@@ -1088,6 +1104,14 @@ jetzt im Bestand. `E i` und `Em i j` sind `⟨↑[a, b], nodup⟩`; `isElemConte
 (gemessen 27.9., Wegwerf-Probe) - der Preis liegt am Erzeuger, nicht an der Mitgliedschaft.
 Fundstelle: Kopf K4 und K6 von `Proemial/NegatorContexture.lean`,
 `KorpusRev2/Vorproben_Spec_Ein_Zug_Impl.md`.
+
+*Beleg, keine neue Regel (3. Oktober, Custos KC3):* **auch die Verknuepfungen zahlen, nicht
+nur der Erzeuger.** `Finset.mem_union`, `Finset.subset_union_left` und `Finset.mem_biUnion`
+tragen `Classical.choice` (Mathlib 83a5988), `Finset.mem_filter` und `Finset.mem_univ`
+nicht. Ein Huellenschritt `T ∪ T.biUnion succ` wurde darum als **ein** `filter` ueber
+`Finset.univ` geschrieben, `{c | c ∈ T ∨ ∃ d ∈ T, r d c}`; die Mitgliedschaft ist dann
+`[propext, Quot.sound]`. Fundstelle: `huellenSchritt` in
+`Proemial/IntransitivityDifferential.lean` Teil 5, Kopf §(6).
 
 **25 - Ein Choice-Profil beweist keine Nicht-Existenz.** Es sagt, dass **dieser** Beweis
 das Auswahlaxiom braucht - nicht, dass keine Funktion existiert (`Classical.choice`

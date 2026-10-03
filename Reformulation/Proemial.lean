@@ -414,8 +414,13 @@ Enthält:
   `f` in irgendeine strikte Ordnung). Kür `no_return` (keine Rückkehr in
   beliebig vielen Schritten via `Relation.transGen_eq_self`). KEINE Aussage über
   die modale Triade (deren Asymmetrie bleibt Design-Datum, A3; Swap-Satz = AP7).
-  Konditional ist hier nichts. 0 Sorries; axiom-frei bis auf die Kern-Axiome
-  von `decide`/`propext`.
+  Konditional ist hier nichts. Teil 5 (3. Oktober 2026): der allgemeine Rangsatz
+  `rang_zyklenfrei` — eine Relation auf endlichem Träger hat genau dann eine Rangfunktion
+  nach `ℕ`, wenn sie zyklenfrei ist; UNSER, keine Günther-Lesung (Kopfabschnitt (6));
+  importiert von `Kaehr/Kopplung`. 0 Sorries; kein `Classical.choice`, Profile höchstens
+  `[propext, Quot.sound]` (*nachgeführt:* hier stand „axiom-frei bis auf die Kern-Axiome von
+  `decide`/`propext`", was schon `no_return` mit `Quot.sound` nicht deckte); 17 Sätze,
+  17 Wachen.
 
 - `Proemial.DirectionChoice`: die Drehrichtungs-Wahl (fünfzehnte Schicht) — die
   dritte Wille-Funktion als GESETZTE Funktion mit echtem Stellungs-Argument

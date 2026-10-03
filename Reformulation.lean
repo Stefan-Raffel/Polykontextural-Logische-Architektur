@@ -62,3 +62,4 @@ import Reformulation.Kenogram.PairStageBound
 import Reformulation.Kenogram.IdentifiedConcat
 import Reformulation.Kenogram.PartitionCount
 import Reformulation.Kenogram.PartitionDescent
+import Reformulation.Kaehr.Kopplung
