@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 33.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 34.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -38,10 +38,10 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 129 |
-| Zeilen mit Träger | 107 |
-| verschiedene Trägernamen | 98 |
-| TS `Theorem` | 81 |
+| Zeilen gesamt | 130 |
+| Zeilen mit Träger | 108 |
+| verschiedene Trägernamen | 99 |
+| TS `Theorem` | 82 |
 | TS `Definition` | 25 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 22 |
@@ -161,6 +161,7 @@ beider Fehlexpansionen.
 | `NCat.` | `Reformulation.Proemial.NegationCycleCatalog.` | Namensraum |
 | `NTC.` | `Reformulation.Proemial.NegationCycleThreeCycle.` | Namensraum |
 | `NCtx.` | `Reformulation.Proemial.NegatorContexture.` | Namensraum |
+| `PF.` | `Reformulation.Pfalzgraf.` | Namensraum |
 
 ## Die Tabelle
 
@@ -222,6 +223,7 @@ beider Fehlexpansionen.
 | L08-5 | Transjunktion (§8) | `CEB.not_in_clone_of_escapes` | Theorem | Operationalisierung | ja, `[propext]` | **das Zeugnis mit Menge und Punkt**, allgemein über jeder Sprache, jeder Struktur und jeder Substruktur: verlässt eine Operation eine abgeschlossene Menge an einem angebbaren Punkt, so ist sie kein Term über der Signatur. Konsumiert Mathlibs `Term.realize_mem`. **Grenze:** hinreichend, nicht notwendig — das Fehlen eines Punktes ist kein Zeugnis für Erzeugbarkeit |
 | L08-6 | Transjunktion (§8) | `CEB.contexture03` | Definition | Operationalisierung | keine (def) | die Randkontextur `{0,3}` als Substruktur über `L` bei `m = 4`; Gegenstück `CEB.contexture12` ohne eigene Zeile. Benannte Konsumenten: L08-7, `CEB.mem_contexture03`, `CEB.mem_contexture12`, `CEB.avgDown_escapes`. **Grenze:** exhaustiv über alle 16 Teilmengen gemessen sind genau diese zwei nichttrivial abgeschlossen; über andere Wertzahlen ist nichts gemessen |
 | L08-7 | Transjunktion (§8) | `CEB.avgDown_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | der abgerundete Durchschnitt `CEB.avgDown` verlässt `{0,3}` am Punkt `(0,3)` (`CEB.avgDown_escapes`) und liegt darum nicht im Klon von `{min, max, ¬}`. Daneben ohne eigene Zeile — L05-7-Präzedenz: `CEB.locallyClassical_preserves_both`, das die zwei Zeugnisse des Bestandes gegeneinander abgrenzt. **Grenze:** eine Aussage über eine Operation, keine über eine Politik |
+| L08-8 | Die dreiwertigen Junktionen (§8) | `PF.guenther_acht` | Theorem | Operationalisierung | ja, `[propext]` | Günthers Anspruch (C&V S. 25 f.): seine dreiwertigen Konjunktionen und Disjunktionen sind die acht Wahlen von K oder D in den Teilsystemen 1-2, 2-3, 1-3, mit unveränderter Diagonale [Definitionen §8, „Die dreiwertigen Junktionen und die Implikation“]. EICHUNG an C&V Abb. 7–14 (am Bild: Hermeneutes; Abb. 7–14 auch die Instanz), Zelle für Zelle. Die Quotientensemantik, in der die Tafeln liegen, ist NACH PFALZGRAF (1991, S. 172–181); dass Günthers acht darin liegen, ist ein Befund. Daneben `PF.guenther_acht_localOp` (dieselben acht Tafeln wie `localOp` im Bestand, unter `Fin.rev`) und `PF.zulaessig_iff_idempotent` (zulässig genau bei Idempotenz in jeder Faser). Die Implikationen (C&V S. 29) liegen NICHT im junktionalen Quotienten — nach Günthers eigener Bestimmung (HKN 1970, Definitionen §8) intrakontexturell-partiell transjunktiv; was C&V mit „partially“ meint, ist offen. Die Designation {1, 2} und die Gültigkeit des Moduls sind UNSER, gegen Günthers Ablehnung von 1959 (§18) |
 | L09-1 | Intra-kontexturell (§9) | `TCB.L` | Definition | Operationalisierung | keine (def) | Signatur `{¬, ∧, ∨}`, keine Konstante |
 | L09-2 | Intra-kontexturell (§9) | `TCB.term_preserves_contextur` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | konsumiert Mathlibs `Term.realize_mem` |
 | L09-3 | Trans-kontexturell (§9) | `TCB.term_clone_localization` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Verortung auf Klon-Ebene, kein freies Prädikat |
