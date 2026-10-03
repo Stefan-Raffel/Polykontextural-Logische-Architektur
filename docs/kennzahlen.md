@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `c870e8a` (sauber).
+Stand: Commit `ac0d70c` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -58,8 +58,8 @@ Alle mitlaufenden Gleichungen halten.
 | Gleichung *Ablagen* | ✓ | 36 gegen 36 |
 |  |  |  |
 | **DEFINITION-LEDGER** |  |  |
-| Ledger-Zeilen | 129 | Zeilen-IDs in docs/definition-ledger.md |
-| Referenzen im Bau | 182 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
+| Ledger-Zeilen | 130 | Zeilen-IDs in docs/definition-ledger.md |
+| Referenzen im Bau | 185 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
 | Build-Jobs | 1423 | lake build ueber die Default-Targets |
