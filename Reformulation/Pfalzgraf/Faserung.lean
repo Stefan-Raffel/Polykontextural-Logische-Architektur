@@ -88,7 +88,8 @@ Designation, die 1 enthält.
 ## K6 · Nicht gebaut, und warum
 
 Die Transjunktionen (B5, dort Günthers Implikationen als erster Eichfall), Kaehrs Tableau (B3; seine gedruckte
-Beweisbarkeit prüft Teilsystem 3 zweimal und 2 nie), der Generator (B4), die Vermutung V (K4).
+Beweisbarkeit prüft Teilsystem 3 zweimal und 2 nie — gebaut seit dem 3. Oktober 2026 in
+`Kaehr/Tableau.lean`, korrekt und vollständig für das freie System), der Generator (B4), die Vermutung V (K4).
 
 ## Stufen (Ertrags-Skala, CLAUDE.md §4)
 

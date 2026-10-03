@@ -550,6 +550,13 @@ Im Bau: `NegationCycleLength.sw_lt_iff` (`Proemial/NegationCycleLength.lean`, de
 oben: die Implikation von Hand anwenden und vor `omega` entfernen — `omega` bekommt nur
 atomare Fakten.
 
+*Beleg, keine neue Regel (3. Oktober, `Kaehr/Tableau.lean`, Custos TB2 (d)):* `omega` an einem
+Ziel, das **kein Zahlziel** ist — dort die Konjunktion zweier Allaussagen, aus einer widerspruechlichen
+Massungleichung zu schliessen —, zieht `Classical.byContradiction` (gefunden ueber `getUsedConstants`
+und `collectAxioms`). Mit `exfalso` davor bekommt `omega` das Ziel `False` und bleibt frei. Derselbe
+Mechanismus wie die Gestalten oben: `omega` bekommt nur atomare Ziele. Fundstelle: `widerlege_some`,
+Fall Brennstoff 0, und Kopf K8 des Moduls.
+
 *Rückweg nach §13.3:* keiner in Sicht, aus demselben Grund wie beim zwanzigsten Eintrag —
 `#guard_msgs` misst das Profil der gewählten Taktik, nicht, ob eine andere ein schlankeres
 ergäbe.
@@ -687,6 +694,16 @@ Rangsatz, an `V = Fin k` eingesetzt, traegt es ueber `Fin.fintype` wieder
 Darum beweist `Kaehr/Kopplung.geschlossen_ungestuft` seine Instanz direkt. Fundstelle: Kopf
 §(6) von `Proemial/IntransitivityDifferential.lean`, Kopf K5 von `Kaehr/Kopplung.lean`,
 `KorpusRev2/Vorproben_Spec_A_Kaehr_Kopplung_Impl.md` §4.
+
+*Beleg, keine neue Regel (3. Oktober, `Kaehr/Tableau.lean`, Custos TB2 (a)–(c)):* **auch die
+Gleichheit zahlt.** (a) `List.contains` und `==` auf `Fin` verlangen `LawfulBEq`, und Mathlib liefert
+es fuer `Fin` ueber seine Ordnungsinstanzen (`instLawfulBCmpCompare_mathlib`, `Fin.instLawfulEqOrd`) -
+mit `Classical.choice` (Mathlib 83a5988). Heilung: Vergleich ueber `Nat.beq` auf `.val` und eine
+eigene Mitgliedschaft (`stelle`, `liegt`). (b) `by_cases` und `tauto` greifen klassisch, wo keine
+`Decidable`-Instanz gefunden wird (`Classical.propDecidable`, `Classical.or_iff_not_imp_left`);
+Heilung: Fallunterscheidung ueber einen `Bool`. (c) `== s` auf `Bool` in einer Astbedingung zog
+dieselbe Ordnungsinstanz; Heilung: `if … = s` als entscheidbare `Prop`. Fundstelle: Kopf K8 von
+`Kaehr/Tableau.lean`, `KorpusRev2/Vorprobe_Spec_B_Teil_II_Impl.md` §3.
 
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
