@@ -412,6 +412,12 @@ Vokabular, wenn zwei Ausgaben lang keine Stelle sie mehr traegt (§13.2).
   committet, hat die Ignore-Regel verletzt.
 - `lake build` repliziert; ein vollstaendiger Neubau ist nicht noetig, um Profile zu pruefen -
   `lake env lean` auf einer generierten `#print axioms`-Datei genuegt.
+- Lange Laeufe (voller Bau, Aufzaehlungsbeweise) ueber den Hintergrund-Parameter des
+  Werkzeugs, nicht ueber `&` im Aufruf. *Beleg (Custos ZV F6, 29. September):* das Werkzeug
+  beendete einen mit dem Aufruf abgeloesten Prozess; Ausweg damals: in Stuecken unter der
+  Zeitgrenze. *Gemessen 4. Oktober:* mit dem Parameter laufen ein voller `lake build` (1425 Jobs)
+  und Modulmessungen von 77 s durch und melden ihr Ende. Den Fall mit `&` habe ich nicht
+  nachgemessen.
 
 ### Aenderungen an der Maschine
 
@@ -704,6 +710,34 @@ eigene Mitgliedschaft (`stelle`, `liegt`). (b) `by_cases` und `tauto` greifen kl
 Heilung: Fallunterscheidung ueber einen `Bool`. (c) `== s` auf `Bool` in einer Astbedingung zog
 dieselbe Ordnungsinstanz; Heilung: `if … = s` als entscheidbare `Prop`. Fundstelle: Kopf K8 von
 `Kaehr/Tableau.lean`, `KorpusRev2/Vorprobe_Spec_B_Teil_II_Impl.md` §3.
+
+*Beleg, keine neue Regel (29. September, Verbindungsglied, `b955eb7`; Custos ZV F1; nachgemessen
+4. Oktober, Mathlib 83a5988):* `List.isChain_append` traegt `[propext, Classical.choice,
+Quot.sound]`, `List.isChain_cons_cons` ist axiomfrei. Der erste Lauf des Zaehlsatzes zog Choice
+ueber den ersten; ersetzt durch `kette_snoc`, vier Zeilen ueber den zweiten. Fundstelle: Kopf
+Teil 5 von `Proemial/NegationCycleThreeCycle.lean`, `KorpusRev2/Meldung_Bau_Verbindungsglied_Impl.md`.
+
+*Beleg und Grenze (Custos ZV F3; gemessen 4. Oktober, Mathlib 83a5988, Wegwerf-Probe):* **nicht
+jedes `decide` ueber `Fin` geht durch `Fin.fintype`.** `∀ x : Fin 3, x = x` per `decide` ist
+**axiomfrei** - die Instanz ist Leans eigene fuer beschraenkte Quantoren ueber `Fin`, nicht
+`Fintype`. Choice zieht `decide` erst, wo die Instanz ueber `Fintype` laeuft: `∀ p : Fin 3 × Fin 3`,
+`∀ f : Fin 2 → Fin 2`, `∀ x ∈ Finset.univ`, `Finset.univ.card` - alle vier `[propext,
+Classical.choice, Quot.sound]`. Damit ist der Satz vom 16. September oben ("wer ueber `Fin m`
+quantifiziert, hat die Maschinerie schon im Term") fuer den nackten Quantor ueber **ein** `Fin m`
+zu weit; er gilt fuer die `Fintype`-Route. Der Anlass (der erste Lauf der Kongruenz-Probe,
+`KorpusRev2/Sondierung_Rev10_Paragraph20_Buridan_Landkarte_Impl.md` §4) ist nicht aufbewahrt;
+gemessen ist die Grenze, nicht jener Lauf.
+
+*Beleg, keine neue Regel (4. Oktober, `Pfalzgraf/Faserung.lean` K7, `6e3902a`; Custos IT9; Mathlib
+83a5988):* **drei Profilfallen in einem Zug.** (1) `beq_self_eq_true` auf `Fin` zieht
+`Classical.choice` - die Instanz ist `instBEqOfDecidableEq`, Choice kommt aus der
+`LawfulBEq`-Aufloesung, dieselbe Familie wie (a) oben; Ersatz `decide_eq_true rfl` (`beq_rfl`,
+axiomfrei). (2) `List.all_eq_true` zieht `Quot.sound`; Ersatz durch Induktion (`all_mp`,
+`all_mpr`, axiomfrei). (3) `simp only [h]` unter Bindern geht ueber `funext` und zieht
+`Quot.sound`; Ersatz durch eine eigene Filter-Kongruenz per Induktion (`filter_kongr`). (2) und
+(3) ziehen kein Choice, haetten aber die Wachen von Z1 und Z2 (`[propext]`) veraendert - dieser
+Fallstrick spricht vom **Profil**. Fundstelle: Kopf K7 von `Pfalzgraf/Faserung.lean`,
+`KorpusRev2/Vorproben_Spec_Z1_Struktureller_Beweis_Impl.md` §2.
 
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
