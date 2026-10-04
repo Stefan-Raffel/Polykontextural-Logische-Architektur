@@ -33,6 +33,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `PreC` | 6 | nein | 4,6 s |
 | `PathC` | 17 | nein | 12,0 s |
 | `ForeignPeresMermin` | 1 | nein | nicht kalt gemessen |
+| `Beispiele` | 1 | nein | 2,0 s |
 | *(von keinem Target erfasst)* | 1 | — | — |
 
 **Zur Bauzeit.** Gemessen wurde je Target so: die Bauartefakte der Target-Mitglieder
@@ -258,6 +259,23 @@ melden doppelt); summiert man die Bauausgaben von `lake build PathC` und
 `lake build MathlibExtensions` ohne Abgleich, ergibt sich 34 — die drei zusaetzlichen sind
 `GeometricTopology` und `Formula`, die in beiden Targets liegen und darum zweimal gezaehlt
 werden. Beides sind Messartefakte, keine Eigenschaften des Zweiges.
+
+### `Beispiele` — 1 Modul, die Lesedatei
+
+*Gruen heisst:* `Reformulation/Beispiele/Lesen.lean` uebersetzt; ihre `#eval` zeigen die Antworten
+des Beweisers und der Pruefung im Quotienten an Kaehrs Beispielen, am Trennfall, an G und an
+einer Vorlage fuer eigene Formeln.
+
+*Was gruen nicht heisst:* dass die Antworten stimmen. Das pruefen die `#guard` im Modul
+`Reformulation/Beispiele/KaehrPfalzgraf.lean`, und das liegt **im Aggregat**: Ein falsches
+Beispiel bricht jeden `lake build`. Die Lesedatei definiert nichts (Custos BQ1, Bedingung 1); sie
+zeigt nur, was dort definiert und geprueft ist.
+
+*Warum nicht in den Defaults:* ihre `#eval` geben bei jedem Neubau 13 Info-Zeilen aus und wuerden
+die Bauausgabe fuellen. In jeder Abnahme wird sie als weiteres Ziel mitgebaut (BQ1, Bedingung 2):
+`lake build Beispiele`. Bauzeit oberhalb eines warmen Aggregats: 2,0 s (4.10.2026).
+
+---
 
 ### `ForeignPeresMermin` — 1 Modul
 

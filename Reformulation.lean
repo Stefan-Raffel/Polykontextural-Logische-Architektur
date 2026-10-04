@@ -65,3 +65,4 @@ import Reformulation.Kenogram.PartitionDescent
 import Reformulation.Kaehr.Kopplung
 import Reformulation.Pfalzgraf.Faserung
 import Reformulation.Kaehr.Tableau
+import Reformulation.Beispiele.KaehrPfalzgraf

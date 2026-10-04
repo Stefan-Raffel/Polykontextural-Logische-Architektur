@@ -86,6 +86,13 @@ roots = [
   "Reformulation.F1.D2.Rollups.Coalgebraic.SubstantialRev2",
 ]
 
+# Lesedatei der Beispiele (Custos BQ1). NICHT in defaultTargets: sie definiert nichts und zeigt nur die
+# Antworten, die Beispiele/KaehrPfalzgraf (im Aggregat, mit #guard) definiert und prueft; ihre #eval-Ausgaben
+# sollen die Bauausgabe nicht fuellen. In jeder Abnahme mitzubauen (BQ1, Bedingung 2).
+[[lean_lib]]
+name = "Beispiele"
+roots = ["Reformulation.Beispiele.Lesen"]
+
 # Messwerkzeuge. NICHT in defaultTargets: keines der beiden konsumiert das
 # Aggregat, kann also durch eine Aggregataenderung nicht brechen; SwapSatzProbe
 # zieht ueber tausend Mathlib-Module nach, die im Aggregat nicht vorkommen.

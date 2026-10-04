@@ -109,6 +109,22 @@ drei Operationen unabhängig, 4 · 4 · 4 = 64. Nach `KorpusRev2/Spec_Z1_Struktu
   `List.all_eq_true` zieht `Quot.sound` (Ersatz `all_mp`, `all_mpr`); `simp` unter Bindern geht über `funext`
   und zieht `Quot.sound` (Ersatz `filter_kongr`). Mit ihnen hätten Z1 und Z2 ihre Wachen geändert.
 
+## K8 · Die Prüfung im Quotienten, und eine Konvention
+
+*Nachgeführt am 4. Oktober 2026 (Regel 7), nach `KorpusRev2/Spec_Beispiele_und_Quotientenpruefung.md`, Fassung 3.*
+`entscheideQuot` prüft jede Belegung der vorkommenden Variablen mit Günthers drei Werten; `entscheideQuot_iff`
+sagt, dass das genau `gueltigQuot` ist (UNSER, über die Semantik NACH PFALZGRAF und die Designation {1, 2}). Die
+Aufzählung läuft über eine eigene Liste, nicht über `Fintype` (Fallstrick 10, Choice).
+
+**Eine Konvention des Bestands.** `auswQuot` ist total: Ein Junktor wird über `qop` gelesen, und `qop` nimmt die
+erste Faser, die beide Argumente liest. Für ein unzulässiges Tripel liefert das einen Wert, ohne Meldung; gemessen
+an `p ⊃⊃⊃ p`: unzulässig, und `entscheideQuot` sagt `true`. Für unzulässige Formeln ist der Wert im Quotienten
+darum eine **Konvention des Bestands**, keine Aussage über Pfalzgrafs Quotienten. Ob eine Formel zulässig ist,
+sagt `zulaessigFm` (`zulaessigFm_iff`). Die Sätze dieses Moduls über den Quotienten sprechen nur über zulässige
+Formeln: `guenther_acht` über die Tafeln zulässiger Tripel, `trennfall` und `gegenbeispiel_designation` über
+`trenn` und `gegen`, beide zulässig (`trenn_gegen_zulaessig`). Die Beispiele für den Leser stehen in
+`Beispiele/KaehrPfalzgraf.lean`.
+
 ## Stufen (Ertrags-Skala, CLAUDE.md §4)
 
 ```text
@@ -125,8 +141,11 @@ negatoren_induziert          FOLGERUNG:  Pfalzgrafs freie Negatoren tragen Günt
 trennfall                    EICHUNG an Kaehr 1981, S. 3, 17
 trennfall_inkohaerent        FOLGERUNG an EINER Formel:  falsifiziert ⟺ inkohärent (Kaehrs zwei offene Äste)
 gegenbeispiel_designation    FOLGERUNG:  frei gültig, im Quotienten unter {1, 2} gültig, unter {1} nicht
+entscheideQuot_iff           FOLGERUNG, UNSER:  die Gültigkeit im Quotienten, ausführbar (K8)
+zulaessigFm_iff              FOLGERUNG:  die Prüfung der Zulässigkeit einer Formel sagt, was sie sagt
+trenn_gegen_zulaessig        FOLGERUNG:  die zwei Formeln von T1 und G sind zulässig
 all3, mem3, all_mp, all_mpr, beq_rfl, bool_rfl, diag0, diag1, diag2, idem_form, filter_nichts, filter_kongr,
-  laenge_flatMap, laenge_filter_und
+  laenge_flatMap, laenge_filter_und, auswQuot_lokal, belegungen_vollstaendig
                              Hilfssätze
 ```
 
@@ -489,6 +508,100 @@ theorem gegenbeispiel_designation :
     | ⟨1, _⟩ => rfl
     | ⟨2, _⟩ => rfl
 
+
+/-! ## (Q) Die Prüfung im Quotienten, ausführbar -/
+
+/-- die Variablen einer Formel (mit Wiederholung) -/
+def vars : Fm → List ℕ
+  | .var n => [n]
+  | .neg₁ a => vars a
+  | .neg₂ a => vars a
+  | .junk _ _ _ a b => vars a ++ vars b
+
+/-- eine Belegung an einer Stelle umsetzen (über `Nat.decEq`, nicht über `Function.update`) -/
+def setze (v : Belegung) (n : ℕ) (k : Wert) : Belegung := fun m => if m = n then k else v m
+
+/-- alle Belegungen der Variablen einer Liste mit Günthers drei Werten, rekursiv — keine `Fintype`-Aufzählung -/
+def belegungen : List ℕ → List Belegung
+  | [] => [fun _ => 0]
+  | n :: ns => (belegungen ns).flatMap fun v => ([0, 1, 2] : List Wert).map fun k => setze v n k
+
+/-- Lokalität:  der Wert im Quotienten hängt nur von den Variablen der Formel ab -/
+theorem auswQuot_lokal : ∀ (φ : Fm) (v w : Belegung), (∀ n ∈ vars φ, v n = w n) → auswQuot v φ = auswQuot w φ
+  | .var n, v, w, h => h n List.mem_cons_self
+  | .neg₁ a, v, w, h => congrArg qneg₁ (auswQuot_lokal a v w h)
+  | .neg₂ a, v, w, h => congrArg qneg₂ (auswQuot_lokal a v w h)
+  | .junk o0 o1 o2 a b, v, w, h => by
+    show qop o0 o1 o2 (auswQuot v a) (auswQuot v b) = qop o0 o1 o2 (auswQuot w a) (auswQuot w b)
+    rw [auswQuot_lokal a v w fun n hn => h n (List.mem_append_left _ hn),
+      auswQuot_lokal b v w fun n hn => h n (List.mem_append_right _ hn)]
+
+/-- die Aufzählung ist vollständig:  jede Belegung stimmt auf den Variablen mit einer aufgezählten überein -/
+theorem belegungen_vollstaendig : ∀ (ns : List ℕ) (v : Belegung), ∃ w ∈ belegungen ns, ∀ n ∈ ns, w n = v n
+  | [], _ => ⟨fun _ => 0, List.mem_cons_self, fun _ h => absurd h List.not_mem_nil⟩
+  | n :: ns, v => by
+    obtain ⟨w, hw, hag⟩ := belegungen_vollstaendig ns v
+    refine ⟨setze w n (v n), List.mem_flatMap.mpr ⟨w, hw, List.mem_map.mpr ⟨v n, mem3 (v n), rfl⟩⟩, ?_⟩
+    intro m hm
+    unfold setze
+    match Nat.decEq m n with
+    | isTrue e => rw [if_pos e, e]
+    | isFalse e =>
+      rw [if_neg e]
+      cases hm with
+      | head => exact absurd rfl e
+      | tail _ hm => exact hag m hm
+
+/-- die Prüfung:  jede Belegung der vorkommenden Variablen, je drei Werte — 3^(Zahl der Variablen) Fälle -/
+def entscheideQuot (φ : Fm) : Bool := (belegungen (vars φ)).all fun w => designiert (auswQuot w φ)
+
+/-- **Q1.** Die Prüfung entscheidet die Gültigkeit im Quotienten, für jede Formel.  Für eine unzulässige Formel ist
+    `gueltigQuot` eine Konvention des Bestands (K8). -/
+theorem entscheideQuot_iff (φ : Fm) : entscheideQuot φ = true ↔ gueltigQuot φ := by
+  constructor
+  · intro h v
+    obtain ⟨w, hw, hag⟩ := belegungen_vollstaendig (vars φ) v
+    rw [auswQuot_lokal φ v w fun n hn => (hag n hn).symm]
+    exact all_mp h w hw
+  · intro h
+    exact all_mpr fun w _ => h w
+
+/-- die Junktoren einer Formel, je als Tripel -/
+def junktoren : Fm → List (Op × Op × Op)
+  | .var _ => []
+  | .neg₁ a => junktoren a
+  | .neg₂ a => junktoren a
+  | .junk o0 o1 o2 a b => (o0, o1, o2) :: (junktoren a ++ junktoren b)
+
+/-- zulässig als Formel:  jeder Junktor ein zulässiges Tripel -/
+def zulaessigFm : Fm → Bool
+  | .var _ => true
+  | .neg₁ a => zulaessigFm a
+  | .neg₂ a => zulaessigFm a
+  | .junk o0 o1 o2 a b => zulaessig o0 o1 o2 && zulaessigFm a && zulaessigFm b
+
+/-- **Q2.** `zulaessigFm` sagt, was ihr Name sagt:  jeder Junktor der Formel ist zulässig -/
+theorem zulaessigFm_iff : ∀ φ : Fm, zulaessigFm φ = true ↔ ∀ t ∈ junktoren φ, zulaessig t.1 t.2.1 t.2.2 = true
+  | .var _ => ⟨fun _ _ h => absurd h List.not_mem_nil, fun _ => rfl⟩
+  | .neg₁ a => zulaessigFm_iff a
+  | .neg₂ a => zulaessigFm_iff a
+  | .junk o0 o1 o2 a b => by
+    show (zulaessig o0 o1 o2 && zulaessigFm a && zulaessigFm b) = true ↔ _
+    rw [Bool.and_eq_true, Bool.and_eq_true, zulaessigFm_iff a, zulaessigFm_iff b]
+    constructor
+    · rintro ⟨⟨h0, ha⟩, hb⟩ t ht
+      rcases List.mem_cons.mp ht with rfl | ht
+      · exact h0
+      · rcases List.mem_append.mp ht with ht | ht
+        · exact ha t ht
+        · exact hb t ht
+    · intro h
+      exact ⟨⟨h _ List.mem_cons_self, fun t ht => h t (List.mem_cons_of_mem _ (List.mem_append_left _ ht))⟩,
+        fun t ht => h t (List.mem_cons_of_mem _ (List.mem_append_right _ ht))⟩
+
+/-- **Q3.** Die zwei Formeln, über die `trennfall` und `gegenbeispiel_designation` im Quotienten sprechen, sind zulässig -/
+theorem trenn_gegen_zulaessig : zulaessigFm trenn = true ∧ zulaessigFm gegen = true := by decide
+
 end Reformulation.Pfalzgraf
 
 /-! ## Axiom-Stand — als Regressions-Wachen gesetzt (alle Sätze des Moduls) -/
@@ -564,3 +677,18 @@ end Reformulation.Pfalzgraf
 
 /-- info: 'Reformulation.Pfalzgraf.gegenbeispiel_designation' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Pfalzgraf.gegenbeispiel_designation
+
+/-- info: 'Reformulation.Pfalzgraf.auswQuot_lokal' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.auswQuot_lokal
+
+/-- info: 'Reformulation.Pfalzgraf.belegungen_vollstaendig' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.belegungen_vollstaendig
+
+/-- info: 'Reformulation.Pfalzgraf.entscheideQuot_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.entscheideQuot_iff
+
+/-- info: 'Reformulation.Pfalzgraf.zulaessigFm_iff' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.zulaessigFm_iff
+
+/-- info: 'Reformulation.Pfalzgraf.trenn_gegen_zulaessig' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.trenn_gegen_zulaessig
