@@ -651,8 +651,11 @@ nicht nur `deriving Fintype`.** `Fin.fintype` - die Standardinstanz aus Mathlib,
 schreibt und jeder benutzt - traegt `Classical.choice` ebenso; `Finset.mem_univ` traegt es
 nicht. *Damit betrifft der Eintrag nicht nur die selbst abgeleiteten Instanzen:* **wer ueber
 `Fin m` quantifiziert, hat die Maschinerie schon im Term**, ohne eine Zeile dafuer
-geschrieben zu haben. Heilung wie oben, und sie ist hier teurer: eine Handinstanz fuer
-`Fin m` zu schreiben lohnt nur, wo das Profil der Ertrag ist.
+geschrieben zu haben. *[Eingegrenzt 4. Oktober (Custos TB6, gemessen an Mathlib 83a5988):
+`decide` ueber den nackten Quantor `∀ x : Fin 3` ist axiomfrei; Choice kommt erst ueber Mathlibs
+`Fintype`-Instanz - bei Produkten, Funktionen, `Finset.univ`. Siehe „Beleg und Grenze“ unten.]*
+Heilung wie oben, und sie ist hier teurer: eine Handinstanz fuer `Fin m` zu schreiben lohnt
+nur, wo das Profil der Ertrag ist.
 
 *Und die zweite Verschaerfung, gemessen am 25. September (`6545ebd`, SJT-Zug Teil B):*
 **eine Familie, nicht ein Lemma.** `List.nodup_range`, `List.nodup_finRange` und
