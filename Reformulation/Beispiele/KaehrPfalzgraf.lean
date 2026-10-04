@@ -121,6 +121,9 @@ def eigene : Fm := p₀ ∨∨∨ N₁ p₀
 /-- B6:  ein unzulässiger Junktor -/
 def unzulaessig : Fm := p₀ ⊃⊃⊃ p₀
 
+/-- eine Formel mit zwei Variablen:  die Gegenbelegung nennt jede Variable -/
+def zweiVariablen : Fm := p₁ ∨∨∨ N₁ p₀
+
 /-- die Schreibweise baut den Trennfall des Bestands -/
 theorem trenn_schreibweise : trennfall = trenn := rfl
 
@@ -155,8 +158,10 @@ open Reformulation.Kaehr.Tableau (beweisbar beweisbarGedruckt H1 K)
 -- B6  ⊃⊃⊃:  frei gültig, im Quotienten unzulässig — nicht still ausgewertet
 #guard freiAntwort unzulaessig == "frei gültig"
 #guard quotAntwort unzulaessig == "im Quotienten unzulässig"
--- zwei Variablen:  die Gegenbelegung nennt jede Variable, aufsteigend
-#guard gegenbelegungText (p₁ ∨∨∨ N₁ p₀) 0 == "Faser 1-2: p0 ↦ (T, T, T), p1 ↦ (F, T, T)"
+-- zwei Variablen:  die Gegenbelegung nennt jede Variable, aufsteigend, in jeder Faser, in der eine gefunden wird
+#guard freiAntwort zweiVariablen ==
+  "frei nicht gültig — Faser 1-2: p0 ↦ (T, T, T), p1 ↦ (F, T, T); Faser 2-3: p0 ↦ (T, T, F), p1 ↦ (T, F, T); " ++
+  "Faser 1-3: p0 ↦ (T, F, T), p1 ↦ (T, T, F)"
 
 /-! ## Axiom-Stand — als Regressions-Wachen gesetzt (alle Sätze des Moduls) -/
 

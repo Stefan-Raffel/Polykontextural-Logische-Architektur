@@ -7,8 +7,9 @@ Diese Datei definiert nichts. Sie zeigt die Antworten, die `Beispiele/KaehrPfalz
 mit `#guard` prüft (Custos BQ1, Bedingung 1). Öffnen im Editor, oder bauen mit `lake build Beispiele`; sie liegt
 ausserhalb der Default-Ziele, damit ihre Ausgaben die Bauausgabe nicht füllen.
 
-Eine eigene Formel: eine `#eval`-Zeile unten ändern, etwa `freiAntwort (p₀ ∧∧∧ N₂ p₁)`. Die Schreibweise steht im
-Kopf von `Beispiele/KaehrPfalzgraf.lean` (K2).
+Eine eigene Formel: eine `#eval`-Zeile ändern, etwa `freiAntwort (p₀ ∧∧∧ N₂ p₁)`. Die Schreibweise steht im Kopf von
+`Beispiele/KaehrPfalzgraf.lean` (K2). Was hier unverändert steht, ist dort mit `#guard` geprüft; eine geänderte Zeile
+ist es nicht.
 -/
 
 open Reformulation.Beispiele.KaehrPfalzgraf
@@ -33,4 +34,4 @@ open Reformulation.Kaehr.Tableau (H1 K beweisbar beweisbarGedruckt)
 #eval freiAntwort unzulaessig
 #eval quotAntwort unzulaessig
 -- zwei Variablen
-#eval freiAntwort (p₁ ∨∨∨ N₁ p₀)
+#eval freiAntwort zweiVariablen
