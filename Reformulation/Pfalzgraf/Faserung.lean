@@ -61,6 +61,9 @@ aber nicht, wenn der negative Wert von q getragen wird“*, und dazu *„In dem 
 sinngemäß durch den Wert 1 … geleistet“*. In 2-3 trägt an (3, 2) p den negativen Wert, und dort steht 1;
 an (2, 3) nicht. **OFFEN** bleibt, was C&V S. 29 mit *„partially transjunctive“* meint, wenn Günther dort seine
 *„standard implications“* gegen solche Funktoren setzt. Eine Spannung in der Quelle, gebucht, nicht aufgelöst.
+*Nachgeführt am 4. Oktober 2026:* gebaut in `Proemial/ImplicationTransjunction.lean` (`impl_einbruch_genau`,
+`impl_dritter_grad`). Dort ist auch die Spannung gelesen: Günther stellt die Implikationen aus transjunktiven
+Funktoren zurück, er schliesst sie nicht aus; „partially“ gehört zu jenen Funktoren (Hermeneutes B1, B2).
 
 ## K4 · Die Partialität
 

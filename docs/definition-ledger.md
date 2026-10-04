@@ -1,7 +1,7 @@
 # Definition-Ledger — die Begriffe von `Definitionen.md` und ihre Träger im Korpus
 
 Diese Tabelle ordnet jedem Begriff der Vorlage `Definitionen.md` den Träger im Lean-Korpus
-zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 34.
+zu — oder hält fest, dass es keinen gibt. Sie ist Ledger Rev. 35.
 
 **Woher die Vorlage kommt.** `Definitionen.md` ist eine projektinterne Arbeitsfassung der
 Begriffe aus Günther (1970), (1968) und (1971), seit §21 auch aus *Identität, Gegenidentität
@@ -38,11 +38,11 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 
 | | Wert |
 |---|---:|
-| Zeilen gesamt | 130 |
-| Zeilen mit Träger | 108 |
-| verschiedene Trägernamen | 99 |
-| TS `Theorem` | 82 |
-| TS `Definition` | 25 |
+| Zeilen gesamt | 133 |
+| Zeilen mit Träger | 111 |
+| verschiedene Trägernamen | 102 |
+| TS `Theorem` | 84 |
+| TS `Definition` | 26 |
 | TS `Setzung` | 1 |
 | TS `Offen` | 22 |
 | Paragraphen von `Definitionen.md` | 20 von 21 |
@@ -50,7 +50,7 @@ Route: `grep -cE '^\| (L[0-9]{2}-[0-9]+) \|' docs/definition-ledger.md`
 **Sechs** Träger erscheinen in mehr als einer Zeile — `CO.three_contextures_overlap` (3×),
 `GCB.locally_classical_in_clone_iff` (4×), `NUCB.W_not_in_clone`, `TCB.T_not_in_clone`,
 `TCB.T_rejective` und `NCyc.sw` (je 2×; `NCyc.sw` seit Rev. 28, L21-2 und L21-14). Das sind
-**neun** überzählige Zeilen, daher 107 Zeilen mit Träger bei 98 Namen. *(Bis Rev. 27 standen
+**neun** überzählige Zeilen, daher 111 Zeilen mit Träger bei 102 Namen *(nachgeführt Rev. 35; Rev. 34 hatte hier „107 bei 98“ stehen lassen, gegen 108 bei 99 in der Tafel)*. *(Bis Rev. 27 standen
 hier fünf Träger, acht überzählige Zeilen und „98 Zeilen bei 90 Namen"; die beiden letzten
 Zahlen waren seit Rev. 23 nicht nachgeführt.)* Das ist Redundanz mit Absicht: die Bindung ist die Zeilen-ID, nicht der Name.
 
@@ -162,6 +162,7 @@ beider Fehlexpansionen.
 | `NTC.` | `Reformulation.Proemial.NegationCycleThreeCycle.` | Namensraum |
 | `NCtx.` | `Reformulation.Proemial.NegatorContexture.` | Namensraum |
 | `PF.` | `Reformulation.Pfalzgraf.` | Namensraum |
+| `IT.` | `Reformulation.Proemial.ImplicationTransjunction.` | Namensraum |
 
 ## Die Tabelle
 
@@ -216,14 +217,17 @@ beider Fehlexpansionen.
 | L07-3 | Zweite Negation (§7) | `GCB.locally_classical_in_clone_iff` | Theorem | Deutung | ja, `[propext, Quot.sound]` | dito, ohne feste Wertzahl |
 | L07-4 | Zweite Negation (§7) | — | Offen | Offen | — | keine Definition `SecondNegation`; nicht als Permutation zu bauen — Grund, datiert: (i) 26.7.2026, der Anspruch auf die volle Hegelsche zweite Negation (§7-Grenze der Julifassung, das Original); (ii) 14.–16.9.2026, §7 „keine einzelne Operation, sondern eine MENGE von Negationsoperatoren“ (spätere Artikulation) |
 | L07-5 | Die Genese (§7) | `NCyc.genese_strich` | Theorem | Deutung | ja, `[propext]` | Günthers Anspruch (HKN S. 25): „das abstrakte Resultat … in beiden Fällen gleich“ — **eins** im Resultat, **zwei** in der Genese; Günther unterscheidet die zwei Genesen am Festhalten unter dem **letzten** Negator (der Horizontalstrich oben bzw. unten) und bindet die Genese an Zeit und Vermittlung. Günthers Satz QUELLENFEST (HKN S. 25, deutsche Spalte, am Bild: Hermeneutes, 30.9.); zweiter Anker derselben Figur: Metamorphose der Zahl, PDF-S. 9 (gedr. S. 8), wie im Kopf von NegationCycle. Dass der Träger **Günthers** Strich ist: ZUORDNUNG (unsere). Dass das gemeinsame Resultat die eine Genese in die andere überführt (`NCyc.genese_spiegel`, `NCyc.sw_rev_conj`): unsere RECHNUNG — Günther sagt es nicht. Die Bindung an Zeit und Vermittlung: quellenfest, im Bestand NICHT getragen. „Doppel-“ ist Günthers Fall mit drei Werten. Daneben `NCyc.genese_resultat` (dasselbe Resultat) und `NCyc.genese_verschieden` (verschiedene Wege). Kein §20-Anspruch |
-| L08-1 | Transjunktion (§8) | `TCB.T` | Definition | Operationalisierung | keine (def) | `if a = 0 ∧ b = 2 then 1 else max a b` |
+| L08-1 | Transjunktion (§8) | `TCB.T` | Definition | Operationalisierung | keine (def) | `if a = 0 ∧ b = 2 then 1 else max a b`. *Vermerk Rev. 35 (4.10.2026, Register IT3):* nach Günthers drei Graden (HKN 1970, L08-11) ist diese Transjunktion vom dritten Grad, intrakontexturell-partiell: einziger Einbruch an (0, 2), partiell in 1-3 (`IT.tcb_dritter_grad`); dort trägt p in der Lean-Zählung den positiven Wert, unter `Fin.rev` den negativen wie in Günthers Beispiel (`IT.tcb_gespiegelt_guenther`). |
 | L08-2 | Transjunktion (§8) | `TCB.T_rejective` | Theorem | Operationalisierung | ja, `[propext]` | rejektiver Kern `T 0 2 = 1` |
-| L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten |
+| L08-3 | Transjunktion (§8) | `TCB.T_crosses_exactly_one` | Theorem | Operationalisierung | ja, `[propext]` | Bruch genau einer von drei Invarianten. *Vermerk Rev. 35 (4.10.2026, Register IT3):* nach Günthers drei Graden (HKN 1970, L08-11) ist diese Transjunktion vom dritten Grad, intrakontexturell-partiell: einziger Einbruch an (0, 2), partiell in 1-3 (`IT.tcb_dritter_grad`); dort trägt p in der Lean-Zählung den positiven Wert, unter `Fin.rev` den negativen wie in Günthers Beispiel (`IT.tcb_gespiegelt_guenther`). |
 | L08-4 | Transjunktion (§8) | — | Offen | Offen | — | Produktion des ontologisch Neuen nicht formalisiert |
 | L08-5 | Transjunktion (§8) | `CEB.not_in_clone_of_escapes` | Theorem | Operationalisierung | ja, `[propext]` | **das Zeugnis mit Menge und Punkt**, allgemein über jeder Sprache, jeder Struktur und jeder Substruktur: verlässt eine Operation eine abgeschlossene Menge an einem angebbaren Punkt, so ist sie kein Term über der Signatur. Konsumiert Mathlibs `Term.realize_mem`. **Grenze:** hinreichend, nicht notwendig — das Fehlen eines Punktes ist kein Zeugnis für Erzeugbarkeit |
 | L08-6 | Transjunktion (§8) | `CEB.contexture03` | Definition | Operationalisierung | keine (def) | die Randkontextur `{0,3}` als Substruktur über `L` bei `m = 4`; Gegenstück `CEB.contexture12` ohne eigene Zeile. Benannte Konsumenten: L08-7, `CEB.mem_contexture03`, `CEB.mem_contexture12`, `CEB.avgDown_escapes`. **Grenze:** exhaustiv über alle 16 Teilmengen gemessen sind genau diese zwei nichttrivial abgeschlossen; über andere Wertzahlen ist nichts gemessen |
 | L08-7 | Transjunktion (§8) | `CEB.avgDown_not_in_clone` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | der abgerundete Durchschnitt `CEB.avgDown` verlässt `{0,3}` am Punkt `(0,3)` (`CEB.avgDown_escapes`) und liegt darum nicht im Klon von `{min, max, ¬}`. Daneben ohne eigene Zeile — L05-7-Präzedenz: `CEB.locallyClassical_preserves_both`, das die zwei Zeugnisse des Bestandes gegeneinander abgrenzt. **Grenze:** eine Aussage über eine Operation, keine über eine Politik |
-| L08-8 | Die dreiwertigen Junktionen (§8) | `PF.guenther_acht` | Theorem | Operationalisierung | ja, `[propext]` | Günthers Anspruch (C&V S. 25 f.): seine dreiwertigen Konjunktionen und Disjunktionen sind die acht Wahlen von K oder D in den Teilsystemen 1-2, 2-3, 1-3, mit unveränderter Diagonale [Definitionen §8, „Die dreiwertigen Junktionen und die Implikation“]. EICHUNG an C&V Abb. 7–14 (am Bild: Hermeneutes; Abb. 7–14 auch die Instanz), Zelle für Zelle. Die Quotientensemantik, in der die Tafeln liegen, ist NACH PFALZGRAF (1991, S. 172–181); dass Günthers acht darin liegen, ist ein Befund. Daneben `PF.guenther_acht_localOp` (dieselben acht Tafeln wie `localOp` im Bestand, unter `Fin.rev`) und `PF.zulaessig_iff_idempotent` (zulässig genau bei Idempotenz in jeder Faser). Die Implikationen (C&V S. 29) liegen NICHT im junktionalen Quotienten — nach Günthers eigener Bestimmung (HKN 1970, Definitionen §8) intrakontexturell-partiell transjunktiv; was C&V mit „partially“ meint, ist offen. Die Designation {1, 2} und die Gültigkeit des Moduls sind UNSER, gegen Günthers Ablehnung von 1959 (§18) |
+| L08-8 | Die dreiwertigen Junktionen (§8) | `PF.guenther_acht` | Theorem | Operationalisierung | ja, `[propext]` | Günthers Anspruch (C&V S. 25 f.): seine dreiwertigen Konjunktionen und Disjunktionen sind die acht Wahlen von K oder D in den Teilsystemen 1-2, 2-3, 1-3, mit unveränderter Diagonale [Definitionen §8, „Die dreiwertigen Junktionen und die Implikation“]. EICHUNG an C&V Abb. 7–14 (am Bild: Hermeneutes; Abb. 7–14 auch die Instanz), Zelle für Zelle. Die Quotientensemantik, in der die Tafeln liegen, ist NACH PFALZGRAF (1991, S. 172–181); dass Günthers acht darin liegen, ist ein Befund. Daneben `PF.guenther_acht_localOp` (dieselben acht Tafeln wie `localOp` im Bestand, unter `Fin.rev`) und `PF.zulaessig_iff_idempotent` (zulässig genau bei Idempotenz in jeder Faser). Die Implikationen (C&V S. 29) liegen NICHT im junktionalen Quotienten — nach Günthers eigener Bestimmung (HKN 1970, Definitionen §8) intrakontexturell-partiell transjunktiv; was C&V mit „partially“ meint, ist offen. Die Designation {1, 2} und die Gültigkeit des Moduls sind UNSER, gegen Günthers Ablehnung von 1959 (§18). *Nachgeführt Rev. 35 (4.10.2026, Register IT3):* daneben `IT.kd_ist_guenther_acht` (Günthers Regel K/D erzeugt dieselben acht Tafeln wie der Quotient) und `IT.junktional_iff` (kontexturtreu genau dann, wenn Quotiententafel eines zulässigen Tripels). Die Implikationen sind gebaut: L08-9 |
+| L08-9 | Die dreiwertigen Junktionen und die Implikation (§8) | `IT.impl_tafeln` | Theorem | Operationalisierung | ja, `[propext]` | Günthers dreiwertige Standardimplikationen (C&V S. 29 f., Abb. 20–27): seine Regel erzeugt die acht Tafeln, Zelle für Zelle. Daneben `IT.impl_einbruch_genau` (einziger Einbruch an Günthers (3, 2)) und `IT.impl_dritter_grad` (vom dritten Grad, L08-11). **Grenze:** „intrakontexturell-partiell“ ist ZUSAMMENSCHAU (HKN 1970 mit C&V 1971); Günther nennt die Implikationen nirgends so |
+| L08-10 | Transjunktion (§8) | `IT.tr_total` | Theorem | Operationalisierung | ja, `[propext]` | Günthers totale Transjunktion Tr (HKN 1970, `gg_category.pdf` PDF-S. 20, am Bild): Einbruch an allen sechs Stellen mit p ≠ q, Diagonale fest |
+| L08-11 | Transjunktion (§8) | `IT.intrakontexturellPartiell` | Definition | Operationalisierung | keine (def) | die drei Grade der Transjunktion (HKN 1970, PDF-S. 20): total (`IT.total`), „nur für eine oder für zwei Kontexturen“ (`IT.kontextural`), intrakontexturell-partiell (der Träger). Daneben `IT.tcb_dritter_grad` und `IT.tcb_gespiegelt_guenther` (die Transjunktion von L08-1 ist vom dritten Grad). **Grenze:** die Prädikate sind UNSER; „kontextural“ ist unsere Benennung |
 | L09-1 | Intra-kontexturell (§9) | `TCB.L` | Definition | Operationalisierung | keine (def) | Signatur `{¬, ∧, ∨}`, keine Konstante |
 | L09-2 | Intra-kontexturell (§9) | `TCB.term_preserves_contextur` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | konsumiert Mathlibs `Term.realize_mem` |
 | L09-3 | Trans-kontexturell (§9) | `TCB.term_clone_localization` | Theorem | Operationalisierung | ja, `[propext, Quot.sound]` | Verortung auf Klon-Ebene, kein freies Prädikat |

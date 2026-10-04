@@ -72,6 +72,7 @@ import Reformulation.Proemial.NegationCycleCatalog
 import Reformulation.Proemial.NegationCycleThreeCycle
 import Reformulation.Proemial.NegatorContexture
 import Reformulation.Proemial.TimeMeasure
+import Reformulation.Proemial.ImplicationTransjunction
 
 /-!
 # Reformulation.Proemial — α+γ-Form der Proemialrelation (Aggregat)
@@ -1483,6 +1484,15 @@ Enthält:
   Eichung auf `ℤ`. **Nicht:** die
   Wahl selbst (WWZ S. 6), keine Wahlfunktion, keine Deckung, keine Zuordnung der Zeiten an
   Umtausch und Ordnung, kein Paragraph, keine Ledger-Zeile. 5 Wachen, kein `Classical.choice`.
+
+- `Proemial.ImplicationTransjunction`: **Günthers Implikationen als Transjunktionen** (nach
+  `Spec_B5_Anfang_Implikationen_Transjunktion.md`, Fassung 3). Günthers acht Standardimplikationen aus C&V
+  (Abb. 20–27, `impl_tafeln`) brechen im Teilsystem 2-3 genau an (3, 2) ein, wo p den negativen Wert trägt
+  (`impl_einbruch_genau`, `impl_dritter_grad`) — der dritte Grad aus HKN 1970, als ZUSAMMENSCHAU; seine
+  K/D-Tafeln brechen nirgends ein, sein Tr überall (`tr_total`). `junktional_iff`: kontexturtreu
+  (`NonUniformCloneBound.ContextureFaithful`) ⟺ Quotiententafel eines zulässigen Tripels (Pfalzgraf/Faserung),
+  64 von 19 683, über die Aufzählung (~80 s Bauzeit). `TCB.T` vom dritten Grad, spiegelbildlich zu Günthers
+  Beispiel bis auf `Fin.rev`. Die drei Darstellungen der K/D-Tafeln verbunden. 21 Wachen, kein `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/

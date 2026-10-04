@@ -239,6 +239,9 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_def "L08-6" Reformulation.Proemial.ContextureEscapeBound.contexture03
 #ledger_theorem "L08-7" Reformulation.Proemial.ContextureEscapeBound.avgDown_not_in_clone
 #ledger_theorem "L08-8" Reformulation.Pfalzgraf.guenther_acht
+#ledger_theorem "L08-9" Reformulation.Proemial.ImplicationTransjunction.impl_tafeln
+#ledger_theorem "L08-10" Reformulation.Proemial.ImplicationTransjunction.tr_total
+#ledger_def "L08-11" Reformulation.Proemial.ImplicationTransjunction.intrakontexturellPartiell
 
 #ledger_theorem "L17-1" Reformulation.Proemial.ContextureOverlap.three_contextures_overlap
 
@@ -282,6 +285,18 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L08-7" Reformulation.Proemial.ContextureEscapeBound.locallyClassical_preserves_both
 #ledger_mention "L08-8" Reformulation.Pfalzgraf.guenther_acht_localOp
 #ledger_mention "L08-8" Reformulation.Pfalzgraf.zulaessig_iff_idempotent
+#ledger_mention "L08-1" Reformulation.Proemial.ImplicationTransjunction.tcb_dritter_grad
+#ledger_mention "L08-1" Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
+#ledger_mention "L08-3" Reformulation.Proemial.ImplicationTransjunction.tcb_dritter_grad
+#ledger_mention "L08-3" Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
+#ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.kd_ist_guenther_acht
+#ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.junktional_iff
+#ledger_mention "L08-9" Reformulation.Proemial.ImplicationTransjunction.impl_einbruch_genau
+#ledger_mention "L08-9" Reformulation.Proemial.ImplicationTransjunction.impl_dritter_grad
+#ledger_mention "L08-11" Reformulation.Proemial.ImplicationTransjunction.total
+#ledger_mention "L08-11" Reformulation.Proemial.ImplicationTransjunction.kontextural
+#ledger_mention "L08-11" Reformulation.Proemial.ImplicationTransjunction.tcb_dritter_grad
+#ledger_mention "L08-11" Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
 #ledger_mention "L10-2" Reformulation.Proemial.TransjunctionCloneBound.test1_surjective
 #ledger_mention "L11-6" Reformulation.Proemial.NegatorContexture.mediated_swap
 #ledger_mention "L11-7" Reformulation.Proemial.NegatorContexture.mediated_swap_is_O
