@@ -101,9 +101,11 @@ die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diag
 * **Die Zahl folgt** (`zahl`): eine Bedingung je Zelle, gezählt als Produkt (`zaehl`), drei Diagonalzellen mit
   einem Wert, sechs schwache Stellen mit zwei, 1·2·2·2·1·2·2·2·1 = 2⁶ = 64. Die 19 683 Tafeln werden dabei
   nicht durchlaufen.
-* **Strukturell bis auf Faserung Z1.** `zul_of_idem` konsumiert `zulaessig_iff_idempotent` (Faserung), ein
-  `decide` über die 4096 Tripel; die Kosten fallen dort an. Z1 zellweise zu beweisen, mit derselben Gestalt
-  (die Diagonale von zwei Teilsystemen gelesen), ist ein eigener Posten.
+* **Ganz strukturell** *(seit 4. Oktober 2026, Regel 7; zuvor „strukturell bis auf Faserung Z1“)*. Die
+  Zulässigkeit kommt aus Faserungs `zulaessig_eq_idempotent` (Z1′, dort aus demselben Grund eine Schicht tiefer:
+  zwei Fasern lesen dieselbe Diagonalzelle und teilen genau einen Wert). Dafür sind hier `zul_of_idem` (inhaltlich
+  Z1′), `idem_form` (eine Dublette, jetzt aus Faserung) und `bool_beq` (ohne Konsumenten) entfernt, nach
+  `KorpusRev2/Spec_Z1_Struktureller_Beweis.md`, Fassung 2, P3 (a).
 * **Bauzeit**, `lake env lean` auf dem Modul: vorher 77 s (real; die Aufzählung in `cf_alle`, `rechts_links`,
   `links_rechts`, `zahl` mit `decide +kernel`), nachher 2,6 s.
 * **Was es vorbereitet:** Die Gestalt des Arguments hängt nicht an drei Werten. Bei m Werten liest jedes Paar
@@ -141,8 +143,8 @@ tcb_dritter_grad,                   FOLGERUNG:  die ältere Transjunktion nach d
 cf_treu                             FOLGERUNG:  der Grund — Diagonale von zwei Teilsystemen gelesen, schwache Stelle von einem
 zahl                                FOLGERUNG:  64 = 2⁶, als Produkt über die Zellen
 ab_qop                              FOLGERUNG:  die Zerlegung ist eindeutig
-treu_iff_bool, zul_of_idem, idem_form, treu_qop, qop_treu, fin3_all, laenge_tafeln, laenge_mem, filter_fin3,
-  zaehl, treu_stellen, rechts_passt, mem_ops, mem_fin3, ofList_ofFun, bool_beq
+treu_iff_bool, treu_qop, qop_treu, fin3_all, laenge_tafeln, laenge_mem, filter_fin3,
+  zaehl, treu_stellen, rechts_passt, mem_ops, mem_fin3, ofList_ofFun
                                     Hilfssätze
 ```
 
@@ -290,8 +292,6 @@ theorem tcb_gespiegelt_guenther :
 
 /-! ## (I4) Junktional ⟺ kontexturtreu — zellweise, aus dem Grund -/
 
-theorem bool_beq (x v : Bool) : (x == v) = true ↔ x = v := by cases x <;> cases v <;> decide
-
 theorem mem_ops (o : Op) : o ∈ ops := by
   obtain ⟨a, b, c, d⟩ := o
   cases a <;> cases b <;> cases c <;> cases d <;> decide
@@ -379,21 +379,6 @@ def ab1 (f : Tafel) : Op := (true, lokal 1 (f 1 2), lokal 1 (f 2 1), false)
 /-- Teilsystem 2 (Günthers 1-3) -/
 def ab2 (f : Tafel) : Op := (true, lokal 2 (f 0 2), lokal 2 (f 2 0), false)
 
-/-- zulässig ⟺ idempotent in jeder Faser, aus Faserung (Z1, dort über die 4096 Tripel bewiesen) -/
-theorem zul_of_idem (o0 o1 o2 : Op) :
-    zulaessig o0 o1 o2 = (idempotent o0 && idempotent o1 && idempotent o2) :=
-  (bool_beq _ _).mp (List.all_eq_true.mp (List.all_eq_true.mp (List.all_eq_true.mp zulaessig_iff_idempotent o0
-    (mem_ops o0)) o1 (mem_ops o1)) o2 (mem_ops o2))
-
-/-- idempotent heisst:  die Gestalt (T, a, b, F) -/
-theorem idem_form (o : Op) (h : idempotent o = true) : ∃ a b, o = (true, a, b, false) := by
-  obtain ⟨x, a, b, y⟩ := o
-  cases x <;> cases y
-  · exact absurd h Bool.false_ne_true
-  · exact absurd h Bool.false_ne_true
-  · exact ⟨a, b, rfl⟩
-  · exact absurd h Bool.false_ne_true
-
 /-- (→) die abgelesenen Operationen geben die Tafel zurück, Zelle für Zelle -/
 theorem treu_qop (f : Tafel) (h : treu f) : ∀ p q, f p q = qop (ab0 f) (ab1 f) (ab2 f) p q := by
   obtain ⟨hd, ho⟩ := h
@@ -443,10 +428,10 @@ theorem junktional_iff (f : Tafel) :
   rw [cf_treu]
   constructor
   · intro h
-    refine ⟨ab0 f, ab1 f, ab2 f, by rw [zul_of_idem]; rfl, ?_⟩
+    refine ⟨ab0 f, ab1 f, ab2 f, by rw [zulaessig_eq_idempotent]; rfl, ?_⟩
     exact congrArg ofFun (funext fun p => funext fun q => treu_qop f h p q)
   · rintro ⟨o0, o1, o2, hz, he⟩
-    rw [zul_of_idem, Bool.and_eq_true, Bool.and_eq_true] at hz
+    rw [zulaessig_eq_idempotent, Bool.and_eq_true, Bool.and_eq_true] at hz
     obtain ⟨⟨h0, h1⟩, h2⟩ := hz
     obtain ⟨a0, b0, rfl⟩ := idem_form o0 h0
     obtain ⟨a1, b1, rfl⟩ := idem_form o1 h1
@@ -581,9 +566,6 @@ end Reformulation.Proemial.ImplicationTransjunction
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
 
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.bool_beq' does not depend on any axioms -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.bool_beq
-
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.mem_ops' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.mem_ops
 
@@ -604,12 +586,6 @@ end Reformulation.Proemial.ImplicationTransjunction
 
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.contextureFaithful_iff' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.contextureFaithful_iff
-
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.zul_of_idem' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zul_of_idem
-
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.idem_form' does not depend on any axioms -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.idem_form
 
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.treu_qop' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.treu_qop

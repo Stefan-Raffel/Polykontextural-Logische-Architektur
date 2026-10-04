@@ -94,12 +94,29 @@ Die Transjunktionen (B5, dort Günthers Implikationen als erster Eichfall), Kaeh
 Beweisbarkeit prüft Teilsystem 3 zweimal und 2 nie — gebaut seit dem 3. Oktober 2026 in
 `Kaehr/Tableau.lean`, korrekt und vollständig für das freie System), der Generator (B4), die Vermutung V (K4).
 
+## K7 · Die Zulässigkeit aus ihrem Grund
+
+`zulaessig` vergleicht nur dort, wo zwei Fasern dasselbe Paar lesen. Für a ≠ b liest genau eine Faser das Paar, für
+a = b lesen genau zwei, und ihre Wertmengen teilen genau den Wert a ({1,2} ∩ {1,3} = {1}, {1,2} ∩ {2,3} = {2},
+{2,3} ∩ {1,3} = {3}). Darum zwingt die Zulässigkeit die Diagonaleinträge, aus T, T wird T und aus F, F wird F,
+und sonst nichts: `zulaessig_eq_idempotent` (Z1′). Z1 (`zulaessig_iff_idempotent`) folgt daraus mit
+unveränderter Aussage, Z2 (`zulaessig_zahl`) als Produkt: idempotent legt zwei der vier Einträge fest, also 4,
+drei Operationen unabhängig, 4 · 4 · 4 = 64. Nach `KorpusRev2/Spec_Z1_Struktureller_Beweis.md`, Fassung 2.
+
+* *Ersetzt am 4. Oktober 2026 (Regel 7):* Z1 und Z2 waren durch `decide` über die 4096 Tripel bewiesen. Bauzeit von
+  Faserung (`lake env lean`, real): vorher 19,5 s, nachher 3,9 s.
+* Drei Profilfallen umgangen, gemessen: `beq_self_eq_true` auf `Fin` zieht `Classical.choice` (Ersatz `beq_rfl`);
+  `List.all_eq_true` zieht `Quot.sound` (Ersatz `all_mp`, `all_mpr`); `simp` unter Bindern geht über `funext`
+  und zieht `Quot.sound` (Ersatz `filter_kongr`). Mit ihnen hätten Z1 und Z2 ihre Wachen geändert.
+
 ## Stufen (Ertrags-Skala, CLAUDE.md §4)
 
 ```text
 zulaessig_iff_idempotent     FOLGERUNG — Grund:  jedes Diagonalpaar (v, v) lesen zwei Fasern, deren Wertmengen genau
                              einen Wert gemeinsam haben;  das zwingt die Diagonale, die übrigen Einträge liest nur eine
-zulaessig_zahl               ZUSAMMENSTELLUNG (Zählung):  16 Operationen, 4 idempotent (∧, ∨, zwei Projektionen), 64 Tripel
+zulaessig_eq_idempotent      FOLGERUNG:  Z1′, der Grund in Allform (K7)
+zulaessig_zahl               ZUSAMMENSTELLUNG (Zählung):  16 Operationen, 4 idempotent (∧, ∨, zwei Projektionen), 64 Tripel,
+                             als Produkt 4 · 4 · 4
 guenther_acht                EICHUNG an C&V S. 25 f., Abb. 7–14, Zelle für Zelle
 guenther_acht_localOp        FOLGERUNG:  dieselben acht Tafeln wie localOp (TournamentInseparability) unter Fin.rev;  die
                              bisher ausserhalb des Korpus gerechnete Zuordnung dort wird ein Satz
@@ -108,6 +125,9 @@ negatoren_induziert          FOLGERUNG:  Pfalzgrafs freie Negatoren tragen Günt
 trennfall                    EICHUNG an Kaehr 1981, S. 3, 17
 trennfall_inkohaerent        FOLGERUNG an EINER Formel:  falsifiziert ⟺ inkohärent (Kaehrs zwei offene Äste)
 gegenbeispiel_designation    FOLGERUNG:  frei gültig, im Quotienten unter {1, 2} gültig, unter {1} nicht
+all3, mem3, all_mp, all_mpr, beq_rfl, bool_rfl, diag0, diag1, diag2, idem_form, filter_nichts, filter_kongr,
+  laenge_flatMap, laenge_filter_und
+                             Hilfssätze
 ```
 
 0 Sorries. Gemessene Profile verbatim in den Wachen am Dateiende.
@@ -226,17 +246,140 @@ def vec (b0 b1 b2 : Bool) : Faser → Bool
 
 /-! ## (Z) Die Zulässigkeit -/
 
+/-- drei Fälle statt `fin_cases` (das Classical zieht) -/
+theorem all3 {P : Wert → Prop} (h0 : P 0) (h1 : P 1) (h2 : P 2) : ∀ v, P v
+  | ⟨0, _⟩ => h0 | ⟨1, _⟩ => h1 | ⟨2, _⟩ => h2
+
+theorem mem3 : ∀ v : Wert, v ∈ ([0, 1, 2] : List Wert)
+  | ⟨0, _⟩ => List.mem_cons_self
+  | ⟨1, _⟩ => List.mem_cons_of_mem _ List.mem_cons_self
+  | ⟨2, _⟩ => List.mem_cons_of_mem _ (List.mem_cons_of_mem _ List.mem_cons_self)
+
+/-- `List.all` ohne `List.all_eq_true` (das zieht `Quot.sound`) -/
+theorem all_mp {α} {p : α → Bool} : ∀ {l : List α}, l.all p = true → ∀ x ∈ l, p x = true
+  | [], _, x, hx => absurd hx List.not_mem_nil
+  | a :: l, h, x, hx => by
+    cases ha : p a
+    · rw [List.all_cons, ha] at h; exact absurd h Bool.false_ne_true
+    · rw [List.all_cons, ha] at h
+      cases hx with
+      | head => exact ha
+      | tail _ hx => exact all_mp h x hx
+
+theorem all_mpr {α} {p : α → Bool} : ∀ {l : List α}, (∀ x ∈ l, p x = true) → l.all p = true
+  | [], _ => rfl
+  | a :: l, h => by
+    rw [List.all_cons, h a List.mem_cons_self, all_mpr fun x hx => h x (List.mem_cons_of_mem a hx)]; rfl
+
+/-- Selbstvergleich auf `Wert`, ohne `beq_self_eq_true` (dessen `LawfulBEq`-Auflösung zieht auf `Fin` Choice) -/
+theorem beq_rfl (x : Wert) : (x == x) = true := decide_eq_true rfl
+
+/-- Selbstvergleich auf `Bool` -/
+theorem bool_rfl (x : Bool) : (x == x) = true := by cases x <;> rfl
+
+/-- das Diagonalpaar (1, 1) in Günthers Zählung:  Fasern 1-2 und 1-3, gemeinsamer Wert 1 — beide liefern T -/
+theorem diag0 : ∀ a b : Bool, (global 0 a == global 2 b) = true → a = true ∧ b = true := by decide
+/-- (2, 2):  Fasern 1-2 (dort F) und 2-3 (dort T) -/
+theorem diag1 : ∀ a b : Bool, (global 0 a == global 1 b) = true → a = false ∧ b = true := by decide
+/-- (3, 3):  Fasern 2-3 und 1-3, beide dort F -/
+theorem diag2 : ∀ a b : Bool, (global 1 a == global 2 b) = true → a = false ∧ b = false := by decide
+
+/-- idempotent heisst:  die Gestalt (T, a, b, F) -/
+theorem idem_form (o : Op) (h : idempotent o = true) : ∃ a b, o = (true, a, b, false) := by
+  obtain ⟨x, a, b, y⟩ := o
+  cases x <;> cases y
+  · exact absurd h Bool.false_ne_true
+  · exact absurd h Bool.false_ne_true
+  · exact ⟨a, b, rfl⟩
+  · exact absurd h Bool.false_ne_true
+
+/-- **Z1′, der Grund.** Zulässig heisst idempotent in jeder Faser.  `zulaessig` vergleicht nur, wo zwei Fasern dasselbe
+    Paar lesen, und das sind nur die Diagonalpaare;  dort teilen ihre Wertmengen genau einen Wert, und der zwingt die
+    Diagonaleinträge (`diag0`–`diag2`).  Die übrigen Einträge liest nur eine Faser. -/
+theorem zulaessig_eq_idempotent (o0 o1 o2 : Op) :
+    zulaessig o0 o1 o2 = (idempotent o0 && idempotent o1 && idempotent o2) := by
+  apply Bool.eq_iff_iff.mpr
+  constructor
+  · intro h
+    have inst := fun a b i j => all_mp (all_mp (all_mp (all_mp h a (mem3 a)) b (mem3 b)) i (mem3 i)) j (mem3 j)
+    have e0 : (global 0 o0.1 == global 2 o2.1) = true := inst 0 0 0 2
+    have e1 : (global 0 o0.2.2.2 == global 1 o1.1) = true := inst 1 1 0 1
+    have e2 : (global 1 o1.2.2.2 == global 2 o2.2.2.2) = true := inst 2 2 1 2
+    obtain ⟨t0, x0, y0, f0⟩ := o0; obtain ⟨t1, x1, y1, f1⟩ := o1; obtain ⟨t2, x2, y2, f2⟩ := o2
+    obtain ⟨rfl, rfl⟩ := diag0 _ _ e0
+    obtain ⟨rfl, rfl⟩ := diag1 _ _ e1
+    obtain ⟨rfl, rfl⟩ := diag2 _ _ e2
+    rfl
+  · intro h
+    rw [Bool.and_eq_true, Bool.and_eq_true] at h
+    obtain ⟨⟨h0, h1⟩, h2⟩ := h
+    obtain ⟨x0, y0, rfl⟩ := idem_form o0 h0
+    obtain ⟨x1, y1, rfl⟩ := idem_form o1 h1
+    obtain ⟨x2, y2, rfl⟩ := idem_form o2 h2
+    have key : ∀ a b i j : Wert, (!(liest i a && liest i b && liest j a && liest j b) ||
+        faserWert (true, x0, y0, false) (true, x1, y1, false) (true, x2, y2, false) i a b ==
+        faserWert (true, x0, y0, false) (true, x1, y1, false) (true, x2, y2, false) j a b) = true := by
+      refine all3 ?_ ?_ ?_ <;> refine all3 ?_ ?_ ?_ <;> refine all3 ?_ ?_ ?_ <;> refine all3 ?_ ?_ ?_ <;>
+        first | rfl | exact beq_rfl _
+    exact all_mpr fun a _ => all_mpr fun b _ => all_mpr fun i _ => all_mpr fun j _ => key a b i j
+
 /-- **Z1.** Ein Tripel ist im Quotienten genau dann wohldefiniert, wenn jede seiner drei Operationen idempotent
-    ist — über alle 16³ Tripel. -/
+    ist — über alle 16³ Tripel, aus Z1′. -/
 theorem zulaessig_iff_idempotent :
     ops.all (fun o0 => ops.all fun o1 => ops.all fun o2 =>
-      zulaessig o0 o1 o2 == (idempotent o0 && idempotent o1 && idempotent o2)) = true := by decide
+      zulaessig o0 o1 o2 == (idempotent o0 && idempotent o1 && idempotent o2)) = true :=
+  all_mpr fun o0 _ => all_mpr fun o1 _ => all_mpr fun o2 _ => by
+    rw [zulaessig_eq_idempotent]; exact bool_rfl _
 
-/-- **Z2.** 16 Operationen, davon 4 idempotent;  64 zulässige Tripel von 4096. -/
+theorem filter_nichts (l : List Op) : l.filter (fun _ => false) = [] := by
+  induction l with
+  | nil => rfl
+  | cons _ _ ih => exact ih
+
+/-- Filter-Kongruenz ohne `funext` (das zieht `Quot.sound`) -/
+theorem filter_kongr {p q : Op → Bool} : ∀ {l : List Op}, (∀ x ∈ l, p x = q x) → l.filter p = l.filter q
+  | [], _ => rfl
+  | a :: l, h => by
+    rw [List.filter_cons, List.filter_cons, h a List.mem_cons_self,
+      filter_kongr fun x hx => h x (List.mem_cons_of_mem a hx)]
+
+/-- die Länge eines `flatMap`, wenn jedes Stück k oder 0 Elemente hat -/
+theorem laenge_flatMap (l : List Op) (p : Op → Bool) (k : ℕ) (g : Op → List Op)
+    (h : ∀ o, (g o).length = if p o then k else 0) : (l.flatMap g).length = (l.filter p).length * k := by
+  induction l with
+  | nil => exact (Nat.zero_mul k).symm
+  | cons o l ih =>
+    rw [List.flatMap_cons, List.length_append, ih, h o, List.filter_cons]
+    cases p o
+    · exact Nat.zero_add _
+    · show k + (List.filter p l).length * k = ((List.filter p l).length + 1) * k
+      rw [Nat.succ_mul, Nat.add_comm]
+
+theorem laenge_filter_und (b : Bool) (l : List Op) (p : Op → Bool) :
+    (l.filter fun o => b && p o).length = if b then (l.filter p).length else 0 := by
+  cases b
+  · exact congrArg List.length (filter_nichts l)
+  · rfl
+
+/-- **Z2.** 16 Operationen, davon 4 idempotent;  64 zulässige Tripel von 4096 — als Produkt 4 · 4 · 4, aus Z1′. -/
 theorem zulaessig_zahl :
     ops.length = 16 ∧ (ops.filter idempotent).length = 4 ∧
     (ops.flatMap fun o0 => ops.flatMap fun o1 => ops.filter fun o2 => zulaessig o0 o1 o2).length = 64 := by
-  decide
+  have h4 : (ops.filter idempotent).length = 4 := by decide
+  refine ⟨by decide, h4, ?_⟩
+  have filt : ∀ o0 o1, ops.filter (fun o2 => zulaessig o0 o1 o2) =
+      ops.filter (fun o2 => idempotent o0 && idempotent o1 && idempotent o2) := fun o0 o1 =>
+    filter_kongr fun o2 _ => zulaessig_eq_idempotent o0 o1 o2
+  have inner : ∀ o0, (ops.flatMap fun o1 => ops.filter fun o2 => zulaessig o0 o1 o2).length =
+      if idempotent o0 then 16 else 0 := by
+    intro o0
+    cases h0 : idempotent o0
+    · rw [laenge_flatMap ops (fun _ => false) 16 _ fun o1 => by
+          rw [filt, h0]; exact laenge_filter_und (false && idempotent o1) ops idempotent,
+        filter_nichts]; rfl
+    · rw [laenge_flatMap ops idempotent 4 _ fun o1 => by
+          rw [filt, h0, laenge_filter_und (true && idempotent o1) ops idempotent, h4]; rfl, h4]; rfl
+  rw [laenge_flatMap ops idempotent 16 _ inner, h4]
 
 /-- **Z3.** Günthers acht Konjunktionen und Disjunktionen (C&V S. 25 f., Abb. 7–14, am Bild) sind zulässig, und
     ihre Quotiententafeln sind seine Tafeln, Zelle für Zelle (Lean-Zählung:  Günthers Wert − 1). -/
@@ -350,8 +493,53 @@ end Reformulation.Pfalzgraf
 
 /-! ## Axiom-Stand — als Regressions-Wachen gesetzt (alle Sätze des Moduls) -/
 
+/-- info: 'Reformulation.Pfalzgraf.all3' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.all3
+
+/-- info: 'Reformulation.Pfalzgraf.mem3' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.mem3
+
+/-- info: 'Reformulation.Pfalzgraf.all_mp' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.all_mp
+
+/-- info: 'Reformulation.Pfalzgraf.all_mpr' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.all_mpr
+
+/-- info: 'Reformulation.Pfalzgraf.beq_rfl' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.beq_rfl
+
+/-- info: 'Reformulation.Pfalzgraf.bool_rfl' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.bool_rfl
+
+/-- info: 'Reformulation.Pfalzgraf.diag0' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.diag0
+
+/-- info: 'Reformulation.Pfalzgraf.diag1' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.diag1
+
+/-- info: 'Reformulation.Pfalzgraf.diag2' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.diag2
+
+/-- info: 'Reformulation.Pfalzgraf.idem_form' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.idem_form
+
+/-- info: 'Reformulation.Pfalzgraf.zulaessig_eq_idempotent' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.zulaessig_eq_idempotent
+
 /-- info: 'Reformulation.Pfalzgraf.zulaessig_iff_idempotent' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Pfalzgraf.zulaessig_iff_idempotent
+
+/-- info: 'Reformulation.Pfalzgraf.filter_nichts' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.filter_nichts
+
+/-- info: 'Reformulation.Pfalzgraf.filter_kongr' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.filter_kongr
+
+/-- info: 'Reformulation.Pfalzgraf.laenge_flatMap' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.laenge_flatMap
+
+/-- info: 'Reformulation.Pfalzgraf.laenge_filter_und' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.laenge_filter_und
 
 /-- info: 'Reformulation.Pfalzgraf.zulaessig_zahl' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Pfalzgraf.zulaessig_zahl

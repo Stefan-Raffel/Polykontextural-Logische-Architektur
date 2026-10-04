@@ -1493,9 +1493,9 @@ Enthält:
   (`NonUniformCloneBound.ContextureFaithful`) ⟺ Quotiententafel eines zulässigen Tripels (Pfalzgraf/Faserung),
   64 von 19 683 als 2⁶. Seit 4.10.2026 zellweise bewiesen, aus dem Grund (`cf_treu`: die Diagonale von zwei
   Teilsystemen gelesen, jede schwache Stelle von einem; nach `Spec_I4_Struktureller_Beweis.md`, Fassung 2),
-  strukturell bis auf Faserung Z1; zuvor über die Aufzählung (~80 s Bauzeit, jetzt 2 s). `TCB.T` vom dritten
-  Grad, spiegelbildlich zu Günthers Beispiel bis auf `Fin.rev`. Die drei Darstellungen der K/D-Tafeln
-  verbunden. 31 Wachen, kein `Classical.choice`.
+  seit dem strukturellen Z1′ in Faserung ganz strukturell; zuvor über die Aufzählung (~80 s Bauzeit, jetzt 2 s).
+  `TCB.T` vom dritten Grad, spiegelbildlich zu Günthers Beispiel bis auf `Fin.rev`. Die drei Darstellungen der
+  K/D-Tafeln verbunden. 28 Wachen, kein `Classical.choice`.
 
 Weitere Proemial-Belegungen (F-5, etc.) werden als Sub-Module hier eingehängt.
 -/
