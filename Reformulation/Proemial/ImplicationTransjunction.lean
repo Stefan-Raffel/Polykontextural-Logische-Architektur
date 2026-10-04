@@ -90,9 +90,30 @@ die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diag
   Klonschicht des Bestands), wenn sie die Quotiententafel eines zulässigen Tripels ist (Faserung). Das Lemma
   `contextureFaithful_iff` bindet die Kontexturtreue an Günthers Einbruch: Diagonale fest und kein Einbruch.
   Zahl: 64 von 19 683.
-* **Bewiesen über die Aufzählung aller 3⁹ Tafeln** (`decide +kernel`); das Modul braucht dafür etwa 80 s
-  Bauzeit. Der strukturelle Beweis (Diagonale erzwungen, sechs schwache Stellen mit je zwei Werten,
-  2⁶ = 64) wäre eine Verbesserung, keine Bedingung.
+* **Bewiesen zellweise, aus dem Grund** (nach `KorpusRev2/Spec_I4_Struktureller_Beweis.md`, Fassung 2). Der
+  Grund in zwei Sätzen: Jede Diagonalzelle (v, v) wird von den zwei Teilsystemen gelesen, die v enthalten, und
+  ihre Wertmengen teilen genau v; darum ist die Diagonale fest. Jede schwache Stelle (p, q) gehört genau einem
+  Teilsystem {p, q}, und dort bleiben genau dessen zwei Werte (`cf_treu`). Aus einer kontexturtreuen Tafel
+  werden die drei lokalen Operationen abgelesen (`ab0`, `ab1`, `ab2`: die Diagonale aus der Idempotenz, die zwei
+  übrigen Einträge aus den zwei schwachen Stellen), und ihre Quotiententafel ist die Tafel (`treu_qop`);
+  umgekehrt erfüllt jede Quotiententafel eines idempotenten Tripels den Grund (`qop_treu`). Die sechs Bits
+  stehen in der Tafel und werden zurückgelesen (`ab_qop`): Die Zerlegung ist eindeutig.
+* **Die Zahl folgt** (`zahl`): eine Bedingung je Zelle, gezählt als Produkt (`zaehl`), drei Diagonalzellen mit
+  einem Wert, sechs schwache Stellen mit zwei, 1·2·2·2·1·2·2·2·1 = 2⁶ = 64. Die 19 683 Tafeln werden dabei
+  nicht durchlaufen.
+* **Strukturell bis auf Faserung Z1.** `zul_of_idem` konsumiert `zulaessig_iff_idempotent` (Faserung), ein
+  `decide` über die 4096 Tripel; die Kosten fallen dort an. Z1 zellweise zu beweisen, mit derselben Gestalt
+  (die Diagonale von zwei Teilsystemen gelesen), ist ein eigener Posten.
+* **Bauzeit**, `lake env lean` auf dem Modul: vorher 77 s (real; die Aufzählung in `cf_alle`, `rechts_links`,
+  `links_rechts`, `zahl` mit `decide +kernel`), nachher 2,6 s.
+* **Was es vorbereitet:** Die Gestalt des Arguments hängt nicht an drei Werten. Bei m Werten liest jedes Paar
+  ein Teilsystem und jede Diagonalzelle m − 1 Teilsysteme. Ob der Satz dort in derselben Gestalt gilt, ist für
+  Rev11 offen; die Aufzählung ginge dort nicht mehr (4¹⁶ Tafeln schon bei vier Werten).
+* *Ersetzt am 4. Oktober 2026 (Regel 7):* Bis dahin war I4 über die Aufzählung aller 3⁹ Tafeln bewiesen
+  (`decide +kernel`, etwa 80 s Bauzeit), mit den Hilfssätzen `cf_alle`, `rechts_links`, `links_rechts`,
+  `ofFun_mem_alle` und der Liste `links`. Sie sind entfernt. Aussage und Name von `junktional_iff`,
+  `contextureFaithful_iff` und `zahl` sind unverändert; `alle` ist jetzt rekursiv definiert (`tafeln 9`),
+  dieselben Tafeln.
 * **`TCB.T`**, die Transjunktion der älteren Schicht, ist vom dritten Grad (`tcb_dritter_grad`). In der
   Wertzählung dieses Moduls bricht sie dort ein, wo p den **positiven** Wert trägt, spiegelbildlich zu Günthers
   Beispiel. Unter der Spiegelung `Fin.rev`, die `localOp` verwendet, liegt der Einbruch an Günthers Ort
@@ -117,7 +138,11 @@ junktional_iff,                     FOLGERUNG, UNSER:  die Brücke von der älte
   contextureFaithful_iff
 tcb_dritter_grad,                   FOLGERUNG:  die ältere Transjunktion nach den Graden
   tcb_gespiegelt_guenther
-cf_alle, rechts_links, links_rechts, zahl, mem_ops, mem_fin3, ofFun_mem_alle, ofList_ofFun, bool_beq
+cf_treu                             FOLGERUNG:  der Grund — Diagonale von zwei Teilsystemen gelesen, schwache Stelle von einem
+zahl                                FOLGERUNG:  64 = 2⁶, als Produkt über die Zellen
+ab_qop                              FOLGERUNG:  die Zerlegung ist eindeutig
+treu_iff_bool, zul_of_idem, idem_form, treu_qop, qop_treu, fin3_all, laenge_tafeln, laenge_mem, filter_fin3,
+  zaehl, treu_stellen, rechts_passt, mem_ops, mem_fin3, ofList_ofFun, bool_beq
                                     Hilfssätze
 ```
 
@@ -263,33 +288,7 @@ theorem tcb_gespiegelt_guenther :
     decide ((fin3.flatMap fun p => (fin3.filter fun q => decide (einbruch f p q)).map fun q => (p, q))
       = [((2 : Fin 3), (0 : Fin 3))]) = true ∧ partiell f 2 ∧ intrakontexturellPartiell f ∧ lokal 2 2 = false := by decide
 
-/-! ## (I4) Junktional ⟺ kontexturtreu — über alle 3^9 Tafeln -/
-
-/-- alle 19 683 Tafeln -/
-def alle : List (List (Fin 3)) :=
-  fin3.flatMap fun a => fin3.flatMap fun b => fin3.flatMap fun c => fin3.flatMap fun d => fin3.flatMap fun e =>
-  fin3.flatMap fun f => fin3.flatMap fun g => fin3.flatMap fun h => fin3.map fun i => [a, b, c, d, e, f, g, h, i]
-/-- die Quotiententafeln aller zulässigen Tripel (Faserung) -/
-def links : List (List (Fin 3)) :=
-  ops.flatMap fun o0 => ops.flatMap fun o1 => (ops.filter fun o2 => zulaessig o0 o1 o2).map fun o2 => ofFun (qop o0 o1 o2)
-
-/-- die rechte Seite von I4 an einer Liste -/
-def rechts (t : List (Fin 3)) : Bool := diagfest (ofList t) && einbruchfrei (ofList t)
-
-/-- über alle 19 683 Tafeln:  kontexturtreu (Bestand) ⟺ Diagonale fest und einbruchfrei -/
-theorem cf_alle : alle.all (fun t =>
-    decide (Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful (ofList t)) == rechts t) = true := by
-  decide +kernel
-
-/-- jede Tafel der rechten Seite ist eine Quotiententafel -/
-theorem rechts_links : (alle.filter rechts).all (fun t => links.any fun s => decide (s = t)) = true := by
-  decide +kernel
-
-/-- jede Quotiententafel liegt rechts -/
-theorem links_rechts : links.all rechts = true := by decide +kernel
-
-/-- 64 von 19 683 -/
-theorem zahl : alle.length = 19683 ∧ (alle.filter rechts).length = 64 := by decide +kernel
+/-! ## (I4) Junktional ⟺ kontexturtreu — zellweise, aus dem Grund -/
 
 theorem bool_beq (x v : Bool) : (x == v) = true ↔ x = v := by cases x <;> cases v <;> decide
 
@@ -303,47 +302,250 @@ theorem mem_fin3 (v : Fin 3) : v ∈ fin3 := by
   | ⟨1, _⟩ => exact List.mem_cons_of_mem _ List.mem_cons_self
   | ⟨2, _⟩ => exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _ List.mem_cons_self)
 
-theorem ofFun_mem_alle (f : Tafel) : ofFun f ∈ alle := by
-  simp only [alle, ofFun, List.mem_flatMap, List.mem_map]
-  exact ⟨_, mem_fin3 (f 0 0), _, mem_fin3 (f 0 1), _, mem_fin3 (f 0 2), _, mem_fin3 (f 1 0), _, mem_fin3 (f 1 1),
-    _, mem_fin3 (f 1 2), _, mem_fin3 (f 2 0), _, mem_fin3 (f 2 1), _, mem_fin3 (f 2 2), rfl⟩
-
 theorem ofList_ofFun (f : Tafel) : ofList (ofFun f) = f := by
   funext p q
   match p, q with
   | ⟨0,_⟩, ⟨0,_⟩ | ⟨0,_⟩, ⟨1,_⟩ | ⟨0,_⟩, ⟨2,_⟩ | ⟨1,_⟩, ⟨0,_⟩ | ⟨1,_⟩, ⟨1,_⟩ | ⟨1,_⟩, ⟨2,_⟩
   | ⟨2,_⟩, ⟨0,_⟩ | ⟨2,_⟩, ⟨1,_⟩ | ⟨2,_⟩, ⟨2,_⟩ => rfl
 
+/-- drei Fälle statt `fin_cases` (das Classical zieht) -/
+theorem fin3_all {P : Fin 3 → Prop} (h0 : P 0) (h1 : P 1) (h2 : P 2) : ∀ v, P v
+  | ⟨0, _⟩ => h0 | ⟨1, _⟩ => h1 | ⟨2, _⟩ => h2
+
+/-- der Grund, zellweise:  die Diagonale fest, jede schwache Stelle in ihrem Teilsystem {p, q} -/
+def treu (f : Tafel) : Prop := (∀ v, f v v = v) ∧ ∀ p q, p ≠ q → (f p q = p ∨ f p q = q)
+
+/-- **Der Grund.** Kontexturtreu heisst:  die Diagonale fest — die zwei Teilsysteme, die (v, v) lesen, teilen genau den
+    Wert v —, und jede schwache Stelle bleibt in dem einen Teilsystem, dem sie gehört -/
+theorem cf_treu (f : Tafel) : Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful f ↔ treu f := by
+  constructor
+  · rintro ⟨h01, h12, h02⟩
+    refine ⟨fin3_all ?_ ?_ ?_, fin3_all (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_)⟩
+    · have a := h01 0 0 (.inl rfl) (.inl rfl); have b := h02 0 0 (.inl rfl) (.inl rfl)
+      revert a b; generalize f 0 0 = w; revert w; exact fin3_all (by decide) (by decide) (by decide)
+    · have a := h01 1 1 (.inr rfl) (.inr rfl); have b := h12 1 1 (.inl rfl) (.inl rfl)
+      revert a b; generalize f 1 1 = w; revert w; exact fin3_all (by decide) (by decide) (by decide)
+    · have a := h12 2 2 (.inr rfl) (.inr rfl); have b := h02 2 2 (.inr rfl) (.inr rfl)
+      revert a b; generalize f 2 2 = w; revert w; exact fin3_all (by decide) (by decide) (by decide)
+    · intro h; exact absurd rfl h
+    · intro _; exact h01 0 1 (.inl rfl) (.inr rfl)
+    · intro _; exact h02 0 2 (.inl rfl) (.inr rfl)
+    · intro _; exact (h01 1 0 (.inr rfl) (.inl rfl)).symm
+    · intro h; exact absurd rfl h
+    · intro _; exact h12 1 2 (.inl rfl) (.inr rfl)
+    · intro _; exact (h02 2 0 (.inr rfl) (.inl rfl)).symm
+    · intro _; exact (h12 2 1 (.inr rfl) (.inl rfl)).symm
+    · intro h; exact absurd rfl h
+  · rintro ⟨hd, ho⟩
+    refine ⟨?_, ?_, ?_⟩ <;>
+    · intro a b ha hb
+      rcases ha with rfl | rfl <;> rcases hb with rfl | rfl <;>
+        first
+        | exact .inl (hd _) | exact .inr (hd _)
+        | exact ho _ _ (by decide) | exact (ho _ _ (by decide)).symm
+
+/-- die Bool-Seite (Diagonale fest, einbruchfrei) ist derselbe Grund -/
+theorem treu_iff_bool (f : Tafel) : treu f ↔ (diagfest f && einbruchfrei f) = true := by
+  have hz : ∀ p q w : Fin 3, ¬ (p ≠ q ∧ w ≠ p ∧ w ≠ q) ↔ (p ≠ q → w = p ∨ w = q) :=
+    fin3_all (fin3_all (fin3_all (by decide) (by decide) (by decide)) (fin3_all (by decide) (by decide) (by decide))
+      (fin3_all (by decide) (by decide) (by decide))) (fin3_all (fin3_all (by decide) (by decide) (by decide))
+      (fin3_all (by decide) (by decide) (by decide)) (fin3_all (by decide) (by decide) (by decide)))
+      (fin3_all (fin3_all (by decide) (by decide) (by decide)) (fin3_all (by decide) (by decide) (by decide))
+      (fin3_all (by decide) (by decide) (by decide)))
+  rw [Bool.and_eq_true]
+  unfold treu diagfest einbruchfrei
+  constructor
+  · rintro ⟨hd, ho⟩
+    refine ⟨List.all_eq_true.mpr fun v _ => decide_eq_true (hd v), List.all_eq_true.mpr fun p _ =>
+      List.all_eq_true.mpr fun q _ => ?_⟩
+    rw [Bool.not_eq_true', decide_eq_false_iff_not]
+    exact (hz p q (f p q)).mpr (ho p q)
+  · rintro ⟨hd, ho⟩
+    refine ⟨fun v => of_decide_eq_true (List.all_eq_true.mp hd v (mem_fin3 v)), fun p q => ?_⟩
+    have h := List.all_eq_true.mp (List.all_eq_true.mp ho p (mem_fin3 p)) q (mem_fin3 q)
+    rw [Bool.not_eq_true', decide_eq_false_iff_not] at h
+    exact (hz p q (f p q)).mp h
+
 /-- das Lemma:  kontexturtreu ⟺ Diagonale fest und einbruchfrei — für jede Tafel -/
 theorem contextureFaithful_iff (f : Tafel) :
-    Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful f ↔ (diagfest f && einbruchfrei f) = true := by
-  have h := List.all_eq_true.mp cf_alle (ofFun f) (ofFun_mem_alle f)
-  rw [bool_beq] at h
-  unfold rechts at h
-  rw [ofList_ofFun] at h
-  rw [← h]
-  exact decide_eq_true_iff.symm
+    Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful f ↔ (diagfest f && einbruchfrei f) = true :=
+  (cf_treu f).trans (treu_iff_bool f)
+
+/-- die lokalen Operationen ablesen:  die Diagonale aus der Idempotenz (T, …, F), die zwei übrigen Einträge aus den
+    zwei schwachen Stellen des Teilsystems -/
+def ab0 (f : Tafel) : Op := (true, lokal 0 (f 0 1), lokal 0 (f 1 0), false)
+/-- Teilsystem 1 (Günthers 2-3) -/
+def ab1 (f : Tafel) : Op := (true, lokal 1 (f 1 2), lokal 1 (f 2 1), false)
+/-- Teilsystem 2 (Günthers 1-3) -/
+def ab2 (f : Tafel) : Op := (true, lokal 2 (f 0 2), lokal 2 (f 2 0), false)
+
+/-- zulässig ⟺ idempotent in jeder Faser, aus Faserung (Z1, dort über die 4096 Tripel bewiesen) -/
+theorem zul_of_idem (o0 o1 o2 : Op) :
+    zulaessig o0 o1 o2 = (idempotent o0 && idempotent o1 && idempotent o2) :=
+  (bool_beq _ _).mp (List.all_eq_true.mp (List.all_eq_true.mp (List.all_eq_true.mp zulaessig_iff_idempotent o0
+    (mem_ops o0)) o1 (mem_ops o1)) o2 (mem_ops o2))
+
+/-- idempotent heisst:  die Gestalt (T, a, b, F) -/
+theorem idem_form (o : Op) (h : idempotent o = true) : ∃ a b, o = (true, a, b, false) := by
+  obtain ⟨x, a, b, y⟩ := o
+  cases x <;> cases y
+  · exact absurd h Bool.false_ne_true
+  · exact absurd h Bool.false_ne_true
+  · exact ⟨a, b, rfl⟩
+  · exact absurd h Bool.false_ne_true
+
+/-- (→) die abgelesenen Operationen geben die Tafel zurück, Zelle für Zelle -/
+theorem treu_qop (f : Tafel) (h : treu f) : ∀ p q, f p q = qop (ab0 f) (ab1 f) (ab2 f) p q := by
+  obtain ⟨hd, ho⟩ := h
+  refine fin3_all (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_)
+  · rw [hd 0]; rfl
+  · have h := ho 0 1 (by decide); revert h; unfold ab0; generalize f 0 1 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · have h := ho 0 2 (by decide); revert h; unfold ab2; generalize f 0 2 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · have h := ho 1 0 (by decide); revert h; unfold ab0; generalize f 1 0 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · rw [hd 1]; rfl
+  · have h := ho 1 2 (by decide); revert h; unfold ab1; generalize f 1 2 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · have h := ho 2 0 (by decide); revert h; unfold ab2; generalize f 2 0 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · have h := ho 2 1 (by decide); revert h; unfold ab1; generalize f 2 1 = w; revert w
+    refine fin3_all ?_ ?_ ?_ <;> intro h <;> first | rfl | exact absurd h (by decide)
+  · rw [hd 2]; rfl
+
+/-- (←) die Quotiententafel jedes idempotenten Tripels erfüllt den Grund -/
+theorem qop_treu (a0 b0 a1 b1 a2 b2 : Bool) :
+    treu (qop (true, a0, b0, false) (true, a1, b1, false) (true, a2, b2, false)) := by
+  refine ⟨fin3_all rfl rfl rfl, fin3_all (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_) (fin3_all ?_ ?_ ?_)⟩ <;> intro h <;>
+    first
+    | exact absurd rfl h
+    | (cases a0 <;> first | exact .inl rfl | exact .inr rfl)
+    | (cases b0 <;> first | exact .inl rfl | exact .inr rfl)
+    | (cases a1 <;> first | exact .inl rfl | exact .inr rfl)
+    | (cases b1 <;> first | exact .inl rfl | exact .inr rfl)
+    | (cases a2 <;> first | exact .inl rfl | exact .inr rfl)
+    | (cases b2 <;> first | exact .inl rfl | exact .inr rfl)
+
+/-- die Zerlegung ist eindeutig:  die sechs Bits stehen in der Tafel und werden zurückgelesen -/
+theorem ab_qop (a0 b0 a1 b1 a2 b2 : Bool) :
+    let g := qop (true, a0, b0, false) (true, a1, b1, false) (true, a2, b2, false)
+    ab0 g = (true, a0, b0, false) ∧ ab1 g = (true, a1, b1, false) ∧ ab2 g = (true, a2, b2, false) := by
+  refine ⟨?_, ?_, ?_⟩
+  · cases a0 <;> cases b0 <;> rfl
+  · cases a1 <;> cases b1 <;> rfl
+  · cases a2 <;> cases b2 <;> rfl
 
 /-- **I4.** Eine Tafel ist genau dann kontexturtreu, wenn sie die Quotiententafel eines zulässigen Tripels ist (Faserung) -/
 theorem junktional_iff (f : Tafel) :
     Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful f ↔
       ∃ o0 o1 o2 : Op, zulaessig o0 o1 o2 = true ∧ ofFun f = ofFun (qop o0 o1 o2) := by
-  have hr : rechts (ofFun f) = (diagfest f && einbruchfrei f) := by unfold rechts; rw [ofList_ofFun]
-  rw [contextureFaithful_iff, ← hr]
+  rw [cf_treu]
   constructor
   · intro h
-    have hm : ofFun f ∈ alle.filter rechts := List.mem_filter.mpr ⟨ofFun_mem_alle f, h⟩
-    obtain ⟨s, hs, he⟩ := List.any_eq_true.mp (List.all_eq_true.mp rechts_links _ hm)
-    have he := of_decide_eq_true he
-    rw [← he]
-    simp only [links, List.mem_flatMap, List.mem_map, List.mem_filter] at hs
-    obtain ⟨o0, -, o1, -, o2, ⟨-, hz⟩, he'⟩ := hs
-    exact ⟨o0, o1, o2, hz, he'.symm⟩
+    refine ⟨ab0 f, ab1 f, ab2 f, by rw [zul_of_idem]; rfl, ?_⟩
+    exact congrArg ofFun (funext fun p => funext fun q => treu_qop f h p q)
   · rintro ⟨o0, o1, o2, hz, he⟩
-    rw [he]
-    apply List.all_eq_true.mp links_rechts
-    simp only [links, List.mem_flatMap, List.mem_map, List.mem_filter]
-    exact ⟨o0, mem_ops o0, o1, mem_ops o1, o2, ⟨mem_ops o2, hz⟩, rfl⟩
+    rw [zul_of_idem, Bool.and_eq_true, Bool.and_eq_true] at hz
+    obtain ⟨⟨h0, h1⟩, h2⟩ := hz
+    obtain ⟨a0, b0, rfl⟩ := idem_form o0 h0
+    obtain ⟨a1, b1, rfl⟩ := idem_form o1 h1
+    obtain ⟨a2, b2, rfl⟩ := idem_form o2 h2
+    have hf : f = qop (true, a0, b0, false) (true, a1, b1, false) (true, a2, b2, false) := by
+      rw [← ofList_ofFun f, he, ofList_ofFun]
+    rw [hf]; exact qop_treu a0 b0 a1 b1 a2 b2
+
+/-! ## Die Zahl:  64 = 1·2·2·2·1·2·2·2·1 — eine Bedingung je Zelle, gezählt als Produkt -/
+
+/-- die Tafeln als Listen der Länge n -/
+def tafeln : ℕ → List (List (Fin 3))
+  | 0 => [[]]
+  | n + 1 => fin3.flatMap fun a => (tafeln n).map (a :: ·)
+/-- alle 19 683 Tafeln, zeilenweise -/
+def alle : List (List (Fin 3)) := tafeln 9
+/-- die rechte Seite von I4 an einer Liste -/
+def rechts (t : List (Fin 3)) : Bool := diagfest (ofList t) && einbruchfrei (ofList t)
+
+/-- eine Bedingung je Stelle -/
+def passt : List (Fin 3 → Bool) → List (Fin 3) → Bool
+  | p :: ps, a :: t => p a && passt ps t
+  | [], [] => true
+  | _, _ => false
+
+/-- die neun Zellen:  eine Diagonalzelle lässt einen Wert zu, eine schwache Stelle zwei -/
+def dia (v : Fin 3) (w : Fin 3) : Bool := decide (w = v)
+/-- die schwache Stelle (p, q):  der Wert in {p, q} -/
+def zwei (p q : Fin 3) (w : Fin 3) : Bool := decide (w = p ∨ w = q)
+/-- die Bedingungen in der Reihenfolge der Zellen -/
+def stellen : List (Fin 3 → Bool) :=
+  [dia 0, zwei 0 1, zwei 0 2, zwei 1 0, dia 1, zwei 1 2, zwei 2 0, zwei 2 1, dia 2]
+
+theorem laenge_tafeln : ∀ n, (tafeln n).length = 3 ^ n
+  | 0 => rfl
+  | n + 1 => by
+    simp only [tafeln, fin3, List.flatMap_cons, List.flatMap_nil, List.append_nil, List.length_append,
+      List.length_map, laenge_tafeln n, Nat.pow_succ]
+    omega
+
+theorem laenge_mem : ∀ (n : ℕ) (t : List (Fin 3)), t ∈ tafeln n → t.length = n
+  | 0, t, h => by simp only [tafeln, List.mem_singleton] at h; rw [h]; rfl
+  | n + 1, t, h => by
+    obtain ⟨a, -, ht⟩ := List.mem_flatMap.mp h
+    obtain ⟨s, hs, rfl⟩ := List.mem_map.mp ht
+    exact congrArg (· + 1) (laenge_mem n s hs)
+
+theorem filter_fin3 (p : Fin 3 → Bool) :
+    (fin3.filter p).length = (if p 0 then 1 else 0) + (if p 1 then 1 else 0) + (if p 2 then 1 else 0) := by
+  cases h0 : p 0 <;> cases h1 : p 1 <;> cases h2 : p 2 <;> simp only [fin3, List.filter_cons, h0, h1, h2] <;> rfl
+
+/-- gezählt wird als Produkt:  je Stelle die Zahl der zugelassenen Werte -/
+theorem zaehl : ∀ (n : ℕ) (ps : List (Fin 3 → Bool)), ps.length = n →
+    ((tafeln n).filter (passt ps)).length = (ps.map fun p => (fin3.filter p).length).prod
+  | 0, [], _ => rfl
+  | n + 1, p :: ps, h => by
+    have ih := zaehl n ps (Nat.succ.inj h)
+    have hA : ∀ a, (((tafeln n).map (a :: ·)).filter (passt (p :: ps))).length =
+        (if p a then 1 else 0) * ((tafeln n).filter (passt ps)).length := by
+      intro a
+      rw [List.filter_map, List.length_map]
+      cases ha : p a
+      · have : (passt (p :: ps) ∘ (a :: ·)) = fun _ => false := by
+          funext t; show (p a && passt ps t) = false; rw [ha]; rfl
+        rw [this, List.filter_false]; exact (Nat.zero_mul _).symm
+      · have : (passt (p :: ps) ∘ (a :: ·)) = passt ps := by
+          funext t; show (p a && passt ps t) = passt ps t; rw [ha]; rfl
+        rw [this]; exact (Nat.one_mul _).symm
+    simp only [tafeln, fin3, List.flatMap_cons, List.flatMap_nil, List.append_nil, List.filter_append,
+      List.length_append, hA, List.map_cons, List.prod_cons, ih]
+    rw [show (List.filter p [0, 1, 2]).length = _ from filter_fin3 p, ← Nat.add_assoc, ← Nat.add_mul, ← Nat.add_mul]
+  | 0, _ :: _, h => absurd h (Nat.succ_ne_zero _)
+  | _ + 1, [], h => absurd h (Nat.succ_ne_zero _).symm
+
+/-- der Grund an einer Liste ist die Bedingung je Zelle -/
+theorem treu_stellen (a b c d e f g h i : Fin 3) :
+    treu (ofList [a, b, c, d, e, f, g, h, i]) ↔ passt stellen [a, b, c, d, e, f, g, h, i] = true := by
+  simp only [passt, stellen, dia, zwei, Bool.and_true, Bool.and_eq_true, decide_eq_true_iff]
+  constructor
+  · rintro ⟨hd, ho⟩
+    exact ⟨hd 0, ho 0 1 (by decide), ho 0 2 (by decide), ho 1 0 (by decide), hd 1, ho 1 2 (by decide),
+      ho 2 0 (by decide), ho 2 1 (by decide), hd 2⟩
+  · rintro ⟨ha, hb, hc, hd, he, hf, hg, hh, hi⟩
+    exact ⟨fin3_all ha he hi, fin3_all (fin3_all (fun h => absurd rfl h) (fun _ => hb) (fun _ => hc))
+      (fin3_all (fun _ => hd) (fun h => absurd rfl h) (fun _ => hf))
+      (fin3_all (fun _ => hg) (fun _ => hh) (fun h => absurd rfl h))⟩
+
+theorem rechts_passt (t : List (Fin 3)) (ht : t.length = 9) : rechts t = passt stellen t := by
+  rcases t with _ | ⟨a, _ | ⟨b, _ | ⟨c, _ | ⟨d, _ | ⟨e, _ | ⟨f, _ | ⟨g, _ | ⟨h, _ | ⟨i, _ | ⟨_, _⟩⟩⟩⟩⟩⟩⟩⟩⟩⟩ <;>
+    simp only [List.length_cons, List.length_nil] at ht <;> try omega
+  apply Bool.eq_iff_iff.mpr
+  rw [← treu_stellen, treu_iff_bool]; rfl
+
+/-- **64 von 19 683**:  drei Diagonalzellen mit einem Wert, sechs schwache Stellen mit zwei — 2⁶ -/
+theorem zahl : alle.length = 19683 ∧ (alle.filter rechts).length = 64 := by
+  refine ⟨laenge_tafeln 9, ?_⟩
+  have hc : alle.filter rechts = alle.filter (passt stellen) :=
+    List.filter_congr fun t ht => rechts_passt t (laenge_mem 9 t ht)
+  rw [hc]; exact (zaehl 9 stellen rfl).trans (by decide)
 
 end Reformulation.Proemial.ImplicationTransjunction
 
@@ -379,18 +581,6 @@ end Reformulation.Proemial.ImplicationTransjunction
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
 
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.cf_alle' depends on axioms: [propext] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.cf_alle
-
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.rechts_links' depends on axioms: [propext] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.rechts_links
-
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.links_rechts' depends on axioms: [propext] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.links_rechts
-
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.zahl' depends on axioms: [propext] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zahl
-
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.bool_beq' does not depend on any axioms -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.bool_beq
 
@@ -400,14 +590,56 @@ end Reformulation.Proemial.ImplicationTransjunction
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.mem_fin3' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.mem_fin3
 
-/-- info: 'Reformulation.Proemial.ImplicationTransjunction.ofFun_mem_alle' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.ofFun_mem_alle
-
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.ofList_ofFun' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.ofList_ofFun
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.fin3_all' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.fin3_all
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.cf_treu' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.cf_treu
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.treu_iff_bool' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.treu_iff_bool
 
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.contextureFaithful_iff' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.contextureFaithful_iff
 
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.zul_of_idem' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zul_of_idem
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.idem_form' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.idem_form
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.treu_qop' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.treu_qop
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.qop_treu' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.qop_treu
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.ab_qop' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.ab_qop
+
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.junktional_iff' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.junktional_iff
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.laenge_tafeln' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.laenge_tafeln
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.laenge_mem' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.laenge_mem
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.filter_fin3' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.filter_fin3
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.zaehl' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zaehl
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.treu_stellen' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.treu_stellen
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.rechts_passt' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.rechts_passt
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.zahl' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zahl
