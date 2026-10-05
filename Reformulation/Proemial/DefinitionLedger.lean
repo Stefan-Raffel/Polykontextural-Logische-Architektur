@@ -291,6 +291,8 @@ end Reformulation.Proemial.DefinitionLedger
 #ledger_mention "L08-3" Reformulation.Proemial.ImplicationTransjunction.tcb_gespiegelt_guenther
 #ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.kd_ist_guenther_acht
 #ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.junktional_iff
+#ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.cf_treu
+#ledger_mention "L08-8" Reformulation.Proemial.ImplicationTransjunction.ab_qop
 #ledger_mention "L08-9" Reformulation.Proemial.ImplicationTransjunction.impl_einbruch_genau
 #ledger_mention "L08-9" Reformulation.Proemial.ImplicationTransjunction.impl_dritter_grad
 #ledger_mention "L08-11" Reformulation.Proemial.ImplicationTransjunction.total
