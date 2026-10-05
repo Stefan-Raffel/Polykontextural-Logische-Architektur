@@ -77,10 +77,20 @@ In 2-3 liegt jede Implikation an drei Zellen ausserhalb des Teilsystems: (2,2), 
 zählt alle drei als auf andere Fasern verteilte Ergebnisse. Günthers Einbruch steht nur an der schwachen
 Stelle (3,2). Die zwei übrigen sind Diagonalzellen; dort steht 1, der Wahrwert einer **anderen** Faser, die
 die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diagonale`).
-*Hinweis, 5. Oktober 2026:* Pfalzgraf 2004 zeigt an einem IMPLY seines Beispiels, dass es im zweiten
-Teilsystem unverträglich ist (S. 221), und repariert es durch eine Transjunktion dort (S. 222); an der
-Textschicht gelesen. Ob das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an Hermeneutes,
-Register O2).
+*Nachgeführt am 5. Oktober 2026 (Regel 7; Custos, `KorpusRev2/Prompt_Impl_K6_Pfalzgraf.md`, Wortlaut nach
+`KorpusRev2/Sammelprompt_Instanz_Mathematiker_5_10.md` I1):* Pfalzgraf & Sofronie 1995 (*Decomposing Many-valued
+Logics: An Experimental Case Study*, RISC-Linz Report Series No. 95-44; am Titelblatt gelesen) und Pfalzgraf 2004
+(RACSAM 98(1), S. 221 f.) reparieren tafelgleich eine von Günthers acht Standardimplikationen, die in C&V als
+Abb. 20 steht (KKK: a b c / a a c / a a a), durch eine Transjunktion im Teilsystem 2-3 mit drei Ergebnissen im
+ersten Teilsystem. Die Logik nehmen sie aus Pfalzgrafs `[31]`, Rydeheard & Burstall, *Computational Category Theory* 1988,
+S. 169 (2004 S. 218). Mit Günther verbinden sie das Beispiel nicht: 2004 nennt ihn im Fließtext S. 213, 215, 225
+und im Literaturverzeichnis S. 226, aber nicht auf den Seiten des Beispiels (S. 218–222); 1995 nennt ihn gar
+nicht. Dass ihre Tafel Günthers ist, ist eine ZUORDNUNG nach ihrer eigenen Umbenennung (a = T, b = ∗, c = F), Zelle
+für Zelle am Bild (2004 S. 221: die Instanz; 1995 PDF-S. 4 f.: Hermeneutes); die Vorführung der Transjunktion
+ist 1995 nur an der Textschicht gelesen. *Bis dahin stand hier:* „Pfalzgraf 2004 zeigt an einem IMPLY seines
+Beispiels, dass es im zweiten Teilsystem unverträglich ist (S. 221), und repariert es durch eine Transjunktion dort
+(S. 222); an der Textschicht gelesen. Ob das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an
+Hermeneutes, Register O2).“
 
 ## K7 · Grenzen
 
