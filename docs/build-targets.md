@@ -1,5 +1,9 @@
 # Build-Targets — was ein gruener Bau je Target zusichert
 
+**Erster Bau:** zuerst `lake exe cache get`, dann `lake build`. Der erste Befehl holt das
+uebersetzte Mathlib aus dem Cache der Mathlib-Gemeinschaft; ohne ihn uebersetzt `lake build`
+Mathlib lokal. (Gemessen am 5. Oktober 2026 auf gebautem Stand: "No files to download".)
+
 `lake build` erfasst die Import-Huelle der `defaultTargets`. Alles andere wird nur auf
 ausdruecklichen Aufruf uebersetzt. Diese Datei sagt fuer jedes Target, **was gruen
 heisst — und was es nicht heisst**.

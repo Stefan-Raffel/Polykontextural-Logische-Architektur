@@ -29,11 +29,12 @@ GÜNTHER          die Implikationsregel und die acht Tafeln — C&V S. 29 f., Ab
                  die Instanz, alle acht);  die K/D-Tafeln — C&V S. 25 f.;  die drei Grade, der Einbruch an der
                  schwachen Stelle, die Verwerfung in 2↔3 durch 1, die totale Transjunktion Tr — HKN 1970,
                  gg_category.pdf PDF-S. 20 (Edition A/1 — 4;  am Bild)
-NACH PFALZGRAF   der Quotient, die Fasern, die Zulässigkeit (über Pfalzgraf/Faserung)
+NACH PFALZGRAF   der Quotient, die Fasern, die Zulässigkeit (über Pfalzgraf/Faserung);  die Zerlegung einer Tafel in
+                 drei Teiltafeln entlang der Diagonale und ihr Zusammenfügen (1991 S. 180 f.;  2004 S. 219–222, K8)
 BESTAND          die Kontexturtreue `ContextureFaithful` und die Wahlvektoren `ofChoices` (NonUniformCloneBound);
                  die Transjunktion `T` (TransjunctionCloneBound)
-UNSER            die Prädikate für die drei Grade;  die Benennung "kontextural";  die Kennzeichnung I4;  die
-                 Diagonal-Unterscheidung I5;  die Lean-Gestalt
+UNSER            die Prädikate für die drei Grade;  die Benennung "kontextural";  die Gleichheit I4 mit
+                 `ContextureFaithful` und ihre Zahl;  die Diagonal-Unterscheidung I5;  die Lean-Gestalt
 ZUSAMMENSCHAU    "die Implikationen sind intrakontexturell-partielle Transjunktionen" — zweier Günther-Schriften,
                  Übergang gerechnet und am Bild bestätigt;  Günther nennt sie nirgends selbst so (Hermeneutes I4,
                  Nullbefund über sechs Schriften)
@@ -76,6 +77,9 @@ In 2-3 liegt jede Implikation an drei Zellen ausserhalb des Teilsystems: (2,2), 
 zählt alle drei als auf andere Fasern verteilte Ergebnisse. Günthers Einbruch steht nur an der schwachen
 Stelle (3,2). Die zwei übrigen sind Diagonalzellen; dort steht 1, der Wahrwert einer **anderen** Faser, die
 die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diagonale`).
+*Hinweis, 5. Oktober 2026:* Pfalzgraf 2004 (S. 220 f.) zeigt an einem IMPLY seines Beispiels, dass es im zweiten
+Teilsystem unverträglich ist, und repariert es durch eine Transjunktion dort (an der Textschicht gelesen). Ob
+das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an Hermeneutes, Register O2).
 
 ## K7 · Grenzen
 
@@ -90,6 +94,14 @@ die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diag
   Klonschicht des Bestands), wenn sie die Quotiententafel eines zulässigen Tripels ist (Faserung). Das Lemma
   `contextureFaithful_iff` bindet die Kontexturtreue an Günthers Einbruch: Diagonale fest und kein Einbruch.
   Zahl: 64 von 19 683.
+* **Was Pfalzgrafs ist.** Zerlegung und Zusammenfügen beschreibt Pfalzgraf als Verfahren: 1991, S. 180 f. (die
+  drei 2×2-Tafeln setzen sich zu einem 3×3-Schema zusammen; nach der Lesung des Mathematikers), und 2004 (RACSAM
+  98(1), S. 219–222): *„Method of decomposition“* über die drei Teiltafeln entlang der Diagonale, das Verfahren
+  in drei Schritten, und der Remark, die Teiltafeln seien *„merged … along the diagonal … such that the
+  corresponding diagonal elements match“* (an der Textschicht gelesen, nicht am Bild). Von uns sind die Gleichheit
+  mit `ContextureFaithful` aus dem Bestand, die Zahl und der Beweis ohne Aufzählung: Was Pfalzgraf als Bedingung
+  und Verfahren beschreibt, steht hier bewiesen. *Nachgeführt am 5. Oktober 2026 (Regel 7; Register O1): Bis dahin
+  stand I4 als UNSER ohne diese Fundstellen.*
 * **Bewiesen zellweise, aus dem Grund** (nach `KorpusRev2/Spec_I4_Struktureller_Beweis.md`, Fassung 2). Der
   Grund in zwei Sätzen: Jede Diagonalzelle (v, v) wird von den zwei Teilsystemen gelesen, die v enthalten, und
   ihre Wertmengen teilen genau v; darum ist die Diagonale fest. Jede schwache Stelle (p, q) gehört genau einem
@@ -136,7 +148,8 @@ impl_einbruch_genau,                FOLGERUNG:  die Implikationen erfüllen Gün
 kd_einbruchfrei                     FOLGERUNG
 tr_total                            EICHUNG an HKN PDF-S. 20
 diagonale                           FOLGERUNG, UNSER
-junktional_iff,                     FOLGERUNG, UNSER:  die Brücke von der ältesten Klonschicht zu Pfalzgrafs Quotienten
+junktional_iff,                     FOLGERUNG:  die Brücke von der ältesten Klonschicht zu Pfalzgrafs Quotienten;  die
+                                    Zerlegung NACH PFALZGRAF, die Gleichheit mit ContextureFaithful und die Zahl UNSER (K8)
   contextureFaithful_iff
 tcb_dritter_grad,                   FOLGERUNG:  die ältere Transjunktion nach den Graden
   tcb_gespiegelt_guenther

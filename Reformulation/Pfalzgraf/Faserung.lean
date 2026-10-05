@@ -103,6 +103,15 @@ und sonst nichts: `zulaessig_eq_idempotent` (Z1′). Z1 (`zulaessig_iff_idempote
 unveränderter Aussage, Z2 (`zulaessig_zahl`) als Produkt: idempotent legt zwei der vier Einträge fest, also 4,
 drei Operationen unabhängig, 4 · 4 · 4 = 64. Nach `KorpusRev2/Spec_Z1_Struktureller_Beweis.md`, Fassung 2.
 
+**Der Grund ist Pfalzgrafs.** Die Verträglichkeitsbedingung steht bei Pfalzgraf 1991, S. 179: *„whenever two
+pairs (from different subsystems) belong to the same equivalence class the resulting value … has to be the
+same“* (nach der Lesung des Mathematikers, am Scan). 2004 (RACSAM 98(1), S. 221, Remark) sagt er sie für die
+Teiltafeln: *„The three 2×2-matrices have to be merged to a 3×3-matrix scheme along the diagonal … such that the
+corresponding diagonal elements match“* (an der Textschicht gelesen, nicht am Bild); wortgleich schon in
+Pfalzgraf & Sofronie 1995 (RISC-Report 95-44, an der Textschicht gesucht). Von uns sind die Kennzeichnung als
+Idempotenz je Faser, die Zahl 64 und der Beweis. *Nachgeführt am 5. Oktober 2026 (Regel 7; Register O1, nach
+`KorpusRev2/Potential_Rev10_Impl.md` §1): Bis dahin stand der Grund hier ohne Fundstelle.*
+
 * *Ersetzt am 4. Oktober 2026 (Regel 7):* Z1 und Z2 waren durch `decide` über die 4096 Tripel bewiesen. Bauzeit von
   Faserung (`lake env lean`, real): vorher 19,5 s, nachher 3,9 s.
 * Drei Profilfallen umgangen, gemessen: `beq_self_eq_true` auf `Fin` zieht `Classical.choice` (Ersatz `beq_rfl`);
@@ -128,7 +137,7 @@ Formeln: `guenther_acht` über die Tafeln zulässiger Tripel, `trennfall` und `g
 ## Stufen (Ertrags-Skala, CLAUDE.md §4)
 
 ```text
-zulaessig_iff_idempotent     FOLGERUNG — Grund:  jedes Diagonalpaar (v, v) lesen zwei Fasern, deren Wertmengen genau
+zulaessig_iff_idempotent     FOLGERUNG (der Grund NACH PFALZGRAF, K7) — Grund:  jedes Diagonalpaar (v, v) lesen zwei Fasern, deren Wertmengen genau
                              einen Wert gemeinsam haben;  das zwingt die Diagonale, die übrigen Einträge liest nur eine
 zulaessig_eq_idempotent      FOLGERUNG:  Z1′, der Grund in Allform (K7)
 zulaessig_zahl               ZUSAMMENSTELLUNG (Zählung):  16 Operationen, 4 idempotent (∧, ∨, zwei Projektionen), 64 Tripel,

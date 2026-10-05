@@ -23,6 +23,7 @@ implemented and is carried as open.
 
 - Working paper, edition Rev9, in English: `docs/en.html` (Part A the shape, Part B the apparatus, Part C the limit)
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
+- Building: `lake exe cache get` first (it fetches the compiled Mathlib; without it, Mathlib is compiled locally), then `lake build`
 - What a green build assures, per target: `docs/build-targets.md`
 - Current figures with their counting routes: the German section below
 
@@ -59,7 +60,7 @@ Gotthard Guenthers. Der Code ist kein Beweis der Theorie, sondern ein Pruefwerkz
 er trennt, was aus klassischen Mitteln erzeugbar ist, von dem, was es nicht ist -
 und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefbar.
 
-Lean `4.30.0-rc2`, Mathlib. Bau mit `lake build`.
+Lean `4.30.0-rc2`, Mathlib. Bau mit `lake exe cache get`, dann `lake build`.
 
 **Arbeitspapier zur Fassung PKL Rev9** (deutsch und englisch, drei Teile in einem Dokument,
 mit Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
@@ -382,12 +383,13 @@ Was hier steht, ist schmaler als die Theorie, auf die es sich bezieht - absichtl
 ## Bauen und pruefen
 
 ```sh
+lake exe cache get         # zuerst: holt das uebersetzte Mathlib; ohne ihn wird Mathlib lokal uebersetzt
 lake build                 # Default-Targets; AxiomGate laeuft mit
 ```
 
 `lake build` baut das Aggregat, das AxiomGate, den Definition-Ledger sowie die Targets
 `Probes` und `F1Coalgebraic`. Vier weitere Targets (`Diagnostics`, `MathlibExtensions`,
-`PreC`, `PathC`) und `ForeignPeresMermin` laufen nur auf eigenen Ruf. **Was ein gruener
+`PreC`, `PathC`), `ForeignPeresMermin` und die Lesedatei `Beispiele` laufen nur auf eigenen Ruf. **Was ein gruener
 Bau je Target zusichert - und was nicht -, steht in `docs/build-targets.md`.** Ein Modul
 (`PathC/Classifying/Universal.lean`) uebersetzt nicht und liegt darum in keinem Target;
 es wird dort mit Fehlermeldung und Messdatum gefuehrt.
