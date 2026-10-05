@@ -40,7 +40,7 @@ Die Sätze:
   Längenvoraussetzung fallen, über `full_length2` (Hilfssatz `perms2_nodup`). Beide sind
   choice-frei.
 * `tafelVI_genesen`, `tafelVI5_eq_mirror`, `tafelVI_stations_reverse`,
-  `tafelVI_ununterscheidbar` — **ein Kreis, zwei Drehsinne** (Teil 2, 2.10.2026): was aus
+  `tafelVI_ununterscheidbar`, `tafelVI_tausch_halbe_drehung` — **ein Kreis, zwei Drehsinne** (Teil 2, 2.10.2026): was aus
   jedem Drehsinn folgt, und dass die zwei Folgen einander spiegeln. Siehe den Abschnitt
   „Ein Kreis, zwei Drehsinne" unten.
 * `kreis1_full`, `kreis2_full`, `kreis3_full` — vierwertig: Günthers drei ausgeschriebene
@@ -220,10 +220,12 @@ Vorproben in `KorpusRev2/Vorproben_Spec_Zwei_Kreise_Drei_Werte_Impl.md`.
   Gegensinn ist die gespiegelte und die umgekehrte (`tafelVI5_eq_mirror`,
   `tafelVI5_eq_reverse`) und durchläuft dieselben Stationen in umgekehrter Reihenfolge
   (`tafelVI_stations_reverse`). Kein Kriterium, das die Spiegelung respektiert, trennt die zwei
-  (`tafelVI_ununterscheidbar`).
+  (`tafelVI_ununterscheidbar`). Der Tausch von 1 und 3, auf jede Station angewandt, rückt sie in
+  derselben Folge um drei Schritte weiter: im Sechseck eine halbe Drehung
+  (`tafelVI_tausch_halbe_drehung`; nachgeführt 5.10.2026, Custos GL8).
 * **K-K3 — Stufen.** `tafelVI_genesen`, `tafelVI5_eq_mirror` EICHUNG; `tafelVI_stations_reverse`
   INSTANZIIERUNG von `fullStations_reverse`; `tafelVI_ununterscheidbar` ZUSAMMENSTELLUNG
-  (aus `tafelVI5_eq_mirror`).
+  (aus `tafelVI5_eq_mirror`); `tafelVI_tausch_halbe_drehung` FOLGERUNG, gerechnet (`decide`).
 * **K-K4 — der Bezug zur Genese.** Die zwei Folgen bestehen aus genau den zwei Wörtern, die
   `genese_resultat` und `genese_strich` (Teil 5) behandeln; `genese_spiegel` führt das eine in
   das andere über, und damit die eine Folge in die andere.
@@ -758,6 +760,17 @@ theorem tafelVI_stations_reverse :
 theorem tafelVI_ununterscheidbar {α : Type*} (f : List (Fin 2) → α)
     (hf : ∀ w, f (w.map Fin.rev) = f w) : f tafelVI4 = f tafelVI5 := by
   rw [← hf tafelVI4, ← tafelVI5_eq_mirror]
+
+/-- **Der Tausch von 1 und 3 ist im Sechseck eine halbe Drehung**, in beiden Folgen: Wendet man
+auf jede der sechs Stationen die Umkehr der Werte an — bei drei Werten der Tausch von Günthers 1
+und 3, die 2 bleibt (erstes Glied) —, erhält man die Station, die in derselben Folge drei
+Schritte weiter liegt (zyklisch). Für beide Folgen gerechnet, nicht über `tafelVI5_eq_mirror`
+übertragen. -/
+theorem tafelVI_tausch_halbe_drehung :
+    (origin 2).map Fin.rev = [2, 1, 0] ∧
+    (stations tafelVI4 (origin 2)).map (List.map Fin.rev) = (stations tafelVI4 (origin 2)).rotate 3 ∧
+    (stations tafelVI5 (origin 2)).map (List.map Fin.rev) = (stations tafelVI5 (origin 2)).rotate 3 := by
+  decide
 
 -- ============================================================
 -- Teil 3 — vierwertig: die drei Beispielkreise (IGN S. 44–45; 1980 Tafel IV)
@@ -1324,6 +1337,9 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_ununterscheidbar' depends on axioms: [propext] -/
 #guard_msgs in #print axioms tafelVI_ununterscheidbar
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_tausch_halbe_drehung' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelVI_tausch_halbe_drehung
 
 /-- info: 'Reformulation.Proemial.NegationCycle.kreis1_full' depends on axioms: [propext] -/
 #guard_msgs in #print axioms kreis1_full
