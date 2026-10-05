@@ -105,7 +105,7 @@ drei Operationen unabhängig, 4 · 4 · 4 = 64. Nach `KorpusRev2/Spec_Z1_Struktu
 
 **Der Grund ist Pfalzgrafs.** Die Verträglichkeitsbedingung steht bei Pfalzgraf 1991, S. 179: *„whenever two
 pairs (from different subsystems) belong to the same equivalence class the resulting value … has to be the
-same“* (nach der Lesung des Mathematikers, am Scan). 2004 (RACSAM 98(1), S. 221, Remark) sagt er sie für die
+same“* (nach der Lesung des Mathematikers, am Scan). 2004 (RACSAM 98(1), S. 222, Remark) sagt er sie für die
 Teiltafeln: *„The three 2×2-matrices have to be merged to a 3×3-matrix scheme along the diagonal … such that the
 corresponding diagonal elements match“* (an der Textschicht gelesen, nicht am Bild); wortgleich schon in
 Pfalzgraf & Sofronie 1995 (RISC-Report 95-44, an der Textschicht gesucht). Von uns sind die Kennzeichnung als

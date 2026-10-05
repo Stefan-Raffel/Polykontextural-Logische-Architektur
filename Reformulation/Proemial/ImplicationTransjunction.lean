@@ -30,7 +30,7 @@ GÜNTHER          die Implikationsregel und die acht Tafeln — C&V S. 29 f., Ab
                  schwachen Stelle, die Verwerfung in 2↔3 durch 1, die totale Transjunktion Tr — HKN 1970,
                  gg_category.pdf PDF-S. 20 (Edition A/1 — 4;  am Bild)
 NACH PFALZGRAF   der Quotient, die Fasern, die Zulässigkeit (über Pfalzgraf/Faserung);  die Zerlegung einer Tafel in
-                 drei Teiltafeln entlang der Diagonale und ihr Zusammenfügen (1991 S. 180 f.;  2004 S. 219–222, K8)
+                 drei Teiltafeln entlang der Diagonale und ihr Zusammenfügen (1991 S. 180 f.;  2004 S. 219–223, K8)
 BESTAND          die Kontexturtreue `ContextureFaithful` und die Wahlvektoren `ofChoices` (NonUniformCloneBound);
                  die Transjunktion `T` (TransjunctionCloneBound)
 UNSER            die Prädikate für die drei Grade;  die Benennung "kontextural";  die Gleichheit I4 mit
@@ -77,9 +77,10 @@ In 2-3 liegt jede Implikation an drei Zellen ausserhalb des Teilsystems: (2,2), 
 zählt alle drei als auf andere Fasern verteilte Ergebnisse. Günthers Einbruch steht nur an der schwachen
 Stelle (3,2). Die zwei übrigen sind Diagonalzellen; dort steht 1, der Wahrwert einer **anderen** Faser, die
 die Zelle liest (1-2 liest (2,2), 1-3 liest (3,3)). Beide zählen richtig (`diagonale`).
-*Hinweis, 5. Oktober 2026:* Pfalzgraf 2004 (S. 220 f.) zeigt an einem IMPLY seines Beispiels, dass es im zweiten
-Teilsystem unverträglich ist, und repariert es durch eine Transjunktion dort (an der Textschicht gelesen). Ob
-das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an Hermeneutes, Register O2).
+*Hinweis, 5. Oktober 2026:* Pfalzgraf 2004 zeigt an einem IMPLY seines Beispiels, dass es im zweiten
+Teilsystem unverträglich ist (S. 221), und repariert es durch eine Transjunktion dort (S. 222); an der
+Textschicht gelesen. Ob das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an Hermeneutes,
+Register O2).
 
 ## K7 · Grenzen
 
@@ -96,9 +97,9 @@ das Günthers Implikationstafel ist, ist nicht geprüft (Leseauftrag an Hermeneu
   Zahl: 64 von 19 683.
 * **Was Pfalzgrafs ist.** Zerlegung und Zusammenfügen beschreibt Pfalzgraf als Verfahren: 1991, S. 180 f. (die
   drei 2×2-Tafeln setzen sich zu einem 3×3-Schema zusammen; nach der Lesung des Mathematikers), und 2004 (RACSAM
-  98(1), S. 219–222): *„Method of decomposition“* über die drei Teiltafeln entlang der Diagonale, das Verfahren
-  in drei Schritten, und der Remark, die Teiltafeln seien *„merged … along the diagonal … such that the
-  corresponding diagonal elements match“* (an der Textschicht gelesen, nicht am Bild). Von uns sind die Gleichheit
+  98(1)): *„Method of decomposition“* über die drei Teiltafeln entlang der Diagonale (S. 219), das Verfahren in
+  drei Schritten (S. 222 f.) und der Remark (S. 222), die Teiltafeln seien *„merged … along the diagonal … such
+  that the corresponding diagonal elements match“* (an der Textschicht gelesen, nicht am Bild). Von uns sind die Gleichheit
   mit `ContextureFaithful` aus dem Bestand, die Zahl und der Beweis ohne Aufzählung: Was Pfalzgraf als Bedingung
   und Verfahren beschreibt, steht hier bewiesen. *Nachgeführt am 5. Oktober 2026 (Regel 7; Register O1): Bis dahin
   stand I4 als UNSER ohne diese Fundstellen.*
