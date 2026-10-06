@@ -39,6 +39,11 @@ Die Sätze:
   `triadic_unique` läuft über die 64 Folgen der Länge sechs; `triadic_unique'` lässt die
   Längenvoraussetzung fallen, über `full_length2` (Hilfssatz `perms2_nodup`). Beide sind
   choice-frei.
+* `IsKreis`, `hin_und_zurueck`, `kreis_laenge`, `kreis_iff_voll`, `kreis_tafelVI`,
+  `pseudo_genau`, `verbunden_sechs` — **Kreise ohne „alle Anordnungen“** (Teil 1b, 6.10.2026):
+  auf drei Werten hat jeder Kreis sechs Schritte und ist ein Vollkreis; auf vier Werten gibt es
+  ohne die verbindende Negation nur Günthers zwei Pseudokreise, mit ihr mindestens sechs
+  Schritte. Siehe den Abschnitt „Kreise ohne alle Anordnungen“ unten.
 * `tafelVI_genesen`, `tafelVI5_eq_mirror`, `tafelVI_stations_reverse`,
   `tafelVI_ununterscheidbar`, `tafelVI_tausch_halbe_drehung` — **ein Kreis, zwei Drehsinne** (Teil 2, 2.10.2026): was aus
   jedem Drehsinn folgt, und dass die zwei Folgen einander spiegeln. Siehe den Abschnitt
@@ -192,6 +197,47 @@ davon, wie man das strittige Kästchen liest.
   Spiegelung und Umkehrung des Kreises zusammen (`tafelVI5_eq_reverse`, `tafelVI5_eq_mirror`). Für die **kürzesten Wege zum
   Rücklauf** ist die Spiegelung seit dem Zug „Der Strich und der Spiegel" für jedes `m`
   bewiesen (`endpoint_map_rev`; `NegationCycleLength.ruecklauf_map_rev`, `kuerzeste_spiegel`).
+
+## Kreise ohne alle Anordnungen (Teil 1b)
+
+*Gebaut am 6. Oktober 2026 nach `KorpusRev2/Spec_Engster_Kreis.md`, Fassung 3 (Mathematiker; Auftrag
+Custos, Architekt GL16 (a); Tafel IX auf Entscheid des Architekten).*
+
+* **K-R1 — der Begriff ist LESART.** `IsKreis`: zurückkehren, keine Station zweimal, mindestens drei
+  Schritte. Dass Günthers „heterarchischer Kreis“ (IGN S. 41) dieser Begriff ist, ist unsere Lesung
+  („heterarchisch nimmt das Hin und Zurück aus“, Hermeneutes H1), nicht seine Definition. Der Name
+  ist neutral; „der engste“ steht weder im Namen noch als Überschrift.
+* **K-R2 — die dritte Bedingung, gemessen.** Auf drei Werten haben geschlossene Folgen ohne
+  wiederkehrende Station null, zwei oder sechs Schritte (`hin_und_zurueck`); die mit zwei sind
+  `NᵢNᵢ` (`zwei_hin_und_zurueck`). `3 ≤ Länge` schliesst also **zwei** Fälle aus: die leere Folge
+  und das blosse Hin und Zurück.
+* **K-R3 — die Sätze, ohne Deutung.** Auf drei Werten hat jeder Kreis sechs Schritte
+  (`kreis_laenge`; IGN S. 41: „der engste, und er hat 6 Stationen“) und ist ein Vollkreis, und
+  umgekehrt (`kreis_iff_voll`; IGN S. 57: den Unterschied zwischen einem Kreis, an dem nicht alle,
+  und einem, an dem alle Permutationen beteiligt sind, gibt es im Triadischen „noch nicht“); also
+  ist er Günthers (4) oder (5) (`kreis_tafelVI`). Beide Stellen am Bild von zwei Händen gelesen
+  (Janus, Hermeneutes).
+* **K-R4 — Tafel IX, vier Werte.** Günther führt `N₁·₃·₁·₃` und `N₃·₁·₃·₁` als scheinbare
+  Gegenbeispiele an und nennt sie im nächsten Satz Pseudokreise: „Da die verbindende zweite
+  Negation fehlt, handelt es sich hier überhaupt nicht um eine echte vierwertige Operation“ (IGN
+  S. 41, Tafel IX am Bild, Hermeneutes). Ohne `N₂` gibt es nur diese zwei (`pseudo_genau`); mit
+  `N₂` hat jeder Kreis mindestens sechs Schritte (`verbunden_sechs`). „Heterarchisch = enthält
+  `N₂`“ ist LESART von Günthers „verbindender zweiter Negation“; für mehr als vier Werte ist sie
+  nicht gefasst. `IsKreis` ist ab vier Werten **weiter** als Günthers heterarchischer Kreis: er
+  fängt die Pseudokreise ein. Auf drei Werten fällt beides zusammen.
+* **K-R5 — die Importe entscheiden das Profil.** `negate_anordnungen` und `kreis_sechs_voll`
+  entscheiden die Mitgliedschaft in einer Liste von Anordnungen per `decide`. Im Importkontext dieses
+  Moduls ist das `[propext]`; mit dem ganzen Aggregat importiert zieht dieselbe Zeile
+  `Classical.choice`, über Mathlibs `LawfulBEq`-Instanz für `Fin` (gemessen 5.10.,
+  `KorpusRev2/Vorproben_Spec_Engster_Kreis_Impl.md` §3; Fallstrick 21). Kommt hier eine
+  Mathlib-Datei dazu, kann das Profil springen; die Wachen melden es. Für die Längenschranke steht
+  `List.subperm_of_subset` (Batteries), weil `List.Nodup.subperm` hier nicht importiert ist.
+* **K-R6 — Stufen.** `kreis_laenge`, `kreis_iff_voll` SATZ, EICHUNG an IGN S. 41 und S. 57;
+  `pseudo_genau`, `verbunden_sechs` SATZ, EICHUNG an Tafel IX und Günthers Satz darunter;
+  `kreis_tafelVI` FOLGERUNG; der Begriff LESART; die übrigen Hilfssätze.
+* **K-R7 — nicht.** Keine Bindung der Pseudokreise an die partiellen Zyklen von IGN S. 57: nach
+  S. 41 sind sie keine echte vierwertige Operation, und eine Brücke wäre ZUORDNUNG gegen den Text
+  (Hermeneutes T4).
 
 ## Ein Kreis, zwei Drehsinne (Teil 2)
 
@@ -458,7 +504,8 @@ Gebaut auf Anordnung des Architekten vom 25.9.2026 nach
 
 ## Axiomprofil
 
-Gemessen und am Dateiende gewacht. Die Zeugen-Sätze, `triadic_unique` und
+Gemessen und am Dateiende gewacht. Die Sätze von Teil 1b (Kreise ohne alle Anordnungen) tragen höchstens
+`[propext, Quot.sound]`, kein `Classical.choice` — im Importkontext dieses Moduls (K-R5). Die Zeugen-Sätze, `triadic_unique` und
 `kreis2_emendation` tragen `[propext]` — **ohne `Classical.choice`**: der Listen-Träger
 braucht `DecidableEq`, keine `Fintype`-Instanz. (Über `Equiv.Perm (Fin 4)` gemessen zieht
 derselbe Inhalt das volle Profil, siehe Vorprobe §3.) `negate_negate` trägt zusätzlich
@@ -728,6 +775,177 @@ theorem triadic_unique' (seq : List (Fin 2)) (h : IsFullCycle seq) :
   have hl : seq.length = 6 := full_length2 h
   match seq, hl with
   | [a, b, c, d, e, f], _ => exact triadic_unique a b c d e f h
+
+/-! ### Kreise ohne „alle Anordnungen“ (Teil 1b, 6.10.2026)
+
+Ein schwächerer Begriff als `IsFullCycle`: zurückkehren, keine Station wiederholen, nicht trivial.
+Auf drei Werten ist er derselbe (`kreis_iff_voll`); auf vier Werten ist er weiter und fängt
+Günthers Pseudokreise von Tafel IX ein (`pseudo_genau`). Kopf: „Kreise ohne alle Anordnungen“
+oben. -/
+
+/-- Ein **Kreis**: die Folge kehrt zum Ausgang zurück, keine Station kehrt wieder, und sie hat
+mindestens drei Schritte. Die dritte Bedingung schliesst auf drei Werten genau die leere Folge
+und das blosse Hin und Zurück `NᵢNᵢ` aus (`hin_und_zurueck`). LESART von Günthers
+„heterarchischem Kreis“ (IGN S. 41), nicht seine Definition. -/
+structure IsKreis {m : ℕ} (seq : List (Fin m)) : Prop where
+  /-- Die Folge kehrt zum Ausgang zurück. -/
+  closes : endpoint seq (origin m) = origin m
+  /-- Keine Station kehrt wieder. -/
+  nodup : (stations seq (origin m)).Nodup
+  /-- Nicht die leere Folge und nicht das blosse Hin und Zurück. -/
+  nontriv : 3 ≤ seq.length
+
+instance {m : ℕ} (seq : List (Fin m)) : Decidable (IsKreis seq) :=
+  decidable_of_iff
+    (endpoint seq (origin m) = origin m ∧ (stations seq (origin m)).Nodup ∧ 3 ≤ seq.length)
+    ⟨fun ⟨a, b, c⟩ => ⟨a, b, c⟩, fun ⟨a, b, c⟩ => ⟨a, b, c⟩⟩
+
+/-- Jeder Negator führt die sechs Anordnungen dreier Werte in sich über. Endlich gerechnet;
+`negate_perm` (weiter unten, für jedes `m`) wird hier nicht gebraucht. -/
+theorem negate_anordnungen :
+    ∀ i : Fin 2, ∀ l ∈ (origin 2).permutations', negate i l ∈ (origin 2).permutations' := by
+  decide
+
+/-- Jede Station, von einer Anordnung aus, ist eine Anordnung. -/
+theorem stations_anordnungen : ∀ (seq : List (Fin 2)) (l : List (Fin 3)),
+    l ∈ (origin 2).permutations' → ∀ s ∈ stations seq l, s ∈ (origin 2).permutations'
+  | [], _, _, s, hs => absurd hs List.not_mem_nil
+  | i :: is, l, hl, s, hs => by
+    cases hs with
+    | head => exact hl
+    | tail _ hs => exact stations_anordnungen is (negate i l) (negate_anordnungen i l hl) s hs
+
+/-- Eine dreiwertige Folge ohne wiederkehrende Station hat höchstens sechs Schritte. -/
+theorem nodup_laenge_sechs (seq : List (Fin 2)) (h : (stations seq (origin 2)).Nodup) :
+    seq.length ≤ 6 := by
+  have hsub := (List.subperm_of_subset h
+    (fun s hs => stations_anordnungen seq (origin 2) (by decide) s hs)).length_le
+  rw [stations_length] at hsub
+  have : (origin 2).permutations'.length = 6 := by decide
+  omega
+
+/-- Keine geschlossene Folge der Länge eins. -/
+theorem kein_kreis_eins : ∀ a : Fin 2, endpoint [a] (origin 2) ≠ origin 2 := by decide
+
+/-- Kein Kreis der Länge drei. -/
+theorem kein_kreis_drei : ∀ a b c : Fin 2, ¬ IsKreis [a, b, c] := by decide
+
+/-- Kein Kreis der Länge vier. -/
+theorem kein_kreis_vier : ∀ a b c d : Fin 2, ¬ IsKreis [a, b, c, d] := by decide
+
+/-- Kein Kreis der Länge fünf. -/
+theorem kein_kreis_fuenf : ∀ a b c d e : Fin 2, ¬ IsKreis [a, b, c, d, e] := by decide
+
+/-- Jeder Kreis der Länge sechs ist ein Vollkreis. -/
+theorem kreis_sechs_voll :
+    ∀ a b c d e f : Fin 2, IsKreis [a, b, c, d, e, f] → IsFullCycle [a, b, c, d, e, f] := by decide
+
+/-- Die geschlossenen Folgen der Länge zwei ohne wiederkehrende Station sind das Hin und
+Zurück. -/
+theorem zwei_hin_und_zurueck : ∀ a b : Fin 2,
+    (endpoint [a, b] (origin 2) = origin 2 ∧ (stations [a, b] (origin 2)).Nodup) ↔ a = b := by
+  decide
+
+/-- **K0.** Auf drei Werten hat eine geschlossene Folge ohne wiederkehrende Station null, zwei
+oder sechs Schritte; die mit zwei sind `NᵢNᵢ` (`zwei_hin_und_zurueck`). Die Bedingung
+`3 ≤ Länge` in `IsKreis` schliesst also die leere Folge und das Hin und Zurück aus, sonst nichts. -/
+theorem hin_und_zurueck (seq : List (Fin 2)) (hc : endpoint seq (origin 2) = origin 2)
+    (hn : (stations seq (origin 2)).Nodup) :
+    seq.length = 0 ∨ seq.length = 2 ∨ seq.length = 6 := by
+  have h6 := nodup_laenge_sechs seq hn
+  match seq, hc, hn, h6 with
+  | [], _, _, _ => exact .inl rfl
+  | [a], hc, _, _ => exact absurd hc (kein_kreis_eins a)
+  | [_, _], _, _, _ => exact .inr (.inl rfl)
+  | [a, b, c], hc, hn, _ => exact absurd ⟨hc, hn, by simp⟩ (kein_kreis_drei a b c)
+  | [a, b, c, d], hc, hn, _ => exact absurd ⟨hc, hn, by simp⟩ (kein_kreis_vier a b c d)
+  | [a, b, c, d, e], hc, hn, _ => exact absurd ⟨hc, hn, by simp⟩ (kein_kreis_fuenf a b c d e)
+  | [_, _, _, _, _, _], _, _, _ => exact .inr (.inr rfl)
+
+/-- **K1** (IGN S. 41: „der engste, und er hat 6 Stationen“). Jeder Kreis auf drei Werten hat
+sechs Schritte. -/
+theorem kreis_laenge (seq : List (Fin 2)) (h : IsKreis seq) : seq.length = 6 := by
+  have h6 := nodup_laenge_sechs seq h.nodup
+  have h3 := h.nontriv
+  match seq, h, h3, h6 with
+  | [a, b, c], h, _, _ => exact absurd h (kein_kreis_drei a b c)
+  | [a, b, c, d], h, _, _ => exact absurd h (kein_kreis_vier a b c d)
+  | [a, b, c, d, e], h, _, _ => exact absurd h (kein_kreis_fuenf a b c d e)
+  | [_, _, _, _, _, _], _, _, _ => rfl
+
+/-- **K2** (IGN S. 57: im Triadischen gibt es den Unterschied zwischen einem Kreis, an dem nicht
+alle, und einem, an dem alle Permutationen beteiligt sind, „noch nicht“). Auf drei Werten ist
+jeder Kreis ein Vollkreis, und umgekehrt. -/
+theorem kreis_iff_voll (seq : List (Fin 2)) : IsKreis seq ↔ IsFullCycle seq := by
+  constructor
+  · intro h
+    have hl := kreis_laenge seq h
+    match seq, hl, h with
+    | [a, b, c, d, e, f], _, h => exact kreis_sechs_voll a b c d e f h
+  · intro h
+    exact ⟨h.closes, h.nodup, by rw [full_length2 h]; decide⟩
+
+/-- Jeder Kreis auf drei Werten ist Günthers Folge (4) oder (5). -/
+theorem kreis_tafelVI (seq : List (Fin 2)) (h : IsKreis seq) :
+    seq = tafelVI4 ∨ seq = tafelVI5 :=
+  triadic_unique' seq ((kreis_iff_voll seq).mp h)
+
+/-- Die Bahn des Ausgangs unter `N₁` und `N₃` auf vier Werten: vier Anordnungen. -/
+def pseudoBahn : List (List (Fin 4)) := [[0, 1, 2, 3], [1, 0, 2, 3], [0, 1, 3, 2], [1, 0, 3, 2]]
+
+/-- Ohne `N₂` bleibt man in der Bahn. -/
+theorem negate_pseudoBahn : ∀ i : Fin 3, i ≠ 1 → ∀ l ∈ pseudoBahn, negate i l ∈ pseudoBahn := by
+  decide
+
+/-- Jede Station einer Folge ohne `N₂`, von der Bahn aus, liegt in der Bahn. -/
+theorem stations_pseudoBahn : ∀ (seq : List (Fin 3)) (l : List (Fin 4)), (1 : Fin 3) ∉ seq →
+    l ∈ pseudoBahn → ∀ s ∈ stations seq l, s ∈ pseudoBahn
+  | [], _, _, _, s, hs => absurd hs List.not_mem_nil
+  | i :: is, l, h1, hl, s, hs => by
+    have hi : i ≠ 1 := fun e => h1 (e ▸ List.mem_cons_self)
+    have h1' : (1 : Fin 3) ∉ is := fun e => h1 (List.mem_cons_of_mem _ e)
+    cases hs with
+    | head => exact hl
+    | tail _ hs => exact stations_pseudoBahn is (negate i l) h1' (negate_pseudoBahn i hi l hl) s hs
+
+/-- Vier Werte: kein Kreis der Länge drei. -/
+theorem kein_kreis_drei_vier : ∀ a b c : Fin 3, ¬ IsKreis [a, b, c] := by decide
+
+/-- Vier Werte: die Kreise der Länge vier ohne `N₂` sind Günthers zwei. -/
+theorem pseudo_vier : ∀ a b c d : Fin 3, (1 : Fin 3) ∉ [a, b, c, d] → IsKreis [a, b, c, d] →
+    [a, b, c, d] = [0, 2, 0, 2] ∨ [a, b, c, d] = [2, 0, 2, 0] := by decide
+
+/-- **T9a′** (IGN S. 41, Tafel IX). Ohne die verbindende Negation `N₂` gibt es auf vier Werten
+nur Günthers zwei Pseudokreise `N₁·₃·₁·₃` und `N₃·₁·₃·₁`. -/
+theorem pseudo_genau (seq : List (Fin 3)) (h : IsKreis seq) (h1 : (1 : Fin 3) ∉ seq) :
+    seq = [0, 2, 0, 2] ∨ seq = [2, 0, 2, 0] := by
+  have hsub := (List.subperm_of_subset h.nodup
+    (fun s hs => stations_pseudoBahn seq (origin 3) h1 (by decide) s hs)).length_le
+  rw [stations_length] at hsub
+  have hq : pseudoBahn.length = 4 := rfl
+  have h3 := h.nontriv
+  match seq, h, h1, h3, hsub with
+  | [a, b, c], h, _, _, _ => exact absurd h (kein_kreis_drei_vier a b c)
+  | [a, b, c, d], h, h1, _, _ => exact pseudo_vier a b c d h1 h
+
+/-- Vier Werte: kein Kreis der Länge vier mit `N₂`. -/
+theorem verbunden_nicht_vier :
+    ∀ a b c d : Fin 3, (1 : Fin 3) ∈ [a, b, c, d] → ¬ IsKreis [a, b, c, d] := by decide
+
+/-- Vier Werte: kein Kreis der Länge fünf. -/
+theorem kein_kreis_fuenf_vier : ∀ a b c d e : Fin 3, ¬ IsKreis [a, b, c, d, e] := by decide
+
+/-- **T9b′** (IGN S. 41: die Lehre, „dass der kleinste heterarchische Kreis 6
+Negationsstationen haben müsse“). Auf vier Werten hat jeder Kreis mit der verbindenden
+Negation `N₂` mindestens sechs Schritte. -/
+theorem verbunden_sechs (seq : List (Fin 3)) (h : IsKreis seq) (h1 : (1 : Fin 3) ∈ seq) :
+    6 ≤ seq.length := by
+  have h3 := h.nontriv
+  match seq, h, h1, h3 with
+  | [a, b, c], h, _, _ => exact absurd h (kein_kreis_drei_vier a b c)
+  | [a, b, c, d], h, h1, _ => exact absurd h (verbunden_nicht_vier a b c d h1)
+  | [a, b, c, d, e], h, _, _ => exact absurd h (kein_kreis_fuenf_vier a b c d e)
+  | _ :: _ :: _ :: _ :: _ :: _ :: t, _, _, _ => exact Nat.le_add_left 6 t.length
 
 /-! ### Ein Kreis, zwei Drehsinne (Teil 2, 2.10.2026)
 
@@ -1325,6 +1543,69 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.triadic_unique'' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms triadic_unique'
+
+/-- info: 'Reformulation.Proemial.NegationCycle.negate_anordnungen' depends on axioms: [propext] -/
+#guard_msgs in #print axioms negate_anordnungen
+
+/-- info: 'Reformulation.Proemial.NegationCycle.stations_anordnungen' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_anordnungen
+
+/-- info: 'Reformulation.Proemial.NegationCycle.nodup_laenge_sechs' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms nodup_laenge_sechs
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_eins' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_eins
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_drei' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_drei
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_fuenf' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_fuenf
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis_sechs_voll' depends on axioms: [propext] -/
+#guard_msgs in #print axioms kreis_sechs_voll
+
+/-- info: 'Reformulation.Proemial.NegationCycle.zwei_hin_und_zurueck' does not depend on any axioms -/
+#guard_msgs in #print axioms zwei_hin_und_zurueck
+
+/-- info: 'Reformulation.Proemial.NegationCycle.hin_und_zurueck' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms hin_und_zurueck
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis_laenge' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms kreis_laenge
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis_iff_voll' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms kreis_iff_voll
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kreis_tafelVI' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms kreis_tafelVI
+
+/-- info: 'Reformulation.Proemial.NegationCycle.negate_pseudoBahn' depends on axioms: [propext] -/
+#guard_msgs in #print axioms negate_pseudoBahn
+
+/-- info: 'Reformulation.Proemial.NegationCycle.stations_pseudoBahn' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_pseudoBahn
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_drei_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_drei_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.pseudo_vier' depends on axioms: [propext] -/
+#guard_msgs in #print axioms pseudo_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.pseudo_genau' depends on axioms: [propext] -/
+#guard_msgs in #print axioms pseudo_genau
+
+/-- info: 'Reformulation.Proemial.NegationCycle.verbunden_nicht_vier' depends on axioms: [propext] -/
+#guard_msgs in #print axioms verbunden_nicht_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_fuenf_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_fuenf_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.verbunden_sechs' depends on axioms: [propext] -/
+#guard_msgs in #print axioms verbunden_sechs
 
 /-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_genesen' depends on axioms: [propext] -/
 #guard_msgs in #print axioms tafelVI_genesen

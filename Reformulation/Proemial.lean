@@ -1342,7 +1342,11 @@ Enthält:
   Spiegelung), `tafelVI_stations_reverse` (dieselben Stationen rückwärts),
   `tafelVI_ununterscheidbar` (kein spiegel-invariantes Kriterium trennt sie),
   `tafelVI_tausch_halbe_drehung` (der Tausch von 1 und 3 ist im Sechseck eine halbe Drehung;
-  5.10.); HWN S. 20–27 als Quelle, Wahl und Freiheit nicht als Satz. 76 Wachen;
+  5.10.); HWN S. 20–27 als Quelle, Wahl und Freiheit nicht als Satz. **Kreise ohne alle
+  Anordnungen** (Teil 1b, 6.10.): `kreis_laenge`, `kreis_iff_voll` (auf drei Werten hat jeder Kreis
+  sechs Schritte und ist ein Vollkreis; IGN S. 41, S. 57), `pseudo_genau`, `verbunden_sechs` (Tafel IX:
+  ohne `N₂` nur Günthers zwei Pseudokreise, mit `N₂` mindestens sechs Schritte); der Begriff LESART.
+  97 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
