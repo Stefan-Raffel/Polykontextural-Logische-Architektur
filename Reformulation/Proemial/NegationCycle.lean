@@ -44,6 +44,9 @@ Die Sätze:
   auf drei Werten hat jeder Kreis sechs Schritte und ist ein Vollkreis; auf vier Werten gibt es
   ohne die verbindende Negation nur Günthers zwei Pseudokreise, mit ihr mindestens sechs
   Schritte. Siehe den Abschnitt „Kreise ohne alle Anordnungen“ unten.
+* `vierwertig_acht`, `tafelXVIII_kreis`, `folge26_kreis`, `acht_n2_drei` — **der Achterkreis**
+  (Teil 1b, 8.10.2026): auf vier Werten hat jeder Kreis mit `N₁`, `N₂` und `N₃` mindestens acht
+  Schritte (IGN S. 48), geeicht an Tafel XVIII und (26). Siehe K-R8 unten.
 * `tafelVI_genesen`, `tafelVI5_eq_mirror`, `tafelVI_stations_reverse`,
   `tafelVI_ununterscheidbar`, `tafelVI_tausch_halbe_drehung` — **ein Kreis, zwei Drehsinne** (Teil 2, 2.10.2026): was aus
   jedem Drehsinn folgt, und dass die zwei Folgen einander spiegeln. Siehe den Abschnitt
@@ -224,7 +227,25 @@ Custos, Architekt GL16 (a); Tafel IX auf Entscheid des Architekten).*
   `N₂` hat jeder Kreis mindestens sechs Schritte (`verbunden_sechs`). „Heterarchisch = enthält
   `N₂`“ ist LESART von Günthers „verbindender zweiter Negation“; für mehr als vier Werte ist sie
   nicht gefasst. `IsKreis` ist ab vier Werten **weiter** als Günthers heterarchischer Kreis: er
-  fängt die Pseudokreise ein. Auf drei Werten fällt beides zusammen.
+  fängt die Pseudokreise ein. Auf drei Werten fällt beides zusammen. Mit allen drei Negationen
+  gilt Günthers Minimum acht (`vierwertig_acht`, K-R8; Zusatz 8.10.2026).
+* **K-R8 — der Achterkreis, vier Werte** (8.10.2026, nach `PKLrev2/Spec_Vierwertiger_Kreis_Acht.md`,
+  Mathematiker; Auftrag Architekt). Günther, IGN S. 48: „Wenn wir uns jetzt fragen, was der
+  minimale Umfang eines vierwertigen Kreises sein kann, so ergibt sich als Selbstverständlichkeit
+  der Zyklus mit acht Stationen der Negativität“; Beispiele Tafel XVIII und (26). Die Kreise mit
+  sechs Schritten sind die vier dreiwertigen, die einen Wert festlassen (`sechs_genau`); keiner
+  hat sieben (`kein_kreis_sieben_vier`); mit `N₁`, `N₂` und `N₃` hat jeder mindestens acht
+  (`vierwertig_acht`), und Tafel XVIII zeigt, dass acht erreicht wird (`vierwertig_acht_scharf`).
+  Dass Günthers „vierwertiger Kreis“ der Kreis mit allen drei Negationen ist, ist LESART:
+  ausdrücklich schliesst er auf S. 48 nur den Kreis ohne `N₂` aus; dass er die dreiwertigen
+  Sechser nicht zählt, folgt aus seinem Minimum, er sagt es nicht eigens. Darum steht die
+  Bedingung im Satz, nicht im Begriff. EICHUNG an Tafel XVIII, Spalte für Spalte
+  (`tafelXVIII_kreis`), und an (26) (`folge26_kreis`) — an der Textschicht (Mathematiker, 8.10.);
+  das Bild steht aus (Hermeneutes). Auf S. 49 nennt Günther diesen Kreis „den engsten Ring der
+  Vierwertigkeit“ und bemerkt, „dass innerhalb der acht Positionen der Negativität N 2 nicht nur
+  zweimal, sondern dreimal erscheint“; `acht_n2_drei` sagt das für **jeden** Kreis der Länge acht.
+  Dass Günthers Satz über seinen Achterkreis dasselbe meint, ist ZUORDNUNG. „Der engste Ring“ ist
+  Zitat, kein Name.
 * **K-R5 — die Importe entscheiden das Profil.** `negate_anordnungen` und `kreis_sechs_voll`
   entscheiden die Mitgliedschaft in einer Liste von Anordnungen per `decide`. Im Importkontext dieses
   Moduls ist das `[propext]`; mit dem ganzen Aggregat importiert zieht dieselbe Zeile
@@ -234,7 +255,10 @@ Custos, Architekt GL16 (a); Tafel IX auf Entscheid des Architekten).*
   `List.subperm_of_subset` (Batteries), weil `List.Nodup.subperm` hier nicht importiert ist.
 * **K-R6 — Stufen.** `kreis_laenge`, `kreis_iff_voll` SATZ, EICHUNG an IGN S. 41 und S. 57;
   `pseudo_genau`, `verbunden_sechs` SATZ, EICHUNG an Tafel IX und Günthers Satz darunter;
-  `kreis_tafelVI` FOLGERUNG; der Begriff LESART; die übrigen Hilfssätze.
+  `kreis_tafelVI` FOLGERUNG; der Begriff LESART; die übrigen Hilfssätze. `vierwertig_acht` SATZ
+  mit LESART in der Voraussetzung, EICHUNG an Tafel XVIII und (26) (`tafelXVIII_kreis`,
+  `folge26_kreis`; Textschicht); `vierwertig_acht_scharf` FOLGERUNG; `acht_n2_drei` SATZ, die
+  Bindung an IGN S. 49 ZUORDNUNG; `sechs_genau`, `kein_kreis_sieben_vier` Hilfssätze.
 * **K-R7 — nicht.** Keine Bindung der Pseudokreise an die partiellen Zyklen von IGN S. 57: nach
   S. 41 sind sie keine echte vierwertige Operation, und eine Brücke wäre ZUORDNUNG gegen den Text
   (Hermeneutes T4).
@@ -505,7 +529,8 @@ Gebaut auf Anordnung des Architekten vom 25.9.2026 nach
 ## Axiomprofil
 
 Gemessen und am Dateiende gewacht. Die Sätze von Teil 1b (Kreise ohne alle Anordnungen) tragen höchstens
-`[propext, Quot.sound]`, kein `Classical.choice` — im Importkontext dieses Moduls (K-R5). Die Zeugen-Sätze, `triadic_unique` und
+`[propext, Quot.sound]`, kein `Classical.choice` — im Importkontext dieses Moduls (K-R5). Die
+Sätze zum Achterkreis (8.10.) tragen `[propext]`, `kein_kreis_sieben_vier` keines. Die Zeugen-Sätze, `triadic_unique` und
 `kreis2_emendation` tragen `[propext]` — **ohne `Classical.choice`**: der Listen-Träger
 braucht `DecidableEq`, keine `Fintype`-Instanz. (Über `Equiv.Perm (Fin 4)` gemessen zieht
 derselbe Inhalt das volle Profil, siehe Vorprobe §3.) `negate_negate` trägt zusätzlich
@@ -946,6 +971,75 @@ theorem verbunden_sechs (seq : List (Fin 3)) (h : IsKreis seq) (h1 : (1 : Fin 3)
   | [a, b, c, d], h, h1, _ => exact absurd h (verbunden_nicht_vier a b c d h1)
   | [a, b, c, d, e], h, _, _ => exact absurd h (kein_kreis_fuenf_vier a b c d e)
   | _ :: _ :: _ :: _ :: _ :: _ :: t, _, _, _ => exact Nat.le_add_left 6 t.length
+
+/-- Vier Werte: kein Kreis der Länge sieben. -/
+theorem kein_kreis_sieben_vier : ∀ a b c d e f g : Fin 3, ¬ IsKreis [a, b, c, d, e, f, g] := by
+  decide
+
+/-- Vier Werte: die Kreise der Länge sechs sind die vier dreiwertigen, auf den Werten 1, 2, 3
+(`N₁`, `N₂`) und auf 2, 3, 4 (`N₂`, `N₃`), je in beiden Drehsinnen. -/
+theorem sechs_genau (seq : List (Fin 3)) (h : IsKreis seq) (hl : seq.length = 6) :
+    seq = [0, 1, 0, 1, 0, 1] ∨ seq = [1, 0, 1, 0, 1, 0] ∨
+      seq = [1, 2, 1, 2, 1, 2] ∨ seq = [2, 1, 2, 1, 2, 1] := by
+  match seq, hl, h with
+  | [a, b, c, d, e, f], _, h =>
+    exact (by decide : ∀ a b c d e f : Fin 3, IsKreis [a, b, c, d, e, f] →
+      [a, b, c, d, e, f] = [0, 1, 0, 1, 0, 1] ∨ [a, b, c, d, e, f] = [1, 0, 1, 0, 1, 0] ∨
+        [a, b, c, d, e, f] = [1, 2, 1, 2, 1, 2] ∨ [a, b, c, d, e, f] = [2, 1, 2, 1, 2, 1])
+      a b c d e f h
+
+/-- **Der Achterkreis** (IGN S. 48: „was der minimale Umfang eines vierwertigen Kreises sein
+kann, so ergibt sich als Selbstverständlichkeit der Zyklus mit acht Stationen der Negativität“).
+Auf vier Werten hat jeder Kreis, in dem `N₁`, `N₂` und `N₃` vorkommen, mindestens acht Schritte.
+Dass Günthers „vierwertiger Kreis“ der Kreis mit allen drei Negationen ist, ist LESART; darum
+steht die Bedingung hier als Voraussetzung, nicht im Begriff. -/
+theorem vierwertig_acht (seq : List (Fin 3)) (h : IsKreis seq) (h0 : (0 : Fin 3) ∈ seq)
+    (h1 : (1 : Fin 3) ∈ seq) (h2 : (2 : Fin 3) ∈ seq) : 8 ≤ seq.length := by
+  have h3 := h.nontriv
+  match seq, h, h0, h1, h2, h3 with
+  | [a, b, c], h, _, _, _, _ => exact absurd h (kein_kreis_drei_vier a b c)
+  | [a, b, c, d], h, _, h1, _, _ => exact absurd h (verbunden_nicht_vier a b c d h1)
+  | [a, b, c, d, e], h, _, _, _, _ => exact absurd h (kein_kreis_fuenf_vier a b c d e)
+  | [a, b, c, d, e, f], h, h0, _, h2, _ =>
+    rcases sechs_genau [a, b, c, d, e, f] h rfl with e | e | e | e <;> rw [e] at h0 h2
+    · exact absurd h2 (by decide)
+    · exact absurd h2 (by decide)
+    · exact absurd h0 (by decide)
+    · exact absurd h0 (by decide)
+  | [a, b, c, d, e, f, g], h, _, _, _, _ => exact absurd h (kein_kreis_sieben_vier a b c d e f g)
+  | _ :: _ :: _ :: _ :: _ :: _ :: _ :: _ :: t, _, _, _, _, _ => exact Nat.le_add_left 8 t.length
+
+/-- Günthers Tafel XVIII (IGN S. 48): `p ≡ N1-2-1-2-3-1-3-2 p`. -/
+def tafelXVIII : List (Fin 3) := [0, 1, 0, 1, 2, 0, 2, 1]
+
+/-- Günthers Folge (26) (IGN S. 48): `p ≡ N3·1·2·3·2·3·2·1 p`. -/
+def folge26 : List (Fin 3) := [2, 0, 1, 2, 1, 2, 1, 0]
+
+/-- Eichung an Tafel XVIII: ein Kreis, und seine Stationen sind Günthers Spalten, Zelle für
+Zelle (0-basiert; die neunte Spalte, die Rückkehr, ist `closes`). -/
+theorem tafelXVIII_kreis : IsKreis tafelXVIII ∧
+    stations tafelXVIII (origin 3) = [[0, 1, 2, 3], [1, 0, 2, 3], [2, 0, 1, 3], [2, 1, 0, 3],
+      [1, 2, 0, 3], [1, 3, 0, 2], [0, 3, 1, 2], [0, 2, 1, 3]] := by
+  decide
+
+/-- Eichung an (26): ein Kreis. -/
+theorem folge26_kreis : IsKreis folge26 := by decide
+
+/-- Die Schranke in `vierwertig_acht` ist scharf: Tafel XVIII ist ein Kreis mit allen drei
+Negationen und acht Schritten. -/
+theorem vierwertig_acht_scharf : IsKreis tafelXVIII ∧ (0 : Fin 3) ∈ tafelXVIII ∧
+    (1 : Fin 3) ∈ tafelXVIII ∧ (2 : Fin 3) ∈ tafelXVIII ∧ tafelXVIII.length = 8 := by
+  decide
+
+/-- IGN S. 49: „dass innerhalb der acht Positionen der Negativität N 2 nicht nur zweimal, sondern
+dreimal erscheint“. In jedem Kreis der Länge acht auf vier Werten kommt `N₂` genau dreimal vor.
+Dass Günthers Satz über seinen Achterkreis dasselbe meint, ist ZUORDNUNG. -/
+theorem acht_n2_drei (seq : List (Fin 3)) (h : IsKreis seq) (hl : seq.length = 8) :
+    seq.count 1 = 3 := by
+  match seq, hl, h with
+  | [a, b, c, d, e, f, g, i], _, h =>
+    exact (by decide : ∀ a b c d e f g i : Fin 3, IsKreis [a, b, c, d, e, f, g, i] →
+      [a, b, c, d, e, f, g, i].count 1 = 3) a b c d e f g i h
 
 /-! ### Ein Kreis, zwei Drehsinne (Teil 2, 2.10.2026)
 
@@ -1606,6 +1700,27 @@ theorem transklassisch_two : transklassisch 0 = [] := by decide
 
 /-- info: 'Reformulation.Proemial.NegationCycle.verbunden_sechs' depends on axioms: [propext] -/
 #guard_msgs in #print axioms verbunden_sechs
+
+/-- info: 'Reformulation.Proemial.NegationCycle.kein_kreis_sieben_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms kein_kreis_sieben_vier
+
+/-- info: 'Reformulation.Proemial.NegationCycle.sechs_genau' depends on axioms: [propext] -/
+#guard_msgs in #print axioms sechs_genau
+
+/-- info: 'Reformulation.Proemial.NegationCycle.vierwertig_acht' depends on axioms: [propext] -/
+#guard_msgs in #print axioms vierwertig_acht
+
+/-- info: 'Reformulation.Proemial.NegationCycle.tafelXVIII_kreis' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelXVIII_kreis
+
+/-- info: 'Reformulation.Proemial.NegationCycle.folge26_kreis' depends on axioms: [propext] -/
+#guard_msgs in #print axioms folge26_kreis
+
+/-- info: 'Reformulation.Proemial.NegationCycle.vierwertig_acht_scharf' depends on axioms: [propext] -/
+#guard_msgs in #print axioms vierwertig_acht_scharf
+
+/-- info: 'Reformulation.Proemial.NegationCycle.acht_n2_drei' depends on axioms: [propext] -/
+#guard_msgs in #print axioms acht_n2_drei
 
 /-- info: 'Reformulation.Proemial.NegationCycle.tafelVI_genesen' depends on axioms: [propext] -/
 #guard_msgs in #print axioms tafelVI_genesen

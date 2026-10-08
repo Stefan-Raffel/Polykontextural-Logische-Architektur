@@ -1346,7 +1346,10 @@ Enthält:
   Anordnungen** (Teil 1b, 6.10.): `kreis_laenge`, `kreis_iff_voll` (auf drei Werten hat jeder Kreis
   sechs Schritte und ist ein Vollkreis; IGN S. 41, S. 57), `pseudo_genau`, `verbunden_sechs` (Tafel IX:
   ohne `N₂` nur Günthers zwei Pseudokreise, mit `N₂` mindestens sechs Schritte); der Begriff LESART.
-  97 Wachen;
+  **Der Achterkreis** (Teil 1b, 8.10.): `vierwertig_acht` (mit `N₁`, `N₂`, `N₃` mindestens acht
+  Schritte; IGN S. 48, die Voraussetzung LESART), geeicht an Tafel XVIII und (26);
+  `acht_n2_drei` (`N₂` dreimal in jedem Achterkreis; S. 49 als ZUORDNUNG).
+  104 Wachen;
   **choice-frei bis auf einen Satz**: `full_length` trägt das volle Profil aus Mathlibs
   Sätzen über `List.permutations`, zu Recht als der allgemeine Satz für jedes `m`
   (`triadic_unique'` am 22.9. davon gelöst, über `perms2_nodup` / `full_length2`).
