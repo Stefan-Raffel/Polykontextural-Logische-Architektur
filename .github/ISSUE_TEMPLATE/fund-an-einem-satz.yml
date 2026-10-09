@@ -1,0 +1,34 @@
+name: "Finding at a theorem / Fund an einem Satz"
+description: "A Lean theorem that the report names as carrier of a claim, but which in your view does not carry it. / Ein Lean-Satz, den der Bericht als Träger einer Aussage nennt, der sie nach deiner Ansicht aber nicht trägt."
+title: "[Theorem / Satz] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Who reads and answers here.** The author of the project, and roles of instances of the same model family. The voices that worked on this text are roles of instances of the same model family, not independent checkers. What a model systematically sees wrongly, all its roles can overlook. Two check independently today: the proof environment, namely for the theorems, not for the marks and quotations; and the author of the project. Third parties report, the house cures: a finding is booked, checked and, if it holds, named with its origin in the next edition ("after <name>, <date>"), in its list of errors as well.
+
+        **Wer hier liest und antwortet.** Der Verfasser des Vorhabens, und Rollen von Instanzen derselben Modellfamilie. Die Stimmen, die an diesem Text gearbeitet haben, sind Rollen von Instanzen derselben Modellfamilie, keine unabhängigen Prüfer. Was ein Modell systematisch falsch sieht, können alle seine Rollen übersehen. Unabhängig prüfen heute zwei: die Beweisumgebung, und zwar die Sätze, nicht die Marken und Zitate; und der Verfasser des Vorhabens. Dritte melden, das Haus heilt: Ein Fund wird gebucht, geprüft und, wenn er hält, in der nächsten Ausgabe mit Herkunft genannt („nach <Name>, <Datum>“), auch in deren Fehlerliste.
+
+        Lean checks that a theorem is proved; it does not check that the theorem says what the report attributes to it. That is what this form is for. / Lean prüft, dass ein Satz bewiesen ist; es prüft nicht, dass er sagt, was der Bericht ihm zuschreibt. Dafür ist dieses Formular.
+  - type: input
+    id: name
+    attributes:
+      label: "Full Lean name / Voller Lean-Name"
+      description: "With all namespaces, as `#print axioms` prints it. / Mit allen Namensräumen, wie `#print axioms` ihn druckt."
+      placeholder: "e.g. / z. B. Reformulation.Proemial.NoUniformSwap.no_uniform_swap"
+    validations:
+      required: true
+  - type: textarea
+    id: stelle
+    attributes:
+      label: "Where the report names it as carrier / Wo der Bericht ihn als Träger nennt"
+      description: "Edition, part and section, the carrier number in brackets if there is one, and the sentence as printed. / Ausgabe, Teil und Abschnitt, die Trägerziffer in eckigen Klammern, falls es eine gibt, und der Satz, wie er gedruckt steht."
+    validations:
+      required: true
+  - type: textarea
+    id: traegt-nicht
+    attributes:
+      label: "What it does not carry, in your view / Was er nach deiner Ansicht nicht trägt"
+      description: "What the sentence claims, what the theorem states, and where they part. If you measured something yourself (a profile, a counterexample), say how; if you report it at second hand, say so. / Was der Satz behauptet, was der Satz in Lean aussagt, und wo sie auseinandergehen. Hast du selbst etwas gemessen (ein Profil, ein Gegenbeispiel), sag wie; berichtest du es aus zweiter Hand, sag das."
+    validations:
+      required: true

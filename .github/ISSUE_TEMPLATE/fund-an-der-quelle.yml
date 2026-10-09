@@ -1,0 +1,62 @@
+name: "Finding at a source / Fund an der Quelle"
+description: "A passage in Günther's, Kaehr's or another cited text that the report reads, quotes or dates wrongly. / Eine Stelle bei Günther, Kaehr oder einer anderen zitierten Schrift, die der Bericht falsch liest, zitiert oder datiert."
+title: "[Source / Quelle] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Who reads and answers here.** The author of the project, and roles of instances of the same model family. The voices that worked on this text are roles of instances of the same model family, not independent checkers. What a model systematically sees wrongly, all its roles can overlook. Two check independently today: the proof environment, namely for the theorems, not for the marks and quotations; and the author of the project. Third parties report, the house cures: a finding is booked, checked and, if it holds, named with its origin in the next edition ("after <name>, <date>"), in its list of errors as well.
+
+        **Wer hier liest und antwortet.** Der Verfasser des Vorhabens, und Rollen von Instanzen derselben Modellfamilie. Die Stimmen, die an diesem Text gearbeitet haben, sind Rollen von Instanzen derselben Modellfamilie, keine unabhängigen Prüfer. Was ein Modell systematisch falsch sieht, können alle seine Rollen übersehen. Unabhängig prüfen heute zwei: die Beweisumgebung, und zwar die Sätze, nicht die Marken und Zitate; und der Verfasser des Vorhabens. Dritte melden, das Haus heilt: Ein Fund wird gebucht, geprüft und, wenn er hält, in der nächsten Ausgabe mit Herkunft genannt („nach <Name>, <Datum>“), auch in deren Fehlerliste.
+
+        The fields below are the rules we check by ourselves. / Die Felder unten sind die Regeln, nach denen wir selbst prüfen.
+  - type: input
+    id: schrift
+    attributes:
+      label: "Text (abbreviation or title) / Schrift (Kürzel oder Titel)"
+      description: "Author, title, date and version as the document's own title page gives them, not the cover of an archive or edition. / Verfasser, Titel, Datum und Fassung, wie das Titelblatt des Dokuments selbst sie nennt, nicht die Deckseite eines Archivs oder einer Edition."
+      placeholder: "e.g. / z. B. IGN — Identität, Gegenidentität und Negativsprache (1979)"
+    validations:
+      required: true
+  - type: input
+    id: seite
+    attributes:
+      label: "Page / Seite"
+      placeholder: "e.g. / z. B. 41"
+    validations:
+      required: true
+  - type: dropdown
+    id: zaehlung
+    attributes:
+      label: "Page counted by / Seite gezählt nach"
+      description: "Printed page, page of an edition or reprint, or PDF page — they can differ. / Druckseite, Seite einer Edition oder eines Neusatzes, oder PDF-Seite — sie können auseinanderfallen."
+      options:
+        - "printed page of the original / Druckseite des Originals"
+        - "page of an edition or reprint / Seite einer Edition oder eines Neusatzes"
+        - "PDF page / PDF-Seite"
+    validations:
+      required: true
+  - type: textarea
+    id: wortlaut
+    attributes:
+      label: "Wording / Wortlaut"
+      description: "Quote to the end of the sentence and the next sentence with it. If the passage runs on below a table, figure or page break, read on there. / Bis zum Punkt des Satzes zitieren, und den nächsten Satz dazu. Läuft die Stelle unter einer Tafel, Abbildung oder einem Seitenumbruch weiter, dort weiterlesen."
+    validations:
+      required: true
+  - type: dropdown
+    id: gelesen
+    attributes:
+      label: "How read / Wie gelesen"
+      options:
+        - "on the page image / am Seitenbild"
+        - "in a text layer (OCR or digital text) / an einer Textschicht (OCR oder digitaler Text)"
+        - "at second hand / aus zweiter Hand"
+    validations:
+      required: true
+  - type: textarea
+    id: bericht
+    attributes:
+      label: "What the report says about it (section, sentence) / Was im Bericht dazu steht (Abschnitt, Satz)"
+      description: "Edition, part and section, and the sentence as printed. / Ausgabe, Teil und Abschnitt, und der Satz, wie er gedruckt steht."
+    validations:
+      required: true
