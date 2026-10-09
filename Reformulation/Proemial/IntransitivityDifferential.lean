@@ -70,7 +70,9 @@ eines einzelnen Dreierzyklus. Beide sind Fälle von `rang_zyklenfrei`: Eine stri
 auf einem endlichen Träger hat einen Rang, ein Dreierzyklus keinen. Das wird hier GESAGT
 und nicht umgebaut (KC2 (d)).
 
-*Verbraucher.* `Reformulation/Kaehr/Kopplung.lean` importiert dieses Modul; dort sind
+*Importiert von `Kaehr/Kopplung`; dort nicht im Beweis gebraucht.* (Bis zum 9.10.2026 stand
+hier „Verbraucher“; einen Verbraucher im Bestand hat `rang_zyklenfrei` nicht, Custos KC6.)
+`Reformulation/Kaehr/Kopplung.lean` importiert dieses Modul; dort sind
 `gestuft` (es gibt eine Rangfunktion) und `geschlossen_ungestuft` zuhause. **Im Term
 verbraucht `geschlossen_ungestuft` diesen Satz nicht.** Es beweist seine Instanz direkt
 mit zwei Ungleichungen. Der Weg über `rang_zyklenfrei` bei `V = Fin k` zöge über die
