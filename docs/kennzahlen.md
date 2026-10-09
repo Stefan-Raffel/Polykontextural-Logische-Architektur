@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `0f9db4c` (sauber).
+Stand: Commit `073a687` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -21,8 +21,8 @@ Alle mitlaufenden Gleichungen halten.
 | Statement-Pins | 110 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 1194 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 115 | dieselbe Route, -l |
+| Wachen geschrieben | 1404 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 144 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
@@ -32,13 +32,13 @@ Alle mitlaufenden Gleichungen halten.
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 157 | Huelle von Reformulation/AxiomGate.lean |
 | Saetze im Aggregat | 1288 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 1184 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
-| Wachen ausserhalb | 10 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean |
-| wachenfreie Aggregat-Module | 22 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
-|   darin Saetze | 66 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
+| Wachen erzwungen | 1386 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Wachen ausserhalb | 18 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean,Reformulation/Diagnostics/SwapSatzProbe.lean,Reformulation/MathlibExtensions/Topos/Subobject/Bot.lean,Reformulation/MathlibExtensions/Topos/Subobject/PullbackLemmas.lean,Reformulation/PreC/PKLFormWahlen.lean |
+| wachenfreie Aggregat-Module | 0 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
+|   darin Saetze | 0 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
 | Gleichung *Partition* | ✓ | 212 gegen 212 |
 | Gleichung *Gate=Aggregat+1* | ✓ | 157 gegen 157 |
-| Gleichung *Wachen* | ✓ | 1194 gegen 1194 |
+| Gleichung *Wachen* | ✓ | 1404 gegen 1404 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -66,7 +66,7 @@ Alle mitlaufenden Gleichungen halten.
 | geprueft (AxiomGate) | 5755 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 113 | Superlativ, meldend |
+| (A.1) laufender Bestand | 114 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 120 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
