@@ -22,9 +22,7 @@ authors:
   - family-names: Raffel
     given-names: Stefan
 repository-code: "https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur"
-license:
-  - Apache-2.0
-  - CC-BY-4.0
+license: Apache-2.0
 version: "Rev10"
 date-released: "2026-10-09"
 keywords:
