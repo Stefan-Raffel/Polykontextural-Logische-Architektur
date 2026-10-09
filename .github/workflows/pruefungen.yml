@@ -45,10 +45,15 @@ jobs:
       - name: Quelle holen
         uses: actions/checkout@v4
 
-      - name: elan (die Lean-Version kommt aus lean-toolchain)
+      - name: elan v4.2.4 (die Lean-Version kommt aus lean-toolchain)
+        # Fest auf eine elan-Version: das Paket direkt aus dem Release. Das Skript elan-init.sh
+        # holt auch in einer festen Fassung immer das juengste elan (releases/latest).
+        env:
+          ELAN_VERSION: v4.2.4
         run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-            | sh -s -- -y --default-toolchain none
+          curl -sSfL "https://github.com/leanprover/elan/releases/download/$ELAN_VERSION/elan-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C "$RUNNER_TEMP"
+          "$RUNNER_TEMP/elan-init" -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: awk wie lokal (BWK-awk statt mawk; doc_lint ist dagegen geschrieben)
@@ -59,6 +64,7 @@ jobs:
 
       - name: Versionen
         run: |
+          elan --version
           lean --version
           lake --version
           awk -version 2>&1 | head -1 || true
