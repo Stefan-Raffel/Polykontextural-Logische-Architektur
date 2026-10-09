@@ -742,6 +742,15 @@ axiomfrei). (2) `List.all_eq_true` zieht `Quot.sound`; Ersatz durch Induktion (`
 Fallstrick spricht vom **Profil**. Fundstelle: Kopf K7 von `Pfalzgraf/Faserung.lean`,
 `KorpusRev2/Vorproben_Spec_Z1_Struktureller_Beweis_Impl.md` §2.
 
+*Beleg, keine neue Regel (9. Oktober, Weg A; Custos SM9/PA5):* **auch ein Grundbaustein der
+Kategorientheorie zahlt.** `CategoryTheory.Functor.comp` und `CategoryTheory.Functor.category`
+tragen selbst `[propext, Classical.choice, Quot.sound]` (gemessen mit `#print axioms` an Mathlib
+83a5988). Jede Definition, die Funktoren verkettet, erbt es - so die Rekursionsgleichungen
+`interpret_nil`/`interpret_cons` (F3c) und `interpretFull_nil`/`interpretFull_cons` (F3d), deren
+Beweis `rfl` ist. Am Beweis ist nichts zu heilen; das Profil liegt in der Sache. Fundstelle: Kopf
+von `F3c/Operators.lean` und `F3d/Negations.lean`, `KorpusRev2/Weg_A_Messung_und_Proben_Impl.md`
+Probe (a).
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf
@@ -1074,6 +1083,16 @@ Profil, das aus der gegenwaertigen Importlage folgt; nichts misst, ob eine ander
 schlankeres ergaebe. **Eine Wache, die diesen Eintrag entbehrlich machte, muesste jeden Satz
 unter zwei Importmengen bauen.**
 
+*Beleg, keine neue Regel (5. Oktober, `NegationCycle`, Kopf K-R5; Custos SM9):* **nicht nur
+`simp`, auch `decide` haengt am Import.** Dieselbe Zeile - `negate_anordnungen` und
+`kreis_sechs_voll` entscheiden die Mitgliedschaft in einer Liste von Anordnungen - ist im
+Importkontext von `NegationCycle` `[propext]` und mit dem ganzen Aggregat
+`[propext, Classical.choice, Quot.sound]`: die Mitgliedschaft laeuft dann ueber
+`List.instDecidableMemOfLawfulBEq`, und die `LawfulBEq`-Instanz fuer `Fin` kommt aus Mathlibs
+Ordnungsinstanzen (die Familie aus Fallstrick 10 (a)). Gemessen in
+`KorpusRev2/Vorproben_Spec_Engster_Kreis_Impl.md` §3 (Befund 2); darum steht der Bau im Modul
+selbst.
+
 *Vermerk, kein Auftrag:* `mem_rgsList_iff` (`Kenogram/Basic`) ist der einzige
 Taktik-Kandidat ausserhalb von `PatternInvariance` und der billigste - genau ein simp-Lemma,
 sonst kein Traeger. **Bei Gelegenheit mitzunehmen, nicht eigens zu ziehen:** ein Zug an
@@ -1185,6 +1204,41 @@ jedem Schluss von einem Profil auf die Sache fragen, ob eine andere Taktik oder 
 Baustein dasselbe Ziel choice-frei erreicht; eine Nicht-Existenz braucht einen Satz.
 
 *Rueckweg nach §13.3:* keiner in Sicht - kein Werkzeug misst, was ein Profil nicht sagt.
+
+**26 - Suchmuster mit Umlauten haengen an der Locale - und an dem Werkzeug, das `grep`
+heisst.** Anlass (Janus, 5. Oktober; Custos UE12): eine Suche im POSIX-Locale traf
+„Günther“ nie, die Treffer kamen von „polycontextural“, und aus dem Lesen der Zeilen wurde
+eine Messung. Gemessen am 9. Oktober an drei Probezeilen `Günther`, `GÜNTHER`, `Gunther`:
+
+```text
+BSD-grep 2.6.0 (/usr/bin/grep)        LC_ALL=C   UTF-8   Soll
+'Günther'  (woertliche Bytefolge)        1         1       1
+'G.nther'                                1         2       2    . ist unter C ein BYTE, ü sind zwei
+'G[[:alpha:]]nther', 'G[a-zü]nther'      1         2       2    Klasse und Bereich ebenso
+'G..nther'                               1         0       0    trifft unter C das ü - und nur das
+-i 'günther'                             1         2       2    die Faltung Ü/ü ist kein Bytefall
+-E 'G(ü|u)nther'                         2         2       2    Alternation woertlicher Folgen traegt
+BWK-awk, tolower($0) ~ /günther/         1         2       2    dieselbe Faltung
+```
+
+*Und das zweite Ergebnis, das unangenehmere:* in der Shell der bauenden Instanz ist `grep`
+eine Funktion auf **ugrep 7.8.4**, und ugrep misst unicodefaehig, gleich unter welcher Locale
+(alle Muster oben unter C wie unter UTF-8 mit den Soll-Werten). Ein Skript, das `grep`
+ruft, bekommt dagegen BSD-grep. **Dieselbe Zeile, an der Eingabeaufforderung probiert und im
+Skript gefahren, misst Verschiedenes** - die Probe von Hand bestaetigt das Skript nicht.
+
+Das ist die Gattung des achten in weiterer Gestalt: nicht ein leeres Ergebnis, sondern ein
+**verschobenes** - es treffen andere Zeilen als die gemeinten, und wer sie liest, statt sie
+gegen einen bekannten Treffer zu halten, haelt sie fuer den Befund.
+
+**Route:** bei Mustern mit Umlauten, Klassen oder `-i` die Locale setzen
+(`LC_ALL=en_US.UTF-8`) **und** einen Muss-Fall fahren: ein bekannter Treffer mit Umlaut, in
+Versalien, wenn `-i` im Spiel ist (§12 Regel 1). Die woertliche Bytefolge allein traegt auch
+unter C; Punkt, Klassen, Bereiche und `-i` tragen dort nicht. doc_lint meldet seine Locale
+bei jedem Lauf und sagt dazu, dass unter C Versalienformen der Gruppe (B) entkaemen.
+
+*Rueckweg nach §13.3:* fuer eine Route erledigt, sobald sie ihre Locale setzt und ihren
+Umlaut-Muss-Fall mitfaehrt; fuer Suchen von Hand keiner in Sicht.
 
 ## 9 - Schranken: Robustheit gegen Signatur-Erweiterung pruefen
 
@@ -1459,6 +1513,16 @@ Zwei Anlaesse, beide gemessen:
 und ihn gegen den Bereich der Aussage halten, die sie schuetzen soll. Sind die beiden
 verschieden, wird der groessere gemessen und die Divergenz in den Befund geschrieben - die
 Auflage wird dabei nicht stillschweigend geweitet, sondern ihr Fehlgriff benannt.
+
+*Und dasselbe fuer einen Zaehler* (Entscheid des Architekten, 9. Oktober; Custos PC3): so wie
+der Bereich einer Auflage gegen den Bereich der Aussage gehalten wird, wird der
+**Belegbereich eines Zaehlers** gegen den **Wirkbereich** dessen gehalten, was er belegen soll.
+Zwei Faelle:
+- „in Code geschuetzt“ zaehlte die Faelle A und C; die Maskierung, die es belegen sollte, lief
+  ueber A, B und C (Rev10-Register, Merkliste M5).
+- Das AxiomGate sieht nur die Import-Huelle der Default-Targets; die Aussage „jeder
+  oeffentliche Satz ausserhalb PathC traegt eine Wache“ gilt fuer alle Dateien. Darum steht
+  die Pruefung als Gruppe (G) in doc_lint und nicht im Gate (Weg A, `073a687`).
 
 *Und die Grenze der Regel.* Sie erlaubt kein Auslegen nach Gutduenken: der Grund muss der
 **genannte** Grund der Vorgabe sein, nicht ein unterstellter. Wo die Vorgabe ihren Grund
