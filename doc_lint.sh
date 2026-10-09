@@ -1086,6 +1086,143 @@ ziffer_report() {
   return "${rc}"
 }
 
+# --- (G) Satzmenge = Wachenmenge je Modul ausserhalb PathC ---------------------
+# Jeder oeffentliche Satz ausserhalb von Reformulation/PathC/ traegt eine Axiom-Wache
+# (`#guard_msgs in #print axioms <Name>`). Beschlossen als Weg A, Umfang A-VOLL
+# (Architekt, 9.10.2026; Custos, Prompt_Instanz_Weg_A_Wachen.md). Rev10 Teil B 4.1 hatte
+# es angekuendigt; diese Gruppe macht aus der Ankuendigung eine Pruefung, die bei jedem
+# Lauf faehrt.
+#
+# BRECHEND wie (C) bis (F): entweder hat ein Satz eine Wache oder nicht. Grundlinie null.
+#
+# WARUM HIER UND NICHT IM AXIOMGATE: das Gate sieht nur, was ein Default-Target
+# importiert. Diagnostics, MathlibExtensions, PreC und Foreign bauen auf Ruf; eine
+# Lean-Pruefung, die sie saehe, zoege sie in jeden Bau. Der Lint sieht jede Datei.
+#
+# ROUTE, ueber die VOLLEN Namen ohne Umgebung:
+#   - Dateien per Verzeichnislauf, nicht per git ls-files: eine neue, noch nicht
+#     verfolgte Datei waere sonst unsichtbar (CLAUDE.md §3, erst verfolgen, dann messen).
+#   - Kommentare zuerst entfernen (verschachtelt, wie Gruppe (D)); Strings bleiben.
+#   - Saetze: die Satzroute aus CLAUDE.md §3. Oeffentlich = ohne private und protected.
+#   - Voller Name aus dem Namensraum-Stapel (namespace / section / mutual / end),
+#     `_root_.` beachtet.
+#   - Wache: ihr Name wird wie bei Lean aufgeloest (Namensraum am Ort der Wache, dann
+#     die aeusseren), sonst als eindeutige Namensendung unter den Saetzen der Datei.
+#     Mehrdeutig wird gemeldet. Eine Wache auf eine Definition oder auf einen fremden
+#     Satz deckt keinen Satz dieser Datei.
+#
+# GEEICHT (Weg-A-Zug, 9.10.2026): die vollen Namen dieser Route sind als MENGE gleich
+# den 1344 Namen aus der Umgebung (findDeclarationRanges? je Satzzeile). Am Anker
+# ca44fd5 meldet die Gruppe genau die 210 damals ungewachten Saetze, am Anker 179fa64
+# genau die 56 der letzten Gruppe — jeweils als Menge gegen die Umgebungsmessung.
+#
+# GRENZE, benannt: `open` wird nicht verfolgt. Eine Wache, die einen Satz nur ueber ein
+# geoeffnetes fremdes Namensraum-Kuerzel nennt, wird ueber die Namensendung gefunden; ist
+# die Endung in der Datei mehrdeutig, meldet die Gruppe statt zu raten.
+#
+# RUECKWEG (§13.3): die Gruppe entfaellt, wenn eine Pruefung im Bau dasselbe ueber
+# alle Targets leistet — oder PathC aufgetaut und der Schnitt hier gestrichen wird.
+wachen_report() {
+  local out rc=0
+  out="$(WG_ROOT="${ROOT}" python3 - <<'PY'
+import os, re, sys, json
+root = os.environ.get('WG_ROOT', '.')
+files = []
+for base in ('Reformulation', 'Foreign'):
+    for dp, dn, fn in os.walk(os.path.join(root, base)):
+        dn[:] = [d for d in dn if d not in ('.lake', '.git')]
+        files += [os.path.join(dp, f) for f in fn if f.endswith('.lean')]
+files = sorted(os.path.relpath(f, root) for f in files)
+
+def code_lines(src):
+    """Kommentare (verschachtelt, /-- und /-! eingeschlossen) und `--` entfernen, Strings erhalten.
+    Gibt je Quellzeile den Kommando-Text zurueck (gleiche Zeilenzahl)."""
+    out, depth = [], 0
+    for line in src.split('\n'):
+        o, i, n = [], 0, len(line)
+        while i < n:
+            c, two = line[i], line[i:i + 2]
+            if depth == 0 and c == '"':
+                j = i + 1
+                while j < n and line[j] != '"':
+                    j += 2 if line[j] == '\\' else 1
+                o.append(line[i:j + 1]); i = j + 1; continue
+            if two == '/-': depth += 1; i += 2; continue
+            if two == '-/' and depth > 0: depth -= 1; i += 2; continue
+            if depth == 0 and two == '--': break
+            if depth == 0: o.append(c)
+            i += 1
+        out.append(''.join(o))
+    return out
+
+DECL = re.compile(r'^(?:@\[[^\]]*\]\s+)?((?:private|protected|nonrec)\s+)?(?:@\[[^\]]*\]\s+)?(?:theorem|lemma)\s+([^\s({\[⦃:]+)')
+GUARD = re.compile(r'#guard_msgs\b.*\bin\s+#print\s+axioms\s+(\S+)')
+NS = re.compile(r'^namespace\s+(\S+)')
+SEC = re.compile(r'^(?:noncomputable\s+)?section\b')
+MUT = re.compile(r'^mutual\b')
+END = re.compile(r'^end\b(?:\s+(\S+))?\s*$')
+def clean(n): return n.replace('«', '').replace('»', '')
+
+result, verstoss, mehrdeutig, n_pub, n_gew = {}, [], [], 0, 0
+for f in files:
+    if f.startswith('Reformulation/PathC/'):
+        continue
+    stack, pub, alle, guards = [], {}, set(), []
+    for i, l in enumerate(code_lines(open(os.path.join(root, f), encoding='utf-8').read()), 1):
+        if m := NS.match(l): stack.append(('ns', clean(m.group(1)).split('.'))); continue
+        if SEC.match(l): stack.append(('sec', [])); continue
+        if MUT.match(l): stack.append(('mut', [])); continue
+        if END.match(l):
+            if stack: stack.pop()
+            continue
+        ns = [c for k, cs in stack if k == 'ns' for c in cs]
+        if m := DECL.match(l):
+            n = clean(m.group(2))
+            full = n[7:] if n.startswith('_root_.') else '.'.join(ns + [n])
+            alle.add(full)
+            if (m.group(1) or '').strip() not in ('private', 'protected'):
+                pub[full] = i
+        if m := GUARD.search(l):
+            guards.append((clean(m.group(1)), ns, i))
+    gedeckt = set()
+    for g, ns, i in guards:
+        hit = next((p for k in range(len(ns), -1, -1) if (p := '.'.join(ns[:k] + [g])) in alle), None)
+        if hit is None:
+            gc = g.split('.')
+            c = [t for t in alle if t.split('.')[-len(gc):] == gc]
+            if len(c) == 1: hit = c[0]
+            elif len(c) > 1: mehrdeutig.append((f, i, g, c))
+        if hit: gedeckt.add(hit)
+    result[f] = sorted(pub)
+    n_pub += len(pub)
+    for t, i in pub.items():
+        if t in gedeckt: n_gew += 1
+        else: verstoss.append((f, i, t))
+if os.environ.get('WG_DUMP'):
+    json.dump(result, open(os.environ['WG_DUMP'], 'w'))
+for f, i, t in verstoss:
+    print(f'  {f}:{i}  ohne Wache: {t}')
+for f, i, g, c in mehrdeutig:
+    print(f'  {f}:{i}  Wache mehrdeutig: {g} -> {", ".join(c)}')
+print(f'G\t{len(verstoss)}\t{len(mehrdeutig)}\t{n_pub}\t{n_gew}\t{sum(1 for f in files if not f.startswith("Reformulation/PathC/"))}')
+PY
+)"
+  local zeile n_v n_m n_pub n_gew n_dat
+  zeile="$(printf '%s\n' "${out}" | grep "^G$(printf '\t')")"
+  IFS="$(printf '\t')" read -r _ n_v n_m n_pub n_gew n_dat <<< "${zeile}"
+  printf '%s\n' "${out}" | grep -v "^G$(printf '\t')"
+  if [ "${n_v:-1}" -ne 0 ] || [ "${n_m:-1}" -ne 0 ]; then
+    echo "  Heilung: die Wache mit dem GEMESSENEN Profil in den Wachenblock am Dateiende,"
+    echo "           ueber den vollen Namen (\`#guard_msgs in #print axioms <voller Name>\`)."
+    rc=1
+  else
+    echo "  (jeder oeffentliche Satz ausserhalb PathC traegt eine Wache)"
+  fi
+  printf "  ── (G) %d Verstöße, %d mehrdeutige Wachen; %d Dateien ausserhalb PathC, %d öffentliche Sätze, %d gewacht\n" \
+         "${n_v:-0}" "${n_m:-0}" "${n_dat:-0}" "${n_pub:-0}" "${n_gew:-0}"
+  return "${rc}"
+}
+
 # Gruppe (C) vorab fahren: ihre Rückgabecodes bestimmen den Exit-Code des Laufs.
 C_RC=0
 BLOCK_C1="$(ledger_report)"  || C_RC=1
@@ -1104,6 +1241,10 @@ BLOCK_E="$(ziffer_report)" || E_RC=1
 # Gruppe (F) ebenso: Grundlinie null ueber alle elf Fassungen unter docs/.
 F_RC=0
 BLOCK_F="$(anker_report)" || F_RC=1
+
+# Gruppe (G) ebenso: Satzmenge = Wachenmenge je Modul ausserhalb PathC.
+G_RC=0
+BLOCK_G="$(wachen_report)" || G_RC=1
 
 echo "=============================================================================="
 echo "  doc_lint — Prüfzug 4 / Doc-Korrektur / Teil 2"
@@ -1198,17 +1339,25 @@ echo "     der Heilung der Verweise, Regel Einfrierung)."
 printf '%s\n' "$BLOCK_F"
 echo
 
-if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ] || [ "${E_RC}" -ne 0 ] || [ "${F_RC}" -ne 0 ]; then
+echo "── Gruppe (G) WACHEN-VOLLSTÄNDIGKEIT — Satzmenge = Wachenmenge je Modul ───────"
+echo "     Jeder oeffentliche Satz ausserhalb PathC traegt eine Axiom-Wache (Weg A, A-VOLL,"
+echo "     9.10.2026). Volle Namen aus dem Namensraum-Stapel, gegen die Umgebung geeicht."
+echo "     PathC ist eingefroren und ausgenommen (Pfadschnitt)."
+printf '%s\n' "$BLOCK_G"
+echo
+
+if [ "${C_RC}" -ne 0 ] || [ "${D_RC}" -ne 0 ] || [ "${E_RC}" -ne 0 ] || [ "${F_RC}" -ne 0 ] || [ "${G_RC}" -ne 0 ]; then
   betroffen=""
   [ "${C_RC}" -ne 0 ] && betroffen="${betroffen}(C) "
   [ "${D_RC}" -ne 0 ] && betroffen="${betroffen}(D) "
   [ "${E_RC}" -ne 0 ] && betroffen="${betroffen}(E) "
   [ "${F_RC}" -ne 0 ] && betroffen="${betroffen}(F) "
+  [ "${G_RC}" -ne 0 ] && betroffen="${betroffen}(G) "
   echo "── Ende Report.  Exit 1: ${betroffen}melden Verstöße. ────────────────"
   echo "   (A) und (B) beeinflussen den Exit-Code nicht — sie melden."
   exit 1
 fi
-echo "── Ende Report.  Exit 0: Gruppen (C), (D), (E) und (F) ohne Verstoß. ────────"
+echo "── Ende Report.  Exit 0: Gruppen (C), (D), (E), (F) und (G) ohne Verstoß. ──"
 echo "   (A) und (B) melden nur; ihre Treffer setzen keinen Exit-Code."
 
 exit 0
