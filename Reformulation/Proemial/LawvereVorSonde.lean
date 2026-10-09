@@ -115,3 +115,12 @@ nicht erklärt.
 #guard_msgs in #print axioms surjection_when_fixpoint
 
 end Reformulation.Proemial.LawvereVorSonde
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.LawvereVorSonde.not_ne_self' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.LawvereVorSonde.not_ne_self

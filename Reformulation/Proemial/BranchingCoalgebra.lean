@@ -265,3 +265,12 @@ section
 #guard_msgs in #print axioms flow_monotone
 
 end
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.BranchingCoalgebra.flow_singleton' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.BranchingCoalgebra.flow_singleton

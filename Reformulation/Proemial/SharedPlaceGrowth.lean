@@ -584,3 +584,31 @@ info: 'Reformulation.Proemial.SharedPlaceGrowth.mediation_strictly_monotone' dep
 #guard_msgs in #print axioms mediation_le_pow
 
 end Reformulation.Proemial.SharedPlaceGrowth
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.SharedPlaceGrowth.mem_wertmenge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.mem_wertmenge
+
+/-- info: 'Reformulation.Proemial.SharedPlaceGrowth.card_places_univ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.card_places_univ
+
+/-- info: 'Reformulation.Proemial.SharedPlaceGrowth.mem_places' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.mem_places
+
+/--
+info: 'Reformulation.Proemial.SharedPlaceGrowth.sharesPlace_iff_exists' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.sharesPlace_iff_exists
+
+/-- info: 'Reformulation.Proemial.SharedPlaceGrowth.mem_places_extend' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.mem_places_extend
+
+/-- info: 'Reformulation.Proemial.SharedPlaceGrowth.sharesPlace_lift' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SharedPlaceGrowth.sharesPlace_lift

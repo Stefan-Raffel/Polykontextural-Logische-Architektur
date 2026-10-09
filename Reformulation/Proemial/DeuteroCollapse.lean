@@ -212,3 +212,24 @@ info: 'Reformulation.Proemial.DeuteroCollapse.deutero_not_injective_general' dep
 #guard_msgs in #print axioms deutero_not_injective_general
 
 end Reformulation.Proemial.DeuteroCollapse
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.DeuteroCollapse.wA_length' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.DeuteroCollapse.wA_length
+
+/-- info: 'Reformulation.Proemial.DeuteroCollapse.wB_length' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.DeuteroCollapse.wB_length
+
+/-- info: 'Reformulation.Proemial.DeuteroCollapse.wA_isRGS' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.DeuteroCollapse.wA_isRGS
+
+/-- info: 'Reformulation.Proemial.DeuteroCollapse.wB_isRGS' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.DeuteroCollapse.wB_isRGS
+
+/-- info: 'Reformulation.Proemial.DeuteroCollapse.w_perm' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.DeuteroCollapse.w_perm

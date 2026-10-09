@@ -659,3 +659,24 @@ Klon-Ebenen-Sätzen aus Teil 7 (`tolerance_is_invariant`, `term_preserves_one`,
 #guard_msgs in #print axioms term_clone_localization
 
 end Reformulation.Proemial.TransjunctionCloneBound
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.TransjunctionCloneBound.funMap_neg' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.TransjunctionCloneBound.funMap_neg
+
+/-- info: 'Reformulation.Proemial.TransjunctionCloneBound.funMap_and' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.TransjunctionCloneBound.funMap_and
+
+/-- info: 'Reformulation.Proemial.TransjunctionCloneBound.funMap_or' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.TransjunctionCloneBound.funMap_or
+
+/-- info: 'Reformulation.Proemial.TransjunctionCloneBound.mem_pair' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.TransjunctionCloneBound.mem_pair
+
+/-- info: 'Reformulation.Proemial.TransjunctionCloneBound.mem_S' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.TransjunctionCloneBound.mem_S

@@ -263,3 +263,12 @@ theorem exLiftedI_transject_eq (a b : ℕ) :
 #guard_msgs in #print axioms exLiftedI_transject_eq
 
 end Reformulation.Proemial.InteractiveTransjunction
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.InteractiveTransjunction.exTransjectI_rejects' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.InteractiveTransjunction.exTransjectI_rejects

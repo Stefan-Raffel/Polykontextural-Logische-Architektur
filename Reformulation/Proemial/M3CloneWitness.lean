@@ -474,3 +474,18 @@ Teil 1 (Handinstanz statt `deriving Fintype`), gemessen und nicht geschätzt. -/
 #guard_msgs in #print axioms m3_mixed_term_exists
 
 end Reformulation.Proemial.M3CloneWitness
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.funMap_neg' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.M3CloneWitness.funMap_neg
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.funMap_and' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.M3CloneWitness.funMap_and
+
+/-- info: 'Reformulation.Proemial.M3CloneWitness.funMap_or' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.M3CloneWitness.funMap_or

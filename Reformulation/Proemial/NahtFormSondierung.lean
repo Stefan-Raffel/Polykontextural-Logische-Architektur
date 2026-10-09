@@ -219,3 +219,18 @@ Aufruf, kein fremdes Zitat. -/
 #guard_msgs in #print axioms exBtransject_not_internal
 
 end Reformulation.Proemial.NahtFormSondierung
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.switch_isEmpty_bool_empty' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.NahtFormSondierung.switch_isEmpty_bool_empty
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.no_transjunctive_into_empty' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.NahtFormSondierung.no_transjunctive_into_empty
+
+/-- info: 'Reformulation.Proemial.NahtFormSondierung.switch_not_generic' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.NahtFormSondierung.switch_not_generic

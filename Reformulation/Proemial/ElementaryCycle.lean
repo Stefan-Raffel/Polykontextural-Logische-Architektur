@@ -190,3 +190,19 @@ info: 'Reformulation.Proemial.ElementaryCycle.exists_involutive_orb_eq' depends 
 #guard_msgs in #print axioms exists_involutive_orb_eq
 
 end Reformulation.Proemial.ElementaryCycle
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.Proemial.ElementaryCycle.minimalPeriod_eq_one_or_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.ElementaryCycle.minimalPeriod_eq_one_or_two
+
+/-- info: 'Reformulation.Proemial.ElementaryCycle.orb_of_fixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ElementaryCycle.orb_of_fixed

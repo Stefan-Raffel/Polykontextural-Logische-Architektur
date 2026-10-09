@@ -350,3 +350,35 @@ info: 'Reformulation.Proemial.K4DiscontexturalityProbe.lastBlock_not_deutero_det
 #guard_msgs in #print axioms lastBlock_not_deutero_determined
 
 end Reformulation.Proemial.K4DiscontexturalityProbe
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.K4DiscontexturalityProbe.cnt_append_singleton' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.cnt_append_singleton
+
+/-- info: 'Reformulation.Proemial.K4DiscontexturalityProbe.cnt_pos_of_mem' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.cnt_pos_of_mem
+
+/-- info: 'Reformulation.Proemial.K4DiscontexturalityProbe.mem_of_cnt_pos' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.mem_of_cnt_pos
+
+/-- info: 'Reformulation.Proemial.K4DiscontexturalityProbe.le_foldr_max_of_mem' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.le_foldr_max_of_mem
+
+/--
+info: 'Reformulation.Proemial.K4DiscontexturalityProbe.foldr_max_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.foldr_max_mem
+
+/--
+info: 'Reformulation.Proemial.K4DiscontexturalityProbe.rgs_lueckenlos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.K4DiscontexturalityProbe.rgs_lueckenlos

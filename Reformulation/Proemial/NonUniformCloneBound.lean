@@ -851,3 +851,27 @@ Auch hier zieht kein Satz `Classical.choice` oder `sorryAx` — die Fintype-Pi-F
 #guard_msgs in #print axioms locally_classical_dichotomy
 
 end Reformulation.Proemial.NonUniformCloneBound
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.negFin_negFin' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.negFin_negFin
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.W_eq_ofChoices' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.W_eq_ofChoices
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.W2_eq_ofChoices' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.W2_eq_ofChoices
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.W3_eq_ofChoices' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.W3_eq_ofChoices
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.W4_eq_ofChoices' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.W4_eq_ofChoices
+
+/-- info: 'Reformulation.Proemial.NonUniformCloneBound.vec_eta' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.NonUniformCloneBound.vec_eta

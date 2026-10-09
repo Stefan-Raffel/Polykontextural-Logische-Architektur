@@ -808,3 +808,12 @@ macht. `r4_neighbor` und `r4_diag` sind axiom-frei. -/
 #guard_msgs in #print axioms mixed_not_in_constant_clone
 
 end Reformulation.Proemial.QuaternaryCloneBound
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Proemial.QuaternaryCloneBound.vec_eta4' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.QuaternaryCloneBound.vec_eta4
