@@ -27,8 +27,12 @@ implemented and is carried as open.
 - What a green build assures, per target: `docs/build-targets.md`
 - Current figures with their counting routes: the German section below
 
-Contributions are not accepted at present and issues are switched off; the reporting
-channel is named at the end of this file.
+Contributions (pull requests) are not accepted at present. Findings are reported as issues,
+with one of two templates, *Finding at a source* and *Finding at a theorem*:
+<https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/issues/new/choose>.
+Every state on `main` is built and checked on GitHub with the same checks that run before each
+commit (<https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/actions>); they do
+not check marks, readings, assignments or quotations.
 
 ---
 
@@ -441,6 +445,17 @@ Der Spezifikations- und Befundkorpus, auf den Doc-Strings und Dokumente an viele
 verweisen, liegt ausserhalb dieses Repositoriums und ist nicht veroeffentlicht.
 
 Dieses Projekt arbeitet mit einer spezifizierenden und einer bauenden Instanz; Beitraege
-werden derzeit nicht angenommen, und Issues sind abgeschaltet. Wer einen Fehler findet -
-eine falsche Zahl, eine Route, die nicht traegt, eine Behauptung ohne Traeger -, melde ihn
-auf X an @PolyContextual.
+(Pull Requests) werden derzeit nicht angenommen.
+
+**Funde melden / Reporting findings.** Wer einen Fehler findet - eine falsche Zahl, eine
+Route, die nicht traegt, eine Behauptung ohne Traeger, eine falsch gelesene Quelle -, meldet
+ihn als Issue mit einer von zwei Vorlagen:
+<https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/issues/new/choose>.
+*Fund an der Quelle* gilt einer Stelle bei Guenther, Kaehr oder einer anderen zitierten
+Schrift, die der Bericht falsch liest, zitiert oder datiert; *Fund an einem Satz* gilt einem
+Lean-Satz, den der Bericht als Traeger nennt, der die Aussage aber nicht traegt. Jede Vorlage
+sagt, wer liest und antwortet. Ein Fund, der haelt, wird in der naechsten Ausgabe mit Herkunft
+genannt, auch in ihrer Fehlerliste. Melden geht weiterhin auch auf X an @PolyContextual.
+Two templates, *Finding at a source* and *Finding at a theorem*; each says who reads and
+answers. A finding that holds is named with its origin in the next edition, in its list of
+errors as well.
