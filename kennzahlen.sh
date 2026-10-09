@@ -256,7 +256,7 @@ LUECKEN=$(python3 - <<'PY'
 import re, subprocess
 rx = re.compile(r'\bsorry\b')
 alle = subprocess.run(['git','ls-files'], capture_output=True, text=True).stdout.split()
-n1 = n1lean = z1 = 0
+n1 = n1lean = n1arch = z1 = 0
 for f in alle:
     try:
         s = open(f, encoding='utf-8', errors='ignore').read()
@@ -269,7 +269,9 @@ for f in alle:
     z1 += sum(1 for zeile in s.split('\n') if rx.search(zeile))
     if f.endswith('.lean'):
         n1lean += t
-print(f"n1\t{n1}\nn1lean\t{n1lean}\nzeilen\t{z1}")
+    if re.match(r'docs/rev\d+/', f):
+        n1arch += t
+print(f"n1\t{n1}\nn1lean\t{n1lean}\nn1arch\t{n1arch}\nzeilen\t{z1}")
 
 # Code-Vorkommen: Kommentare (-- und /- -/, verschachtelt) und Strings entfernt,
 # dann das Token. KEINE selbstzaehlende Groesse - Prosa zaehlt hier nicht mit.
@@ -309,9 +311,11 @@ PY
 )
 N1=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1"{print $2}')
 N1LEAN=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1lean"{print $2}')
+N1ARCH=$(echo "$LUECKEN" | awk -F'\t' '$1=="n1arch"{print $2}')
 N1ZEILEN=$(echo "$LUECKEN" | awk -F'\t' '$1=="zeilen"{print $2}')
 k "N1 roh" "$N1" "WORTvorkommen (\\bsorry\\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter"
 k "  davon .lean" "$N1LEAN" "dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden"
+k "  davon in Archiven" "$N1ARCH" "dieselbe Route, auf docs/rev<n>/ eingeschraenkt — eingefrorene Fassungen; N1 zaehlt sie mit, mit Absicht (Rev10-Register Z11, 9.10.2026)"
 k "Zeilen mit Vorkommen" "$N1ZEILEN" "ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9)"
 NCODE=$(echo "$LUECKEN" | awk -F'\t' '$1=="code"{print $2}')
 NCODEDAT=$(echo "$LUECKEN" | awk -F'\t' '$1=="codedateien"{print $2}')

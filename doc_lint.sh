@@ -163,7 +163,16 @@ TRIGGER_RE='zfc|zermelo'
 #           letzte s…" noch "der/das letzte …"; so gewollt, gegen 116 Positionsangaben.
 #       G3  KEIN SIGNALWORT, KEIN TREFFER — "bewiesen ist es hier" (Rev9-Konzept, Review des
 #           Mathematikers R1) ist eine Prioritaetsbehauptung ohne Superlativ.
-SUPERLATIV_RE='erstmals|erstmalig|zum ersten mal|als erste[rs]?|einzige[rns]?|die letzte [^s]|seit f-1|seit f1|for the first time|the first to|the only|never before|no other'
+# [9.10.2026, Sammelzug Post-Proc Rev10, Merkliste M4] DIE MUSTER SIND SPRACHASYMMETRISCH,
+# und das steht hier, damit es nicht fuer Vollstaendigkeit gehalten wird. Gegenstuecke:
+#   einzige[rns]?     <-> the only          (en sagt es oft anders; "single" ist meist Menge)
+#   die letzte [^s]   <-> --                ("the last" ist im Englischen fast nur Position)
+#   keine andere[nrs]?, kein anderer <-> no other      (die deutschen am 9.10. AUFGENOMMEN)
+#   --                <-> never before      ("noch nie" ist keine Rangaussage, nicht aufgenommen)
+# Gezaehlt vor der Erweiterung (laufend, Zeilen): "keine andere[nrs]" 3, "kein anderer" 0;
+# "single" 37 und "the last" 20 waeren fast nur Fehlalarm gewesen (Stichprobe en.html).
+# Gemessen: "einzige" steht 14-mal in docs/de.html, "the only" 3-mal in docs/en.html.
+SUPERLATIV_RE='erstmals|erstmalig|zum ersten mal|als erste[rs]?|einzige[rns]?|die letzte [^s]|keine andere[nrs]?|kein anderer|seit f-1|seit f1|for the first time|the first to|the only|never before|no other'
 
 # --- Dateiliste -------------------------------------------------------------
 # Markdown + Lean-Modul-Docs + HTML; vendored/Meta-Verzeichnisse ausgeschlossen.

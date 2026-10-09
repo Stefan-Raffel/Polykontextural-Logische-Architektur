@@ -20,7 +20,7 @@
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
 # BRECHENDE GROESSEN je Sprachpaar (1-9, 11, 12) und einmal ueber die laufenden
-# Flaechen (10 und 13, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
+# Flaechen (10, 13 und 14, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
 # Absicht nicht: sie war zweimal nachzuziehen, und die Schlussmeldung zaehlt die
 # gefahrenen Groessen selbst.
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
@@ -114,6 +114,19 @@
 #                       Weissraum zusammengezogen; die Startseite traegt Links je
 #                       Glied, das Papier keine. Fehlt eine Stelle oder steht sie
 #                       doppelt, bricht die Groesse ebenso.
+#  14. Ids bleiben    — EINMAL: jede id der juengsten archivierten Fassung
+#                       (docs/rev<N>/de.html, en.html; N maximal) steht auch in der
+#                       laufenden (docs/de.html, en.html). Ein Verweis von aussen
+#                       auf eine fruehere Fassung soll in der naechsten weiter
+#                       treffen. Lint (F) prueft, dass jeder Verweis ein Ziel hat;
+#                       diese Groesse prueft, dass kein Ziel verschwindet. Die
+#                       Startseite hat kein Archiv und ist nicht im Bereich.
+#                       Anlass (Rev10-Register M10): der erste Probelauf des
+#                       C.3-Folgezugs verlor #a0, und keine Groesse sah es.
+#                       GEEICHT (9.10.2026): ID_PROBE_ALT=<datei> ID_PROBE_NEU=<datei>
+#                       ersetzen Archiv und laufende Fassung. Muss: 939ce72 gegen
+#                       e696870 (de) bricht mit 8 verlorenen ids (b1-7 ... b5-3);
+#                       Darf-nicht: docs/rev9 gegen Rev10, 0 verloren.
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -615,6 +628,33 @@ def gestaltsatz():
         ok = False
     return ok
 
+def ids_bleiben():
+    """Groesse 14: jede id der juengsten archivierten Fassung steht in der laufenden."""
+    def ids(pf):
+        try:
+            return set(re.findall(r'\bid="([^"]+)"', open(pf, encoding='utf-8').read()))
+        except OSError:
+            return None
+    archive = sorted((int(m.group(1)), m.group(0)) for d in os.listdir(os.path.join(REPO, 'docs'))
+                     for m in [re.fullmatch(r'rev(\d+)', d)] if m)
+    ok = True
+    for sp in ('de', 'en'):
+        alt = os.environ.get('ID_PROBE_ALT') or os.path.join(REPO, 'docs', archive[-1][1], sp + '.html')
+        neu = os.environ.get('ID_PROBE_NEU') or os.path.join(REPO, 'docs', sp + '.html')
+        a, b = ids(alt), ids(neu)
+        name = 'Ids bleiben ' + sp
+        if a is None or b is None:
+            print(f"  {name:22s} ✗  Datei fehlt: {alt if a is None else neu}"); ok = False; continue
+        weg = sorted(a - b)
+        if weg:
+            print(f"  {name:22s} ✗  {len(weg)} von {len(a)} ids aus {os.path.relpath(alt, REPO)} fehlen: {', '.join(weg[:8])}")
+            ok = False
+        else:
+            print(f"  {name:22s} ✓  alle {len(a)} ids aus {os.path.relpath(alt, REPO)} stehen, {len(b - a)} neu")
+        if os.environ.get('ID_PROBE_ALT'):
+            break                                   # Eichlauf: ein Paar genuegt
+    return ok
+
 # ------------------------------------------------------------- Vergleichen ---
 GEFAHREN = set()   # die Namen der gefahrenen Groessen — die Schlussmeldung zaehlt sie
 
@@ -873,6 +913,10 @@ elif not sternchen_bericht("Rohe Sternchen", [('html', open(_start, encoding='ut
 
 GEFAHREN.add('Gestaltsatz')
 if not gestaltsatz():
+    rc = 1
+
+GEFAHREN.add('Ids bleiben')
+if not ids_bleiben():
     rc = 1
 
 print()

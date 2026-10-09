@@ -72,6 +72,10 @@ Wer eine Papierfassung aendert, aendert beide oder begruendet, warum nicht, und 
 `lake build ForeignPeresMermin` und `./doc_lint.sh`. **Es bricht** - eine zerschlagene Figur
 ist kein Ermessen. `parity.sh` daneben meldet nur, wie Gruppe (A) des Lints: eine Abweichung
 zwischen den Sprachfassungen kann eine begruendete Uebersetzungsentscheidung sein.
+`./docs/deixis.sh` meldet ebenso nur: relative Zeitwoerter ("juengste", "seit kurzem",
+"so far") in Absaetzen ohne Ausgabe oder Datum. Ein Treffer ist ein Kandidat, kein Befund.
+Und `ausgabe_probe.sh` prueft seit Groesse 14, dass keine id der juengsten archivierten
+Fassung verschwindet. (Beides seit dem 9. Oktober 2026, Rev10-Register M2 und M10.)
 
 *Herkunft (2. August 2026, Vorgang 8 und 12):* zwei Darstellungen desselben Textes ohne Route
 dazwischen haben acht Divergenzen erzeugt, drei davon unbemerkt ueber Wochen. Der Versuch,

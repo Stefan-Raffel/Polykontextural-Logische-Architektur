@@ -4,7 +4,7 @@
 #   Ziele:      docs/build-targets.md, Tafel (die Default-Ziele per `lake build`, die uebrigen einzeln)
 #               und lakefile.toml (defaultTargets).  Nicht gebaut wird das eine Modul ohne Target
 #               (Reformulation.PathC.Classifying.Universal; docs/kennzahlen.md, Zeile "kein Target").
-#   Skripte:    CLAUDE.md §1 (Bau, AxiomGate, doc_lint, figures.sh, parity.sh) und §13 (kennzahlen.sh).
+#   Skripte:    CLAUDE.md §1 (Bau, AxiomGate, doc_lint, figures.sh, parity.sh, deixis.sh) und §13 (kennzahlen.sh).
 #   Nicht hier: ausgabe_probe.sh und profil_probe.sh — sie lesen die Entwuerfe ausserhalb dieses
 #               Repositorys und laufen nur dort, wo die Entwuerfe liegen.
 #
@@ -12,7 +12,7 @@
 #   Lean aus lean-toolchain (elan liest sie), Mathlib aus lake-manifest.json (Lake liest es).
 #
 # WAS ROT HEISST
-#   Jeder Schritt bricht den Lauf, ausser parity.sh, das wie lokal nur meldet.
+#   Jeder Schritt bricht den Lauf, ausser parity.sh und deixis.sh, die wie lokal nur melden.
 #   Rot heisst: an diesem Stand haelt eine unserer Pruefungen nicht. Gruen heisst nicht, dass
 #   Marken, Lesarten, Zuordnungen und Zitate stimmen — die prueft keine Maschine.
 #
@@ -99,3 +99,6 @@ jobs:
 
       - name: parity.sh (meldet nur, wie lokal)
         run: ./docs/parity.sh || true
+
+      - name: deixis.sh (meldet nur, wie lokal)
+        run: ./docs/deixis.sh || true
