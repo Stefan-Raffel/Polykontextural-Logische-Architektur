@@ -32,6 +32,12 @@ deployment-specific (local layer, F1 material). Both are held as
 (F3d_Spec §III.1, §III.2).
 
 See F3d_Spec.md §I.2, §III, §IV.1–IV.3.
+
+*Note on `Classical.choice` (measured 9 October 2026, Mathlib 83a5988).* `interpretFull_nil` and
+`interpretFull_cons` carry `[propext, Classical.choice, Quot.sound]`. The choice comes from
+Mathlib's `CategoryTheory.Functor.comp`, which carries it itself; `interpretFull` is built from
+it, as `interpret` is in F3c/Operators. Their guards record the profile (Weg A,
+`Weg_A_Messung_und_Proben_Impl.md`).
 -/
 
 namespace Reformulation.F3d

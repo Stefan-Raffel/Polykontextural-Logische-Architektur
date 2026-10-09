@@ -426,7 +426,7 @@ Zitierangabe: `CITATION.cff`. Archiviert bei Zenodo: die Ausgabe Rev10 unter
 [10.5281/zenodo.23262993](https://doi.org/10.5281/zenodo.23262993); die Konzept-DOI
 [10.5281/zenodo.23262992](https://doi.org/10.5281/zenodo.23262992) zeigt stets auf die
 juengste Ausgabe. Der Zenodo-Eintrag fuehrt nur Apache-2.0, weil Zenodo aus `CITATION.cff`
-eine einzige Lizenz liest; es gilt die Doppellizenz oben.
+nur eine Lizenz liest; es gilt die Doppellizenz oben.
 
 Der Spezifikations- und Befundkorpus, auf den Doc-Strings und Dokumente an vielen Stellen
 verweisen, liegt ausserhalb dieses Repositoriums und ist nicht veroeffentlicht.

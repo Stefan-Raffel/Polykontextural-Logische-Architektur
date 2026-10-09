@@ -50,6 +50,11 @@ Rejektions-Manifestation, die architektur-schichtige Diskontexturalitäts-Setzun
 (Form-β, eigene Naht) und ρ selbst.
 
 Kein `sorry`, kein `: True`-Feld, kein `axiom`, kein `native_decide`.
+
+*Vermerk zu `Classical.choice` (gemessen 9. Oktober 2026, Mathlib 83a5988).* `foldr_max_mem` und
+`rgs_lueckenlos` tragen `[propext, Classical.choice, Quot.sound]`; es kommt über Mathlibs
+`eq_or_ne`, das es selbst trägt. Ihre Wachen halten das Profil fest (Weg A,
+`Weg_A_Messung_und_Proben_Impl.md`).
 -/
 
 namespace Reformulation.Proemial.K4DiscontexturalityProbe

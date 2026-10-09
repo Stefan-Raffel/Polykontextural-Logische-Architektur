@@ -18,6 +18,13 @@ This module introduces:
 
 See F3c_Klaerung_3.docx §III (invariant Bestandteile 1, 3) and
 F3c_Spec.docx §III.
+
+*Note on `Classical.choice` (measured 9 October 2026, Mathlib 83a5988).* `interpret_nil` and
+`interpret_cons` here, and `beck_chevalley_exists` in F3c/Existence, carry
+`[propext, Classical.choice, Quot.sound]`. The choice does not come from their proofs: it comes
+from Mathlib's `CategoryTheory.Functor.comp` and `CategoryTheory.Functor.category`, which carry
+it themselves; `interpret` is built from `Functor.comp`, and `ModalTwoCategory` uses both. Their
+guards record the profile (Weg A, `Weg_A_Messung_und_Proben_Impl.md`).
 -/
 
 namespace Reformulation.F3c
