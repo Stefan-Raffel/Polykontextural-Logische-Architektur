@@ -63,3 +63,15 @@ end Reformulation.Diagnostics.SwapSatzProbe
 #print axioms Reformulation.PathC.elementaryTopos_of_components
 #print axioms Reformulation.Diagnostics.SwapSatzProbe.no_swap_witness
 #print axioms Reformulation.Diagnostics.SwapSatzProbe.no_uniform_swap
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Diagnostics.SwapSatzProbe.no_swap_witness' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Diagnostics.SwapSatzProbe.no_swap_witness
+
+/-- info: 'Reformulation.Diagnostics.SwapSatzProbe.no_uniform_swap' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Diagnostics.SwapSatzProbe.no_uniform_swap

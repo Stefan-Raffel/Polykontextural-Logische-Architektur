@@ -663,3 +663,54 @@ klassisch — sie haben zusaetzlich externe Traeger (`Classical.choose` ueber
 #guard_msgs in #print axioms step_two_step_witness
 
 end Reformulation.Kenogram
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Kenogram.swap_injective' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swap_injective
+
+/-- info: 'Reformulation.Kenogram.swapVals_length' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swapVals_length
+
+/-- info: 'Reformulation.Kenogram.swapVals_getElem?' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swapVals_getElem?
+
+/-- info: 'Reformulation.Kenogram.swapVals_pattern' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swapVals_pattern
+
+/-- info: 'Reformulation.Kenogram.badAt_of_lt' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.badAt_of_lt
+
+/-- info: 'Reformulation.Kenogram.firstBad_eq_some' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.firstBad_eq_some
+
+/-- info: 'Reformulation.Kenogram.stepFn_eq_swap' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.stepFn_eq_swap
+
+/-- info: 'Reformulation.Kenogram.step_is_swap' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.step_is_swap
+
+/-- info: 'Reformulation.Kenogram.relabel_step' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.relabel_step
+
+/-- info: 'Reformulation.Kenogram.reduces_relabel_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.reduces_relabel_eq
+
+/-- info: 'Reformulation.Kenogram.nf_eq_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.nf_eq_relabel
+
+/-- info: 'Reformulation.Kenogram.swap_fixed' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swap_fixed
+
+/-- info: 'Reformulation.Kenogram.swap_left' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.swap_left
+
+/-- info: 'Reformulation.Kenogram.map_getElem!_of_lt' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.map_getElem!_of_lt
+
+/-- info: 'Reformulation.Kenogram.getElem!_mem_take' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.getElem!_mem_take

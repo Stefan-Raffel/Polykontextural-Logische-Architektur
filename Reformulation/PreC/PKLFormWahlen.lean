@@ -112,3 +112,12 @@ theorem B5_initialConfig_at_stage_1 :
     initialConfig 1 = PreCConfiguration.k1 := rfl
 
 end Reformulation.PreC.PKLFormWahlen
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.PreC.PKLFormWahlen.B5_initialConfig_at_stage_1' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.PreC.PKLFormWahlen.B5_initialConfig_at_stage_1

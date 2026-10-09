@@ -911,3 +911,57 @@ extern und nicht vermeidbar ausgewiesen. -/
 #guard_msgs in #print axioms rgs_equiv_partition
 
 end Reformulation.Kenogram
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Kenogram.isRGSAux_concat' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.isRGSAux_concat
+
+/-- info: 'Reformulation.Kenogram.foldl_max_eq' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.foldl_max_eq
+
+/-- info: 'Reformulation.Kenogram.ite_isEmpty_cons' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.ite_isEmpty_cons
+
+/-- info: 'Reformulation.Kenogram.ite_isEmpty_nil' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.ite_isEmpty_nil
+
+/-- info: 'Reformulation.Kenogram.isRGSAux_true_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.isRGSAux_true_iff
+
+/-- info: 'Reformulation.Kenogram.relabel_eq_foldl' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.relabel_eq_foldl
+
+/-- info: 'Reformulation.Kenogram.relabel_foldl_spec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.relabel_foldl_spec
+
+/-- info: 'Reformulation.Kenogram.isRGS_head' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.isRGS_head
+
+/-- info: 'Reformulation.Kenogram.isRGS_getElem_le' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.isRGS_getElem_le
+
+/-- info: 'Reformulation.Kenogram.rgs_take_mem' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.rgs_take_mem
+
+/-- info: 'Reformulation.Kenogram.rgs_new_eq' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.rgs_new_eq
+
+/-- info: 'Reformulation.Kenogram.ofFn_getElem?_self' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.ofFn_getElem?_self
+
+/-- info: 'Reformulation.Kenogram.ofFn_getElem?_pattern' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.ofFn_getElem?_pattern
+
+/-- info: 'Reformulation.Kenogram.finpartition_ext_part' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.finpartition_ext_part
+
+/-- info: 'Reformulation.Kenogram.rgsToPartition_part_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.rgsToPartition_part_eq_iff
+
+/-- info: 'Reformulation.Kenogram.rgsFun_partitionToRGS_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.rgsFun_partitionToRGS_eq_iff

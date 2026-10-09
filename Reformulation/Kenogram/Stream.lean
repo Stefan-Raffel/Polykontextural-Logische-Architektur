@@ -493,3 +493,51 @@ konsumierte Mathlib-Quelle, keine Taktik dieser Datei (B1 §4.2). -/
 #guard_msgs in #print axioms kenogram_no_reduction_basis
 
 end Reformulation.Kenogram.Stream
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_min' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.firstOcc_min
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_eq_of_value' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.firstOcc_eq_of_value
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_firstOcc' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.firstOcc_firstOcc
+
+/-- info: 'Reformulation.Kenogram.Stream.label_firstOcc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.label_firstOcc
+
+/-- info: 'Reformulation.Kenogram.Stream.mem_image_range_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.mem_image_range_iff
+
+/-- info: 'Reformulation.Kenogram.Stream.numDistinct_succ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.numDistinct_succ
+
+/-- info: 'Reformulation.Kenogram.Stream.numDistinct_le_sup' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.numDistinct_le_sup
+
+/-- info: 'Reformulation.Kenogram.Stream.label_succ_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.label_succ_le
+
+/-- info: 'Reformulation.Kenogram.Stream.isRGSStream_label' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.isRGSStream_label
+
+/-- info: 'Reformulation.Kenogram.Stream.label_lt_of_firstOcc_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.label_lt_of_firstOcc_lt
+
+/-- info: 'Reformulation.Kenogram.Stream.firstOcc_eq_of_pattern' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.firstOcc_eq_of_pattern
+
+/-- info: 'Reformulation.Kenogram.Stream.numDistinct_eq_of_pattern' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.numDistinct_eq_of_pattern
+
+/-- info: 'Reformulation.Kenogram.Stream.image_label_range' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.image_label_range
+
+/-- info: 'Reformulation.Kenogram.Stream.label_eq_self' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Stream.label_eq_self

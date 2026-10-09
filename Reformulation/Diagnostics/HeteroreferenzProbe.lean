@@ -214,3 +214,15 @@ Marke. -/
 #guard_msgs in #print axioms var0_not_depends_foreign
 
 end Reformulation.Diagnostics.HeteroreferenzProbe
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.mixed_of_fst' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Diagnostics.HeteroreferenzProbe.mixed_of_fst
+
+/-- info: 'Reformulation.Diagnostics.HeteroreferenzProbe.proj_in_mixed' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Diagnostics.HeteroreferenzProbe.proj_in_mixed

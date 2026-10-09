@@ -238,3 +238,27 @@ info: 'Reformulation.Kenogram.Bridge.relabelStream_restrict_canonicalize' depend
 #guard_msgs in #print axioms label_relabel_agree
 
 end Reformulation.Kenogram.Bridge
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.Kenogram.Bridge.sup_range_eq_foldr_take' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.sup_range_eq_foldr_take
+
+/-- info: 'Reformulation.Kenogram.Bridge.isRGSStream_take' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.isRGSStream_take
+
+/-- info: 'Reformulation.Kenogram.Bridge.take_label_getElem?' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.take_label_getElem?
+
+/-- info: 'Reformulation.Kenogram.Bridge.take_val_getElem?' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.take_val_getElem?
+
+/-- info: 'Reformulation.Kenogram.Bridge.take_eq_ofFn' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.take_eq_ofFn
+
+/-- info: 'Reformulation.Kenogram.Bridge.relabelStream_take_eq_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Kenogram.Bridge.relabelStream_take_eq_relabel
