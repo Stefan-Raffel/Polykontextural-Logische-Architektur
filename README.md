@@ -62,6 +62,15 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake exe cache get`, dann `lake build`.
 
+Jeder Stand auf `main` wird auf GitHub gebaut und geprueft, mit denselben Pruefungen, die vor
+jedem Commit laufen: der Bau aller Ziele, das AxiomGate, doc_lint, `docs/figures.sh` und die
+Gleichungen der Kennzahlen. Auch das eingefrorene PathC wird gebaut; es baut mit offenen
+Beweisluecken, und gruen heisst dort nur: es uebersetzt. Jeder Lauf steht unter
+<https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/actions>. Was dieser Lauf
+nicht prueft: die Marken, Lesarten, Zuordnungen und Zitate, also gerade das, worauf der Bericht
+philosophisch steht. Lean prueft, dass ein Satz bewiesen ist, nicht, dass er sagt, was der
+Bericht ihm zuschreibt.
+
 **Arbeitspapier zur Fassung PKL Rev10** (deutsch und englisch, vier Teile in einem Dokument,
 mit Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
 und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev10 ist der Bericht
@@ -425,8 +434,8 @@ Rechteinhabern. Wer Teile dieses Werks weiterverwendet, prueft die Zitate eigens
 Zitierangabe: `CITATION.cff`. Archiviert bei Zenodo: die Ausgabe Rev10 unter
 [10.5281/zenodo.23262993](https://doi.org/10.5281/zenodo.23262993); die Konzept-DOI
 [10.5281/zenodo.23262992](https://doi.org/10.5281/zenodo.23262992) zeigt stets auf die
-juengste Ausgabe. Der Zenodo-Eintrag fuehrt nur Apache-2.0, weil Zenodo aus `CITATION.cff`
-nur eine Lizenz liest; es gilt die Doppellizenz oben.
+juengste Ausgabe. Der Zenodo-Eintrag fuehrt beide Lizenzen; `CITATION.cff` nennt nur Apache-2.0,
+weil Zenodo aus ihr nur eine Lizenz liest - die zweite ist im Eintrag von Hand ergaenzt.
 
 Der Spezifikations- und Befundkorpus, auf den Doc-Strings und Dokumente an vielen Stellen
 verweisen, liegt ausserhalb dieses Repositoriums und ist nicht veroeffentlicht.
