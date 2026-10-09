@@ -2,6 +2,8 @@ cff-version: 1.2.0
 message: "Wer diese Arbeit verwendet, zitiert sie bitte wie folgt."
 title: "Reformulation - Polykontexturale Logik in Lean 4"
 abstract: >-
+  The tenth edition of a working paper that reformulates Gotthard Günther's polycontextural
+  logic in Lean 4 and Mathlib.
   It has a new main part. Between Part A and Part B there stands a report, "What has
   become operational". It tells, by subject, in seven sections, what of Günther's and
   Kaehr's constructions stands here proved, executable and checkable: the coupling in
