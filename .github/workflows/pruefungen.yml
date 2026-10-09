@@ -1,0 +1,93 @@
+# Pruefungen — dieselben Pruefungen, die vor jedem Commit lokal laufen, hier bei jedem Push.
+#
+# WOHER DIE LISTE KOMMT
+#   Ziele:      docs/build-targets.md, Tafel (die Default-Ziele per `lake build`, die uebrigen einzeln)
+#               und lakefile.toml (defaultTargets).  Nicht gebaut wird das eine Modul ohne Target
+#               (Reformulation.PathC.Classifying.Universal; docs/kennzahlen.md, Zeile "kein Target").
+#   Skripte:    CLAUDE.md §1 (Bau, AxiomGate, doc_lint, figures.sh, parity.sh) und §13 (kennzahlen.sh).
+#   Nicht hier: ausgabe_probe.sh und profil_probe.sh — sie lesen die Entwuerfe ausserhalb dieses
+#               Repositorys und laufen nur dort, wo die Entwuerfe liegen.
+#
+# VERSIONEN, nichts doppelt festgelegt
+#   Lean aus lean-toolchain (elan liest sie), Mathlib aus lake-manifest.json (Lake liest es).
+#
+# WAS ROT HEISST
+#   Jeder Schritt bricht den Lauf, ausser parity.sh, das wie lokal nur meldet.
+#   Rot heisst: an diesem Stand haelt eine unserer Pruefungen nicht. Gruen heisst nicht, dass
+#   Marken, Lesarten, Zuordnungen und Zitate stimmen — die prueft keine Maschine.
+#
+# DAUER
+#   timeout-minutes: 60.  Kalt lokal (8.10.2026, M2 Max, 12 Kerne, Mathlib-Cache schon da) 223 s.
+#   Ein Runner laedt den Cache und hat weniger Kerne; das Dreifache einer grosszuegigen Schaetzung
+#   (20 min) faengt einen haengenden Bau, bevor er die Standardgrenze von sechs Stunden verbraucht.
+
+name: Pruefungen
+
+on:
+  push:
+    branches: [main, rev2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        # bash mit -eo pipefail: ohne pipefail verloere `lake build | tee` den Exit-Code von lake
+        shell: bash
+    steps:
+      - name: Quelle holen
+        uses: actions/checkout@v4
+
+      - name: elan (die Lean-Version kommt aus lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: awk wie lokal (BWK-awk statt mawk; doc_lint ist dagegen geschrieben)
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q original-awk
+          mkdir -p "$HOME/werkzeug" && ln -sf "$(command -v original-awk)" "$HOME/werkzeug/awk"
+          echo "$HOME/werkzeug" >> "$GITHUB_PATH"
+
+      - name: Versionen
+        run: |
+          lean --version
+          lake --version
+          awk -version 2>&1 | head -1 || true
+          python3 --version
+          grep -A1 '"url": "https://github.com/leanprover-community/mathlib4' lake-manifest.json | head -2 || true
+
+      - name: Mathlib aus dem Cache (lake exe cache get)
+        run: lake exe cache get
+
+      - name: Bau der Default-Ziele (lake build)
+        run: lake build 2>&1 | tee "$RUNNER_TEMP/bau.log"
+
+      - name: Nicht-Default-Ziele
+        run: |
+          for t in MathlibNameGuard ForeignPeresMermin Diagnostics MathlibExtensions PreC PathC Beispiele; do
+            echo "::group::lake build $t"
+            lake build "$t"
+            echo "::endgroup::"
+          done
+
+      - name: AxiomGate (ist Default-Ziel; hier wird seine Meldung im Bau-Log verlangt)
+        run: grep -F 'AXIOM-GATE GRÜN' "$RUNNER_TEMP/bau.log"
+
+      - name: doc_lint (alle Gruppen, (G) eingeschlossen)
+        run: ./doc_lint.sh
+
+      - name: figures.sh (Figuren der HTML-Fassungen)
+        run: ./docs/figures.sh
+
+      - name: kennzahlen.sh (Gleichungen)
+        run: ./kennzahlen.sh
+
+      - name: parity.sh (meldet nur, wie lokal)
+        run: ./docs/parity.sh || true
