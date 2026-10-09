@@ -21,7 +21,7 @@ a translation of it:
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
 
-- Working paper, edition Rev9, in English: `docs/en.html` (Part A the shape, Part B the apparatus, Part C the limit)
+- Working paper, edition Rev10, in English: `docs/en.html` (Part A the shape, the report on what has become operational, Part B the apparatus, Part C the limit)
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
 - Building: `lake exe cache get` first (it fetches the compiled Mathlib; without it, Mathlib is compiled locally), then `lake build`
 - What a green build assures, per target: `docs/build-targets.md`
@@ -62,9 +62,11 @@ und macht die Grenze zwischen Beweis, Setzung und Deutung maschinell nachpruefba
 
 Lean `4.30.0-rc2`, Mathlib. Bau mit `lake exe cache get`, dann `lake build`.
 
-**Arbeitspapier zur Fassung PKL Rev9** (deutsch und englisch, drei Teile in einem Dokument,
+**Arbeitspapier zur Fassung PKL Rev10** (deutsch und englisch, vier Teile in einem Dokument,
 mit Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
-und im Bestand unter `docs/de.html` und `docs/en.html`.
+und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev10 ist der Bericht
+"Was operationsfaehig geworden ist": was von Guenthers und Kaehrs Konstruktionen hier bewiesen,
+ausfuehrbar und nachpruefbar steht, und wo nicht.
 
 Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf
 oeffentlich lieferte die frueher hier genannte Adresse
@@ -385,6 +387,7 @@ Was hier steht, ist schmaler als die Theorie, auf die es sich bezieht - absichtl
 ```sh
 lake exe cache get         # zuerst: holt das uebersetzte Mathlib; ohne ihn wird Mathlib lokal uebersetzt
 lake build                 # Default-Targets; AxiomGate laeuft mit
+lake build Beispiele       # die Lesedatei: eine Formel hinschreiben, beide Antworten sehen (Kaehrs Tableau, Quotient)
 ```
 
 `lake build` baut das Aggregat, das AxiomGate, den Definition-Ledger sowie die Targets

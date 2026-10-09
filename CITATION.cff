@@ -2,9 +2,19 @@ cff-version: 1.2.0
 message: "Wer diese Arbeit verwendet, zitiert sie bitte wie folgt."
 title: "Reformulation - Polykontexturale Logik in Lean 4"
 abstract: >-
-  Formale Reformulierung der polykontexturalen Logik Gotthard Guenthers in Lean 4
-  mit Mathlib. Der Korpus trennt maschinell zwischen Beweis, Benennung, Deutung und
-  Setzung und fuehrt jede Kennzahl mit ihrer Zaehlroute.
+  It has a new main part. Between Part A and Part B there stands a report, "What has
+  become operational". It tells, by subject, in seven sections, what of Günther's and
+  Kaehr's constructions stands here proved, executable and checkable: the coupling in
+  Mahler's model, with Kaehr's distinction; Pfalzgraf's fibering; Kaehr's separating case
+  and his calculus, Günther's implications as transjunctions, a bridge between two layers
+  of the corpus, and the small figure with which Günther speaks three times. It ends with
+  Günther's question, not with our answer.
+  It says who checks. The voices that worked on this text are roles of instances of the
+  same model family. They have found many errors in one another, and the list of errors
+  shows it. Independent checkers they are not. Independent checks come from the proof
+  environment, for the theorems, and from the author of the project. Whoever distrusts the
+  marks, readings and quotations of this text is right to do so until a voice from outside
+  has read them; a place for that is not yet set up.
 type: software
 authors:
   - family-names: Raffel
@@ -13,7 +23,8 @@ repository-code: "https://github.com/Stefan-Raffel/Polykontextural-Logische-Arch
 license:
   - Apache-2.0
   - CC-BY-4.0
-date-released: "2026-08-01"
+version: "Rev10"
+date-released: "2026-10-09"
 keywords:
   - polycontextural logic
   - Gotthard Guenther
