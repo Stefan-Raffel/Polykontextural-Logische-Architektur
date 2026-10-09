@@ -1,5 +1,5 @@
 name: "Finding at a source / Fund an der Quelle"
-description: "A passage in Günther's, Kaehr's or another cited text that the report reads, quotes or dates wrongly. / Eine Stelle bei Günther, Kaehr oder einer anderen zitierten Schrift, die der Bericht falsch liest, zitiert oder datiert."
+description: "A cited passage that the report reads, quotes or dates wrongly. / Eine zitierte Stelle, die der Bericht falsch liest, zitiert oder datiert."
 title: "[Source / Quelle] "
 body:
   - type: markdown

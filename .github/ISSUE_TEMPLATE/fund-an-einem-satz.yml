@@ -1,5 +1,5 @@
 name: "Finding at a theorem / Fund an einem Satz"
-description: "A Lean theorem that the report names as carrier of a claim, but which in your view does not carry it. / Ein Lean-Satz, den der Bericht als Träger einer Aussage nennt, der sie nach deiner Ansicht aber nicht trägt."
+description: "A Lean theorem named as carrier that does not carry the claim. / Ein Lean-Satz, als Träger genannt, der die Aussage nicht trägt."
 title: "[Theorem / Satz] "
 body:
   - type: markdown
