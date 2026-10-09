@@ -428,3 +428,58 @@ info: 'Reformulation.Proemial.Substantial.Transport.bcIso_diagonal_transport' de
 
 
 end Reformulation.Proemial.Substantial.Transport
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.r_faithful_of_counit_epi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.r_faithful_of_counit_epi
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.pullbackComparison_rel_isIso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.pullbackComparison_rel_isIso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.rel_factors_through_counit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.rel_factors_through_counit
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.rel_not_through_counit_is_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.rel_not_through_counit_is_false
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.does_not_imply_is_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.does_not_imply_is_false
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.tensorProductAdjunction_counit_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.tensorProductAdjunction_counit_apply
+
+/--
+info: 'Reformulation.Proemial.Substantial.Transport.prodHomWitness_counit_epi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Transport.prodHomWitness_counit_epi

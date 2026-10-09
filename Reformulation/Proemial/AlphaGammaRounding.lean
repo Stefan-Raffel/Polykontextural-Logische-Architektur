@@ -231,3 +231,26 @@ info: 'Reformulation.Proemial.Substantial.Rounding.prodHomWitness_not_unconditio
 
 
 end Reformulation.Proemial.Substantial.Rounding
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Rounding.identityWitnessBC'_bcIso_app_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Rounding.identityWitnessBC'_bcIso_app_eq
+
+/-- info: 'Reformulation.Proemial.Substantial.Rounding.bcData_ext' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Rounding.bcData_ext
+
+/--
+info: 'Reformulation.Proemial.Substantial.Rounding.identityWitnessBC'_eq_identityWitnessBC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Rounding.identityWitnessBC'_eq_identityWitnessBC

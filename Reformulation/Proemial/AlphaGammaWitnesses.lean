@@ -291,3 +291,65 @@ info: 'Reformulation.Proemial.Substantial.Witnesses.tritoStellungsVielfalt_iff_s
 
 
 end Reformulation.Proemial.Substantial.Witnesses
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.tritoStellungsVielfalt_implies_substantial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.tritoStellungsVielfalt_implies_substantial
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.exists_stellung_splitEpi_not_iso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.exists_stellung_splitEpi_not_iso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.diagonal_id_isIso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.diagonal_id_isIso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.concrete_diagonal_not_iso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.concrete_diagonal_not_iso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_counit_not_iso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_counit_not_iso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.exists_stellung_rel_iso_counit_not_iso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.exists_stellung_rel_iso_counit_not_iso
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_tritoVielfalt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_tritoVielfalt
+
+/--
+info: 'Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_tritoVielfalt_substantial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Witnesses.prodHomWitness_tritoVielfalt_substantial

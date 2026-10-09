@@ -296,3 +296,23 @@ info: 'Reformulation.Proemial.Substantial.Stratification.prodHomWitness_not_bcDa
 
 
 end Reformulation.Proemial.Substantial.Stratification
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.Proemial.Substantial.Stratification.unit_isIso_of_bcData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Stratification.unit_isIso_of_bcData
+
+/--
+info: 'Reformulation.Proemial.Substantial.Stratification.tensorProductAdjunction_unit_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.Proemial.Substantial.Stratification.tensorProductAdjunction_unit_apply

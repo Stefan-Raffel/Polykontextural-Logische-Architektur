@@ -220,3 +220,29 @@ theorem image_pullback_counit {X Y : E} (f : X ⟶ Y) (S : Subobject Y) :
   imageSubobject_le _ (Subobject.pullbackπ f S) (Subobject.isPullback f S).w
 
 end Reformulation.MathlibExtensions.Topos
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.MathlibExtensions.Topos.pullback_le_iSup_pullback' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.MathlibExtensions.Topos.pullback_le_iSup_pullback
+
+/--
+info: 'Reformulation.MathlibExtensions.Topos.pullback_imageSubobject' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.MathlibExtensions.Topos.pullback_imageSubobject
+
+/-- info: 'Reformulation.MathlibExtensions.Topos.pullback_iSup' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.MathlibExtensions.Topos.pullback_iSup
+
+/-- info: 'Reformulation.MathlibExtensions.Topos.image_pullback_counit' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.MathlibExtensions.Topos.image_pullback_counit

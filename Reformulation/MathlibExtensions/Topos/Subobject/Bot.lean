@@ -74,3 +74,16 @@ theorem Subobject.pullback_bot {X Y : E} (f : X ⟶ Y) :
   exact mk_eq_mk_of_comm _ _ (hP.uniqueUpToIso initialIsInitial) (hP.hom_ext _ _)
 
 end Reformulation.MathlibExtensions.Topos
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.MathlibExtensions.Topos.Subobject.pullback_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.MathlibExtensions.Topos.Subobject.pullback_bot
