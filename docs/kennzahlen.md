@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `dcb0d59` (sauber).
+Stand: Commit `1830dc6` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -52,10 +52,10 @@ Alle mitlaufenden Gleichungen halten.
 | Gleichung *Luecken-Dateien* | ✓ | 8 gegen 8 |
 |  |  |  |
 | **ABLAGEN (CLAUDE.md — selbstzaehlend)** |  |  |
-| Fallstricke (§8) | 25 | fett nummerierte Eintraege INNERHALB von §8 |
+| Fallstricke (§8) | 26 | fett nummerierte Eintraege INNERHALB von §8 |
 | Messregeln (§12) | 11 | dieselbe Route in §12 |
-| fett nummeriert, ganze Datei | 36 | die naive Route — sie mischt beide Ablagen |
-| Gleichung *Ablagen* | ✓ | 36 gegen 36 |
+| fett nummeriert, ganze Datei | 37 | die naive Route — sie mischt beide Ablagen |
+| Gleichung *Ablagen* | ✓ | 37 gegen 37 |
 |  |  |  |
 | **DEFINITION-LEDGER** |  |  |
 | Ledger-Zeilen | 133 | Zeilen-IDs in docs/definition-ledger.md |
