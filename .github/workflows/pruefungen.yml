@@ -25,7 +25,9 @@ name: Pruefungen
 
 on:
   push:
-    branches: [main, rev2]
+    # nur main: rev2 und main werden auf denselben Commit gepusht, ein zweiter Lauf pruefte nichts Neues
+    # (Empfehlung des Mathematikers in der Abnahme, Entscheid des Architekten 9.10.)
+    branches: [main]
   workflow_dispatch:
 
 permissions:
