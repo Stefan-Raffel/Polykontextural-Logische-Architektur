@@ -67,20 +67,26 @@ def gleich_in_beiden(z_de, z_en):
 
 
 def _probe():
-    seite = ('Bewiesen ist das [O2.1], und hier [A.3]. Pfalzgraf: „we refer to `[16]`." '
-             'Zweimal derselbe [O2.1]; dazu [O7.2] [O7.3].\n\n```\n[O9.9] im Code\n```\n')
-    z = zuordnung([seite], 101, {'O2.1', 'A.3', 'O7.2', 'O7.3'})
+    # Muss-Faelle (Signums Vorgabe, Zug 1): je ein Schluessel jeder Art, [O5.0] zeigt auf eine Kette,
+    # die zwei Schluessel der Bildunterschrift. Darf-nicht-Faelle: [16] im Zitat (Code), die Profile
+    # der Tafel, [T6] und die Rev9-Ziffern [97] [99] [11] [58] [66], ein Literaturkuerzel, ein Codeblock.
+    seite = ('Bewiesen ist das [O1.1], die Kette [O5.0], und hier [A.1], [B.1], [C1.1]. '
+             'Pfalzgraf: „we refer to `[16]`." Profil [propext] und [propext, Quot.sound]; '
+             'Rev9: [T6], [97], [99], [11], [58], [66]; [Pfa91a]. '
+             'Zweimal derselbe [O1.1]; Bildunterschrift [O7.2] [O7.3].\n\n```\n[O9.9] im Code\n```\n')
+    z = zuordnung([seite], 101, {'O1.1', 'O5.0', 'A.1', 'B.1', 'C1.1', 'O7.2', 'O7.3'})
     aus = ersetze(seite, z)
-    muss = aus.startswith('Bewiesen ist das [101], und hier [102].') and '[103] [104]' in aus \
-        and aus.count('[101]') == 2
-    darf_nicht = '`[16]`' in aus and '[O9.9] im Code' in aus
+    muss = aus.startswith('Bewiesen ist das [101], die Kette [102], und hier [103], [104], [105].') \
+        and '[106] [107]' in aus and aus.count('[101]') == 2
+    darf_nicht = all(x in aus for x in ('`[16]`', '[propext]', '[propext, Quot.sound]', '[T6]', '[97]',
+                                         '[99]', '[11]', '[58]', '[66]', '[Pfa91a]', '[O9.9] im Code'))
     fehlt = False
     try:
-        zuordnung([seite], 101, {'O2.1', 'A.3', 'O7.2'})
+        zuordnung([seite], 101, {'O1.1', 'O5.0', 'A.1', 'B.1', 'C1.1', 'O7.2'})
     except SystemExit:
         fehlt = True
-    print(f'  Muss-Fall (Schlüssel -> Ziffer, Lesereihenfolge, Wiederholung): {"ok" if muss else "FEHLT"}')
-    print(f'  Darf-nicht-Fall (`[16]` und Code bleiben):                    {"ok" if darf_nicht else "FEHLT"}')
+    print(f'  Muss-Faelle (O1.1, O5.0, A.1, B.1, C1.1, Bildunterschrift; Folge, Wiederholung): {"ok" if muss else "FEHLT"}')
+    print(f'  Darf-nicht-Faelle (`[16]`, Profile, [T6], Rev9-Ziffern, Kuerzel, Code):       {"ok" if darf_nicht else "FEHLT"}')
     print(f'  Bruch bei fehlender Tafelzeile:                                {"ok" if fehlt else "FEHLT"}')
     return muss and darf_nicht and fehlt
 
