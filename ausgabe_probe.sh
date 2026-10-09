@@ -778,6 +778,7 @@ def fassungswoerter():
         'rev1': 14, 'rev2': 24, 'rev3': 78, 'rev4': 24, 'rev5': 30, 'rev6': 34,
         'rev7': 38,   # archiviert mit der achten Ausgabe; gemessen beim Archivieren
         'rev8': 42,   # archiviert mit der neunten Ausgabe (Kopie von `402fa65`); gemessen beim Archivieren
+        'rev9': 44,   # archiviert mit der zehnten Ausgabe (Kopie von `9c1f8c5`, byte-gleich); gemessen beim Archivieren
     }
     archiv = {}
     dw = os.path.join(REPO, 'docs')

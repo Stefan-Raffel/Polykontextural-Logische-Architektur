@@ -40,19 +40,21 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 # `parity`, `figures` oder `doc_lint` es meldete. Keine Probe fuehrt die
 # Fassungsbezeichnung; die Heilung ist darum die Aufhebung der Mehrfachnennung und
 # nicht eine zehnte Groesse.
-FASSUNG = 'Rev9'
+FASSUNG = 'Rev10'
 
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in drei Teilen',
-        datum='27. September 2026',
-        teile=[f'{K}/Entwurf_2026-09-27_Rev9_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-09-27_Rev9_TeilB_Apparat_de.md',
-               f'{K}/Entwurf_2026-09-27_Rev9_TeilC_Grenze_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev8/de.html',
+        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in vier Teilen',
+        datum='9. Oktober 2026',
+        teile=[f'{K}/Entwurf_2026-10-09_Rev10_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_Bericht_de.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_TeilB_Apparat_de.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_TeilC_Grenze_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev9/de.html',
         abb_suffix='',
-        inhalt='Inhalt', teilA='Teil A · Die Gestalt', teilB='Teil B · Der Apparat',
+        inhalt='Inhalt', teilA='Teil A · Die Gestalt',
+        teilR='Der Bericht · Was operationsfähig geworden ist', teilB='Teil B · Der Apparat',
         teilC='Teil C · Die Grenze',
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
@@ -62,14 +64,16 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in three parts',
-        datum='27 September 2026',
-        teile=[f'{K}/Entwurf_2026-09-27_Rev9_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-09-27_Rev9_TeilB_Apparatus_en.md',
-               f'{K}/Entwurf_2026-09-27_Rev9_TeilC_Limit_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev8/en.html',
+        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in four parts',
+        datum='9 October 2026',
+        teile=[f'{K}/Entwurf_2026-10-09_Rev10_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_Report_en.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_TeilB_Apparatus_en.md',
+               f'{K}/Entwurf_2026-10-09_Rev10_TeilC_Limit_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev9/en.html',
         abb_suffix='_EN',
-        inhalt='Contents', teilA='Part A · The Shape', teilB='Part B · The Apparatus',
+        inhalt='Contents', teilA='Part A · The Shape',
+        teilR='The report · What has become operational', teilB='Part B · The Apparatus',
         teilC='Part C · The Limit',
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
@@ -85,16 +89,15 @@ def figuren_aus(pfad):
     return re.findall(r'(?is)<figure class="fig.*?</figure>', s)
 
 
-# DIE FIGUREN DER NEUNTEN AUSGABE, in Lesereihenfolge (die Nummer ist die Stelle in
+# DIE FIGUREN DER ZEHNTEN AUSGABE, in Lesereihenfolge (die Nummer ist die Stelle in
 # dieser Liste). ('abb', Name) ist eine neue Figur aus docs/abb/, von den Skripten in
 # figuren/ erzeugt; ('alt', n) ist Figur n der vorigen Ausgabe derselben Sprache. Die
 # Nummer, die die Seite zeigt, kommt aus der MARKE des Entwurfs und nicht aus der
 # Quellfigur: bis Rev8 wurde die Nummer der Quellfigur uebernommen, und das ging nur,
 # solange keine Figur vor eine bestehende trat.
-FIGUREN = [('alt', 1),
-           ('abb', 'Abb_Achse_Zwei_Konstruktionen'), ('abb', 'Abb_Sechseck_Drei_Werte'),
-           ('abb', 'Abb_Negationssystem_Oktaeder'),
-           ('alt', 2), ('alt', 3), ('alt', 4), ('alt', 5), ('alt', 6), ('alt', 7), ('alt', 8)]
+# Seit der zehnten Ausgabe kommen die elf Figuren der neunten aus docs/rev9/ (dort 1-11, schon mit
+# ihren Praefixen); neu ist Figur 12 im Bericht (O7).
+FIGUREN = [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Sechseck_Halbe_Drehung')]
 
 # Die Alt-Texte der neuen Figuren, wortgleich aus der Uebergabe des Verfassers (§2).
 ALT = {
@@ -103,6 +106,8 @@ ALT = {
     ('Abb_Sechseck_Drei_Werte', 'de'): 'Ein Sechseck, oben die Anordnung 1 2 3, unten 3 2 1. Die Kanten wechseln zwischen zwei Farben für N₁ und N₂. Pfeile laufen rechts herum über 2 1 3 und 3 1 2 und links herum über 1 3 2 und 2 3 1 nach unten. Rechts Günthers Notation: ein N mit hochgestelltem 2.1.2 und tiefgestelltem 1.2.1, dahinter p, darunter die Spalte 3, 2, 1.',
     ('Abb_Sechseck_Drei_Werte', 'en'): 'A hexagon, the arrangement 1 2 3 at the top, 3 2 1 at the bottom. The edges alternate between two colours for N₁ and N₂. Arrows run down the right side via 2 1 3 and 3 1 2 and down the left via 1 3 2 and 2 3 1. On the right, Günther\'s notation: an N with 2.1.2 as superscript and 1.2.1 as subscript, followed by p, above the column 3, 2, 1.',
     ('Abb_Negationssystem_Oktaeder', 'de'): 'Links ein abgestumpftes Oktaeder aus Quadraten und Sechsecken, die Kanten in drei Farben für N₁, N₂, N₃, der Ausgang p markiert. Rechts dasselbe Netz flach ausgebreitet, darauf ein geschlossener Weg über alle 24 Ecken; die letzten zwei Schritte gestrichelt.',
+    ('Abb_Sechseck_Halbe_Drehung', 'de'): 'Ein Sechseck, oben die Anordnung 1 2 3, im Uhrzeigersinn 2 1 3, 3 1 2, 3 2 1, 2 3 1, 1 3 2. Die Kanten wechseln zwischen zwei Farben für N₁ und N₂. Drei gestrichelte Durchmesser verbinden jede Station mit der gegenüberliegenden: dem Bild unter dem Tausch der Werte 1 und 3.',
+    ('Abb_Sechseck_Halbe_Drehung', 'en'): 'A hexagon, the arrangement 1 2 3 at the top, clockwise 2 1 3, 3 1 2, 3 2 1, 2 3 1, 1 3 2. The edges alternate between two colours for N₁ and N₂. Three dashed diameters join each station to the opposite one: its image under the exchange of the values 1 and 3.',
     ('Abb_Negationssystem_Oktaeder', 'en'): 'Left, a truncated octahedron of squares and hexagons, the edges in three colours for N₁, N₂, N₃, the starting point p marked. Right, the same network laid out flat, with a closed path through all 24 vertices; the last two steps dashed.',
 }
 
@@ -120,7 +125,8 @@ def neue_figur(name, sprache, suffix):
     s = re.sub(r'(?is)<metadata>.*?</metadata>\s*', '', s)
     s = re.sub(r'(?is)<style[^>]*>.*?</style>\s*', '', s)
     s = re.sub(r'(?is)<defs>\s*</defs>\s*', '', s)
-    px = name.split('_')[1].lower() + '-'
+    # Praefix aus dem ganzen Namen: 'sechseck-' allein waere seit Figur 12 doppelt vergeben.
+    px = name[4:].lower().replace('_', '-') + '-'
     s = re.sub(r'\bid="([^"]+)"', lambda m: f'id="{px}{m.group(1)}"', s)
     s = re.sub(r'(href=")#([^"]+)"', lambda m: f'{m.group(1)}#{px}{m.group(2)}"', s)
     s = re.sub(r'url\(#([^)]+)\)', lambda m: f'url(#{px}{m.group(1)})', s)
@@ -309,7 +315,7 @@ def titel_und_kapitel(html):
 def baue(sprache):
     c = SPRACHEN[sprache]
     figs = figuren_der_ausgabe(c, sprache)
-    praefixe = 'abc'
+    praefixe = 'aobc'    # Teil A, der Bericht (O0 = o0, O1 ... O7 = o1 ... o7), Teil B, Teil C
     teile = []
     for i, pfad in enumerate(c['teile']):
         h = wandle_teil(open(pfad, encoding='utf-8').read(), figs, c['caption'])
@@ -325,7 +331,7 @@ def baue(sprache):
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (8, 7, 6, 5, 4, 3, 2, 1))
+                         for n in (9, 8, 7, 6, 5, 4, 3, 2, 1))
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>
@@ -363,13 +369,17 @@ def baue(sprache):
   <ol>
 {tocs[0]}
   </ol>
-  <p><strong>{c['teilB']}</strong></p>
+  <p><strong>{c['teilR']}</strong></p>
   <ol>
 {tocs[1]}
   </ol>
-  <p><strong>{c['teilC']}</strong></p>
+  <p><strong>{c['teilB']}</strong></p>
   <ol>
 {tocs[2]}
+  </ol>
+  <p><strong>{c['teilC']}</strong></p>
+  <ol>
+{tocs[3]}
   </ol>
 </nav>
 
@@ -378,6 +388,8 @@ def baue(sprache):
 {teile[1]}
 
 {teile[2]}
+
+{teile[3]}
 
 </main>
 
