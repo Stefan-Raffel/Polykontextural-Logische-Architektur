@@ -69,3 +69,12 @@ theorem bridge_soundness_iff_lightClient (b : BridgeType) :
   case lightClient => simp [BridgeType.isStructurallySound]
 
 end Reformulation.F1.D5.BridgeTypes
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F1.D5.BridgeTypes.bridge_soundness_iff_lightClient' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F1.D5.BridgeTypes.bridge_soundness_iff_lightClient

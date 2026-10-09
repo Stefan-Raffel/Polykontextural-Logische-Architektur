@@ -412,3 +412,21 @@ theorem b6_unique_iteration_mode (rdv : RollupDoubleValuation) :
   | negOmega => dsimp only [rollupTranslate, translateNegOmegaOp] at hm; exact absurd hm (by decide)
 
 end Reformulation.F1.D2.Rollups.Coalgebraic.Substantial
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.rollupF3aConsistentL1' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.rollupF3aConsistentL1
+
+/-- info: 'Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.rollupF3aConsistentL2' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.rollupF3aConsistentL2
+
+/-- info: 'Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.translate_distinct_modal_aspects' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.translate_distinct_modal_aspects
+
+/-- info: 'Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.b6_unique_iteration_mode' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.Coalgebraic.Substantial.b6_unique_iteration_mode

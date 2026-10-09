@@ -132,3 +132,27 @@ example : Configuration.toK ⟨.nonTrivial, .nonConstant, .present⟩ = K.k8 := 
 example (k : K) : k.toConfiguration.toK = k := K.equivConfiguration.left_inv k
 
 end Reformulation.F3b
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3b.Klasse.canonicalBearer_injective' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F3b.Klasse.canonicalBearer_injective
+
+/-- info: 'Reformulation.F3b.klasse_canonicalBearer' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3b.klasse_canonicalBearer
+
+/-- info: 'Reformulation.F3b.klasse_inl_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3b.klasse_inl_iff
+
+/-- info: 'Reformulation.F3b.klasse_inr_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3b.klasse_inr_iff
+
+/-- info: 'Reformulation.F3b.K.canonical_or_nonCanonical' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F3b.K.canonical_or_nonCanonical
+
+/-- info: 'Reformulation.F3b.exhaustion' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.F3b.exhaustion

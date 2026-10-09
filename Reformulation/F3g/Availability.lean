@@ -110,3 +110,21 @@ modulfremd nicht konsumiert. -/
 #guard_msgs in #print axioms classI_iff_stage_1
 
 end Reformulation.F3g
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3g.class_availability_stage_1' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.class_availability_stage_1
+
+/-- info: 'Reformulation.F3g.class_availability_stage_succ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.class_availability_stage_succ
+
+/-- info: 'Reformulation.F3g.classIV_subtype_stage_1' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.classIV_subtype_stage_1
+
+/-- info: 'Reformulation.F3g.classIV_subtype_stage_succ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.classIV_subtype_stage_succ

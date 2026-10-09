@@ -111,3 +111,12 @@ liest. Die Felder `BeckChevalleyAxioms.modalCompatible`, `.pentagon` und
 -/
 
 end Reformulation.F3e
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3e.beckChevalley_b5_anchored' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3e.beckChevalley_b5_anchored

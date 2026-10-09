@@ -86,3 +86,15 @@ carries, and the removed function added nothing to it.
 -/
 
 end Reformulation.F1.D5.Polkadot.DoubleValuation
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/--
+info: 'Reformulation.F1.D5.Polkadot.DoubleValuation.polkadot_doubleValuation_asymmetric' depends on axioms: [propext,
+ Quot.sound]
+-/
+#guard_msgs in #print axioms Reformulation.F1.D5.Polkadot.DoubleValuation.polkadot_doubleValuation_asymmetric

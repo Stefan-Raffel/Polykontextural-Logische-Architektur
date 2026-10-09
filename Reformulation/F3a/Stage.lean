@@ -48,3 +48,15 @@ theorem every_stage_has_initializing (n : Stage) : IsInitializing n :=
   trivial
 
 end Reformulation.F3a
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3a.stage_one_no_continuing' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3a.stage_one_no_continuing
+
+/-- info: 'Reformulation.F3a.every_stage_has_initializing' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3a.every_stage_has_initializing

@@ -129,3 +129,12 @@ theorem coalgebraic_inheritance (rdv : RollupDoubleValuation) :
   ⟨rfl, rfl, rfl, rfl⟩
 
 end Reformulation.F1.D2.Rollups.Coalgebraic
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F1.D2.Rollups.Coalgebraic.coalgebraic_inheritance' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.Coalgebraic.coalgebraic_inheritance

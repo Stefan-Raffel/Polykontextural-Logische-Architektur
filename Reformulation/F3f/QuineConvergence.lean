@@ -43,3 +43,12 @@ theorem quine_convergence_stage_1 (s : Stage 1) :
   s.initialConfig_at_stage_1 rfl
 
 end Reformulation.F3f
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3f.quine_convergence_stage_1' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3f.quine_convergence_stage_1

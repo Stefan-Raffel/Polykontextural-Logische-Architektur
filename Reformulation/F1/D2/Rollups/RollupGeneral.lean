@@ -81,3 +81,12 @@ def rollupDoubleValuation_family (rdv : RollupDoubleValuation) :
   rdv.layer2.family
 
 end Reformulation.F1.D2.Rollups.RollupGeneral
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F1.D2.Rollups.RollupGeneral.layer2_parent_in_double_valuation' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F1.D2.Rollups.RollupGeneral.layer2_parent_in_double_valuation

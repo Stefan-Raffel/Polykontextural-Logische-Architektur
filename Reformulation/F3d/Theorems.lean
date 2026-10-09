@@ -240,3 +240,75 @@ decided by the configuration.
 -/
 
 end Reformulation.F3d
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_tau_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_tau_left
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_tau_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_tau_right
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_delta_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_delta_left
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_delta_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_delta_right
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_omega_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_omega_left
+
+/-- info: 'Reformulation.F3d.En2_modalCompanion_omega_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En2_modalCompanion_omega_right
+
+/-- info: 'Reformulation.F3d.En5_negIteration_tau' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En5_negIteration_tau
+
+/-- info: 'Reformulation.F3d.En5_negIteration_delta' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En5_negIteration_delta
+
+/-- info: 'Reformulation.F3d.En5_negIteration_omega' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.En5_negIteration_omega
+
+/-- info: 'Reformulation.F3d.NEn1_negDelta_negTau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn1_negDelta_negTau_rough
+
+/-- info: 'Reformulation.F3d.NEn2_negDelta_negOmega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn2_negDelta_negOmega_rough
+
+/-- info: 'Reformulation.F3d.NEn5a_negTau_negDelta_negOmega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn5a_negTau_negDelta_negOmega_rough
+
+/-- info: 'Reformulation.F3d.NEn5b_negDelta_negOmega_negTau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn5b_negDelta_negOmega_negTau_rough
+
+/-- info: 'Reformulation.F3d.NEn5c_negDelta_negTau_negOmega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn5c_negDelta_negTau_negOmega_rough
+
+/-- info: 'Reformulation.F3d.NEn5d_negOmega_negDelta_negTau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEn5d_negOmega_negDelta_negTau_rough
+
+/-- info: 'Reformulation.F3d.EnM1_negOmega_omega_smooth' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.EnM1_negOmega_omega_smooth
+
+/-- info: 'Reformulation.F3d.NEnM1_negTau_delta_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negTau_delta_rough
+
+/-- info: 'Reformulation.F3d.NEnM1_negTau_omega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negTau_omega_rough
+
+/-- info: 'Reformulation.F3d.NEnM1_negDelta_tau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negDelta_tau_rough
+
+/-- info: 'Reformulation.F3d.NEnM1_negDelta_omega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negDelta_omega_rough
+
+/-- info: 'Reformulation.F3d.NEnM1_negOmega_tau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negOmega_tau_rough
+
+/-- info: 'Reformulation.F3d.NEnM1_negOmega_delta_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3d.NEnM1_negOmega_delta_rough

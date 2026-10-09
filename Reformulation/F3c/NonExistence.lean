@@ -93,3 +93,33 @@ theorem omega_delta_delta_rough : IsRough [.omega, .delta, .delta] := by
   cases h
 
 end Reformulation.F3c
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3c.delta_tau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.delta_tau_rough
+
+/-- info: 'Reformulation.F3c.delta_omega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.delta_omega_rough
+
+/-- info: 'Reformulation.F3c.tau_delta_omega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.tau_delta_omega_rough
+
+/-- info: 'Reformulation.F3c.delta_omega_tau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.delta_omega_tau_rough
+
+/-- info: 'Reformulation.F3c.delta_tau_omega_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.delta_tau_omega_rough
+
+/-- info: 'Reformulation.F3c.omega_delta_tau_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.omega_delta_tau_rough
+
+/-- info: 'Reformulation.F3c.tau_delta_delta_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.tau_delta_delta_rough
+
+/-- info: 'Reformulation.F3c.omega_delta_delta_rough' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3c.omega_delta_delta_rough

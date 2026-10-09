@@ -69,3 +69,18 @@ theorem stageTransitionWithB6Trace_extends
   ⟨t.toStageTransition, rfl⟩
 
 end Reformulation.F3g
+
+/-! ## Wachen nach Weg A (9. Oktober 2026)
+
+Die übrigen öffentlichen Sätze dieser Datei, gewacht nach dem Entscheid A-VOLL
+(Satzmenge = Wachenmenge je Modul ausserhalb PathC). Die Profile sind am Anker `ca44fd5`
+gemessen; gewacht wird über den vollen Namen. -/
+
+/-- info: 'Reformulation.F3g.classI_availability_iff_initialConfig_k1' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.classI_availability_iff_initialConfig_k1
+
+/-- info: 'Reformulation.F3g.classII_classIII_for_intra_stage_configs' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.F3g.classII_classIII_for_intra_stage_configs
+
+/-- info: 'Reformulation.F3g.stageTransitionWithB6Trace_extends' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.F3g.stageTransitionWithB6Trace_extends
