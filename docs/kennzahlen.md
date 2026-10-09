@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `1830dc6` (sauber).
+Stand: Commit `8bf4a29` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -44,6 +44,7 @@ Alle mitlaufenden Gleichungen halten.
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
 | N1 roh | 164 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter |
 |   davon .lean | 115 | dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden |
+|   davon in Archiven | 13 | dieselbe Route, auf docs/rev<n>/ eingeschraenkt — eingefrorene Fassungen; N1 zaehlt sie mit, mit Absicht (Rev10-Register Z11, 9.10.2026) |
 | Zeilen mit Vorkommen | 161 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
 | Code-Vorkommen | 25 | das Token im Code, Kommentare und Strings entfernt, ueber alle verfolgten .lean — NICHT selbstzaehlend |
 |   in Dateien | 8 | dieselbe Route, je Datei |
@@ -66,8 +67,8 @@ Alle mitlaufenden Gleichungen halten.
 | geprueft (AxiomGate) | 5755 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 113 | Superlativ, meldend |
-| (A.2) eingefrorene Fassungen | 120 | duerfen nicht geheilt werden |
+| (A.1) laufender Bestand | 116 | Superlativ, meldend |
+| (A.2) eingefrorene Fassungen | 121 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
 
