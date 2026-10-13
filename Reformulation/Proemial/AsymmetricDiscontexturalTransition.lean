@@ -67,7 +67,10 @@ tragen Kern (drei Beweise) und Rand (ein `True`). -/
 structure AsymmetricDiscontexturalTransition where
   /-- Der Träger des Übergangs. -/
   Carrier : Type
-  /-- Der gerichtete Aufstiegs-Schritt (Relatum → Relator). -/
+  /-- Der gerichtete Aufstiegs-Schritt (Lesart: Relatum → Relator, C&V S. 20; ZUORDNUNG,
+      kein Satz dieser Struktur). Die Klammer stand seit `e32a4c6` (24. Juli 2026) ohne
+      Quellenangabe und kam aus der Prosa der Sonde `ProemialInversionProbe` (Erstcommit);
+      markiert am 13. Oktober 2026 (Folgezug Esel-Abhängigkeit, Posten 2). -/
   ascent : Carrier → Carrier
   /-- Der Abstieg / die Vergröberung. -/
   descent : Carrier → Carrier
