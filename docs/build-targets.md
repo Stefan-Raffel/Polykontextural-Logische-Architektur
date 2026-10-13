@@ -152,21 +152,30 @@ Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 und `TowerAsymmetryProbe`; zwoelf Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-13 Axiom-Wachen halten.
+Axiom-Wachen halten — **81** am 13. Oktober 2026 (Route: `#guard_msgs.*in #print axioms` je
+Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
+AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
+GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
+NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
+TowerAsymmetryProbe 4, KenogramForkProbe 12, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
 traegt `contextureCrossing : True`; und nicht, dass eine Sonde einen Satz belegt, den das
 Aggregat traegt. Sondierungen bleiben Sondierungen.
 
-*Warum in den Defaults:* 14 der 17 konsumieren Aggregatmodule und koennen durch eine
+*Warum in den Defaults:* 14 der 17 importieren unmittelbar ein Aggregatmodul (mittelbar
+sind es 16; nur `LawvereVorSonde` hat keines in seiner Huelle — gemessen 13. Oktober 2026
+ueber die Importhuelle) und koennen durch eine
 Aenderung *am Aggregat* brechen. `HeteroreferenzProbe` liegt seinem Gegenstand nach hier
 und nicht bei den Messwerkzeugen; ohne diesen Wechsel waeren
 `Proemial.InteractiveTransjunction` und `Proemial.SubstantialTransjunction` die einzigen
 beiden Aggregatmodule, deren Bruch von keinem default-gebauten Modul bemerkt wuerde.
 
-Die 13 Wachen dieses Targets standen seit ihrer Niederlegung geschrieben, wurden aber nie
-ausgefuehrt: `AsymmetricDiscontexturality` 7, `TowerAsymmetryProbe` 4,
-`AsymmetricDiscontexturalTransition` 2. Seit C2 erzwingt der Bau sie.
+Geschichte: die damals 13 Wachen dieses Targets (Stand C2, 28. Juli 2026:
+`AsymmetricDiscontexturality` 7, `TowerAsymmetryProbe` 4, `AsymmetricDiscontexturalTransition` 2)
+standen seit ihrer Niederlegung geschrieben, wurden aber nie ausgefuehrt. Seit C2 erzwingt
+der Bau sie; heute sind es die 81 oben.
 
 ### `F1Coalgebraic` — 2 Substanzstudien
 
