@@ -152,12 +152,12 @@ Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 und `TowerAsymmetryProbe`; zwoelf Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **81** am 13. Oktober 2026 (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **86** am 13. Oktober 2026 (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 12, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
@@ -175,7 +175,7 @@ beiden Aggregatmodule, deren Bruch von keinem default-gebauten Modul bemerkt wue
 Geschichte: die damals 13 Wachen dieses Targets (Stand C2, 28. Juli 2026:
 `AsymmetricDiscontexturality` 7, `TowerAsymmetryProbe` 4, `AsymmetricDiscontexturalTransition` 2)
 standen seit ihrer Niederlegung geschrieben, wurden aber nie ausgefuehrt. Seit C2 erzwingt
-der Bau sie; heute sind es die 81 oben.
+der Bau sie; heute sind es die 86 oben.
 
 ### `F1Coalgebraic` — 2 Substanzstudien
 
