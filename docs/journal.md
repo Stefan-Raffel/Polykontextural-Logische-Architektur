@@ -211,3 +211,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-10-13 | `64d7a32` | **Am Esel hängt nichts: Richtung und Substruktur des Turms gelten für jede Wahlregel, nicht nur für das feste Anhängen der 0.** Gemessen an allen Verbrauchern von `step`; drei Sätze in `KenogramForkProbe`, `step` ist der Sonderfall der konstanten Wahl. |
 | 2026-10-13 | `40a3c52` | **Die Klammer „Relatum → Relator“ am Feld `ascent` ist als Lesart markiert, mit C&V S. 20.** Sie stand seit dem Erstcommit ohne Quelle; keine Spec nennt eine Stelle. Nur Dokstring. |
 | 2026-10-13 | `5cb7df3` | **`build-targets.md` zählt für `Probes` wieder richtig: 81 Wachen in 17 Modulen statt „13“, und die 14 Konsumenten sind die unmittelbaren Importe (mittelbar 16).** |
+| 2026-10-13 | `e6b1f7a` | **Die Wachenzahl des Targets `Probes` steht auf dem Stand nach dem Zug: 86.** Bedingung der Abnahme. |
