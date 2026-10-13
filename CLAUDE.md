@@ -94,9 +94,15 @@ Vorabpruefung, damit der Fehlschlag vor dem Push lesbar ist:
 
 Sie schuetzt nicht — das tut der Server, der einen Nicht-Fast-Forward ohne
 --force zurueckweist. Gegen den lokalen Zweig `main` geprueft waere sie wertlos:
-er wird nicht nachgezogen und kann beliebig alt sein (am 10. August 2026 stand er
-auf 43cd0f1, 142 Commits hinter rev2). Gibt die Pruefung nicht Exit 0, anhalten
-und melden.
+er wird beim Push nicht mitbewegt und kann beliebig alt sein (am 10. August 2026 stand er
+auf 43cd0f1, 142 Commits hinter rev2; am 13. Oktober noch immer, 478 hinter
+origin/main). Gibt die Pruefung nicht Exit 0, anhalten und melden.
+
+*Nachgezogen am 13. Oktober 2026* (Hinweis des Mathematikers, Entscheid des Architekten):
+`git branch -f main origin/main`, ein reiner Fast-Forward des lokalen Zeigers - wer lokal
+`git log main` las, sah den August-Stand. Der lokale `main` bleibt trotzdem kein Massstab:
+die Pruefung oben laeuft gegen `origin/main`, und nach jedem Push genuegt
+`git branch -f main origin/main`, wenn man ihn lokal lesen will.
 
 ```sh
 git push origin rev2
