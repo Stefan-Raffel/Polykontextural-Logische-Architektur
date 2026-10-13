@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 16 | **ja** | 7,7 s |
+| `Probes` | 17 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -145,9 +145,11 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 16 Sonden und Zeugenregister
+### `Probes` — 17 Sonden und Zeugenregister
 
-15 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`.
+16 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`. (Seit dem
+13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
+und `TowerAsymmetryProbe`; zwoelf Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
 13 Axiom-Wachen halten.
@@ -156,7 +158,7 @@ Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 traegt `contextureCrossing : True`; und nicht, dass eine Sonde einen Satz belegt, den das
 Aggregat traegt. Sondierungen bleiben Sondierungen.
 
-*Warum in den Defaults:* 13 der 16 konsumieren Aggregatmodule und koennen durch eine
+*Warum in den Defaults:* 14 der 17 konsumieren Aggregatmodule und koennen durch eine
 Aenderung *am Aggregat* brechen. `HeteroreferenzProbe` liegt seinem Gegenstand nach hier
 und nicht bei den Messwerkzeugen; ohne diesen Wechsel waeren
 `Proemial.InteractiveTransjunction` und `Proemial.SubstantialTransjunction` die einzigen
