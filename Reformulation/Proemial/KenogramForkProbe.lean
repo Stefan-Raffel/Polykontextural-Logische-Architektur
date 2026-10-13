@@ -60,6 +60,9 @@ die Mächtigkeit — das wird hier nicht bewiesen, weil kein Satz es braucht.
 - F4 `choice_undetermined`: **WIEDERVERWENDUNG** (`ascent_not_determined`, nur Verweis).
 - F5 `descent_step`, `stepNew`, `descent_stepNew`, `stepNew_ne_step`: **WIEDERVERWENDUNG**
   (`descent_extend`), aktenkundig gemacht.
+- §VII `Choice`, `ascentBy`, `ascentBy_noreturn`, `ascentBy_preserves_substructure`,
+  `step_eq_ascentBy_zero` (Folgezug 13.10.): **UNSER** als Sätze, **ZUORDNUNG** als Lesart
+  (Richtung und Substruktur sind Eigenschaften des Gehens, nicht der Wahl).
 - §5: **ZUORDNUNG**. §6: **MESSUNG**.
 
 ## F5 — `step` ist eine Wahl, keine Notwendigkeit
@@ -242,13 +245,56 @@ theorem stepNew_ne_step (x : Tower) (h : x.2.val ≠ []) : (stepNew x h).2 ≠ (
   injection h2 with h3
   exact Nat.succ_ne_zero _ h3
 
+-- ============================================================
+-- §VII — Hängt etwas am Esel? Richtung und Substruktur für JEDE Wahlregel
+-- ============================================================
+
+/-! **Folgezug** (`KorpusRev2/Prompt_Folgezug_Esel_Abhaengigkeit.md`, Mathematiker, 13. Oktober
+2026). Gemessen: kein Beweis des Bestandes hängt an der festen Wahl `0` in `step`
+(`TowerAsymmetryProbe`, `TowerAsymmetry`); Merkmal 1 geht über den Rang `Sigma.fst`, der bei
+jedem `extend` steigt, Merkmal 2 über `List.prefix_append`, das für jedes angehängte `[k]`
+gilt. Nur die **Totalität** von `step` braucht eine feste Stelle, und über der leeren Folge
+ist allein `0` zulässig (`forkWidth_of_nil`). Die drei Sätze hier machen das aktenkundig: Richtung
+und Substruktur gelten für **jede** Wahlregel, und `step` ist der Sonderfall der konstanten
+Wahl `0`. **ZUORDNUNG:** Richtung und Substruktur sind Eigenschaften des Gehens, nicht der
+Wahl; der Esel (`step`) ist ein Sonderfall, kein Träger. `AsymmetricDiscontexturalTransition`
+bleibt unberührt. -/
+
+open Reformulation.Proemial.IrreversibleAdvance (NoReturn noreturn_of_strict_rank)
+
+/-- **Eine Wahlregel:** zu jedem Turmpunkt eine zulässige Stelle. (Der Name steht im eigenen
+Namensraum; der Bestand führt `Choice` sonst nirgends, Lean nur
+`Lean.Meta.Grind.EMatch.Choice`, mit anderer Bedeutung.) -/
+def Choice : Type :=
+  (x : Tower) → {k : ℕ // k ≤ x.2.val.foldr max 0 + 1 ∧ (x.2.val = [] → k = 0)}
+
+/-- **Der Aufstieg nach einer beliebigen Wahlregel.** -/
+def ascentBy (c : Choice) : Tower → Tower :=
+  fun x => ⟨x.1 + 1, extend x.2 (c x).1 (c x).2.1 (c x).2.2⟩
+
+/-- **Merkmal 1 für JEDE Wahlregel:** der Rang steigt, also keine Rückkehr. Derselbe Beweis
+wie `step_noreturn`; `k` kommt darin nicht vor. -/
+theorem ascentBy_noreturn (c : Choice) : NoReturn (ascentBy c) :=
+  noreturn_of_strict_rank (fun x => x.1) (fun x => Nat.lt_succ_self x.1)
+
+/-- **Merkmal 2 für JEDE Wahlregel:** die alte Kette bleibt Präfix. `List.prefix_append`,
+für jedes angehängte `[k]`. -/
+theorem ascentBy_preserves_substructure (c : Choice) (x : Tower) :
+    x.2.val <+: (ascentBy c x).2.val :=
+  List.prefix_append x.2.val [(c x).1]
+
+/-- **`step` ist der Sonderfall der konstanten Wahl `0`.** Definitional. -/
+theorem step_eq_ascentBy_zero :
+    step = ascentBy (fun _ => ⟨0, Nat.zero_le _, fun _ => rfl⟩) :=
+  rfl
+
 
 -- ============================================================
 -- Wachen — Axiom-Profile
 -- ============================================================
 
 /-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), pro Deklaration eingefroren,
-alle zwölf (Datei-Vollständigkeit). Kein `Classical.choice`: die Gabelung ist eine Liste,
+alle siebzehn (Datei-Vollständigkeit; zwölf der Sonde, fünf des Folgezugs §VII). Kein `Classical.choice`: die Gabelung ist eine Liste,
 nicht ein `Finset` über `Finset.range` — siehe Dateikopf. -/
 
 /-- info: 'Reformulation.Proemial.KenogramForkProbe.Fork' does not depend on any axioms -/
@@ -286,4 +332,20 @@ nicht ein `Finset` über `Finset.range` — siehe Dateikopf. -/
 
 /-- info: 'Reformulation.Proemial.KenogramForkProbe.stepNew_ne_step' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms stepNew_ne_step
+/-! Wachen des Folgezugs (§VII), gemessen 13. Oktober 2026. -/
+
+/-- info: 'Reformulation.Proemial.KenogramForkProbe.Choice' does not depend on any axioms -/
+#guard_msgs in #print axioms Choice
+
+/-- info: 'Reformulation.Proemial.KenogramForkProbe.ascentBy' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ascentBy
+
+/-- info: 'Reformulation.Proemial.KenogramForkProbe.ascentBy_noreturn' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ascentBy_noreturn
+
+/-- info: 'Reformulation.Proemial.KenogramForkProbe.ascentBy_preserves_substructure' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms ascentBy_preserves_substructure
+
+/-- info: 'Reformulation.Proemial.KenogramForkProbe.step_eq_ascentBy_zero' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms step_eq_ascentBy_zero
 end Reformulation.Proemial.KenogramForkProbe
