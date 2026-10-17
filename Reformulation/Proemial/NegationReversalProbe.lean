@@ -63,9 +63,24 @@ natürlichen Zahlen identisch ist mit der Folge der Negationen und ein ontologis
 Zugehörigkeitsverhältnis besteht zwischen einer gegebenen natürlichen Zahl n und dem
 Negationsoperator N_n". Im Bestand ist das die Zuordnung `i ↦ sw i` (`NegationCycle.sw`; als
 Permutation `NegationCycleGenerators.sw_eq_swap`, HEBUNG). Dass das Günthers „ontologisches
-Zugehörigkeitsverhältnis" **ist**, sagt kein Satz. Nichts hier ist die zweite Negation (L07-4
-bleibt offen), und nichts ist Negativsprache als Sprache — es ist die Arithmetik, die Günther ihr
-zugrunde legt.
+Zugehörigkeitsverhältnis" **ist**, sagt kein Satz.
+
+**ZUORDNUNG — zwei Achsen in einer Datei.** Günther trennt Positiv- und Negativsprache „ab ovo"
+durch orthogonale Sprachachsen (IGN S. 12). Die Positivsprache beschreibt den „Raum dessen, was
+schon da ist" (S. 3); bei den Äquivalenzen seines Kalküls geht es „um Handlungsanweisungen, also
+um abstrakte Schemata, die nur im Medium der Technik erfüllt werden können" (S. 29 f.); jeder
+Negationszyklus ist „eine spezifische Anweisung …, wie gehandelt bzw. wie etwas konstruiert werden
+kann" (S. 50); die Rede ist „vom Umtausch, vom Ordnen und von Kreisbewegungen. Alles Namen für
+Tätigkeiten" (S. 51). In diesem Sinn ist `guentherWord` ein Wort der Negativsprache: die
+Anweisung, die Viererfolge umzukehren. Die Sätze dieser Datei (`guentherWord_rev` usw.) sind
+dagegen Positivsprache: sie beschreiben, was die Anweisung bewirkt. Bei Günther ist die Äquivalenz
+`p ≡ N 1.2.3.1.2.1 p` selbst die Anweisung (S. 29 f.); er trennt nicht zwischen der Anweisung und
+der Aussage über ihre Wirkung. Lean trennt: `def guentherWord` ist die Anweisung, `theorem
+guentherWord_rev` die Beschreibung ihrer Wirkung. Diese Trennung ist Leans, nicht Günthers; dass
+beide Achsen in einer Datei stehen, ist darum eine Eigenschaft des Werkzeugs, mit der sich Günthers
+Orthogonalität (S. 12) **abbilden**, nicht beweisen lässt. Dass diese Zuordnung Günthers Unterscheidung **ist**, sagt kein Satz; dass
+die Sätze nur die Arithmetik beweisen, die er der Negativsprache zugrunde legt, bleibt richtig.
+Nichts hier ist die zweite Negation (L07-4 offen).
 
 Kein `sorry`, kein `native_decide`, kein `: True`-Feld, kein `axiom`.
 -/
