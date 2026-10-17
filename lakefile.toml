@@ -75,6 +75,7 @@ roots = [
   "Reformulation.Proemial.SubstantiellesKSondierung",
   "Reformulation.Proemial.TowerAsymmetryProbe",
   "Reformulation.Proemial.KenogramForkProbe",
+  "Reformulation.Proemial.NegationReversalProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
