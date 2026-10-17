@@ -212,3 +212,4 @@ Kein Fund ist auch eine Auskunft und wird als `—` geschrieben.
 | 2026-10-13 | `40a3c52` | **Die Klammer „Relatum → Relator“ am Feld `ascent` ist als Lesart markiert, mit C&V S. 20.** Sie stand seit dem Erstcommit ohne Quelle; keine Spec nennt eine Stelle. Nur Dokstring. |
 | 2026-10-13 | `5cb7df3` | **`build-targets.md` zählt für `Probes` wieder richtig: 81 Wachen in 17 Modulen statt „13“, und die 14 Konsumenten sind die unmittelbaren Importe (mittelbar 16).** |
 | 2026-10-13 | `e6b1f7a` | **Die Wachenzahl des Targets `Probes` steht auf dem Stand nach dem Zug: 86.** Bedingung der Abnahme. |
+| 2026-10-17 | `f80f971` | **Günthers Tafel XXII ist bestätigt: der Tausch der Enden kehrt die Wertfolge genau bei zwei und drei Werten um, sein Wort N1·2·3·1·2·1 kehrt die Viererfolge in sechs Schritten um.** Dass sechs das Minimum ist und es sechzehn solche Wörter gibt, stand schon im Bestand; die Sonde verbraucht diesen Satz, statt neu zu zählen. |
