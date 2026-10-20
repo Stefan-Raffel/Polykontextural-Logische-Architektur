@@ -34,11 +34,17 @@ tauscht die Fegerichtung (`phi_spiegel`), der Drehsinn tauscht sie und dreht das
 | `phi_sjt` | `phi true (sjt (m+1)) = sjt (m+2)` | ZUSAMMENSTELLUNG (`sjt_val`, Definition) |
 | `sjt_full_aus_phi` | `sjt_full`, neu aus `phi_full` | ZUSAMMENSTELLUNG (Induktion) |
 | `aufstieg_spiegel`, `aufstieg_dreh` (A5) | die zwei Gleichungen, beide Seiten Vollkreise | ZUSAMMENSTELLUNG |
+| §VII `full_swap` | ist `a ++ b` ein Vollkreis, so auch `b ++ a` | FOLGERUNG |
+| §VII `rotate_full` (A3) | die Drehung eines Vollkreises ist ein Vollkreis, jedes `r` | ZUSAMMENSTELLUNG (`full_swap`, `List.rotate_mod`) |
+| §VII `stations_eq_stF` | Stationen = Bilder des Ausgangs unter den Wertabbildungen der Anfangsstücke | HEBUNG (von `endpoint_eq_map` auf `stations`) |
+| §VII `janus1974_full_aus_rotate` | `janus1974_full` aus `rotate_full kreis2_full 23` | INSTANZIIERUNG |
+| §VII `stations_rotate_ne` | gedrehte Stationen ≠ Stationen des gedrehten Worts (an `kreis2`, 23) | EICHUNG |
 | `phi_sjt_zwei_gerichtet`, `phi_dreh_tafelVI4` | Eichungen | EICHUNG |
 
 Hilfssätze: `range_map_rev`, `range_reverse_map_rev`, `blocks_append`, `rotate_of_append`,
 `before_map`, `sw_castSucc`, `castSucc_ne_succ`, `sw_succ`, `inv_endpoint_parity`, `phi_val`,
-`spiegel_val`.
+`spiegel_val`; in §VII `stF` (def), `valMap_surj`, `endpoint_perm`, `origin_all`,
+`exists_map_of_perm`.
 
 **Ebene.** Die Wortidentitäten A1 und A2 stehen auf der ℕ-Ebene, wo `blocks` lebt; die
 Fin-Fassungen gehen über `map_val_inj` und `toFin_val`. A4 hebt den Schritt von `sjtN_props`
@@ -48,18 +54,28 @@ auf der ℕ-Ebene und überträgt ihn wie `sjt_full`.
 `insertLast g 0`, nicht beim Ausgang —, sondern über A1: `phi false w = spiegel (phi true
 (spiegel w))`.
 
-**Nicht gebaut: `rotate_full`** (A3, die Drehung eines Vollkreises ist ein Vollkreis). Für A5
-ist er nicht nötig: die gedrehte Seite von `aufstieg_dreh` ist gleich `dreh (phi true w)` und
-damit ein Vollkreis. Allgemein bleibt A3 offen (Figur: Umbenennung der Stellen, nicht der
-Werte). Ebenfalls nicht gebaut: die Zahlen der Vorklärung (176 Bilder, 88 Bahnen).
+**`rotate_full` (A3), nachgeholt in §VII** (Sonde nach
+`KorpusRev2/Sondierung_Rotate_Full_Prompt.md`, Mathematiker, 20. Oktober 2026). Die Stationen von
+`b ++ a` sind die von `a ++ b`, gedreht und umbenannt durch `f ↦ f ∘ valMap b` auf den
+Wertabbildungen (`full_swap`). In der Liste ist das eine Umstellung der **Stellen**: an Stelle `v`
+steht danach, was vorher an Stelle `valMap b v` stand; die Werte selbst werden nicht umbenannt.
+`aufstieg_dreh` bezieht seine zweite Komponente weiter aus der Gleichung (A5 war vor §VII
+abgenommen). Nicht gebaut: die Zahlen der Vorklärung (176 Bilder, 88 Bahnen).
 
 ## ZUORDNUNG (nur hier, in keinem Satz)
 
-IGN S. 9: Akkretivität als „Wiederholung mit Verwandlung“, aus der sich die Gegenidentität „immer
-wieder in Strukturformen höherer und höherer Akkretvität“ erneuert (Wortlaut und Schreibung im
-Kopf von `GegenidentitaetProbe`). Gelesen: der Aufstieg `phi` ist eine Operation auf allen
-Kreisen, die Gegenidentität (Spiegel) und Gegen-Drehsinn hindurchträgt — auf der höheren Stufe
-wieder als Gegenidentität und Gegen-Drehsinn, mit getauschter Anfangs-Wahl. Dass das Günthers
+IGN S. 9 (Textschicht `KorpusRev1/gunther_identitaet.pdf`, am 20. Oktober geprüft): „Billigt man
+nämlich dem Negationsprozess neben der sich immer gleichen Wiederholung in der originalgetreuen
+Abbildung des Urbilds auch noch Akkretivität, d.h. »Wiederholung mit Verwandlung« zu, dann
+entwickelt sich aus der primordialen Identität eine »Gegenidentität«. Und da die akkretive Kraft
+des Negierens unerschöpflich erscheint, erneuert sich die Gegenidentität immer wieder in
+Strukturformen höherer und höherer Akkretvität." (*Akkretvität* so in der Edition.) Marke für das
+Zitat: BESTÄTIGUNG — es steht so im Text.
+
+Gelesen (ZUORDNUNG): der Aufstieg `phi` ist eine Operation auf allen Kreisen, die
+Gegenidentität (Spiegel) und Gegen-Drehsinn hindurchträgt — auf der höheren Stufe wieder als
+Gegenidentität und Gegen-Drehsinn, mit getauschter Anfangs-Wahl. Die beiden Fegerichtungen und
+die Drehung sind die „Wiederholung", der neue Wert ist die „Verwandlung". Dass das Günthers
 Akkretivität **ist**, sagt kein Satz. Nichts hier ist die zweite Negation (L07-4 offen).
 
 Kein `sorry`, kein `native_decide`, kein `: True`-Feld, kein `axiom`.
@@ -73,6 +89,8 @@ open Reformulation.Proemial.NegationCycleSJT
 open Reformulation.Proemial.NegationCycleLength (inv inv_negate_desc inv_origin negate_nodup negate_all Before
   Before.total)
 open Reformulation.Proemial.NegationCycleTable (gerichtet)
+open Reformulation.Proemial.NegationCycleCatalog (valMap endpoint_eq_map map_eq_iff origin_perm)
+open Reformulation.Proemial.NegationCycleThreeCycle (stations_append_list endpoint_append_list)
 
 -- ============================================================
 -- §I — Der Spiegel tauscht die Fegerichtung (A1, ℕ-Ebene)
@@ -429,12 +447,190 @@ theorem phi_dreh_tafelVI4 : dreh (phi true tafelVI4) = (phi false (dreh tafelVI4
   decide
 
 -- ============================================================
+-- §VII — Die Drehung eines Vollkreises ist ein Vollkreis (A3, nachgeholt)
+-- ============================================================
+
+/-- Die Wertabbildungen der Stationen eines Worts: `id`, `sw i₁`, `sw i₂ ∘ sw i₁`, … -/
+def stF {m : ℕ} : List (Fin m) → List (Fin (m + 1) → Fin (m + 1))
+  | [] => []
+  | i :: is => id :: (stF is).map (fun f => f ∘ sw i)
+
+/-- **Die Stationen sind die Bilder einer Liste unter den Wertabbildungen** — von jedem Ausgang
+`l` aus. -/
+theorem stations_eq_stF {m : ℕ} : ∀ (u : List (Fin m)) (l : List (Fin (m + 1))),
+    stations u l = (stF u).map (fun f => l.map f)
+  | [], _ => rfl
+  | i :: is, l => by
+    show l :: stations is (negate i l) = l.map id :: ((stF is).map (fun f => f ∘ sw i)).map (fun f => l.map f)
+    rw [stations_eq_stF is, List.map_id, List.map_map]
+    congr 1
+    apply List.map_congr_left
+    intro f _
+    show (l.map (sw i)).map f = l.map (f ∘ sw i)
+    rw [List.map_map]
+
+/-- Die Wertabbildung eines Worts ist surjektiv (Verkettung von Involutionen). -/
+theorem valMap_surj {m : ℕ} : ∀ u : List (Fin m), Function.Surjective (valMap u)
+  | [] => fun y => ⟨y, rfl⟩
+  | i :: is => by
+    intro y
+    obtain ⟨x, hx⟩ := valMap_surj is y
+    exact ⟨sw i x, by show valMap is (sw i (sw i x)) = y; rw [sw_sw]; exact hx⟩
+
+/-- Ein Wort führt eine vollständige, wiederholungsfreie Folge in eine Anordnung derselben Werte. -/
+theorem endpoint_perm {m : ℕ} : ∀ (u : List (Fin m)) (l : List (Fin (m + 1))), l.Nodup → (∀ v, v ∈ l) →
+    (endpoint u l).Perm l
+  | [], _, _, _ => List.Perm.refl _
+  | i :: is, l, hnd, hall =>
+    (endpoint_perm is (negate i l) (negate_nodup i hnd) (negate_all i hall)).trans
+      (negate_perm i l hnd hall)
+
+/-- Der Ausgang enthält jeden Wert. -/
+theorem origin_all {m : ℕ} (v : Fin (m + 1)) : v ∈ origin m := by
+  show v ∈ List.finRange (m + 1); exact List.mem_finRange v
+
+/-- Jede Anordnung ist `origin.map X`. -/
+theorem exists_map_of_perm {m : ℕ} {x : List (Fin (m + 1))} (hx : x.Perm (origin m)) :
+    (origin m).map (fun v => x.getD v.val 0) = x := by
+  have hl : x.length = m + 1 := by rw [hx.length_eq]; show (List.finRange (m + 1)).length = _; rw [List.length_finRange]
+  apply List.ext_getElem
+  · rw [List.length_map, hl]; show (List.finRange (m + 1)).length = _; rw [List.length_finRange]
+  · intro n h1 h2
+    rw [List.getElem_map]
+    show x.getD ((List.finRange (m + 1))[n]'(by rw [List.length_map] at h1; exact h1)).val 0 = x[n]
+    rw [List.getElem_finRange, List.getD_eq_getElem?_getD]
+    show (x[n]?).getD 0 = x[n]
+    rw [List.getElem?_eq_getElem h2, Option.getD_some]
+
+/-- **Ist `a ++ b` ein Vollkreis, so auch `b ++ a`.** Die Stationen von `b ++ a` sind die von
+`a ++ b`, gedreht und mit `f ↦ f ∘ valMap b` umbenannt. -/
+theorem full_swap {m : ℕ} {a b : List (Fin m)} (h : IsFullCycle (a ++ b)) : IsFullCycle (b ++ a) := by
+  set G := valMap a
+  set H := valMap b
+  have hG : endpoint a (origin m) = (origin m).map G := endpoint_eq_map a _
+  have hH : endpoint b (origin m) = (origin m).map H := endpoint_eq_map b _
+  have hHG : ∀ v, H (G v) = v := by
+    have hc := h.closes
+    rw [endpoint_append_list, hG, endpoint_eq_map, List.map_map] at hc
+    have hc' : (origin m).map (H ∘ G) = (origin m).map id := by rw [List.map_id]; exact hc
+    exact (map_eq_iff origin_perm _ _).mp hc'
+  have hGH : ∀ y, G (H y) = y := by
+    intro y
+    obtain ⟨x, rfl⟩ := valMap_surj a y
+    rw [hHG]
+  -- die Funktionenlisten
+  set F := stF a ++ (stF b).map (fun f => f ∘ G) with hF
+  have hS : stations (a ++ b) (origin m) = F.map (fun f => (origin m).map f) := by
+    rw [stations_append_list, hG, stations_eq_stF, stations_eq_stF, hF, List.map_append, List.map_map]
+    congr 1
+    apply List.map_congr_left; intro f _
+    show ((origin m).map G).map f = (origin m).map (f ∘ G)
+    rw [List.map_map]
+  have hS' : stations (b ++ a) (origin m) =
+      ((F.map (fun f => f ∘ H)).rotate (stF a).length).map (fun f => (origin m).map f) := by
+    have e1 : F.map (fun f => f ∘ H) = (stF a).map (fun f => f ∘ H) ++ stF b := by
+      rw [hF, List.map_append, List.map_map]
+      congr 1
+      conv => rhs; rw [← List.map_id (stF b)]
+      apply List.map_congr_left; intro f _
+      funext y
+      show f (G (H y)) = f y
+      rw [hGH]
+    rw [e1, ← List.length_map (f := fun f => f ∘ H), List.rotate_append_length_eq,
+      stations_append_list, hH, stations_eq_stF, stations_eq_stF, List.map_append, List.map_map]
+    congr 1
+    apply List.map_congr_left; intro f _
+    show ((origin m).map H).map f = (origin m).map (f ∘ H)
+    rw [List.map_map]
+  have hnF : F.Nodup := by
+    have := h.nodup
+    rw [hS] at this
+    exact List.Nodup.of_map _ this
+  -- f ↦ f ∘ H trennt, was origin.map trennt
+  have hinj : ∀ f₁ f₂ : Fin (m + 1) → Fin (m + 1),
+      (origin m).map (f₁ ∘ H) = (origin m).map (f₂ ∘ H) → f₁ = f₂ := by
+    intro f₁ f₂ e
+    funext y
+    have := (map_eq_iff origin_perm _ _).mp e (G y)
+    show f₁ y = f₂ y
+    rw [← hHG y]
+    exact this
+  have hpermG : ((origin m).map G).Perm (origin m) := hG ▸ endpoint_perm a _ (origin_nodup m) origin_all
+  have hpermH : ((origin m).map H).Perm (origin m) := hH ▸ endpoint_perm b _ (origin_nodup m) origin_all
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [endpoint_append_list, hH, endpoint_eq_map, List.map_map]
+    have : (origin m).map (G ∘ H) = (origin m).map id :=
+      List.map_congr_left (fun y _ => hGH y)
+    rw [this, List.map_id]
+  · rw [hS']
+    apply List.Nodup.map_on _ (List.nodup_rotate.mpr (hnF.map_on ?_))
+    · intro x _ y _ e
+      have e' : (origin m).map (x) = (origin m).map y := e
+      funext v
+      exact (map_eq_iff origin_perm _ _).mp e' v
+    · intro x _ y _ e
+      exact hinj x y (by rw [e])
+  · intro l hl
+    rw [hS'] at hl
+    obtain ⟨f', hf', rfl⟩ := List.mem_map.mp hl
+    rw [List.mem_rotate] at hf'
+    obtain ⟨f, hf, rfl⟩ := List.mem_map.mp hf'
+    have hfs : (origin m).map f ∈ stations (a ++ b) (origin m) := by
+      rw [hS]; exact List.mem_map_of_mem hf
+    have hp := List.mem_permutations'.mp (h.only_arrangements _ hfs)
+    apply List.mem_permutations'.mpr
+    show ((origin m).map (f ∘ H)).Perm (origin m)
+    rw [← List.map_map]
+    exact (hpermH.map f).trans hp
+  · intro x hx
+    have hxp := List.mem_permutations'.mp hx
+    set X := fun v : Fin (m + 1) => x.getD v.val 0
+    have hX : (origin m).map X = x := exists_map_of_perm hxp
+    have hY : ((origin m).map (X ∘ G)).Perm (origin m) := by
+      rw [← List.map_map]
+      exact (hpermG.map X).trans (hX ▸ hxp)
+    have hYs := h.all_arrangements _ (List.mem_permutations'.mpr hY)
+    rw [hS] at hYs
+    obtain ⟨f, hf, hfe⟩ := List.mem_map.mp hYs
+    have hfX : ∀ v, f v = (X ∘ G) v := (map_eq_iff origin_perm _ _).mp hfe
+    rw [hS']
+    refine List.mem_map.mpr ⟨f ∘ H, List.mem_rotate.mpr (List.mem_map_of_mem hf), ?_⟩
+    rw [← hX]
+    apply List.map_congr_left
+    intro y _
+    show f (H y) = X y
+    rw [hfX, Function.comp_apply, hGH]
+/-- (A3) **Die Drehung eines Vollkreises ist ein Vollkreis**, für jede Wertzahl und jedes `r`. -/
+theorem rotate_full {m : ℕ} {w : List (Fin m)} (h : IsFullCycle w) (r : ℕ) :
+    IsFullCycle (w.rotate r) := by
+  rcases Nat.eq_zero_or_pos w.length with h0 | hpos
+  · have hw : w = [] := List.length_eq_zero_iff.mp h0
+    subst hw
+    rw [List.rotate_nil]
+    exact h
+  · rw [← List.rotate_mod, List.rotate_eq_drop_append_take (Nat.mod_lt _ hpos).le]
+    have e := List.take_append_drop (r % w.length) w
+    rw [← e] at h
+    exact full_swap h
+
+/-- `janus1974_full` als Instanz: Janus' Kreis ist `kreis2`, um 23 gedreht. -/
+theorem janus1974_full_aus_rotate : IsFullCycle janus1974 :=
+  janus1974_rotate ▸ rotate_full kreis2_full 23
+
+/-- Eichung: die Stationen des gedrehten Worts sind **nicht** die gedrehten Stationen — sie sind
+deren Umbenennung (`full_swap`). -/
+theorem stations_rotate_ne :
+    stations (kreis2.rotate 23) (origin 3) ≠ (stations kreis2 (origin 3)).rotate 23 := by
+  decide +kernel
+
+-- ============================================================
 -- Wachen — Axiom-Profile
 -- ============================================================
 
-/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), alle 27 Deklarationen. Kein
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), alle 37 Deklarationen (27, dazu 10 aus §VII). Kein
 `Classical.choice`: kein `full_length` (A0 über `inv`), kein offenes `simp` (ein erster
-`blocks_drehN` mit `simp at h` in den unmöglichen Fällen zog Choice). -/
+`blocks_drehN` mit `simp at h` in den unmöglichen Fällen zog Choice); in §VII nicht
+`List.getD_eq_getElem`, das Choice trägt, sondern `getD_eq_getElem?_getD`. -/
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.range_map_rev' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms range_map_rev
@@ -516,4 +712,33 @@ theorem phi_dreh_tafelVI4 : dreh (phi true tafelVI4) = (phi false (dreh tafelVI4
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_dreh_tafelVI4' depends on axioms: [propext] -/
 #guard_msgs in #print axioms phi_dreh_tafelVI4
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.stF' does not depend on any axioms -/
+#guard_msgs in #print axioms stF
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.stations_eq_stF' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms stations_eq_stF
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.valMap_surj' depends on axioms: [propext] -/
+#guard_msgs in #print axioms valMap_surj
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.endpoint_perm' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms endpoint_perm
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.origin_all' depends on axioms: [propext] -/
+#guard_msgs in #print axioms origin_all
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.exists_map_of_perm' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms exists_map_of_perm
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.full_swap' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms full_swap
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.rotate_full' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms rotate_full
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.janus1974_full_aus_rotate' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms janus1974_full_aus_rotate
+
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.stations_rotate_ne' depends on axioms: [propext] -/
+#guard_msgs in #print axioms stations_rotate_ne
 end Reformulation.Proemial.AkkretivitaetsBruecke
