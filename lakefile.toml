@@ -76,6 +76,7 @@ roots = [
   "Reformulation.Proemial.TowerAsymmetryProbe",
   "Reformulation.Proemial.KenogramForkProbe",
   "Reformulation.Proemial.NegationReversalProbe",
+  "Reformulation.Proemial.GegenidentitaetProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
