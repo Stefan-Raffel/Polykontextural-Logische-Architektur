@@ -78,6 +78,7 @@ roots = [
   "Reformulation.Proemial.NegationReversalProbe",
   "Reformulation.Proemial.GegenidentitaetProbe",
   "Reformulation.Proemial.SpiegelfesteAnordnungen",
+  "Reformulation.Proemial.AkkretivitaetsBruecke",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 

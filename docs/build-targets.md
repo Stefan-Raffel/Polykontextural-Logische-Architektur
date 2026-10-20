@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 20 | **ja** | 7,7 s |
+| `Probes` | 21 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -145,32 +145,33 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 20 Sonden und Zeugenregister
+### `Probes` — 21 Sonden und Zeugenregister
 
-19 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`. (Seit dem
+20 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`. (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
 `Proemial/NegationReversalProbe.lean`, konsumiert `NegationCycleLength`; elf Wachen. Seit dem
 20. Oktober 2026 `Proemial/GegenidentitaetProbe.lean`, konsumiert `NegationCycleThreeCycle`;
 sechsundzwanzig Wachen, mit dem Folgezug §VI am selben Tag einundvierzig. Seit dem
 20. Oktober 2026 auch `Proemial/SpiegelfesteAnordnungen.lean`, konsumiert `GegenidentitaetProbe`
-und `NegationCycleSJT`; neunundzwanzig Wachen.)
+und `NegationCycleSJT`; neunundzwanzig Wachen. Ebenso `Proemial/AkkretivitaetsBruecke.lean`,
+konsumiert `GegenidentitaetProbe` und `NegationCycleSJT`; siebenundzwanzig Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **167** am 20. Oktober 2026 (nach `SpiegelfesteAnordnungen`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **194** am 20. Oktober 2026 (nach `AkkretivitaetsBruecke`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 27, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
 traegt `contextureCrossing : True`; und nicht, dass eine Sonde einen Satz belegt, den das
 Aggregat traegt. Sondierungen bleiben Sondierungen.
 
-*Warum in den Defaults:* 17 der 20 importieren unmittelbar ein Aggregatmodul (mittelbar
-sind es 19; nur `LawvereVorSonde` hat keines in seiner Huelle — gemessen 13. Oktober 2026,
+*Warum in den Defaults:* 18 der 21 importieren unmittelbar ein Aggregatmodul (mittelbar
+sind es 20; nur `LawvereVorSonde` hat keines in seiner Huelle — gemessen 13. Oktober 2026,
 nachgefuehrt 20. Oktober
 ueber die Importhuelle) und koennen durch eine
 Aenderung *am Aggregat* brechen. `HeteroreferenzProbe` liegt seinem Gegenstand nach hier
@@ -181,7 +182,7 @@ beiden Aggregatmodule, deren Bruch von keinem default-gebauten Modul bemerkt wue
 Geschichte: die damals 13 Wachen dieses Targets (Stand C2, 28. Juli 2026:
 `AsymmetricDiscontexturality` 7, `TowerAsymmetryProbe` 4, `AsymmetricDiscontexturalTransition` 2)
 standen seit ihrer Niederlegung geschrieben, wurden aber nie ausgefuehrt. Seit C2 erzwingt
-der Bau sie; heute sind es die 167 oben.
+der Bau sie; heute sind es die 194 oben.
 
 ### `F1Coalgebraic` — 2 Substanzstudien
 
