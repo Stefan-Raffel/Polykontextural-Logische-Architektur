@@ -76,16 +76,60 @@ kein Widerspruch, denn dort ist beides dasselbe:
 | `vert_spiegel` | FOLGERUNG (über `count_map_rev`) | BESTÄTIGUNG der Gruppierung (S. 43) |
 | `vert_dreh` | ZUSAMMENSTELLUNG (`List.count_reverse`) | — |
 | `gerichtet_getrennt`, `bahnen_zweiundzwanzig`, `familien_zahlen` | EICHUNG über die 88 | — |
+| §VI `bahn_ununterscheidbar` | ZUSAMMENSTELLUNG (aus den zwei Voraussetzungen; der Gehalt ist die Form) | — |
+| §VI `bahn_drei_spiegel_genuegt` | ZUSAMMENSTELLUNG (`spiegel_eq_dreh_three`) | — |
+| §VI `tafelVI_ununterscheidbar'` | UMBENENNUNG (Beweisterm `tafelVI_ununterscheidbar`) | — |
+| §VI `hasFar_spiegel`, `altN2_spiegel` | FOLGERUNG (jedes Wort) | — |
+| §VI `hasFar_dreh`, `altN2_dreh` | ZUSAMMENSTELLUNG (`mem_gerichtet` und die Eichung) | — |
+| §VI `guentherFamilie1_spiegel`, `…_dreh`, `vert_spiegel_symm` | ZUSAMMENSTELLUNG (`vert_spiegel`, `vert_dreh`) | BESTÄTIGUNG der Gruppierung (S. 43) |
+| §VI `gerichtet_dreh_praedikate`, `familie_5_9_10_subjektiv` | EICHUNG über die 88 | — |
 
 Hilfssätze, gewacht wie alle Deklarationen: `map_rev_map_rev`, `negate_map_rev`,
 `stations_map_rev`, `stations_reverse_values` (die zwei Gegenstücke zu `endpoint_map_rev` und
 `endpoint_reverse_values` für `stations`), `stationSpiegel*`, `stations_spiegel`,
-`count_map_rev`.
+`count_map_rev`; in §VI `far_rev`, `getD_rev_eq_one`.
 
 **Was die 22 nicht ist (§12 Regel 11).** Dass die 88 gerichteten Kreise in 22 Bahnen zerfallen,
 erzwingt `bahn_vier`: jede Bahn hat vier Elemente, und `gerichtet` ist unter Spiegel und
 Drehsinn abgeschlossen (`mirror_gerichtet`, `reverse_full`), also 88 = 22 · 4. Die Eichung
 prüft die Rechnung, sie ist kein zusätzliches Indiz.
+
+## §VI — die Bahn und die Prädikate, die sie nicht trennen (Folgezug, 20. Oktober 2026)
+
+Nach `KorpusRev2/Prompt_Folgezug_Bahn_Ununterscheidbarkeit.md` (Mathematiker, auf Anordnung des
+Architekten). `bahn_ununterscheidbar`: ein Prädikat, das Spiegel und Drehsinn respektiert, ist auf
+der ganzen Bahn konstant, für jede Wertzahl. Bei drei Werten genügt der Spiegel allein
+(`bahn_drei_spiegel_genuegt`); darum kam `NegationCycle.tafelVI_ununterscheidbar` mit dem Spiegel
+aus. Der alte Satz ist **keine** Instanz des neuen — dieser verlangt zusätzlich den Drehsinn für
+jedes Wort —, sondern dessen dreiwertiger Grenzfall; `tafelVI_ununterscheidbar'` sagt ihn nur in
+der Sprache dieser Datei.
+
+Die Prädikate des Bestandes auf vier Werten, eingeordnet:
+* `hasFar` („ein entfernter Schritt", die Klasse „überall K" ist ihr Gegenteil) und `altN2`
+  („`N2` an jeder zweiten Stelle") respektieren beide — den Spiegel für jedes Wort, den
+  Drehsinn für jeden Vollkreis (der Drehsinn gilt dem Sinn nach für jedes Wort, weil `hasFar`
+  zyklisch liest; bewiesen ist nur die Vollkreis-Fassung).
+* `vert` respektiert den Drehsinn (`vert_dreh`), nicht den Spiegel: „in Familie 5-9-10" trennt
+  die Bahn (`familie_5_9_10_subjektiv`).
+* Günthers Familie „10 oder 5 / 9 / 5 oder 10" (S. 43, Tafel (18)) als Klasse
+  (`guentherFamilie1`) respektiert beide; die zwei anderen Familien sind als Verteilung
+  spiegelfest (`vert_spiegel_symm`). Günthers Zusammenfassung von 5-9-10 und 10-9-5 zu **einer**
+  Familie ist genau der Übergang von einem Prädikat, das die Bahn trennt, zu einem, das auf ihr
+  konstant ist. Günther sagt das nicht; er tut es (BESTÄTIGUNG seiner Gruppierung; der Grund ist
+  ZUORDNUNG).
+
+**ZUORDNUNG zu §VI.** Grundzüge (Grz) S. 46, nach dem Wortlaut des Architekten (die Seite liegt
+nicht im Korpus, hier nicht selbst gelesen): die Geltung eines Begriffs „für alle unter ihn
+fallenden Objekte (interobjektive Allgemeingültigkeit)" trennt sich „scharf von der Geltung des
+Begriffs für alle ihn denkenden Subjekte (intersubjektive Allgemeinheit, resp. Gewißheit)". IuG
+S. 51 (gedruckte Seite; Edition PDF-S. 73): „dass ‚Subjektivität-überhaupt', d.h. jene Sphäre, in
+der intersubjektive Allgemeinheit konstituiert ist, in Wahrheit trans-subjektiv ist" (so die
+Edition; der Druck schreibt „transsubjektiv", am Foto des Architekten, Fund-Notiz
+`KorpusRev2/Fund_Intersubjektiv_Transsubjektiv_Grz46_IuG51.md`). Gelesen: die Bahn ist das
+Objekt, das keiner ihrer Positionen gehört; ein Prädikat, das Spiegel und Drehsinn respektiert,
+heißt hier intersubjektiv allgemein, weil es keine Position von der anderen trennt. Kein Term
+„Subjekt"; dass die Bahn Günthers Transsubjektivität **ist**, sagt kein Satz — sie ist die
+Invarianzstruktur, an der sich die Unterscheidung von Grz S. 46 zeigen lässt.
 
 ## ZUORDNUNG (nur hier, in keinem Satz)
 
@@ -107,7 +151,7 @@ namespace Reformulation.Proemial.GegenidentitaetProbe
 
 open Reformulation.Proemial.NegationCycle
 open Reformulation.Proemial.NegationCycleTable (gerichtet)
-open Reformulation.Proemial.NegationCycleThreeCycle (vert mem_gerichtet)
+open Reformulation.Proemial.NegationCycleThreeCycle (vert mem_gerichtet far hasFar altN2)
 
 -- ============================================================
 -- §I — Spiegel und Drehsinn (GI0)
@@ -329,10 +373,129 @@ theorem familien_zahlen :
 
 
 -- ============================================================
+-- §VI — Die Bahn und die Prädikate, die sie nicht trennen (Folgezug, 20.10.2026)
+-- ============================================================
+
+/-- **Bahn-Ununterscheidbarkeit, jede Wertzahl.** Respektiert `f` Spiegel und Drehsinn, dann ist
+`f` auf der Bahn `{w, spiegel w, dreh w, spiegel (dreh w)}` konstant. -/
+theorem bahn_ununterscheidbar {m : ℕ} {α : Type*} (f : List (Fin m) → α)
+    (hs : ∀ w, f (spiegel w) = f w) (hd : ∀ w, f (dreh w) = f w) (w : List (Fin m)) :
+    f (spiegel w) = f w ∧ f (dreh w) = f w ∧ f (spiegel (dreh w)) = f w :=
+  ⟨hs w, hd w, (hs (dreh w)).trans (hd w)⟩
+
+/-- **Drei Werte: der Spiegel genügt.** Auf einem dreiwertigen Vollkreis folgt die Gleichheit
+unter dem Drehsinn aus der unter dem Spiegel (`spiegel_eq_dreh_three`) — darum braucht
+`tafelVI_ununterscheidbar` nur den Spiegel. -/
+theorem bahn_drei_spiegel_genuegt {α : Type*} (f : List (Fin 2) → α)
+    (hs : ∀ w, f (spiegel w) = f w) (w : List (Fin 2)) (h : IsFullCycle w) :
+    f (dreh w) = f w ∧ f (spiegel (dreh w)) = f w := by
+  have hd : f (dreh w) = f w := by rw [← spiegel_eq_dreh_three w h]; exact hs w
+  exact ⟨hd, (hs (dreh w)).trans hd⟩
+
+/-- Der alte Satz in der Sprache dieser Datei: `tafelVI_ununterscheidbar` mit `spiegel`. -/
+theorem tafelVI_ununterscheidbar' {α : Type*} (f : List (Fin 2) → α)
+    (hs : ∀ w, f (spiegel w) = f w) : f tafelVI4 = f tafelVI5 :=
+  tafelVI_ununterscheidbar f hs
+
+/-- Die Umkehr der Werte auf drei Negatoren erhält „entfernt" (`N1`, `N3`). -/
+theorem far_rev (a b : Fin 3) : far (Fin.rev a) (Fin.rev b) = far a b := by
+  revert a b; decide
+
+/-- (a) **`hasFar` respektiert den Spiegel**, für jedes Wort. -/
+theorem hasFar_spiegel (w : List (Fin 3)) : hasFar (spiegel w) = hasFar w := by
+  cases w with
+  | nil => rfl
+  | cons x xs =>
+    show (((Fin.rev x :: xs.map Fin.rev) ++ [Fin.rev x]).zip
+        (((Fin.rev x :: xs.map Fin.rev) ++ [Fin.rev x]).drop 1)).any (fun p => far p.1 p.2) =
+      (((x :: xs) ++ [x]).zip (((x :: xs) ++ [x]).drop 1)).any (fun p => far p.1 p.2)
+    rw [show (Fin.rev x :: xs.map Fin.rev) ++ [Fin.rev x] = ((x :: xs) ++ [x]).map Fin.rev from
+      by rw [List.map_append, List.map_cons, List.map_cons, List.map_nil],
+      ← List.map_drop, List.zip_map, List.any_map]
+    congr 1
+    funext p
+    exact far_rev p.1 p.2
+
+/-- Für jede Option über drei Werten: „ist `N2`" ändert sich unter der Umkehr der Werte nicht. -/
+theorem getD_rev_eq_one (o : Option (Fin 3)) :
+    ((o.map Fin.rev).getD 0 == 1) = (o.getD 0 == 1) := by
+  cases o with
+  | none => rfl
+  | some a => revert a; decide
+
+/-- (b) **`altN2` respektiert den Spiegel**, für jedes Wort. -/
+theorem altN2_spiegel (w : List (Fin 3)) : altN2 (spiegel w) = altN2 w := by
+  have hk : ∀ k, ((spiegel w).getD k 0 == 1) = (w.getD k 0 == 1) := by
+    intro k
+    unfold spiegel
+    rw [List.getD_eq_getElem?_getD, List.getD_eq_getElem?_getD, List.getElem?_map]
+    exact getD_rev_eq_one _
+  unfold altN2
+  rw [show (spiegel w).length = w.length from List.length_map ..]
+  congr 2 <;> (funext k; rw [hk k])
+
+/-- Eichung über die 88: `hasFar` und `altN2` respektieren den Drehsinn. -/
+theorem gerichtet_dreh_praedikate :
+    ∀ s ∈ gerichtet, hasFar (dreh s) = hasFar s ∧ altN2 (dreh s) = altN2 s := by
+  decide +kernel
+
+/-- (a) **`hasFar` respektiert den Drehsinn**, für jeden vierwertigen Vollkreis. -/
+theorem hasFar_dreh (w : List (Fin 3)) (h : IsFullCycle w) : hasFar (dreh w) = hasFar w :=
+  (gerichtet_dreh_praedikate w (mem_gerichtet w h)).1
+
+/-- (b) **`altN2` respektiert den Drehsinn**, für jeden vierwertigen Vollkreis. -/
+theorem altN2_dreh (w : List (Fin 3)) (h : IsFullCycle w) : altN2 (dreh w) = altN2 w :=
+  (gerichtet_dreh_praedikate w (mem_gerichtet w h)).2
+
+/-- (c) **„In Familie 5-9-10" trennt die Bahn:** es gibt einen Vollkreis dieser Verteilung,
+dessen Spiegel nicht in ihr liegt. -/
+theorem familie_5_9_10_subjektiv :
+    ∃ w ∈ gerichtet, vert w = (5, 9, 10) ∧ vert (spiegel w) ≠ (5, 9, 10) := by
+  decide +kernel
+
+/-- (d) Günthers erste Familie als Klasse (IGN S. 43, Tafel (18)): 10-9-5 oder 5-9-10. -/
+def guentherFamilie1 (w : List (Fin 3)) : Bool :=
+  decide (vert w = (5, 9, 10) ∨ vert w = (10, 9, 5))
+
+/-- (d) **Günthers erste Familie respektiert den Spiegel**, für jedes Wort. -/
+theorem guentherFamilie1_spiegel (w : List (Fin 3)) :
+    guentherFamilie1 (spiegel w) = guentherFamilie1 w := by
+  unfold guentherFamilie1
+  rw [vert_spiegel]
+  obtain ⟨a, b, c⟩ := vert w
+  apply decide_eq_decide.mpr
+  show (c, b, a) = (5, 9, 10) ∨ (c, b, a) = (10, 9, 5) ↔
+    (a, b, c) = (5, 9, 10) ∨ (a, b, c) = (10, 9, 5)
+  constructor
+  · rintro (h | h)
+    · injection h with h1 h2; injection h2 with h2 h3; subst h1 h2 h3; exact Or.inr rfl
+    · injection h with h1 h2; injection h2 with h2 h3; subst h1 h2 h3; exact Or.inl rfl
+  · rintro (h | h)
+    · injection h with h1 h2; injection h2 with h2 h3; subst h1 h2 h3; exact Or.inr rfl
+    · injection h with h1 h2; injection h2 with h2 h3; subst h1 h2 h3; exact Or.inl rfl
+
+/-- (d) **Günthers erste Familie respektiert den Drehsinn**, für jedes Wort. -/
+theorem guentherFamilie1_dreh (w : List (Fin 3)) :
+    guentherFamilie1 (dreh w) = guentherFamilie1 w := by
+  unfold guentherFamilie1
+  rw [vert_dreh]
+
+/-- (d) **Eine an den Enden symmetrische Verteilung ist spiegelfest** — Günthers zweite und
+dritte Familie, 9-6-9 und 6-12-6, sind es als Verteilung. -/
+theorem vert_spiegel_symm (w : List (Fin 3)) (h : (vert w).1 = (vert w).2.2) :
+    vert (spiegel w) = vert w := by
+  rw [vert_spiegel]
+  rcases hv : vert w with ⟨a, b, c⟩
+  rw [hv] at h
+  have h' : a = c := h
+  show (c, b, a) = (a, b, c)
+  rw [h']
+
+-- ============================================================
 -- Wachen — Axiom-Profile
 -- ============================================================
 
-/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), alle 26 Deklarationen. Kein
+/-! **Wachen.** Ist-Ausgabe des grünen Builds (v4.30.0-rc2), alle 41 Deklarationen (26 der Sonde, 15 aus §VI). Kein
 `Classical.choice`: Listenrechnung mit `rw`, ohne offenes `simp`; `decide +kernel` nur über
 konkrete Listen (`gerichtet`). -/
 
@@ -413,4 +576,48 @@ konkrete Listen (`gerichtet`). -/
 
 /-- info: 'Reformulation.Proemial.GegenidentitaetProbe.familien_zahlen' depends on axioms: [propext] -/
 #guard_msgs in #print axioms familien_zahlen
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.bahn_ununterscheidbar' does not depend on any axioms -/
+#guard_msgs in #print axioms bahn_ununterscheidbar
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.bahn_drei_spiegel_genuegt' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms bahn_drei_spiegel_genuegt
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.tafelVI_ununterscheidbar'' depends on axioms: [propext] -/
+#guard_msgs in #print axioms tafelVI_ununterscheidbar'
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.far_rev' does not depend on any axioms -/
+#guard_msgs in #print axioms far_rev
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.hasFar_spiegel' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms hasFar_spiegel
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.getD_rev_eq_one' depends on axioms: [propext] -/
+#guard_msgs in #print axioms getD_rev_eq_one
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.altN2_spiegel' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms altN2_spiegel
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.gerichtet_dreh_praedikate' depends on axioms: [propext] -/
+#guard_msgs in #print axioms gerichtet_dreh_praedikate
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.hasFar_dreh' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms hasFar_dreh
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.altN2_dreh' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms altN2_dreh
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.familie_5_9_10_subjektiv' depends on axioms: [propext] -/
+#guard_msgs in #print axioms familie_5_9_10_subjektiv
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.guentherFamilie1' depends on axioms: [propext] -/
+#guard_msgs in #print axioms guentherFamilie1
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.guentherFamilie1_spiegel' depends on axioms: [propext] -/
+#guard_msgs in #print axioms guentherFamilie1_spiegel
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.guentherFamilie1_dreh' depends on axioms: [propext] -/
+#guard_msgs in #print axioms guentherFamilie1_dreh
+
+/-- info: 'Reformulation.Proemial.GegenidentitaetProbe.vert_spiegel_symm' depends on axioms: [propext] -/
+#guard_msgs in #print axioms vert_spiegel_symm
 end Reformulation.Proemial.GegenidentitaetProbe
