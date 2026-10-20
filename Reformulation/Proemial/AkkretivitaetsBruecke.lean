@@ -1,4 +1,4 @@
-import Reformulation.Proemial.GegenidentitaetProbe   -- spiegel, dreh, spiegel_full; über ThreeCycle: inv, gerichtet
+import Reformulation.Proemial.GegenidentitaetProbe   -- umkehr, dreh, umkehr_full; über ThreeCycle: inv, gerichtet
 import Reformulation.Proemial.NegationCycleSJT       -- blocks, stations_blocks, die Brücke ℕ ↔ Fin
 import Mathlib.Data.List.Rotate                      -- List.rotate
 
@@ -9,13 +9,13 @@ STANDALONE, NICHT im Aggregat; Target `Probes`. AxiomGate unberührt. Sonde nach
 `KorpusRev2/Sondierung_Akkretivitaets_Bruecke_Prompt.md` (Mathematiker, 20. Oktober 2026) und
 der Rechnung `KorpusRev2/Vorklaerung_Akkretivitaets_Bruecke_Rechnung.md`. Konsumiert
 `NegationCycleSJT` (`blocks`, `stations_blocks`, die Brücke ℕ ↔ Fin), `NegationCycleLength`
-(`inv`, `inv_negate_desc`) und `GegenidentitaetProbe` (`spiegel`, `dreh`, `spiegel_full`);
+(`inv`, `inv_negate_desc`) und `GegenidentitaetProbe` (`umkehr`, `dreh`, `umkehr_full`);
 ändert nichts davon, auch nicht `sjtN_props`.
 
 **Der Ertrag in einem Satz.** Die SJT-Rekursion des Bestandes, `Φ_true = phi true`, ist eine
 Operation auf **allen** Vollkreisen, nicht nur die Rekursion einer besonderen Folge
-(`phi_full`, `phi_false_full`), und sie trägt Spiegel und Drehsinn hindurch: der Spiegel
-tauscht die Fegerichtung (`phi_spiegel`), der Drehsinn tauscht sie und dreht das Wort um
+(`phi_full`, `phi_false_full`), und sie trägt Umkehr und Drehsinn hindurch: die Umkehr
+tauscht die Fegerichtung (`phi_umkehr`), der Drehsinn tauscht sie und dreht das Wort um
 `m + 2` Stellen (`phi_dreh`).
 
 ## Die Sätze und ihre Stufen (CLAUDE.md §4)
@@ -24,16 +24,16 @@ tauscht die Fegerichtung (`phi_spiegel`), der Drehsinn tauscht sie und dreht das
 |---|---|---|
 | `full_even` (A0) | ein Vollkreis hat gerade Länge | FOLGERUNG (über `inv`; bisher nur über `full_length`, das Choice trägt) |
 | `inv_negate_parity` | jeder Negator wechselt die Parität von `inv` | FOLGERUNG (`inv_negate_desc` in beiden Richtungen) |
-| `blocks_spiegelN` (A1, ℕ) | Spiegel der Blöcke = Blöcke des Spiegels, Fegerichtung getauscht | FOLGERUNG |
+| `blocks_umkehrN` (A1, ℕ) | Umkehr der Blöcke = Blöcke der Umkehr, Fegerichtung getauscht | FOLGERUNG |
 | `blocks_drehN` (A2, ℕ) | `R ++ (Φ_true S)ʳ = Φ_false (Sʳ) ++ R`, `R = range n`, gerade Länge | FOLGERUNG |
 | `blocks_propsN` (A4, ℕ) | der Schritt von `sjtN_props` für jedes Wort mit den fünf Eigenschaften | HEBUNG |
 | `phi_full` (A4) | `phi true` hebt jeden Vollkreis | ZUSAMMENSTELLUNG (`blocks_propsN`, `full_even`, Brücke wie `sjt_full`) |
-| `phi_spiegel` (A1) | `spiegel (phi b w) = phi (!b) (spiegel w)`, jedes Wort | ZUSAMMENSTELLUNG (`blocks_spiegelN`, Brücke) |
+| `phi_umkehr` (A1) | `umkehr (phi b w) = phi (!b) (umkehr w)`, jedes Wort | ZUSAMMENSTELLUNG (`blocks_umkehrN`, Brücke) |
 | `phi_dreh` (A2) | `dreh (phi true w) = (phi false (dreh w)).rotate (m+2)`, gerade Länge | ZUSAMMENSTELLUNG (`blocks_drehN`, `rotate_of_append`) |
-| `phi_false_full` | `phi false` hebt jeden Vollkreis | ZUSAMMENSTELLUNG (A1, `spiegel_full`) |
+| `phi_false_full` | `phi false` hebt jeden Vollkreis | ZUSAMMENSTELLUNG (A1, `umkehr_full`) |
 | `phi_sjt` | `phi true (sjt (m+1)) = sjt (m+2)` | ZUSAMMENSTELLUNG (`sjt_val`, Definition) |
 | `sjt_full_aus_phi` | `sjt_full`, neu aus `phi_full` | ZUSAMMENSTELLUNG (Induktion) |
-| `aufstieg_spiegel`, `aufstieg_dreh` (A5) | die zwei Gleichungen, beide Seiten Vollkreise | ZUSAMMENSTELLUNG |
+| `aufstieg_umkehr`, `aufstieg_dreh` (A5) | die zwei Gleichungen, beide Seiten Vollkreise | ZUSAMMENSTELLUNG |
 | §VII `full_swap` | ist `a ++ b` ein Vollkreis, so auch `b ++ a` | FOLGERUNG |
 | §VII `rotate_full` (A3) | die Drehung eines Vollkreises ist ein Vollkreis, jedes `r` | ZUSAMMENSTELLUNG (`full_swap`, `List.rotate_mod`) |
 | §VII `stations_eq_stF` | Stationen = Bilder des Ausgangs unter den Wertabbildungen der Anfangsstücke | HEBUNG (von `endpoint_eq_map` auf `stations`) |
@@ -43,7 +43,7 @@ tauscht die Fegerichtung (`phi_spiegel`), der Drehsinn tauscht sie und dreht das
 
 Hilfssätze: `range_map_rev`, `range_reverse_map_rev`, `blocks_append`, `rotate_of_append`,
 `before_map`, `sw_castSucc`, `castSucc_ne_succ`, `sw_succ`, `inv_endpoint_parity`, `phi_val`,
-`spiegel_val`; in §VII `stF` (def), `valMap_surj`, `endpoint_perm`, `origin_all`,
+`umkehr_val`; in §VII `stF` (def), `valMap_surj`, `endpoint_perm`, `origin_all`,
 `exists_map_of_perm`.
 
 **Ebene.** Die Wortidentitäten A1 und A2 stehen auf der ℕ-Ebene, wo `blocks` lebt; die
@@ -51,8 +51,8 @@ Fin-Fassungen gehen über `map_val_inj` und `toFin_val`. A4 hebt den Schritt von
 auf der ℕ-Ebene und überträgt ihn wie `sjt_full`.
 
 **Φ_false** wird nicht über `stations_blocks` bewiesen — dort beginnt `b = false` bei
-`insertLast g 0`, nicht beim Ausgang —, sondern über A1: `phi false w = spiegel (phi true
-(spiegel w))`.
+`insertLast g 0`, nicht beim Ausgang —, sondern über A1: `phi false w = umkehr (phi true
+(umkehr w))`.
 
 **`rotate_full` (A3), nachgeholt in §VII** (Sonde nach
 `KorpusRev2/Sondierung_Rotate_Full_Prompt.md`, Mathematiker, 20. Oktober 2026). Die Stationen von
@@ -72,11 +72,15 @@ des Negierens unerschöpflich erscheint, erneuert sich die Gegenidentität immer
 Strukturformen höherer und höherer Akkretvität." (*Akkretvität* so in der Edition.) Marke für das
 Zitat: BESTÄTIGUNG — es steht so im Text.
 
-Gelesen (ZUORDNUNG): der Aufstieg `phi` ist eine Operation auf allen Kreisen, die
-Gegenidentität (Spiegel) und Gegen-Drehsinn hindurchträgt — auf der höheren Stufe wieder als
-Gegenidentität und Gegen-Drehsinn, mit getauschter Anfangs-Wahl. Die beiden Fegerichtungen und
-die Drehung sind die „Wiederholung", der neue Wert ist die „Verwandlung". Dass das Günthers
-Akkretivität **ist**, sagt kein Satz. Nichts hier ist die zweite Negation (L07-4 offen).
+Gelesen (ZUORDNUNG, Horistes §2, übernommen): **der Aufstieg nimmt die Gegenidentität mit — er
+fügt einen Wert hinzu, ohne Umkehr und Drehsinn zu zerstören** (`phi_umkehr`, `phi_dreh`). Das
+ist ein Satz über `phi`, keine Gleichsetzung mit Günthers Begriff: Akkretion verweist in Fn 9
+(S. 8) auf die Zahl-Aufsätze, nicht auf Kreise. Die frühere Lesart „Fegerichtungen und Drehung
+= Wiederholung, neuer Wert = Verwandlung" ist gefallen (zu generisch). Gegen-Drehsinn ist
+Günthers Wort aus Heidegger 1980, S. 20 („Drehsinn und Gegen-Drehsinn"); in IGN steht es nicht,
+dort „Gegensinn", „umgekehrter Drehsinn". Dass das Günthers Akkretivität **ist**, sagt kein
+Satz. Nichts hier ist die zweite Negation (L07-4 offen). Zum Namen `umkehr` (früher `spiegel`):
+Kopf von `GegenidentitaetProbe`, Abschnitt „Der Name".
 
 Kein `sorry`, kein `native_decide`, kein `: True`-Feld, kein `axiom`.
 -/
@@ -93,7 +97,7 @@ open Reformulation.Proemial.NegationCycleCatalog (valMap endpoint_eq_map map_eq_
 open Reformulation.Proemial.NegationCycleThreeCycle (stations_append_list endpoint_append_list)
 
 -- ============================================================
--- §I — Der Spiegel tauscht die Fegerichtung (A1, ℕ-Ebene)
+-- §I — Die Umkehr tauscht die Fegerichtung (A1, ℕ-Ebene)
 -- ============================================================
 
 /-- `range` unter `i ↦ n − 1 − i` ist `range` rückwärts. -/
@@ -108,9 +112,9 @@ theorem range_reverse_map_rev (n : ℕ) :
     (List.range n).reverse.map (fun i => n - 1 - i) = List.range n := by
   rw [List.map_reverse, range_map_rev, List.reverse_reverse]
 
-/-- (A1, ℕ) **Der Spiegel der Blöcke sind die Blöcke des Spiegels, mit getauschter
+/-- (A1, ℕ) **Die Umkehr der Blöcke ergibt die Blöcke der Umkehr, mit getauschter
 Fegerichtung.** Große Buchstaben `< n`, kleine `< n − 1`. -/
-theorem blocks_spiegelN (n : ℕ) : ∀ (S : List ℕ) (b : Bool), (∀ s ∈ S, s + 2 ≤ n) →
+theorem blocks_umkehrN (n : ℕ) : ∀ (S : List ℕ) (b : Bool), (∀ s ∈ S, s + 2 ≤ n) →
     (blocks (n + 1) b S).map (fun i => n - 1 - i) =
       blocks (n + 1) (!b) (S.map (fun s => n - 2 - s))
   | [], b, _ => by cases b <;> rfl
@@ -120,14 +124,14 @@ theorem blocks_spiegelN (n : ℕ) : ∀ (S : List ℕ) (b : Bool), (∀ s ∈ S,
     cases b with
     | true =>
       rw [blocks_true_cons, List.map_cons, Bool.not_true, blocks_false_cons, List.map_append,
-        List.map_append, range_reverse_map_rev, blocks_spiegelN n ss false hss, Bool.not_false]
+        List.map_append, range_reverse_map_rev, blocks_umkehrN n ss false hss, Bool.not_false]
       congr 2
       rw [List.map_cons, List.map_nil]
       congr 1
       omega
     | false =>
       rw [blocks_false_cons, List.map_cons, Bool.not_false, blocks_true_cons, List.map_append,
-        List.map_append, range_map_rev, blocks_spiegelN n ss true hss, Bool.not_true]
+        List.map_append, range_map_rev, blocks_umkehrN n ss true hss, Bool.not_true]
       congr 2
       rw [List.map_cons, List.map_nil]
       congr 1
@@ -361,35 +365,35 @@ theorem phi_full {m : ℕ} {w : List (Fin (m + 1))} (h : IsFullCycle w) :
 -- §V — A1 und A2 auf Negatorwörtern
 -- ============================================================
 
-theorem spiegel_val {n : ℕ} (X : List (Fin n)) :
-    (spiegel X).map Fin.val = (X.map Fin.val).map (fun i => n - 1 - i) := by
-  unfold spiegel
+theorem umkehr_val {n : ℕ} (X : List (Fin n)) :
+    (umkehr X).map Fin.val = (X.map Fin.val).map (fun i => n - 1 - i) := by
+  unfold umkehr
   rw [List.map_map, List.map_map]
   apply List.map_congr_left
   intro i _
   show n - (i.val + 1) = n - 1 - i.val
   omega
 
-/-- (A1) **Der Spiegel tauscht die Fegerichtung:** `spiegel (Φ_b w) = Φ_{¬b} (spiegel w)`, für
+/-- (A1) **Die Umkehr tauscht die Fegerichtung:** `umkehr (Φ_b w) = Φ_{¬b} (umkehr w)`, für
 jedes Wort. -/
-theorem phi_spiegel (b : Bool) {m : ℕ} (w : List (Fin (m + 1))) :
-    spiegel (phi b w) = phi (!b) (spiegel w) := by
+theorem phi_umkehr (b : Bool) {m : ℕ} (w : List (Fin (m + 1))) :
+    umkehr (phi b w) = phi (!b) (umkehr w) := by
   apply map_val_inj
-  rw [spiegel_val, phi_val, phi_val, spiegel_val]
+  rw [umkehr_val, phi_val, phi_val, umkehr_val]
   have hS : ∀ s ∈ w.map Fin.val, s + 2 ≤ m + 2 := fun s hs => by
     obtain ⟨u, _, rfl⟩ := List.mem_map.mp hs
     have := u.isLt
     omega
-  rw [blocks_spiegelN (m + 2) (w.map Fin.val) b hS]
+  rw [blocks_umkehrN (m + 2) (w.map Fin.val) b hS]
   rfl
 
-/-- (A1') **Φ_false hebt jeden Vollkreis** — über A1 und `spiegel_full`. -/
+/-- (A1') **Φ_false hebt jeden Vollkreis** — über A1 und `umkehr_full`. -/
 theorem phi_false_full {m : ℕ} {w : List (Fin (m + 1))} (h : IsFullCycle w) :
     IsFullCycle (phi false w) := by
-  have e := phi_spiegel true (spiegel w)
-  rw [spiegel_spiegel, Bool.not_true] at e
+  have e := phi_umkehr true (umkehr w)
+  rw [umkehr_umkehr, Bool.not_true] at e
   rw [← e]
-  exact spiegel_full (phi_full (spiegel_full h))
+  exact umkehr_full (phi_full (umkehr_full h))
 
 /-- (A2) **Der Drehsinn tauscht die Fegerichtung und dreht das Wort um `m + 2`**, für jedes Wort
 gerader Länge. -/
@@ -424,11 +428,11 @@ theorem sjt_full_aus_phi : ∀ m : ℕ, IsFullCycle (sjt (m + 1))
   | 0 => sjt1_full
   | m + 1 => phi_sjt m ▸ phi_full (sjt_full_aus_phi m)
 
-/-- (A5) **Der Aufstieg und der Spiegel:** `Φ_true (spiegel w) = spiegel (Φ_false w)`; beide
+/-- (A5) **Der Aufstieg und die Umkehr:** `Φ_true (umkehr w) = umkehr (Φ_false w)`; beide
 Seiten sind Vollkreise. -/
-theorem aufstieg_spiegel {m : ℕ} {w : List (Fin (m + 1))} (h : IsFullCycle w) :
-    phi true (spiegel w) = spiegel (phi false w) ∧ IsFullCycle (phi true (spiegel w)) :=
-  ⟨(phi_spiegel false w).symm, phi_full (spiegel_full h)⟩
+theorem aufstieg_umkehr {m : ℕ} {w : List (Fin (m + 1))} (h : IsFullCycle w) :
+    phi true (umkehr w) = umkehr (phi false w) ∧ IsFullCycle (phi true (umkehr w)) :=
+  ⟨(phi_umkehr false w).symm, phi_full (umkehr_full h)⟩
 
 /-- (A5) **Der Aufstieg und der Drehsinn:** `dreh (Φ_true w) = (Φ_false (dreh w)).rotate (m+2)`;
 beide Seiten sind Vollkreise. -/
@@ -638,8 +642,8 @@ theorem stations_rotate_ne :
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.range_reverse_map_rev' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms range_reverse_map_rev
 
-/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.blocks_spiegelN' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms blocks_spiegelN
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.blocks_umkehrN' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms blocks_umkehrN
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.blocks_append' depends on axioms: [propext] -/
 #guard_msgs in #print axioms blocks_append
@@ -686,11 +690,11 @@ theorem stations_rotate_ne :
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms phi_full
 
-/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.spiegel_val' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms spiegel_val
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.umkehr_val' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms umkehr_val
 
-/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_spiegel' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms phi_spiegel
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_umkehr' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms phi_umkehr
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_false_full' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms phi_false_full
@@ -701,8 +705,8 @@ theorem stations_rotate_ne :
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.sjt_full_aus_phi' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms sjt_full_aus_phi
 
-/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.aufstieg_spiegel' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms aufstieg_spiegel
+/-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.aufstieg_umkehr' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms aufstieg_umkehr
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.aufstieg_dreh' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms aufstieg_dreh
@@ -712,6 +716,7 @@ theorem stations_rotate_ne :
 
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.phi_dreh_tafelVI4' depends on axioms: [propext] -/
 #guard_msgs in #print axioms phi_dreh_tafelVI4
+
 /-- info: 'Reformulation.Proemial.AkkretivitaetsBruecke.stF' does not depend on any axioms -/
 #guard_msgs in #print axioms stF
 

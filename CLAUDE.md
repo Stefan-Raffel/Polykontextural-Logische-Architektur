@@ -761,6 +761,11 @@ Beweis `rfl` ist. Am Beweis ist nichts zu heilen; das Profil liegt in der Sache.
 von `F3c/Operators.lean` und `F3d/Negations.lean`, `KorpusRev2/Weg_A_Messung_und_Proben_Impl.md`
 Probe (a).
 
+*Beleg, keine neue Regel (20. Oktober, `AkkretivitaetsBruecke` §VII, `rotate_full`):*
+`List.getD_eq_getElem` trägt `[propext, Classical.choice, Quot.sound]` (Mathlib 83a5988); ersetzt
+durch `List.getD_eq_getElem?_getD` und `List.getElem?_eq_getElem` (beide `[propext]`) mit
+`Option.getD_some`. Fundstelle: `exists_map_of_perm`, `KorpusRev2/Befund_Sondierung_Rotate_Full.md`.
+
 **11 - Ein nicht aufgeloester Typname wird zur autogebundenen Variablen.** Unter
 `relaxedAutoImplicit` bindet der Elaborator einen Namen, den er nicht aufloest, still als
 implizite Typvariable. Jede Folgemeldung spricht dann ueber diese Variable - und zeigt auf

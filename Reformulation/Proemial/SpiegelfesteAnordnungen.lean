@@ -1,55 +1,58 @@
-import Reformulation.Proemial.GegenidentitaetProbe   -- spiegel, dreh, stationSpiegel, stations_spiegel
+import Reformulation.Proemial.GegenidentitaetProbe   -- umkehr, dreh, stationUmkehr, stations_umkehr
 import Reformulation.Proemial.NegationCycleSJT       -- origin_nodup, sjt, sjt_full
 
 /-!
-# Proemial.SpiegelfesteAnordnungen — Spiegel und Drehsinn für jede Wertzahl
+# Proemial.SpiegelfesteAnordnungen — Umkehr und Drehsinn für jede Wertzahl
+
+*Name:* spiegelfest = umkehrfest; der Modulname ist älter als die Umbenennung `spiegel` →
+`umkehr` (20. Oktober 2026; Grund im Kopf von `GegenidentitaetProbe`, Abschnitt „Der Name").
 
 STANDALONE, NICHT im Aggregat; Target `Probes`. AxiomGate unberührt. Sonde nach
 `KorpusRev2/Sondierung_Spiegelfeste_Anordnungen_Prompt.md` (Mathematiker, 20. Oktober 2026).
-Konsumiert `GegenidentitaetProbe` (`spiegel`, `dreh`, `stationSpiegel`, `stations_spiegel`) und
-den `NegationCycle`-Strang; ändert nichts davon. Quellen und Zuordnungen (Spiegel =
+Konsumiert `GegenidentitaetProbe` (`umkehr`, `dreh`, `stationUmkehr`, `stations_umkehr`) und
+den `NegationCycle`-Strang; ändert nichts davon. Quellen und Zuordnungen (Umkehr =
 Gegenidentität, Drehsinn S. 19 f., Bahn und IuG S. 51) stehen im Kopf von `GegenidentitaetProbe`;
 hier wird nicht neu gelesen.
 
-**Der Ertrag in einem Satz.** Ab vier Werten fällt der Spiegel eines Vollkreises nie mit seinem
-Drehsinn zusammen, und keiner von beiden ist je der Kreis selbst; bei drei Werten fallen Spiegel
-und Drehsinn zusammen — darum braucht Tafel VI nur den Spiegel. Was `GegenidentitaetProbe` für
+**Der Ertrag in einem Satz.** Ab vier Werten fällt die Umkehr eines Vollkreises nie mit seinem
+Drehsinn zusammen, und keiner von beiden ist je der Kreis selbst; bei drei Werten fallen Umkehr
+und Drehsinn zusammen — darum braucht Tafel VI nur die Umkehr. Was `GegenidentitaetProbe` für
 vier Werte über die Tafel der 88 zeigte, gilt jetzt für jede Wertzahl, ohne Tafel.
 
 ## Der Beweisweg
 
 Für einen Vollkreis `w` sind die Stationen `origin :: T` und die seines Drehsinns
-`origin :: T.reverse` (`stations_gestalt`, die Rechnung aus `reverse_full`); die des Spiegels
-sind `origin :: T.map φ` mit `φ = stationSpiegel` (`stations_spiegel`). Daraus:
+`origin :: T.reverse` (`stations_gestalt`, die Rechnung aus `reverse_full`); die der Umkehr
+sind `origin :: T.map φ` mit `φ = stationUmkehr` (`stations_umkehr`). Daraus:
 
-* (S3) `spiegel w = dreh w` ⇒ `T.map φ = T.reverse`. In einer duplikatfreien Liste mit dieser
+* (S3) `umkehr w = dreh w` ⇒ `T.map φ = T.reverse`. In einer duplikatfreien Liste mit dieser
   Eigenschaft gibt es höchstens ein `φ`-festes Element, nämlich in der Mitte (`fest_eindeutig`).
   Ab vier Werten liegen aber zwei verschiedene `φ`-feste Anordnungen in `T`: der Rücklauf und
   `drittes` = `[1, 0, 2, …, n−3, n−1, n−2]` (`N1` und `N_m` auf dem Ausgang, zwei disjunkte
-  Nachbartausche). Widerspruch: `spiegel_ne_dreh_all`.
+  Nachbartausche). Widerspruch: `umkehr_ne_dreh_all`.
 * (S4) `dreh w = w` ⇒ `T = T.reverse`, dasselbe Lemma mit `φ = id`: höchstens ein Element in `T`.
   Ab drei Werten liegen `N1 p` und `N2 p` darin. `dreh_ne_self_all`.
-* (S5) `spiegel w = w` ⇒ jede Station ist `φ`-fest, also jede Anordnung; aber
-  `φ (N1 p) = N_m p ≠ N1 p` ab drei Werten. `spiegel_ne_self_all`.
+* (S5) `umkehr w = w` ⇒ jede Station ist `φ`-fest, also jede Anordnung; aber
+  `φ (N1 p) = N_m p ≠ N1 p` ab drei Werten. `umkehr_ne_self_all`.
 
 Bei zwei Werten (`m = 1`) gelten S4 und S5 nicht: `[0, 0]` ist ein drehfester Vollkreis, und
-`Fin.rev` ist auf `Fin 1` die Identität. Bei drei Werten gibt es genau zwei spiegelfeste
-Anordnungen (`spiegelfest_drei`), zu wenig für S3 — das ist `spiegel_eq_dreh_three` von der
+`Fin.rev` ist auf `Fin 1` die Identität. Bei drei Werten gibt es genau zwei umkehrfeste
+Anordnungen (`umkehrfest_drei`), zu wenig für S3 — das ist `umkehr_eq_dreh_three` von der
 anderen Seite.
 
 ## Stufen (CLAUDE.md §4)
 
 | Satz | Stufe |
 |---|---|
-| `spiegel_ne_dreh_all`, `dreh_ne_self_all`, `spiegel_ne_self_all` | FOLGERUNG |
+| `umkehr_ne_dreh_all`, `dreh_ne_self_all`, `umkehr_ne_self_all` | FOLGERUNG |
 | `fest_eindeutig` | FOLGERUNG (allgemein, über jedem Typ) |
 | `stations_gestalt` | HEBUNG (die Rechnung im Beweis von `reverse_full` als Satz) |
 | `bahn_all` | ZUSAMMENSTELLUNG (S3–S5, `reverse_full`) |
-| `spiegel_ne_dreh_four_aus_all`, `bahn_vier_aus_all`, `sjt_spiegel_ne_dreh` | INSTANZIIERUNG (m = 3 bzw. `sjt_full`) |
-| `sjt_*_werte`, `spiegelfest_*` | EICHUNG |
+| `umkehr_ne_dreh_four_aus_all`, `bahn_vier_aus_all`, `sjt_umkehr_ne_dreh` | INSTANZIIERUNG (m = 3 bzw. `sjt_full`) |
+| `sjt_*_werte`, `umkehrfest_*` | EICHUNG |
 
-Hilfssätze, gewacht wie alle Deklarationen: `fest_of_map_eq`, `stationSpiegel_map`,
-`stationSpiegel_origin`, `stationSpiegel_reverse`, `mem_T`, `drittes` (def), `drittes_eq`,
+Hilfssätze, gewacht wie alle Deklarationen: `fest_of_map_eq`, `stationUmkehr_map`,
+`stationUmkehr_origin`, `stationUmkehr_reverse`, `mem_T`, `drittes` (def), `drittes_eq`,
 `drittes_perm`, `drittes_fest`, `drittes_ne`, `reverse_ne_origin`, `negate_zero_val`,
 `negate_ne_origin`.
 
@@ -58,7 +61,7 @@ Hilfssätze, gewacht wie alle Deklarationen: `fest_of_map_eq`, `stationSpiegel_m
 Länge, nur Zeugen in `T`.
 
 **Offen, nicht angefangen:** die Akkretivitäts-Brücke (IGN S. 9), ob die SJT-Rekursion
-`n → n + 1` mit Spiegel und Drehsinn verträglich ist.
+`n → n + 1` mit Umkehr und Drehsinn verträglich ist.
 
 Kein `sorry`, kein `native_decide`, kein `: True`-Feld, kein `axiom`.
 -/
@@ -108,7 +111,7 @@ theorem fest_of_map_eq {α : Type*} (f : α → α) :
     · exact fest_of_map_eq f l h'.2 x hx
 
 -- ============================================================
--- §II — Die Gestalt der Stationen unter Drehsinn und Spiegel
+-- §II — Die Gestalt der Stationen unter Drehsinn und Umkehr
 -- ============================================================
 
 /-- **Stationen eines Vollkreises und seines Drehsinns:** `origin :: T` und `origin :: T.reverse`
@@ -136,22 +139,22 @@ theorem stations_gestalt {m : ℕ} {w : List (Fin m)} (h : IsFullCycle w) :
     rw [e1, e2] at hfs
     exact List.append_cancel_right hfs
 
-/-- Der Spiegel auf den Stationen, an einer Anordnung `origin.map g`: die Wertabbildung wird mit
+/-- Die Umkehr auf den Stationen, an einer Anordnung `origin.map g`: die Wertabbildung wird mit
 der Umkehr der Werte konjugiert. -/
-theorem stationSpiegel_map {m : ℕ} (g : Fin (m + 1) → Fin (m + 1)) :
-    stationSpiegel ((origin m).map g) = (origin m).map (fun v => Fin.rev (g (Fin.rev v))) := by
-  unfold stationSpiegel
+theorem stationUmkehr_map {m : ℕ} (g : Fin (m + 1) → Fin (m + 1)) :
+    stationUmkehr ((origin m).map g) = (origin m).map (fun v => Fin.rev (g (Fin.rev v))) := by
+  unfold stationUmkehr
   rw [← List.map_reverse, ← origin_map_rev, List.map_map, List.map_map]
   rfl
 
-/-- Der Ausgang ist spiegelfest. -/
-theorem stationSpiegel_origin {m : ℕ} : stationSpiegel (origin m) = origin m := by
-  unfold stationSpiegel
+/-- Der Ausgang ist umkehrfest. -/
+theorem stationUmkehr_origin {m : ℕ} : stationUmkehr (origin m) = origin m := by
+  unfold stationUmkehr
   rw [← origin_map_rev, map_rev_map_rev]
 
-/-- Der Rücklauf ist spiegelfest. -/
-theorem stationSpiegel_reverse {m : ℕ} : stationSpiegel (origin m).reverse = (origin m).reverse := by
-  unfold stationSpiegel
+/-- Der Rücklauf ist umkehrfest. -/
+theorem stationUmkehr_reverse {m : ℕ} : stationUmkehr (origin m).reverse = (origin m).reverse := by
+  unfold stationUmkehr
   rw [List.reverse_reverse, origin_map_rev]
 
 /-- Eine Anordnung, die nicht der Ausgang ist, steht in `T`. -/
@@ -165,10 +168,10 @@ theorem mem_T {m : ℕ} {w : List (Fin m)} (h : IsFullCycle w) {T : List (List (
   · exact hT
 
 -- ============================================================
--- §III — Drei spiegelfeste Anordnungen ab vier Werten
+-- §III — Drei umkehrfeste Anordnungen ab vier Werten
 -- ============================================================
 
-/-- Die dritte spiegelfeste Anordnung: `N1` und `N_{m}` auf dem Ausgang, die zwei äußeren
+/-- Die dritte umkehrfeste Anordnung: `N1` und `N_{m}` auf dem Ausgang, die zwei äußeren
 Nachbarpaare vertauscht — `[1, 0, 2, …, n−3, n−1, n−2]`. -/
 def drittes (k : ℕ) : List (Fin (k + 4)) :=
   negate (0 : Fin (k + 3)) (negate (Fin.rev (0 : Fin (k + 3))) (origin (k + 3)))
@@ -185,8 +188,8 @@ theorem drittes_perm (k : ℕ) : drittes k ∈ (origin (k + 3)).permutations' :=
     (fun v => mem_of_perm h1 v)
   exact List.mem_permutations'.mpr (h2.trans (List.mem_permutations'.mp h1))
 
-theorem drittes_fest (k : ℕ) : stationSpiegel (drittes k) = drittes k := by
-  rw [drittes_eq, stationSpiegel_map]
+theorem drittes_fest (k : ℕ) : stationUmkehr (drittes k) = drittes k := by
+  rw [drittes_eq, stationUmkehr_map]
   apply (map_eq_iff origin_perm _ _).mpr
   intro v
   apply Fin.ext
@@ -221,15 +224,15 @@ theorem reverse_ne_origin (k : ℕ) : (origin (k + 1)).reverse ≠ origin (k + 1
   rw [Fin.val_rev, Fin.val_zero] at this
   exact absurd this (by show k + 1 + 1 - (0 + 1) ≠ 0; omega)
 
-/-- (S3) **Ab vier Werten ist für keinen Vollkreis der Spiegel der Drehsinn.** -/
-theorem spiegel_ne_dreh_all {m : ℕ} (hm : 3 ≤ m) (w : List (Fin m)) (h : IsFullCycle w) :
-    spiegel w ≠ dreh w := by
+/-- (S3) **Ab vier Werten ist für keinen Vollkreis die Umkehr der Drehsinn.** -/
+theorem umkehr_ne_dreh_all {m : ℕ} (hm : 3 ≤ m) (w : List (Fin m)) (h : IsFullCycle w) :
+    umkehr w ≠ dreh w := by
   obtain ⟨k, rfl⟩ : ∃ k, m = k + 3 := ⟨m - 3, by omega⟩
   intro e
   obtain ⟨T, hS, hD⟩ := stations_gestalt h
-  have hT : T.map stationSpiegel = T.reverse := by
-    have h1 := stations_spiegel w
-    rw [e, hD, hS, List.map_cons, stationSpiegel_origin] at h1
+  have hT : T.map stationUmkehr = T.reverse := by
+    have h1 := stations_umkehr w
+    rw [e, hD, hS, List.map_cons, stationUmkehr_origin] at h1
     exact (List.cons.inj h1).2.symm
   have hnd : T.Nodup := by
     have := h.nodup
@@ -238,10 +241,10 @@ theorem spiegel_ne_dreh_all {m : ℕ} (hm : 3 ≤ m) (w : List (Fin m)) (h : IsF
   have hd := drittes_ne k
   have h3 := mem_T h hS (drittes_perm k) hd.1
   have hr := mem_T h hS (List.mem_permutations'.mpr (List.reverse_perm _)) (reverse_ne_origin (k + 2))
-  exact hd.2 (fest_eindeutig stationSpiegel T hnd hT h3 hr (drittes_fest k) stationSpiegel_reverse)
+  exact hd.2 (fest_eindeutig stationUmkehr T hnd hT h3 hr (drittes_fest k) stationUmkehr_reverse)
 
 -- ============================================================
--- §IV — Drehsinn und Spiegel sind nie die Identität (ab drei Werten)
+-- §IV — Drehsinn und Umkehr sind nie die Identität (ab drei Werten)
 -- ============================================================
 
 theorem negate_zero_val (k : ℕ) : (sw (0 : Fin (k + 2)) 0).val = 1 := by
@@ -286,18 +289,18 @@ theorem dreh_ne_self_all {m : ℕ} (hm : 2 ≤ m) (w : List (Fin m)) (h : IsFull
   simp only [sw_val, Fin.val_zero, Fin.val_one] at this
   repeat' split_ifs at *
 
-/-- (S5) **Ab drei Werten ist kein Vollkreis spiegelfest.** Ein spiegelfestes Wort hätte nur
-spiegelfeste Stationen; `N1` auf dem Ausgang ist es nicht. -/
-theorem spiegel_ne_self_all {m : ℕ} (hm : 2 ≤ m) (w : List (Fin m)) (h : IsFullCycle w) :
-    spiegel w ≠ w := by
+/-- (S5) **Ab drei Werten ist kein Vollkreis umkehrfest.** Ein umkehrfestes Wort hätte nur
+umkehrfeste Stationen; `N1` auf dem Ausgang ist es nicht. -/
+theorem umkehr_ne_self_all {m : ℕ} (hm : 2 ≤ m) (w : List (Fin m)) (h : IsFullCycle w) :
+    umkehr w ≠ w := by
   obtain ⟨k, rfl⟩ : ∃ k, m = k + 2 := ⟨m - 2, by omega⟩
   intro e
-  have hs := stations_spiegel w
+  have hs := stations_umkehr w
   rw [e] at hs
   have hx := h.all_arrangements _ (negate_mem_perm (0 : Fin (k + 2)))
-  have hf := fest_of_map_eq stationSpiegel _ hs.symm _ hx
+  have hf := fest_of_map_eq stationUmkehr _ hs.symm _ hx
   unfold negate at hf
-  rw [stationSpiegel_map] at hf
+  rw [stationUmkehr_map] at hf
   have := congrArg Fin.val ((map_eq_iff origin_perm _ _).mp hf 0)
   simp only [Fin.val_rev, sw_val, Fin.val_zero] at this
   repeat' split_ifs at *
@@ -309,17 +312,17 @@ theorem spiegel_ne_self_all {m : ℕ} (hm : 2 ≤ m) (w : List (Fin m)) (h : IsF
 
 /-- **Ab vier Werten hat jeder Vollkreis drei verschiedene Partner** — für jede Wertzahl. -/
 theorem bahn_all {m : ℕ} (hm : 3 ≤ m) (w : List (Fin m)) (h : IsFullCycle w) :
-    [w, spiegel w, dreh w, spiegel (dreh w)].Nodup := by
+    [w, umkehr w, dreh w, umkehr (dreh w)].Nodup := by
   have hm2 : 2 ≤ m := by omega
-  have e1 : w ≠ spiegel w := (spiegel_ne_self_all hm2 w h).symm
+  have e1 : w ≠ umkehr w := (umkehr_ne_self_all hm2 w h).symm
   have e2 : w ≠ dreh w := (dreh_ne_self_all hm2 w h).symm
-  have e3 : w ≠ spiegel (dreh w) := fun e =>
-    spiegel_ne_dreh_all hm w h ((congrArg spiegel e).trans (spiegel_spiegel _))
-  have e4 : spiegel w ≠ dreh w := spiegel_ne_dreh_all hm w h
-  have e5 : spiegel w ≠ spiegel (dreh w) := fun e =>
-    dreh_ne_self_all hm2 w h (by rw [← spiegel_spiegel (dreh w), ← e, spiegel_spiegel])
-  have e6 : dreh w ≠ spiegel (dreh w) :=
-    (spiegel_ne_self_all hm2 (dreh w) (reverse_full h)).symm
+  have e3 : w ≠ umkehr (dreh w) := fun e =>
+    umkehr_ne_dreh_all hm w h ((congrArg umkehr e).trans (umkehr_umkehr _))
+  have e4 : umkehr w ≠ dreh w := umkehr_ne_dreh_all hm w h
+  have e5 : umkehr w ≠ umkehr (dreh w) := fun e =>
+    dreh_ne_self_all hm2 w h (by rw [← umkehr_umkehr (dreh w), ← e, umkehr_umkehr])
+  have e6 : dreh w ≠ umkehr (dreh w) :=
+    (umkehr_ne_self_all hm2 (dreh w) (reverse_full h)).symm
   refine List.nodup_cons.mpr ⟨?_, List.nodup_cons.mpr ⟨?_, List.nodup_cons.mpr ⟨?_,
     List.nodup_cons.mpr ⟨List.not_mem_nil, List.nodup_nil⟩⟩⟩⟩
   · intro hm'
@@ -335,52 +338,52 @@ theorem bahn_all {m : ℕ} (hm : 3 ≤ m) (w : List (Fin m)) (h : IsFullCycle w)
   · intro hm'
     exact e6 (List.mem_singleton.mp hm')
 
-/-- `GegenidentitaetProbe.spiegel_ne_dreh_four` als Instanz des allgemeinen Satzes. -/
-theorem spiegel_ne_dreh_four_aus_all (w : List (Fin 3)) (h : IsFullCycle w) :
-    spiegel w ≠ dreh w :=
-  spiegel_ne_dreh_all (le_refl 3) w h
+/-- `GegenidentitaetProbe.umkehr_ne_dreh_four` als Instanz des allgemeinen Satzes. -/
+theorem umkehr_ne_dreh_four_aus_all (w : List (Fin 3)) (h : IsFullCycle w) :
+    umkehr w ≠ dreh w :=
+  umkehr_ne_dreh_all (le_refl 3) w h
 
 /-- `GegenidentitaetProbe.bahn_vier` als Instanz des allgemeinen Satzes. -/
 theorem bahn_vier_aus_all (w : List (Fin 3)) (h : IsFullCycle w) :
-    [w, spiegel w, dreh w, spiegel (dreh w)].Nodup :=
+    [w, umkehr w, dreh w, umkehr (dreh w)].Nodup :=
   bahn_all (le_refl 3) w h
 
 /-- Zeugen außerhalb der Tafel: die SJT-Kreise ab vier Werten. -/
-theorem sjt_spiegel_ne_dreh (k : ℕ) : spiegel (sjt (k + 3)) ≠ dreh (sjt (k + 3)) :=
-  spiegel_ne_dreh_all (by omega) _ (sjt_full (k + 2))
+theorem sjt_umkehr_ne_dreh (k : ℕ) : umkehr (sjt (k + 3)) ≠ dreh (sjt (k + 3)) :=
+  umkehr_ne_dreh_all (by omega) _ (sjt_full (k + 2))
 
 
 -- ============================================================
 -- §VI — Eichungen außerhalb der Tafel
 -- ============================================================
 
-/-- Eichung: der SJT-Kreis bei drei Werten (`sjt 2`, sechs Buchstaben) — Spiegel = Drehsinn. -/
-theorem sjt_drei_werte : spiegel (sjt 2) = dreh (sjt 2) := by decide
+/-- Eichung: der SJT-Kreis bei drei Werten (`sjt 2`, sechs Buchstaben) — Umkehr = Drehsinn. -/
+theorem sjt_drei_werte : umkehr (sjt 2) = dreh (sjt 2) := by decide
 
 /-- Eichung: vier Werte (`sjt 3`, 24 Buchstaben). -/
-theorem sjt_vier_werte : spiegel (sjt 3) ≠ dreh (sjt 3) := by decide +kernel
+theorem sjt_vier_werte : umkehr (sjt 3) ≠ dreh (sjt 3) := by decide +kernel
 
 /-- Eichung: fünf Werte (`sjt 4`, 120 Buchstaben). -/
-theorem sjt_fuenf_werte : spiegel (sjt 4) ≠ dreh (sjt 4) := by decide +kernel
+theorem sjt_fuenf_werte : umkehr (sjt 4) ≠ dreh (sjt 4) := by decide +kernel
 
 /-- Eichung: sechs Werte (`sjt 5`, 720 Buchstaben). -/
-theorem sjt_sechs_werte : spiegel (sjt 5) ≠ dreh (sjt 5) := by decide +kernel
+theorem sjt_sechs_werte : umkehr (sjt 5) ≠ dreh (sjt 5) := by decide +kernel
 
-/-- Eichung: drei Werte haben genau zwei spiegelfeste Anordnungen (Ausgang und Rücklauf) — zu
-wenig für den Widerspruch in `spiegel_ne_dreh_all`; darum fallen dort Spiegel und Drehsinn
+/-- Eichung: drei Werte haben genau zwei umkehrfeste Anordnungen (Ausgang und Rücklauf) — zu
+wenig für den Widerspruch in `umkehr_ne_dreh_all`; darum fallen dort Umkehr und Drehsinn
 zusammen. -/
-theorem spiegelfest_drei :
-    ((origin 2).permutations'.filter (fun l => stationSpiegel l == l)).length = 2 := by
+theorem umkehrfest_drei :
+    ((origin 2).permutations'.filter (fun l => stationUmkehr l == l)).length = 2 := by
   decide +kernel
 
-/-- Eichung: vier Werte, acht spiegelfeste Anordnungen. -/
-theorem spiegelfest_vier :
-    ((origin 3).permutations'.filter (fun l => stationSpiegel l == l)).length = 8 := by
+/-- Eichung: vier Werte, acht umkehrfeste Anordnungen. -/
+theorem umkehrfest_vier :
+    ((origin 3).permutations'.filter (fun l => stationUmkehr l == l)).length = 8 := by
   decide +kernel
 
-/-- Eichung: fünf Werte, acht spiegelfeste Anordnungen. -/
-theorem spiegelfest_fuenf :
-    ((origin 4).permutations'.filter (fun l => stationSpiegel l == l)).length = 8 := by
+/-- Eichung: fünf Werte, acht umkehrfeste Anordnungen. -/
+theorem umkehrfest_fuenf :
+    ((origin 4).permutations'.filter (fun l => stationUmkehr l == l)).length = 8 := by
   decide +kernel
 
 -- ============================================================
@@ -400,14 +403,14 @@ die Eichungen per `decide` sind axiomfrei. -/
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stations_gestalt' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms stations_gestalt
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationSpiegel_map' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms stationSpiegel_map
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationUmkehr_map' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms stationUmkehr_map
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationSpiegel_origin' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms stationSpiegel_origin
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationUmkehr_origin' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms stationUmkehr_origin
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationSpiegel_reverse' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms stationSpiegel_reverse
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.stationUmkehr_reverse' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms stationUmkehr_reverse
 
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.mem_T' depends on axioms: [propext] -/
 #guard_msgs in #print axioms mem_T
@@ -430,8 +433,8 @@ die Eichungen per `decide` sind axiomfrei. -/
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.reverse_ne_origin' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms reverse_ne_origin
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegel_ne_dreh_all' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms spiegel_ne_dreh_all
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehr_ne_dreh_all' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms umkehr_ne_dreh_all
 
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.negate_zero_val' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms negate_zero_val
@@ -442,20 +445,20 @@ die Eichungen per `decide` sind axiomfrei. -/
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.dreh_ne_self_all' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms dreh_ne_self_all
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegel_ne_self_all' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms spiegel_ne_self_all
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehr_ne_self_all' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms umkehr_ne_self_all
 
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.bahn_all' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms bahn_all
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegel_ne_dreh_four_aus_all' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms spiegel_ne_dreh_four_aus_all
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehr_ne_dreh_four_aus_all' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms umkehr_ne_dreh_four_aus_all
 
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.bahn_vier_aus_all' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms bahn_vier_aus_all
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.sjt_spiegel_ne_dreh' depends on axioms: [propext, Quot.sound] -/
-#guard_msgs in #print axioms sjt_spiegel_ne_dreh
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.sjt_umkehr_ne_dreh' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms sjt_umkehr_ne_dreh
 
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.sjt_drei_werte' does not depend on any axioms -/
 #guard_msgs in #print axioms sjt_drei_werte
@@ -469,12 +472,12 @@ die Eichungen per `decide` sind axiomfrei. -/
 /-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.sjt_sechs_werte' does not depend on any axioms -/
 #guard_msgs in #print axioms sjt_sechs_werte
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegelfest_drei' does not depend on any axioms -/
-#guard_msgs in #print axioms spiegelfest_drei
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehrfest_drei' does not depend on any axioms -/
+#guard_msgs in #print axioms umkehrfest_drei
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegelfest_vier' does not depend on any axioms -/
-#guard_msgs in #print axioms spiegelfest_vier
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehrfest_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms umkehrfest_vier
 
-/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.spiegelfest_fuenf' does not depend on any axioms -/
-#guard_msgs in #print axioms spiegelfest_fuenf
+/-- info: 'Reformulation.Proemial.SpiegelfesteAnordnungen.umkehrfest_fuenf' does not depend on any axioms -/
+#guard_msgs in #print axioms umkehrfest_fuenf
 end Reformulation.Proemial.SpiegelfesteAnordnungen
