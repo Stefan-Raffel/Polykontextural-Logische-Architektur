@@ -44,7 +44,7 @@ können sich nicht erschöpfen (`no_exhaustion_in_periodic`); das sind zwei Figu
 Negationskreisen zeichnet Günther eine **Station** aus — die als positiv gesetzte Wertfolge (IGN
 S. 19: „das als positiv gesetzte p, also die Sequenz 1⋅2⋅3"; S. 52) —, keinen Wert; ein Wert, der
 auf dem Kreis ausgezeichnet bleibt, ist bei ihm nicht belegt (Hermeneutes, 21. Oktober 2026: IGN,
-AW77, Lille durchgesehen). Die Spur-Lesart ist eine Zuordnung des Hauses. Und die Auszeichnung ist
+*Als Wille*, Lille durchgesehen). Die Spur-Lesart ist eine Zuordnung des Hauses. Und die Auszeichnung ist
 bei Günther eine Setzung, mit mehr Werten zurücknehmbar — IGN S. 3: „Es »gibt« also keinen ersten
 Wert, der per se der erste und damit positiv wäre."
 
@@ -71,8 +71,15 @@ Günther die Vierergruppe meinte.
 
 ## Quellen
 
-AW77 = G. Günther, „Als Wille verhält der Geist sich praktisch" (Hegel-Jahrbuch 1977/78; vordenker
-2004), `KorpusRev1/gg_als_wille.pdf`, Seiten = PDF-Seiten; Textschicht am 21. Oktober geprüft.
+G. Günther, „Als Wille verhält der Geist sich praktisch", im Text *Als Wille* (wie Rev10),
+`KorpusRev1/gg_als_wille.pdf` (vordenker, Februar 2004); Textschicht am 21. Oktober geprüft.
+Seiten = PDF-Seiten der Datei, wie in Rev10 (dort „S. 4"); Druck: Hegel-Jahrbuch 1977/78,
+S. 55–59.
+
+Der Satz von den zwei Willkürwahlen steht seit Rev9 im Haus (`docs/rev9/de.html`) und ist in
+Rev10 Teil A gedruckt (Kapitel 3, Abschnitt „Der Bewegungsvorrat", „Als Wille, S. 4 der benutzten
+Datei"; Entwurf `KorpusRev2/Entwurf_2026-10-09_Rev10_TeilA_Gestalt_de.md`); neu ist hier sein
+Beweis — der Anfangspunkt als `rotate_full`, die Drehrichtung als `dreh` (Custos, 21. Oktober 2026).
 
 * PDF 4: „Da in einer heterarchischen Kreisordnung jeder Anfang eine Willkürwahl darstellt (und,
   ist einmal ein Anfangspunkt gewählt, es keinen originären Grund gibt, zu entscheiden, ob der
