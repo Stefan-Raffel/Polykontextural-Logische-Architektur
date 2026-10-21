@@ -80,6 +80,7 @@ roots = [
   "Reformulation.Proemial.SpiegelfesteAnordnungen",
   "Reformulation.Proemial.AkkretivitaetsBruecke",
   "Reformulation.Proemial.SpurProbe",
+  "Reformulation.Proemial.ReflexionskreisProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
