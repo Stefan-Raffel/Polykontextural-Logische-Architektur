@@ -40,7 +40,34 @@ das mitgeführte Datum sie wieder (`triade_spur_trennt`).
 ZUORDNUNG (Speculum, 21. Oktober 2026): die Spur als das Datum neben dem Wort, an dem man
 abliest, was ein ausgezeichneter Wert der Vierergruppe nimmt. Ausdrücklich **keine**
 Gleichsetzung mit Lilles achtem Thema: die Operationen der Gegenidentität sind Involutionen und
-können sich nicht erschöpfen (`no_exhaustion_in_periodic`); das sind zwei Figuren.
+können sich nicht erschöpfen (`no_exhaustion_in_periodic`); das sind zwei Figuren. Auf den
+Negationskreisen zeichnet Günther eine **Station** aus — die als positiv gesetzte Wertfolge (IGN
+S. 19: „das als positiv gesetzte p, also die Sequenz 1⋅2⋅3"; S. 52) —, keinen Wert; ein Wert, der
+auf dem Kreis ausgezeichnet bleibt, ist bei ihm nicht belegt (Hermeneutes, 21. Oktober 2026: IGN,
+AW77, Lille durchgesehen). Die Spur-Lesart ist eine Zuordnung des Hauses. Und die Auszeichnung ist
+bei Günther eine Setzung, mit mehr Werten zurücknehmbar — IGN S. 3: „Es »gibt« also keinen ersten
+Wert, der per se der erste und damit positiv wäre."
+
+## Zwei Wege, die Triade zu trennen
+
+Eine Auszeichnung trennt die Triade (`triade_spur_trennt`). Das ist der Weg, den Günther 1963 ging
+— BdM 1963, S. 176 (*Das Bewusstsein der Maschinen*, 2. Aufl., PDF-S. 174): „Trotzdem kommt auch
+in Tafel (VII) die reflexive Überordnung des „Ich" über das „Du" zum Ausdruck! Dies geschieht aber
+nicht vermittels der Stellenwerte, die die einzelnen zweiwertigen Systeme relativ zueinander
+besitzen, sondern durch die Reflexionsziffer, die dem „Ich"-System zugehört." — und 1977 verwarf:
+IuG S. XXVIII (Vorwort zur zweiten Auflage): „Eine Umtauschrelation aber ist kein
+Ordnungsverhältnis in dem das eine Glied je dem anderen übergeordnet werden kann." 1979 sucht er
+die Unterscheidung von Ich und Du in mehr Werten: IGN S. 20, nach dem Satz „dann bleibt Ich und Du
+in der Subjektivität nicht unterscheidbar": „Sie entsteht aus dem Fortschreiten zu höheren
+Wertstufen und damit auch zu Kreisen mit wachsenden Zahlen von Negationsorten in zyklischer
+Anordnung." Diesen Weg tragen `GegenidentitaetProbe` und `SpiegelfesteAnordnungen`:
+`umkehr_eq_dreh_three` (drei Werte: eine Gegenoperation) gegen `umkehr_ne_dreh_all` (ab vier Werten
+trennen sich Umkehr und Drehsinn ohne Auszeichnung).
+
+*Marken:* die drei Zitate BESTÄTIGUNG — am Bild (Hermeneutes, 21. Oktober 2026) und hier an der
+Textschicht gegengelesen, mit den Seitenzahlen des Drucks (BdM Fuß 176, IuG Fuß XXVIII, IGN Fuß
+20). Die Zuordnung der zwei Wege zu den Sätzen ist ZUORDNUNG, eine Zusammenschau: kein Beleg, dass
+Günther die Vierergruppe meinte.
 
 ## Quellen
 
@@ -215,7 +242,9 @@ theorem spur_umkehr_wandert {m : ℕ} (w : List (Fin m)) (d : Fin (m + 1)) :
 /-- (E1) **In der Triade trennt ein ausgezeichneter Wert wieder, was die Triade zusammenlegt:** auf
 Günthers Folge (4) ist die Umkehr der Drehsinn — aber die Umkehr schickt das Paar (Wort, 0) auf
 (Wort, `rev 0`), der Drehsinn auf (Wort, 0), und die Spuren der mitgeführten Werte sind
-verschieden. -/
+verschieden. Die Ungleichung gilt schon, weil die beiden Spuren mit verschiedenen Werten beginnen
+(`track_head`, `rev 0 ≠ 0`); sie eicht die Paar-Lesart an Günthers Folge (4), mehr nicht. Der
+Inhalt steht in `spur_umkehr_wandert` / `spur_dreh_fest`. Weg von 1963 (siehe Kopf). -/
 theorem triade_spur_trennt :
     umkehr tafelVI4 = dreh tafelVI4 ∧
       track (umkehr tafelVI4) (Fin.rev 0) ≠ track (dreh tafelVI4) 0 := by
