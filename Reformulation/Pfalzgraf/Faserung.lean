@@ -81,8 +81,8 @@ auf Paaren (freier Vektor, Quotientenwert) umfasst alle 24 Paare und ist zu grob
 BEIDE Hebungen der ungelesenen Koordinate zugleich argumentieren. Stand der Suche (Python, alle 64 Tripel,
 3.10.2026): kein Gegenbeispiel mit einer Variable bis Grösse 10 und mit zwei bis Grösse 6
 (`KorpusRev2/Vorproben_Spec_B_Teil_I_Impl.md` §5). *Damit niemand die Invariante ein zweites Mal versucht.*
-*Nachgeführt am 23. Oktober 2026:* Gebaut als `lift_total` (VKaehrProbe); der Zeuge für (T,T,T) bei 3 hat drei
-Variablen.
+*Nachgeführt am 23. Oktober 2026:* Gebaut als `lift_total` (VKaehrProbe); der Zeuge für (T,T,T) bei 3 hat dort drei
+Variablen, eine Variable genügt (`ttt_bei_eins`).
 
 ## K5 · Kaehrs Trennfall ohne Kaehrs Gültigkeit
 

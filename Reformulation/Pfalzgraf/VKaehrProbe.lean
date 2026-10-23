@@ -39,9 +39,12 @@ Ableitungen der Grösse 1, 3 und 5); `decide` prüft sie hier nach. Die Zahl 24 
 2³ · 3; dass jedes Paar erreicht wird, ist der Satz.
 
 Der Zeuge, der zählt: (T, T, T) bei Günthers 3, also wahr in jeder Faser und im Quotienten undesigniert
-(`ttt_bei_drei`, EICHUNG). Er hat drei Variablen; dass es mit weniger nicht geht, sagt die Rechnung des
-Mathematikers (kürzeste Ableitung), kein Satz hier: (D, P₂, D) aussen, (D, D, P₁) innen, mit P₁, P₂ den
-beiden Projektionen (`opP1`, `opP2`, in Faserung nicht benannt).
+(`ttt_bei_drei`, EICHUNG). Der Zeuge der Liste hat drei Variablen: (D, P₂, D) aussen, (D, D, P₁) innen, mit
+P₁, P₂ den beiden Projektionen (`opP1`, `opP2`, in Faserung nicht benannt). **Eine Variable genügt**
+(`ttt_bei_eins`, Zeuge des Mathematikers, Abnahme 23.10.): p ↦ ((T, T, T), Günthers 1), aussen (D, D, P₂) auf
+p und innen (D, P₂, D) auf N₁p, N₂N₁p. Die Rechnung des Mathematikers vom Mittag war die kürzeste Ableitung
+über frischen Blättern, nicht über Variablen. Auch hier bleibt V offen: der andere kohärente Lift von
+Günthers 1, (T, F, T), gibt frei (T, F, F); die Formel ist nicht frei gültig.
 
 Die Kohärenz gilt für die ganze Belegung, nicht nur für die Blätter: Variablen ausserhalb der Blattliste
 bekommen ((T, T, T), Günthers 1), und das ist kohärent.
@@ -68,6 +71,7 @@ lift_total_zahl              EICHUNG
 lift_total_alle              V1   jedes Paar hat einen Zeugen
 lift_paare_nodup             EICHUNG:  die 24 Paare sind paarweise verschieden
 ttt_bei_drei                 EICHUNG
+ttt_bei_eins                 EICHUNG:  dasselbe Paar mit einer Variablen (Zeuge des Mathematikers)
 gegenprobe_inkohaerent       Gegenprobe:  ein inkohärentes Blatt macht den Zeugen ungültig
 gegenprobe_unzulaessig       Gegenprobe:  ⊃⊃⊃ ist nicht zulässig
 ```
@@ -216,6 +220,14 @@ theorem lift_paare_nodup : (zeugen.map fun z => (z.x, z.g)).Nodup := by decide
 theorem ttt_bei_drei : ∃ z ∈ zeugen, z.x = (true, true, true) ∧ z.g = 2 ∧ z.blaetter.length = 3
     ∧ z.ok = true := by decide
 
+/-- (T, T, T) bei Günthers 3 mit EINER Variablen:  p = Günthers 1, Lift (T, T, T) (Mathematiker, 23.10.) -/
+def zeugeEine : Zeuge :=
+  ⟨.junk opD opD opP2 (.var 0) (.junk opD opP2 opD (.neg₁ (.var 0)) (.neg₂ (.neg₁ (.var 0)))),
+    [((true, true, true), 0)], (true, true, true), 2⟩
+
+/-- **TTT.**  Eine Variable genügt -/
+theorem ttt_bei_eins : zeugeEine.ok = true ∧ zeugeEine.blaetter.length = 1 := by decide
+
 /-- der Zeuge für (T, T, T) bei 3, Blatt 2 auf ((T, T, F), Günthers 1) gesetzt:  inkohärent -/
 def zeugeInkohaerent : Zeuge :=
   ⟨.junk opD opP2 opD (.var 0) (.junk opD opD opP1 (.var 1) (.var 2)),
@@ -258,3 +270,6 @@ end Reformulation.Pfalzgraf.VKaehrProbe
 
 /-- info: 'Reformulation.Pfalzgraf.VKaehrProbe.gegenprobe_unzulaessig' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Pfalzgraf.VKaehrProbe.gegenprobe_unzulaessig
+
+/-- info: 'Reformulation.Pfalzgraf.VKaehrProbe.ttt_bei_eins' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.VKaehrProbe.ttt_bei_eins
