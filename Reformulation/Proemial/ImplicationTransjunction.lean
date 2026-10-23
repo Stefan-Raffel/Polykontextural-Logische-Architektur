@@ -149,6 +149,43 @@ Hermeneutes, Register O2).“
 * **I2:** Einbruch und Grade sind entscheidbar, weil sie als `abbrev` über entscheidbare Aussagen definiert
   sind; jede Allaussage läuft über Listen, nicht über `Fin.fintype` (Fallstrick 10).
 
+## K9 · Meixl 1999 (nach der Textschicht)
+
+W. Meixl, Diplomarbeit Salzburg 1999, betreut von Pfalzgraf (Pfalzgraf 2004, RACSAM 98(1), S. 223: *„who worked
+on his thesis under my supervision“*). Gelesen sind Kapitel 2, 3 und die Bibliographie an der OCR-Textschicht von
+`KorpusRev1/Meixl_Werner_Diplomarbeit-Univ.Salzburg-1999.pdf`. Seiten gedruckt (PDF + 7). **Hermeneutes am Bild
+steht aus** (NF5); bis dahin gilt alles hier „nach der Textschicht“. Auswertung:
+`KorpusRev2/Auswertung_Meixl_1999_Kap2_3_Bibliographie.md`.
+
+* **Was Meixl tut.** Kapitel 3, *„Decomposing Many-valued Logics“*, zerlegt eine m-wertige Tafel in zweiwertige
+  Fasern, je eine für jedes Paar globaler Werte. Der Algorithmus (3.4, S. 36): Für jedes Teilsystem wird die
+  *„2 x 2 - submatrix“* bestimmt und durch lokale Werte ausgedrückt; das gibt *„either a classical bivariate
+  operation in the corresponding subsystem, or a suitable transjunction“*. Die Erfahrung (3.5, S. 44): *„In most
+  cases we obtain classical two-valued operations in each logical subsystem, but it can happen that we have to
+  apply the notion of so-called transjunctions“*. Und schon in 3.1 (S. 19): *„In most cases IMPLY causes problems“*.
+* **ZUORDNUNG im Vokabular, für m = 3 und Pfalzgrafs Verteilung.** Klassisch heisst bei Meixl: Die vier Zellen
+  der Untermatrix des Paares {i, j} haben Werte in {i, j}. Das ist **wörtlich** `PreservesPair f i j`
+  (NonUniformCloneBound), und „alle drei Untermatrizen klassisch, keine Transjunktion nötig“ ist wörtlich
+  `ContextureFaithful`, in derselben Paarreihenfolge. Darum steht hier kein neuer Name. Meixls Kriterium ist
+  also kontexturtreu = `treu` (`cf_treu`), genau dann ohne Transjunktion zerlegbar, wenn die Tafel die
+  Quotiententafel eines zulässigen Tripels ist (`junktional_iff`), und die Bits sind eindeutig (`ab_qop`).
+  Eine Transjunktion ist ein Einbruch (`einbruch`) oder eine Diagonalzelle ausserhalb ihres Werts.
+* **Eichung an Günthers Tafeln** (`impl_nicht_kontexturtreu`): Keine der acht Implikationen ist Meixl-klassisch,
+  die acht K/D-Tafeln sind es (`kd_einbruchfrei`). Meixls IMPLY ist eine andere Tafel (Łukasiewicz-Gestalt,
+  T/*/F); die Eichung ordnet seinen Befund Günthers Tafeln zu, sie wiederholt ihn nicht.
+* **Meixls Theorem (3.4, S. 34, ohne Nummer) ist ein anderer Satz.** Er sagt nach der Textschicht: Ordnung und
+  Verteilungsfunktion df bestimmen die Äquivalenzrelation auf den lokalen Werten eindeutig. Das ist die
+  Verklebung. Im Bestand entspricht ihr `global` / `liest` (Faserung, gesetzt, nicht bewiesen), nicht `ab_qop`,
+  das die Eindeutigkeit der lokalen OPERATIONEN bei fester Verklebung sagt. Der *„short proof“*, auf den
+  Pfalzgraf 2004 (S. 223) für das Verfahren verweist, ist nach Lage der Textschicht dessen Beweis. Richtung:
+  Meixl zerlegt (global → lokal), Faserung Z1′ setzt zusammen (lokal → global); keiner enthält den anderen.
+* **In der Textschicht nicht gefunden:** das Wort „idempotent“, die Zahl 64 / 19 683 und das „genau dann“.
+  Meixl hat die Erfahrung („in most cases“), `junktional_iff` den Satz; Rev10 O6 hatte ihn, ohne Meixl zu kennen.
+  Günther steht nicht in Meixls Bibliographie, Kaehr/Mahler 1994 schon; sein Weg zu Günther läuft über
+  Pfalzgraf 1991. Gelesen sind nur Kapitel 2, 3 und die Bibliographie.
+* **Nicht gebaut:** m > 3 und beliebige Verteilungen. Dort wäre Meixls Theorem die Vorlage (HEBUNG, Urheber
+  Meixl).
+
 ## Stufen (Ertrags-Skala, CLAUDE.md §4)
 
 ```text
@@ -167,6 +204,7 @@ tcb_dritter_grad,                   FOLGERUNG:  die ältere Transjunktion nach d
 cf_treu                             FOLGERUNG:  der Grund — Diagonale von zwei Teilsystemen gelesen, schwache Stelle von einem
 zahl                                FOLGERUNG:  64 = 2⁶, als Produkt über die Zellen
 ab_qop                              FOLGERUNG:  die Zerlegung ist eindeutig
+impl_nicht_kontexturtreu            EICHUNG:  Meixls „IMPLY causes problems“ an Günthers acht Implikationen (K9)
 treu_iff_bool, treu_qop, qop_treu, fin3_all, laenge_tafeln, laenge_mem, filter_fin3,
   zaehl, treu_stellen, rechts_passt, mem_ops, mem_fin3, ofList_ofFun
                                     Hilfssätze
@@ -556,6 +594,13 @@ theorem zahl : alle.length = 19683 ∧ (alle.filter rechts).length = 64 := by
     List.filter_congr fun t ht => rechts_passt t (laenge_mem 9 t ht)
   rw [hc]; exact (zaehl 9 stellen rfl).trans (by decide)
 
+/-! ## (K9) Meixl -/
+
+/-- **K9.** Keine der acht Implikationen ist Meixl-klassisch (`ContextureFaithful`):  jede braucht eine Transjunktion -/
+theorem impl_nicht_kontexturtreu : wahlen.all (fun l =>
+    !decide (Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful (impl l.1 l.2.1 l.2.2))) = true := by
+  decide
+
 end Reformulation.Proemial.ImplicationTransjunction
 
 /-! ## Axiom-Stand — als Regressions-Wachen gesetzt (alle Sätze des Moduls) -/
@@ -643,3 +688,6 @@ end Reformulation.Proemial.ImplicationTransjunction
 
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.zahl' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.zahl
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.impl_nicht_kontexturtreu' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.impl_nicht_kontexturtreu
