@@ -71,9 +71,9 @@ Ein Wert wird nicht in jeder Faser gelesen: Faser 1-2 liest die 3 nicht, 2-3 nic
 Kohärenz ist darum über die lesenden Fasern definiert (`kohaerent`), eine ZUORDNUNG zu Pfalzgrafs
 Restklassenabbildung.
 
-**Die Vermutung V, nicht gebaut.** *Für jede zulässige Formel folge aus der Gültigkeit im freien System die
-im Quotienten.* Die Umkehrung ist falsch (`trennfall`). V ist weder bewiesen noch widerlegt. Die naheliegende
-Invariante — *unter einer Hebung der Quotientenbelegung stimmt jede Faser, die den Quotientenwert liest, mit ihm
+**Die Vermutung V, widerlegt.** *Für jede zulässige Formel folge aus der Gültigkeit im freien System die
+im Quotienten.* Die Umkehrung ist falsch (`trennfall`). V ist widerlegt (VKaehrProbe `nicht_V`, 23.10.2026).
+Die naheliegende Invariante — *unter einer Hebung der Quotientenbelegung stimmt jede Faser, die den Quotientenwert liest, mit ihm
 überein* — **trägt nicht**. Sie fällt bei Grösse 4, an einem Junktor über p und N₁p. Der Mechanismus: Die
 zweite Faser, die das Ergebnis liest, liest ein Argument nicht, und ∧ bzw. ∨ übernehmen dessen beliebigen
 Wert. Keine der acht festen Ergänzungen der ungelesenen Koordinate rettet sie. Die abgeschlossene Relation
@@ -82,7 +82,10 @@ BEIDE Hebungen der ungelesenen Koordinate zugleich argumentieren. Stand der Such
 3.10.2026): kein Gegenbeispiel mit einer Variable bis Grösse 10 und mit zwei bis Grösse 6
 (`KorpusRev2/Vorproben_Spec_B_Teil_I_Impl.md` §5). *Damit niemand die Invariante ein zweites Mal versucht.*
 *Nachgeführt am 23. Oktober 2026:* Gebaut als `lift_total` (VKaehrProbe); der Zeuge für (T,T,T) bei 3 hat dort drei
-Variablen, eine Variable genügt (`ttt_bei_eins`).
+Variablen, eine Variable genügt (`ttt_bei_eins`). Am selben Tag widerlegt: `nicht_V`, ein Gegenbeispiel in einer
+Variablen der Grösse 27 (`gegenV`); die Suche vom 3. Oktober reichte bis Grösse 10. Bis dahin stand hier
+„nicht gebaut“ und „weder bewiesen noch widerlegt“; der Satz, ein Beweis müsse über beide Hebungen zugleich
+argumentieren, ist damit gegenstandslos.
 
 ## K5 · Kaehrs Trennfall ohne Kaehrs Gültigkeit
 
@@ -94,7 +97,7 @@ Designation, die 1 enthält.
 
 Die Transjunktionen (B5, dort Günthers Implikationen als erster Eichfall), Kaehrs Tableau (B3; seine gedruckte
 Beweisbarkeit prüft Teilsystem 3 zweimal und 2 nie — gebaut seit dem 3. Oktober 2026 in
-`Kaehr/Tableau.lean`, korrekt und vollständig für das freie System), der Generator (B4), die Vermutung V (K4).
+`Kaehr/Tableau.lean`, korrekt und vollständig für das freie System), der Generator (B4), die Vermutung V (K4; seit 23.10.2026 widerlegt in VKaehrProbe).
 
 ## K7 · Die Zulässigkeit aus ihrem Grund
 

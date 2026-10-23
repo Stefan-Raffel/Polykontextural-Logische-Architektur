@@ -161,15 +161,15 @@ konsumiert `GegenidentitaetProbe` und `NegationCycleSJT`; siebenundzwanzig Wache
 `Proemial/SpurProbe.lean`, konsumiert `GegenidentitaetProbe`; fünfzehn Wachen. Ebenso
 `Proemial/ReflexionskreisProbe.lean`, konsumiert `SpiegelfesteAnordnungen`; dreizehn Wachen. Seit dem
 23. Oktober 2026 `Pfalzgraf/VKaehrProbe.lean`, konsumiert `Kaehr.Tableau` (Aggregat); neun Wachen, mit der Auflage der
-Abnahme (`ttt_bei_eins`) zehn.)
+Abnahme (`ttt_bei_eins`) zehn, mit V2 (`nicht_V`, 23. Oktober) zwanzig.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **242** am 23. Oktober 2026 (nach `VKaehrProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **252** am 23. Oktober 2026 (nach `VKaehrProbe` V2) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 10, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`

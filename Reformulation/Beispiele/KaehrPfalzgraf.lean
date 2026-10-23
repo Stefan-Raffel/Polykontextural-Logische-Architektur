@@ -40,8 +40,9 @@ Die Antwort `quotAntwort` meldet darum zuerst „unzulässig“ und zeigt dann k
 ## K4 · Was der Leser damit kann, und was nicht
 
 An jeder eigenen Formel beide Semantiken nebeneinander sehen, den Trennfall selbst nachstellen und Kaehrs zwei
-offene Äste ablesen. **Nicht:** die Vermutung V beweisen (Faserung, K4). Die Prüfung macht V an einzelnen
-Formeln nachrechenbar, nicht allgemein.
+offene Äste ablesen. **Nicht:** V allgemein entscheiden (Faserung, K4). Die Prüfung macht V an einzelnen
+Formeln nachrechenbar, nicht allgemein. *Nachgeführt am 23. Oktober 2026:* V ist widerlegt (`nicht_V` in
+`Pfalzgraf/VKaehrProbe.lean`); das Gegenbeispiel `gegenV` lässt sich hier an beiden Semantiken nachrechnen.
 -/
 
 namespace Reformulation.Beispiele.KaehrPfalzgraf
