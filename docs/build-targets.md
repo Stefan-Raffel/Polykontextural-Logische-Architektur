@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 23 | **ja** | 7,7 s |
+| `Probes` | 24 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -145,9 +145,10 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 23 Sonden und Zeugenregister
+### `Probes` — 24 Sonden und Zeugenregister
 
-22 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`. (Seit dem
+22 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean` und
+`Pfalzgraf/VKaehrProbe.lean`. (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
 `Proemial/NegationReversalProbe.lean`, konsumiert `NegationCycleLength`; elf Wachen. Seit dem
@@ -158,24 +159,25 @@ und `NegationCycleSJT`; neunundzwanzig Wachen. Ebenso `Proemial/AkkretivitaetsBr
 konsumiert `GegenidentitaetProbe` und `NegationCycleSJT`; siebenundzwanzig Wachen, mit §VII
 (`rotate_full`) am selben Tag siebenunddreißig. Seit dem 21. Oktober 2026
 `Proemial/SpurProbe.lean`, konsumiert `GegenidentitaetProbe`; fünfzehn Wachen. Ebenso
-`Proemial/ReflexionskreisProbe.lean`, konsumiert `SpiegelfesteAnordnungen`; dreizehn Wachen.)
+`Proemial/ReflexionskreisProbe.lean`, konsumiert `SpiegelfesteAnordnungen`; dreizehn Wachen. Seit dem
+23. Oktober 2026 `Pfalzgraf/VKaehrProbe.lean`, konsumiert `Kaehr.Tableau` (Aggregat); neun Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **232** am 21. Oktober 2026 (nach `ReflexionskreisProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **241** am 23. Oktober 2026 (nach `VKaehrProbe`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 9, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
 traegt `contextureCrossing : True`; und nicht, dass eine Sonde einen Satz belegt, den das
 Aggregat traegt. Sondierungen bleiben Sondierungen.
 
-*Warum in den Defaults:* 18 der 23 importieren unmittelbar ein Aggregatmodul (mittelbar
-sind es 22; nur `LawvereVorSonde` hat keines in seiner Huelle — gemessen 13. Oktober 2026,
-nachgefuehrt 21. Oktober
+*Warum in den Defaults:* 19 der 24 importieren unmittelbar ein Aggregatmodul (mittelbar
+sind es 23; nur `LawvereVorSonde` hat keines in seiner Huelle — gemessen 13. Oktober 2026,
+nachgefuehrt 23. Oktober
 ueber die Importhuelle) und koennen durch eine
 Aenderung *am Aggregat* brechen. `HeteroreferenzProbe` liegt seinem Gegenstand nach hier
 und nicht bei den Messwerkzeugen; ohne diesen Wechsel waeren
