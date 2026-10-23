@@ -39,7 +39,8 @@ Ableitungen der Grösse 1, 3 und 5); `decide` prüft sie hier nach. Die Zahl 24 
 2³ · 3; dass jedes Paar erreicht wird, ist der Satz.
 
 Der Zeuge, der zählt: (T, T, T) bei Günthers 3, also wahr in jeder Faser und im Quotienten undesigniert
-(`ttt_bei_drei`, EICHUNG). Er braucht drei Variablen: (D, P₂, D) aussen, (D, D, P₁) innen, mit P₁, P₂ den
+(`ttt_bei_drei`, EICHUNG). Er hat drei Variablen; dass es mit weniger nicht geht, sagt die Rechnung des
+Mathematikers (kürzeste Ableitung), kein Satz hier: (D, P₂, D) aussen, (D, D, P₁) innen, mit P₁, P₂ den
 beiden Projektionen (`opP1`, `opP2`, in Faserung nicht benannt).
 
 Die Kohärenz gilt für die ganze Belegung, nicht nur für die Blätter: Variablen ausserhalb der Blattliste
