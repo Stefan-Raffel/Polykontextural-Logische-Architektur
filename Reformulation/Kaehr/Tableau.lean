@@ -54,7 +54,10 @@ Kopplung partiell, und genau daran scheiterte die Invariante für V (Kopf von Pf
 Der Tableau-Bericht von 1993 (Bashford, Joemann, Kaehr) nannte die Regeln *„noch nicht vollständig und
 korrekt“* (PDF-S. 5). Für das junktionale Fragment ist das mit diesem Modul entschieden: Die Regeln von 1981
 sind, mit L1 berichtigt und mit der Beweisbarkeit nach H1, korrekt und vollständig. Für Transjunktionen ist
-nichts entschieden (B5).
+hier nichts entschieden (B5). *Seit dem 24. Oktober 2026:* für die Tableauregeln laa, aaa, n1, n2 von 1993
+(S. 64) mit der Disjunktion ddd nach Kaehr 1981 siehe `Kaehr/TableauT.lean` — korrekt gegen die Mengen-Semantik
+Σ1 des Hauses unter D1 (mit dem Leer-Vorbehalt) für zwei Vertreter von laa, nicht vollständig; die Termregeln
+bleiben offen.
 
 ## K6 · Kaehrs Zwei-Variablen-Beschränkung
 
