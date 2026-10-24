@@ -46,6 +46,18 @@ unit_ist_null, unit_erzeugt, unit_faktor_erzeugt   FOLGERUNG   eine Regel, deren
 stufe_zwei_injektiv  FOLGERUNG  an Stufe 2 trennt erzeugt die Wirkungen auf `[0]`
 stufe_drei_faser   EICHUNG (decide)  an Stufe 3 nicht:  zwei Paare verschiedener Regeln mit derselben Kette
 gabel_abseits      EICHUNG (decide)  die Gabelbreiten abseits des Pfades an Stufe 3:  forkWidth [0,1] = 3, forkWidth [0,0] = 2
+
+inFaser c r        Definition:  c erzeugt r (die Faser über r, als Prädikat)
+erzeugt_praefix    Hilfssatz   m ≤ n → erzeugt c m <+: erzeugt c n
+faser_praefix      FOLGERUNG   „⇒":  r <+: s → Faser(s) ⊆ Faser(r), ohne Voraussetzung
+ordnung_aus_fasern FOLGERUNG   für IsRGS r, IsRGS s, s ≠ []:  r <+: s ↔ Faser(s) ⊆ Faser(r)  (Vorschlag Horistes H-1, Fassung des
+                               Mathematikers;  im Fall „s echtes Präfix von r" zwei Überschreibungen von s, die am Punkt s 0 bzw. 1 wählen)
+wurzel_kollaps     FOLGERUNG   Faser(`[]`) und Faser(`[0]`) sind beide alle Regeln, `[0]` ist kein Präfix von `[]`;  ohne s ≠ [] fällt
+                               ordnung_aus_fasern.  Grund:  über der leeren Kette ist nur 0 zulässig (das Feld von Choice)
+alle_regeln        FOLGERUNG   wer von allen Regeln erzeugt wird, ist `[]` oder `[0]`
+faser_ordnung_voll FOLGERUNG   (O-3) Faser(s) ⊆ Faser(r) ↔ r <+: s ∨ (s = `[]` ∧ r = `[0]`) — die Präordnung mit genau einem Kollaps
+eich_ordnung_drei  EICHUNG (decide)  an Stufe ≤ 3:  regelNach [0,1,2] in Faser([0,1,2]), nicht in Faser([0,0]);  die Überschreibung
+                               von [0,1] mit 0 in Faser([0,1]), nicht in Faser([0,1,1]);  Faser([0,1,2]) ⊆ Faser([0,1])
 ```
 
 **Die Produktformel** „|Faser über r| = Π der Gabelbreiten abseits des Pfades" ist der Zählschatten von `faser_iff` und hier KEIN Satz
@@ -58,9 +70,18 @@ Bestand nicht führt).  EICHUNG, gerechnet ausserhalb:  Stufe 3, 12 Segmente, 5 
 - Speculum S1:  Günthers zwei „exchange" — (I) der symmetrische [T27][T57][T63][T64], (II) der Wechsel, den R_pr bewirkt, „not mutual"
   [T49][T10].  Die Gabelung ↔ (I), der Übergang Regel ↔ Kette ↔ (II):  ZUORDNUNG.
 - `faser_iff` / `fasersatz_b` als die Bindung von A20-4 („eine Aussage, in der die eine Bewegung die andere bedingt"):  ZUSAMMENSCHAU,
-  in der BURIDAN-Modalität ([T30] „triggers … supply this order by making a choice"), NICHT in der von S. 23 („implies").
+  in der BURIDAN-Modalität ([T30] „triggers … supply this order by making a choice"), NICHT in der von S. 23 („implies") — ein
+  Biconditional trägt jede der Modalitäten gleich;  die Zuschreibung ist Lesart, keine Eigenschaft des Satzes (Horistes H-2).
 - Wort „Gabelung", nicht „Schwebe" ([T63] steht in der kognitiven Zeile;  hier volitiv, [T64]).
 - „Ordnung" nur mit Index:  O1 (Index) / O2 (Aktualisierung).
+- `ordnung_aus_fasern` gewinnt die Präfixordnung der Ketten aus den Fasern des Wechsels, ohne den Index zu benutzen (Horistes' Probe
+  „Index-Entzug":  die Aussage spricht über Mengen von Regeln, nicht über Längen) — REICHWEITE:  über einem gestuften Bereich (`Choice`
+  lebt auf Σ n, RGS n).  Günther, C&V S. 23:  „the order is only constituted by the fact that the exchange …" — S. 23 stellt ZWEI
+  Lesarten nebeneinander („double way";  Speculum S-1 (c));  `ordnung_aus_fasern` realisiert die zweite, als WAHL, die erste (die
+  Ordnung vorausgesetzt) bleibt daneben.  „constituted" bindet bei Günther den Wechsel von Relator und Relatum an O1 — das ist die
+  Paarung von `ordnung_aus_fasern`, NICHT die von `faser_iff` (Speculum S-2, Horistes H-2).
+- `wurzel_kollaps` als Beobachtung:  Faser-Ordnung und Präfixordnung unterscheiden sich nur an der Wurzel (`faser_ordnung_voll`).
+  Ob das etwas über Günthers „Unten des Abstiegs" oder über „die 1 ohne Vorgänger" sagt, ist eine FRAGE, kein Satz.
 
 ## OFFEN (K-1) — die Rollen-Zuordnung
 
@@ -74,6 +95,9 @@ Bild, Custos.
 Kein Träger für §20;  „§20 ohne Träger" bleibt.  Keine Messung an K4′.  Kein Text in Rev11 (Horistes H5).  Keine Ledger-Zeile.
 **Verboten:**  „Träger für §20", „fast ein Träger", „die Proemialrelation ist gebaut", „trägt A20-4", „Günthers Implikation",
 „Buridan formalisiert", „Diskontexturalität aus der Stufe", „der erste Kandidat" ohne die Reihe der zwölf (Standsbericht 13.8.).
+
+**Verboten, ergänzt 25.10.:**  „die Ordnung ist konstituiert" ohne „über einem gestuften Bereich" und ohne „eine der zwei Lesarten von
+S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen Satz.
 
 ## Bauweise
 
@@ -371,6 +395,121 @@ theorem gabel_abseits :
     forkWidth (⟨[0, 1], by decide⟩ : RGS 2) = 3 ∧ forkWidth (⟨[0, 0], by decide⟩ : RGS 2) = 2 := by
   decide
 
+/-! ## Die Ordnung der Ketten aus den Fasern -/
+
+/-- c liegt in der Faser über r:  c erzeugt r -/
+abbrev inFaser (c : Choice) (r : List ℕ) : Prop := erzeugt c r.length = r
+
+/-- die erzeugten Ketten wachsen als Präfixe -/
+theorem erzeugt_praefix (c : Choice) (m : ℕ) : ∀ n, m ≤ n → erzeugt c m <+: erzeugt c n
+  | 0, h => by rw [Nat.le_zero.mp h]
+  | n + 1, h => by
+    rcases Nat.eq_or_lt_of_le h with h | h
+    · rw [h]
+    · refine (erzeugt_praefix c m n (by omega)).trans ?_
+      show (stand c n).2.val <+: (stand c (n + 1)).2.val
+      rw [stand_succ_val]; exact List.prefix_append _ _
+
+/-- die Wahlregel „1 an s, sonst 0" — zulässig, weil s ≠ [] -/
+def einsAn (s : List ℕ) : Choice := fun x =>
+  if h : x.2.val = s ∧ s ≠ [] then ⟨1, Nat.le_add_left _ _, fun he => absurd (h.1.symm.trans he) h.2⟩
+  else ⟨0, Nat.zero_le _, fun _ => rfl⟩
+
+theorem einsAn_an (s : List ℕ) (hs : s ≠ []) (x : Tower) (h : x.2.val = s) : (einsAn s x).1 = 1 := by
+  simp only [einsAn, dif_pos (And.intro h hs)]
+
+/-- **„⇒":**  erzeugt c die Kette s, so erzeugt c jedes Präfix von s — ohne Voraussetzung -/
+theorem faser_praefix (c : Choice) (r s : List ℕ) (hrs : r <+: s) (hc : inFaser c s) : inFaser c r := by
+  have hle : r.length ≤ s.length := hrs.length_le
+  have hp : erzeugt c r.length <+: s := hc ▸ erzeugt_praefix c r.length s.length hle
+  have hlen : (erzeugt c r.length).length = r.length := erzeugt_length c r.length
+  exact (List.prefix_of_prefix_length_le hp hrs (le_of_eq hlen)).eq_of_length hlen
+
+/-- **Die Ordnung der Ketten aus den Fasern** (über einem gestuften Bereich):  für s ≠ [] ist r genau dann Präfix von s, wenn jede
+    Regel, die s erzeugt, auch r erzeugt. -/
+theorem ordnung_aus_fasern (r s : List ℕ) (hr : IsRGS r) (hs : IsRGS s) (hne : s ≠ []) :
+    r <+: s ↔ ∀ c, inFaser c s → inFaser c r := by
+  refine ⟨fun hrs c hc => faser_praefix c r s hrs hc, fun H => ?_⟩
+  have hg := H (regelNach s hs) (erzeugt_regelNach s hs)
+  rcases Nat.lt_or_ge s.length r.length with hlt | hle
+  · -- s ist echtes Präfix von r — zwei Regeln in Faser(s), die am Punkt s verschieden wählen
+    exfalso
+    have hsr : s <+: r := by
+      have hp := erzeugt_praefix (regelNach s hs) s.length r.length (Nat.le_of_lt hlt)
+      rw [erzeugt_regelNach s hs] at hp; unfold inFaser at hg; rw [hg] at hp; exact hp
+    have htake : r.take s.length = s := (List.prefix_iff_eq_take.mp hsr).symm
+    let x := pfadPunkt r hr s.length (Nat.le_of_lt hlt)
+    have hx : x.2.val = s := htake
+    have hab : ¬ aufPfad s x := fun h => Nat.lt_irrefl _ h.1
+    have h0 := (fasersatz_a _ r hr).mp (H _ (fasersatz_b s hs waehleNull).1) s.length hlt
+    have h1 := (fasersatz_a _ r hr).mp (H _ (fasersatz_b s hs (einsAn s)).1) s.length hlt
+    rw [ueberschreibe_abseits s hs _ x hab] at h0 h1
+    rw [einsAn_an s hne x hx] at h1
+    exact Nat.zero_ne_one (h0.trans h1.symm)
+  · have hp := erzeugt_praefix (regelNach s hs) r.length s.length hle
+    rw [erzeugt_regelNach s hs] at hp; unfold inFaser at hg; rw [hg] at hp; exact hp
+
+theorem inFaser_nil (c : Choice) : inFaser c [] := rfl
+
+theorem inFaser_null (c : Choice) : inFaser c [0] :=
+  congrArg (fun y : Tower => y.2.val) (stand_eins c)
+
+/-- **Der Kollaps an der Wurzel:**  die Faser über [] und die über `[0]` sind beide alle Regeln — über der leeren Kette ist nur 0
+    zulässig —, aber `[0]` ist kein Präfix von [].  Die Faser-Ordnung ist eine Präordnung, und ohne s ≠ [] fällt `ordnung_aus_fasern`. -/
+theorem wurzel_kollaps :
+    (∀ c, inFaser c []) ∧ (∀ c, inFaser c [0]) ∧ ¬ ([0] <+: ([] : List ℕ)) ∧
+    ¬ (∀ r s : List ℕ, IsRGS r → IsRGS s → (r <+: s ↔ ∀ c, inFaser c s → inFaser c r)) := by
+  have hnp : ¬ ([0] <+: ([] : List ℕ)) := fun h => absurd h.length_le (by decide)
+  refine ⟨inFaser_nil, inFaser_null, hnp, fun H => ?_⟩
+  exact hnp ((H [0] [] (by decide) (by decide)).mpr fun c _ => inFaser_null c)
+
+/-- wer von ALLEN Regeln erzeugt wird, ist [] oder `[0]` -/
+theorem alle_regeln (r : List ℕ) (h : ∀ c, inFaser c r) : r = [] ∨ r = [0] := by
+  match r, h with
+  | [], _ => exact Or.inl rfl
+  | [a], h =>
+    have h1 : erzeugt waehleNull 1 = [a] := h waehleNull
+    have h0 : erzeugt waehleNull 1 = [0] := inFaser_null waehleNull
+    rw [h0] at h1
+    exact Or.inr h1.symm
+  | a :: b :: t, h =>
+    exfalso
+    have key : ∀ c : Choice, (c p0).1 = b := by
+      intro c
+      have hp := erzeugt_praefix c 2 (t.length + 2) (by omega)
+      have hc : erzeugt c (t.length + 2) = a :: b :: t := h c
+      rw [hc, erzeugt_zwei] at hp
+      have := List.prefix_iff_eq_take.mp hp
+      exact (List.cons.inj (List.cons.inj this).2).1
+    have k0 := key waehleNull
+    have k1 := key (einsAn [0])
+    rw [einsAn_an [0] (by decide) p0 rfl] at k1
+    exact Nat.zero_ne_one (k0.trans k1.symm)
+
+/-- **Die volle Fassung:**  Faser(s) ⊆ Faser(r) genau dann, wenn r Präfix von s ist oder (s, r) der Kollaps an der Wurzel. -/
+theorem faser_ordnung_voll (r s : List ℕ) (hr : IsRGS r) (hs : IsRGS s) :
+    (∀ c, inFaser c s → inFaser c r) ↔ r <+: s ∨ (s = [] ∧ r = [0]) := by
+  constructor
+  · intro H
+    match s, hs, H with
+    | [], _, H =>
+      rcases alle_regeln r (fun c => H c (inFaser_nil c)) with h | h
+      · exact Or.inl (h ▸ List.prefix_refl [])
+      · exact Or.inr ⟨rfl, h⟩
+    | a :: t, hs, H => exact Or.inl ((ordnung_aus_fasern r (a :: t) hr hs (List.cons_ne_nil a t)).mpr H)
+  · rintro (h | ⟨-, rfl⟩)
+    · exact fun c hc => faser_praefix c r s h hc
+    · exact fun c _ => inFaser_null c
+
+/-- **Eichung an Stufe ≤ 3** — der Fall (i):  `[0,0]` ist kein Präfix von `[0,1,2]`, regelNach `[0,1,2]` liegt in Faser(`[0,1,2]`)
+    und nicht in Faser(`[0,0]`);  der Fall (iii) an s = `[0,1]`, r = `[0,1,1]`:  die Überschreibung mit 0 liegt in Faser(s), nicht in
+    Faser(r);  und `[0,1]` ⊆-Richtung:  jede Regel, die `[0,1,2]` erzeugt, erzeugt `[0,1]`. -/
+theorem eich_ordnung_drei :
+    inFaser (regelNach [0, 1, 2] isRGS_012) [0, 1, 2] ∧ ¬ inFaser (regelNach [0, 1, 2] isRGS_012) [0, 0] ∧
+    inFaser (ueberschreibe [0, 1] (by decide) waehleNull) [0, 1] ∧ ¬ inFaser (ueberschreibe [0, 1] (by decide) waehleNull) [0, 1, 1] ∧
+    (∀ c, inFaser c [0, 1, 2] → inFaser c [0, 1]) := by
+  refine ⟨by decide, by decide, by decide, by decide, fun c hc => faser_praefix c _ _ ⟨[2], rfl⟩ hc⟩
+
 end Reformulation.Proemial.ErzeugteKetteProbe
 
 /-! ## Axiom-Wachen (gemessen, verbatim) -/
@@ -467,3 +606,33 @@ end Reformulation.Proemial.ErzeugteKetteProbe
 
 /-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.gabel_abseits' does not depend on any axioms -/
 #guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.gabel_abseits
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.erzeugt_praefix' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.erzeugt_praefix
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.einsAn_an' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.einsAn_an
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.faser_praefix' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.faser_praefix
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.ordnung_aus_fasern' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.ordnung_aus_fasern
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.inFaser_nil' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.inFaser_nil
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.inFaser_null' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.inFaser_null
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.wurzel_kollaps' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.wurzel_kollaps
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.alle_regeln' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.alle_regeln
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.faser_ordnung_voll' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.faser_ordnung_voll
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.eich_ordnung_drei' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.eich_ordnung_drei
