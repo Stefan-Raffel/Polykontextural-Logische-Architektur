@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 25 | **ja** | 7,7 s |
+| `Probes` | 26 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -152,9 +152,9 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 25 Sonden und Zeugenregister
+### `Probes` — 26 Sonden und Zeugenregister
 
-23 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean` und
+24 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean` und
 `Pfalzgraf/VKaehrProbe.lean`. (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
@@ -170,15 +170,17 @@ konsumiert `GegenidentitaetProbe` und `NegationCycleSJT`; siebenundzwanzig Wache
 23. Oktober 2026 `Pfalzgraf/VKaehrProbe.lean`, konsumiert `Kaehr.Tableau` (Aggregat); neun Wachen, mit der Auflage der
 Abnahme (`ttt_bei_eins`) zehn, mit V2 (`nicht_V`, 23. Oktober) zwanzig. Seit dem 24. Oktober 2026
 `Proemial/UebergangMitInhaltProbe.lean`, konsumiert `AsymmetricDiscontexturalTransition` und
-`KenogramForkProbe`; elf Wachen, mit §IV am selben Tag siebzehn (ein doppelter Hilfssatz gestrichen).)
+`KenogramForkProbe`; elf Wachen, mit §IV am selben Tag siebzehn (ein doppelter Hilfssatz gestrichen). Ebenso
+`Proemial/ErzeugteKetteProbe.lean`, konsumiert `UebergangMitInhaltProbe` und `DirectionChoice` (Aggregat);
+einunddreissig Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **269** am 24. Oktober 2026 (nach `UebergangMitInhaltProbe` §IV) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **300** am 24. Oktober 2026 (nach `ErzeugteKetteProbe`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 31, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
