@@ -120,6 +120,13 @@ Die eigentliche Zusicherung dieses Targets ist nicht der gruene Bau, sondern die
 AxiomGate-Zeile (siehe unten). Sie bleibt die einzige Zusicherungszeile des Baus; die
 uebrigen Targets melden nur Erfolg oder Bruch.
 
+*Seit dem 24. Oktober 2026 (Teil T von Rev11)* dazu `Pfalzgraf/FaserungT.lean` (20 Wachen) und
+`Kaehr/TableauT.lean` (41 Wachen), im Aggregat und nicht unter `Probes`: sie konsumieren nur
+Aggregat-Inhalt (`Faserung`, `Kaehr.Tableau`, `ImplicationTransjunction`) und tragen keine
+Setzung (CLAUDE.md §10, Ablage). Die Sonde `Pfalzgraf/VKaehrProbe.lean` importieren sie
+**nicht**; die eine Tafel, die sie von dort braeuchten (`opP1`), steht in `TableauT` noch
+einmal.
+
 ### `AxiomGate` — 1 Modul
 
 *Gruen heisst:* der Axiom-Abschluss des Aggregats zieht kein `sorryAx`, und die Whitelist
