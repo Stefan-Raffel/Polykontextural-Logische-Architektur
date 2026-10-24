@@ -1,5 +1,6 @@
 import Reformulation.Proemial.AsymmetricDiscontexturalTransition
 import Reformulation.Proemial.KenogramForkProbe
+import Reformulation.Kenogram.Operational            -- Kenogram.le_foldr_max
 
 /-!
 # Proemial.UebergangMitInhaltProbe — ein Feld an den Enden, und zwei Aufstiege, die die drei alten nicht trennen
@@ -51,6 +52,21 @@ zur Lichtfigur (Strahl ↔ `not_reversible`, gerader Stab ↔ `substructure_pres
 1958 S. 8, Textschicht; Vorlesung 7.12.1981 F5/1, Whisper) sind von der Instanz nicht geprüft.
 **Keine Behauptung über Günthers Begriff des Kontexturwechsels.**
 
+## (3a) Das Feld charakterisiert (§IV, nachgetragen 24.10.2026)
+
+Das Feld trennt nicht nur zwei Beispiele. Für JEDE Wahlregel gilt über einer nichtleeren Kette:
+`nichtIntern` genau bei der Wahl des neuen Zeichens `M + 1` (`nichtIntern_iff_akkretiv`); über der
+leeren Kette ist jede Wahl `0` und neu (`nichtIntern_nil`). Die Richtung (→) braucht die Dichtheit der
+RGS (`Kenogram.rgs_take_mem`: jedes Zeichen bis zum Maximum kommt vor). Iteriert ab der leeren Kette gibt
+`stepNeu` die Kette `[0, 1, …, n−1]`, `step` die Kette `[0, 0, …, 0]` (`stepNeu_iter`, `step_iter`).
+Die zwei Pole von IGN S. 9, „originalgetreue Abbildung des Urbilds“ und „Wiederholung mit Verwandlung“,
+sind die zwei Werte dieser Wahl; die Akkretion ist hier der Zuwachs um EIN Zeichen, `M + 1`. ZUORDNUNG.
+Gebaut nach `KorpusRev2/Prompt_3_4_nichtIntern_Charakterisierung_und_Meixl_Tafeln_Guenthers.md`.
+
+*Dublette entfernt (24.10.):* Der Zug vom selben Morgen führte ein eigenes `le_foldr_max`; der Bestand hat
+es dreimal (`Kenogram.le_foldr_max` in Operational, `Kenogram.Unbounded.le_foldr_max`,
+`K4DiscontexturalityProbe.le_foldr_max_of_mem`). Es ist gestrichen; die Sonde nimmt `Kenogram.le_foldr_max`.
+
 ## (4) S33 unberührt
 
 `contextureCrossing : True` steht in BEIDEN Instanzen, `towerTransition` und `towerTransitionNeu`.
@@ -61,7 +77,6 @@ nicht.
 ## Die Sätze
 
 ```text
-le_foldr_max                    Hilfssatz:  jedes Zeichen ≤ M (Induktion, choice-frei)
 stepNeu_noreturn                INSTANZIIERUNG (ascentBy_noreturn)
 stepNeu_preserves_substructure  INSTANZIIERUNG (ascentBy_preserves_substructure)
 stepNeu_eq_stepNew              FOLGERUNG:  stepNeu ist über nichtleeren Ketten stepNew
@@ -71,6 +86,11 @@ towerTransition_nicht_nichtIntern  FOLGERUNG, UNSER:  die Bestands-Instanz erfü
 drei_felder_trennen_nicht       FOLGERUNG, UNSER:  beide Aufstiege erfüllen Richtung und Substruktur
 stepNeu_fork, step_fork         FOLGERUNG aus forkWidth_extend:  +1 gegen +0
 stufe_zwei                      EICHUNG:  [0,1] ↦ [0,1,2] bzw. [0,1,0]
+nichtIntern_iff_akkretiv        FOLGERUNG, UNSER:  das Feld charakterisiert (§IV, 24.10.)
+nichtIntern_nil                 FOLGERUNG:  über der leeren Kette trägt jede Wahl ein neues Zeichen
+stepNeu_iter, step_iter         FOLGERUNG:  [0, 1, …, n−1] gegen [0, 0, …, 0]
+stufe_drei                      EICHUNG:  [0,1,2] gegen [0,0,0]
+foldr_max_range, stepNeu_val    Hilfssätze
 ```
 
 `towerTransitionNeu` ist die Instanz (def). `not_determined` hängt nur am Abstieg und ist in beiden
@@ -94,11 +114,6 @@ open Reformulation.Proemial.AsymmetricTransition
 -- ============================================================
 -- §I — Der akkretive Aufstieg
 -- ============================================================
-
-/-- jedes Zeichen der Kette ist höchstens ihr grösstes -/
-theorem le_foldr_max : ∀ {l : List ℕ} {a : ℕ}, a ∈ l → a ≤ l.foldr max 0
-  | _ :: _, _, .head _ => Nat.le_max_left _ _
-  | _ :: _, _, .tail _ h => Nat.le_trans (le_foldr_max h) (Nat.le_max_right _ _)
 
 /-- die akkretive Wahlregel:  ein NEUES Zeichen `M + 1`, über der leeren Kette `0` -/
 def waehleNeu : Choice := fun x =>
@@ -211,14 +226,101 @@ theorem stufe_zwei :
     (step ⟨2, ⟨[0, 1], by decide⟩⟩).2.val = [0, 1, 0] := by
   constructor <;> decide
 
+-- ============================================================
+-- §IV — Das Feld charakterisiert:  nichtIntern genau bei der Wahl des neuen Zeichens
+-- ============================================================
+
+/-- **Charakterisierung.**  Über einer nichtleeren Kette trägt der Aufstieg nach JEDER Wahlregel
+    genau dann ein neues Zeichen, wenn sie `M + 1` wählt.  (→) braucht die Dichtheit der RGS
+    (`rgs_take_mem`:  jedes Zeichen bis zum Maximum kommt vor), (←) die Schranke `le_foldr_max`. -/
+theorem nichtIntern_iff_akkretiv (c : Choice) (x : Tower) (h : x.2.val ≠ []) :
+    (∃ s, s ∈ (ascentBy c x).2.val ∧ s ∉ x.2.val) ↔ (c x).1 = x.2.val.foldr max 0 + 1 := by
+  constructor
+  · rintro ⟨s, hs, hn⟩
+    have hs' : s ∈ x.2.val ++ [(c x).1] := hs
+    rcases List.mem_append.mp hs' with hl | hk
+    · exact absurd hl hn
+    · have hsk : s = (c x).1 := List.mem_singleton.mp hk
+      match Nat.decEq (c x).1 (x.2.val.foldr max 0 + 1) with
+      | isTrue e => exact e
+      | isFalse ne =>
+        exfalso
+        have hle : (c x).1 ≤ x.2.val.foldr max 0 :=
+          Nat.lt_succ_iff.mp (Nat.lt_of_le_of_ne (c x).2.1 ne)
+        have hpos : 0 < x.2.val.length := List.length_pos_iff.mpr h
+        have hmem := rgs_take_mem x.2.property.2 x.2.val.length (Nat.le_refl _) hpos (c x).1
+          (by rw [List.take_length]; exact hle)
+        rw [List.take_length] at hmem
+        exact hn (hsk ▸ hmem)
+  · intro hk
+    refine ⟨(c x).1, ?_, ?_⟩
+    · show _ ∈ x.2.val ++ [(c x).1]
+      exact List.mem_append_right _ List.mem_cons_self
+    · intro hm
+      have := le_foldr_max hm
+      rw [hk] at this
+      exact Nat.not_succ_le_self _ this
+
+/-- **Der leere Fall:**  über der leeren Kette ist jede Wahl `0`, und `0` ist dort neu -/
+theorem nichtIntern_nil (c : Choice) (x : Tower) (h : x.2.val = []) :
+    ∃ s, s ∈ (ascentBy c x).2.val ∧ s ∉ x.2.val := by
+  refine ⟨(c x).1, ?_, ?_⟩
+  · show _ ∈ x.2.val ++ [(c x).1]
+    exact List.mem_append_right _ List.mem_cons_self
+  · have hl : ∀ (l : List ℕ) (k : ℕ), l = [] → k ∉ l := fun l k e hm => by subst e; exact List.not_mem_nil hm
+    exact hl _ _ h
+
+/-- das Maximum von `[0, …, n]` ist `n` -/
+theorem foldr_max_range : ∀ n : ℕ, (List.range (n + 1)).foldr max 0 = n
+  | 0 => rfl
+  | n + 1 => by
+    rw [List.range_succ, foldr_max_append_singleton, foldr_max_range n]
+    exact Nat.max_eq_right (Nat.le_succ n)
+
+/-- der akkretive Schritt, ausgeschrieben -/
+theorem stepNeu_val (y : Tower) :
+    (stepNeu y).2.val = y.2.val ++ [if y.2.val = [] then 0 else y.2.val.foldr max 0 + 1] := by
+  show y.2.val ++ [(waehleNeu y).1] = _
+  unfold waehleNeu
+  by_cases h : y.2.val = []
+  · rw [dif_pos h, if_pos h]
+  · rw [dif_neg h, if_neg h]
+
+/-- **Iteration des akkretiven Aufstiegs:**  n-mal `stepNeu` ab der leeren Kette ist `[0, 1, …, n−1]` -/
+theorem stepNeu_iter : ∀ n : ℕ, (stepNeu^[n] ⟨0, ⟨[], by decide⟩⟩).2.val = List.range n
+  | 0 => rfl
+  | n + 1 => by
+    rw [Function.iterate_succ_apply', stepNeu_val, stepNeu_iter n]
+    cases n with
+    | zero => rfl
+    | succ m =>
+      have hne : List.range (m + 1) ≠ [] := fun e => by
+        have hl := congrArg List.length e
+        rw [List.length_range] at hl
+        exact Nat.succ_ne_zero m hl
+      rw [if_neg hne, foldr_max_range m]
+      exact (List.range_succ (n := m + 1)).symm
+
+/-- **und des iterativen:**  n-mal `step` ab der leeren Kette ist `[0, 0, …, 0]` -/
+theorem step_iter : ∀ n : ℕ, (step^[n] ⟨0, ⟨[], by decide⟩⟩).2.val = List.replicate n 0
+  | 0 => rfl
+  | n + 1 => by
+    rw [Function.iterate_succ_apply']
+    show (step^[n] ⟨0, ⟨[], by decide⟩⟩).2.val ++ [0] = _
+    rw [step_iter n, List.replicate_succ']
+
+/-- **Eichung an Stufe 3:**  `[0,1,2]` gegen `[0,0,0]` -/
+theorem stufe_drei :
+    (stepNeu^[3] ⟨0, ⟨[], by decide⟩⟩).2.val = [0, 1, 2] ∧
+    (step^[3] ⟨0, ⟨[], by decide⟩⟩).2.val = [0, 0, 0] := by
+  constructor <;> decide
+
 end Reformulation.Proemial.UebergangMitInhaltProbe
 
 -- ============================================================
 -- Wachen — Axiom-Profile
 -- ============================================================
 
-/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.le_foldr_max' depends on axioms: [propext] -/
-#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.le_foldr_max
 
 /-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_noreturn' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_noreturn
@@ -250,3 +352,24 @@ end Reformulation.Proemial.UebergangMitInhaltProbe
 
 /-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.stufe_zwei' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.stufe_zwei
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.nichtIntern_iff_akkretiv' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.nichtIntern_iff_akkretiv
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.nichtIntern_nil' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.nichtIntern_nil
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.foldr_max_range' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.foldr_max_range
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_val' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_val
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_iter' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.stepNeu_iter
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.step_iter' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.step_iter
+
+/-- info: 'Reformulation.Proemial.UebergangMitInhaltProbe.stufe_drei' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.UebergangMitInhaltProbe.stufe_drei

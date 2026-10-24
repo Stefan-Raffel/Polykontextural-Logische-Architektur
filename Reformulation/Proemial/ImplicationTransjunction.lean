@@ -171,8 +171,19 @@ steht aus** (NF5); bis dahin gilt alles hier „nach der Textschicht“. Auswert
   Quotiententafel eines zulässigen Tripels ist (`junktional_iff`), und die Bits sind eindeutig (`ab_qop`).
   Eine Transjunktion ist ein Einbruch (`einbruch`) oder eine Diagonalzelle ausserhalb ihres Werts.
 * **Eichung an Günthers Tafeln** (`impl_nicht_kontexturtreu`): Keine der acht Implikationen ist Meixl-klassisch,
-  die acht K/D-Tafeln sind es (`kd_einbruchfrei`). Meixls IMPLY ist eine andere Tafel (Łukasiewicz-Gestalt,
-  T/*/F); die Eichung ordnet seinen Befund Günthers Tafeln zu, sie wiederholt ihn nicht.
+  die acht K/D-Tafeln sind es (`kd_einbruchfrei`).
+* **Meixls Beispieltafeln SIND Günthers** (`meixl_and_ist_guenther`, `meixl_or_ist_guenther`,
+  `meixl_imply_ist_guenther`). Die drei Tafeln der Zerlegung (3.2, S. 20, Textschicht; T, ∗, F ↦ Lean 0, 1, 2,
+  wie Meixls eigene Umbenennung a, b, c S. 21) sind Zelle für Zelle `kd (F,F,F)`, `kd (T,T,T)` und `impl (F,F,F)`.
+  Sein Befund *„In most cases IMPLY causes problems“* ist damit wörtlich Günthers Einbruch an (3, 2)
+  (`meixl_imply_einbruch`, `impl_einbruch_genau`); die zwei übrigen Zellen ausserhalb von 2-3, die Meixl S. 25
+  f. mit ersetzt, sind die Diagonalzellen aus K6 (`diagonale`). Meixl zitiert Günther nicht; sein Beispiel steht
+  *„In tradition to [Pfalzgraf, Sofronie; 1995]“* (S. 19), und deren IMPLY ist nach K6 Günthers Abb. 20. Damit ist für die
+  Schule Pfalzgrafs gemessen, dass sie mit Günthers Tafeln rechnet, ohne ihn zu nennen. ZUSAMMENSCHAU;
+  Hermeneutes am Bild steht aus (NF5). *Berichtigt am 24. Oktober 2026 (Regel 7):* Hier stand bis dahin
+  „Meixls IMPLY ist eine andere Tafel (Łukasiewicz-Gestalt, T/*/F); die Eichung ordnet seinen Befund Günthers
+  Tafeln zu, sie wiederholt ihn nicht“. Das war eine Lesung ohne Vergleich; die Messung (`#eval`, dann diese
+  Sätze) hat sie widerlegt. Łukasiewicz ist erst die Ł5-Tafel in 3.4.1 (S. 36 ff.); sie ist davon unberührt.
 * **Meixls Theorem (3.4, S. 34, ohne Nummer) ist ein anderer Satz.** Er sagt nach der Textschicht: Ordnung und
   Verteilungsfunktion df bestimmen die Äquivalenzrelation auf den lokalen Werten eindeutig. Das ist die
   Verklebung. Im Bestand entspricht ihr `global` / `liest` (Faserung, gesetzt, nicht bewiesen), nicht `ab_qop`,
@@ -205,6 +216,8 @@ cf_treu                             FOLGERUNG:  der Grund — Diagonale von zwei
 zahl                                FOLGERUNG:  64 = 2⁶, als Produkt über die Zellen
 ab_qop                              FOLGERUNG:  die Zerlegung ist eindeutig
 impl_nicht_kontexturtreu            EICHUNG:  Meixls „IMPLY causes problems“ an Günthers acht Implikationen (K9)
+meixl_and_ist_guenther, meixl_or_ist_guenther, meixl_imply_ist_guenther,
+  meixl_imply_einbruch              EICHUNG an Meixl S. 20 (Textschicht):  seine Tafeln sind Günthers (K9)
 treu_iff_bool, treu_qop, qop_treu, fin3_all, laenge_tafeln, laenge_mem, filter_fin3,
   zaehl, treu_stellen, rechts_passt, mem_ops, mem_fin3, ofList_ofFun
                                     Hilfssätze
@@ -601,6 +614,22 @@ theorem impl_nicht_kontexturtreu : wahlen.all (fun l =>
     !decide (Reformulation.Proemial.NonUniformCloneBound.ContextureFaithful (impl l.1 l.2.1 l.2.2))) = true := by
   decide
 
+/-- Meixls AND (3.2, S. 20, Textschicht):  T ∗ F / ∗ ∗ F / F F F;  T, ∗, F ↦ 0, 1, 2 -/
+def meixlAND : Tafel := ofList [0, 1, 2, 1, 1, 2, 2, 2, 2]
+/-- Meixls OR (S. 20):  T T T / T ∗ ∗ / T ∗ F -/
+def meixlOR : Tafel := ofList [0, 0, 0, 0, 1, 1, 0, 1, 2]
+/-- Meixls IMPLY (S. 20):  T ∗ F / T T F / T T T -/
+def meixlIMPLY : Tafel := ofList [0, 1, 2, 0, 0, 2, 0, 0, 0]
+
+/-- **K9.** Meixls AND ist Günthers `kd (F,F,F)` -/
+theorem meixl_and_ist_guenther : ofFun meixlAND = ofFun (kd false false false) := by decide
+/-- **K9.** Meixls OR ist Günthers `kd (T,T,T)` -/
+theorem meixl_or_ist_guenther : ofFun meixlOR = ofFun (kd true true true) := by decide
+/-- **K9.** Meixls IMPLY ist Günthers `impl (F,F,F)` -/
+theorem meixl_imply_ist_guenther : ofFun meixlIMPLY = ofFun (impl false false false) := by decide
+/-- **K9.** Meixls IMPLY bricht an Günthers (3, 2) ein (Lean (2, 1)) -/
+theorem meixl_imply_einbruch : einbruch meixlIMPLY 2 1 := by decide
+
 end Reformulation.Proemial.ImplicationTransjunction
 
 /-! ## Axiom-Stand — als Regressions-Wachen gesetzt (alle Sätze des Moduls) -/
@@ -691,3 +720,15 @@ end Reformulation.Proemial.ImplicationTransjunction
 
 /-- info: 'Reformulation.Proemial.ImplicationTransjunction.impl_nicht_kontexturtreu' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.impl_nicht_kontexturtreu
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.meixl_and_ist_guenther' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.meixl_and_ist_guenther
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.meixl_or_ist_guenther' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.meixl_or_ist_guenther
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.meixl_imply_ist_guenther' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.meixl_imply_ist_guenther
+
+/-- info: 'Reformulation.Proemial.ImplicationTransjunction.meixl_imply_einbruch' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ImplicationTransjunction.meixl_imply_einbruch
