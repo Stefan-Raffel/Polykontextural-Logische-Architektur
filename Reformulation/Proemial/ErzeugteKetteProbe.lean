@@ -127,6 +127,15 @@ Bestand nicht führt).  EICHUNG, gerechnet ausserhalb:  Stufe 3, 12 Segmente, 5 
   wählt an jeder Gabelung ([T66], [T30]);  **offen ist, welches** — `KenogramForkProbe.choice_undetermined` ([T28]).  Was fehlt, ist der
   **Vollzug**:  die Wahlregel ist als Funktion auf dem ganzen Turm im Voraus gegeben, nicht an der Gabelung getroffen.  Die Zuordnung
   „notwendig ↔ Wahlregel total", „offen ↔ choice_undetermined" ist ZUORDNUNG, ungeprüft (Liste PL27).
+- Das Wort ist Günthers, und zwar an der Entscheidung:  IGN S. 31 *„das noch nicht in einer Entscheidung vollzogene Umtauschverhältnis.
+  Die Spitze der Pyramide stellt also einen Akt dar …"*;  BdM 2. Aufl. Druck S. 148:  eine Proportion, *„in der eine Entscheidung bereits
+  vollzogen ist"* (beide am Bild, Hermeneutes 25.10.).  Die Gabelung ist in diesem Sinn ein noch nicht in einer Entscheidung vollzogenes
+  Umtauschverhältnis — ZUORDNUNG, mit Quellenlesung wie angegeben.
+- Vermerk:  „Als Wille" PDF 3 gibt das Wort einmal dem Denken (*„als Ausdruck eines Willensaktes - anstatt eines Denkvollzugs"*, am Bild);
+  über sieben Texte gehört „Vollzug" keiner Seite allein, „Willensvollzug" kommt nicht vor (Hermeneutes AWV-4).  Das Haus bindet das Wort
+  an IGN S. 31 — SETZUNG des Architekten 25.10. 16:59.
+- Günthers Unterscheidung am Negationskreis, nur als Hinweis:  der Kreis wird **durchlaufen**, seine Schritte werden **vollzogen**
+  (IGN S. 32, 41, am Bild).  Keine Zuordnung zum Turm daraus.
 - Vermerk:  Bis 25.10. hiess die erste Grenze „Auslösen" — gestützt auf die berichtigte Lesung von [T30].
 - Vermerk:  dreimal ist der erste Schritt besonders (`wurzel_kollaps`;  zwei Glieder ab `[0]`;  `einsortig_moeglich_eins`) — ein Grund:  über
   der leeren Kette ist nur 0 zulässig.
@@ -158,7 +167,9 @@ S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen 
 
 **Verboten, ergänzt 25.10. mittags** (nach Definitionen §20, Fassung PL33/PL34):  „Buridans Modalität gegen die von S. 23";  „der Turm löst
 aus";  „die Wahl ist frei" (Günther:  Freiheit ist nicht Mangel an Bestimmung, [T67];  positiv „a plus of formal determinating factors"
-[T68] (Druck S. 214, am Bild 25.10.;  vordenker S. 10:  „determining"));  „der Turm vollzieht die Wahl".
+[T68] (Günther, *Beiträge zur Grundlegung einer operationsfähigen Dialektik*, Bd. 2, Hamburg:  Meiner 1979, S. 214 — die Erstveröffentlichung
+von C&V;  am Bild 25.10.;  Band und Jahr nach dem Nachweis der Erstveröffentlichung, nicht auf der Seite selbst;  vordenker S. 10:
+„determining"));  „der Turm vollzieht die Wahl".
 
 ## Bauweise
 
