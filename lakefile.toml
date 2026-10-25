@@ -84,6 +84,7 @@ roots = [
   "Reformulation.Pfalzgraf.VKaehrProbe",
   "Reformulation.Proemial.UebergangMitInhaltProbe",
   "Reformulation.Proemial.ErzeugteKetteProbe",
+  "Reformulation.Proemial.OrdnungAusUmtauschProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
