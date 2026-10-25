@@ -85,6 +85,7 @@ roots = [
   "Reformulation.Proemial.UebergangMitInhaltProbe",
   "Reformulation.Proemial.ErzeugteKetteProbe",
   "Reformulation.Proemial.OrdnungAusUmtauschProbe",
+  "Reformulation.Proemial.VollzugDurchlaufProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
