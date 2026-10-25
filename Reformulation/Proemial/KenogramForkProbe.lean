@@ -89,16 +89,27 @@ Günther 1970 S. 12 (nach dem Prompt): ein Glied wird zu dem Umtausch in Beziehu
 in dem es selbst steht; das Paar ist geordnet, weil seine Seiten verschiedener Art sind.
 
 Die Zuordnung lautet: `extend` als „Relatum wird Relator" (das Gewählte ordnet fortan),
-`descent` als „Relator wird Relatum" (die Spur wird Gegenstand). Das ist eine Lesart der
-Felder `ascent`/`descent` in `AsymmetricDiscontexturalTransition`, deren Kopf die
-Beschriftung „(Relatum → Relator)" bereits trägt. **Diese Sonde bestätigt oder verwirft
-die Beschriftung nicht.** Sie stellt fest, welche der drei Eigenschaften (a)–(c) bewiesen
+`descent` als „Relator wird Relatum" (die Spur wird Gegenstand) — eine ROLLEN-Lesart:
+„Relatum wird Relator" für `extend` ist nur in der Rolle getragen („elevated", C&V S. 20).
+Das ist eine Lesart der Felder `ascent`/`descent` in `AsymmetricDiscontexturalTransition`,
+deren Feld-Docstring seit dem 25.10. K-1 nennt (unten). **Diese Sonde bestätigt oder
+verwirft die Beschriftung nicht.** Entschieden hat es die Quelle (K-1). Sie stellt fest, welche der drei Eigenschaften (a)–(c) bewiesen
 sind — alle drei, siehe oben —, und dass die Gabelung unter `descent` symmetrisch ist
 (`mem_fork_iff`: alle Zweige fallen auf dieselbe Spur; von der Spur her sind sie
 ununterscheidbar). Ob das Günthers „was in einem gegebenen Objektivzusammenhang symmetrisch
 ist" (1970, S. 11, nach dem Prompt; nicht am Bild geprüft) **ist**, sagt kein Satz. Ebenso
 ist der Satz des Prompts, die Gabelung sei „vom Gegangenen bestimmt" (zu Kaehrs Labyrinth,
 im Prompt ohne Seite), eine Lesart von F2, keine Folgerung aus ihr.
+
+**K-1 (entschieden 24.10.2026;  Hermeneutes am Bild;  Register K-1, PL27/PL28).** Günther hat
+zwei „oben":  auf der Achse der logischen Ordnung geht **Relator → Relatum** nach oben (C&V
+S. 23;  Formeln S. 20 f.;  Atom/Molekül S. 21;  EuW S. 26, 29);  in der **Rolle** steigt das
+Relatum („elevated", C&V S. 20).  „Relatum → Relator" ist auf der Achse der logischen Ordnung
+NICHT getragen, nur am Rollen-Wort.  Definitionen §20 („Formaler Ausdruck") führt die Richtung:
+„Relator wird Relatum → R_{i+2}(x_{i+1}, y_{i+1})".  Die Lesart oben (`extend` als „Relatum wird
+Relator") gilt darum nur für die Rolle.  Vermerk:  Bis 25.10. stand hier, der Kopf von
+`AsymmetricDiscontexturalTransition` trage die Beschriftung „(Relatum → Relator)";  nachgeführt
+nach K-1.
 
 ## §6 — Ebenen-Trennung (MESSUNG, kein Satz dieser Sonde)
 

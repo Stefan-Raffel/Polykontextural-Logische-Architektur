@@ -400,7 +400,8 @@ Kategorie des Neuen* (1970), `KorpusRev1/gg_category.pdf`, S. 25, Wortlaut nach
   wandert unter der Spiegelung von oben nach unten (`genese_spiegel`).
 * **K-S3 — die Stufen, je Satz am Beweis bestimmt** (CLAUDE.md §4):
   - `sw_rev_conj` — FOLGERUNG (dünn) — Lehrbuch (`w₀ s_i w₀ = s_{n−i}` in der symmetrischen
-    Gruppe); im Bestand und in Mathlib (83a5988) nicht als Satz über `sw` vorhanden.
+    Gruppe; **Literaturstelle ungeprüft, keine nachgesehen**); im Bestand und in Mathlib
+    (83a5988) nicht als Satz über `sw` vorhanden.
   - `endpoint_reverse_values`, `origin_map_rev` — FOLGERUNG (dünn) — Hilfssätze für den
     Rücklauf; `endpoint_reverse` oben ist eine andere Sache (Umkehr des Wortes).
   - `endpoint_map_rev` — FOLGERUNG (dünn) — Induktion aus `sw_rev_conj`.

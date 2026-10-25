@@ -21,8 +21,11 @@ Substanz trägt?
   umkehrbar (`extend` ist ein Schnitt).
 - **Sonde-P2 (Faser-Asymmetrie, descent kein Iso):** über `[0,1] : RGS 2` liegen
   mindestens zwei verschiedene Urbilder (`[0,1,0]`, `[0,1,2]`) mit gleichem `descent`.
-  Aufwärts (Relatum zum Relator erheben) ist die Bewegung eine *Wahl* unter den
-  Fasern — mehrdeutig, im Gegensatz zur eindeutigen Abwärts-Bewegung.
+  Aufwärts ist die Bewegung eine *Wahl* unter den Fasern — mehrdeutig, im Gegensatz zur
+  eindeutigen Abwärts-Bewegung. (Bis 25.10. stand hier „Relatum zum Relator erheben" — das
+  ist nur in der Rolle getragen, „elevated", C&V S. 20;  auf der Achse der logischen Ordnung
+  ist der Aufstieg Relator → Relatum, C&V S. 23, S. 20 f. — K-1, entschieden 24.10.2026,
+  Hermeneutes am Bild;  Register K-1, PL27/PL28.)
 - **Sonde-N (Iso-Kollaps-Abgrenzung):** split-epi UND nicht-iso, als ein Satz
   zusammengeführt. Wäre `descent` ein Iso (wie γ in `CartesianProbe`), zwänge der
   Kollaps; hier nicht-iso, daher trägt die proemielle Inversion genau die Substanz,
@@ -85,8 +88,9 @@ theorem descent_extend {n : ℕ} (r : RGS n) (k : ℕ)
 
 /-- **Sonde-P2.** `descent` ist kein Iso: über dem benannten Basis-Punkt
 `[0,1] : RGS 2` liegen mindestens zwei verschiedene Urbilder `[0,1,0] ≠ [0,1,2]`
-(beide `RGS 3`) mit gleichem `descent`. Die Aufwärts-Bewegung (Relatum → Relator)
-ist mehrdeutig — eine Wahl unter den Fasern, nicht umkehrbar. (Faser-Form der
+(beide `RGS 3`) mit gleichem `descent`. Die Aufwärts-Bewegung ist mehrdeutig — eine
+Wahl unter den Fasern, nicht umkehrbar. (Die frühere Klammer „Relatum → Relator" ist
+gestrichen;  die Lesart steht mit K-1 im Modulkopf, Sonde-P2.) (Faser-Form der
 nicht-Injektivität von `A1DescentProbe.descent_not_injective`, hier über benanntem
 Basis-Punkt.) -/
 theorem fiber_nontrivial :
