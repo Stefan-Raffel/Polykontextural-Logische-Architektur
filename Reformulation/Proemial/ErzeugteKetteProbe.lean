@@ -157,8 +157,8 @@ S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen 
 „einsortig unmöglich" ohne „im Ein-Schritt, ab n = 2";  „der Turm kann die Gleichsetzung nicht" ohne die drei offenen Wege.
 
 **Verboten, ergänzt 25.10. mittags** (nach Definitionen §20, Fassung PL33/PL34):  „Buridans Modalität gegen die von S. 23";  „der Turm löst
-aus";  „die Wahl ist frei" (Günther:  Freiheit ist nicht Mangel an Bestimmung, [T67];  positiv „a plus of formal determining" [T68], am Bild
-ungeprüft);  „der Turm vollzieht die Wahl".
+aus";  „die Wahl ist frei" (Günther:  Freiheit ist nicht Mangel an Bestimmung, [T67];  positiv „a plus of formal determinating factors"
+[T68] (Druck S. 214, am Bild 25.10.;  vordenker S. 10:  „determining"));  „der Turm vollzieht die Wahl".
 
 ## Bauweise
 
