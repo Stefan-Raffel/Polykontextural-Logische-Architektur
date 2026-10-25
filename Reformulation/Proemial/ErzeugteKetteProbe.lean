@@ -76,13 +76,30 @@ zaehlung_drei_vier     EICHUNG (decide)  (G-6) an den Generatorlisten:  Π Gabel
 Bestand nicht führt).  EICHUNG, gerechnet ausserhalb:  Stufe 3, 12 Segmente, 5 Fasern, je Produkt (3, 3, 2, 2, 2) — Mathematiker
 (faser.py) und Instanz (Begutachtung 22:24) unabhängig;  Stufe 4, 2 592 Segmente, 15 Fasern, alle Produkt — Mathematiker.
 
+## SETZUNG (Architekt, 25.10. 09:36;  Register SA1/PL32)
+
+- **Wortlaut:**  „Wird der Relator zum Relatum, so tauschen die Rollen — in beide Richtungen.  Was der Relator als Relatum zeigt, lässt
+  ihn nicht zurückgewinnen:  der Verlust trifft den Inhalt, nicht die Richtung."  Klasse DEUTEND:  sie entscheidet Günthers offene Stelle
+  „Der Ort und die Rückgewinnbarkeit" für das Haus.
+- Was sie hier entscheidet:  **„Glied oder Bild"** — die Gleichsetzung „Regel auf Stufe n wird Kette auf Stufe n + 1" gilt für die
+  **Rolle**;  der **Inhalt** ist Quotient.
+- ZUORDNUNG zum Bau, **ungeprüft** (Setzung, keine Quellenlesung;  Liste PL27):  „in beide Richtungen" ↔ `erzeugt` / `regelNach`;  „lässt
+  ihn nicht zurückgewinnen" ↔ `ein_schritt_nicht_injektiv` (verschiedene Regeln, dieselbe Kette);  dass die Rolle zurückkommt ↔
+  `erzeugt_regelNach` (Retraktion:  zu jeder Kette eine Regel, die sie erzeugt).
+- **OFFEN (beim Architekten, Register SA1):**  An der ersten Stufe ist der Wortlaut stärker als der Bau — `einsortig_moeglich_eins`:  dort
+  geht nichts verloren.
+- NICHT:  die Setzung ist nicht A20-4 und gibt §20 keinen Träger.
+
 ## LESART (nur hier;  kein Dokstring eines Satzes trägt eine)
 
 - Speculum S1:  Günthers zwei „exchange" — (I) der symmetrische [T27][T57][T63][T64], (II) der Wechsel, den R_pr bewirkt, „not mutual"
   [T49][T10].  Die Gabelung ↔ (I), der Übergang Regel ↔ Kette ↔ (II):  ZUORDNUNG.
-- `faser_iff` / `fasersatz_b` als die Bindung von A20-4 („eine Aussage, in der die eine Bewegung die andere bedingt"):  ZUSAMMENSCHAU,
-  in der BURIDAN-Modalität ([T30] „triggers … supply this order by making a choice"), NICHT in der von S. 23 („implies") — ein
-  Biconditional trägt jede der Modalitäten gleich;  die Zuschreibung ist Lesart, keine Eigenschaft des Satzes (Horistes H-2).
+- `faser_iff` / `fasersatz_b` und A20-4 (Definitionen §20, Fassung 25.10.:  „Ein Wechsel, zwei Paare, in einem Satz"):  ZUSAMMENSCHAU.
+  Ein Biconditional sagt nichts über die Modalität (Horistes H-2);  dass es „ein Vorgang, der beide Paare betrifft" sei, ist Lesart,
+  keine Eigenschaft des Satzes.  Ob die zwei Wachen von A20-4 erfüllt sind (nicht von der Kleinheit erzwungen;  auf dem zweiten Paar
+  Relator und Relatum selbst), ist NICHT geprüft.
+- Vermerk:  Bis 25.10. stand hier „in der BURIDAN-Modalität ([T30]) …, NICHT in der von S. 23" und die alte A20-4-Fassung („bedingt").
+  Buridan gegen S. 23 zu stellen war eine Fehllesung von [T30] (Definitionen §20, Buridan-Absatz und Offene Stellen;  Register PL33/PL34).
 - Wort „Gabelung", nicht „Schwebe" ([T63] steht in der kognitiven Zeile;  hier volitiv, [T64]).
 - „Ordnung" nur mit Index:  O1 (Index) / O2 (Aktualisierung).
 - `ordnung_aus_fasern` gewinnt die Präfixordnung der Ketten aus den Fasern des Wechsels, ohne den Index zu benutzen (Horistes' Probe
@@ -104,27 +121,44 @@ Bestand nicht führt).  EICHUNG, gerechnet ausserhalb:  Stufe 3, 12 Segmente, 5 
 - (3) Ein einsortiger Träger mit dem Ein-Schritt („der Relator auf Stufe n wird Relatum auf Stufe n + 1" als Gleichsetzung) ist ab n = 2
   durch Zählung ausgeschlossen (`einsortig_unmoeglich_zwei`), bei n = 1 möglich (`einsortig_moeglich_eins`).  Offen bleiben drei Wege:  den
   Ein-Schritt aufgeben, weniger als die Wirkung kodieren, den Turm verlassen.
-- Zusammen:  die Zuordnung „Gabelung = symmetrischer Umtausch" hat drei benannte Grenzen (Auslösen, Zahl, Sinn von „symmetrisch");  die
+- Zusammen:  die Zuordnung „Gabelung = symmetrischer Umtausch" hat drei benannte Grenzen (Vollzug, Zahl, Sinn von „symmetrisch");  die
   Gabelung ist Buridans LAGE, nicht Günthers Umtausch — ZUORDNUNG mit Grenzen.
+- Zur Grenze „Vollzug" (LESART):  Was Buridan verlangt, hat der Turm zur Hälfte.  **Notwendig ist, dass gewählt wird** — jede Wahlregel
+  wählt an jeder Gabelung ([T66], [T30]);  **offen ist, welches** — `KenogramForkProbe.choice_undetermined` ([T28]).  Was fehlt, ist der
+  **Vollzug**:  die Wahlregel ist als Funktion auf dem ganzen Turm im Voraus gegeben, nicht an der Gabelung getroffen.  Die Zuordnung
+  „notwendig ↔ Wahlregel total", „offen ↔ choice_undetermined" ist ZUORDNUNG, ungeprüft (Liste PL27).
+- Vermerk:  Bis 25.10. hiess die erste Grenze „Auslösen" — gestützt auf die berichtigte Lesung von [T30].
 - Vermerk:  dreimal ist der erste Schritt besonders (`wurzel_kollaps`;  zwei Glieder ab `[0]`;  `einsortig_moeglich_eins`) — ein Grund:  über
   der leeren Kette ist nur 0 zulässig.
 
-## OFFEN (K-1) — die Rollen-Zuordnung
+## K-1 — entschieden
 
-Der Bestand beschriftet den Aufstieg in einer Richtung (`AsymmetricDiscontexturalTransition`, Feld `ascent`;  `KenogramForkProbe`
-§5), die Vorprobe 24.10. liest `erzeugt` (Regel → Kette) in der anderen, gestützt auf [T10].  Zwei verschiedene Pfeile (`step`:
-Kette → Kette;  `erzeugt`:  Regel → Kette).  Dieses Modul schreibt KEINE der beiden Beschriftungen.  Entscheidung:  Hermeneutes am
-Bild, Custos.
+- **K-1 — ENTSCHIEDEN 24.10.** (Hermeneutes am Bild;  Register K-1, PL27/PL28).  Günther hat zwei „oben":  auf der Achse der logischen
+  Ordnung geht **Relator → Relatum** nach oben (C&V S. 23;  Formeln S. 20 f.;  Atom/Molekül S. 21;  EuW S. 26, 29);  in der **Rolle**
+  steigt das Relatum („elevated", S. 20).  „Relatum → Relator" ist auf der Achse der logischen Ordnung NICHT getragen.  Definitionen §20
+  („Formaler Ausdruck") führte die Richtung die ganze Zeit:  „Relator wird Relatum → R_{i+2}(x_{i+1}, y_{i+1})".
+- ZUORDNUNG (Quellenlesung wie oben):  `erzeugt` (Regel → Kette, eine Stufe höher) liest den Aufstieg als „Relator wird Relatum" auf der
+  Achse der logischen Ordnung;  `regelNach` den Abstieg.
+- Vermerk:  Die Beschriftung von `ascent` als „Relatum → Relator" in `AsymmetricDiscontexturalTransition` (Feld `ascent`) und
+  `KenogramForkProbe` §5 hängt am Rollen-Wort und widerspricht K-1;  ihre Nachführung ist ein eigener Zug (Register K-1:  „drei Köpfe").
+  Dieser Kopf nennt den Widerspruch, ändert die anderen nicht.
+- Vermerk:  Bis 25.10. stand hier „OFFEN (K-1) … Dieses Modul schreibt KEINE der beiden Beschriftungen."
 
 ## NICHT
 
-Kein Träger für §20;  „§20 ohne Träger" bleibt.  Keine Messung an K4′.  Kein Text in Rev11 (Horistes H5).  Keine Ledger-Zeile.
+Kein Träger für §20;  „§20 ohne Träger" bleibt.  Keine Messung an K4′.  Kein Text in Rev11 (Horistes H5, angenommen 24.10.;  Register
+PL31 J5) — eine Frage der Reife, nicht des Gewichts:  der Turm ist der Arbeitsstrang zu §20.  Ob Rev11 einen Absatz „§20 heute" trägt,
+der den Turm nennt, entscheidet der Architekt (offen, PL29 §6).  Keine Ledger-Zeile.
 **Verboten:**  „Träger für §20", „fast ein Träger", „die Proemialrelation ist gebaut", „trägt A20-4", „Günthers Implikation",
 „Buridan formalisiert", „Diskontexturalität aus der Stufe", „der erste Kandidat" ohne die Reihe der zwölf (Standsbericht 13.8.).
 
 **Verboten, ergänzt 25.10.:**  „die Ordnung ist konstituiert" ohne „über einem gestuften Bereich" und ohne „eine der zwei Lesarten von
 S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen Satz;  „die Gabelung ist Günthers Umtausch" ohne die Grenzen;
 „einsortig unmöglich" ohne „im Ein-Schritt, ab n = 2";  „der Turm kann die Gleichsetzung nicht" ohne die drei offenen Wege.
+
+**Verboten, ergänzt 25.10. mittags** (nach Definitionen §20, Fassung PL33/PL34):  „Buridans Modalität gegen die von S. 23";  „der Turm löst
+aus";  „die Wahl ist frei" (Günther:  Freiheit ist nicht Mangel an Bestimmung, [T67];  positiv „a plus of formal determining" [T68], am Bild
+ungeprüft);  „der Turm vollzieht die Wahl".
 
 ## Bauweise
 

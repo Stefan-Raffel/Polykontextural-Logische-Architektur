@@ -58,8 +58,10 @@ Das ist unsere Verbindung der drei Stellen, nicht Günthers Satz.
 
 ## LITERATUR
 
-Aut(Weg 1 — … — m) = {id, Umkehr};  derselbe Sachverhalt wie der Diagrammautomorphismus von A_{m−1}, realisiert durch das längste Element
-w₀ = `Fin.rev`.  Lehrbuchstand.  ZUORDNUNG zur Literatur.
+Aut(Weg 1 — … — m) = {id, Umkehr}:  **hier bewiesen** (`ordnung_aus_umtausch_zwei` mit `nachbar_iff`);  elementar, braucht keine
+Literatur.  Die Gleichsetzung mit dem Diagrammautomorphismus von A_{m−1}, realisiert durch das längste Element w₀ = `Fin.rev`
+(w₀ s_i w₀ = s_{m−i}), ist die eigentliche ZUORDNUNG zur Literatur — **ungeprüft (keine Stelle nachgesehen)**.
+Vermerk:  bis 25.10. mittags stand hier „Lehrbuchstand. ZUORDNUNG zur Literatur." ohne Angabe (Custos PL33, Liste PL27 Z1).
 
 ## MARKE
 
