@@ -58,6 +58,17 @@ alle_regeln        FOLGERUNG   wer von allen Regeln erzeugt wird, ist `[]` oder 
 faser_ordnung_voll FOLGERUNG   (O-3) Faser(s) ⊆ Faser(r) ↔ r <+: s ∨ (s = `[]` ∧ r = `[0]`) — die Präordnung mit genau einem Kollaps
 eich_ordnung_drei  EICHUNG (decide)  an Stufe ≤ 3:  regelNach [0,1,2] in Faser([0,1,2]), nicht in Faser([0,0]);  die Überschreibung
                                von [0,1] mit 0 in Faser([0,1]), nicht in Faser([0,1,1]);  Faser([0,1,2]) ⊆ Faser([0,1])
+
+forkWidth_eq_two_iff   FOLGERUNG   (G-1) r ≠ [] → (forkWidth r = 2 ↔ r = replicate n 0);  zwei_glieder_wiederholung:  ↔ r = erzeugt
+                                   waehleNull n (n ≥ 1);  eich_zwei_glieder (decide):  auf Stufe 1 … 4 genau eine Kette mit zwei Gliedern
+umtausch_identitaet    ZUSAMMENSTELLUNG  (G-2) jede Normalform mit dem Muster von r.map σ ist r, für injektives σ (aus
+                                   rgs_unique_of_pattern);  umbenennung_trennt:  r.map σ = s, beide RGS → r = s
+gabelung_nicht_vertauschbar  FOLGERUNG  (G-3) keine Umbenennung führt [0,0] in [0,1];  verschiedene Fortsetzungen derselben Kette gehen
+                                   durch keine injektive Umbenennung ineinander über
+einsortig_unmoeglich_zwei  FOLGERUNG, NEGATIV  (G-4) ¬ ∃ f : W 2 → RGS 3, injektiv — sechs Wirkungen, fünf Ketten
+einsortig_moeglich_eins    EICHUNG  (G-5) ∃ f : W 1 → RGS 2, bijektiv — die Gestalt von stufe_zwei_injektiv
+zaehlung_drei_vier     EICHUNG (decide)  (G-6) an den Generatorlisten:  Π Gabelbreiten auf Stufe 1, 2, 3 = 2, 6, 216 gegen |rgsList| eine
+                                   Stufe höher = 2, 5, 15;  Stufe 4 nur gerechnet (89 579 520 gegen 52)
 ```
 
 **Die Produktformel** „|Faser über r| = Π der Gabelbreiten abseits des Pfades" ist der Zählschatten von `faser_iff` und hier KEIN Satz
@@ -83,6 +94,21 @@ Bestand nicht führt).  EICHUNG, gerechnet ausserhalb:  Stufe 3, 12 Segmente, 5 
 - `wurzel_kollaps` als Beobachtung:  Faser-Ordnung und Präfixordnung unterscheiden sich nur an der Wurzel (`faser_ordnung_voll`).
   Ob das etwas über Günthers „Unten des Abstiegs" oder über „die 1 ohne Vorgänger" sagt, ist eine FRAGE, kein Satz.
 
+**Was der Turm nicht kann** (G-1 … G-6;  Grundlage `Notiz_Turm_Perspektive_Instanz_Impl.md`, Hermeneutes U):
+- (1) Die Gabelung ist „symmetrisch" im Sinn der Unbestimmtheit (`choice_undetermined`), nicht der Invarianz:  Günthers symmetrischer
+  Umtausch ist als Operation (Wertpermutation, C&V S. 20 „implemented in the Table of Negation") auf Kenogrammen die Identität
+  (`umtausch_identitaet`) — A20-5 Fassung 1;  die Glieder einer Gabelung sind verschiedene Kenogramme (`gabelung_nicht_vertauschbar`),
+  eines ist ausgezeichnet (`nichtIntern_iff_akkretiv`).
+- (2) Zwei Glieder nur längs der reinen Wiederholung (`forkWidth_eq_two_iff`, `zwei_glieder_wiederholung`);  Günthers Umtausch hat zwei
+  Glieder, bei dreien ist die Relation geordnet (C&V S. 14, nach Hermeneutes am Bild) — die Übertragung von Werten auf Fortsetzungen ist UNSER.
+- (3) Ein einsortiger Träger mit dem Ein-Schritt („der Relator auf Stufe n wird Relatum auf Stufe n + 1" als Gleichsetzung) ist ab n = 2
+  durch Zählung ausgeschlossen (`einsortig_unmoeglich_zwei`), bei n = 1 möglich (`einsortig_moeglich_eins`).  Offen bleiben drei Wege:  den
+  Ein-Schritt aufgeben, weniger als die Wirkung kodieren, den Turm verlassen.
+- Zusammen:  die Zuordnung „Gabelung = symmetrischer Umtausch" hat drei benannte Grenzen (Auslösen, Zahl, Sinn von „symmetrisch");  die
+  Gabelung ist Buridans LAGE, nicht Günthers Umtausch — ZUORDNUNG mit Grenzen.
+- Vermerk:  dreimal ist der erste Schritt besonders (`wurzel_kollaps`;  zwei Glieder ab `[0]`;  `einsortig_moeglich_eins`) — ein Grund:  über
+  der leeren Kette ist nur 0 zulässig.
+
 ## OFFEN (K-1) — die Rollen-Zuordnung
 
 Der Bestand beschriftet den Aufstieg in einer Richtung (`AsymmetricDiscontexturalTransition`, Feld `ascent`;  `KenogramForkProbe`
@@ -97,13 +123,18 @@ Kein Träger für §20;  „§20 ohne Träger" bleibt.  Keine Messung an K4′. 
 „Buridan formalisiert", „Diskontexturalität aus der Stufe", „der erste Kandidat" ohne die Reihe der zwölf (Standsbericht 13.8.).
 
 **Verboten, ergänzt 25.10.:**  „die Ordnung ist konstituiert" ohne „über einem gestuften Bereich" und ohne „eine der zwei Lesarten von
-S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen Satz.
+S. 23";  „constituted" für `faser_iff`;  „Günthers Modalität" für einen Satz;  „die Gabelung ist Günthers Umtausch" ohne die Grenzen;
+„einsortig unmöglich" ohne „im Ein-Schritt, ab n = 2";  „der Turm kann die Gleichsetzung nicht" ohne die drei offenen Wege.
 
 ## Bauweise
 
 `isRGS_take_frei`:  derselbe Satz wie `Kenogram.isRGS_take` (`Kenogram/PlaceSwap.lean`), der dort über `relabel` läuft und
 `Classical.choice` trägt (gemessen);  hier per Induktion über `isRGS_concat`, ohne Choice.  `waehleNull`:  die Wahlregel „überall 0"
-— der Bestand führt sie nur anonym (`step_eq_ascentBy_zero`).
+— der Bestand führt sie nur anonym (`step_eq_ascentBy_zero`).  `max_eq_zero_frei`:  `Nat.max_eq_zero_iff` (Mathlib) trägt
+`Classical.choice` (gemessen 25.10.).  G-2 in der Musterform über `rgs_unique_of_pattern` ([propext, Quot.sound]):  die Normalform-Fassung
+(`relabel (r.map σ) = r` aus `relabel_map_of_injective` und `relabel_eq_self_of_isRGS`) trägt Choice, ebenso `canonicalize_perm` und
+`pattern_characterization`.  G-4 über eine Fallzerlegung der fünf Ketten der Stufe 3 (`rgs3_cases`), ihre Nummer (`codeL`) und das
+Schubfach sechs in fünf (`schubfach_sechs_fuenf`, `decide +kernel` über nackte Quantoren über Fin 5) — nicht über `Fintype.card`.
 
 Kein `sorry`, kein `Classical.choice`, kein `native_decide`, kein True-Feld.
 -/
@@ -510,6 +541,219 @@ theorem eich_ordnung_drei :
     (∀ c, inFaser c [0, 1, 2] → inFaser c [0, 1]) := by
   refine ⟨by decide, by decide, by decide, by decide, fun c hc => faser_praefix c _ _ ⟨[2], rfl⟩ hc⟩
 
+/-! ## Was der Turm nicht kann -/
+
+/-! ### G-1 · Zwei Glieder nur längs der Wiederholung -/
+
+/-- `max a b = 0` genau dann, wenn beide 0 sind — choice-frei (`Nat.max_eq_zero_iff` trägt `Classical.choice`, gemessen) -/
+theorem max_eq_zero_frei (a b : ℕ) : max a b = 0 ↔ a = 0 ∧ b = 0 :=
+  ⟨fun h => ⟨Nat.eq_zero_of_le_zero (h ▸ Nat.le_max_left a b), Nat.eq_zero_of_le_zero (h ▸ Nat.le_max_right a b)⟩,
+   fun ⟨ha, hb⟩ => by rw [ha, hb]; rfl⟩
+
+theorem foldr_max_eq_zero : ∀ l : List ℕ, l.foldr max 0 = 0 ↔ ∀ x ∈ l, x = 0
+  | [] => ⟨fun _ x hx => absurd hx List.not_mem_nil, fun _ => rfl⟩
+  | a :: t => by
+    rw [List.foldr_cons, max_eq_zero_frei, foldr_max_eq_zero t, List.forall_mem_cons]
+
+/-- **Zwei Glieder genau längs der Wiederholung:**  über einer nichtleeren Kette hat die Gabelung genau dann zwei Glieder, wenn die
+    Kette nur aus Nullen besteht. -/
+theorem forkWidth_eq_two_iff {n : ℕ} (r : RGS n) (h : r.val ≠ []) : forkWidth r = 2 ↔ r.val = List.replicate n 0 := by
+  rw [KenogramForkProbe.forkWidth_eq r h]
+  constructor
+  · intro e
+    have h0 : r.val.foldr max 0 = 0 := by omega
+    exact List.eq_replicate_iff.mpr ⟨r.property.1, (foldr_max_eq_zero _).mp h0⟩
+  · intro e
+    rw [(foldr_max_eq_zero _).mpr (List.eq_replicate_iff.mp e).2]
+
+/-- die zweigliedrige Gabelung auf Stufe n ≥ 1 liegt über der Kette der Regel „überall 0" -/
+theorem zwei_glieder_wiederholung {n : ℕ} (hn : 1 ≤ n) (r : RGS n) :
+    forkWidth r = 2 ↔ r.val = erzeugt waehleNull n := by
+  have hne : r.val ≠ [] := fun h => by
+    have := r.property.1; rw [h, List.length_nil] at this; omega
+  rw [erzeugt_waehleNull]; exact forkWidth_eq_two_iff r hne
+
+/-- die Gabelbreite, an der Kette gerechnet (definitional `forkWidth`) -/
+def fwL (l : List ℕ) : ℕ := ((List.range (l.foldr max 0 + 2)).filter (fun k => decide (l = [] → k = 0))).length
+
+theorem forkWidth_fwL {n : ℕ} (r : RGS n) : forkWidth r = fwL r.val := rfl
+
+/-- **Eichung (decide):**  auf den Stufen 1 bis 4 hat genau eine Kette eine zweigliedrige Gabelung, die Nullkette (`rgsList` ist der
+    Generator von Kenogram/Basic). -/
+theorem eich_zwei_glieder :
+    (rgsList 1).filter (fun l => fwL l == 2) = [[0]] ∧ (rgsList 2).filter (fun l => fwL l == 2) = [[0, 0]] ∧
+    (rgsList 3).filter (fun l => fwL l == 2) = [[0, 0, 0]] ∧ (rgsList 4).filter (fun l => fwL l == 2) = [[0, 0, 0, 0]] := by
+  decide
+
+/-! ### G-2, G-3 · Die Wertpermutation auf Kenogrammen -/
+
+theorem muster_map {σ : ℕ → ℕ} (hσ : Function.Injective σ) (l : List ℕ) (i j : ℕ) :
+    (l.map σ)[i]? = (l.map σ)[j]? ↔ l[i]? = l[j]? := by
+  rw [List.getElem?_map, List.getElem?_map]
+  exact (Option.map_injective hσ).eq_iff
+
+/-- **Die Wertpermutation wirkt auf Kenogrammen als Identität:**  jede Normalform (RGS) mit dem Muster von r.map σ ist r — für jede
+    injektive Umbenennung σ.  Zusammengestellt aus `Kenogram.rgs_unique_of_pattern`. -/
+theorem umtausch_identitaet {σ : ℕ → ℕ} (hσ : Function.Injective σ) (r s : List ℕ) (hr : IsRGS r) (hs : IsRGS s)
+    (hlen : s.length = r.length) (hpat : ∀ i j : ℕ, s[i]? = s[j]? ↔ (r.map σ)[i]? = (r.map σ)[j]?) : s = r :=
+  rgs_unique_of_pattern hs hr hlen fun i j => (hpat i j).trans (muster_map hσ r i j)
+
+/-- verschiedene Kenogramme gehen durch keine injektive Umbenennung ineinander über -/
+theorem umbenennung_trennt {σ : ℕ → ℕ} (hσ : Function.Injective σ) (r s : List ℕ) (hr : IsRGS r) (hs : IsRGS s)
+    (h : r.map σ = s) : r = s :=
+  (umtausch_identitaet hσ r s hr hs (by rw [← h, List.length_map]) fun i j => by rw [h]).symm
+
+/-- **Die Glieder einer Gabelung sind nicht vertauschbar:**  keine Umbenennung führt `[0,0]` in `[0,1]` (für jedes σ, auch ohne
+    Injektivität);  und allgemein gehen zwei verschiedene Fortsetzungen derselben Kette durch keine injektive Umbenennung ineinander über. -/
+theorem gabelung_nicht_vertauschbar :
+    (∀ σ : ℕ → ℕ, [0, 0].map σ ≠ [0, 1]) ∧
+    ∀ (r : List ℕ) (a b : ℕ), IsRGS (r ++ [a]) → IsRGS (r ++ [b]) → a ≠ b →
+      ¬ ∃ σ : ℕ → ℕ, Function.Injective σ ∧ (r ++ [a]).map σ = r ++ [b] := by
+  refine ⟨fun σ h => ?_, fun r a b ha hb hab ⟨σ, hσ, h⟩ => ?_⟩
+  · have h1 := List.cons.inj h
+    have h2 := List.cons.inj h1.2
+    exact Nat.zero_ne_one (h1.1.symm.trans h2.1)
+  · have e := umbenennung_trennt hσ _ _ ha hb h
+    exact hab (List.cons.inj (List.append_cancel_left e)).1
+
+/-! ### G-4, G-5 · Der einsortige Ein-Schritt -/
+
+/-- die Wirkungen einer Wahlregel auf Stufe n:  je Punkt der Stufe eine der Fortsetzungen -/
+abbrev W (n : ℕ) : Type := (r : RGS n) → Fin (forkWidth r)
+
+theorem rgs1_eq (r : RGS 1) : r.val = [0] := by
+  obtain ⟨l, hl, h⟩ := r
+  match l, hl, h with
+  | [a], _, h =>
+    simp only [IsRGS, isRGSAux, Bool.and_eq_true, decide_eq_true_eq] at h
+    show [a] = [0]; rw [h.1]
+
+theorem rgs2_cases (r : RGS 2) : r.val = [0, 0] ∨ r.val = [0, 1] := by
+  obtain ⟨l, hl, h⟩ := r
+  match l, hl, h with
+  | [a, b], _, h =>
+    simp only [IsRGS, isRGSAux, Bool.and_eq_true, decide_eq_true_eq] at h
+    obtain ⟨ha, hb, -⟩ := h
+    subst ha
+    match b, hb with
+    | 0, _ => exact Or.inl rfl
+    | 1, _ => exact Or.inr rfl
+    | b + 2, hb => exfalso; omega
+
+theorem rgs3_cases (r : RGS 3) :
+    r.val = [0, 0, 0] ∨ r.val = [0, 0, 1] ∨ r.val = [0, 1, 0] ∨ r.val = [0, 1, 1] ∨ r.val = [0, 1, 2] := by
+  obtain ⟨l, hl, h⟩ := r
+  match l, hl, h with
+  | [a, b, c], _, h =>
+    simp only [IsRGS, isRGSAux, Bool.and_eq_true, decide_eq_true_eq] at h
+    obtain ⟨ha, hb, hc, -⟩ := h
+    subst ha
+    match b, c, hb, hc with
+    | 0, 0, _, _ => exact Or.inl rfl
+    | 0, 1, _, _ => exact Or.inr (Or.inl rfl)
+    | 1, 0, _, _ => exact Or.inr (Or.inr (Or.inl rfl))
+    | 1, 1, _, _ => exact Or.inr (Or.inr (Or.inr (Or.inl rfl)))
+    | 1, 2, _, _ => exact Or.inr (Or.inr (Or.inr (Or.inr rfl)))
+    | b + 2, _, hb, _ => exfalso; omega
+    | 0, c + 2, _, hc => exfalso; simp only [Nat.max_self] at hc; omega
+    | 1, c + 3, _, hc => exfalso; simp only [Nat.zero_max] at hc; omega
+
+/-- die Nummer einer Kette der Stufe 3:  2·b + c für [0, b, c] -/
+def codeL (l : List ℕ) : ℕ := 2 * l.getD 1 0 + l.getD 2 0
+
+theorem code3_lt (r : RGS 3) : codeL r.val < 5 := by
+  rcases rgs3_cases r with h | h | h | h | h <;> rw [h] <;> decide
+
+theorem code3_inj {r s : RGS 3} (h : codeL r.val = codeL s.val) : r = s := by
+  apply Subtype.ext
+  rcases rgs3_cases r with hr | hr | hr | hr | hr <;> rcases rgs3_cases s with hs | hs | hs | hs | hs <;>
+    rw [hr, hs] at h <;> rw [hr, hs] <;> exact absurd h (by decide)
+
+/-- das Schubfach:  sechs Zahlen unter fünf sind nicht paarweise verschieden -/
+theorem schubfach_sechs_fuenf : ∀ a b c d e g : Fin 5,
+    (Nat.beq a.val b.val || Nat.beq a.val c.val || Nat.beq a.val d.val || Nat.beq a.val e.val || Nat.beq a.val g.val ||
+     Nat.beq b.val c.val || Nat.beq b.val d.val || Nat.beq b.val e.val || Nat.beq b.val g.val ||
+     Nat.beq c.val d.val || Nat.beq c.val e.val || Nat.beq c.val g.val ||
+     Nat.beq d.val e.val || Nat.beq d.val g.val || Nat.beq e.val g.val) = true := by
+  decide +kernel
+
+theorem beq_false_of_ne {x y : ℕ} (h : x ≠ y) : Nat.beq x y = false :=
+  Bool.eq_false_iff.mpr fun e => h (Nat.eq_of_beq_eq_true e)
+
+/-- die Punkte `[0,0]` und `[0,1]` der Stufe 2 -/
+def q00 : RGS 2 := ⟨[0, 0], by decide⟩
+def q01 : RGS 2 := ⟨[0, 1], by decide⟩
+
+theorem fw_q00 (r : RGS 2) (h : r.val = [0, 0]) : forkWidth r = 2 := by rw [forkWidth_fwL, h]; rfl
+theorem fw_q01 (r : RGS 2) (h : ¬ r.val = [0, 0]) : forkWidth r = 3 := by
+  rw [forkWidth_fwL]; rcases rgs2_cases r with e | e
+  · exact absurd e h
+  · rw [e]; rfl
+
+/-- die sechs Wirkungen auf Stufe 2:  i / 3 an `[0,0]`, i % 3 an `[0,1]` -/
+def wi (i : Fin 6) : W 2 := fun r =>
+  if h : r.val = [0, 0] then ⟨i.val / 3, by rw [fw_q00 r h]; omega⟩
+  else ⟨i.val % 3, by rw [fw_q01 r h]; exact Nat.mod_lt _ (by decide)⟩
+
+theorem wi_inj {i j : Fin 6} (h : wi i = wi j) : i = j := by
+  have h1 : (wi i q00).val = (wi j q00).val := by rw [h]
+  have h2 : (wi i q01).val = (wi j q01).val := by rw [h]
+  have e1 : (wi i q00).val = i.val / 3 := rfl
+  have e2 : (wi j q00).val = j.val / 3 := rfl
+  have e3 : (wi i q01).val = i.val % 3 := rfl
+  have e4 : (wi j q01).val = j.val % 3 := rfl
+  rw [e1, e2] at h1; rw [e3, e4] at h2
+  exact Fin.ext (by omega)
+
+/-- **Der einsortige Ein-Schritt ist ab Stufe 2 unmöglich:**  keine Injektion schickt die Wirkungen einer Wahlregel auf Stufe 2 in die
+    Ketten der Stufe 3 (sechs Wirkungen, fünf Ketten). -/
+theorem einsortig_unmoeglich_zwei : ¬ ∃ f : W 2 → RGS 3, Function.Injective f := by
+  rintro ⟨f, hf⟩
+  let c : Fin 6 → Fin 5 := fun i => ⟨codeL (f (wi i)).val, code3_lt _⟩
+  have ne : ∀ i j : Fin 6, i ≠ j → Nat.beq (c i).val (c j).val = false := fun i j hij =>
+    beq_false_of_ne fun e => hij (wi_inj (hf (code3_inj e)))
+  have H := schubfach_sechs_fuenf (c 0) (c 1) (c 2) (c 3) (c 4) (c 5)
+  rw [ne 0 1 (by decide), ne 0 2 (by decide), ne 0 3 (by decide), ne 0 4 (by decide), ne 0 5 (by decide),
+    ne 1 2 (by decide), ne 1 3 (by decide), ne 1 4 (by decide), ne 1 5 (by decide),
+    ne 2 3 (by decide), ne 2 4 (by decide), ne 2 5 (by decide), ne 3 4 (by decide), ne 3 5 (by decide),
+    ne 4 5 (by decide)] at H
+  exact absurd H (by decide)
+
+/-- der Punkt `[0]` der Stufe 1 -/
+def q0 : RGS 1 := ⟨[0], by decide⟩
+
+theorem rgs1_q0 (r : RGS 1) : r = q0 := Subtype.ext (rgs1_eq r)
+
+theorem fw_q0 : forkWidth q0 = 2 := rfl
+
+/-- die Wirkung auf Stufe 1 als Kette der Stufe 2 -/
+def alsKette (w : W 1) : RGS 2 :=
+  ⟨[0, (w q0).val], rfl, by
+    have h : (w q0).val < 2 := (w q0).isLt
+    exact isRGS_concat [0] _ (by decide) (by show (w q0).val ≤ 0 + 1; omega) (fun h' => absurd h' (by decide))⟩
+
+/-- **Bei Stufe 1 geht es auf:**  die Wirkungen einer Wahlregel auf Stufe 1 SIND die Ketten der Stufe 2 (eine Bijektion);  das ist die
+    Gestalt von `stufe_zwei_injektiv`. -/
+theorem einsortig_moeglich_eins : ∃ f : W 1 → RGS 2, Function.Bijective f := by
+  refine ⟨alsKette, fun w w' h => ?_, fun s => ?_⟩
+  · have hv : (w q0).val = (w' q0).val := (List.cons.inj (List.cons.inj (congrArg Subtype.val h)).2).1
+    funext r
+    obtain rfl := rgs1_q0 r
+    exact Fin.ext hv
+  · rcases rgs2_cases s with hs | hs
+    · refine ⟨fun r => ⟨0, by rw [rgs1_q0 r]; decide⟩, Subtype.ext ?_⟩
+      show [0, 0] = s.val; rw [hs]
+    · refine ⟨fun r => ⟨1, by rw [rgs1_q0 r]; decide⟩, Subtype.ext ?_⟩
+      show [0, 1] = s.val; rw [hs]
+
+/-- **Eichung (decide):**  die Zahl der Wirkungen (Produkt der Gabelbreiten) gegen die Zahl der Ketten eine Stufe höher, an den
+    Generatorlisten:  Stufe 1:  2 gegen 2;  Stufe 2:  6 gegen 5;  Stufe 3:  216 gegen 15. -/
+theorem zaehlung_drei_vier :
+    ((rgsList 1).map fwL).prod = 2 ∧ (rgsList 2).length = 2 ∧
+    ((rgsList 2).map fwL).prod = 6 ∧ (rgsList 3).length = 5 ∧
+    ((rgsList 3).map fwL).prod = 216 ∧ (rgsList 4).length = 15 := by
+  decide
+
 end Reformulation.Proemial.ErzeugteKetteProbe
 
 /-! ## Axiom-Wachen (gemessen, verbatim) -/
@@ -636,3 +880,78 @@ end Reformulation.Proemial.ErzeugteKetteProbe
 
 /-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.eich_ordnung_drei' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.eich_ordnung_drei
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.max_eq_zero_frei' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.max_eq_zero_frei
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.foldr_max_eq_zero' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.foldr_max_eq_zero
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.forkWidth_eq_two_iff' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.forkWidth_eq_two_iff
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.zwei_glieder_wiederholung' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.zwei_glieder_wiederholung
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.forkWidth_fwL' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.forkWidth_fwL
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.eich_zwei_glieder' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.eich_zwei_glieder
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.muster_map' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.muster_map
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.umtausch_identitaet' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.umtausch_identitaet
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.umbenennung_trennt' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.umbenennung_trennt
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.gabelung_nicht_vertauschbar' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.gabelung_nicht_vertauschbar
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.rgs1_eq' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.rgs1_eq
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.rgs2_cases' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.rgs2_cases
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.rgs3_cases' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.rgs3_cases
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.code3_lt' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.code3_lt
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.code3_inj' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.code3_inj
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.schubfach_sechs_fuenf' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.schubfach_sechs_fuenf
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.beq_false_of_ne' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.beq_false_of_ne
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.fw_q00' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.fw_q00
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.fw_q01' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.fw_q01
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.wi_inj' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.wi_inj
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.einsortig_unmoeglich_zwei' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.einsortig_unmoeglich_zwei
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.rgs1_q0' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.rgs1_q0
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.fw_q0' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.fw_q0
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.einsortig_moeglich_eins' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.einsortig_moeglich_eins
+
+/-- info: 'Reformulation.Proemial.ErzeugteKetteProbe.zaehlung_drei_vier' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.ErzeugteKetteProbe.zaehlung_drei_vier
