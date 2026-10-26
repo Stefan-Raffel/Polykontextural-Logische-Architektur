@@ -177,15 +177,16 @@ sechsundsechzig. Seit dem 25. Oktober 2026 `Proemial/OrdnungAusUmtauschProbe.lea
 dreiundzwanzig Wachen. Ebenso `Proemial/VollzugDurchlaufProbe.lean`, konsumiert `NegationCycleTable`; sechs Wachen;
 die Eichungen laufen per `decide +kernel` rund 2:40 (vier Kernelprüfungen 19–50 s). Ebenso
 `Proemial/VerlustDanebenKuenftigProbe.lean`, konsumiert `ErzeugteKetteProbe`; siebzehn Wachen. Seit dem 26. Oktober 2026
-`Proemial/SymmetrieGabelungProbe.lean`, konsumiert `ErzeugteKetteProbe`; vierunddreissig Wachen.)
+`Proemial/SymmetrieGabelungProbe.lean`, konsumiert `ErzeugteKetteProbe`; vierunddreissig Wachen, mit dem Nachzug
+(Korollar und dritte Option, 26. Oktober) zweiundvierzig.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **415** am 26. Oktober 2026 (nach `SymmetrieGabelungProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **423** am 26. Oktober 2026 (nach dem Nachzug `SymmetrieGabelungProbe`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 34, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`

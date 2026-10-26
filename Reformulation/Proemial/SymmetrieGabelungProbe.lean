@@ -6,8 +6,11 @@ import Reformulation.Proemial.ErzeugteKetteProbe   -- Tower, stand, erzeugt, inF
 STANDALONE, NICHT im Aggregat;  Target `Probes`.  AxiomGate unberührt.  Kleine Sonde nach
 `KorpusRev2/Prompt_Instanz_Symmetrie_Gabelung_Sonde.md` (Mathematiker, 26.10.2026 06:23;  Architekt 06:22 „kleine Sonde").  Grundlage:
 `KorpusRev2/Vorprobe_Symmetrie_an_der_Gabelung_Mathematiker.md` (06:17) und die Kratzdatei `T_Vorprobe_Skripte/Symmetrie_Gabelung_sym.py`;
-Festlegung „symmetrisch" im Nachtrag zu `KorpusRev2/Instanz_Gegenstand_Relator_Relatum_mit_Nachtrag.md`.  Konsumiert `ErzeugteKetteProbe`
-(`Tower`, `stand`, `erzeugt`, `inFaser`, `regelNach`, `tower_ext`, `fwL`, `forkWidth_fwL`) und `Kenogram` (`IsRGS`, `isRGSAux`,
+Festlegung „symmetrisch" im Nachtrag zu `KorpusRev2/Instanz_Gegenstand_Relator_Relatum_mit_Nachtrag.md`.  **Nachzug** nach
+`KorpusRev2/Prompt_Instanz_Nachzug_Symmetrie_Gabelung.md` (Mathematiker 26.10. 08:11;  Architekt 08:10), Grundlage
+`KorpusRev2/Horistes_Symmetriebruch_als_Umkehr.md` (07:36) und `KorpusRev2/Speculum_Symmetriebruch_als_Umkehr.md` (07:40):  das Korollar, die
+dritte Option, der Kopf.  Konsumiert `ErzeugteKetteProbe`
+(`Tower`, `stand`, `erzeugt`, `erzeugt_lokal`, `inFaser`, `regelNach`, `tower_ext`, `fwL`, `forkWidth_fwL`, `p01`) und `Kenogram` (`IsRGS`, `isRGSAux`,
 `foldl_max_eq`, `rgsList`);  ändert nichts davon.
 
 ## WAS
@@ -30,6 +33,11 @@ eich_unterbaum        EICHUNG (decide)   Fortsetzungen der Länge |s| + 3:  [0,1
 eich_bruch            EICHUNG            die Regel nach [0,1,0] erzeugt [0,1,0], ihr τ-Bild (τ an [0,1], Wiederholungen 0, 1) [0,1,1]
 gegen_neuer_wert      EICHUNG (decide)   Gegenprobe:  tausch [0,1] 0 2 (2 = neuer Wert) führt die RGS [0,1,2,3] auf [0,1,0,3], keine RGS
 gegen_paar_null       EICHUNG            Gegenprobe:  paar_iff mit „0 ≤ max r" fällt an [0,0]
+korollar_invariant    FOLGERUNG (dünn)   K1 (Curies Prinzip, Horistes):  ist τ·c = c auf den Werten, so ist erzeugt c n τ-fest, für jedes n —
+                                         der Wechsel Regel → Kette kann τ nicht brechen
+eich_dritte_option    EICHUNG            K2:  an [0,1] die Regel `dritte` (1 an `[0]`, 2 an [0,1], sonst 0):  τ-invariant, erzeugt [0,1,2], und
+                                         [0,1,2] ist τ-fest — gewählt wird, die Symmetrie bleibt;  die Kette läuft durch den neuen Wert
+gegen_dritte_option   EICHUNG (decide)   Gegenprobe zu K2:  mit 0 statt 2 an [0,1] wählt c dort 0, τ·c dort 1 — nicht τ-invariant
 ```
 
 **Die Wirkung auf Regeln** (`wirk`, im Text τ·c):  an x wählt τ·c, was c an τ x wählt — an r selbst durch `zeichenTausch` zurückgeholt,
@@ -43,15 +51,35 @@ Baums der Wahlmöglichkeiten), nicht der Kenogramme.
 ## FESTLEGUNG „symmetrisch"
 
 Mathematiker 26.10., Lesart (iv):  Tausch zweier Glieder gleicher Sorte, im selben Wechsel mit der Umkehr der Ordnung auf
-Relator/Relatum — A20-4 (Definitionen §20, Fassung 25.10.).  **Diese Sonde liefert den TAUSCH, nicht die UMKEHR.**
+Relator/Relatum — A20-4 (Definitionen §20, Fassung 25.10.).  **Diese Sonde liefert den TAUSCH, nicht die UMKEHR** — und nach
+`korollar_invariant` kann sie die Umkehr auch nicht liefern;  die Umkehr von S. 23 ist eine der Deutung.
 
 ## LESART
 
-Buridans Lage:  zwei als Kenogramme verschiedene, als Alternativen gleiche Fortsetzungen (C&V S. 15 „two bundles of hay of absolutely
-equal attractiveness" — Halbsatz Textschicht, Seite von Hermeneutes am Bild gelesen).  ZUORDNUNG, ungeprüft.  An einer symmetrischen
-Gabelung fallen zusammen:  τ, die Notwendigkeit der Wahl ([T66], [T30]), der Verlust daneben (SA1 mit Zusatz).  Die Wahl bricht τ:  c und
-τ·c erzeugen verschiedene Ketten (`eich_bruch`).  Ob Symmetriebruch Günthers „implies a reversal of the order" trifft:  OFFEN — Frage an
-Horistes und Speculum.
+Buridans Lage — **mit dem Neuen**:  zwei als Kenogramme verschiedene, als Alternativen gleiche Fortsetzungen (C&V S. 15 „two bundles of
+hay of absolutely equal attractiveness" — Halbsatz Textschicht, Seite von Hermeneutes am Bild gelesen).  ZUORDNUNG, ungeprüft.  An der
+Gabelung gibt es eine dritte Option, die Buridans Esel nicht hat;  am Turm ist die Notwendigkeit der Wahl bewiesen, die des Bruchs nicht
+(Horistes §3).  An einer symmetrischen Gabelung fallen zusammen:  τ, die Notwendigkeit der Wahl ([T66], [T30]), der Verlust daneben (SA1
+mit Zusatz).  **Die Wahl bricht τ genau dann, wenn die Kette durch eine der zwei gleichwertigen Fortsetzungen läuft** (`eich_bruch`);
+wählt die Regel den neuen Wert, bleibt τ (`eich_dritte_option`).  Der Wechsel selbst bricht τ nie (`korollar_invariant`).
+
+**Symmetriebruch und Umkehr** (beantwortet:  Horistes, Speculum 26.10.):  Der Symmetriebruch hat die Gestalt von C&V S. 16 —
+*„establishes an ordered relation between itself and the chosen object"* —, **Stiftung** einer Ordnung aus der neutralen Lage ([T27]);
+**nicht** die *Umkehr* von S. 23 *„suffers a reversal"*.  Die Umkehr von S. 23 liegt zwischen den zwei Programmen (S. 17) und ist im
+Algorithmus die **Umkehr der Deutung** von Relator und Relatum (S. 23:  *„permits us to reverse this interpretation"* — Erkenntniskalkül /
+Willenskalkül).  Eine Deutung ist kein Term.  — LESART am Wortlaut (Speculum SB1, SB2);  Ortswert des Korollars:  am Turm wird kein
+natürlich gebauter Satz „der Tausch bedingt die Umkehr" tragen (Horistes §1).
+
+**τ und Günthers Umtausch** (Speculum SB4):  τ ist ein Kandidat für den **projizierten** Umtausch *„between two objects"* (C&V S. 16,
+[T64];  S. 17 *„material content"*);  [T65] trifft τ nicht (τ ist keine Wertbelegung).  Ab max r ≥ 2 k-gliedrig:  UNSER, nach [T56].
+— ZUORDNUNG mit Wortlautstütze;  die verbotene Kurzform „τ ist Günthers symmetrischer Umtausch" bleibt.
+
+## ZUSAMMENSCHAU (nur Hinweis;  Speculum SB5)
+
+Zwei Auflösungen der symmetrischen Gabelung:  eine Wiederholung wählen (bricht τ;  C&V S. 16 „establishes … relegating the other
+alternate") / den neuen Wert wählen (lässt τ;  HKN „Verwerfung der Totalalternative", „Rejektionswert", „logischer Index des ontologisch
+Neuen").  **Gegenstand verschieden** (HKN:  ein Wert an der schwachen Stelle einer Wertetafel;  hier:  eine Fortsetzung im Baum).  Die
+HKN-Stelle ist bisher nur Textschicht (Bildlesung beantragt).  Verboten:  „der neue Wert ist ein Rejektionswert".
 
 ## BEOBACHTUNG (kein Satz)
 
@@ -63,7 +91,9 @@ Symmetrische Gabelungen beginnen auf Stufe 2 (an [0,1]), der Verlust daneben ebe
 Kein Träger für §20;  nicht „A20-4 erfüllt" (S3 ist eine Kommutation, keine Umkehrung);  kein Text in Rev11.
 
 **Verbotene Kurzformen:**  „τ ist Günthers symmetrischer Umtausch";  „Buridan formalisiert";  „A20-4 erfüllt";  „die Wahl kehrt die
-Ordnung um" (statt:  bricht die Symmetrie — Lesart).
+Ordnung um" (statt:  stiftet eine Ordnung, C&V S. 16 — Lesart).  Ergänzt (Horistes §4):  „die Wahl bricht die Symmetrie" ohne „durch eines
+der gleichwertigen Glieder";  „der Wechsel bricht die Symmetrie";  „implies a reversal" / „Umkehr" für den Symmetriebruch;  „Buridans Esel
+formalisiert";  „Symmetrie der Kenogramme".
 
 ## Bauweise
 
@@ -72,7 +102,10 @@ k ≤ max r nicht von k ab (`isRGS_wiederholung`).  Die Konjugation geht unmitte
 `List ℕ`-Regeln war nicht nötig.  Fallunterscheidungen über `Nat.decEq` und `decEq` auf `List ℕ`;  `omega` nur an Zahlzielen.
 Hilfssätze:  `foldr_max_start`, `max_append`, `tausch_form`, `tausch_sonst`, `form_oder_fest`, `zeichenTausch_zeichenTausch`,
 `zeichenTausch_le`, `tausch_tausch`, `tausch_length`, `tausch_rgs`, `praefix_fall`, `tausch_praefix_mp`, `fwL_ne`, `tausch_nil`, `tausch_r`,
-`max_tausch`, `tauschT_tauschT`, `tausch_eq_r`, `stand_wirk`.
+`max_tausch`, `tauschT_tauschT`, `tausch_eq_r`, `stand_wirk`;  im Nachzug `dritteWert_zul`, `tausch01_kurz` (τ an [0,1] hält jede Kette
+der Länge ≤ 2 fest), `dritteWert_tausch`, `hk01`, `hk01'`.  `korollar_invariant` braucht keinen neuen Hilfssatz:  dass `erzeugt` nur von
+den Werten der Wahl abhängt, ist `ErzeugteKetteProbe.erzeugt_lokal`.  Teil (c) von `eich_dritte_option` ist über `korollar_invariant`
+bewiesen, nicht nachgerechnet — die erste Instanz des Korollars.
 Kein `sorry`, kein `Classical.choice`, kein `native_decide`, kein True-Feld.
 -/
 
@@ -397,7 +430,7 @@ theorem faser_tausch (r : List ℕ) (hr : r ≠ []) (k k' : ℕ) (hk : k ≤ r.f
 
 theorem isRGS_010 : IsRGS [0, 1, 0] := by decide
 
-/-- **die Wahl bricht τ:**  die Regel nach [0,1,0] und ihr τ-Bild (τ an [0,1], Wiederholungen 0 und 1) erzeugen [0,1,0] und
+/-- **die Wahl durch eine der zwei gleichwertigen Fortsetzungen bricht τ:**  die Regel nach [0,1,0] und ihr τ-Bild (τ an [0,1], Wiederholungen 0 und 1) erzeugen [0,1,0] und
     [0,1,1] -/
 theorem eich_bruch :
     erzeugt (regelNach [0, 1, 0] isRGS_010) 3 = [0, 1, 0] ∧
@@ -432,6 +465,77 @@ theorem gegen_paar_null :
   intro H
   have h := (paar_iff [0, 0]).mp ((H [0, 0]).mpr ⟨List.cons_ne_nil 0 [0], Nat.zero_le _⟩)
   exact absurd h.2 (by decide)
+
+/-! ## Nachzug 26.10.:  das Korollar und die dritte Option -/
+
+/-- **K1 (Curies Prinzip):**  eine τ-invariante Regel erzeugt eine τ-feste Kette — der Wechsel Regel → Kette kann τ nicht brechen -/
+theorem korollar_invariant (r : List ℕ) (hr : r ≠ []) (k k' : ℕ) (hk : k ≤ r.foldr max 0) (hk' : k' ≤ r.foldr max 0)
+    (c : Choice) (h : ∀ x, (wirk r hr k k' hk hk' c x).1 = (c x).1) :
+    ∀ n, tausch r k k' (erzeugt c n) = erzeugt c n := by
+  intro n
+  rw [← tausch_aequivariant r hr k k' hk hk' c n]
+  exact erzeugt_lokal _ _ n fun x _ => h x
+
+/-- die Werte der dritten Option:  1 an `[0]`, 2 an [0,1], sonst 0 -/
+def dritteWert (l : List ℕ) : ℕ := if l = [0] then 1 else if l = [0, 1] then 2 else 0
+
+theorem dritteWert_zul (l : List ℕ) : dritteWert l ≤ l.foldr max 0 + 1 ∧ (l = [] → dritteWert l = 0) := by
+  unfold dritteWert
+  rcases decEq l [0] with h1 | h1
+  · rw [if_neg h1]
+    rcases decEq l [0, 1] with h2 | h2
+    · rw [if_neg h2]; exact ⟨Nat.zero_le _, fun _ => rfl⟩
+    · rw [if_pos h2, h2]; decide
+  · rw [if_pos h1, h1]; decide
+
+/-- **die dritte Option an [0,1]:**  die Regel wählt an `[0]` die 1 und an [0,1] den neuen Wert 2 -/
+def dritte : Choice := fun x => ⟨dritteWert x.2.val, dritteWert_zul x.2.val⟩
+
+theorem tausch01_kurz (s l : List ℕ) (hl : l.length ≤ 2) : tausch [0, 1] 0 1 s = l ↔ s = l := by
+  have hf : tausch [0, 1] 0 1 l = l := tausch_sonst _ _ _ l fun a t e => by
+    have := congrArg List.length e; simp only [List.length_append, List.length_cons] at this; omega
+  constructor
+  · intro h; have := congrArg (tausch [0, 1] 0 1) h; rwa [tausch_tausch, hf] at this
+  · intro h; rw [h, hf]
+
+theorem dritteWert_tausch (s : List ℕ) : dritteWert (tausch [0, 1] 0 1 s) = dritteWert s := by
+  unfold dritteWert
+  rcases decEq s [0] with h1 | h1
+  · rw [if_neg h1, if_neg (fun e => h1 ((tausch01_kurz s [0] (by decide)).mp e))]
+    rcases decEq s [0, 1] with h2 | h2
+    · rw [if_neg h2, if_neg (fun e => h2 ((tausch01_kurz s [0, 1] (by decide)).mp e))]
+    · rw [if_pos h2, if_pos ((tausch01_kurz s [0, 1] (by decide)).mpr h2)]
+  · rw [if_pos h1, if_pos ((tausch01_kurz s [0] (by decide)).mpr h1)]
+
+theorem hk01 : (0 : ℕ) ≤ [0, 1].foldr max 0 := by decide
+theorem hk01' : (1 : ℕ) ≤ [0, 1].foldr max 0 := by decide
+
+/-- **K2:**  an der symmetrischen Gabelung [0,1] wird gewählt, und die Symmetrie bleibt — die Kette läuft durch den neuen Wert -/
+theorem eich_dritte_option :
+    (∀ x, (wirk [0, 1] (List.cons_ne_nil 0 [1]) 0 1 hk01 hk01' dritte x).1 = (dritte x).1) ∧
+    erzeugt dritte 3 = [0, 1, 2] ∧ tausch [0, 1] 0 1 [0, 1, 2] = [0, 1, 2] := by
+  have ha : ∀ x, (wirk [0, 1] (List.cons_ne_nil 0 [1]) 0 1 hk01 hk01' dritte x).1 = (dritte x).1 := by
+    intro x
+    show (if x.2.val = [0, 1] then zeichenTausch 0 1 (dritteWert (tausch [0, 1] 0 1 x.2.val))
+      else dritteWert (tausch [0, 1] 0 1 x.2.val)) = dritteWert x.2.val
+    rw [dritteWert_tausch]
+    rcases decEq x.2.val [0, 1] with h | h
+    · rw [if_neg h]
+    · rw [if_pos h, h]; decide
+  have hb : erzeugt dritte 3 = [0, 1, 2] := by decide
+  refine ⟨ha, hb, ?_⟩
+  have := korollar_invariant [0, 1] (List.cons_ne_nil 0 [1]) 0 1 hk01 hk01' dritte ha 3
+  rwa [hb] at this
+
+/-- die Regel der Gegenprobe:  1 an `[0]`, sonst 0 — an [0,1] die Wiederholung 0 statt des neuen Werts -/
+def gegenDritte : Choice := fun x =>
+  if h : x.2.val = [0] then ⟨1, by rw [h]; decide, by rw [h]; intro e; exact absurd e (by decide)⟩
+  else ⟨0, Nat.zero_le _, fun _ => rfl⟩
+
+/-- **Gegenprobe zu K2:**  mit 0 statt 2 an [0,1] ist die Regel nicht τ-invariant — an [0,1] wählt τ·c die 1 -/
+theorem gegen_dritte_option :
+    (gegenDritte p01).1 = 0 ∧ (wirk [0, 1] (List.cons_ne_nil 0 [1]) 0 1 hk01 hk01' gegenDritte p01).1 = 1 := by
+  decide
 
 end Reformulation.Proemial.SymmetrieGabelungProbe
 
@@ -538,3 +642,27 @@ end Reformulation.Proemial.SymmetrieGabelungProbe
 
 /-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.gegen_paar_null' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.gegen_paar_null
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.korollar_invariant' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.korollar_invariant
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.dritteWert_zul' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.dritteWert_zul
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.tausch01_kurz' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.tausch01_kurz
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.dritteWert_tausch' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.dritteWert_tausch
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.hk01' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.hk01
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.hk01'' does not depend on any axioms -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.hk01'
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.eich_dritte_option' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.eich_dritte_option
+
+/-- info: 'Reformulation.Proemial.SymmetrieGabelungProbe.gegen_dritte_option' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.SymmetrieGabelungProbe.gegen_dritte_option
