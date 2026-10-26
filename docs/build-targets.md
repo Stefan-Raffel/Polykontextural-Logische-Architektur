@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 30 | **ja** | 7,7 s |
+| `Probes` | 31 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -152,7 +152,7 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 30 Sonden und Zeugenregister
+### `Probes` — 31 Sonden und Zeugenregister
 
 26 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean` und
 `Pfalzgraf/VKaehrProbe.lean`. (Seit dem
@@ -178,15 +178,16 @@ dreiundzwanzig Wachen. Ebenso `Proemial/VollzugDurchlaufProbe.lean`, konsumiert 
 die Eichungen laufen per `decide +kernel` rund 2:40 (vier Kernelprüfungen 19–50 s). Ebenso
 `Proemial/VerlustDanebenKuenftigProbe.lean`, konsumiert `ErzeugteKetteProbe`; siebzehn Wachen. Seit dem 26. Oktober 2026
 `Proemial/SymmetrieGabelungProbe.lean`, konsumiert `ErzeugteKetteProbe`; vierunddreissig Wachen, mit dem Nachzug
-(Korollar und dritte Option, 26. Oktober) zweiundvierzig.)
+(Korollar und dritte Option, 26. Oktober) zweiundvierzig. Ebenso `Proemial/RichtungProgrammProbe.lean`, konsumiert
+`SymmetrieGabelungProbe`; achtundzwanzig Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **423** am 26. Oktober 2026 (nach dem Nachzug `SymmetrieGabelungProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **451** am 26. Oktober 2026 (nach `RichtungProgrammProbe`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
