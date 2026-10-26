@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `6dd815f` (sauber).
+Stand: Commit `971d958` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -15,13 +15,13 @@ Alle mitlaufenden Gleichungen halten.
 |  |  |  |
 | **BESTAND** |  |  |
 | Module (.lean, verfolgt) | 228 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1866 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1866 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
-| def-Deklarationen | 773 | geweitete def-Route ueber Reformulation/ |
+| Saetze gesamt | 1874 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 1874 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| def-Deklarationen | 776 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 110 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 1816 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| Wachen geschrieben | 1824 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
 | davon Dateien | 160 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
@@ -32,13 +32,13 @@ Alle mitlaufenden Gleichungen halten.
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 159 | Huelle von Reformulation/AxiomGate.lean |
 | Saetze im Aggregat | 1354 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 1798 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Wachen erzwungen | 1806 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 18 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean,Reformulation/Diagnostics/SwapSatzProbe.lean,Reformulation/MathlibExtensions/Topos/Subobject/Bot.lean,Reformulation/MathlibExtensions/Topos/Subobject/PullbackLemmas.lean,Reformulation/PreC/PKLFormWahlen.lean |
 | wachenfreie Aggregat-Module | 0 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 0 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
 | Gleichung *Partition* | ✓ | 228 gegen 228 |
 | Gleichung *Gate=Aggregat+1* | ✓ | 159 gegen 159 |
-| Gleichung *Wachen* | ✓ | 1816 gegen 1816 |
+| Gleichung *Wachen* | ✓ | 1824 gegen 1824 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
@@ -67,7 +67,7 @@ Alle mitlaufenden Gleichungen halten.
 | geprueft (AxiomGate) | 6236 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 118 | Superlativ, meldend |
+| (A.1) laufender Bestand | 119 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 121 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
