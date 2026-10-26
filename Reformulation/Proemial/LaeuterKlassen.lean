@@ -63,9 +63,11 @@ Bestand (`GegenidentitaetProbe`, `NegationCycleThreeCycle`).
 
 ## ZUORDNUNG — ungeprüft im Sinn des Hauses
 
-Dass diese vier Klassen die Klassen der Läuter sind (Holroyds Liste der 29 extents auf vier Glocken, Smiths „single-change" extents, Fund
-vom 21.10. in `KorpusRev2/Fund_Wechsellaeuten_Plain_Changes_Vollkreis.md`):  Abschrift über WebFetch, **nicht am Bild**.  Die Gruppe ist
-dort „Drehung, Umkehr der Zeit, Spiegel";  hier Drehung und `umkehr` (LK3:  die Zeitumkehr gibt nichts dazu).
+Dass diese vier Klassen die Klassen der Läuter sind (Holroyds Liste der 29 „essentially different" extents auf vier Glocken — von
+10 792 extents, bis auf Kent/Oxford-Varianten —, Smiths „single-change" extents, Fund vom 21.10. in
+`KorpusRev2/Fund_Wechsellaeuten_Plain_Changes_Vollkreis.md`):  Abschrift über WebFetch, **nicht am Bild**.  Die Gruppe ist bei Holroyd
+(dort:  „Drehung, Umkehr, Spiegelbild", nach dem Fund);  hier Drehung und `umkehr` (LK3:  `dreh` gibt nichts dazu).  Welches der drei
+Wörter des Funds welcher Operation des Bestands entspricht, ist nicht geprüft.
 
 ## NICHT
 
