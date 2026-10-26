@@ -90,6 +90,7 @@ roots = [
   "Reformulation.Proemial.SymmetrieGabelungProbe",
   "Reformulation.Proemial.RichtungProgrammProbe",
   "Reformulation.Pfalzgraf.FaserTauschProbe",
+  "Reformulation.Proemial.LaeuterKlassen",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
