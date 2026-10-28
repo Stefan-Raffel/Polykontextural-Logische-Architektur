@@ -91,6 +91,7 @@ roots = [
   "Reformulation.Proemial.RichtungProgrammProbe",
   "Reformulation.Pfalzgraf.FaserTauschProbe",
   "Reformulation.Proemial.LaeuterKlassen",
+  "Reformulation.Proemial.KenogrammNegationswoerter",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
