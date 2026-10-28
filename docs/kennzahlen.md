@@ -7,45 +7,45 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `29ae509` (sauber).
+Stand: Commit `65e8be3` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
 |---|---:|---|
 |  |  |  |
 | **BESTAND** |  |  |
-| Module (.lean, verfolgt) | 234 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
-| Saetze gesamt | 1997 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
-| Saetze, verschaerfte Route | 1997 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
-| def-Deklarationen | 803 | geweitete def-Route ueber Reformulation/ |
+| Module (.lean, verfolgt) | 235 | git ls-files '*.lean' — schliesst die Wurzeldatei Reformulation.lean ein |
+| Saetze gesamt | 2002 | geweitete grep-Satzroute ueber Reformulation/ allein (CLAUDE.md §3) |
+| Saetze, verschaerfte Route | 2002 | Gegenprobe: nach dem Namen muss ( { [ ⦃ : oder Zeilenende folgen |
+| def-Deklarationen | 805 | geweitete def-Route ueber Reformulation/ |
 | Statement-Pins | 110 | grep '^-- STATEMENT-PIN' (Prosa-Kriterien sind eine Zeitbombe, §3) |
 |  |  |  |
 | **WACHEN** |  |  |
-| Wachen geschrieben | 1947 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
-| davon Dateien | 166 | dieselbe Route, -l |
+| Wachen geschrieben | 1952 | grep '#guard_msgs.*in #print axioms' ueber Reformulation/ UND Foreign/ |
+| davon Dateien | 167 | dieselbe Route, -l |
 | nackte #print axioms | 11 | gedruckt ist nicht gewacht (§8 Fallstrick 16); Lint-Gruppe (D) bricht darauf |
 |  |  |  |
 | **IMPORT-HUELLEN** |  |  |
 | Aggregat | 158 | Huelle der Wurzel Reformulation.lean |
-| mitgebaut | 39 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
+| mitgebaut | 40 | ueber ein Default-Target erreicht, ausserhalb der Aggregathuelle |
 | nur auf Ruf | 36 | nur ueber ein eigenes Target gebaut |
 | kein Target | 1 | Reformulation.PathC.Classifying.Universal |
 | Gate-Huelle | 159 | Huelle von Reformulation/AxiomGate.lean |
 | Saetze im Aggregat | 1354 | Satzroute, auf die Aggregathuelle eingeschraenkt |
-| Wachen erzwungen | 1929 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
+| Wachen erzwungen | 1934 | Wachenroute, auf die Huelle der Default-Targets eingeschraenkt |
 | Wachen ausserhalb | 18 | geschrieben, aber von keinem Default-Target erfasst — sichern nichts; in: Foreign/PeresMermin.lean,Reformulation/Diagnostics/SwapSatzProbe.lean,Reformulation/MathlibExtensions/Topos/Subobject/Bot.lean,Reformulation/MathlibExtensions/Topos/Subobject/PullbackLemmas.lean,Reformulation/PreC/PKLFormWahlen.lean |
 | wachenfreie Aggregat-Module | 0 | Aggregat-Module mit Saetzen und ohne jede Wache (Einheit: Modul) |
 |   darin Saetze | 0 | nachrichtlich; die tragende Zahl ist die Modulzahl darueber |
-| Gleichung *Partition* | ✓ | 234 gegen 234 |
+| Gleichung *Partition* | ✓ | 235 gegen 235 |
 | Gleichung *Gate=Aggregat+1* | ✓ | 159 gegen 159 |
-| Gleichung *Wachen* | ✓ | 1947 gegen 1947 |
+| Gleichung *Wachen* | ✓ | 1952 gegen 1952 |
 | Gleichung *Satzroute* | ✓ | ok gegen ok |
 |  |  |  |
 | **LUECKEN (selbstzaehlend — Prosa zaehlt mit, mit Absicht)** |  |  |
-| N1 roh | 186 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter |
-|   davon .lean | 137 | dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden |
+| N1 roh | 187 | WORTvorkommen (\bsorry\b) ueber den verfolgten Bestand; zaehlt die eigene Dokumentation mit — eine Huelle, die seit dem Grundlinien-Zug auch ihr Messwerkzeug einschliesst; tragend ist die Zahl darunter |
+|   davon .lean | 138 | dieselbe Route, auf *.lean eingeschraenkt — die TRAGENDE der beiden |
 |   davon in Archiven | 13 | dieselbe Route, auf docs/rev<n>/ eingeschraenkt — eingefrorene Fassungen; N1 zaehlt sie mit, mit Absicht (Rev10-Register Z11, 9.10.2026) |
-| Zeilen mit Vorkommen | 183 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
+| Zeilen mit Vorkommen | 184 | ANDERE FRAGE als N1 (git grep -cw); nie als N1 lesen (§8 Fallstrick 9) |
 | Code-Vorkommen | 25 | das Token im Code, Kommentare und Strings entfernt, ueber alle verfolgten .lean — NICHT selbstzaehlend |
 |   in Dateien | 8 | dieselbe Route, je Datei |
 | betroffene Deklarationen (N3) | 27 | je Datei mit Code-Vorkommen: lake env lean, VERSCHIEDENE Positionen der Warnung |
@@ -63,7 +63,7 @@ Alle mitlaufenden Gleichungen halten.
 | Referenzen im Bau | 202 | jedes #ledger_*-Kommando in DefinitionLedger.lean (auch #ledger_setzung) |
 |  |  |  |
 | **BAU (lake build)** |  |  |
-| Build-Jobs | 1450 | lake build ueber die Default-Targets |
+| Build-Jobs | 1451 | lake build ueber die Default-Targets |
 | geprueft (AxiomGate) | 6236 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
