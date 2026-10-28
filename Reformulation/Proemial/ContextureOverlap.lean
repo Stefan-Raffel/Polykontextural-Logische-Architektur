@@ -16,6 +16,13 @@ Anders als der Längen-Turm (`TowerAsymmetryProbe`) braucht diese Datei **keine*
 Setzung „Stufe = Kontextur": die Elementarkontextur *ist* hier die Wert-Zweiermenge,
 und die Überlappung ist ein Kardinalitäts-Satz, keine Deutung.
 
+## Was vorausgesetzt ist
+
+Alle Elementarkontexturen sind Teilmengen **eines** Wertvorrats `Fin m`.  Dass `{0,1}` und `{1,2}` sich „in genau einem Wert"
+überlappen, setzt voraus, dass die 1 der einen dieselbe ist wie die 1 der anderen.  Diese Selbigkeit über Kontexturen ist durch die
+Modellierung **gesetzt**, nicht gewonnen (wie Kaehr/Kopplung K2:  „vorausgesetzt, nicht gewonnen").  Der Satz zählt, was unter dieser
+Setzung gilt.  (Eine Setzung der Modellierung, kein Setzungsfeld im Sinn von CLAUDE.md §10;  „keine Setzung" unten meint die Felder.)
+
 ## Die zwei Gestalten des Satzes
 
 - `elem_contexture_overlap_le_one` — der **allgemeine** Kern über `Finset (Fin m)`:

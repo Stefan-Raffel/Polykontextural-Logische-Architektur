@@ -19,6 +19,11 @@ GÜNTHER          das Schema (Teilsysteme 1-2, 2-3, 1-3;  "value 1 to be positiv
                  negations"), die acht K/D-Tafeln Abb. 7–14, die Implikationsregel — Cognition and Volition,
                  S. 25 f., 29 (am Bild);  tml S. 10
 NACH KAEHR       der Trennfall N5(p ∧∧∧ N3p ∧∧∧ N4p) — Kaehr 1981, S. 3 und 17 (am Bild:  Konjunktionen)
+GESETZT          die Identifikation über die Fasern:  `global` (die Restklassen) und `liest` sagen für jeden Wert jeder Faser,
+                 für welchen globalen Wert er steht.  Nach Pfalzgraf S. 172 angegeben, nicht hergeleitet;  Meixls Satz, dass
+                 Ordnung und Verteilung die Verklebung eindeutig bestimmen, ist nicht gebaut.  Prüfbar ist, was AUF dieser
+                 Identifikation gilt:  `zulaessig_eq_idempotent`.  (Der Begriff der Restklassen ist Pfalzgrafs, NACH PFALZGRAF;
+                 die Setzung im Bestand ist unsere.)
 UNSER            die Designation {1, 2}, der Gültigkeitsbegriff, die Kennzeichnung der Zulässigkeit durch
                  Idempotenz (vom Mathematiker gefunden), die Kohärenz, die Lean-Gestalt, die Brücke zu localOp
 ```
@@ -197,7 +202,7 @@ def ops : List Op :=
   [true, false].flatMap fun a => [true, false].flatMap fun b => [true, false].flatMap fun c =>
     [true, false].map fun d => (a, b, c, d)
 
-/-- die Restklassen (Pfalzgraf S. 172):  der globale Wert eines lokalen Werts der Faser -/
+/-- die Restklassen (Pfalzgraf S. 172):  der globale Wert eines lokalen Werts der Faser (gesetzt, nach Pfalzgraf S. 172;  Kopf K1) -/
 def global : Faser → Bool → Wert
   | ⟨0, _⟩, true => 0 | ⟨0, _⟩, false => 1
   | ⟨1, _⟩, true => 1 | ⟨1, _⟩, false => 2
