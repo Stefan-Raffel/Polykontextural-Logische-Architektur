@@ -94,6 +94,7 @@ roots = [
   "Reformulation.Proemial.KenogrammNegationswoerter",
   "Reformulation.Proemial.KreisEinbettung",
   "Reformulation.Proemial.EmanationsZaehlung",
+  "Reformulation.Proemial.DrehsinnUmkehrProbe",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
