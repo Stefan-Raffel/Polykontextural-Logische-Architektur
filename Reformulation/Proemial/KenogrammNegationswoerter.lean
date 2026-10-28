@@ -25,16 +25,25 @@ KN1  relabel_umkehr           SATZ, jede Wertzahl  das Trito-Kenogramm (relabel)
 KN2  deuteroW_inversionen     SATZ, jede Wertzahl  das Deutero-Kenogramm (Häufigkeiten der vorkommenden Negatoren, Multiset) übersteht
                                                  Umkehr UND Drehsinn
 KN3  familien_deutero         EICHUNG (m = 3)    auf den 88:  Günthers Familie 10-9-5/5-9-10 ⟺ deuteroW = {10, 9, 5};  9-6-9 ⟺ {9, 9, 6};
-                                                 6-12-6 ⟺ {6, 6, 12}.  Günthers Familien SIND auf den Wörtern die Deutero-Klassen
+                                                 6-12-6 ⟺ {6, 6, 12}.  Günthers Familien SIND auf den Wörtern die Deutero-Klassen.
+                                                 REICHWEITE:  auf diesen Wörtern ist das Deutero das Multiset der Verteilung;  Günthers
+                                                 Familie ist die Verteilung bis auf die Umkehr ihrer Reihenfolge.  Dass beides auf den 88
+                                                 zusammenfällt, ist die Eichung;  außerhalb der 88 fällt es nicht zusammen (ein Wort mit
+                                                 9-10-5 hat das Deutero von 10-9-5 und gehört nicht zu Günthers Familie)
 KN4  stationen_kenogramm      SATZ, jede Wertzahl  jede Station eines Vollkreises hat das Kenogramm 0, 1, …, m:  die STATIONEN sind dem
-                                                 Kenogramm unsichtbar (NegationCycle Kopf Teil 6 (d), jetzt als Satz)
+                                                 Kenogramm unsichtbar (NegationCycle Kopf Teil 6 (d), jetzt als Satz).  Der Beweis braucht
+                                                 vom Vollkreis nur, dass jede Station eine Anordnung aller Werte ist;  das Kenogramm
+                                                 0, 1, …, m hat JEDE solche Anordnung.  Der Satz unterscheidet keine Kreise (auch die
+                                                 Stationen eines partiellen Kreises haben es)
 KN5  dreh_sichtbar            EICHUNG (m = 3)    es gibt einen der 88, dessen rückwärts gelesenes Wort ein anderes Trito-Kenogramm hat
-     dreh_immer_sichtbar      EICHUNG (m = 3)    das gilt für JEDEN der 88 (gerechnet vorab:  0 von 88 Ausnahmen)
+     dreh_immer_sichtbar      EICHUNG (m = 3)    das gilt für JEDEN der 88.  Geeicht ist nur m = 3 (vier Werte);  über mehr Werte sagt die
+                                                 Sonde nichts.  Keine Eigenschaft beliebiger Wörter:  bei einem Palindrom ist der
+                                                 Drehsinn unsichtbar
 KN5′ dreh_unsichtbar_drei     FOLGERUNG (m = 2)  bei drei Werten ist der Drehsinn unsichtbar:  dort ist er die Umkehr (KN1)
 ```
 
-**Ergebnis in einem Satz:**  Das Kenogramm sieht die Stationen nicht (KN4) und die Umkehr nicht (KN1);  den Drehsinn sieht es ab vier Werten
-immer (KN5), bei drei Werten nicht (KN5′);  und auf der Deutero-Ebene fallen Günthers Familien mit den Klassen zusammen (KN3), die beide
+**Ergebnis in einem Satz:**  Das Kenogramm sieht die Stationen nicht (KN4) und die Umkehr nicht (KN1);  den Drehsinn sieht es bei vier Werten
+an jedem der 88 Kreise (KN5, Eichung;  über mehr Werte sagt die Sonde nichts), bei drei Werten nicht (KN5′);  und auf der Deutero-Ebene fallen Günthers Familien mit den Klassen zusammen (KN3), die beide
 Inversionen überstehen (KN2).
 
 Hilfssätze:  `idxOf?_map_inj`, `fold_map_inj`, `rev_injective`, `fold_nodup`, `relabel_nodup` (Kenogramm einer duplikatfreien Liste),
@@ -61,8 +70,9 @@ Günthers Familien:  IGN S. 43, Tafel (18), am Bild (Hermeneutes).  LZEE S. 18�
 
 „LZEE-Reversibilität = Umkehr/Drehsinn" als Satz (LZEE spricht von emanativen Abbildungen kenogrammatischer Folgen — andere Ebene);
 „Günther hat seine Familien kenogrammatisch gemeint";  irgendein kenogrammatischer Anspruch für E5–E7 oder J (Anspruchsliste H bleibt).
-Was die Sonde sagt:  AUF DEN WÖRTERN fallen Günthers Familien mit den Deutero-Klassen zusammen, die Umkehr ist dem Kenogramm unsichtbar, der
-Drehsinn ab vier Werten nicht.
+Was die Sonde sagt:  AUF DEN 88 WÖRTERN fallen Günthers Familien mit den Deutero-Klassen zusammen, die Umkehr ist dem Kenogramm unsichtbar
+(jede Wertzahl), der Drehsinn bei vier Werten an jedem Kreis sichtbar (Eichung m = 3).  Nicht:  „ab vier Werten" (über mehr Werte nichts
+geeicht).
 -/
 
 namespace Reformulation.Proemial.KenogrammNegationswoerter
@@ -198,7 +208,8 @@ theorem familien_listen :
       (¬ vert w = (6, 12, 6) → ∃ a ∈ [6, 6, 12], a ∉ deuteroL w)) := by
   decide +kernel
 
-/-- (KN3) **Günthers Familien (IGN S. 43) sind auf den 88 gerichteten Vollkreisen genau die Deutero-Klassen.** -/
+/-- (KN3) **Günthers Familien (IGN S. 43) sind auf den 88 gerichteten Vollkreisen genau die Deutero-Klassen.**  Nur auf den 88:
+    außerhalb hat etwa ein Wort mit der Verteilung 9-10-5 das Deutero von 10-9-5. -/
 theorem familien_deutero :
     (∀ w ∈ gerichtet, guentherFamilie1 w = true ↔ deuteroW w = ↑[10, 9, 5]) ∧
     (∀ w ∈ gerichtet, vert w = (9, 6, 9) ↔ deuteroW w = ↑[9, 9, 6]) ∧
@@ -235,7 +246,8 @@ theorem relabel_nodup {α : Type*} [DecidableEq α] (l : List α) (h : l.Nodup) 
     List.nil_append, List.range_eq_range']
 
 /-- (KN4) **Jede Station eines Vollkreises hat dasselbe Kenogramm** `0, 1, …, m`:  auf der Kenogramm-Ebene sind die Stationen
-    unsichtbar (NegationCycle, Kopf Teil 6 (d), als Satz). -/
+    unsichtbar (NegationCycle, Kopf Teil 6 (d), als Satz).  Der Beweis braucht vom Vollkreis nur, dass jede Station eine Anordnung
+    aller Werte ist;  das Kenogramm `0, 1, …, m` hat jede solche Anordnung.  Der Satz unterscheidet keine Kreise. -/
 theorem stationen_kenogramm {m : ℕ} {seq : List (Fin m)} (h : IsFullCycle seq) :
     ∀ l ∈ stations seq (origin m), relabel l = List.range (m + 1) := by
   intro l hl
@@ -256,7 +268,8 @@ theorem dreh_immer_sichtbar : ∀ w ∈ gerichtet, relabel (dreh w) ≠ relabel 
   decide +kernel
 
 /-- (KN5′) **Bei drei Werten ist der Drehsinn dem Kenogramm unsichtbar** — dort ist er die Umkehr (`umkehr_eq_dreh_three`), und
-    die sieht das Kenogramm nicht (KN1).  Die Sichtbarkeit beginnt bei vier Werten (KN5). -/
+    die sieht das Kenogramm nicht (KN1).  Bei vier Werten ist er an jedem der 88 Kreise sichtbar (KN5, Eichung);  über mehr Werte sagt
+    die Sonde nichts. -/
 theorem dreh_unsichtbar_drei (w : List (Fin 2)) (h : IsFullCycle w) : relabel (dreh w) = relabel w := by
   rw [← umkehr_eq_dreh_three w h]
   exact relabel_umkehr w
