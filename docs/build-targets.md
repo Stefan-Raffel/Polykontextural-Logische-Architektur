@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 34 | **ja** | 7,7 s |
+| `Probes` | 35 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -152,9 +152,9 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 34 Sonden und Zeugenregister
+### `Probes` — 35 Sonden und Zeugenregister
 
-31 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean` und
+32 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean` und
 `Pfalzgraf/FaserTauschProbe.lean` (bis zum 26. Oktober stand hier „26“, gezählt an der Wurzelliste waren es 29). (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
@@ -181,15 +181,16 @@ die Eichungen laufen per `decide +kernel` rund 2:40 (vier Kernelprüfungen 19–
 (Korollar und dritte Option, 26. Oktober) zweiundvierzig. Ebenso `Proemial/RichtungProgrammProbe.lean`, konsumiert
 `SymmetrieGabelungProbe`; achtundzwanzig Wachen. Ebenso `Pfalzgraf/FaserTauschProbe.lean`, konsumiert `Pfalzgraf/Faserung`;
 zwanzig Wachen. Ebenso `Proemial/LaeuterKlassen.lean`, konsumiert `AkkretivitaetsBruecke`; vierzehn Wachen. Seit dem 28. Oktober 2026
-`Proemial/KenogrammNegationswoerter.lean`, konsumiert `GegenidentitaetProbe`, `ReversibleExchange` und `Kenogram.Basic`; zwanzig Wachen.)
+`Proemial/KenogrammNegationswoerter.lean`, konsumiert `GegenidentitaetProbe`, `ReversibleExchange` und `Kenogram.Basic`; zwanzig Wachen.
+Ebenso `Proemial/KreisEinbettung.lean`, konsumiert `AkkretivitaetsBruecke`; siebzehn Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **505** am 28. Oktober 2026 (nach `KenogrammNegationswoerter`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **522** am 28. Oktober 2026 (nach `KreisEinbettung`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
