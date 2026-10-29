@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 37 | **ja** | 7,7 s |
+| `Probes` | 38 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -152,10 +152,10 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 37 Sonden und Zeugenregister
+### `Probes` — 38 Sonden und Zeugenregister
 
-34 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean` und
-`Pfalzgraf/FaserTauschProbe.lean` (bis zum 26. Oktober stand hier „26“, gezählt an der Wurzelliste waren es 29). (Seit dem
+34 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean`,
+`Pfalzgraf/FaserTauschProbe.lean` und `Pfalzgraf/BrunnProbe.lean` (bis zum 26. Oktober stand hier „26“, gezählt an der Wurzelliste waren es 29). (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
 `Proemial/NegationReversalProbe.lean`, konsumiert `NegationCycleLength`; elf Wachen. Seit dem
@@ -184,15 +184,16 @@ zwanzig Wachen. Ebenso `Proemial/LaeuterKlassen.lean`, konsumiert `Akkretivitaet
 `Proemial/KenogrammNegationswoerter.lean`, konsumiert `GegenidentitaetProbe`, `ReversibleExchange` und `Kenogram.Basic`; zwanzig Wachen.
 Ebenso `Proemial/KreisEinbettung.lean`, konsumiert `AkkretivitaetsBruecke`; siebzehn Wachen. Ebenso
 `Proemial/EmanationsZaehlung.lean`, konsumiert `Kenogram.Basic` und Mathlibs `Nat.stirlingSecond`; vierundzwanzig Wachen.
-Ebenso `Proemial/DrehsinnUmkehrProbe.lean`, konsumiert `GegenidentitaetProbe`; fünf Wachen.)
+Ebenso `Proemial/DrehsinnUmkehrProbe.lean`, konsumiert `GegenidentitaetProbe`; fünf Wachen. Seit dem 29. Oktober 2026
+`Pfalzgraf/BrunnProbe.lean`, konsumiert `Pfalzgraf/Faserung`; sieben Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **551** am 28. Oktober 2026 (nach `DrehsinnUmkehrProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **558** am 29. Oktober 2026 (nach `BrunnProbe`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, BrunnProbe 7, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
