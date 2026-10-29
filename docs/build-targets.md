@@ -185,15 +185,15 @@ zwanzig Wachen. Ebenso `Proemial/LaeuterKlassen.lean`, konsumiert `Akkretivitaet
 Ebenso `Proemial/KreisEinbettung.lean`, konsumiert `AkkretivitaetsBruecke`; siebzehn Wachen. Ebenso
 `Proemial/EmanationsZaehlung.lean`, konsumiert `Kenogram.Basic` und Mathlibs `Nat.stirlingSecond`; vierundzwanzig Wachen.
 Ebenso `Proemial/DrehsinnUmkehrProbe.lean`, konsumiert `GegenidentitaetProbe`; fünf Wachen. Seit dem 29. Oktober 2026
-`Pfalzgraf/BrunnProbe.lean`, konsumiert `Pfalzgraf/Faserung`; sieben Wachen.)
+`Pfalzgraf/BrunnProbe.lean`, konsumiert `Pfalzgraf/Faserung`; sieben Wachen, mit B5 (Abnahme, 29. Oktober) neun.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **558** am 29. Oktober 2026 (nach `BrunnProbe`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **560** am 29. Oktober 2026 (nach `BrunnProbe` B5) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, BrunnProbe 7, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, BrunnProbe 9, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`

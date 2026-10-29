@@ -29,6 +29,10 @@ B3  brunn_trennfall     FOLGERUNG             die freie Belegung p ↦ vec b0 b1
 B4  drei_werte          EICHUNG (decide)      an den zwei Vektoren aus B2 ist der kohärente Wert je Paar eindeutig, und die drei Werte
                                               sind verschieden:  (T, T, F):  {0,1} → 0, {1,2} → 1, {0,2} → 2;
                                               (F, F, T):  {0,1} → 2, {1,2} → 0, {0,2} → 1
+B5  leere_mitte         FOLGERUNG (decide)    kein Wert liegt in allen drei Elementarkontexturen {0,1}, {1,2}, {0,2} — je zwei teilen
+                                              einen (`ContextureOverlap.three_contextures_overlap`);  die brunnsche Form auf der
+                                              Ebene der Werte;  elementar
+    je_zwei_leser       FOLGERUNG (decide)    jeder Wert wird von genau zwei Fasern gelesen (`liest`), von keiner dritten
 ```
 
 Hilfssätze:  `all_iff`, `any_iff` (die Bool-Faltungen über `[0, 1, 2]` als Quantoren über `Fin 3`, ohne `List.all_eq_true`, das
@@ -42,8 +46,8 @@ UNSER — der Name „brunnsche Form" für die Quantorengestalt.
 ## NICHT
 
 Kein Satz über Knoten oder Topologie.  Die Form ist an EINEM Modell gezeigt (drei Fasern, Pfalzgrafs Restklassen), nicht für
-Polykontexturalität.  „Je zwei immer verträglich" gilt für `kohaerent`, nicht für die Wertüberlappung — die ist ein anderer Begriff
-(`ContextureOverlap.three_contextures_overlap`:  paarweise nicht leer).
+Polykontexturalität.  Die Wertüberlappung hat dieselbe Quantorengestalt (B5):  je zwei Elementarkontexturen haben einen gemeinsamen
+Wert, alle drei keinen.  Der Begriff ist ein anderer;  B5 ist elementar, B3 nicht.
 -/
 
 namespace Reformulation.Pfalzgraf.BrunnProbe
@@ -131,6 +135,17 @@ theorem drei_werte :
     (∀ g : Wert, kohaerentAuf [0, 2] (vec false false true) g = true ↔ g = 1) := by
   decide
 
+/-! ## B5 — dieselbe Form an den Werten -/
+
+/-- (B5) **Die leere Mitte:**  kein Wert liegt in allen drei Elementarkontexturen {0,1}, {1,2}, {0,2};  je zwei teilen einen
+    (`ContextureOverlap.three_contextures_overlap`).  Die brunnsche Form auf der Ebene der Werte;  elementar. -/
+theorem leere_mitte : ∀ a : Fin 3, ¬ ((a = 0 ∨ a = 1) ∧ (a = 1 ∨ a = 2) ∧ (a = 0 ∨ a = 2)) := by
+  decide
+
+/-- (B5) **Jeder Wert wird von genau zwei Fasern gelesen**, von keiner dritten. -/
+theorem je_zwei_leser : ∀ g : Wert, ([0, 1, 2].filter fun (i : Faser) => liest i g).length = 2 := by
+  decide
+
 end Reformulation.Pfalzgraf.BrunnProbe
 
 /-! ## Axiom-Wachen (gemessen, verbatim) -/
@@ -155,3 +170,9 @@ end Reformulation.Pfalzgraf.BrunnProbe
 
 /-- info: 'Reformulation.Pfalzgraf.BrunnProbe.drei_werte' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Reformulation.Pfalzgraf.BrunnProbe.drei_werte
+
+/-- info: 'Reformulation.Pfalzgraf.BrunnProbe.leere_mitte' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.BrunnProbe.leere_mitte
+
+/-- info: 'Reformulation.Pfalzgraf.BrunnProbe.je_zwei_leser' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Pfalzgraf.BrunnProbe.je_zwei_leser
