@@ -13,8 +13,8 @@ STANDALONE, NICHT im Aggregat;  Target `Probes`.  AxiomGate unberührt.  Sonde n
 ## WAS
 
 ```text
-V1  faser_formel        EICHUNG n ≤ 8     die Faser über jeder Partition λ hat n! / (∏ λᵢ! ∏ mⱼ!) Elemente, und die Division geht auf.
-    faser_summe         EICHUNG n ≤ 8     jede Normalform liegt über einer Partition;  die Fasergrößen summieren sich zur Zahl der Normalformen.
+V1  faser_formel        EICHUNG n ≤ 7     die Faser über jeder Partition λ hat n! / (∏ λᵢ! ∏ mⱼ!) Elemente, und die Division geht auf.
+    faser_summe         EICHUNG n ≤ 7     jede Normalform liegt über einer Partition;  die Fasergrößen summieren sich zur Zahl der Normalformen.
                                           ALLGEMEIN NICHT BEWIESEN:  nicht billig (Bahn-Stabilisator über Mengenpartitionen).  Rechnung bis n = 10
                                           außerhalb des Baums (T_Vorprobe_Skripte/Vergroeberung_Mass.out)
 V2  einer_fasern        SATZ, jede Länge  die Faser von deutero über r hat genau ein Element  ⟺  deutero r = {n} ∨ deutero r = (1,…,1)
@@ -42,6 +42,10 @@ Element der Faser" (`schnitte`), weil nur sie zählbar ist.  Die Verbindung ist 
 **Profile:**  kein Satz trägt `Classical.choice` (Wachen unten).  Zwei Stellen waren zu umgehen:  `deutero_not_injective_general` trägt Choice
 (über `w_perm`) und wird darum nicht konsumiert, nur `deutero_of_perm`;  `mem_rgsList_iff` trägt Choice und ist hier als `mem_rgsList_frei` ohne
 offenes `simp` neu bewiesen (Kenogram/Basic bleibt unberührt).  Kein `native_decide`, kein `sorry`, kein True-Feld, keine reelle Zahl.
+
+**Warum n ≤ 7 und nicht n ≤ 8:**  mit n ≤ 8 lag die ganze Datei lokal bei 8,0 GB RSS und 51 s (Grundlinie der Importe 1,6 GB), und der Bau auf dem CI-Läufer brach zweimal an
+dieser Stelle mit Exit 143 ab (Lauf 41063999346, Versuch 1 und 2).  Mit n ≤ 7:  2,75 GB, 13,5 s.  Teuer ist die Auswertung von `groessen` über die 4140 Folgen im Kernel, nicht das wiederholte
+Filtern:  ein Zähl-Durchlauf statt je Partition einer lag noch bei 5,8 GB.  n = 8 bleibt gerechnet.
 
 **Gerechnet, kein Satz (außerhalb des Baums, `T_Vorprobe_Skripte/Vergroeberung_Mass.out`):**  der Verlust in Bit bei Gleichverteilung auf Trito,
 n = 1…10:  0, 0, 0.951, 1.884, 3.267, 4.784, 6.504, 8.362, 10.370, 12.492.
@@ -848,14 +852,14 @@ theorem faser_ist_faser {n : ℕ} (hn : 1 ≤ n) (r s : RGS n) :
 def nenner (lam : List ℕ) : ℕ :=
   (lam.map Nat.factorial).prod * (lam.eraseDups.map (fun x => Nat.factorial (lam.count x))).prod
 
-/-- (V1) **Die Faserformel, EICHUNG n ≤ 8:**  die Faser über jeder Partition hat `n! / (∏ λᵢ! ∏ mⱼ!)` Elemente, und die Division geht auf. -/
-theorem faser_formel : ∀ n < 9, ∀ lam ∈ partitionen n,
+/-- (V1) **Die Faserformel, EICHUNG n ≤ 7:**  die Faser über jeder Partition hat `n! / (∏ λᵢ! ∏ mⱼ!)` Elemente, und die Division geht auf. -/
+theorem faser_formel : ∀ n < 8, ∀ lam ∈ partitionen n,
     (faser n lam).length = Nat.factorial n / nenner lam ∧
       (faser n lam).length * nenner lam = Nat.factorial n := by
   decide +kernel
 
-/-- (V1, Abschluss) **Die Fasern erschöpfen die Stufe, EICHUNG n ≤ 8:**  jede Normalform liegt über einer Partition, und die Fasergrößen summieren sich zur Zahl der Normalformen. -/
-theorem faser_summe : ∀ n < 9,
+/-- (V1, Abschluss) **Die Fasern erschöpfen die Stufe, EICHUNG n ≤ 7:**  jede Normalform liegt über einer Partition, und die Fasergrößen summieren sich zur Zahl der Normalformen. -/
+theorem faser_summe : ∀ n < 8,
     (∀ l ∈ rgsList n, groessen l ∈ partitionen n) ∧
       ((partitionen n).map (fun lam => (faser n lam).length)).sum = (rgsList n).length := by
   decide +kernel
