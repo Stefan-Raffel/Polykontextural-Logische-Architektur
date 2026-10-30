@@ -63,7 +63,8 @@ SPRACHEN = {
         andere='en.html', andere_wort='English version', uebersicht='Übersicht',
         archiv='Fassung Rev', caption='Bildunterschrift',
         kennzahlen='Kennzahlen des Prüfapparats',
-        stand='Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker',
+        # Die Tafel am Anker der Ausgabe, nicht die laufende: Anker und Auslieferung fallen seit der elften auseinander.
+        stand='Kennzahlen des Prüfapparats: <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/blob/ee2cee9/docs/kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker',
         lang='de',
     ),
     'en': dict(
@@ -153,9 +154,13 @@ FIGUREN_SCHREIBUNG = {'de': (('Mass', 'Maß'), ('heisst', 'heißt'), ('schliesst
 
 
 def _schreibung(fig, sprache):
-    for a, b in FIGUREN_SCHREIBUNG.get(sprache, ()):
-        fig = re.sub(r'(<text[^>]*>[^<]*?)\b' + a + r'\b', lambda m: m.group(1) + b, fig)
-    return fig
+    def im_text(m):
+        t = m.group(0)
+        for a, b in FIGUREN_SCHREIBUNG.get(sprache, ()):
+            t = re.sub(r'\b' + a + r'\b', b, t)
+        return t
+    # Der ganze <text>-Block, also auch <tspan> darin (Signum, Auflage 2.1)
+    return re.sub(r'(?s)<text\b.*?</text>', im_text, fig)
 
 
 def figuren_der_ausgabe(c, sprache):

@@ -202,6 +202,10 @@ def lies(spez):
             print(f"  FEHLT: {p}"); sys.exit(2)
         s = open(p, encoding='utf-8', errors='replace').read()
         a = 'html' if p.endswith('.html') else 'md'
+        # Seit der elften Ausgabe stehen absolute Verknuepfungen im Entwurf (die Tafel am Anker, Teil B 4.1 und
+        # Kolophon). Die Auszuege vergleichen Text; darum zaehlt hier ihr Linktext, nicht ihre Markdown-Form.
+        if a == 'md':
+            s = re.sub(r'\[([^\]\n]+)\]\(https?://[^)\s]+\)', r'\1', s)
         art = a if art is None else ('gemischt' if art != a else art)
         teile.append((a, s))
     return teile, art
