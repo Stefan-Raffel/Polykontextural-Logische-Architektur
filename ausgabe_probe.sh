@@ -714,11 +714,16 @@ def fassungswoerter():
         except OSError: return None
 
     quelle = lies_datei(os.path.join(REPO, 'erzeuge_ausgabe.py'))
-    m = re.search(r"^FASSUNG\s*=\s*'Rev(\d+)'", quelle or '', re.M)
+    # Seit dem deutschen Roll-out der elften Ausgabe steht die Nummer je Sprache: Die Flaechen wandern
+    # nacheinander (Deutsch, dann Englisch, Startseite und README). Die Sollnummer kommt weiter aus derselben
+    # Quelle, nur je Flaeche: docs/de.html die deutsche, alles uebrige die englische, bis es nachgezogen ist.
+    m = re.search(r"^FASSUNG\s*=\s*\{'de':\s*'Rev(\d+)',\s*'en':\s*'Rev(\d+)'\}", quelle or '', re.M)
     if not m:
         print(f"  {'Fassungswoerter':22s} ✗  laufende Nummer in erzeuge_ausgabe.py nicht lesbar")
         return False
-    lauf = int(m.group(1))
+    lauf_de, lauf_en = int(m.group(1)), int(m.group(2))
+    lauf = lauf_de
+    def soll_lauf(pf): return lauf_de if pf == 'docs/de.html' else lauf_en
     fehler = []
 
     # --- Klasse 1: die Moebel nennen die laufende Nummer ---------------------
@@ -754,15 +759,15 @@ def fassungswoerter():
         if not tr:
             fehler.append(f"{pf}: Moebel-Muster ohne Treffer — {muster}")
         for t in tr:
-            if int(t) != lauf:
-                fehler.append(f"{pf}: Moebel nennt Rev{t} statt Rev{lauf} — {muster}")
+            if int(t) != soll_lauf(pf):
+                fehler.append(f"{pf}: Moebel nennt Rev{t} statt Rev{soll_lauf(pf)} — {muster}")
 
     # --- Klasse 2: Ketten lueckenlos, Anker so viele wie Glieder -------------
     for pf in ('docs/de.html', 'docs/en.html', 'docs/index.html'):
         s2 = lies_datei(os.path.join(REPO, pf))
         if s2 is None: continue
         ziel = {int(x) for x in re.findall(r'href="rev(\d+)/', s2)}
-        soll = set(range(1, lauf))
+        soll = set(range(1, soll_lauf(pf)))
         if ziel != soll:
             fehlend = sorted(soll - ziel); zuviel = sorted(ziel - soll)
             fehler.append(f"{pf}: Archivkette {sorted(ziel)} statt {sorted(soll)}"
@@ -819,6 +824,7 @@ def fassungswoerter():
         'rev7': 38,   # archiviert mit der achten Ausgabe; gemessen beim Archivieren
         'rev8': 42,   # archiviert mit der neunten Ausgabe (Kopie von `402fa65`); gemessen beim Archivieren
         'rev9': 44,   # archiviert mit der zehnten Ausgabe (Kopie von `9c1f8c5`, byte-gleich); gemessen beim Archivieren
+        'rev10': 48,  # archiviert mit der elften Ausgabe (Text aus `822eb14`, nur href geheilt); gemessen beim Archivieren
     }
     archiv = {}
     dw = os.path.join(REPO, 'docs')

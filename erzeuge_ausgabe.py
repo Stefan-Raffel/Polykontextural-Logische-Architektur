@@ -40,18 +40,22 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 # `parity`, `figures` oder `doc_lint` es meldete. Keine Probe fuehrt die
 # Fassungsbezeichnung; die Heilung ist darum die Aufhebung der Mehrfachnennung und
 # nicht eine zehnte Groesse.
-FASSUNG = 'Rev10'
+# Seit dem deutschen Roll-out der elften Ausgabe je Sprache: Die Sprachen werden nacheinander
+# ausgeliefert, und die jeweils andere muss dabei byte-gleich bleiben (CLAUDE.md §1).
+FASSUNG = {'de': 'Rev11', 'en': 'Rev10'}
+
+ARCHIVE = {'de': (10, 9, 8, 7, 6, 5, 4, 3, 2, 1), 'en': (9, 8, 7, 6, 5, 4, 3, 2, 1)}
 
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
-        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG}, in vier Teilen',
-        datum='9. Oktober 2026',
-        teile=[f'{K}/Entwurf_2026-10-09_Rev10_TeilA_Gestalt_de.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_Bericht_de.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_TeilB_Apparat_de.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_TeilC_Grenze_de.md'],
-        quelle_figuren=f'{REPO}/docs/rev9/de.html',
+        untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG["de"]}, in vier Teilen',
+        datum='30. Oktober 2026',
+        teile=[f'{K}/Entwurf_2026-10-30_Rev11_TeilA_Gestalt_de.md',
+               f'{K}/Entwurf_2026-10-30_Rev11_Bericht_de.md',
+               f'{K}/Entwurf_2026-10-30_Rev11_TeilB_Apparat_de.md',
+               f'{K}/Entwurf_2026-10-30_Rev11_TeilC_Grenze_de.md'],
+        quelle_figuren=f'{REPO}/docs/rev10/de.html',
         abb_suffix='',
         inhalt='Inhalt', teilA='Teil A · Die Gestalt',
         teilR='Der Bericht · Was operationsfähig geworden ist', teilB='Teil B · Der Apparat',
@@ -64,7 +68,7 @@ SPRACHEN = {
     ),
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
-        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG}, in four parts',
+        untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG["en"]}, in four parts',
         datum='9 October 2026',
         teile=[f'{K}/Entwurf_2026-10-09_Rev10_TeilA_Shape_en.md',
                f'{K}/Entwurf_2026-10-09_Rev10_Report_en.md',
@@ -97,7 +101,9 @@ def figuren_aus(pfad):
 # solange keine Figur vor eine bestehende trat.
 # Seit der zehnten Ausgabe kommen die elf Figuren der neunten aus docs/rev9/ (dort 1-11, schon mit
 # ihren Praefixen); neu ist Figur 12 im Bericht (O7).
-FIGUREN = [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Sechseck_Halbe_Drehung')]
+# Seit der elften (deutsch) kommen alle zwoelf aus docs/rev10/; die englische Seite bleibt auf der Liste der zehnten.
+FIGUREN = {'de': [('alt', n) for n in range(1, 13)],
+           'en': [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Sechseck_Halbe_Drehung')]}
 
 # Die Alt-Texte der neuen Figuren, wortgleich aus der Uebergabe des Verfassers (§2).
 ALT = {
@@ -141,10 +147,21 @@ def neue_figur(name, sprache, suffix):
             f'<figcaption></figcaption>\n</figure>')
 
 
+# Die Beschriftungen der aus dem Archiv uebernommenen Figuren stehen als <text> im SVG; die Schreibung der
+# elften Ausgabe (deutsch) wird darum hier nachgezogen, nur dort und nur diese vier Formen, einzeln am Erzeugnis gefunden.
+FIGUREN_SCHREIBUNG = {'de': (('Mass', 'Maß'), ('heisst', 'heißt'), ('schliesst', 'schließt'), ('Klongrösse', 'Klongröße'))}
+
+
+def _schreibung(fig, sprache):
+    for a, b in FIGUREN_SCHREIBUNG.get(sprache, ()):
+        fig = re.sub(r'(<text[^>]*>[^<]*?)\b' + a + r'\b', lambda m: m.group(1) + b, fig)
+    return fig
+
+
 def figuren_der_ausgabe(c, sprache):
     alt = figuren_aus(c['quelle_figuren'])
-    return [neue_figur(q, sprache, c['abb_suffix']) if art == 'abb' else alt[q - 1]
-            for art, q in FIGUREN]
+    return [neue_figur(q, sprache, c['abb_suffix']) if art == 'abb' else _schreibung(alt[q - 1], sprache)
+            for art, q in FIGUREN[sprache]]
 
 
 # --- Formeln -----------------------------------------------------------------
@@ -331,13 +348,13 @@ def baue(sprache):
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
-                         for n in (9, 8, 7, 6, 5, 4, 3, 2, 1))
+                         for n in ARCHIVE[sprache])
     return f"""<!doctype html>
 <html lang="{c['lang']}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{c['titel']} — PKL {FASSUNG}</title>
+<title>{c['titel']} — PKL {FASSUNG[sprache]}</title>
 <meta name="description" content="{c['untertitel']}">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -345,7 +362,7 @@ def baue(sprache):
 
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="home" href="./">PKL {FASSUNG}</a>
+    <a class="home" href="./">PKL {FASSUNG[sprache]}</a>
     <div class="langswitch">
       <span aria-current="page">{sprache.upper()}</span>
       <span class="sep">·</span>
@@ -394,7 +411,7 @@ def baue(sprache):
 </main>
 
 <footer class="pagefoot">
-  <p>PKL {FASSUNG} · {c['datum']}</p>
+  <p>PKL {FASSUNG[sprache]} · {c['datum']}</p>
   <p><a href="./">{c['uebersicht']}</a> · <a href="{c['andere']}">{c['andere_wort']}</a> · {archive} ·
   <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
