@@ -96,6 +96,7 @@ roots = [
   "Reformulation.Proemial.EmanationsZaehlung",
   "Reformulation.Proemial.DrehsinnUmkehrProbe",
   "Reformulation.Pfalzgraf.BrunnProbe",
+  "Reformulation.Proemial.VergroeberungMass",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 
