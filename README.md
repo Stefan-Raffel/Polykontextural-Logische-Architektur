@@ -81,7 +81,8 @@ und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev11 ist die Mit
 Kapitel 8 "Der Kreis und seine zwei Inversionen": Umkehr und Drehsinn eines Vollkreises fallen bei
 drei Werten zusammen, ab vier Werten nie. Was jeder Lesung eines Kreises standhaelt, nennen wir mit
 Guenthers Wort allgemein; ob es mit dem zu tun hat, was Guenther intersubjektive Allgemeinheit nennt,
-fragt der Schluss.
+fragt der Schluss. Im Bericht ist die Vermutung V der zehnten Ausgabe entschieden, und vier von
+Kaehrs Tableauregeln von 1993 sind gebaut.
 
 Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf
 oeffentlich lieferte die frueher hier genannte Adresse
