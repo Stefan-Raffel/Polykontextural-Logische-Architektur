@@ -75,11 +75,13 @@ nicht prueft: die Marken, Lesarten, Zuordnungen und Zitate, also gerade das, wor
 philosophisch steht. Lean prueft, dass ein Satz bewiesen ist, nicht, dass er sagt, was der
 Bericht ihm zuschreibt.
 
-**Arbeitspapier zur Fassung PKL Rev10** (deutsch und englisch, vier Teile in einem Dokument,
-mit Figuren und Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
-und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev10 ist der Bericht
-"Was operationsfaehig geworden ist": was von Guenthers und Kaehrs Konstruktionen hier bewiesen,
-ausfuehrbar und nachpruefbar steht, und wo nicht.
+**Arbeitspapier zur Fassung PKL Rev11** (deutsch, vier Teile in einem Dokument, mit Figuren und
+Zaehlrouten; englisch noch Rev10): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
+und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev11 ist die Mitte von Teil A,
+Kapitel 8 "Der Kreis und seine zwei Inversionen": Umkehr und Drehsinn eines Vollkreises fallen bei
+drei Werten zusammen, ab vier Werten nie. Was jeder Lesung eines Kreises standhaelt, nennen wir mit
+Guenthers Wort allgemein; ob es mit dem zu tun hat, was Guenther intersubjektive Allgemeinheit nennt,
+fragt der Schluss.
 
 Vorgeschichte, weil sie datiert ist und nicht geloescht wird: bis zur Umstellung auf
 oeffentlich lieferte die frueher hier genannte Adresse

@@ -38,7 +38,7 @@
 #                       ($$…$$ gegen data-tex), nicht die Darstellung
 #   9. Ueberschriftenraenge — die Gliederungstiefe nach festgelegter Abbildung
 #                       (siehe `raenge`), exakt und ohne Toleranz
-#  10. Fassungswoerter — EINMAL ueber die laufenden Flaechen (README.md,
+#  10. Fassungswoerter — EINMAL ueber die laufenden Flaechen (README.md, CITATION.cff,
 #                       docs/index.html und die beiden erzeugten Fassungen), nicht
 #                       je Sprachpaar. Drei Bedingungen: die MOEBEL nennen die
 #                       laufende Nummer; die ARCHIVKETTEN sind lueckenlos, gleich
@@ -813,7 +813,11 @@ def fassungswoerter():
         ('docs/index.html', r'<strong>Rev(\d+)</strong> — laufend'),
         ('README.md',       r'Fassung PKL Rev(\d+)\*\*'),
         ('README.md',       r'edition Rev(\d+), in English'),
+        ('CITATION.cff',    r'version: "Rev(\d+)"'),    # Version, Datum, DOI und Abstract gehen zusammen, mit der englischen Fassung
     ]
+    # Der README nennt beide Sprachen je in ihrem Satz.
+    def soll_moebel(pf, muster):
+        return lauf_de if muster == r'Fassung PKL Rev(\d+)\*\*' else soll_lauf(pf)
     for pf, muster in MOEBEL:
         s2 = lies_datei(os.path.join(REPO, pf))
         if s2 is None:
@@ -822,8 +826,8 @@ def fassungswoerter():
         if not tr:
             fehler.append(f"{pf}: Moebel-Muster ohne Treffer — {muster}")
         for t in tr:
-            if int(t) != soll_lauf(pf):
-                fehler.append(f"{pf}: Moebel nennt Rev{t} statt Rev{soll_lauf(pf)} — {muster}")
+            if int(t) != soll_moebel(pf, muster):
+                fehler.append(f"{pf}: Moebel nennt Rev{t} statt Rev{soll_moebel(pf, muster)} — {muster}")
 
     # --- Klasse 2: Ketten lueckenlos, Anker so viele wie Glieder -------------
     for pf in ('docs/de.html', 'docs/en.html', 'docs/index.html'):
