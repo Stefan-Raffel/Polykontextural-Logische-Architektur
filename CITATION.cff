@@ -37,6 +37,7 @@ authors:
 repository-code: "https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur"
 license: Apache-2.0
 version: "Rev11"
+doi: 10.5281/zenodo.23835775
 date-released: "2026-10-31"
 keywords:
   - polycontextural logic
