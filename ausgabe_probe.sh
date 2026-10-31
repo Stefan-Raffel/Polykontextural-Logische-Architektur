@@ -813,7 +813,7 @@ def fassungswoerter():
         ('docs/index.html', r'<strong>Rev(\d+)</strong> — laufend'),
         ('README.md',       r'Fassung PKL Rev(\d+)\*\*'),
         ('README.md',       r'edition Rev(\d+), in English'),
-        ('CITATION.cff',    r'version: "Rev(\d+)"'),    # Version, Datum, DOI und Abstract gehen zusammen, mit der englischen Fassung
+        ('CITATION.cff',    r'version: "Rev(\d+)"'),    # Version, Datum und Abstract gehen mit der englischen Fassung; die DOI vergibt Zenodo erst beim Release
     ]
     # Der README nennt beide Sprachen je in ihrem Satz.
     def soll_moebel(pf, muster):

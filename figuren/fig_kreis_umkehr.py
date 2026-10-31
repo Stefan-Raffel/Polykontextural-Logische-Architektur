@@ -148,11 +148,11 @@ TXT = {
         "dreh": "Die Pfeile zeigen die Laufrichtung; der Drehsinn l\u00e4uft dieselben Kanten gegen die Pfeile.",
         "pq": "p = 1234 (Ausgang) · q = 2341"},
  "en": {"suf": "_EN", "tl": "Circle 2 from p", "tr": "The reversal of circle 2 from p",
-        "sl": "24 negations, back to p", "sr": "the same sequence, begun four exchanges later \u00b7 from q: the edges of circle 2",
+        "sl": "24 negations, back to p", "sr": "the same sequence, begun four changes later \u00b7 from q: the edges of circle 2",
         "n": ["N₁  exchanges 1 ↔ 2", "N₂  exchanges 2 ↔ 3", "N₃  exchanges 3 ↔ 4"],
         "shared": "no rim: edge of both paths (14)", "own": "with rim: edge of this path only (10 per path)",
         "dreh": "The arrows show the direction of travel; the sense of rotation runs the same edges against the arrows.",
-        "pq": "p = 1234 (origin) · q = 2341"},
+        "pq": "p = 1234 (start) · q = 2341"},
 }
 
 def draw_body(ax):

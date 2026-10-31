@@ -147,20 +147,20 @@ assert all(MPath(S[outer]).contains_point(S[k], radius=-1e-6) for k in range(24)
 TXT = {
  "de": {"suf": "",
         "t1": "w auf drei Werten", "s1": "sechs Schritte, zur\u00fcck zum Ausgang",
-        "t2": "Φ w auf vier Werten", "s2": "die Fegerichtung zuerst links: Bl\u00f6cke N\u2083N\u2082N\u2081, N\u2081N\u2082N\u2083, \u2026",
+        "t2": "Φ w auf vier Werten", "s2": "die Schubrichtung zuerst links: Bl\u00f6cke N\u2083N\u2082N\u2081, N\u2081N\u2082N\u2083, \u2026",
         "t3": "\u03a6 auf die Umkehr von w", "s3": "zuerst rechts: N\u2081N\u2082N\u2083, \u2026 \u00b7 gleich der Umkehr von \u03a6 w",
         "n": ["N₁  vertauscht 1 ↔ 2", "N₂  vertauscht 2 ↔ 3", "N₃  vertauscht 3 ↔ 4"],
         "phi": "\u03a6 setzt vor jeden Schritt von w einen Block N\u2083N\u2082N\u2081 oder N\u2081N\u2082N\u2083, im Wechsel; nach N\u2083N\u2082N\u2081 r\u00fcckt der Schritt von w um eins (N\u2081 wird N\u2082, N\u2082 wird N\u2083).",
         "drei": "Bei drei Werten ist die Umkehr von w dasselbe Wort rückwärts; darum links nur ein Weg.",
         "pp": "Ausgang: 123 links, p = 1234 rechts · die Pfeile zeigen die Laufrichtung"},
  "en": {"suf": "_EN",
-        "t1": "w on three values", "s1": "six steps, back to the origin",
-        "t2": "Φ w on four values", "s2": "sweep left first: blocks N\u2083N\u2082N\u2081, N\u2081N\u2082N\u2083, \u2026",
+        "t1": "w on three values", "s1": "six steps, back to the start",
+        "t2": "Φ w on four values", "s2": "shift left first: blocks N\u2083N\u2082N\u2081, N\u2081N\u2082N\u2083, \u2026",
         "t3": "\u03a6 applied to the reversal of w", "s3": "right first: N\u2081N\u2082N\u2083, \u2026 \u00b7 equal to the reversal of \u03a6 w",
         "n": ["N₁  exchanges 1 ↔ 2", "N₂  exchanges 2 ↔ 3", "N₃  exchanges 3 ↔ 4"],
         "phi": "\u03a6 puts a block N\u2083N\u2082N\u2081 or N\u2081N\u2082N\u2083, alternately, before each step of w; after N\u2083N\u2082N\u2081 the step of w moves up by one (N\u2081 becomes N\u2082, N\u2082 becomes N\u2083).",
         "drei": "On three values the reversal of w is the same word read backwards; hence only one path on the left.",
-        "pp": "origin: 123 on the left, p = 1234 on the right · the arrows show the direction of travel"},
+        "pp": "start: 123 on the left, p = 1234 on the right · the arrows show the direction of travel"},
 }
 
 def arrow(ax, A, Bp, l=0.13, hw=0.039):     # A1 zweiter Stand:  halbe Breite = 0.3 × Länge                 # Richtungszeichen (A1):  gefülltes Dreieck, mittig, Spitze in Laufrichtung
