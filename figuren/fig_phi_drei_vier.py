@@ -12,6 +12,9 @@ Definitionen WÖRTLICH nach Lean (main 55c6cf5):
   phi b w = toFin (m+2) (blocks (m+2+1) b (w.map val))   AkkretivitaetsBruecke.lean Z. 295
 Eichungen als assert (Lean-Namen daneben);  am Ende die Liste und die Stationentafeln.
 
+Stand in docs/abb, gemessen 31.10. (Python 3.13, Pillow 13.0.0):  unter matplotlib 3.10.9 SVG byte-gleich, PNG pixelgleich (die PNG-Bytes
+haengen an der Kompression);  unter 3.9.4 stimmen Eichungen und Stationen, nicht die Bytes.  Darum liegen die abgenommenen Dateien im Repo.
+
     REV9_FIG_OUT=<dir> python3 fig_phi_drei_vier.py
 erzeugt Abb_Phi_Drei_Vier(.svg/.png) und _EN.
 """

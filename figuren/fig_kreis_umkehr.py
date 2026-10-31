@@ -11,6 +11,9 @@ Definitionen WÖRTLICH nach Lean (main 55c6cf5):
   kanten w x = S.zip S.tail, S = stations ++ [endpoint];  gemeinsam   DrehsinnUmkehrProbe.lean Z. 88, 93
 Eichungen als assert (Lean-Namen daneben);  am Ende die Liste und die Stationentafel.
 
+Stand in docs/abb, gemessen 31.10. (Python 3.13, Pillow 13.0.0):  unter matplotlib 3.10.9 SVG byte-gleich, PNG pixelgleich (die PNG-Bytes
+haengen an der Kompression);  unter 3.9.4 stimmen Eichungen und Stationen, nicht die Bytes.  Darum liegen die abgenommenen Dateien im Repo.
+
     REV9_FIG_OUT=<dir> python3 fig_kreis_umkehr.py
 erzeugt Abb_Kreis_und_Umkehr(.svg/.png) und _EN.
 """
