@@ -119,14 +119,21 @@
 #                       laufenden (docs/de.html, en.html). Ein Verweis von aussen
 #                       auf eine fruehere Fassung soll in der naechsten weiter
 #                       treffen. Lint (F) prueft, dass jeder Verweis ein Ziel hat;
-#                       diese Groesse prueft, dass kein Ziel verschwindet. Die
-#                       Startseite hat kein Archiv und ist nicht im Bereich.
+#                       diese Groesse prueft, dass kein Ziel verschwindet und, seit
+#                       31.10.2026, dass es dasselbe bleibt:  ausserhalb von <svg>
+#                       gleiches Element und gleicher Text (Ueberschrift ganz, sonst
+#                       die ersten 40 Zeichen, Schreibung nach Zug-3-Liste;  gewollte
+#                       Umbenennungen in IDS_UMBENANNT).  Ids in <svg> nur auf Bestand.
+#                       Die Startseite hat kein Archiv und ist nicht im Bereich.
 #                       Anlass (Rev10-Register M10): der erste Probelauf des
 #                       C.3-Folgezugs verlor #a0, und keine Groesse sah es.
 #                       GEEICHT (9.10.2026): ID_PROBE_ALT=<datei> ID_PROBE_NEU=<datei>
 #                       ersetzen Archiv und laufende Fassung. Muss: 939ce72 gegen
 #                       e696870 (de) bricht mit 8 verlorenen ids (b1-7 ... b5-3);
 #                       Darf-nicht: docs/rev9 gegen Rev10, 0 verloren.
+#                       Anlass der Schaerfung (Signum, Vorgabe 31.10.):  der Eingang
+#                       schob a1-a10 um eins, die Id bestand, die Startseite zeigte
+#                       falsch.  GEEICHT 31.10.2026, Muss:  4c2c2dc gegen 822eb14 (de).
 #
 # DIE AUSNAHMEN, GEPRUEFT (Auflage aus der Sondierung: jede begruendete Ausnahme
 # einer Probe ist ein blinder Fleck mit Begruendung). Je Klasse: was sie traegt,
@@ -632,29 +639,81 @@ def gestaltsatz():
         ok = False
     return ok
 
+# Gewollte Umbenennungen der Groesse 14:  (Sprache, id) -> (Text, den die laufende Fassung dort traegt;  Grund).  Heute leer.
+IDS_UMBENANNT = {}
+# Die Schreibung ss -> ß der elften Ausgabe, geschlossene Liste (Rev11_Zug3_Schreibung, 45 Formen):  keine Umbenennung.
+IDS_SCHREIBUNG = {w: (w.replace('schliess', 'schließ') if 'schliess' in w else w.replace('ss', 'ß')) for w in """
+    Fussnotennummern Mass Grösse Blockgrössen liesse blosse grösstes anschliessendem heisst grösster schliessende
+    Grössen aussen schliesst äussert schliessen heissen stösst weiss gross bloss draussen Ausserhalb ausserhalb Fuss
+    Grössenordnung grössere grösseren einschliesslich Fussnote beisst ausschliesst ausschliessend hiess zuliess
+    Fusszeile Ausschliesslichkeit auszuschliessen ausser liess grössten hiesse Mengengrösse beissen Bereichsgrösse
+    """.split()}
+
+def ids_ziele(pf):
+    """id -> (Element, Text, in svg).  Text:  die ganze Ueberschrift, sonst was danach steht;  ohne den Inhalt von <svg>."""
+    from html.parser import HTMLParser
+    class Z(HTMLParser):
+        def __init__(s):
+            super().__init__(convert_charrefs=True); s.tiefe = 0; s.e = {}; s.offen = []
+        def handle_starttag(s, tag, attrs):
+            i = dict(attrs).get('id')
+            if tag == 'svg':
+                s.tiefe += 1
+            if i is not None and i not in s.e:
+                s.e[i] = [tag, '', s.tiefe > 0]
+                s.offen.append(i)
+        def handle_endtag(s, tag):
+            if tag == 'svg' and s.tiefe:
+                s.tiefe -= 1
+            if tag in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+                s.offen = [i for i in s.offen if s.e[i][0] != tag]
+        def handle_data(s, d):
+            if s.tiefe:
+                return
+            for i in s.offen:
+                s.e[i][1] += d
+            s.offen = [i for i in s.offen if s.e[i][0].startswith('h') and s.e[i][0][1:].isdigit() or len(s.e[i][1].split()) < 12]
+    z = Z(); z.feed(open(pf, encoding='utf-8').read())
+    return z.e
+
+def ids_text(e):
+    """Vergleichstext:  Ueberschrift ganz, sonst die ersten 40 Zeichen;  Schreibung nach der Liste."""
+    t = ' '.join(re.sub(r'\w+', lambda m: IDS_SCHREIBUNG.get(m.group(0), m.group(0)), e[1]).split())
+    return t if re.fullmatch(r'h[1-6]', e[0]) else t[:40]
+
 def ids_bleiben():
-    """Groesse 14: jede id der juengsten archivierten Fassung steht in der laufenden."""
-    def ids(pf):
-        try:
-            return set(re.findall(r'\bid="([^"]+)"', open(pf, encoding='utf-8').read()))
-        except OSError:
-            return None
+    """Groesse 14: jede id der juengsten archivierten Fassung steht in der laufenden, und ausserhalb von <svg> am selben Ziel."""
     archive = sorted((int(m.group(1)), m.group(0)) for d in os.listdir(os.path.join(REPO, 'docs'))
                      for m in [re.fullmatch(r'rev(\d+)', d)] if m)
     ok = True
     for sp in ('de', 'en'):
         alt = os.environ.get('ID_PROBE_ALT') or os.path.join(REPO, 'docs', archive[-1][1], sp + '.html')
         neu = os.environ.get('ID_PROBE_NEU') or os.path.join(REPO, 'docs', sp + '.html')
-        a, b = ids(alt), ids(neu)
         name = 'Ids bleiben ' + sp
-        if a is None or b is None:
-            print(f"  {name:22s} ✗  Datei fehlt: {alt if a is None else neu}"); ok = False; continue
-        weg = sorted(a - b)
+        try:
+            a, b = ids_ziele(alt), ids_ziele(neu)
+        except OSError as x:
+            print(f"  {name:22s} ✗  Datei fehlt: {x.filename}"); ok = False; continue
+        weg = sorted(set(a) - set(b))
+        anders = []
+        for i, e in a.items():
+            if i in weg or e[2]:
+                continue
+            u = IDS_UMBENANNT.get((sp, i))
+            if b[i][0] != e[0] or b[i][2] or (ids_text(b[i]) != ids_text(e) and not (u and ids_text(b[i]) == u[0])):
+                anders.append(i)
         if weg:
             print(f"  {name:22s} ✗  {len(weg)} von {len(a)} ids aus {os.path.relpath(alt, REPO)} fehlen: {', '.join(weg[:8])}")
             ok = False
-        else:
-            print(f"  {name:22s} ✓  alle {len(a)} ids aus {os.path.relpath(alt, REPO)} stehen, {len(b - a)} neu")
+        if anders:
+            print(f"  {name:22s} ✗  {len(anders)} ids zeigen auf ein anderes Ziel:")
+            for i in anders[:12]:
+                ta, tb = a[i][:1] + b[i][:1]
+                print(f"      #{i}: {ta} „{ids_text(a[i])[:44]}“ → {tb} „{ids_text(b[i])[:44]}“")
+            ok = False
+        if not weg and not anders:
+            drin = sum(1 for e in a.values() if not e[2])
+            print(f"  {name:22s} ✓  alle {len(a)} ids aus {os.path.relpath(alt, REPO)} stehen, {drin} ausserhalb von svg am selben Ziel, {len(set(b) - set(a))} neu")
         if os.environ.get('ID_PROBE_ALT'):
             break                                   # Eichlauf: ein Paar genuegt
     return ok

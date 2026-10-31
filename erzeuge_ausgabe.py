@@ -320,7 +320,9 @@ def wandle_teil(md_text, figuren, caption_wort):
 
 
 def anker_setzen(html, praefix):
-    """Das erste h3 eines Teils bekommt <praefix>0, jedes h2 der Reihe nach."""
+    """Das erste h3 eines Teils bekommt <praefix>0, jedes h2 ohne festen Anker der Reihe nach.
+    Eine Id wird nie neu vergeben und nie umgedeutet (Signum, 31.10.2026): Ein neuer Abschnitt bekommt
+    einen Namen `{#name}`, im Setzskript. Groesse 14 der Ausgabeprobe bricht sonst."""
     zaehler = [0]
     erstes_h3 = [True]
 
@@ -342,11 +344,11 @@ def anker_setzen(html, praefix):
 def titel_und_kapitel(html):
     """(Titel des Teils, [Kapitelueberschriften]) fuer das Inhaltsverzeichnis."""
     t = re.search(r'(?is)<h1[^>]*>(.*?)</h1>', html)
-    kap = re.findall(r'(?is)<h2[^>]*>(.*?)</h2>', html)
+    kap = re.findall(r'(?is)<h2\b[^>]*\bid="([^"]+)"[^>]*>(.*?)</h2>', html)
     ers = re.search(r'(?is)<h3[^>]*>(.*?)</h3>', html)
     return (re.sub(r'<[^>]+>', '', t.group(1)) if t else '',
             re.sub(r'<[^>]+>', '', ers.group(1)) if ers else '',
-            [re.sub(r'<[^>]+>', '', k) for k in kap])
+            [(i, re.sub(r'<[^>]+>', '', k)) for i, k in kap])
 
 
 def baue(sprache):
@@ -364,7 +366,7 @@ def baue(sprache):
         _, ers, kap = titel_und_kapitel(h)
         p = praefixe[i]
         zeilen = [f'    <li><a href="#{p}0">{ers}</a></li>']
-        zeilen += [f'    <li><a href="#{p}{n}">{k}</a></li>' for n, k in enumerate(kap, 1)]
+        zeilen += [f'    <li><a href="#{i}">{k}</a></li>' for i, k in kap]   # die Id der Ueberschrift, gezaehlt oder fest
         tocs.append('\n'.join(zeilen))
 
     archive = ' · '.join(f'<a href="rev{n}/{sprache}.html">{c["archiv"]}{n}</a>'
