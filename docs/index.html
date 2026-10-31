@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PKL Rev10 — Polykontexturale Logik in Lean 4 und Mathlib</title>
-<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev10 in vier Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
+<title>PKL Rev11 — Polykontexturale Logik in Lean 4 und Mathlib</title>
+<meta name="description" content="Formale Reformulierung der polykontexturalen Logik Gotthard Günthers in Lean 4 mit Mathlib. Fassung PKL Rev11 in vier Teilen; die Kennzahlen des Pruefapparats stehen in kennzahlen.md.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span class="home">PKL Rev10</span>
+    <span class="home">PKL Rev11</span>
     <div class="langswitch">
       <a href="de.html" hreflang="de">DE</a>
       <span class="sep">·</span>
@@ -26,12 +26,12 @@
 
 <header class="doctitle">
   <h1>Die mathematische Gestalt der Architektur</h1>
-  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev10, in vier Teilen</p>
-  <p class="dateline">9. Oktober 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev10</p>
+  <p class="subtitle">Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL Rev11, in vier Teilen</p>
+  <p class="dateline">31. Oktober 2026 · Kennzahlen des Prüfapparats: <a href="kennzahlen.md">kennzahlen.md</a>, mit Stand-Anker · Fassung Rev11</p>
 </header>
 
 <p class="lede">Das Arbeitspapier zur Reformulierung der polykontexturalen Logik Gotthard
-Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev10, deutsch;
+Günthers in einer typentheoretischen Beweisumgebung. Die laufende Fassung ist Rev11, deutsch;
 die englische Übersetzung liegt vor. <strong>Sie hat vier Teile in einem Dokument:</strong> Teil A
 stellt die Gestalt dar, der Bericht sagt, was davon operationsfähig geworden ist, Teil B liefert Trägertafel, Axiomprofile, Zählrouten und Prüfapparat, Teil C
 führt die vermessenen Grenzen des Baus zusammen; die
@@ -43,17 +43,17 @@ unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt; die
 <h2>Die Gestalt in einem Satz · <span lang="en">The shape in one sentence</span></h2>
 <p class="gestalt-note">Eine Zusammenschau des Papiers; jedes Glied wird in seinem Kapitel eingelöst.</p>
 <p class="gestalt-de" lang="de">Eine Kombinatorik mit <a href="de.html#a4">eingebauter Richtung</a> trägt Logiken, <a href="de.html#a5">deren Trennung</a> nicht darin besteht, dass zwischen ihnen eine Abbildung fehlt; Günthers <a href="de.html#a1">zwei Pläne</a> ordnen, was auf ihr gebaut ist, und <a href="de.html#a3">Vollkreise</a> durch sein Negationssystem durchlaufen den ganzen Verbund, während jeder einzelne Schritt in einer Logik bleibt; diese Richtung erscheint als <a href="de.html#a6">Zeit</a> und als <a href="de.html#a9">Aufstieg</a> wieder; der Abstand zwischen wachsendem Reichtum und gleichbleibender Erreichbarkeit ist <a href="de.html#a8">ihr Maß</a>; sie hält genau so weit, <a href="de.html#a10">wie die Ordnung reicht</a> — dieselbe Ordnung, die der Umtausch zweier Werte erzwingt, ohne dass er sie begründete; und wo Erkennen und Wollen als ihre beiden Stränge gelesen werden, ist ihre Verbindung damit <a href="de.html#buridan">geregelt und nicht begründet</a>; an jedem Vollkreis lassen sich die Werte und der Lauf umkehren, und ab vier Werten sind der Kreis, seine Umkehr, sein Drehsinn und beides zusammen, vom selben Anfang gelesen, <a href="de.html#kapitel-8">vier verschiedene Lesungen</a>; was jeder Lesung standhält, nennen wir allgemein — ob das mit der <a href="de.html#schluss">im Du repräsentierten Allgemeinheit</a> zu tun hat, von der Günther spricht, fragen wir.</p>
-<p class="gestalt-en" lang="en">A combinatorics with a <a href="en.html#a4" hreflang="en">built-in direction</a> carries logics <a href="en.html#a5" hreflang="en">whose separation</a> does not consist in a missing map between them; Günther's <a href="en.html#a1" hreflang="en">two plans</a> order what is built on it, and <a href="en.html#a3" hreflang="en">full cycles</a> through his negation system run through the whole compound while every single step stays within one logic; this direction reappears as <a href="en.html#a6" hreflang="en">time</a> and as <a href="en.html#a9" hreflang="en">ascent</a>; the distance between growing richness and unchanging reachability is <a href="en.html#a8" hreflang="en">its measure</a>; it holds exactly <a href="en.html#a10" hreflang="en">as far as order reaches</a> — the same order that the exchange of two values enforces without ever grounding it; and where cognition and volition are read as its two strands, their connection is thereby <a href="en.html#buridan" hreflang="en">regulated and not grounded</a>.</p>
+<p class="gestalt-en" lang="en">A combinatorics with a <a href="en.html#a4" hreflang="en">built-in direction</a> carries logics <a href="en.html#a5" hreflang="en">whose separation</a> does not consist in a missing map between them; Günther's <a href="en.html#a1" hreflang="en">two plans</a> order what is built on it, and <a href="en.html#a3" hreflang="en">full cycles</a> through his negation system run through the whole compound while every single step stays within one logic; this direction reappears as <a href="en.html#a6" hreflang="en">time</a> and as <a href="en.html#a9" hreflang="en">ascent</a>; the distance between growing richness and unchanging reachability is <a href="en.html#a8" hreflang="en">its measure</a>; it holds exactly <a href="en.html#a10" hreflang="en">as far as order reaches</a> — the same order that the exchange of two values enforces without ever grounding it; and where cognition and volition are read as its two strands, their connection is thereby <a href="en.html#buridan" hreflang="en">regulated and not grounded</a>; on every full cycle the values and the traversal can be reversed, and from four values on the circle, its reversal, its sense of rotation and both together, read from the same start, are <a href="en.html#kapitel-8" hreflang="en">four different aspects</a>; what withstands every aspect we call general — we ask whether that has to do with the <a href="en.html#schluss" hreflang="en">generality Günther speaks of as represented in the Thou</a>.</p>
 </section>
 
 <ul class="cards">
 <li><a class="card" href="de.html" hreflang="de">
-  <span class="kicker">Deutsch · Fassung Rev10</span>
+  <span class="kicker">Deutsch · Fassung Rev11</span>
   <span class="cardtitle">Die mathematische Gestalt der Architektur</span>
   <span class="cardsub">Vier Teile — die Gestalt, der Bericht, der Apparat, die Grenze —, Anhang mit den Zählrouten.</span>
 </a></li>
 <li><a class="card" href="en.html" hreflang="en">
-  <span class="kicker">English · edition Rev10</span>
+  <span class="kicker">English · edition Rev11</span>
   <span class="cardtitle">The Mathematical Shape of the Architecture</span>
   <span class="cardsub">Translation of the German edition; four parts — the shape, the report, the apparatus, the limit —, appendix with the counting routes.</span>
 </a></li>
@@ -94,8 +94,10 @@ unter ihren eigenen Adressen erreichbar und werden nicht nachgeführt; die
 <table>
 <thead><tr><th>Fassung</th><th>Sprache</th><th>Stand</th><th>Adresse</th></tr></thead>
 <tbody>
-<tr><td><strong>Rev10</strong> — laufend</td><td>deutsch</td><td>9. Oktober 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
-<tr><td><strong>Rev10</strong> — laufend</td><td>englisch</td><td>übersetzt 9. Oktober 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td><strong>Rev11</strong> — laufend</td><td>deutsch</td><td>31. Oktober 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="de.html">de.html</a></td></tr>
+<tr><td><strong>Rev11</strong> — laufend</td><td>englisch</td><td>übersetzt 31. Oktober 2026, Kennzahlen in <a href="kennzahlen.md">kennzahlen.md</a></td><td><a href="en.html">en.html</a></td></tr>
+<tr><td>Rev10 — frühere Fassung</td><td>deutsch</td><td>9. Oktober 2026; archiviert aus <code>0f9db4c</code></td><td><a href="rev10/de.html">rev10/de.html</a></td></tr>
+<tr><td>Rev10 — frühere Fassung</td><td>englisch</td><td>übersetzt 9. Oktober 2026; archiviert aus <code>0f9db4c</code></td><td><a href="rev10/en.html">rev10/en.html</a></td></tr>
 <tr><td>Rev9 — frühere Fassung</td><td>deutsch</td><td>27. September 2026, Text nachgeliefert bis 30. September (<code>951b5ae</code>); archiviert aus <code>9c1f8c5</code></td><td><a href="rev9/de.html">rev9/de.html</a></td></tr>
 <tr><td>Rev9 — frühere Fassung</td><td>englisch</td><td>übersetzt 27. September 2026, Text nachgeliefert bis 30. September (<code>951b5ae</code>); archiviert aus <code>9c1f8c5</code></td><td><a href="rev9/en.html">rev9/en.html</a></td></tr>
 <tr><td>Rev8 — frühere Fassung</td><td>deutsch</td><td>12. September 2026, Commit <code>402fa65</code></td><td><a href="rev8/de.html">rev8/de.html</a></td></tr>
@@ -219,8 +221,9 @@ Ziffer des Papiers trägt, steht in der
 </main>
 
 <footer class="pagefoot">
-  <p>Fassung PKL Rev10 · 9. Oktober 2026</p>
-  <p><a href="de.html">Fassung Rev10, deutsch</a> · <a href="en.html">Rev10 English</a> ·
+  <p>Fassung PKL Rev11 · 31. Oktober 2026</p>
+  <p><a href="de.html">Fassung Rev11, deutsch</a> · <a href="en.html">Rev11 English</a> ·
+  <a href="rev10/de.html">Rev10 deutsch</a> · <a href="rev10/en.html">Rev10 English</a> ·
   <a href="rev9/de.html">Rev9 deutsch</a> · <a href="rev9/en.html">Rev9 English</a> ·
   <a href="rev8/de.html">Rev8 deutsch</a> · <a href="rev8/en.html">Rev8 English</a> ·
   <a href="rev7/de.html">Rev7 deutsch</a> · <a href="rev7/en.html">Rev7 English</a> ·

@@ -2,30 +2,42 @@ cff-version: 1.2.0
 message: "Wer diese Arbeit verwendet, zitiert sie bitte wie folgt."
 title: "Reformulation - Polykontexturale Logik in Lean 4"
 abstract: >-
-  The tenth edition of a working paper that reformulates Gotthard Günther's polycontextural
+  The eleventh edition of a working paper that reformulates Gotthard Günther's polycontextural
   logic in Lean 4 and Mathlib.
-  It has a new main part. Between Part A and Part B there stands a report, "What has
-  become operational". It tells, by subject, in seven sections, what of Günther's and
-  Kaehr's constructions stands here proved, executable and checkable: the coupling in
-  Mahler's model, with Kaehr's distinction; Pfalzgraf's fibering; Kaehr's separating case
-  and his calculus, Günther's implications as transjunctions, a bridge between two layers
-  of the corpus, and the small figure with which Günther speaks three times. It ends with
-  Günther's question, not with our answer.
-  It says who checks. The voices that worked on this text are roles of instances of the
-  same model family. They have found many errors in one another, and the list of errors
-  shows it. Independent checkers they are not. Independent checks come from the proof
-  environment, for the theorems, and from the author of the project. Whoever distrusts the
-  marks, readings and quotations of this text is right to do so until a voice from outside
-  has read them; a place for that is not yet set up.
+  Part A has a new centre and proves three things about negation cycles as Günther writes them
+  down. Günther's family formed from the distributions 10-9-5 and 5-9-10 is, on the
+  distributions, exactly one orbit of the reversal. Reversal and sense of rotation of a full
+  cycle coincide for three values and never from four values on. And the step to one more value
+  carries the reversal along when it changes the direction in which it shifts. Added to these
+  are the theorems that carry the three in detail, and a calculation at the tables of an early
+  textbook of change ringers. New in Part A are a posit, that we read the cycles as heirs
+  of a sentence Günther wrote in 1957, and an assignment that carries its centre: what
+  withstands every aspect of a circle we call, with Günther's word, general. Whether that has to
+  do with what Günther calls intersubjective generality is the question on which the edition
+  ends; the corpus contains no I and no Thou.
+  The report proves or measures five further things. A conjecture of the tenth edition is
+  decided. Kaehr's calculus of 1981, corrected in one line, captures exactly the fibres; against
+  Günther's values it is neither sound nor complete. Four of his tableau rules of 1993,
+  supplemented by one from 1981, are, against a semantics we have chosen, sound in a weak sense and
+  not complete. Meixl's tables are Günther's. A map of the corpus shows where contextures have a
+  validity of their own. Whatever is said beyond that is an assignment, a reading or a
+  synopsis, and is called so.
+  The errors in the list of errors were found by roles of instances of one model family, not by
+  independent checkers; what a model systematically gets wrong, all of its roles can miss. Two
+  check independently today: the proof environment, for the theorems and not for the marks and
+  quotations, and the author of the project. The list shows that the roles catch a lot; that
+  they are independent, it does not show.
+  No machine checks the marks, readings, assignments and quotations; they are set so that they can be checked,
+  quotations with source and page. Whoever does so is welcome, and what proves to be an error goes
+  into the list of errors, with the finder's name if they wish. Findings reach us on X, @PolyContextual.
 type: software
 authors:
   - family-names: Raffel
     given-names: Stefan
 repository-code: "https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur"
 license: Apache-2.0
-version: "Rev10"
-doi: 10.5281/zenodo.23262993
-date-released: "2026-10-09"
+version: "Rev11"
+date-released: "2026-10-31"
 keywords:
   - polycontextural logic
   - Gotthard Guenther

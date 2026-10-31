@@ -42,15 +42,15 @@ K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 # nicht eine zehnte Groesse.
 # Seit dem deutschen Roll-out der elften Ausgabe je Sprache: Die Sprachen werden nacheinander
 # ausgeliefert, und die jeweils andere muss dabei byte-gleich bleiben (CLAUDE.md §1).
-FASSUNG = {'de': 'Rev11', 'en': 'Rev10'}
+FASSUNG = {'de': 'Rev11', 'en': 'Rev11'}
 
-ARCHIVE = {'de': (10, 9, 8, 7, 6, 5, 4, 3, 2, 1), 'en': (9, 8, 7, 6, 5, 4, 3, 2, 1)}
+ARCHIVE = {'de': (10, 9, 8, 7, 6, 5, 4, 3, 2, 1), 'en': (10, 9, 8, 7, 6, 5, 4, 3, 2, 1)}
 
 SPRACHEN = {
     'de': dict(
         titel='Die mathematische Gestalt der Architektur',
         untertitel=f'Polykontexturale Logik in Lean 4 und Mathlib — Fassung PKL {FASSUNG["de"]}, in vier Teilen',
-        datum='30. Oktober 2026',
+        datum='31. Oktober 2026',
         teile=[f'{K}/Entwurf_2026-10-30_Rev11_TeilA_Gestalt_de.md',
                f'{K}/Entwurf_2026-10-30_Rev11_Bericht_de.md',
                f'{K}/Entwurf_2026-10-30_Rev11_TeilB_Apparat_de.md',
@@ -70,12 +70,12 @@ SPRACHEN = {
     'en': dict(
         titel='The Mathematical Shape of the Architecture',
         untertitel=f'Polycontextural logic in Lean 4 and Mathlib — Edition PKL {FASSUNG["en"]}, in four parts',
-        datum='9 October 2026',
-        teile=[f'{K}/Entwurf_2026-10-09_Rev10_TeilA_Shape_en.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_Report_en.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_TeilB_Apparatus_en.md',
-               f'{K}/Entwurf_2026-10-09_Rev10_TeilC_Limit_en.md'],
-        quelle_figuren=f'{REPO}/docs/rev9/en.html',
+        datum='31 October 2026',
+        teile=[f'{K}/Entwurf_2026-10-31_Rev11_TeilA_Shape_en.md',
+               f'{K}/Entwurf_2026-10-31_Rev11_Report_en.md',
+               f'{K}/Entwurf_2026-10-31_Rev11_TeilB_Apparatus_en.md',
+               f'{K}/Entwurf_2026-10-31_Rev11_TeilC_Limit_en.md'],
+        quelle_figuren=f'{REPO}/docs/rev10/en.html',
         abb_suffix='_EN',
         inhalt='Contents', teilA='Part A · The Shape',
         teilR='The report · What has become operational', teilB='Part B · The Apparatus',
@@ -83,7 +83,7 @@ SPRACHEN = {
         andere='de.html', andere_wort='Deutsche Fassung', uebersicht='Overview',
         archiv='Edition Rev', caption='Caption',
         kennzahlen='Figures of the checking apparatus',
-        stand='Figures of the checking apparatus: <a href="kennzahlen.md">kennzahlen.md</a>, with a state anchor',
+        stand='Figures of the checking apparatus: <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur/blob/ee2cee9/docs/kennzahlen.md">kennzahlen.md</a>, with a state anchor',
         lang='en',
     ),
 }
@@ -102,10 +102,10 @@ def figuren_aus(pfad):
 # solange keine Figur vor eine bestehende trat.
 # Seit der zehnten Ausgabe kommen die elf Figuren der neunten aus docs/rev9/ (dort 1-11, schon mit
 # ihren Praefixen); neu ist Figur 12 im Bericht (O7).
-# Seit der elften (deutsch) kommen die zwoelf der zehnten aus docs/rev10/; neu sind Figur 12 und 13 in Kapitel 8, die Figur in O7
-# rueckt auf 14.  Die englische Seite bleibt auf der Liste der zehnten.
-FIGUREN = {'de': [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Kreis_und_Umkehr'), ('abb', 'Abb_Phi_Drei_Vier'), ('alt', 12)],
-           'en': [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Sechseck_Halbe_Drehung')]}
+# Seit der elften kommen die zwoelf der zehnten aus docs/rev10/; neu sind Figur 12 und 13 in Kapitel 8, die Figur in O7
+# rueckt auf 14.
+_FIG = [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Kreis_und_Umkehr'), ('abb', 'Abb_Phi_Drei_Vier'), ('alt', 12)]
+FIGUREN = {'de': _FIG, 'en': _FIG}
 
 # Die Alt-Texte der neuen Figuren, wortgleich aus der Uebergabe des Verfassers (§2).
 ALT = {
@@ -118,6 +118,8 @@ ALT = {
     ('Abb_Sechseck_Halbe_Drehung', 'en'): 'A hexagon, the arrangement 1 2 3 at the top, clockwise 2 1 3, 3 1 2, 3 2 1, 2 3 1, 1 3 2. The edges alternate between two colours for N₁ and N₂. Three dashed diameters join each station to the opposite one: its image under the exchange of the values 1 and 3.',
     ('Abb_Kreis_und_Umkehr', 'de'): 'Zwei Felder, in jedem dasselbe Schlegel-Diagramm des abgestumpften Oktaeders, die Kanten in drei Farben für N₁, N₂, N₃, oben der Ausgang p. Links Günthers zweiter Kreis, rechts seine Umkehr, beide als geschlossener Weg mit Pfeilen in Laufrichtung; rechts zusätzlich die Ecke q = 2341. Die Kanten, die nur ein Weg hat, tragen einen dunklen Saum.',
     ('Abb_Phi_Drei_Vier', 'de'): 'Drei Felder. Links ein Sechseck mit einem Vollkreis auf drei Werten, ab 123. Ein Pfeil Φ führt von dort zur Mitte. Mitte und rechts zeigen je das Schlegel-Diagramm des abgestumpften Oktaeders mit einem geschlossenen Weg ab dem Ausgang p, in der Mitte Φ w, rechts Φ in der anderen Schubrichtung auf die Umkehr von w.',
+    ('Abb_Kreis_und_Umkehr', 'en'): "Two fields, each with the same Schlegel diagram of the truncated octahedron, the edges in three colours for N₁, N₂, N₃, the start p at the top. Left Günther's second circle, right its reversal, both as a closed path with arrows in the direction of travel; on the right also the vertex q = 2341. The edges that only one path has carry a dark rim.",
+    ('Abb_Phi_Drei_Vier', 'en'): 'Three fields. Left a hexagon with a full cycle on three values, from 123. An arrow Φ leads from there to the middle. Middle and right each show the Schlegel diagram of the truncated octahedron with a closed path from the start p, in the middle Φ w, on the right Φ in the other shift direction applied to the reversal of w.',
     ('Abb_Negationssystem_Oktaeder', 'en'): 'Left, a truncated octahedron of squares and hexagons, the edges in three colours for N₁, N₂, N₃, the starting point p marked. Right, the same network laid out flat, with a closed path through all 24 vertices; the last two steps dashed.',
 }
 
@@ -167,7 +169,8 @@ def _schreibung(fig, sprache):
 
 
 # Figur 1 bleibt die der zehnten Ausgabe; ihr aria-label sagt jetzt, wo sie endet (Janus, Signum 31.10.).
-ARIA = {('de', 1): ('Die sieben Kapitel und der Bogen', 'Die Kapitel 1 bis 7 und der Bogen')}
+ARIA = {('de', 1): ('Die sieben Kapitel und der Bogen', 'Die Kapitel 1 bis 7 und der Bogen'),
+        ('en', 1): ('The seven chapters and the arc they carry', 'Chapters 1 to 7 and the arc they carry')}
 
 
 def _aus_archiv(fig, sprache, q):

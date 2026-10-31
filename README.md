@@ -21,7 +21,7 @@ a translation of it:
 This is narrower than Guenther's world-picture notion of polycontexturality, which is not
 implemented and is carried as open.
 
-- Working paper, edition Rev10, in English: `docs/en.html` (Part A the shape, the report on what has become operational, Part B the apparatus, Part C the limit)
+- Working paper, edition Rev11, in English: `docs/en.html` (Part A the shape, the report on what has become operational, Part B the apparatus, Part C the limit)
 - Concept-to-carrier assignment, compiler-checked: `docs/definition-ledger.md`
 - Building: `lake exe cache get` first (it fetches the compiled Mathlib; without it, Mathlib is compiled locally), then `lake build`
 - What a green build assures, per target: `docs/build-targets.md`
@@ -75,8 +75,8 @@ nicht prueft: die Marken, Lesarten, Zuordnungen und Zitate, also gerade das, wor
 philosophisch steht. Lean prueft, dass ein Satz bewiesen ist, nicht, dass er sagt, was der
 Bericht ihm zuschreibt.
 
-**Arbeitspapier zur Fassung PKL Rev11** (deutsch, vier Teile in einem Dokument, mit Figuren und
-Zaehlrouten; englisch noch Rev10): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
+**Arbeitspapier zur Fassung PKL Rev11** (deutsch und englisch, vier Teile in einem Dokument, mit Figuren und
+Zaehlrouten): <https://stefan-raffel.github.io/Polykontextural-Logische-Architektur/> -
 und im Bestand unter `docs/de.html` und `docs/en.html`. Neu in Rev11 ist die Mitte von Teil A,
 Kapitel 8 "Der Kreis und seine zwei Inversionen": Umkehr und Drehsinn eines Vollkreises fallen bei
 drei Werten zusammen, ab vier Werten nie. Was jeder Lesung eines Kreises standhaelt, nennen wir mit
