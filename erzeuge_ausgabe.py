@@ -102,8 +102,9 @@ def figuren_aus(pfad):
 # solange keine Figur vor eine bestehende trat.
 # Seit der zehnten Ausgabe kommen die elf Figuren der neunten aus docs/rev9/ (dort 1-11, schon mit
 # ihren Praefixen); neu ist Figur 12 im Bericht (O7).
-# Seit der elften (deutsch) kommen alle zwoelf aus docs/rev10/; die englische Seite bleibt auf der Liste der zehnten.
-FIGUREN = {'de': [('alt', n) for n in range(1, 13)],
+# Seit der elften (deutsch) kommen die zwoelf der zehnten aus docs/rev10/; neu sind Figur 12 und 13 in Kapitel 8, die Figur in O7
+# rueckt auf 14.  Die englische Seite bleibt auf der Liste der zehnten.
+FIGUREN = {'de': [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Kreis_und_Umkehr'), ('abb', 'Abb_Phi_Drei_Vier'), ('alt', 12)],
            'en': [('alt', n) for n in range(1, 12)] + [('abb', 'Abb_Sechseck_Halbe_Drehung')]}
 
 # Die Alt-Texte der neuen Figuren, wortgleich aus der Uebergabe des Verfassers (§2).
@@ -115,6 +116,8 @@ ALT = {
     ('Abb_Negationssystem_Oktaeder', 'de'): 'Links ein abgestumpftes Oktaeder aus Quadraten und Sechsecken, die Kanten in drei Farben für N₁, N₂, N₃, der Ausgang p markiert. Rechts dasselbe Netz flach ausgebreitet, darauf ein geschlossener Weg über alle 24 Ecken; die letzten zwei Schritte gestrichelt.',
     ('Abb_Sechseck_Halbe_Drehung', 'de'): 'Ein Sechseck, oben die Anordnung 1 2 3, im Uhrzeigersinn 2 1 3, 3 1 2, 3 2 1, 2 3 1, 1 3 2. Die Kanten wechseln zwischen zwei Farben für N₁ und N₂. Drei gestrichelte Durchmesser verbinden jede Station mit der gegenüberliegenden: dem Bild unter dem Tausch der Werte 1 und 3.',
     ('Abb_Sechseck_Halbe_Drehung', 'en'): 'A hexagon, the arrangement 1 2 3 at the top, clockwise 2 1 3, 3 1 2, 3 2 1, 2 3 1, 1 3 2. The edges alternate between two colours for N₁ and N₂. Three dashed diameters join each station to the opposite one: its image under the exchange of the values 1 and 3.',
+    ('Abb_Kreis_und_Umkehr', 'de'): 'Zwei Felder, in jedem dasselbe Schlegel-Diagramm des abgestumpften Oktaeders, die Kanten in drei Farben für N₁, N₂, N₃, oben der Ausgang p. Links Günthers zweiter Kreis, rechts seine Umkehr, beide als geschlossener Weg mit Pfeilen in Laufrichtung; rechts zusätzlich die Ecke q = 2341. Die Kanten, die nur ein Weg hat, tragen einen dunklen Saum.',
+    ('Abb_Phi_Drei_Vier', 'de'): 'Drei Felder. Links ein Sechseck mit einem Vollkreis auf drei Werten, ab 123. Ein Pfeil Φ führt von dort zur Mitte. Mitte und rechts zeigen je das Schlegel-Diagramm des abgestumpften Oktaeders mit einem geschlossenen Weg ab dem Ausgang p, in der Mitte Φ w, rechts Φ in der anderen Fegerichtung auf die Umkehr von w.',
     ('Abb_Negationssystem_Oktaeder', 'en'): 'Left, a truncated octahedron of squares and hexagons, the edges in three colours for N₁, N₂, N₃, the starting point p marked. Right, the same network laid out flat, with a closed path through all 24 vertices; the last two steps dashed.',
 }
 
@@ -163,9 +166,21 @@ def _schreibung(fig, sprache):
     return re.sub(r'(?s)<text\b.*?</text>', im_text, fig)
 
 
+# Figur 1 bleibt die der zehnten Ausgabe; ihr aria-label sagt jetzt, wo sie endet (Janus, Signum 31.10.).
+ARIA = {('de', 1): ('Die sieben Kapitel und der Bogen', 'Die Kapitel 1 bis 7 und der Bogen')}
+
+
+def _aus_archiv(fig, sprache, q):
+    if (sprache, q) in ARIA:
+        a, b = ARIA[(sprache, q)]
+        assert fig.count(a) == 1, a
+        fig = fig.replace(a, b)
+    return _schreibung(fig, sprache)
+
+
 def figuren_der_ausgabe(c, sprache):
     alt = figuren_aus(c['quelle_figuren'])
-    return [neue_figur(q, sprache, c['abb_suffix']) if art == 'abb' else _schreibung(alt[q - 1], sprache)
+    return [neue_figur(q, sprache, c['abb_suffix']) if art == 'abb' else _aus_archiv(alt[q - 1], sprache, q)
             for art, q in FIGUREN[sprache]]
 
 
