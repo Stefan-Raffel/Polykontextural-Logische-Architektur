@@ -892,6 +892,7 @@ def fassungswoerter():
         'rev8': 42,   # archiviert mit der neunten Ausgabe (Kopie von `402fa65`); gemessen beim Archivieren
         'rev9': 44,   # archiviert mit der zehnten Ausgabe (Kopie von `9c1f8c5`, byte-gleich); gemessen beim Archivieren
         'rev10': 48,  # archiviert mit der elften Ausgabe (Text aus `822eb14`, nur href geheilt); gemessen beim Archivieren
+        'rev11': 53,  # archiviert nach der elften Ausgabe (Text aus Tag rev11, `24fa57a`, nur href geheilt); gemessen beim Archivieren
     }
     archiv = {}
     dw = os.path.join(REPO, 'docs')
