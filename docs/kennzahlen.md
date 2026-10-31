@@ -7,7 +7,7 @@ Papier, README und Ergebnisdokumente zeigen hierher und schreiben keine Zahl ab.
 Der Grund steht in `CLAUDE.md` §13: eine Zahl, die an zwei Orten steht, hat
 einen Ort zu viel, und der zweite altert unbemerkt.
 
-Stand: Commit `c4e356f` (sauber).
+Stand: Commit `25fd641` (sauber).
 Alle mitlaufenden Gleichungen halten.
 
 | Kennzahl | Wert | Route |
@@ -67,7 +67,7 @@ Alle mitlaufenden Gleichungen halten.
 | geprueft (AxiomGate) | 6236 | Konstanten aus dem Importbaum, namensgefiltert auf Reformulation.* |
 |  |  |  |
 | **DOC-LINT** |  |  |
-| (A.1) laufender Bestand | 123 | Superlativ, meldend |
+| (A.1) laufender Bestand | 124 | Superlativ, meldend |
 | (A.2) eingefrorene Fassungen | 149 | duerfen nicht geheilt werden |
 | (B) ZFC-Rueckfall | 0 | meldend |
 | doc_lint Exit | 0 | 0 heisst: (C), (D) und (E) ohne Verstoss |
