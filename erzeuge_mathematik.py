@@ -13,7 +13,7 @@ import mistune
 REPO = os.path.dirname(os.path.abspath(__file__))
 K = os.path.join(os.path.dirname(REPO), 'KorpusRev2')
 QUELLE = os.path.join(K, 'Entwurf_2026-10-31_Mathematik_de.md')
-MD5 = 'b1942fbc'
+MD5 = '25b3c62a'
 AUSGABE = '../rev11/de.html'
 GITHUB = 'https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur'
 
