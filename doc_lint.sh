@@ -768,6 +768,7 @@ fremd = sorted({h for h in re.findall(r'\bhref="([^"#][^"]*)"', s)
 tot = []
 for h in fremd:
     datei, _, frag = h.partition('#')
+    datei = datei.split('?')[0]   # style.css?v=<kennung>:  das Ziel ist die Datei (Blatt 1, 1.11.2026)
     ziel = os.path.normpath(os.path.join(os.path.dirname(p), datei))
     if os.path.isdir(ziel):
         ziel = os.path.join(ziel, 'index.html')
