@@ -330,6 +330,7 @@ figure.fig svg {
   min-width: 36rem;   /* darunter wird die Beschriftung unlesbar; dann lieber scrollen */
   height: auto;
 }
+figure.fig.ring svg { min-width: 0; }
 
 figure.fig figcaption {
   margin-top: 0.8rem;

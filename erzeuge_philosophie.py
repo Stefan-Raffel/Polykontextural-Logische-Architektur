@@ -56,7 +56,7 @@ def baue(vorprobe=False):
     assert len(teile) % 2 == 1
     satz = ''.join(f'<em>{t}</em>' if i % 2 == 0 else t for i, t in enumerate(teile))
     satz = re.sub(r'</em>(\s+)(.*?)(\s+)<em>', r'\1</em>\2<em>\3', satz)
-    fig = f'<figure class="fig wide">\n<div class="fig-scroll">\n{ring()}\n</div>\n<figcaption>{satz}</figcaption>\n</figure>\n'
+    fig = f'<figure class="fig wide ring">\n{ring()}\n<figcaption>{satz}</figcaption>\n</figure>\n'
     inhalt = mistune.create_markdown(escape=False, plugins=['table'])(text)
     return seite(titel, kopfzeile, fig + '\n' + inhalt)
 
