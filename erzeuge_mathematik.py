@@ -4,6 +4,7 @@
 Gedruckt wird nur der Text zwischen der ersten Linie und der Linie vor "Für die Gegenlesung"; die Raender und Zeilen in
 ⟨…⟩ nicht. AUSGABE ist die feste Adresse ../rev11/de.html, nie die laufende de.html: Mit dem ersten Rev12-Commit zeigte die
 auf einen anderen Text. Figur 4 kommt samt Unterschrift unveraendert aus docs/rev11/de.html.
+Kopfzeile, Querverweis und Tafel-Ids stehen seit Blatt 1 hier (Mathematiker 1.11. 10:32, §2), nicht im Entwurf.
 Aufruf aus der Repo-Wurzel, wie erzeuge_ausgabe.py:  /usr/bin/python3 ./erzeuge_mathematik.py docs/mathematik/index.html
 """
 import hashlib, html, os, re, sys
@@ -16,6 +17,53 @@ QUELLE = os.path.join(K, 'Entwurf_2026-10-31_Mathematik_de.md')
 MD5 = '25b3c62a'
 AUSGABE = '../rev11/de.html'
 GITHUB = 'https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur'
+KOPFZEILE = 'Hinführung · Blatt 1 · Stand 1. November 2026 · zur Ausgabe Rev11 (Tag rev11, 24fa57a)'
+QUERVERWEIS = 'Was Günther zu diesen Gegenständen schreibt, und wo die Ausgabe es offen lässt, steht auf der Seite [Philosophie](../philosophie/).'
+# Das Wort der ersten Spalte entscheidet;  "Umkehrung" ist Günthers Wort, die Marke heisst wie die Sache.
+TAFEL_IDS = (('Anordnung', 'anordnung'), ('Negator', 'negator'), ('Kreis', 'kreis'), ('Vollkreis', 'vollkreis'), ('Drehsinn', 'drehsinn'),
+             ('Umkehrung', 'umkehr'), ('Elementarkontextur', 'elementarkontextur'), ('Kenogramm', 'kenogramm'))
+
+
+def seite(titel, kopfzeile, inhalt):
+    return f"""<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{titel}</title>
+<meta name="description" content="{titel}">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="../">PKL Rev11</a>
+    <div class="langswitch">
+      <a href="{AUSGABE}">Ausgabe Rev11</a>
+      <span class="sep">·</span>
+      <a href="{GITHUB}">Repository</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<header class="doctitle">
+  <h1>{titel}</h1>
+  <p class="dateline">{kopfzeile}</p>
+</header>
+
+{inhalt}
+</main>
+
+<footer class="pagefoot">
+  <p><a href="../">Übersicht</a> · <a href="{AUSGABE}">Ausgabe Rev11</a> · <a href="{GITHUB}">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
+</footer>
+
+</body>
+</html>
+"""
 
 
 def figur4():
@@ -44,50 +92,26 @@ def baue():
     fig = fig.replace('</figcaption>', f' — <a href="{AUSGABE}#a3">in der Ausgabe</a></figcaption>')
     text = text.replace(m.group(0), 'FIGURPLATZ')
 
+    letzter = 'wo die Ausgabe selbst das Wort gebraucht, steht es als ihr Wortlaut.'
+    assert text.count(letzter) == 1
+    text = text.replace(letzter, letzter + ' ' + QUERVERWEIS)
     text = text.replace('AUSGABE', AUSGABE)
     text = re.sub(r'(?<![\w#])\[(\d+)\](?!\()', lambda q: f'<a href="{AUSGABE}#t{q.group(1)}">[{q.group(1)}]</a>', text)
 
     inhalt = mistune.create_markdown(escape=False, plugins=['table'])(text)
     inhalt = inhalt.replace('<p>FIGURPLATZ</p>', fig)
+    gesetzt = []
+    def zeile(q):
+        erste = q.group(1)
+        for wort, tid in TAFEL_IDS:
+            if re.search(r'(^|[ ;,])' + wort + r'\b', erste) and not (wort == 'Kreis' and 'Hamilton' in erste):
+                gesetzt.append(tid)
+                return f'<tr id="{tid}">\n  <td>{erste}</td>'
+        return q.group(0)
+    inhalt = re.sub(r'<tr>\n  <td>(.*?)</td>', zeile, inhalt)
+    assert sorted(gesetzt) == sorted(t for _, t in TAFEL_IDS), gesetzt
     inhalt = re.sub(r'(?is)(<table\b.*?</table>)', r'<div class="tablewrap">\1</div>', inhalt)
-    return f"""<!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{titel}</title>
-<meta name="description" content="{titel}">
-<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="home" href="../">PKL Rev11</a>
-    <div class="langswitch">
-      <a href="{AUSGABE}">Ausgabe Rev11</a>
-      <span class="sep">·</span>
-      <a href="{GITHUB}">Repository</a>
-    </div>
-  </div>
-</div>
-
-<main>
-
-<header class="doctitle">
-  <h1>{titel}</h1>
-</header>
-
-{inhalt}
-</main>
-
-<footer class="pagefoot">
-  <p><a href="../">Übersicht</a> · <a href="{AUSGABE}">Ausgabe Rev11</a> · <a href="{GITHUB}">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
-</footer>
-
-</body>
-</html>
-"""
+    return seite(titel, KOPFZEILE, inhalt)
 
 
 if __name__ == '__main__':
