@@ -40,6 +40,9 @@ def baue(sp, vorprobe=False):
     text = gedruckt(roh)[1].strip('\n')
     assert vorprobe or '⟦' not in text, 'offenes ⟦BILD⟧ im gedruckten Teil'
     text = re.sub(r'\s*⟦[^⟧]*⟧', '', text)
+    # Die Stationen tragen je Sprache dieselbe id (Portal, Motto zeigt auf p3):  aus dem Randzeichen ⟨P n⟩.
+    stationen = [(m.group(1), f'p{m.group(2)}') for m in re.finditer(r'(?m)^## (.+?) ⟨P(\d)⟩$', text)]
+    assert [i for _, i in stationen] == [f'p{n}' for n in range(1, 7)], stationen
     text = re.sub(r'\s*⟨[^⟩]*⟩', '', text)
 
     m = re.match(r'# (.+)\n\n\*(.+)\*\n\n!\[([^\]]*)\]\(Lethe_Ring_Kreis2_3d\.svg\)\n\n\*(.+)\*\n', text)
@@ -57,6 +60,9 @@ def baue(sp, vorprobe=False):
     satz = re.sub(r'</em>(\s+)(.*?)(\s+)<em>', r'\1</em>\2<em>\3', satz)
     fig = f'<figure class="fig wide ring">\n{ring(alt)}\n<figcaption>{satz}</figcaption>\n</figure>\n'
     inhalt = mistune.create_markdown(escape=False, plugins=['table'])(text)
+    for kopf, sid in stationen:
+        assert inhalt.count(f'<h2>{kopf}</h2>') == 1, kopf
+        inhalt = inhalt.replace(f'<h2>{kopf}</h2>', f'<h2 id="{sid}">{kopf}</h2>')
     return seite(sp, titel, kopfzeile, fig + '\n' + inhalt)
 
 
