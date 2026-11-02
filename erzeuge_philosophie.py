@@ -13,7 +13,7 @@ import mistune
 from erzeuge_mathematik import K, REPO, gedruckt, seite, SPRACHEN
 
 QUELLEN = {'de': ('Entwurf_2026-10-31_Philosophie_de.md', '0ab1ef1a', 'Günthers zweiter Kreis als Ring'),
-           'en': ('Entwurf_2026-11-01_Philosophie_en.md', '6e1e703d', "Günther's second circle as a ring")}
+           'en': ('Entwurf_2026-11-01_Philosophie_en.md', 'ef493494', "Günther's second circle as a ring")}
 
 
 def ring(alt):
