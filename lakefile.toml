@@ -98,6 +98,7 @@ roots = [
   "Reformulation.Pfalzgraf.BrunnProbe",
   "Reformulation.Proemial.VergroeberungMass",
   "Reformulation.Proemial.VergroeberungMassII",
+  "Reformulation.Proemial.StufenZusammenfassung",
   "Reformulation.Diagnostics.HeteroreferenzProbe",
 ]
 

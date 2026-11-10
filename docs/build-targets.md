@@ -30,7 +30,7 @@ und er war am 12. September um mehr als ein Viertel veraltet, ohne dass es jeman
 | `AxiomGate` | 1 | ja | nicht kalt gemessen |
 | `DefinitionLedger` | 1 | ja | nicht kalt gemessen |
 | `MathlibNameGuard` | 1 | nein | nicht gemessen |
-| `Probes` | 40 | **ja** | 7,7 s |
+| `Probes` | 41 | **ja** | 7,7 s |
 | `F1Coalgebraic` | 2 | **ja** | 3,0 s |
 | `Diagnostics` | 2 | nein | 2,6 s |
 | `MathlibExtensions` | 8 | nein | 6,3 s |
@@ -152,9 +152,9 @@ im Dateikopf). Gegenprobe am 25. September 2026: ein verfaelschter Name bricht
 (gruen, 1416 Jobs) — das ist der Zweck der Trennung. *Eine Bump-Checkliste, die diesen
 Aufruf enthaelt, gibt es im Repo nicht* (gemessen am 25. September 2026).
 
-### `Probes` — 40 Sonden und Zeugenregister
+### `Probes` — 41 Sonden und Zeugenregister
 
-36 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean`,
+37 Module unter `Proemial/` plus `Diagnostics/HeteroreferenzProbe.lean`, `Pfalzgraf/VKaehrProbe.lean`,
 `Pfalzgraf/FaserTauschProbe.lean` und `Pfalzgraf/BrunnProbe.lean` (bis zum 26. Oktober stand hier „26“, gezählt an der Wurzelliste waren es 29). (Seit dem
 13. Oktober 2026 dazu `Proemial/KenogramForkProbe.lean`, konsumiert `Kenogram.Descent`
 und `TowerAsymmetryProbe`; zwoelf Wachen. Seit dem 17. Oktober 2026
@@ -187,15 +187,16 @@ Ebenso `Proemial/KreisEinbettung.lean`, konsumiert `AkkretivitaetsBruecke`; sieb
 Ebenso `Proemial/DrehsinnUmkehrProbe.lean`, konsumiert `GegenidentitaetProbe`; fünf Wachen. Seit dem 29. Oktober 2026
 `Pfalzgraf/BrunnProbe.lean`, konsumiert `Pfalzgraf/Faserung`; sieben Wachen, mit B5 (Abnahme, 29. Oktober) neun. Seit dem 30. Oktober 2026
 `Proemial/VergroeberungMass.lean`, konsumiert `A3CoarseningProbe`, `DeuteroCollapse` und `EmanationsZaehlung`; achtundsiebzig Wachen. Seit dem
-7. November 2026 `Proemial/VergroeberungMassII.lean`, konsumiert `VergroeberungMass` und `EmanationsZaehlung`; fünfzehn Wachen.)
+7. November 2026 `Proemial/VergroeberungMassII.lean`, konsumiert `VergroeberungMass` und `EmanationsZaehlung`; fünfzehn Wachen. Seit dem
+10. November 2026 `Proemial/StufenZusammenfassung.lean`, konsumiert `StageParity` und `AkkretivitaetsBruecke`; neununddreißig Wachen.)
 
 *Gruen heisst:* die Sonden uebersetzen gegen den aktuellen Aggregatstand, und ihre
-Axiom-Wachen halten — **653** am 7. November 2026 (nach `VergroeberungMassII`) (Route: `#guard_msgs.*in #print axioms` je
+Axiom-Wachen halten — **692** am 10. November 2026 (nach `StufenZusammenfassung`) (Route: `#guard_msgs.*in #print axioms` je
 Modul des Targets): A1DescentProbe 4, A3CoarseningProbe 3, AsymmetricDiscontexturalTransition 2,
 AsymmetricDiscontexturality 7, AsymmetricDiscontexturalityProbeRegister 2, CartesianProbe 0,
 GegenlaeufigkeitProbe 3, K3CouplingProbe 3, K4DiscontexturalityProbe 9, LawvereVorSonde 5,
 NahtFormSondierung 7, ProemialInversionProbe 4, ReflexionsrestProbe 2, SubstantiellesKSondierung 5,
-TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, BrunnProbe 9, VergroeberungMass 78, VergroeberungMassII 15, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
+TowerAsymmetryProbe 4, KenogramForkProbe 17, NegationReversalProbe 11, GegenidentitaetProbe 41, SpiegelfesteAnordnungen 29, AkkretivitaetsBruecke 37, SpurProbe 15, ReflexionskreisProbe 13, VKaehrProbe 20, UebergangMitInhaltProbe 17, ErzeugteKetteProbe 66, OrdnungAusUmtauschProbe 23, VollzugDurchlaufProbe 6, VerlustDanebenKuenftigProbe 17, SymmetrieGabelungProbe 42, RichtungProgrammProbe 28, FaserTauschProbe 20, LaeuterKlassen 14, KenogrammNegationswoerter 20, KreisEinbettung 17, EmanationsZaehlung 24, DrehsinnUmkehrProbe 5, BrunnProbe 9, VergroeberungMass 78, VergroeberungMassII 15, StufenZusammenfassung 39, HeteroreferenzProbe 9. (Bis Weg A, 9. Oktober,
 standen hier „13"; die Zahl war seit dem Wachen-Zug B veraltet.)
 
 *Gruen heisst nicht:* dass sie setzungsfrei sind — `AsymmetricDiscontexturalTransition`
