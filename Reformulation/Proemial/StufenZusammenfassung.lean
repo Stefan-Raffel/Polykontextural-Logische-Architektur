@@ -43,7 +43,20 @@ W1   homVon, realize_komm   SATZ   eine Abbildung, die mit min, max und der Umke
 W2   drei_eine_bahn,        EICHUNG 3 → 4:  die zwei dreiwertigen Vollkreise sind eine Bahn;  ihre Bilder unter Φ sind es in keiner festen
      drei_getrennt,                Schubrichtung, auch nicht bis auf Drehung;  über beide Schubrichtungen zusammen wieder (phi_umkehr).
      drei_beide
+G    schwelle,              SATZ   (Nachtrag)  ab drei Werten hat die Signatur von Kap. 5 auf allen Stufen dieselbe Gleichungstheorie.
+     schwelle_min/max/negFin       G1:  `aufDrei m` bildet Fin m (m ≥ 3) surjektiv (aufDrei_surj, Schnitt aufDrei_hebe3) und verträglich
+     aufDrei_surj,                 mit min, max, Umkehr auf Fin 3 ab.  G2:  die Schwellen `schwelle m j` (2j ≤ m) sind verträglich und trennen
+     schwellen_trennen,            gemeinsam je zwei Punkte (schwellen_trennen).  G3:  eine Gleichung s = t über beliebig vielen Variablen gilt
+     gleiche_theorie               auf Fin m genau dann, wenn sie auf Fin 3 gilt (gleiche_theorie).
+     zwei_anders            EICHUNG G4:  bei zwei Werten nicht — x ∧ ¬x = y ∧ ¬y gilt auf Fin 2 und nicht auf Fin 3.
 ```
+
+**Nachtrag Gleichungstheorie** (`KorpusRev2/Prompt_Instanz_Sonde_Stufen_Gleichungstheorie_Mathematiker.md`, 10.11.2026 19:16).
+*Anders als vorgeschlagen, G2:*  die Familie braucht keinen Faktor `Fin 2`.  Die Schwellen bilden auf `Fin 3` ab und trennen auch die zwei
+Mittelplätze bei geradem m:  `j = m / 2` schickt den unteren auf 0, den oberen auf 2.  Für `a < b` trennt `j = b`, wenn `2b ≤ m`, sonst
+`j = m − b`.  `gleiche_theorie` „→" über den Schnitt und `realize_komm` mit `aufDrei`, „←" über `schwellen_trennen` und `realize_komm` mit jeder
+Schwelle.  Profile `[propext, Quot.sound]`, `schwelle_val` `[propext]`.  Gegenproben (was ohne 2j ≤ m, mit j = 0 oder mit einer Schwelle
+allein fällt):  `KorpusRev2/T_Vorprobe_Skripte/Sonde_Stufen_Gleichungstheorie_Gegenproben.lean`.
 
 **Gemessen, kein Satz** (`KorpusRev2/T_Vorprobe_Skripte/Sonde_Stufen_Zusammenfassung_Vorrechnung.lean`, `#eval`, Ausgabe `.out`):
 
@@ -75,10 +88,14 @@ Abbildung schickt die untere Kopie streng steigend nach `Fin m`, also `(false, n
 `omega` an einem Iff-Ziel (Fallstrick 7, dritte Gestalt);  jetzt vier Fälle mit `decide_eq_true`/`decide_eq_false`.  Kein `native_decide`,
 kein `sorry`, kein True-Feld.
 
-**Kosten (lokal, M2 Max, `/usr/bin/time -l`):**  ganze Datei 3,5 s, 1,94 GB (Importgrundlinie wie `AkkretivitaetsBruecke`).
+**Kosten (lokal, M2 Max, `/usr/bin/time -l`):**  ganze Datei 3,5 s, 1,94 GB (Importgrundlinie wie `AkkretivitaetsBruecke`);  mit
+dem Nachtrag 4,5 s, 1,97 GB.
 
 **Was die Zahlen erzwingt (Regel 11):**  `res_gleich` ist der Satz, dass Homomorphismen Termfunktionen respektieren (Lehrbuch);  das
-Fixpunktargument ist Arithmetik (`2a = m` bei ungeradem m, `!b ≠ b`).  Kein Indiz für eine Quelle.
+Fixpunktargument ist Arithmetik (`2a = m` bei ungeradem m, `!b ≠ b`).  Kein Indiz für eine Quelle.  `gleiche_theorie` ist
+Lehrbuch:  Kalman, Lattices with involution (Trans. Amer. Math. Soc., 1958;  Band nicht auf den Seiten), Theorem 2, S. 487 (am Bild;
+die Textschicht vertauscht dort die Zeilen):  „Every normal i-lattice is i-isomorphic with a subdirect union of i-isomorphic images of D₃";  `Fin m` mit min, max, Umkehr ist ein solches Gitter, `Fin 3` ist D₃.
+Hier ohne den Satz, direkt über die Schwellen.
 
 ## ZUSAMMENSCHAU (unsere;  nicht im Lean)
 
@@ -99,6 +116,9 @@ Die Doppelschritte `dg`, `du`, die Ganzen und ihre Ordnungen, die Lesung „Eins
 Kein Grenzobjekt des Aufstiegs der Ausgabe (der Aufstieg `m → m+1`);  die Ganzen hier sind die der zwei Doppelschritt-Ketten, die die Ausgabe
 nicht führt.  Keine Aussage über andere Ketten.  Der Klon ist in W1 als Satz nur längs der verträglichen Einbettungen erfasst;  die Zahlen
 für `castSucc` sind Rechnung ohne Brücke zum Klonbegriff.  Nicht Teil der Ausgabe Rev11.
+Der Nachtrag sagt nichts über andere Signaturen:  dass die Gleichungstheorie ab drei Werten steht, heißt nicht, dass die Stufen gleich
+sind — sie unterscheiden sich anderswo, an der Transjunktion (`TransjunctionCloneBound`) und an der Besetzbarkeit.  Keine Zählung von
+Termfunktionen als Satz, keine freie Algebra.
 -/
 
 namespace Reformulation.Proemial.StufenZusammenfassung
@@ -595,6 +615,115 @@ theorem drei_beide :
       AkkretivitaetsBruecke.phi false NegationCycle.tafelVI5 := by
   rw [AkkretivitaetsBruecke.phi_umkehr, drei_eine_bahn]; rfl
 
+/-! ## W1, Nachtrag — dieselbe Gleichungstheorie ab drei Werten
+
+Eine Gleichung `s = t` der Signatur von Kapitel 5 gilt auf `Fin m` (m ≥ 3) genau dann, wenn sie auf `Fin 3` gilt.  „→":  `aufDrei` bildet
+`Fin m` surjektiv und verträglich auf `Fin 3` ab, `hebe3` hebt jede Belegung.  „←":  die Schwellenabbildungen `schwelle m j` (2j ≤ m) sind
+verträglich und trennen gemeinsam je zwei Punkte, auch die zwei Mittelplätze bei geradem m (über `j = m / 2`, das auf {0, 2} abbildet).  Ein
+Faktor `Fin 2` ist nicht nötig.  Bei zwei Werten fällt die Aussage (`zwei_anders`). -/
+
+/-- Die Schwelle `j`:  unter `j` auf 0, ab `m − j` auf 2, dazwischen auf 1. -/
+def schwelle (m j : ℕ) (a : Fin m) : Fin 3 := if a.val < j then 0 else if m - j ≤ a.val then 2 else 1
+
+theorem schwelle_val (m j : ℕ) (a : Fin m) :
+    (schwelle m j a).val = if a.val < j then 0 else if m - j ≤ a.val then 2 else 1 := by
+  unfold schwelle; split_ifs <;> rfl
+
+theorem schwelle_min (m j : ℕ) (hj : 2 * j ≤ m) (a b : Fin m) :
+    schwelle m j (min a b) = min (schwelle m j a) (schwelle m j b) := by
+  refine Fin.eq_of_val_eq ?_
+  simp only [schwelle_val, Fin.coe_min]
+  split_ifs <;> omega
+
+theorem schwelle_max (m j : ℕ) (hj : 2 * j ≤ m) (a b : Fin m) :
+    schwelle m j (max a b) = max (schwelle m j a) (schwelle m j b) := by
+  refine Fin.eq_of_val_eq ?_
+  simp only [schwelle_val, Fin.coe_max]
+  split_ifs <;> omega
+
+theorem schwelle_negFin (m j : ℕ) (hj : 2 * j ≤ m) (a : Fin m) :
+    schwelle m j (negFin m a) = negFin 3 (schwelle m j a) := by
+  have := a.isLt
+  refine Fin.eq_of_val_eq ?_
+  simp only [schwelle_val, negFin_val]
+  split_ifs <;> omega
+
+/-- (G2) **Die Schwellen trennen gemeinsam je zwei Punkte**, für jedes m. -/
+theorem schwellen_trennen (m : ℕ) (a b : Fin m) (h : ∀ j, 2 * j ≤ m → schwelle m j a = schwelle m j b) : a = b := by
+  have ha := a.isLt; have hb := b.isLt
+  have key : ∀ x y : Fin m, x.val < y.val → ¬ ∀ j, 2 * j ≤ m → schwelle m j x = schwelle m j y := by
+    intro x y hxy hall
+    have := x.isLt; have := y.isLt
+    by_cases hy : 2 * y.val ≤ m
+    · have e := congrArg Fin.val (hall y.val hy)
+      simp only [schwelle_val] at e
+      split_ifs at e
+      omega
+    · have e := congrArg Fin.val (hall (m - y.val) (by omega))
+      simp only [schwelle_val] at e
+      split_ifs at e <;> omega
+  rcases Nat.lt_trichotomy a.val b.val with hab | hab | hab
+  · exact absurd h (key a b hab)
+  · exact Fin.eq_of_val_eq hab
+  · exact absurd (fun j hj => (h j hj).symm) (key b a hab)
+
+/-- (G1) Die Abbildung auf drei Werte:  die Schwelle unter der Mitte. -/
+def aufDrei (m : ℕ) : Fin m → Fin 3 := schwelle m ((m - 1) / 2)
+
+/-- Ein Schnitt von `aufDrei`:  0, die Mitte, das obere Ende. -/
+def hebe3 (m : ℕ) (hm : 3 ≤ m) (x : Fin 3) : Fin m :=
+  ⟨if x.val = 0 then 0 else if x.val = 1 then (m - 1) / 2 else m - 1, by split_ifs <;> omega⟩
+
+theorem aufDrei_hebe3 (m : ℕ) (hm : 3 ≤ m) (x : Fin 3) : aufDrei m (hebe3 m hm x) = x := by
+  have := x.isLt
+  refine Fin.eq_of_val_eq ?_
+  unfold aufDrei hebe3
+  rw [schwelle_val]
+  simp only
+  split_ifs <;> omega
+
+/-- (G1) **`aufDrei` ist surjektiv.** -/
+theorem aufDrei_surj (m : ℕ) (hm : 3 ≤ m) (x : Fin 3) : ∃ a : Fin m, aufDrei m a = x := ⟨hebe3 m hm x, aufDrei_hebe3 m hm x⟩
+
+/-- (G3) **Ab drei Werten gilt eine Gleichung der Signatur auf `Fin m` genau dann, wenn sie auf `Fin 3` gilt**, über beliebig vielen
+Variablen. -/
+theorem gleiche_theorie (m : ℕ) (hm : 3 ≤ m) {α : Type} (s t : L.Term α) :
+    (∀ v : α → Fin m, s.realize v = t.realize v) ↔ (∀ v : α → Fin 3, s.realize v = t.realize v) := by
+  have hj : 2 * ((m - 1) / 2) ≤ m := by omega
+  constructor
+  · intro h v
+    have hv : (aufDrei m ∘ fun i => hebe3 m hm (v i)) = v := funext fun i => aufDrei_hebe3 m hm (v i)
+    have ks := realize_komm (aufDrei m) (schwelle_min m _ hj) (schwelle_max m _ hj) (schwelle_negFin m _ hj) s
+      (fun i => hebe3 m hm (v i))
+    have kt := realize_komm (aufDrei m) (schwelle_min m _ hj) (schwelle_max m _ hj) (schwelle_negFin m _ hj) t
+      (fun i => hebe3 m hm (v i))
+    rw [hv] at ks kt
+    exact ks.trans ((congrArg (aufDrei m) (h _)).trans kt.symm)
+  · intro h v
+    apply schwellen_trennen
+    intro j hj
+    rw [← realize_komm (schwelle m j) (schwelle_min m j hj) (schwelle_max m j hj) (schwelle_negFin m j hj) s v,
+      ← realize_komm (schwelle m j) (schwelle_min m j hj) (schwelle_max m j hj) (schwelle_negFin m j hj) t v]
+    exact h _
+
+/-- Der Term `x ∧ ¬x` über der Variablen `i`. -/
+def undNicht (i : Fin 2) : L.Term (Fin 2) :=
+  Term.func (l := 2) (TransjunctionCloneBound.BinaryFun.and : L.Functions 2)
+    ![Term.var i, Term.func (l := 1) (TransjunctionCloneBound.UnaryFun.neg : L.Functions 1)
+      (![Term.var i])]
+
+/-- (G4) **Bei zwei Werten fällt die Aussage:**  `x ∧ ¬x = y ∧ ¬y` gilt auf `Fin 2` und nicht auf `Fin 3`. -/
+theorem zwei_anders :
+    (∀ v : Fin 2 → Fin 2, (undNicht 0).realize v = (undNicht 1).realize v) ∧
+      ¬ ∀ v : Fin 2 → Fin 3, (undNicht 0).realize v = (undNicht 1).realize v := by
+  have key : ∀ a : Fin 2, min a (negFin 2 a) = 0 := by decide
+  refine ⟨fun v => ?_, fun h => ?_⟩
+  · show min (v 0) (negFin 2 (v 0)) = min (v 1) (negFin 2 (v 1))
+    rw [key, key]
+  · have e := h ![1, 0]
+    have e' : min (1 : Fin 3) (negFin 3 1) = min (0 : Fin 3) (negFin 3 0) := e
+    exact absurd e' (by decide)
+
 end Reformulation.Proemial.StufenZusammenfassung
 
 /-! ## Axiom-Wachen (gemessen, verbatim) -/
@@ -715,3 +844,30 @@ end Reformulation.Proemial.StufenZusammenfassung
 
 /-- info: 'Reformulation.Proemial.StufenZusammenfassung.drei_beide' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.drei_beide
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.schwelle_val' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.schwelle_val
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.schwelle_min' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.schwelle_min
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.schwelle_max' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.schwelle_max
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.schwelle_negFin' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.schwelle_negFin
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.schwellen_trennen' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.schwellen_trennen
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.aufDrei_hebe3' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.aufDrei_hebe3
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.aufDrei_surj' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.aufDrei_surj
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.gleiche_theorie' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.gleiche_theorie
+
+/-- info: 'Reformulation.Proemial.StufenZusammenfassung.zwei_anders' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in #print axioms Reformulation.Proemial.StufenZusammenfassung.zwei_anders
