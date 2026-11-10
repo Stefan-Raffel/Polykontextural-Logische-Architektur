@@ -56,10 +56,14 @@ W1   binäre Termfunktionen von {∧, ∨, ¬} auf Fin m (eigene Abschlussrechnu
                      3 → 4  UNVERGLEICHBAR:  |Res| = 18, davon 4 in K_3;  14 Einschränkungen liegen nicht in K_3
                      4 → 5  UNVERGLEICHBAR:  |Res| = 41, davon 4 in K_4
 W2   Bahnen unter Umkehr und Drehsinn, zurückgezogen längs Φ (Klassen):
-                      P_m   Φ_true*   Φ_false*   beide Richtungen   bis auf Drehung, Φ_true*
-     3 → 4 (2 Kreise)  1      2         2           1                  1 → 2
-     4 → 5 (88)       22     88        88          44                  4 → 5
-     In jeder Lesung ist Φ*P_{m+1} feiner als P_m oder gleich, nie gröber;  echt feiner überall außer „beide Richtungen" bei 3 → 4.
+                      P_m   Φ_true*   Φ_false*   beide Richtungen   bis auf Drehung, Φ_true*   bis auf Drehung, beide Richtungen
+     3 → 4 (2 Kreise)  1      2         2           1                  1 → 2                      1 → 1
+     4 → 5 (88)       22     88        88          44                  4 → 5                      4 → 4
+     In jeder Lesung ist Φ*P_{m+1} feiner als P_m oder gleich, nie gröber;  GLEICH in der Lesung, die alle Symmetrien des Schritts
+     zulässt (bis auf Drehung, beide Schubrichtungen), an beiden Schritten.  Echt feiner ist es nur, wo etwas festgehalten ist:  eine
+     Schubrichtung oder ein Anfang.  Unter Φ, beide Richtungen, als Wort:  w und Umkehr(w) bleiben in 88 von 88 Fällen zusammen (phi_umkehr),
+     w und Gegensinn(w) in 0 von 88 — Φ trägt den Gegensinn nur bis auf eine Drehung des Anfangs (phi_dreh, um m + 2 Stellen).
+     (Nachgetragen auf Auflage des Mathematikers, Abnahme 10.11. 19:02;  seine Zahl 4 → 4 getroffen.)
 ```
 
 **Wie die Sätze gehen.**  Alles über `.val` und `omega` mit atomaren Zielen;  die Ganzen sind konkrete Träger (`Bool × ℕ`,
@@ -82,7 +86,9 @@ Die Frage des Prompts kennt zwei Eigenschaften einer Stufenfolge (Gibbs Lecture 
 Neues über die niedere, (Z) die Zusammenfassung wird wieder Stufe.  Gemessen:  (Z) hat der Aufstieg des Bestands — das Ganze der geraden
 Kette ist kein Glied (W3c), hat aber einen nächsten Schritt ins ungerade Ganze (W3e), der dort derselbe ist wie auf jeder Stufe.  (K) hängt
 an der Einbettung:  längs der umkehrverträglichen ist der Aufstieg an den Operationen konservativ (W1), längs `castSucc` nicht vergleichbar
-(gemessen);  an den Kreisen trennt die höhere Stufe, was die niedere nicht trennt (W2).
+(gemessen);  an den Kreisen trennt die höhere Stufe, was die niedere nicht trennt, nur in einer Lesung mit fester Schubrichtung oder
+festem Anfang — lässt man Drehung und beide Schubrichtungen zu, trennt sie bei 3 → 4 und 4 → 5 nichts (W2, gemessen).  Getrennt wird also
+nur, wo vorher etwas festgehalten ist:  die Einbettung `castSucc`, eine Schubrichtung, ein Anfang.
 
 ## UNSER
 
