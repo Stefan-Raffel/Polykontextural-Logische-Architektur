@@ -8,9 +8,13 @@ STANDALONE, NICHT im Aggregat; Target `Probes`. AxiomGate unberührt. Sonde nach
 `KorpusRev2/Sondierung_Totale_Negation_Reflexionskreis_1957_Prompt.md` (Mathematiker, 21. Oktober
 2026), auf Grundlage von `KorpusRev2/Fund_1957_Verhaeltnis_zu_sich_Reflexionskreis.md` und
 `KorpusRev2/Verortung_Ontische_und_Meontische_Axiomatik_im_Bau.md`. **Aktualisiert am 13. November
-2026** nach `KorpusRev2/Prompt_Instanz_Sonde_Reflexionskreis_aktualisiert_AnhangB_Mathematiker.md`
-(für Anhang B, B.5, des Blatts „Axiome oder Stufen"): Quellenstand je Zitat nachgetragen, §V (der
-Werttausch auf der Faser) neu, die ZUORDNUNG in zwei Teile geteilt.
+2026** nach `KorpusRev2/Prompt_Instanz_Sonde_Reflexionskreis_aktualisiert_AnhangB_Mathematiker.md`:
+Quellenstand je Zitat nachgetragen, §V (der Werttausch auf der Faser) neu, die ZUORDNUNG in zwei
+Teile geteilt. **Berichtigt am selben Tag** nach Horistês und Speculum
+(`KorpusRev2/Antwort_Horistes_Sonde_Station7_AnhangB.md` Teil 1,
+`KorpusRev2/Antwort_Speculum_Sonde_Station7_AnhangB.md` 1.4 und 3.3): die Zuordnung trägt je Zeile
+den Stand der Prüfung. Anlass war Anhang B, B.5, des Blatts „Axiome oder Stufen"; B.5 nennt diese
+Sonde **nicht** (Horistês 1.2), und nichts in diesem Kopf setzt eine Nennung voraus.
 
 Konsumiert `SpiegelfesteAnordnungen` (`stations_gestalt`, `stationUmkehr_origin`,
 `stationUmkehr_reverse`), `GegenidentitaetProbe` (`umkehr`, `dreh`, `stations_umkehr`),
@@ -24,6 +28,11 @@ ein Doc-Kommentar in `NegationCycle` geändert (gemessen: `git diff 79c1b1b..6ba
 1. Die **totale Negation des Ausgangs** ist hier die umgekehrte Wertfolge `(origin m).reverse` —
    Günthers Ziel von Tafel XXII (IGN S. 52 f.: „die Umkehrung der Viererfolge"; im Bestand
    `NegationReversalProbe`). Dass sie die „eigene Negation" von 1957 ist, ist ZUORDNUNG.
+   **Zu den Namen:** „totale Negation" in den Satznamen (`totale_negation_besucht` usw.) ist
+   Günthers Wort von 1957 für die Sache von 1979, „die Umkehrung der Viererfolge" (IGN S. 52). 1957
+   heißt „totale Negation" ein Verhältnis von Begriffen (Sinn und Sein, S. 25, 28 f.); eine
+   Wertfolge, die sich umkehren ließe, hat der Aufsatz von 1957 nicht. Die Namen bleiben; was sie
+   bezeichnen, ist die umgekehrte Wertfolge (Speculum 1.4 c).
 2. **Der Werttausch auf der Faser** (§V): Über jedem zweiwertig besetzbaren Muster der Länge vier
    liegen genau zwei Belegungen (`Kenogram.Fiber.fiberEquiv`). Die Ausgabe Rev11 sagt in der Prosa
    von Kapitel 1 (#ah2), die zwei Tafeln gingen „durch globalen Werttausch auseinander — sie stimmen
@@ -83,7 +92,8 @@ G. Günther, „Metaphysik, Logik und die Theorie der Reflexion", Archiv für Ph
 S. 1–44; `KorpusRev1/gg_metaph-logik-refl.pdf`, Seiten = Fußzahl der Edition. Stand je Zitat
 (nachgetragen 13. November; kein Wortlaut geändert): **TEXTSCHICHT** = am 21. Oktober an der
 Textschicht gegen die Fund-Notiz gehalten; **AM BILD** = von Hermeneutes am Bild gelesen
-(12./13. November, wiedergegeben in `KorpusRev2/Entwurf_2026-11-13_Goedel_Guenther_AnhangB_de_Fassung3.md`, B.2).
+(12./13. November, wiedergegeben in `KorpusRev2/Entwurf_2026-11-13_Goedel_Guenther_AnhangB_de_Fassung3.md`,
+B.2; die Datei trägt inzwischen zwei Nachträge, die B.2 nicht berühren).
 
 * S. 28, Gesetz des Selbstbewusstseins: „dass Subjektivität sich nie direkt, sondern stets
   "vermittelt" besitzt und versteht"; „weil alle Subjektivität im Sein immer nur ein Verhältnis zu
@@ -108,37 +118,77 @@ Textschicht gegen die Fund-Notiz gehalten; **AM BILD** = von Hermeneutes am Bild
 Die klassische Spalte, für Teil (b) unten, nach Anhang B, B.1 (Stand dort; hier nicht neu gelesen):
 S. 9 der Inbegriff der positiven und der der negativen Bestimmungen „beide restlos durcheinander
 vertretbar"; S. 10 „Positivität und Negativität Wertqualitäten von äquivalenter logischer
-Mächtigkeit" — beide TEXTSCHICHT nach Anhang B. Dazu Baer bei Günther 1978 (Druck S. 239): die
+Mächtigkeit" — beide TEXTSCHICHT nach Anhang B. Unmittelbar vor „restlos durcheinander
+vertretbar", auf S. 9: „wobei es vollkommen gleichgültig ist, welches Begriffsmoment im Einzelnen
+als positiv (ausschließend) und welches als negativ (ausgeschlossen) zu bewerten ist, sofern nur die
+systematische Geschlossenheit dieses korrelativen Gegenverhältnisses nirgends durch ein "Drittes"
+(logisches Qualitätsprinzip) unterbrochen wird" — TEXTSCHICHT (am 13. November gegen die Datei
+gehalten). Dazu Baer bei Günther 1978 (Druck S. 239): die
 Negation bildet den Kalkül mit Konjunktion auf den mit Disjunktion ab. — AM BILD (Mathematiker).
 
 ## ZUORDNUNG (nur hier, in keinem Satz)
 
-### (a) Die meontische Spalte — geprüft gegen den Wortlaut von Anhang B, B.2 (13. November)
+### (a) Die meontische Spalte — gegen den Wortlaut von Anhang B, B.2 gehalten; geprüft von Horistês (13. November, 1.1)
+
+Für die drei ersten Zeilen gilt: Der Gegenstand der Sonde stammt aus IGN (1979), Tafel XXII. Jede
+Zeile ist darum eine Zuordnung über zwei Schritte: 1957 → (Zuordnung) → IGN 1979, Tafel XXII →
+(Zuordnung) → Bestand. Die Zeilen bleiben stehen, mit dem Urteil der Prüfung; nichts ist
+stillschweigend entfernt.
 
 * Axiom 1 (reflektierter Gegensinn) ↔ `IsFullCycle.closes` und T1: der Kreis schließt und
-  durchläuft die totale Negation des Ausgangs.
+  durchläuft die umgekehrte Wertfolge des Ausgangs.
+  **Geprüft: trägt nur als Zuordnung über zwei Schritte** (1957 → IGN 1979, Tafel XXII → Bestand).
+  Gemeinsam in der Sache: ein Durchlauf, der in sich zurückkehrt und dabei das Gegenteil des
+  Ausgangs berührt. Nur im Wort gemeinsam: „Kreis" und „Negation". Die Gestalt von S. 29 (zwei
+  Komponenten, jede die Negation der anderen) ist nur bei **zwei** Werten genau: Dort hat der
+  Vollkreis genau zwei Stationen; ab drei Werten ist die umgekehrte Wertfolge eine Station unter
+  `m!` (Speculum 1.4 d).
 * Axiom 2 (thematische Inversion) ↔ `SpiegelfesteAnordnungen.umkehr_ne_self_all` (kein Vollkreis
-  ist seine eigene Umkehr) und T2/T3: die Umkehr hält den Ausgang und seine totale Negation fest —
-  und den Platz der Negation im Kreis. Dass sie alles dazwischen vertauscht, ist gerechnet, kein
-  Satz dieser Sonde.
+  ist seine eigene Umkehr) und T2/T3: die Umkehr hält den Ausgang und die umgekehrte Wertfolge
+  fest — und deren Platz im Kreis. Dass sie alles dazwischen vertauscht, ist gerechnet, kein Satz
+  dieser Sonde.
+  **Geprüft: trägt nicht.** Günther: jedes Reflexionsmotiv „wird als thematische Inversion seiner
+  selbst begriffen" — eine Selbstbeziehung wird ausgesagt; der Satz `umkehr_ne_self_all` schließt
+  eine aus (kein Vollkreis IST seine Umkehr). Gemeinsam ist das Wort „Inversion"/„Umkehr", und im
+  Wort liegt eher ein Gegensatz. T2/T3 (Ausgang und Gegenteil bleiben unter der Umkehr als Paar
+  bestehen) liegen dem ersten Axiom näher als dem zweiten.
 * Axiom 3 (infinite Reflexionsfolgen) ↔ `AkkretivitaetsBruecke.phi_full`, einmal für jedes `m`
   ausgesprochen.
-* **Axiom 4 (transfiniter Ursprung) ↔ nichts.** Kein Term, keine Zuordnung: der Bestand hat keinen
-  Term „Selbst" und keinen Term „Subjekt" (Verortung §II; am 13. November über die Deklarationsnamen
-  von `Reformulation/` nachgesucht: keiner; `Kaehr.Kopplung.selbstgekoppelt` ist eine
-  Graph-Eigenschaft, kein solcher Term). Die Stelle bleibt leer.
+  **Geprüft: trägt nicht.** 1957 S. 21: „keine einzige der unendlichen Reihe folgender Iterationen
+  vermag ihn zu erweitern"; der Schritt auf einen Wert mehr bringt Neues
+  (`StageAscent.choose_two_succ`, `StageAscent.ascent_proper`: was hinzukommt, war vorher nicht
+  da). Darin verhalten sich Günthers Wiederholung und der Schritt im Bestand umgekehrt. Die Zeile
+  setzte Reflexionshöhe = Wertzahl; diese Gleichung hat das Konzept des Blatts nicht übernommen
+  (Speculum 1.4 d).
+* **Axiom 4 (transfiniter Ursprung) ↔ nichts.** Kein Term, keine Zuordnung: der Bestand hat
+  keinen Term „Selbst" und keinen Term „Subjekt" (Verortung §II; am 13. November über die
+  Deklarationsnamen von `Reformulation/` nachgesucht: keiner; `Kaehr.Kopplung.selbstgekoppelt` ist
+  eine Graph-Eigenschaft, kein solcher Term). Die Stelle bleibt leer.
+  **Geprüft: trägt** (Horistês 1.1), als Befund mit der Reichweite der Deklarationsnamen, nicht als
+  Satz über den Bestand im Ganzen.
 
-Die Zuordnung ist ZUORDNUNG und geht vor jeder Nennung auf dem Blatt an Horistês und Speculum.
+Die Zuordnung ist ZUORDNUNG. Nach der Prüfung trägt von den drei ersten Zeilen nur die erste, und
+diese nur über zwei Schritte.
 
-### (b) Die klassische Spalte und der Übergang — UNGEPRÜFT; an Horistês, Speculum
+### (b) Die klassische Spalte und der Übergang — geprüft von Horistês (1.3) und Speculum (1.4 f, 3.3), 13. November
 
-* Drittes klassisches Axiom (S. 9 f.: die zwei Inbegriffe „restlos durcheinander vertretbar",
-  „äquivalente logische Mächtigkeit") ↔ W1 bis W3: der Tausch der zwei Werte lässt das Muster
-  unverändert und führt die eine Belegung über einem Muster in die andere über. Dazu, nicht im
-  Bestand, `Bool.not_and`/`Bool.not_or` (Baers Vertauschung von Konjunktion und Disjunktion).
-  Dass „vertretbar" das meint, ist ZUORDNUNG.
+* Günthers **Sinnanalyse** des dritten klassischen Axioms (S. 9 f.: die zwei Inbegriffe „restlos
+  durcheinander vertretbar", „äquivalente logische Mächtigkeit") ↔ W1 bis W3: der Tausch der zwei
+  Werte lässt das Muster unverändert und führt die eine Belegung über einem Muster in die andere
+  über. Dazu, nicht im Bestand, `Bool.not_and`/`Bool.not_or` (Baers Vertauschung von Konjunktion
+  und Disjunktion).
+  **Geprüft:** Die Zuordnung gilt Günthers Sinnanalyse (S. 9 f.), **nicht dem Axiom**; das Tertium
+  non datur sagt nichts vom Tausch. Sie sagt kaum mehr als `RelInv.relabel_map_of_injective` (das
+  Muster ist gegen jede injektive Umbenennung der Werte invariant) für zwei Werte, zusammen mit
+  `Kenogram.Fiber.fiberEquiv` (die Faser hat zwei Elemente) (Horistês 1.3). Näher am Wortlaut als
+  „vertretbar" ist der Satz davor, S. 9: „vollkommen gleichgültig …, welches Begriffsmoment im
+  Einzelnen als positiv … und welches als negativ … zu bewerten ist" (Speculum 1.4 f;
+  TEXTSCHICHT): das „gleichgültig, welcher Wert" sagt W1, das „kein Drittes" sagt die
+  Zweielementigkeit der Faser. ZUORDNUNG.
 * Der Übergang (S. 9: ein Drittes nur bei „höherer logischer Mächtigkeit" des Denkens; S. 21:
-  „zusätzliche Reflexionstiefe", keine Anzahl): **keine Zuordnung.** Genannt, nicht zugeordnet:
+  „zusätzliche Reflexionstiefe", dort zuvor „(objektiv) unendliche Reflexionstiefe"; „transfinite
+  Mächtigkeit" S. 31, 34; Cantor S. 33. Ob die „höhere Mächtigkeit" die Cantors ist, sagt Günther
+  nicht — Hermeneutes R2, Speculum 3.3): **keine Zuordnung.** Genannt, nicht zugeordnet:
   `StageAscent.choose_two_succ`, `StageAscent.ascent_proper`, `StageParity.odd_no_neg_compatible`
   (alle drei Träger der Ausgabe Rev11, Kapitel 6) und die Sonde `StufenZusammenfassung.zwei_anders` (zwei Werte
   erfüllen eine Gleichung in `min`/`max`/`negFin`, die drei Werte nicht erfüllen). Alle sprechen
@@ -147,7 +197,9 @@ Die Zuordnung ist ZUORDNUNG und geht vor jeder Nennung auf dem Blatt an Horistê
   `RecurringGround.Ground` („Der Grund: was unter f es selbst bleibt", ein Fixpunkt); die Ausgabe
   ordnet ihn dem „reflexionslosen Sein" zu (Abschnitt „Die achtfache Thematik", #a2, mit dem
   Träger `RecurringGround.ground_recurs`; der Kopf von `RecurringGround` nennt Beiträge III S. 160), nicht dem Satz
-  vom Grunde. Ein Term für den zureichenden Grund steht nicht im Bestand.
+  vom Grunde. Ein Term für den zureichenden Grund steht nicht im Bestand. **Geprüft: trägt** (Horistês 1.2), mit
+  derselben Reichweite wie Axiom 4: Deklarationsnamen. Der Bestand hat also einen „Grund", aber
+  keinen Term für den *Satz* vom zureichenden Grunde.
 
 ## Was die Sonde nicht ist
 
