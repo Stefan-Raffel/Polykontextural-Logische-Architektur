@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix B · Incompleteness and Machines</title>
+<meta name="description" content="Appendix B · Incompleteness and Machines">
+<link rel="stylesheet" href="../../../assets/style.css?v=cd327cc5">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="../../../">PKL Rev11</a>
+    <div class="langswitch">
+      <a href="./" hreflang="de">DE</a>
+      <span class="sep">·</span>
+      <span aria-current="page">EN</span>
+      <span class="sep">·</span>
+      <a href="../../../rev11/en.html">Edition Rev11</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Repository</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<header class="doctitle">
+  <h1>Appendix B · Incompleteness and Machines</h1>
+</header>
+
+<p>What Gödel proved, what he did not, and what follows from it for machines that reason. For readers without logic in their luggage. Gödel himself is quoted, from his lecture of 1951, which remained unprinted in his lifetime, and from two letters to Günther, and in two sections Heinrich Scholz.</p>
+<p><strong>1 · What a formal system is.</strong> A formal system consists of axioms and rules of inference that are given so precisely that one need understand nothing in order to apply them. Gödel puts it this way in 1951: the requirement is equivalent to its having to be possible</p>
+<blockquote>
+<p>to build a finite machine, in the precise sense of a “Turing machine”, which will write down all the consequences of the axioms one after the other.</p>
+<p>(Gödel 1951, p. 308)</p>
+</blockquote>
+<p>A formal system is accordingly equivalent to a machine that outputs sentences. A program, too, that outputs sentences as proved according to a fixed rule and without inputs from outside is in this sense a formal system, however it is built. For a program that learns from measurements or from people this does not hold without further ado (Smith 2013, chs. 3 and 4). This also concerns today's language models: whether and how Gödel's theorems apply to them is not decided by these two sentences, but is a question of its own.</p>
+<p><strong>2 · The first theorem.</strong> In Gödel's words, italic in the print:</p>
+<blockquote>
+<p><em>whatever well-defined system of axioms and rules of inference may be chosen, there always exist diophantine problems of the type described which are undecidable by these axioms and rules, provided only that no false propositions of this type are derivable.</em></p>
+<p>(p. 308)</p>
+</blockquote>
+<p>A diophantine problem is a question about integer solutions of a polynomial equation, thus a question of ordinary arithmetic. The theorem says: a machine whose language can express such questions and which outputs nothing false about them leaves some of them open. It does not say that these questions have no answer. As a picture: a program that prints sentences without end and for some of these questions never prints either the yes or the no. Gödel notes that instead of his presupposition consistency suffices, &quot;as shown by Rosser&quot;; the axioms must then in addition yield the basic properties of addition, multiplication and comparison of size (p. 308, n. 8).</p>
+<p><strong>3 · The second theorem.</strong> Again italic in the print:</p>
+<blockquote>
+<p><em>for any well-defined system of axioms and rules, in particular, the proposition stating their consistency (or rather the equivalent number-theoretical proposition) is undemonstrable from these axioms and rules, provided these axioms and rules are consistent and suffice to derive a certain portion of the finitistic arithmetic of integers.</em></p>
+<p>(pp. 308 f.)</p>
+</blockquote>
+<p>Which portion of arithmetic is meant, Gödel says in a note: Peano's axioms and the rule of definition by ordinary induction, with a logic that satisfies the strictest finitistic requirements (p. 308, n. 10). From this he draws the conclusion that matters here. No one could set up a system and say of it without contradicting himself:</p>
+<blockquote>
+<p><em>All of these axioms and rules I perceive (with mathematical certitude) to be correct, and moreover I believe that they contain all of mathematics.</em> If someone makes such a statement he contradicts himself.</p>
+<p>(p. 309)</p>
+</blockquote>
+<p>For whoever sees the axioms to be correct &quot;also perceives (with the same certainty) that they are consistent. Hence he has a mathematical insight not derivable from his axioms.&quot; (p. 309)</p>
+<p><strong>4 · Both conclusions, in Gödel's German.</strong> To Günther Gödel writes in 1955 that his undecidable propositions prove only that no formalism can capture the whole of abstract thinking, and at this place he refers to a separate sheet. There it says, after the signature:</p>
+<blockquote>
+<p>i.e. more precisely: 1.) No formalism of which <em>we</em> can recognize that it expresses correct (&amp; only correct) thinking can capture <em>our</em> whole abstract thinking. 2.) No formalism in which only what is objectively correct is derivable can, in its derivable formulas, capture all objectively existing conceptual relations.</p>
+<p>(our translation; &quot;u.&quot; rendered &quot;&amp;&quot;) (letter 7, 10.8.1955, CW IV p. 520)</p>
+</blockquote>
+<p>The first point speaks of what we can see, the second of what exists. In the lecture Gödel likewise distinguishes mathematics in the subjective and in the objective sense (p. 309). That the two points correspond to this distinction is our assignment; Gödel's emphases <em>we</em> and <em>our</em> support it.</p>
+<p><strong>5 · New axioms shift the limit, they do not abolish it.</strong> One can add the missing insight as an axiom. The new system is again one to which both theorems apply; only a set of new axioms that no machine can enumerate would escape them. Gödel to Günther: his propositions are &quot;always decidable in a superordinate formalism (likewise expressing correct thoughts)&quot; (our translation) (letter 7, CW IV p. 518). And in 1951, of the axioms of set theory: &quot;the very formulation of the axioms up to a certain stage gives rise to the next axiom&quot; (p. 307). As long as a machine can enumerate the axioms, the limit moves along and never arrives.</p>
+<p><strong>6 · What Gödel did not prove.</strong> Two things are often read into it.</p>
+<p>First: that logic itself is incomplete. For first-order logic Gödel had shown the opposite in 1930: what is true in every realization is also provable. &quot;Realization&quot; (Realisierung) is his word for that in which a formula is true or false. He draws the line against Günther himself:</p>
+<blockquote>
+<p>I have merely proved: &quot;Every formula is either refutable or there is a realization&quot;, but not: &quot;or the existence of a realization is provable&quot;. The latter is false for every formal system.</p>
+<p>(our translation) (letter 4, 30.6.1954, CW IV p. 502, footnote 1)</p>
+</blockquote>
+<p>Second: that the human mind surpasses every machine. Gödel does not conclude this. He concludes an alternative, italic in the print up to the parenthesis:</p>
+<blockquote>
+<p><em>Either mathematics is incompletable in this sense, that its evident axioms can never be comprised in a finite rule, that is to say, the human mind (even within the realm of pure mathematics) infinitely surpasses the powers of any finite machine, or else there exist absolutely unsolvable diophantine problems of the type specified</em> (where the case that both terms of the disjunction are true is not excluded, so that there are, strictly speaking, three alternatives).</p>
+<p>(p. 310)</p>
+</blockquote>
+<p>Why an either-or? If our mind were equivalent to a finite machine, the axioms that it sees as evident would be enumerable by a machine, and by the first theorem a question of arithmetic would then remain open that it too would never decide. Either, then, it surpasses every such machine, or there are questions that no mind decides. Gödel does not exclude that both hold.</p>
+<p><strong>7 · Machines and humans.</strong> For the second possibility Gödel describes how it would look from inside. The mind would be equivalent to a finite machine &quot;that, however, is unable to understand completely its own functioning&quot; (p. 310). If there were a finite rule for all our evident axioms, we could &quot;certainly never know it to be such&quot; (p. 309).</p>
+<p>Whoever wants to derive from the two theorems a precedence of man over machine therefore needs more than the theorems give. He must presuppose that we reliably see our own consistency, and that we know which system we are; this objection has been raised against the inference (Smith 2013, ch. 37). The second presupposition Gödel himself excludes for this case, with the sentence just quoted.</p>
+<p>For a machine that reasons and derives enough arithmetic, this means three things, however large it is. If it outputs only what is true about the numbers, it does not output everything that is true about the numbers. Its own consistency it does not prove, if it is consistent. And every extension that is again a machine has the same limit at another place.</p>
+<p><strong>8 · The limit hangs on arithmetic: Scholz.</strong> Without arithmetic the three statements of section 7 do not hold. An example is the theory of identity that Heinrich Scholz set up in 1941 and called metaphysics; Günther appeals to his concept of metaphysics (Appendix A). Its language speaks only of identity and difference. It can say that there are at least or at most so many things, but it cannot calculate: addition and multiplication it does not have. For it, according to Scholz:</p>
+<blockquote>
+<p>5. 64. There is a general procedure by whose application it can be effectively <em>decided</em> for every identity-theoretical statement in which possible worlds it is valid.</p>
+<p>(our translation) (Scholz 1941, p. 108)</p>
+</blockquote>
+<p>The procedure itself Scholz does not describe; for the reduction procedure of 5.60, which he names a page before, he refers to Hilbert and Bernays (p. 107). &quot;Possible world&quot; means for Scholz a non-empty domain of individuals, thus what Gödel calls a realization. A machine that carries out the procedure outputs everything that holds in this language in every world, and only this. Gödel's two theorems do not affect it.</p>
+<p>&quot;Decided&quot; means here: a procedure says in finitely many steps whether a statement holds in every world. That is a different sense from that of sections 2 and 3, where a proposition is called undecidable that a system neither proves nor refutes. Such statements Scholz's theory has too: he calls them &quot;neutral&quot;: neither universally valid nor universally invalid (our translations) (p. 102), thus valid in some worlds, not valid in others. His example: the statements that there are at most three and that there are at least four individuals are both neutral; their disjunction is a theorem (p. 84). The theory is decidable nevertheless. For it holds what Gödel had shown in 1930 for first-order logic, and more. The decision between two interpretations of which the sheet treats has nothing to do with either of the two senses.</p>
+<p><strong>9 · How Scholz knows it.</strong> Scholz asks himself how we know that a proposition holds in every possible world, and answers first: not from experience, the propositions are &quot;<em>a priori</em>&quot; (our translation; spaced in print) (p. 169). How one can communicate about them he answers thus:</p>
+<blockquote>
+<p>How is this wonderful communication about the analytic propositions possible? We do not know. If we are honest, this is the only admissible answer.</p>
+<p>(our translation) (Scholz 1941, p. 171)</p>
+</blockquote>
+<p>The sentence stands in a book that bears rigorous science in its title; one may count it as rigour. After it he speaks of an illumination that one may construe for oneself as the effect of a divine spark. This construal (his word is &quot;Interpretation&quot;) he calls the &quot;expression of a personal faith&quot;, which in no metaphysics of universally valid statements &quot;will ever be able to occur as a theorem&quot; (our translations) (p. 171). The attitude behind it is more honest &quot;than the ways of speaking of a certain conventionalism that dissolves everything into arbitrary stipulations&quot; (our translation) (p. 172).</p>
+<p>Ten years before Gödel's lecture, then, Scholz too does not hold the validity of his propositions to be a matter of agreement, and he separates what he believes from what he proves; in Gödel there stands for this &quot;I believe&quot; and &quot;I do not claim […] a real proof&quot; (Gödel 1951, pp. 320, 321 f.). What differs is the object. Scholz's propositions are those of a decidable theory, Gödel's those of mathematics. And the word &quot;analytic&quot; puts mathematics on different sides in the two. Scholz proposes to identify the analytic statements with the universally valid ones; then the mathematical ones fall under the synthetic (p. 170). Gödel calls analytic what follows from the meaning of the concepts; in this sense he calls the axioms of set theory analytic, and an analytic proposition can, with him, be undecidable (Gödel 1951, p. 321). In Scholz every analytic proposition is decidable. The juxtaposition of the two is ours.</p>
+<p><strong>10 · What Gödel draws from the alternative.</strong> Günther had early related Gödel's results to the law of the excluded middle. In May 1954 he writes to him: &quot;For quantification theory the tertium non datur is <em>provisionally</em> suspended&quot;; for the theory of classes it is &quot;<em>utterly</em> abolished&quot; (our translations) (letter 3, CW IV p. 492). And two paragraphs further on: if the law of the excluded middle is finally abolished, &quot;a transition to the (at least) three-valued system takes place&quot; (our translation) (p. 494). Undecidability and many-valuedness do not stand in one sentence with him; between them stands the law of the excluded middle. In June 1955 Günther presents his basic idea to Gödel: reflection on our thinking can &quot;no longer be expressed adequately in two values&quot; (our translation) (letter 6, CW IV p. 516). Gödel answers this letter and the one before: &quot;That the many-valuedness of logic should have something to do with the undecidable propositions constructed by me is, however, hardly possible.&quot;; about the inadequacy of every formalism &quot;a many-valued logic, too, could change nothing&quot; (our translations) (letter 7, CW IV p. 518).</p>
+<p>From both possibilities of the alternative Gödel draws a conclusion against materialism. From the first it seems to follow that the working of the human mind cannot be reduced to that of the brain, &quot;which to all appearances is a finite machine&quot;; &quot;so apparently one is driven to take some vitalistic viewpoint&quot; (p. 311). From the second: it &quot;seems to disprove the view that mathematics is only our own creation&quot; (p. 311). The second leads to the question where the axioms come from.</p>
+<hr />
+<h2>Sources of this appendix</h2>
+<p>Gödel 1951: as in the sheet; pp. 307–311, 321. · Letters 4 and 7 to Günther, letters 3 and 6 from Günther: Kurt Gödel, Collected Works, vol. IV (Oxford 2003), pp. 492, 494, 500–505, 512–521. · Heinrich Scholz, Metaphysik als strenge Wissenschaft, Köln 1941; unchanged reprint Darmstadt 1965; § 5 (pp. 83–110) and § 8 (pp. 155–185). · Kurt Gödel, Die Vollständigkeit der Axiome des logischen Funktionenkalküls, Monatshefte für Mathematik und Physik 37 (1930). · For the sentences with textbook knowledge: Peter Smith, An Introduction to Gödel's Theorems, 2nd ed., Cambridge University Press 2013 (chs. 3, 4, 6, 31, 37).</p>
+
+</main>
+
+<footer class="pagefoot">
+  <p><a href="../en.html">Where the Axioms Come From</a> · <a href="../../../">Overview</a> · <a href="../../../rev11/en.html">Edition Rev11</a> · <a href="https://github.com/Stefan-Raffel/Polykontextural-Logische-Architektur">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
+</footer>
+
+</body>
+</html>

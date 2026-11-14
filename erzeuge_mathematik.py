@@ -87,6 +87,41 @@ def figur4(sp):
     return re.findall(r'(?is)<figure class="fig.*?</figure>', s)[3]
 
 
+# Der Koerper der vier Werte, bis 14.11. die Portalgrafik (Prompt Mathematiker 14.11. 16:43, F1-F3):  nach dem Absatz zu [144], ohne
+# Nummer (Figur 4 der Seite ist Figur 4 der Ausgabe), mit id.  Bildzeile wortlich, abgenommen vom Architekten 14.11. 16:41.
+KOERPER = {
+    'de': ('Günthers zweiter Kreis auf dem abgestumpften Oktaeder, räumlich: die Ecken und Kanten von Figur 4, die Negatoren in deren '
+           'Farben. Kräftig und mit Richtungszeichen der Kreis, um zwei Schritte ergänzt, als Vollkreis (<code>kreis2</code>; bewiesen '
+           '{t144}); er beginnt am weißen Punkt, dem Ausgang. Sieben seiner 24 Schritte liegen auf der Rückseite.',
+           'Das abgestumpfte Oktaeder: 24 Ecken, die Anordnungen von vier Werten, verbunden durch die Negatoren; darauf Günthers zweiter '
+           'Kreis, um zwei Schritte ergänzt, als geschlossener Weg durch alle Ecken.'),
+    'en': ("Günther's second circle on the truncated octahedron, as a solid: the vertices and edges of Figure 4, the negators in the "
+           'colours of Figure 4. Bold and with direction marks, the circle extended by two steps, as a full cycle (<code>kreis2</code>; '
+           'proved {t144}); it begins at the white dot, the start. Seven of its 24 steps lie on the far side.',
+           "The truncated octahedron: 24 vertices, the arrangements of four values, joined by the negators; on it Günther's second "
+           'circle, extended by two steps, as a closed path through all vertices.'),
+}
+
+
+def koerper(sp):
+    """Die SVG aus docs/abb (erzeugt von figuren/Portal_Koerper_Vier_Werte_mpl.py), eingebettet wie der Ring:  eigenes Id-Praefix."""
+    unter, alt = KOERPER[sp]
+    s = open(os.path.join(REPO, 'docs', 'abb', 'Portal_Koerper_Vier_Werte_mpl.svg'), encoding='utf-8').read()
+    s = s[s.index('<svg'):]
+    s = re.sub(r'(?is)<metadata>.*?</metadata>\s*', '', s)
+    s = re.sub(r'(?is)<style[^>]*>.*?</style>\s*', '', s)
+    s = re.sub(r'(?is)<defs>\s*</defs>\s*', '', s)
+    s = re.sub(r'\bid="([^"]+)"', r'id="koerper-\1"', s)
+    s = re.sub(r'(href=")#([^"]+)"', r'\1#koerper-\2"', s)
+    s = re.sub(r'url\(#([^)]+)\)', r'url(#koerper-\1)', s)
+    kopf = re.match(r'(?is)<svg\b[^>]*>', s).group(0)
+    neu = re.sub(r'\s(width|height)="[^"]*"', '', kopf)
+    neu = neu[:-1].rstrip() + f' role="img" aria-label="{alt}" stroke-linejoin="round" stroke-linecap="butt">'
+    svg = neu + s[len(kopf):].strip()
+    t144 = f'<a href="{SPRACHEN[sp]["ausgabe"]}#t144">[144]</a>'
+    return f'<figure class="fig koerper" id="koerper">\n{svg}\n<figcaption>{unter.format(t144=t144)}</figcaption>\n</figure>\n'
+
+
 def gedruckt(roh):
     "Der Text zwischen der ersten Linie und der letzten Linie vor dem Gegenlese-Block."
     z = roh.split('\n')
@@ -147,6 +182,15 @@ def baue(sp):
     inhalt = re.sub(r'<tr>\n  <td>(.*?)</td>', zeile, inhalt)
     assert sorted(gesetzt) == sorted(t for _, t in TAFEL_IDS), gesetzt
     inhalt = re.sub(r'(?is)(<table\b.*?</table>)', r'<div class="tablewrap">\1</div>', inhalt)
+    # Der Koerper:  unmittelbar nach dem Absatz zu [144] im Abschnitt "Vier Werte" / "Four values"
+    h2 = '<h2>Vier Werte</h2>' if sp == 'de' else '<h2>Four values</h2>'
+    assert inhalt.count(h2) == 1
+    a = inhalt.index(h2)
+    e = inhalt.find('<h2', a + 1)
+    abschnitt = inhalt[a:e]
+    ps = [m for m in re.finditer(r'<p>.*?</p>\n', abschnitt, re.S) if f'#t144">[144]</a>' in m.group(0)]
+    assert len(ps) == 1, 'Absatz zu [144] nicht eindeutig'
+    inhalt = inhalt[:a + ps[0].end()] + koerper(sp) + inhalt[a + ps[0].end():]
     return seite(sp, titel, kopfzeile, inhalt)
 
 

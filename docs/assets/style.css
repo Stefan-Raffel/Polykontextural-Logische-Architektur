@@ -535,3 +535,27 @@ p.formel {
   font-size: 1.08em;
   letter-spacing: 0.01em;
 }
+
+/* --- Blaetter der Hinfuehrung (Physik, Blatt 2 und Anhaenge; 14.11.2026) --- */
+
+/* Guenthers Tafeln in Anhang A, nach Signum S2:  kein Rahmen, nur die Linien des Drucks;  kein Umbruch, in schmal waagrecht scrollbar. */
+table.tafel { width: auto; min-width: 0; margin: 0 auto; font-family: inherit; font-size: 0.95rem; }
+table.tafel th, table.tafel td { border: none; padding: 0.25rem 1.1rem; white-space: nowrap; font-weight: 400; }
+table.tafel caption { caption-side: top; text-align: center; padding-bottom: 0.4rem; }
+table.tafel-1957 tr.titel th { text-align: center; padding-bottom: 0.6rem; }
+table.tafel-1957 tr.kopf th { border-top: 1px solid var(--ink-soft); padding-top: 0.5rem; }
+table.tafel-1957 tbody tr:last-child td { border-bottom: 1px solid var(--ink-soft); padding-bottom: 0.5rem; }
+table.tafel-i th, table.tafel-i td { text-align: center; }
+table.tafel-i thead th { border-bottom: 1px solid var(--ink-soft); }
+table.tafel-i th:first-child, table.tafel-i td:first-child { border-right: 1px solid var(--ink-soft); }
+table.tafel-i tbody tr:last-child td { border-bottom: none; }
+/* Die Formeltafel in Anhang A:  ohne Mindestbreite;  die Formeln brechen nicht um. */
+table.formeln { min-width: 0; }
+table.formeln td:last-child { white-space: nowrap; }
+
+/* Tafel III (Blatt 2) und der Koerper der vier Werte (/mathematik):  kleine Figuren, ohne Mindestbreite. */
+figure.fig.tafel svg { min-width: 0; max-width: 28.75rem; margin: 0 auto; }
+/* Tafel III ist ein Druckbild auf weissem Grund:  die Schrift bleibt schwarz, auch im Dunkelmodus (sonst greift .fig svg text). */
+figure.fig.tafel svg text { fill: #000; }
+figure.fig.koerper svg { min-width: 0; max-width: 30rem; margin: 0 auto; }
+figure.fig.tafel figcaption blockquote { margin: 0.4rem 0 0.6rem; font-size: 0.86rem; }
