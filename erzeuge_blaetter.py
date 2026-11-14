@@ -98,11 +98,26 @@ def tafel_i(zeilen):
     return '\n'.join(t)
 
 
-def tafel_iii(alt_bleibt=True):
+# Alt-Text der englischen Seite (Mathematiker 14.11. 17:03, O2;  Worttafel:  Besetzung -> filling).  Die deutsche Seite behaelt den
+# Alt-Text der SVG.
+TAFEL3_ALT_EN = ("Günther's Tafel III: a grid of the columns A to E and the rows α to ε, whose lines continue dashed beyond the edge. "
+                 'Filled are B β with 1, C β with 1 and C γ with 2, D β with 1, D γ with 2 and D δ with 3; all other cells are empty.')
+
+
+def tafel_iii(sp):
     s = md5_pruefen(os.path.join(K, TAFEL3[0]), TAFEL3[1])
     s = s[s.index('<svg'):].strip()
     assert ' id=' not in s, 'Tafel III traegt ids — dann Praefix setzen'
+    if sp == 'en':
+        assert len(re.findall(r'aria-label="[^"]*"', s)) == 1
+        s = re.sub(r'aria-label="[^"]*"', 'aria-label="' + html.escape(TAFEL3_ALT_EN, quote=True) + '"', s)
     return s
+
+
+def blatt_titel(sp):
+    "Der Titel von Blatt 2 aus seinem Entwurf (Linktext im Fuss der Anhaenge und von Blatt 1)."
+    q = SEITEN[('axiome', sp)]
+    return re.search(r'(?m)^# (.+)$', md5_pruefen(os.path.join(K, q[0]), q[1]).split('\n---\n', 1)[1]).group(1)
 
 
 def zitatnummern(text):
@@ -216,7 +231,7 @@ def baue(name, sp, bericht):
         fm = re.search(r'(?m)^⟪FIGUR: Figur_Tafel_III_IZM_S248_Signum\.svg[^⟫]*⟫\n\n(.+)\n\n(.+)\n', text)
         assert fm, 'Figurmarke nicht wie erwartet'
         cap = f'<figcaption><blockquote><p>{inline(md, fm.group(1))}</p></blockquote><p>{inline(md, fm.group(2))}</p></figcaption>'
-        platz['FIGURPLATZ'] = f'<figure class="fig tafel" id="tafel-iii">\n{tafel_iii()}\n{cap}\n</figure>'
+        platz['FIGURPLATZ'] = f'<figure class="fig tafel" id="tafel-iii">\n{tafel_iii(sp)}\n{cap}\n</figure>'
         text = text[:fm.start()] + 'FIGURPLATZ\n' + text[fm.end():]
     assert '⟪' not in text
 
@@ -239,6 +254,10 @@ def baue(name, sp, bericht):
                          ('<td>p ∨ ¬p</td>', '<td><em>p</em> ∨ ¬<em>p</em></td>')):
             assert inhalt.count(alt) == 1, alt
             inhalt = inhalt.replace(alt, neu)
+        # E1 (Mathematiker 14.11. 17:03):  nach ⊢ das schmale Leerzeichen U+2009 (Signum S2);  der Entwurf hat dafuer kein Zeichen.
+        # Nur in der Formel ("⊢ <em>Ox</em>…"), nicht im Satz "das Zeichen ⊢ sagt" / "the sign ⊢ says".
+        assert inhalt.count('⊢ <em>Ox</em>') == 1 and inhalt.count('⊢ ') == 2
+        inhalt = inhalt.replace('⊢ <em>Ox</em>', '⊢\u2009<em>Ox</em>')
     inhalt = re.sub(r'(?is)(?<!<div class="tablewrap">)(<table>.*?</table>)', r'<div class="tablewrap">\1</div>', inhalt)
     if name == 'anhang-a':   # die Formeltafel:  zwei kurze Spalten, ohne die Mindestbreite der Tafeln der Ausgabe
         assert inhalt.count('<div class="tablewrap"><table>') == 1
@@ -246,8 +265,7 @@ def baue(name, sp, bericht):
 
     fuss_vorn = ''
     if name.startswith('anhang'):
-        blatt = SEITEN[('axiome', sp)]
-        btitel = re.search(r'(?m)^# (.+)$', md5_pruefen(os.path.join(K, blatt[0]), blatt[1]).split('\n---\n', 1)[1]).group(1)
+        btitel = blatt_titel(sp)
         fuss_vorn = f'<a href="../{"en.html" if sp == "en" else ""}">{btitel}</a> · '
     bericht.append((ziel, quelle, len(links), n_nr, len(platz)))
     return ziel, seite(sp, ziel, titel, untertitel, kopfzeile, inhalt, fuss_vorn)

@@ -33,7 +33,7 @@ def stil_kennung():
     return hashlib.sha256(open(os.path.join(REPO, 'docs', 'assets', 'style.css'), 'rb').read()).hexdigest()[:8]
 
 
-def seite(sp, titel, kopfzeile, inhalt):
+def seite(sp, titel, kopfzeile, inhalt, fuss_vorn=''):
     c = SPRACHEN[sp]
     de = '<span aria-current="page">DE</span>' if sp == 'de' else f'<a href="{c["schwester"]}" hreflang="de">DE</a>'
     en = '<span aria-current="page">EN</span>' if sp == 'en' else f'<a href="{c["schwester"]}" hreflang="en">EN</a>'
@@ -74,7 +74,7 @@ def seite(sp, titel, kopfzeile, inhalt):
 </main>
 
 <footer class="pagefoot">
-  <p><a href="../">{c['uebersicht']}</a> · <a href="{c['ausgabe']}">{c['ausgabe_wort']}</a> · <a href="{GITHUB}">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
+  <p>{fuss_vorn}<a href="../">{c['uebersicht']}</a> · <a href="{c['ausgabe']}">{c['ausgabe_wort']}</a> · <a href="{GITHUB}">Stefan-Raffel/Polykontextural-Logische-Architektur</a></p>
 </footer>
 
 </body>

@@ -66,7 +66,10 @@ def baue(sp, vorprobe=False):
     for kopf, sid in stationen:
         assert inhalt.count(f'<h2>{kopf}</h2>') == 1, kopf
         inhalt = inhalt.replace(f'<h2>{kopf}</h2>', f'<h2 id="{sid}">{kopf}</h2>')
-    return seite(sp, titel, kopfzeile, fig + '\n' + inhalt)
+    # E3 (Mathematiker 14.11. 17:03):  Blatt 1 -> Blatt 2 im Fuss, mit dem Titel des Blatts als Linktext
+    from erzeuge_blaetter import blatt_titel
+    fuss_vorn = f'<a href="axiome/{"en.html" if sp == "en" else ""}">{blatt_titel(sp)}</a> · '
+    return seite(sp, titel, kopfzeile, fig + '\n' + inhalt, fuss_vorn)
 
 
 if __name__ == '__main__':
