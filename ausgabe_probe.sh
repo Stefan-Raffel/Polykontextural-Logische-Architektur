@@ -20,7 +20,8 @@
 #   ./ausgabe_probe.sh "teilA.md teilB.md" docs/de.html
 #
 # BRECHENDE GROESSEN je Sprachpaar (1-9, 11, 12) und einmal ueber die laufenden
-# Flaechen (10, 13 und 14, dazu 12 an der Startseite). Eine Gesamtzahl steht hier mit
+# Flaechen (10, 13 und 14, dazu 12 an der Startseite und, seit 14.11.2026, an den
+# zwoelf Seiten der Blaetter der Hinfuehrung). Eine Gesamtzahl steht hier mit
 # Absicht nicht: sie war zweimal nachzuziehen, und die Schlussmeldung zaehlt die
 # gefahrenen Groessen selbst.
 #   1. Ueberschriften — Folge und Wortlaut, in Dokumentreihenfolge
@@ -983,6 +984,15 @@ _start = os.path.join(REPO, 'docs', 'index.html')
 if not os.path.exists(_start):
     print(f"  {'Rohe Sternchen':22s} ✗  docs/index.html fehlt"); rc = 1
 elif not sternchen_bericht("Rohe Sternchen", [('html', open(_start, encoding='utf-8').read())]):
+    rc = 1
+# Dieselbe zwoelfte Groesse an den Blaettern der Hinfuehrung (seit 14.11.2026, Mathematiker O1):  sie werden aus Entwuerfen
+# erzeugt wie die Ausgabe, und ein rohes Sternchen dort sah bis dahin keine Probe.  Eine Zeile fuer alle, die Dateien gezaehlt.
+_blaetter = [os.path.join(REPO, 'docs', d, f) for d in ('mathematik', 'philosophie', 'physik', 'philosophie/axiome',
+             'philosophie/axiome/anhang-a', 'philosophie/axiome/anhang-b') for f in ('index.html', 'en.html')]
+_fehlt = [p for p in _blaetter if not os.path.exists(p)]
+if _fehlt:
+    print(f"  {'Sternchen Blaetter':22s} ✗  fehlt: {', '.join(os.path.relpath(p, REPO) for p in _fehlt)}"); rc = 1
+elif not sternchen_bericht(f"Sternchen {len(_blaetter)} Blaetter", [('html', open(p, encoding='utf-8').read()) for p in _blaetter]):
     rc = 1
 
 GEFAHREN.add('Gestaltsatz')

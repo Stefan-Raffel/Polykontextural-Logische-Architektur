@@ -2,7 +2,9 @@
 # =============================================================================
 # deixis.sh — relative Zeitwoerter ohne Anker in den laufenden Fassungen
 # -----------------------------------------------------------------------------
-#   ./docs/deixis.sh            meldet ueber docs/de.html, docs/en.html, docs/index.html
+#   ./docs/deixis.sh            meldet ueber docs/de.html, docs/en.html, docs/index.html und die Blaetter der
+#                               Hinfuehrung (je de/en:  mathematik, philosophie, physik, philosophie/axiome mit
+#                               anhang-a, anhang-b;  seit 14.11.2026, Mathematiker O1)
 #   ./docs/deixis.sh --probe    faehrt die Eichung am Anlass (braucht die Geschichte)
 #
 # DIESE PROBE MELDET NUR, wie parity.sh. Nicht jedes relative Zeitwort ist ein
@@ -76,7 +78,13 @@ if os.environ.get('MODUS') == '--probe':
     raise SystemExit(0 if all(ok for _, ok in f) else 1)
 
 print("── deixis.sh — relative Zeitwoerter ohne Anker (meldet nur)")
-for datei, sp in (('docs/de.html', 'de'), ('docs/en.html', 'en'), ('docs/index.html', 'de')):
+for datei, sp in (('docs/de.html', 'de'), ('docs/en.html', 'en'), ('docs/index.html', 'de'),
+                  ('docs/mathematik/index.html', 'de'), ('docs/mathematik/en.html', 'en'),
+                  ('docs/philosophie/index.html', 'de'), ('docs/philosophie/en.html', 'en'),
+                  ('docs/physik/index.html', 'de'), ('docs/physik/en.html', 'en'),
+                  ('docs/philosophie/axiome/index.html', 'de'), ('docs/philosophie/axiome/en.html', 'en'),
+                  ('docs/philosophie/axiome/anhang-a/index.html', 'de'), ('docs/philosophie/axiome/anhang-a/en.html', 'en'),
+                  ('docs/philosophie/axiome/anhang-b/index.html', 'de'), ('docs/philosophie/axiome/anhang-b/en.html', 'en')):
     tr = lauf(open(datei, encoding='utf-8').read(), sp)
     c = collections.Counter(x.lower() for w, _ in tr for x in w)
     print(f"\n  {datei}: {len(tr)} Absaetze;  {', '.join(f'{k} {v}' for k, v in c.most_common())}")

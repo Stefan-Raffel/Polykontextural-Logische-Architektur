@@ -2,7 +2,9 @@
 # =============================================================================
 # parity.sh — Paritaetsprobe de gegen en  (Vorgang 12, Ausweg C, Posten B)
 # -----------------------------------------------------------------------------
-#   ./docs/parity.sh                  vergleicht docs/de.html und docs/en.html
+#   ./docs/parity.sh                  vergleicht docs/de.html und docs/en.html, danach je Paar die Blaetter
+#                                     der Hinfuehrung (mathematik, philosophie, physik, philosophie/axiome,
+#                                     anhang-a, anhang-b;  index.html gegen en.html;  seit 14.11.2026, O1)
 #   ./docs/parity.sh <de> <en>        vergleicht zwei genannte Fassungen
 #
 # DIESE PROBE MELDET UND BRICHT NICHT — wie Gruppe (A) des Doc-Lints. Eine
@@ -26,13 +28,22 @@
 set -uo pipefail
 
 DOCS="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DE="${1:-${DOCS}/de.html}"
-EN="${2:-${DOCS}/en.html}"
+if [ "$#" -ge 2 ]; then
+  PAARE=("$1" "$2")
+else
+  PAARE=("${DOCS}/de.html" "${DOCS}/en.html")
+  for d in mathematik philosophie physik philosophie/axiome philosophie/axiome/anhang-a philosophie/axiome/anhang-b; do
+    PAARE+=("${DOCS}/${d}/index.html" "${DOCS}/${d}/en.html")
+  done
+fi
 
-for f in "$DE" "$EN"; do
+for f in "${PAARE[@]}"; do
   [ -f "$f" ] || { echo "parity: Datei nicht gefunden: $f" >&2; exit 2; }
 done
 
+for ((i = 0; i < ${#PAARE[@]}; i += 2)); do
+DE="${PAARE[i]}"
+EN="${PAARE[i+1]}"
 python3 - "$DE" "$EN" <<'PY'
 import re, sys, html, collections
 
@@ -209,4 +220,5 @@ else:
     print("  (keine Abweichung)")
     print("\n  ── 0 Meldungen.")
 PY
+done
 exit 0
