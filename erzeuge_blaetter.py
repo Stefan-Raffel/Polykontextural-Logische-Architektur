@@ -28,8 +28,8 @@ SEITEN = {
     ('axiome', 'de'): ('Entwurf_2026-11-14_Goedel_Guenther_de_Fassung10.md', '70d1f1cd', 'philosophie/axiome/index.html'),
     ('axiome', 'en'): ('Entwurf_2026-11-14_Goedel_Guenther_en_Fassung2.md', 'ac2f0b62', 'philosophie/axiome/en.html'),
     # Dateinamen mit dem ALTEN Buchstaben (E62):  massgeblich ist der Titel in der Datei, geprueft unten.
-    ('anhang-a', 'de'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangB_de_Fassung9.md', '3633f04a', 'philosophie/axiome/anhang-a/index.html'),
-    ('anhang-a', 'en'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangA_Sein_en_Fassung3.md', 'ddc86058', 'philosophie/axiome/anhang-a/en.html'),
+    ('anhang-a', 'de'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangB_de_Fassung10.md', 'cd0eae31', 'philosophie/axiome/anhang-a/index.html'),
+    ('anhang-a', 'en'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangA_Sein_en_Fassung4.md', '54a917b6', 'philosophie/axiome/anhang-a/en.html'),
     ('anhang-b', 'de'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangA_de_Fassung7.md', '78fb5735', 'philosophie/axiome/anhang-b/index.html'),
     ('anhang-b', 'en'): ('Entwurf_2026-11-14_Goedel_Guenther_AnhangB_Maschinen_en_Fassung2.md', '175106c7', 'philosophie/axiome/anhang-b/en.html'),
 }
