@@ -19,7 +19,7 @@ import hashlib, html, os, re, sys
 
 import mistune
 
-from erzeuge_mathematik import K, REPO, GITHUB, stil_kennung
+from erzeuge_mathematik import K, REPO, GITHUB, stil_kennung, schluss_de
 
 # Name: (Quelle, md5, Ziel unter docs/, Tiefe unter docs/)
 SEITEN = {
@@ -196,6 +196,9 @@ def baue(name, sp, bericht):
     else:
         assert untertitel and kopfzeile, 'Blatt ohne Untertitel oder Kopfzeile'
     text = text[m.end():]
+    if sp == 'de':   # Entscheid E2 (Architekt 14.11. 17:05):  „…" -> „…“, nur das schliessende Zeichen
+        text, n_schluss, offen = schluss_de(text)
+        print(f'  {name}/{sp}  schluss_de: {n_schluss} gesetzt, offen {offen}', file=sys.stderr)
     assert '⟦' not in text and '⟨' not in text, 'Randzeichen im gedruckten Teil'
 
     # Tafeln aus Codebloecken (nur Anhang A)

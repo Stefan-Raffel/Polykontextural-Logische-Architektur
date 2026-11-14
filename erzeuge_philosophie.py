@@ -10,7 +10,7 @@ import hashlib, os, re, sys
 
 import mistune
 
-from erzeuge_mathematik import K, REPO, gedruckt, seite, SPRACHEN
+from erzeuge_mathematik import K, REPO, gedruckt, seite, SPRACHEN, schluss_de
 
 QUELLEN = {'de': ('Entwurf_2026-10-31_Philosophie_de.md', '0ab1ef1a', 'Günthers zweiter Kreis als Ring'),
            'en': ('Entwurf_2026-11-01_Philosophie_en.md', 'ef493494', "Günther's second circle as a ring")}
@@ -44,6 +44,9 @@ def baue(sp, vorprobe=False):
     stationen = [(m.group(1), f'p{m.group(2)}') for m in re.finditer(r'(?m)^## (.+?) ⟨P(\d)⟩$', text)]
     assert [i for _, i in stationen] == [f'p{n}' for n in range(1, 7)], stationen
     text = re.sub(r'\s*⟨[^⟩]*⟩', '', text)
+    if sp == 'de':
+        text, n, offen = schluss_de(text)
+        print(f'  schluss_de: {n} gesetzt, offen {offen}', file=sys.stderr)
 
     m = re.match(r'# (.+)\n\n\*(.+)\*\n\n!\[([^\]]*)\]\(Lethe_Ring_Kreis2_3d\.svg\)\n\n\*(.+)\*\n', text)
     assert m and m.group(3) == alt, 'Kopf, Kopfzeile, Ring und Unterschrift nicht wie erwartet'

@@ -122,6 +122,49 @@ def koerper(sp):
     return f'<figure class="fig koerper" id="koerper">\n{svg}\n<figcaption>{unter.format(t144=t144)}</figcaption>\n</figure>\n'
 
 
+def schluss_de(text):
+    """Deutsche Anfuehrung „…" -> „…“ (Entscheid Architekt 14.11. 17:05, E2):  NUR das schliessende Zeichen einer mit „ geoeffneten
+    Anfuehrung;  gerade Anfuehrungen IM Zitat (innere, "…") bleiben.  Nicht in Codespannen, Codebloecken, Tafelzeilen.  Gezaehlt je
+    Zeile (ein Absatz ist eine Zeile);  eine Zeile, deren „ nicht schliesst, wird gemeldet.
+    Regel fuer ein gerades " innerhalb von „…:  nach Leerraum, „, (, [ oeffnet es ein inneres Zitat, das naechste " schliesst dieses;
+    sonst schliesst es die deutsche Anfuehrung und wird “.  Ein “ nach einem Wortzeichen schliesst ebenfalls (schon richtig gesetzt)."""
+    aus, n, offen = [], 0, []
+    zaun = False
+    for zeile in text.split('\n'):
+        if zeile.startswith('```'):
+            zaun = not zaun
+        if zaun or zeile.startswith('```') or zeile.lstrip().startswith('|'):
+            aus.append(zeile)
+            continue
+        tiefe, innen, neu = 0, False, []
+        for teil in re.split(r'(`[^`]*`)', zeile):
+            if teil.startswith('`'):
+                neu.append(teil)
+                continue
+            z = list(teil)
+            for i, c in enumerate(z):
+                vor = z[i - 1] if i else (neu[-1][-1] if neu and neu[-1] else '')
+                if c == '„':
+                    tiefe += 1
+                    innen = False
+                elif c == '“' and tiefe and vor not in ' \t(„[':
+                    tiefe -= 1
+                elif c == '"' and tiefe:
+                    if innen:
+                        innen = False
+                    elif vor in ('', ' ', '\t', '„', '(', '[', ' '):
+                        innen = True
+                    else:
+                        z[i] = '“'
+                        tiefe -= 1
+                        n += 1
+            neu.append(''.join(z))
+        if tiefe:
+            offen.append(zeile[:90])
+        aus.append(''.join(neu))
+    return '\n'.join(aus), n, offen
+
+
 def gedruckt(roh):
     "Der Text zwischen der ersten Linie und der letzten Linie vor dem Gegenlese-Block."
     z = roh.split('\n')
@@ -153,6 +196,9 @@ def baue(sp):
     assert ' '.join(sicht.split()) == ' '.join(m.group(1).split()), 'Unterschrift weicht von der Ausgabe ab'
     fig = fig.replace('</figcaption>', f' — <a href="{c["ausgabe"]}#a3">{m.group(2)}</a></figcaption>')
     text = text.replace(m.group(0), 'FIGURPLATZ')
+    if sp == 'de':
+        text, n, offen = schluss_de(text)
+        print(f'  schluss_de: {n} gesetzt, offen {offen}', file=sys.stderr)
 
     if sp == 'de':
         letzter = 'wo die Ausgabe selbst das Wort gebraucht, steht es als ihr Wortlaut.'
