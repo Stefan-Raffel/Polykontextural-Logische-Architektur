@@ -23,8 +23,8 @@ from erzeuge_mathematik import K, REPO, GITHUB, stil_kennung, schluss_de
 
 # Name: (Quelle, md5, Ziel unter docs/, Tiefe unter docs/)
 SEITEN = {
-    ('physik', 'de'): ('Entwurf_2026-11-14_Physik_de_Janus_Fassung24.md', 'b4c77cc0', 'physik/index.html'),
-    ('physik', 'en'): ('Entwurf_2026-11-14_Physik_en_Fassung3.md', '9d54b5e0', 'physik/en.html'),
+    ('physik', 'de'): ('Entwurf_2026-11-15_Physik_de_Fassung25.md', '4f93c8f2', 'physik/index.html'),
+    ('physik', 'en'): ('Entwurf_2026-11-15_Physik_en_Fassung4.md', '7f8dc4a8', 'physik/en.html'),
     ('axiome', 'de'): ('Entwurf_2026-11-14_Goedel_Guenther_de_Fassung10.md', '70d1f1cd', 'philosophie/axiome/index.html'),
     ('axiome', 'en'): ('Entwurf_2026-11-14_Goedel_Guenther_en_Fassung2.md', 'ac2f0b62', 'philosophie/axiome/en.html'),
     # Dateinamen mit dem ALTEN Buchstaben (E62):  massgeblich ist der Titel in der Datei, geprueft unten.
